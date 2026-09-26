@@ -389,3 +389,8 @@ FodyWeavers.xsd
 archive/
 release/
 _archive_*/
+
+# Tool outputs
+*.txt
+*.log
+
