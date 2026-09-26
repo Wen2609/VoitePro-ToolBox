@@ -10,7 +10,7 @@
 	xmlns:test1="clr-namespace:test1"
 	Title="紫罗兰工具箱"
 	WindowStyle="None"
-	Width="1000" Height="800" MinWidth="1010" MinHeight="720"
+	Width="1000" Height="850" MinWidth="1010" MinHeight="760"
 	FontFamily="pack://siteoforigin:,,,/fonts/OPPO_Sans_4.0.ttf#OPPO Sans 4.0"
 Background="#FFFAFAFC"
 	UseLayoutRounding="True"

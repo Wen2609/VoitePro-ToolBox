@@ -1064,7 +1064,7 @@ namespace WpfApp1
             InitializeVioletDownload();
             
             this.Width = 1000;
-            this.Height = 800;
+            this.Height = 850;
             this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             
             // 异步增加打开次数
