@@ -135,8 +135,7 @@
     <PackageReference Include="SharpVectors" Version="1.8.5" />
     <PackageReference Include="SharpCompress" Version="0.44.0" />
     <PackageReference Include="ZstdSharp.Port" Version="0.8.7" />
-    <PackageReference Include="SharpEDL" Version="1.0.4" />
-    <PackageReference Include="System.IO.Ports" Version="9.0.8" />
+        <PackageReference Include="System.IO.Ports" Version="9.0.8" />
     <PackageReference Include="System.Management" Version="9.0.8" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="BouncyCastle.Cryptography" Version="2.4.0" />

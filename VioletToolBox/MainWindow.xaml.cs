@@ -1008,6 +1008,41 @@ namespace WpfApp1
 
         private readonly System.Diagnostics.Stopwatch _swStart = System.Diagnostics.Stopwatch.StartNew();
 
+        protected override void OnInitialized(EventArgs e)
+        {
+            base.OnInitialized(e);
+            CollectPageTemplateKeys();
+            // 后台预加载全部页面：后台线程延迟 3s（窗口已显示）后，按页在 Background 优先级逐页实例化，
+            // 每页之间消息循环可穿插渲染/输入，不阻塞界面响应，页面切换秒开
+            var _preloadPages = new System.Collections.Generic.List<string>();
+            foreach (var key in _pageTemplateKeys)
+            {
+                var vn2 = key.StartsWith("Page_") ? key.Substring("Page_".Length) : key;
+                if (!_pageInstances.ContainsKey(vn2)) _preloadPages.Add(vn2);
+            }
+            if (_preloadPages.Count > 0)
+            {
+                var _dispatcher = System.Windows.Application.Current?.Dispatcher;
+                if (_dispatcher != null)
+                {
+                    new System.Threading.Timer((_) =>
+                    {
+                        foreach (var vn2 in _preloadPages)
+                        {
+                            _dispatcher.BeginInvoke(new System.Action(() =>
+                            {
+                                if (!_pageInstances.ContainsKey(vn2))
+                                {
+                                    var inst = InstantiatePage(vn2);
+                                    if (inst != null) _pageInstances[vn2] = inst;
+                                }
+                            }), System.Windows.Threading.DispatcherPriority.Background);
+                        }
+                    }, null, 3000, System.Threading.Timeout.Infinite);
+                }
+            }
+        }
+
         public MainWindow()
         {
             // 性能：冻结静态 Freezable 资源（画刷/效果），减少渲染时资源切换开销
@@ -4033,10 +4068,7 @@ namespace WpfApp1
 
             UpdateButtonStates("EdlFlash");
             currentView = "EdlFlash";
-            Dispatcher.BeginInvoke(
-                new Action(StartEdlCloudLoaderRefresh),
-                System.Windows.Threading.DispatcherPriority.Background);
-        }
+                    }
 
         // 读取应用列表按钮点击事件：执行 adb shell pm list packages 并填充可勾选列表
         private async void ReadAppListButton_Click(object sender, RoutedEventArgs e)
@@ -18780,6 +18812,41 @@ public partial class MainWindow : Window
             return adbMode && IsEdlDataPartitionLabel(partitionName);
         }
 
+
+        internal static bool IsEdlDataPartitionLabel(string? label)
+        {
+            if (string.IsNullOrWhiteSpace(label))
+                return false;
+            return label.Equals("userdata", StringComparison.OrdinalIgnoreCase)
+                || label.Equals("metadata", StringComparison.OrdinalIgnoreCase);
+        }
+
+        internal static bool IsEdlBasebandFingerprintBackupPartitionLabel(string? label)
+        {
+            if (string.IsNullOrWhiteSpace(label))
+                return false;
+
+            string normalized = StripEdlSlotSuffix(label.Trim());
+            if (normalized.Equals("persist", StringComparison.OrdinalIgnoreCase)
+                || normalized.Equals("modemst1", StringComparison.OrdinalIgnoreCase)
+                || normalized.Equals("modemst2", StringComparison.OrdinalIgnoreCase)
+                || normalized.Equals("fsg", StringComparison.OrdinalIgnoreCase)
+                || normalized.Equals("fsc", StringComparison.OrdinalIgnoreCase))
+                return true;
+
+            return normalized.Equals("oplusdycnvbk", StringComparison.OrdinalIgnoreCase)
+                || normalized.Equals("oplusstanvbk", StringComparison.OrdinalIgnoreCase);
+        }
+
+        internal static string StripEdlSlotSuffix(string label)
+        {
+            if (label.EndsWith("_a", StringComparison.OrdinalIgnoreCase) ||
+                label.EndsWith("_b", StringComparison.OrdinalIgnoreCase))
+            {
+                return label.Substring(0, label.Length - 2);
+            }
+            return label;
+        }
         internal static bool IsFastbootVisualizationBasebandProtectedPartitionLabel(string? partitionName)
         {
             if (string.IsNullOrWhiteSpace(partitionName))
