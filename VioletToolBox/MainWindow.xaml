@@ -1548,7 +1548,7 @@ Background="#FFFAFAFC"
             </StackPanel>
         </StackPanel>
     </Grid>
-<Grid Grid.Row="1" Margin="0,0,0,12">
+<ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled"><Grid Grid.Row="1" Margin="0,0,0,12">
 <Grid.RowDefinitions>
                                 <RowDefinition Height="*" />
                                 <RowDefinition Height="Auto" />
@@ -2055,7 +2055,7 @@ Background="#FFFAFAFC"
                                 </ProgressBar.Style>
                             </ProgressBar>
 </Grid>
-</Grid>
+</ScrollViewer></Grid>
                 </DataTemplate>
                 <DataTemplate x:Key="Page_HiddenEnvironmentView">
                         <Grid
@@ -2842,7 +2842,7 @@ Background="#FFFAFAFC"
             </StackPanel>
         </StackPanel>
     </Grid>
-<Grid Grid.Row="1" Margin="0,0,0,0"><ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+<Grid Grid.Row="1" Margin="0,0,0,0"><ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled"><ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
 <Border
                                     Background="#F8F9FA"
                                     CornerRadius="10"
@@ -3230,7 +3230,7 @@ Background="#FFFAFAFC"
                                     </Grid>
                                 </Border>
                             </Border>
-</ScrollViewer></Grid>
+</ScrollViewer></ScrollViewer></Grid>
 </Grid>
                 </DataTemplate>
                 <DataTemplate x:Key="Page_OujiaFlashView">
@@ -6059,7 +6059,7 @@ Background="#FFFAFAFC"
             </StackPanel>
         </StackPanel>
     </Grid>
-<Grid Grid.Row="1" Margin="12,0,12,12">
+<ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled"><Grid Grid.Row="1" Margin="12,0,12,12">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="2*"/>
                                 <ColumnDefinition Width="12"/>
@@ -6272,7 +6272,7 @@ Background="#FFFAFAFC"
                                 
                             </StackPanel>
                         </Grid>
-</Grid>
+</ScrollViewer></Grid>
                 </DataTemplate>
                 <DataTemplate x:Key="Page_RomDownloadview">
                         <Grid

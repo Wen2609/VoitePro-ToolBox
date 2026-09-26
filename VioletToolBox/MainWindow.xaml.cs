@@ -1104,8 +1104,28 @@ namespace WpfApp1
             
 
             ShowPage("HomeView");
-            
             UpdateButtonStates("Home");
+            // 命令行参数 --page=ViewName 直接打开指定页面（自动化截图/调试用）；延迟到窗口显示后执行
+            try
+            {
+                var _args = Environment.GetCommandLineArgs();
+                foreach (var _a in _args)
+                {
+                    if (_a.StartsWith("--page=", StringComparison.OrdinalIgnoreCase))
+                    {
+                        var _vn = _a.Substring(7).Trim();
+                        if (!string.IsNullOrEmpty(_vn))
+                        {
+                            System.Windows.Application.Current?.Dispatcher.BeginInvoke(new Action(() =>
+                            {
+                                try { ShowPage(_vn); } catch { }
+                            }));
+                            break;
+                        }
+                    }
+                }
+            }
+            catch { }
             // 自动启动更新程序
             StartUpdateProgram();
             
