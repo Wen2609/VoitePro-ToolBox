@@ -9383,12 +9383,8 @@ Background="#FFFAFAFC"
                 <!-- 启动时的初始化遮罩层 -->
                 <Grid x:Name="LoadingOverlay" Panel.ZIndex="999" Visibility="Collapsed" Grid.RowSpan="2" Grid.ColumnSpan="2">
                     <Grid.Background>
-                        <SolidColorBrush Color="#E5FFFFFF" />
+                        <SolidColorBrush Color="#F2FFFFFF" />
                     </Grid.Background>
-                    <!-- 模糊效果，让背后的UI看起来有毛玻璃质感 -->
-                    <Grid.Effect>
-                        <BlurEffect Radius="15" RenderingBias="Quality" />
-                    </Grid.Effect>
                 </Grid>
                 <!-- 前景内容层，为了防止前景也被模糊，单独放一个覆盖层显示文字和加载圈 -->
                 <Grid x:Name="LoadingContent" Panel.ZIndex="1000" Visibility="Collapsed" Grid.RowSpan="2" Grid.ColumnSpan="2" Background="Transparent">
