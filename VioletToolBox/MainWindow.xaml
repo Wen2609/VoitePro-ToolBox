@@ -1052,7 +1052,7 @@ Background="#FFFAFAFC"
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="190"/>
                                         <RowDefinition Height="8"/>
-                                        <RowDefinition Height="240"/>
+                                        <RowDefinition Height="300"/>
                                         <RowDefinition Height="8"/>
                                         <RowDefinition Height="220"/>
                                     </Grid.RowDefinitions>
