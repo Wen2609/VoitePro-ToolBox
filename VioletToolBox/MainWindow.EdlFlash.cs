@@ -162,6 +162,7 @@ namespace WpfApp1
         protected override void OnInitialized(EventArgs e)
         {
             base.OnInitialized(e);
+            CollectPageTemplateKeys();
             InitializeEdlEngine();
         }
 
@@ -169,9 +170,9 @@ namespace WpfApp1
         {
             Closed -= MainWindow_EdlClosed;
             Closed += MainWindow_EdlClosed;
-            if (EdlLogTextBox != null)
+            if ((this.FindControlInPages("EdlLogTextBox") as System.Windows.Controls.RichTextBox) != null)
             {
-                EdlLogTextBox.Document = new FlowDocument
+                (this.FindControlInPages("EdlLogTextBox") as System.Windows.Controls.RichTextBox).Document = new FlowDocument
                 {
                     PagePadding = new Thickness(0),
                     ColumnWidth = 10000,
@@ -192,13 +193,13 @@ namespace WpfApp1
                 {
                     Dispatcher.Invoke(() =>
                     {
-                        if (EdlSendLoaderCheckBox != null)
-                            EdlSendLoaderCheckBox.IsChecked = checkedValue;
+                        if ((this.FindControlInPages("EdlSendLoaderCheckBox") as System.Windows.Controls.CheckBox) != null)
+                            (this.FindControlInPages("EdlSendLoaderCheckBox") as System.Windows.Controls.CheckBox).IsChecked = checkedValue;
                     });
                 });
-            EdlPartitionDataGrid.ItemsSource = _edlPartitions;
-            if (EdlPartitionSearchComboBox != null)
-                EdlPartitionSearchComboBox.ItemsSource = BuildEdlPartitionSearchOptions(null);
+            (this.FindControlInPages("EdlPartitionDataGrid") as System.Windows.Controls.DataGrid).ItemsSource = _edlPartitions;
+            if ((this.FindControlInPages("EdlPartitionSearchComboBox") as System.Windows.Controls.ComboBox) != null)
+                (this.FindControlInPages("EdlPartitionSearchComboBox") as System.Windows.Controls.ComboBox).ItemsSource = BuildEdlPartitionSearchOptions(null);
             ApplyEdlFactoryResetOptionState();
             LoadEdlBuiltInLoaders();
             LoadEdlPorts();
@@ -361,13 +362,13 @@ namespace WpfApp1
 
         private void LoadEdlBuiltInLoaders()
         {
-            if (EdlBuiltInLoaderComboBox == null)
+            if ((this.FindControlInPages("EdlBuiltInLoaderComboBox") as System.Windows.Controls.ComboBox) == null)
                 return;
 
             _edlBuiltInLoaderOptions.Clear();
-            EdlBuiltInLoaderComboBox.ItemsSource = _edlBuiltInLoaderOptions;
-            EdlBuiltInLoaderComboBox.SelectedIndex = -1;
-            EdlBuiltInLoaderComboBox.Text = "加载云端引导...";
+            (this.FindControlInPages("EdlBuiltInLoaderComboBox") as System.Windows.Controls.ComboBox).ItemsSource = _edlBuiltInLoaderOptions;
+            (this.FindControlInPages("EdlBuiltInLoaderComboBox") as System.Windows.Controls.ComboBox).SelectedIndex = -1;
+            (this.FindControlInPages("EdlBuiltInLoaderComboBox") as System.Windows.Controls.ComboBox).Text = "加载云端引导...";
         }
 
         private void StartEdlCloudLoaderRefresh()
@@ -422,10 +423,10 @@ namespace WpfApp1
                 {
                     await Dispatcher.InvokeAsync(() =>
                     {
-                        if (EdlBuiltInLoaderComboBox != null)
+                        if ((this.FindControlInPages("EdlBuiltInLoaderComboBox") as System.Windows.Controls.ComboBox) != null)
                         {
-                            EdlBuiltInLoaderComboBox.SelectedIndex = -1;
-                            EdlBuiltInLoaderComboBox.Text = "云端引导加载失败";
+                            (this.FindControlInPages("EdlBuiltInLoaderComboBox") as System.Windows.Controls.ComboBox).SelectedIndex = -1;
+                            (this.FindControlInPages("EdlBuiltInLoaderComboBox") as System.Windows.Controls.ComboBox).Text = "云端引导加载失败";
                         }
                     });
                     return;
@@ -433,7 +434,7 @@ namespace WpfApp1
 
                 await Dispatcher.InvokeAsync(() =>
                 {
-                    string? selectedPath = (EdlBuiltInLoaderComboBox?.SelectedItem as EdlBuiltInLoaderOption)?.FilePath;
+                    string? selectedPath = ((this.FindControlInPages("EdlBuiltInLoaderComboBox") as System.Windows.Controls.ComboBox)?.SelectedItem as EdlBuiltInLoaderOption)?.FilePath;
                     _edlBuiltInLoaderOptions.Clear();
 
                     foreach (var option in options
@@ -443,19 +444,19 @@ namespace WpfApp1
                         AddOrReplaceEdlBuiltInLoaderOption(option);
                     }
 
-                    if (EdlBuiltInLoaderComboBox != null)
+                    if ((this.FindControlInPages("EdlBuiltInLoaderComboBox") as System.Windows.Controls.ComboBox) != null)
                     {
                         var selectedOption = _edlBuiltInLoaderOptions.FirstOrDefault(item =>
                             !string.IsNullOrWhiteSpace(selectedPath)
                             && item.FilePath.Equals(selectedPath, StringComparison.OrdinalIgnoreCase));
                         if (selectedOption != null)
                         {
-                            EdlBuiltInLoaderComboBox.SelectedItem = selectedOption;
+                            (this.FindControlInPages("EdlBuiltInLoaderComboBox") as System.Windows.Controls.ComboBox).SelectedItem = selectedOption;
                         }
                         else
                         {
-                            EdlBuiltInLoaderComboBox.SelectedIndex = -1;
-                            EdlBuiltInLoaderComboBox.Text = "FireHose";
+                            (this.FindControlInPages("EdlBuiltInLoaderComboBox") as System.Windows.Controls.ComboBox).SelectedIndex = -1;
+                            (this.FindControlInPages("EdlBuiltInLoaderComboBox") as System.Windows.Controls.ComboBox).Text = "FireHose";
                         }
                     }
                 });
@@ -464,10 +465,10 @@ namespace WpfApp1
             {
                 await Dispatcher.InvokeAsync(() =>
                 {
-                    if (EdlBuiltInLoaderComboBox != null)
+                    if ((this.FindControlInPages("EdlBuiltInLoaderComboBox") as System.Windows.Controls.ComboBox) != null)
                     {
-                        EdlBuiltInLoaderComboBox.SelectedIndex = -1;
-                        EdlBuiltInLoaderComboBox.Text = "云端引导加载失败";
+                        (this.FindControlInPages("EdlBuiltInLoaderComboBox") as System.Windows.Controls.ComboBox).SelectedIndex = -1;
+                        (this.FindControlInPages("EdlBuiltInLoaderComboBox") as System.Windows.Controls.ComboBox).Text = "云端引导加载失败";
                     }
                 });
             }
@@ -979,10 +980,10 @@ namespace WpfApp1
 
         private void EdlBuiltInLoaderComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (EdlBuiltInLoaderComboBox?.SelectedItem is not EdlBuiltInLoaderOption option)
+            if ((this.FindControlInPages("EdlBuiltInLoaderComboBox") as System.Windows.Controls.ComboBox)?.SelectedItem is not EdlBuiltInLoaderOption option)
                 return;
-            if (EdlLoaderTextBox != null)
-                EdlLoaderTextBox.Text = option.FilePath;
+            if ((this.FindControlInPages("EdlLoaderTextBox") as System.Windows.Controls.TextBox) != null)
+                (this.FindControlInPages("EdlLoaderTextBox") as System.Windows.Controls.TextBox).Text = option.FilePath;
         }
 
         private async Task<string> ResolveEdlLoaderPathAsync(
@@ -995,7 +996,7 @@ namespace WpfApp1
             if (string.IsNullOrWhiteSpace(loaderPath) || !loaderPath.StartsWith("cloud-loader://", StringComparison.OrdinalIgnoreCase))
                 return loaderPath;
 
-            var option = EdlBuiltInLoaderComboBox?.Items
+            var option = (this.FindControlInPages("EdlBuiltInLoaderComboBox") as System.Windows.Controls.ComboBox)?.Items
                 .OfType<EdlBuiltInLoaderOption>()
                 .FirstOrDefault(item => string.Equals(item.FilePath, loaderPath, StringComparison.OrdinalIgnoreCase));
             if (option == null || string.IsNullOrWhiteSpace(option.DownloadUrl))
@@ -1486,9 +1487,9 @@ namespace WpfApp1
 
         private void LoadEdlPorts()
         {
-            if (EdlPortComboBox == null)
+            if ((this.FindControlInPages("EdlPortComboBox") as System.Windows.Controls.ComboBox) == null)
                 return;
-            EdlPortComboBox.ItemsSource = BuildEdlPortOptions();
+            (this.FindControlInPages("EdlPortComboBox") as System.Windows.Controls.ComboBox).ItemsSource = BuildEdlPortOptions();
         }
 
         private List<string> BuildEdlPortOptions()
@@ -1553,8 +1554,8 @@ namespace WpfApp1
 
         private void ApplyEdlPartitionProtectionState()
         {
-            bool protectSafe = EdlSkipSafeCheckBox?.IsChecked == true;
-            bool protectData = EdlSkipDataCheckBox?.IsChecked == true;
+            bool protectSafe = (this.FindControlInPages("EdlSkipSafeCheckBox") as System.Windows.Controls.CheckBox)?.IsChecked == true;
+            bool protectData = (this.FindControlInPages("EdlSkipDataCheckBox") as System.Windows.Controls.CheckBox)?.IsChecked == true;
             if (protectSafe || protectData)
             {
                 foreach (var item in _edlPartitions)
@@ -1565,22 +1566,22 @@ namespace WpfApp1
                         item.IsSelected = false;
                 }
             }
-            EdlPartitionDataGrid?.Items.Refresh();
+            (this.FindControlInPages("EdlPartitionDataGrid") as System.Windows.Controls.DataGrid)?.Items.Refresh();
         }
 
         private void ApplyEdlFactoryResetOptionState()
         {
-            bool factoryReset = EdlFactoryResetCheckBox?.IsChecked == true;
-            if (EdlSkipDataCheckBox != null)
+            bool factoryReset = (this.FindControlInPages("EdlFactoryResetCheckBox") as System.Windows.Controls.CheckBox)?.IsChecked == true;
+            if ((this.FindControlInPages("EdlSkipDataCheckBox") as System.Windows.Controls.CheckBox) != null)
             {
                 if (factoryReset)
                 {
-                    EdlSkipDataCheckBox.IsChecked = false;
-                    EdlSkipDataCheckBox.IsEnabled = false;
+                    (this.FindControlInPages("EdlSkipDataCheckBox") as System.Windows.Controls.CheckBox).IsChecked = false;
+                    (this.FindControlInPages("EdlSkipDataCheckBox") as System.Windows.Controls.CheckBox).IsEnabled = false;
                 }
                 else
                 {
-                    EdlSkipDataCheckBox.IsEnabled = true;
+                    (this.FindControlInPages("EdlSkipDataCheckBox") as System.Windows.Controls.CheckBox).IsEnabled = true;
                 }
             }
             ApplyEdlPartitionProtectionState();
@@ -1603,7 +1604,7 @@ namespace WpfApp1
                 }
             }
 
-            EdlPartitionDataGrid?.Items.Refresh();
+            (this.FindControlInPages("EdlPartitionDataGrid") as System.Windows.Controls.DataGrid)?.Items.Refresh();
         }
 
         private void EdlSkipDataCheckBox_Checked_Edl(object sender, RoutedEventArgs e) => ApplyEdlPartitionProtectionState();
@@ -1621,8 +1622,8 @@ namespace WpfApp1
 
             RunEdlResetAction(async () =>
             {
-                string loaderPath = EdlLoaderTextBox?.Text ?? "";
-                bool sendLoader = EdlSendLoaderCheckBox?.IsChecked == true;
+                string loaderPath = (this.FindControlInPages("EdlLoaderTextBox") as System.Windows.Controls.TextBox)?.Text ?? "";
+                bool sendLoader = (this.FindControlInPages("EdlSendLoaderCheckBox") as System.Windows.Controls.CheckBox)?.IsChecked == true;
                 bool skipLoaderResolveForOpenFirehose = !sendLoader && _edlEngine.HasOpenFirehoseSession;
                 string resolvedLoaderPath = skipLoaderResolveForOpenFirehose
                     ? loaderPath
@@ -1678,14 +1679,14 @@ namespace WpfApp1
             }
             _edlFlashPackDir = firstDir;
             _edlFlashPackProgramFiles = selectedFiles;
-            if (EdlFlashPackTextBox != null)
-                EdlFlashPackTextBox.Text = firstDir;
+            if ((this.FindControlInPages("EdlFlashPackTextBox") as System.Windows.Controls.TextBox) != null)
+                (this.FindControlInPages("EdlFlashPackTextBox") as System.Windows.Controls.TextBox).Text = firstDir;
             int[] targetLuns = GetEdlRawProgramPhysicalLuns(selectedFiles);
 
             RunEdlAction(async () =>
             {
-                string loaderPath = EdlLoaderTextBox?.Text ?? "";
-                bool sendLoader = EdlSendLoaderCheckBox?.IsChecked == true;
+                string loaderPath = (this.FindControlInPages("EdlLoaderTextBox") as System.Windows.Controls.TextBox)?.Text ?? "";
+                bool sendLoader = (this.FindControlInPages("EdlSendLoaderCheckBox") as System.Windows.Controls.CheckBox)?.IsChecked == true;
                 bool skipLoaderResolveForOpenFirehose = !sendLoader && _edlEngine.HasOpenFirehoseSession;
                 string resolvedLoaderPath = skipLoaderResolveForOpenFirehose
                     ? loaderPath
@@ -1703,7 +1704,7 @@ namespace WpfApp1
                 }).ConfigureAwait(true);
 
                 LoadEdlPartitions(refreshedPartitions, false);
-                EdlPartitionDataGrid?.Items.Refresh();
+                (this.FindControlInPages("EdlPartitionDataGrid") as System.Windows.Controls.DataGrid)?.Items.Refresh();
                 LogEdlMessage("分区表流程读取结束...", null);
                 int parsedLunCount = refreshedPartitions
                     .Select(partition => partition.Lun)
@@ -1732,8 +1733,8 @@ namespace WpfApp1
             string backupDir = Path.Combine(
                 dlg.SelectedPath,
                 "Violet_gpt_backup_" + DateTime.Now.ToString("yyyyMMdd_HHmmss", CultureInfo.InvariantCulture));
-            string loaderPath = EdlLoaderTextBox?.Text ?? "";
-            bool sendLoader = EdlSendLoaderCheckBox?.IsChecked == true;
+            string loaderPath = (this.FindControlInPages("EdlLoaderTextBox") as System.Windows.Controls.TextBox)?.Text ?? "";
+            bool sendLoader = (this.FindControlInPages("EdlSendLoaderCheckBox") as System.Windows.Controls.CheckBox)?.IsChecked == true;
             var targetLuns = _edlPartitions
                 .Select(item => item.Model.Lun)
                 .Distinct()
@@ -1788,8 +1789,8 @@ namespace WpfApp1
             string backupDir = Path.Combine(
                 dlg.SelectedPath,
                 "Violet_Backup_Modem_backup_" + DateTime.Now.ToString("yyyyMMdd_HHmmss", CultureInfo.InvariantCulture));
-            string loaderPath = EdlLoaderTextBox?.Text ?? "";
-            bool sendLoader = EdlSendLoaderCheckBox?.IsChecked == true;
+            string loaderPath = (this.FindControlInPages("EdlLoaderTextBox") as System.Windows.Controls.TextBox)?.Text ?? "";
+            bool sendLoader = (this.FindControlInPages("EdlSendLoaderCheckBox") as System.Windows.Controls.CheckBox)?.IsChecked == true;
             var loadedPartitions = _edlPartitions.Select(p => p.Model).ToList();
             List<EdlPartitionInfo>? autoReadPartitions = null;
 
@@ -1819,8 +1820,7 @@ namespace WpfApp1
 
                 if (autoReadPartitions != null)
                     LoadEdlPartitions(autoReadPartitions, false);
-                else
-                    EdlPartitionDataGrid?.Items.Refresh();
+                else (this.FindControlInPages("EdlPartitionDataGrid") as System.Windows.Controls.DataGrid)?.Items.Refresh();
             });
         }
 
@@ -1829,8 +1829,8 @@ namespace WpfApp1
             if (_edlEngine == null)
                 return;
 
-            string loaderPath = EdlLoaderTextBox?.Text ?? "";
-            bool sendLoader = EdlSendLoaderCheckBox?.IsChecked == true;
+            string loaderPath = (this.FindControlInPages("EdlLoaderTextBox") as System.Windows.Controls.TextBox)?.Text ?? "";
+            bool sendLoader = (this.FindControlInPages("EdlSendLoaderCheckBox") as System.Windows.Controls.CheckBox)?.IsChecked == true;
             var loadedPartitions = _edlPartitions.Select(p => p.Model).ToList();
             List<EdlPartitionInfo>? autoReadPartitions = null;
 
@@ -1865,8 +1865,7 @@ namespace WpfApp1
 
                 if (autoReadPartitions != null)
                     LoadEdlPartitions(autoReadPartitions, false);
-                else
-                    EdlPartitionDataGrid?.Items.Refresh();
+                else (this.FindControlInPages("EdlPartitionDataGrid") as System.Windows.Controls.DataGrid)?.Items.Refresh();
             });
         }
 
@@ -1883,8 +1882,8 @@ namespace WpfApp1
             if (_edlEngine == null)
                 return;
 
-            string loaderPath = EdlLoaderTextBox?.Text ?? "";
-            bool sendLoader = EdlSendLoaderCheckBox?.IsChecked == true;
+            string loaderPath = (this.FindControlInPages("EdlLoaderTextBox") as System.Windows.Controls.TextBox)?.Text ?? "";
+            bool sendLoader = (this.FindControlInPages("EdlSendLoaderCheckBox") as System.Windows.Controls.CheckBox)?.IsChecked == true;
             var loadedPartitions = _edlPartitions.Select(item => item.Model).ToList();
             List<EdlPartitionInfo>? autoReadPartitions = null;
 
@@ -1948,7 +1947,7 @@ namespace WpfApp1
                 Margin = new Thickness(0, 0, 0, 10)
             });
 
-            var statusBorder = new Border
+            var statusBorder = new System.Windows.Controls.Border
             {
                 Background = new SolidColorBrush(System.Windows.Media.Color.FromRgb(247, 247, 249)),
                 BorderBrush = new SolidColorBrush(System.Windows.Media.Color.FromRgb(224, 224, 224)),
@@ -2156,8 +2155,8 @@ namespace WpfApp1
             try
             {
                 SetEdlControlsEnabled(false);
-                string loaderPath = EdlLoaderTextBox?.Text ?? "";
-                bool sendLoader = EdlSendLoaderCheckBox?.IsChecked == true;
+                string loaderPath = (this.FindControlInPages("EdlLoaderTextBox") as System.Windows.Controls.TextBox)?.Text ?? "";
+                bool sendLoader = (this.FindControlInPages("EdlSendLoaderCheckBox") as System.Windows.Controls.CheckBox)?.IsChecked == true;
                 bool skipLoaderResolveForOpenFirehose = !sendLoader && _edlEngine.HasOpenFirehoseSession;
                 string resolvedLoaderPath = skipLoaderResolveForOpenFirehose
                     ? loaderPath
@@ -2210,8 +2209,8 @@ namespace WpfApp1
                 return;
 
             var knownPartitions = _edlPartitions.Select(p => p.Model).ToList();
-            string loaderPath = EdlLoaderTextBox.Text;
-            bool sendLoader = EdlSendLoaderCheckBox.IsChecked == true;
+            string loaderPath = (this.FindControlInPages("EdlLoaderTextBox") as System.Windows.Controls.TextBox).Text;
+            bool sendLoader = (this.FindControlInPages("EdlSendLoaderCheckBox") as System.Windows.Controls.CheckBox).IsChecked == true;
             bool manualAuth = false;
 
             RunEdlAction(async () =>
@@ -2239,7 +2238,7 @@ namespace WpfApp1
                 {
                     foreach (var item in _edlPartitions.Where(p => targetLuns.Contains(p.Lun)).ToList())
                         _edlPartitions.Remove(item);
-                    EdlPartitionDataGrid?.Items.Refresh();
+                    (this.FindControlInPages("EdlPartitionDataGrid") as System.Windows.Controls.DataGrid)?.Items.Refresh();
                 });
             });
         }
@@ -2353,11 +2352,11 @@ namespace WpfApp1
         {
             if (sender is not System.Windows.Controls.Button button)
                 return;
-            if (EdlOperationButtonsCanvas == null)
+            if ((this.FindControlInPages("EdlOperationButtonsCanvas") as System.Windows.Controls.Canvas) == null)
                 return;
 
             _edlOpDragPendingButton = button;
-            _edlOpDragPendingStartMouse = e.GetPosition(EdlOperationButtonsCanvas);
+            _edlOpDragPendingStartMouse = e.GetPosition((this.FindControlInPages("EdlOperationButtonsCanvas") as System.Windows.Controls.Canvas));
             _edlOpDragMoved = false;
 
             _edlOpDragHoldTimer ??= new DispatcherTimer
@@ -2374,7 +2373,7 @@ namespace WpfApp1
         {
             _edlOpDragHoldTimer?.Stop();
 
-            if (_edlOpDragPendingButton == null || EdlOperationButtonsCanvas == null)
+            if (_edlOpDragPendingButton == null || (this.FindControlInPages("EdlOperationButtonsCanvas") as System.Windows.Controls.Canvas) == null)
                 return;
             if (!_edlOpDragPendingButton.IsPressed)
                 return;
@@ -2391,14 +2390,14 @@ namespace WpfApp1
         {
             if (_edlOpDragButton == null)
                 return;
-            if (EdlOperationButtonsCanvas == null)
+            if ((this.FindControlInPages("EdlOperationButtonsCanvas") as System.Windows.Controls.Canvas) == null)
                 return;
             if (!_edlOpDragButton.IsMouseCaptured)
                 return;
             if (e.LeftButton != MouseButtonState.Pressed)
                 return;
 
-            System.Windows.Point pos = e.GetPosition(EdlOperationButtonsCanvas);
+            System.Windows.Point pos = e.GetPosition((this.FindControlInPages("EdlOperationButtonsCanvas") as System.Windows.Controls.Canvas));
             double dx = pos.X - _edlOpDragStartMouse.X;
             double dy = pos.Y - _edlOpDragStartMouse.Y;
 
@@ -2415,8 +2414,8 @@ namespace WpfApp1
             newLeft = Math.Max(0, newLeft);
             newTop = Math.Max(0, newTop);
 
-            double canvasWidth = EdlOperationButtonsCanvas.ActualWidth;
-            double canvasHeight = EdlOperationButtonsCanvas.ActualHeight;
+            double canvasWidth = (this.FindControlInPages("EdlOperationButtonsCanvas") as System.Windows.Controls.Canvas).ActualWidth;
+            double canvasHeight = (this.FindControlInPages("EdlOperationButtonsCanvas") as System.Windows.Controls.Canvas).ActualHeight;
             double buttonWidth = _edlOpDragButton.ActualWidth > 0 ? _edlOpDragButton.ActualWidth : _edlOpDragButton.Width;
             double buttonHeight = _edlOpDragButton.ActualHeight > 0 ? _edlOpDragButton.ActualHeight : _edlOpDragButton.Height;
 
@@ -2456,7 +2455,7 @@ namespace WpfApp1
         {
             if (obj is not EdlPartitionViewItem p)
                 return false;
-            var key = EdlPartitionSearchComboBox?.Text?.Trim();
+            var key = (this.FindControlInPages("EdlPartitionSearchComboBox") as System.Windows.Controls.ComboBox)?.Text?.Trim();
             if (string.IsNullOrEmpty(key))
                 return true;
             return p.FileName.Contains(key, StringComparison.OrdinalIgnoreCase)
@@ -2492,16 +2491,16 @@ namespace WpfApp1
 
         private void EdlPartitionSearchClearButton_Click(object sender, RoutedEventArgs e)
         {
-            if (EdlPartitionSearchComboBox == null)
+            if ((this.FindControlInPages("EdlPartitionSearchComboBox") as System.Windows.Controls.ComboBox) == null)
                 return;
 
             _edlSearchSuppressSelectionChanged = true;
             try
             {
-                EdlPartitionSearchComboBox.Text = "";
-                EdlPartitionSearchComboBox.SelectedItem = null;
-                EdlPartitionSearchComboBox.ItemsSource = null;
-                EdlPartitionSearchComboBox.IsDropDownOpen = false;
+                (this.FindControlInPages("EdlPartitionSearchComboBox") as System.Windows.Controls.ComboBox).Text = "";
+                (this.FindControlInPages("EdlPartitionSearchComboBox") as System.Windows.Controls.ComboBox).SelectedItem = null;
+                (this.FindControlInPages("EdlPartitionSearchComboBox") as System.Windows.Controls.ComboBox).ItemsSource = null;
+                (this.FindControlInPages("EdlPartitionSearchComboBox") as System.Windows.Controls.ComboBox).IsDropDownOpen = false;
                 _edlPartitionSearchLastQuery = "";
             }
             finally
@@ -2510,7 +2509,7 @@ namespace WpfApp1
             }
 
             CollectionViewSource.GetDefaultView(_edlPartitions).Refresh();
-            EdlPartitionSearchComboBox.Focus();
+            (this.FindControlInPages("EdlPartitionSearchComboBox") as System.Windows.Controls.ComboBox).Focus();
         }
 
         private void EdlPartitionSearchComboBox_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
@@ -2630,15 +2629,15 @@ namespace WpfApp1
             RestoreEdlPartitionSearchText(comboBox, selected.PartitionName, selected.PartitionName.Length, 0);
 
             var first = _edlPartitions.FirstOrDefault(p => string.Equals(p.Label, selected.PartitionName, StringComparison.OrdinalIgnoreCase));
-            if (first != null && EdlPartitionDataGrid != null)
+            if (first != null && (this.FindControlInPages("EdlPartitionDataGrid") as System.Windows.Controls.DataGrid) != null)
             {
-                bool protectSafe = EdlSkipSafeCheckBox?.IsChecked == true;
-                bool protectData = EdlSkipDataCheckBox?.IsChecked == true;
+                bool protectSafe = (this.FindControlInPages("EdlSkipSafeCheckBox") as System.Windows.Controls.CheckBox)?.IsChecked == true;
+                bool protectData = (this.FindControlInPages("EdlSkipDataCheckBox") as System.Windows.Controls.CheckBox)?.IsChecked == true;
                 if (!(protectSafe && first.IsBasebandPartition) && !(protectData && first.IsDataPartition))
                     first.IsSelected = true;
-                EdlPartitionDataGrid.SelectedItem = first;
-                EdlPartitionDataGrid.UpdateLayout();
-                EdlPartitionDataGrid.ScrollIntoView(first);
+                (this.FindControlInPages("EdlPartitionDataGrid") as System.Windows.Controls.DataGrid).SelectedItem = first;
+                (this.FindControlInPages("EdlPartitionDataGrid") as System.Windows.Controls.DataGrid).UpdateLayout();
+                (this.FindControlInPages("EdlPartitionDataGrid") as System.Windows.Controls.DataGrid).ScrollIntoView(first);
             }
         }
 
@@ -2678,7 +2677,7 @@ namespace WpfApp1
         {
             Dispatcher.Invoke(() =>
             {
-                if (EdlLogTextBox == null)
+                if ((this.FindControlInPages("EdlLogTextBox") as System.Windows.Controls.RichTextBox) == null)
                     return;
 
                 string normalized = (message ?? "").Replace("\r\n", "\n").Replace("\r", "\n");
@@ -2745,13 +2744,13 @@ namespace WpfApp1
                         AppendEdlLogLine(item.Line, item.Level);
                 }
 
-                EdlLogTextBox.ScrollToEnd();
+                (this.FindControlInPages("EdlLogTextBox") as System.Windows.Controls.RichTextBox).ScrollToEnd();
             });
         }
 
         private FlowDocument EnsureEdlLogDocument()
         {
-            FlowDocument? document = EdlLogTextBox?.Document;
+            FlowDocument? document = (this.FindControlInPages("EdlLogTextBox") as System.Windows.Controls.RichTextBox)?.Document;
             if (document != null)
                 return document;
 
@@ -2764,14 +2763,14 @@ namespace WpfApp1
                 FontWeight = FontWeights.Normal,
                 LineHeight = 19
             };
-            if (EdlLogTextBox != null)
-                EdlLogTextBox.Document = document;
+            if ((this.FindControlInPages("EdlLogTextBox") as System.Windows.Controls.RichTextBox) != null)
+                (this.FindControlInPages("EdlLogTextBox") as System.Windows.Controls.RichTextBox).Document = document;
             return document;
         }
 
         private void AppendEdlVersionHeader(string deviceSummary)
         {
-            if (EdlLogTextBox == null)
+            if ((this.FindControlInPages("EdlLogTextBox") as System.Windows.Controls.RichTextBox) == null)
                 return;
 
             FlowDocument document = EnsureEdlLogDocument();
@@ -2805,7 +2804,7 @@ namespace WpfApp1
                 Orientation = System.Windows.Controls.Orientation.Vertical
             };
             var container = new BlockUIContainer(
-                new Border
+                new System.Windows.Controls.Border
                 {
                     Margin = new Thickness(18, 0, 2, 0),
                     BorderBrush = CreateEdlLogBrush(0xE2, 0xE8, 0xF0),
@@ -2822,7 +2821,7 @@ namespace WpfApp1
 
         private void AppendEdlVersionRow(string label, string value)
         {
-            if (EdlLogTextBox == null || string.IsNullOrWhiteSpace(value))
+            if ((this.FindControlInPages("EdlLogTextBox") as System.Windows.Controls.RichTextBox) == null || string.IsNullOrWhiteSpace(value))
                 return;
 
             FlowDocument document = EnsureEdlLogDocument();
@@ -2865,7 +2864,7 @@ namespace WpfApp1
             row.Children.Add(labelText);
             row.Children.Add(valueText);
 
-            var rowBorder = new Border
+            var rowBorder = new System.Windows.Controls.Border
             {
                 BorderBrush = CreateEdlLogBrush(0xE2, 0xE8, 0xF0),
                 BorderThickness = new Thickness(0, 0, 0, 1),
@@ -2877,7 +2876,7 @@ namespace WpfApp1
 
         private void AppendEdlVersionDone()
         {
-            if (EdlLogTextBox == null)
+            if ((this.FindControlInPages("EdlLogTextBox") as System.Windows.Controls.RichTextBox) == null)
                 return;
 
             FlowDocument document = EnsureEdlLogDocument();
@@ -2904,7 +2903,7 @@ namespace WpfApp1
 
         private void BeginEdlFlashPartitionLine(string prefix)
         {
-            if (EdlLogTextBox == null)
+            if ((this.FindControlInPages("EdlLogTextBox") as System.Windows.Controls.RichTextBox) == null)
                 return;
             FlowDocument doc = EnsureEdlLogDocument();
             var p = CreateEdlLogParagraph();
@@ -2938,7 +2937,7 @@ namespace WpfApp1
 
         private void BeginEdlPortProbeLine(string portName)
         {
-            if (EdlLogTextBox == null || _edlPendingPortProbeParagraph != null)
+            if ((this.FindControlInPages("EdlLogTextBox") as System.Windows.Controls.RichTextBox) == null || _edlPendingPortProbeParagraph != null)
                 return;
 
             FlowDocument doc = EnsureEdlLogDocument();
@@ -3179,7 +3178,7 @@ namespace WpfApp1
 
         private void AppendEdlLogLine(string line, string? level)
         {
-            if (EdlLogTextBox == null)
+            if ((this.FindControlInPages("EdlLogTextBox") as System.Windows.Controls.RichTextBox) == null)
                 return;
 
             FlowDocument doc = EnsureEdlLogDocument();
@@ -3452,9 +3451,9 @@ namespace WpfApp1
             Dispatcher.BeginInvoke(() =>
             {
                 _edlProgressUpdateQueued = false;
-                if (EdlProgressBar == null)
+                if ((this.FindControlInPages("EdlProgressBar") as System.Windows.Controls.ProgressBar) == null)
                     return;
-                EdlProgressBar.Value = _edlPercent;
+                (this.FindControlInPages("EdlProgressBar") as System.Windows.Controls.ProgressBar).Value = _edlPercent;
                 UpdateEdlProgressText();
             }, DispatcherPriority.Render);
         }
@@ -3487,33 +3486,33 @@ namespace WpfApp1
 
         private void UpdateEdlProgressText()
         {
-            if (EdlProgressBar != null)
-                EdlProgressBar.Tag = string.IsNullOrWhiteSpace(_edlSpeedText) ? "0.00 B/s" : _edlSpeedText;
-            if (EdlProgressTextBlock != null)
-                EdlProgressTextBlock.Text = string.IsNullOrWhiteSpace(_edlCurrentPartitionText) ? "" : _edlCurrentPartitionText;
+            if ((this.FindControlInPages("EdlProgressBar") as System.Windows.Controls.ProgressBar) != null)
+                (this.FindControlInPages("EdlProgressBar") as System.Windows.Controls.ProgressBar).Tag = string.IsNullOrWhiteSpace(_edlSpeedText) ? "0.00 B/s" : _edlSpeedText;
+            if ((this.FindControlInPages("EdlProgressTextBlock") as System.Windows.Controls.TextBlock) != null)
+                (this.FindControlInPages("EdlProgressTextBlock") as System.Windows.Controls.TextBlock).Text = string.IsNullOrWhiteSpace(_edlCurrentPartitionText) ? "" : _edlCurrentPartitionText;
         }
 
         private void UpdateEdlPortLabel(string? portName)
         {
             Dispatcher.Invoke(() =>
             {
-                if (EdlPortComboBox == null)
+                if ((this.FindControlInPages("EdlPortComboBox") as System.Windows.Controls.ComboBox) == null)
                     return;
                 if (!string.IsNullOrWhiteSpace(portName))
                 {
-                    var items = EdlPortComboBox.ItemsSource as IEnumerable<string>;
+                    var items = (this.FindControlInPages("EdlPortComboBox") as System.Windows.Controls.ComboBox).ItemsSource as IEnumerable<string>;
                     if (items == null || !items.Contains(portName, StringComparer.OrdinalIgnoreCase))
                     {
                         var list = BuildEdlPortOptions();
                         if (!list.Contains(portName, StringComparer.OrdinalIgnoreCase))
                             list.Insert(0, portName);
-                        EdlPortComboBox.ItemsSource = list;
+                        (this.FindControlInPages("EdlPortComboBox") as System.Windows.Controls.ComboBox).ItemsSource = list;
                     }
-                    EdlPortComboBox.Text = portName;
+                    (this.FindControlInPages("EdlPortComboBox") as System.Windows.Controls.ComboBox).Text = portName;
                 }
-                else if (EdlPortComboBox.SelectedItem == null)
+                else if ((this.FindControlInPages("EdlPortComboBox") as System.Windows.Controls.ComboBox).SelectedItem == null)
                 {
-                    EdlPortComboBox.Text = "";
+                    (this.FindControlInPages("EdlPortComboBox") as System.Windows.Controls.ComboBox).Text = "";
                 }
             });
         }
@@ -3739,19 +3738,19 @@ namespace WpfApp1
 
             _edlFlashPackDir = firstDir;
             _edlFlashPackProgramFiles = selectedFiles;
-            EdlFlashPackTextBox.Text = firstDir;
+            (this.FindControlInPages("EdlFlashPackTextBox") as System.Windows.Controls.TextBox).Text = firstDir;
             try
             {
                 LogEdlMessage($"已选择 RawProgram 文件，共 {selectedFiles.Length} 个", null);
                 var result = _edlEngine.ParseFlashPack(firstDir, selectedFiles);
                 if (!string.IsNullOrEmpty(result.ProgrammerPath))
                 {
-                    string existing = EdlLoaderTextBox?.Text?.Trim() ?? "";
+                    string existing = (this.FindControlInPages("EdlLoaderTextBox") as System.Windows.Controls.TextBox)?.Text?.Trim() ?? "";
                     bool hasConfiguredLoader = !string.IsNullOrWhiteSpace(existing)
                         && (File.Exists(existing)
                             || existing.StartsWith("cloud-loader://", StringComparison.OrdinalIgnoreCase));
                     if (!hasConfiguredLoader)
-                        EdlLoaderTextBox.Text = result.ProgrammerPath;
+                        (this.FindControlInPages("EdlLoaderTextBox") as System.Windows.Controls.TextBox).Text = result.ProgrammerPath;
                 }
                 bool hasDynamicSuperDefinition = DynamicSuperPlanner.FindDefinition(firstDir) != null;
                 LogEdlRawProgramAnalysis(
@@ -3784,7 +3783,7 @@ namespace WpfApp1
                         }
                     }
                     ApplyEdlPartitionProtectionState();
-                    EdlPartitionDataGrid.Items.Refresh();
+                    (this.FindControlInPages("EdlPartitionDataGrid") as System.Windows.Controls.DataGrid).Items.Refresh();
                 }
                 else
                 {
@@ -3804,7 +3803,7 @@ namespace WpfApp1
                 Title = "选择引导文件"
             };
             if (dlg.ShowDialog(this) == true)
-                EdlLoaderTextBox.Text = dlg.FileName;
+                (this.FindControlInPages("EdlLoaderTextBox") as System.Windows.Controls.TextBox).Text = dlg.FileName;
         }
 
         private void LoadEdlPartitions(List<EdlPartitionInfo> partitions, bool selectedByDefault)
@@ -3980,31 +3979,31 @@ namespace WpfApp1
 
             Dispatcher.Invoke(() =>
             {
-                if (EdlReadGptButton != null) EdlReadGptButton.IsEnabled = enabled;
-                if (EdlReadPartButton != null) EdlReadPartButton.IsEnabled = enabled;
-                if (EdlWritePartButton != null) EdlWritePartButton.IsEnabled = enabled;
-                if (EdlErasePartButton != null) EdlErasePartButton.IsEnabled = enabled;
-                if (EdlResetComboBox != null) EdlResetComboBox.IsEnabled = enabled;
-                if (EdlFlashPackBrowseButton != null) EdlFlashPackBrowseButton.IsEnabled = enabled;
-                if (EdlLoaderBrowseButton != null) EdlLoaderBrowseButton.IsEnabled = enabled;
-                if (EdlFactoryResetButton != null) EdlFactoryResetButton.IsEnabled = enabled;
-                if (EdlWriteGptButton != null) EdlWriteGptButton.IsEnabled = enabled;
-                if (EdlFormatLunButton != null) EdlFormatLunButton.IsEnabled = enabled;
-                if (EdlBackupModemFingerprintButton != null) EdlBackupModemFingerprintButton.IsEnabled = enabled;
-                if (EdlBackupGptButton != null) EdlBackupGptButton.IsEnabled = enabled;
-                if (EdlForceOemButton != null) EdlForceOemButton.IsEnabled = enabled;
-                if (EdlSlotManagementButton != null) EdlSlotManagementButton.IsEnabled = enabled;
-                if (EdlReadVersionInfoButton != null) EdlReadVersionInfoButton.IsEnabled = enabled;
-                if (EdlBuiltInLoaderComboBox != null) EdlBuiltInLoaderComboBox.IsEnabled = enabled;
-                if (EdlPortComboBox != null) EdlPortComboBox.IsEnabled = enabled;
-                if (EdlSendLoaderCheckBox != null) EdlSendLoaderCheckBox.IsEnabled = enabled;
-                if (EdlSkipSafeCheckBox != null) EdlSkipSafeCheckBox.IsEnabled = enabled;
-                if (EdlSkipDataCheckBox != null) EdlSkipDataCheckBox.IsEnabled = enabled;
-                if (EdlGenerateProgramCheckBox != null) EdlGenerateProgramCheckBox.IsEnabled = enabled;
-                if (EdlAutoRebootCheckBox != null) EdlAutoRebootCheckBox.IsEnabled = enabled;
-                if (EdlFactoryResetCheckBox != null) EdlFactoryResetCheckBox.IsEnabled = enabled;
-                if (EdlPartitionSearchComboBox != null) EdlPartitionSearchComboBox.IsEnabled = enabled;
-                if (EdlPartitionDataGrid != null) EdlPartitionDataGrid.IsEnabled = enabled;
+                if ((this.FindControlInPages("EdlReadGptButton") as System.Windows.Controls.Button) != null) (this.FindControlInPages("EdlReadGptButton") as System.Windows.Controls.Button).IsEnabled = enabled;
+                if ((this.FindControlInPages("EdlReadPartButton") as System.Windows.Controls.Button) != null) (this.FindControlInPages("EdlReadPartButton") as System.Windows.Controls.Button).IsEnabled = enabled;
+                if ((this.FindControlInPages("EdlWritePartButton") as System.Windows.Controls.Button) != null) (this.FindControlInPages("EdlWritePartButton") as System.Windows.Controls.Button).IsEnabled = enabled;
+                if ((this.FindControlInPages("EdlErasePartButton") as System.Windows.Controls.Button) != null) (this.FindControlInPages("EdlErasePartButton") as System.Windows.Controls.Button).IsEnabled = enabled;
+                if ((this.FindControlInPages("EdlResetComboBox") as System.Windows.Controls.ComboBox) != null) (this.FindControlInPages("EdlResetComboBox") as System.Windows.Controls.ComboBox).IsEnabled = enabled;
+                if ((this.FindControlInPages("EdlFlashPackBrowseButton") as System.Windows.Controls.Button) != null) (this.FindControlInPages("EdlFlashPackBrowseButton") as System.Windows.Controls.Button).IsEnabled = enabled;
+                if ((this.FindControlInPages("EdlLoaderBrowseButton") as System.Windows.Controls.Button) != null) (this.FindControlInPages("EdlLoaderBrowseButton") as System.Windows.Controls.Button).IsEnabled = enabled;
+                if ((this.FindControlInPages("EdlFactoryResetButton") as System.Windows.Controls.Button) != null) (this.FindControlInPages("EdlFactoryResetButton") as System.Windows.Controls.Button).IsEnabled = enabled;
+                if ((this.FindControlInPages("EdlWriteGptButton") as System.Windows.Controls.Button) != null) (this.FindControlInPages("EdlWriteGptButton") as System.Windows.Controls.Button).IsEnabled = enabled;
+                if ((this.FindControlInPages("EdlFormatLunButton") as System.Windows.Controls.Button) != null) (this.FindControlInPages("EdlFormatLunButton") as System.Windows.Controls.Button).IsEnabled = enabled;
+                if ((this.FindControlInPages("EdlBackupModemFingerprintButton") as System.Windows.Controls.Button) != null) (this.FindControlInPages("EdlBackupModemFingerprintButton") as System.Windows.Controls.Button).IsEnabled = enabled;
+                if ((this.FindControlInPages("EdlBackupGptButton") as System.Windows.Controls.Button) != null) (this.FindControlInPages("EdlBackupGptButton") as System.Windows.Controls.Button).IsEnabled = enabled;
+                if ((this.FindControlInPages("EdlForceOemButton") as System.Windows.Controls.Button) != null) (this.FindControlInPages("EdlForceOemButton") as System.Windows.Controls.Button).IsEnabled = enabled;
+                if ((this.FindControlInPages("EdlSlotManagementButton") as System.Windows.Controls.Button) != null) (this.FindControlInPages("EdlSlotManagementButton") as System.Windows.Controls.Button).IsEnabled = enabled;
+                if ((this.FindControlInPages("EdlReadVersionInfoButton") as System.Windows.Controls.Button) != null) (this.FindControlInPages("EdlReadVersionInfoButton") as System.Windows.Controls.Button).IsEnabled = enabled;
+                if ((this.FindControlInPages("EdlBuiltInLoaderComboBox") as System.Windows.Controls.ComboBox) != null) (this.FindControlInPages("EdlBuiltInLoaderComboBox") as System.Windows.Controls.ComboBox).IsEnabled = enabled;
+                if ((this.FindControlInPages("EdlPortComboBox") as System.Windows.Controls.ComboBox) != null) (this.FindControlInPages("EdlPortComboBox") as System.Windows.Controls.ComboBox).IsEnabled = enabled;
+                if ((this.FindControlInPages("EdlSendLoaderCheckBox") as System.Windows.Controls.CheckBox) != null) (this.FindControlInPages("EdlSendLoaderCheckBox") as System.Windows.Controls.CheckBox).IsEnabled = enabled;
+                if ((this.FindControlInPages("EdlSkipSafeCheckBox") as System.Windows.Controls.CheckBox) != null) (this.FindControlInPages("EdlSkipSafeCheckBox") as System.Windows.Controls.CheckBox).IsEnabled = enabled;
+                if ((this.FindControlInPages("EdlSkipDataCheckBox") as System.Windows.Controls.CheckBox) != null) (this.FindControlInPages("EdlSkipDataCheckBox") as System.Windows.Controls.CheckBox).IsEnabled = enabled;
+                if ((this.FindControlInPages("EdlGenerateProgramCheckBox") as System.Windows.Controls.CheckBox) != null) (this.FindControlInPages("EdlGenerateProgramCheckBox") as System.Windows.Controls.CheckBox).IsEnabled = enabled;
+                if ((this.FindControlInPages("EdlAutoRebootCheckBox") as System.Windows.Controls.CheckBox) != null) (this.FindControlInPages("EdlAutoRebootCheckBox") as System.Windows.Controls.CheckBox).IsEnabled = enabled;
+                if ((this.FindControlInPages("EdlFactoryResetCheckBox") as System.Windows.Controls.CheckBox) != null) (this.FindControlInPages("EdlFactoryResetCheckBox") as System.Windows.Controls.CheckBox).IsEnabled = enabled;
+                if ((this.FindControlInPages("EdlPartitionSearchComboBox") as System.Windows.Controls.ComboBox) != null) (this.FindControlInPages("EdlPartitionSearchComboBox") as System.Windows.Controls.ComboBox).IsEnabled = enabled;
+                if ((this.FindControlInPages("EdlPartitionDataGrid") as System.Windows.Controls.DataGrid) != null) (this.FindControlInPages("EdlPartitionDataGrid") as System.Windows.Controls.DataGrid).IsEnabled = enabled;
                 UpdateEdlPartitionOverlayState(!enabled);
             });
         }
@@ -4012,10 +4011,10 @@ namespace WpfApp1
         private void UpdateEdlPartitionOverlayState(bool operationRunning)
         {
             bool showOverlay = operationRunning || _edlCloudLoadersLoading;
-            if (EdlPartitionContentGrid != null)
+            if ((this.FindControlInPages("EdlPartitionContentGrid") as System.Windows.Controls.Grid) != null)
             {
-                EdlPartitionContentGrid.Opacity = showOverlay ? 0.68 : 1;
-                EdlPartitionContentGrid.Effect = showOverlay
+                (this.FindControlInPages("EdlPartitionContentGrid") as System.Windows.Controls.Grid).Opacity = showOverlay ? 0.68 : 1;
+                (this.FindControlInPages("EdlPartitionContentGrid") as System.Windows.Controls.Grid).Effect = showOverlay
                     ? new System.Windows.Media.Effects.BlurEffect
                     {
                         Radius = 4,
@@ -4025,19 +4024,19 @@ namespace WpfApp1
                     : null;
             }
 
-            if (EdlStopOperationOverlay != null)
-                EdlStopOperationOverlay.Visibility = showOverlay ? Visibility.Visible : Visibility.Collapsed;
-            if (EdlOperationOverlayText != null)
+            if ((this.FindControlInPages("EdlStopOperationOverlay") as System.Windows.Controls.Border) != null)
+                (this.FindControlInPages("EdlStopOperationOverlay") as System.Windows.Controls.Border).Visibility = showOverlay ? Visibility.Visible : Visibility.Collapsed;
+            if ((this.FindControlInPages("EdlOperationOverlayText") as System.Windows.Controls.TextBlock) != null)
             {
-                EdlOperationOverlayText.Text = operationRunning
+                (this.FindControlInPages("EdlOperationOverlayText") as System.Windows.Controls.TextBlock).Text = operationRunning
                     ? "操作正在进行中，请勿断开数据线..."
                     : "正在加载云端引导中...";
             }
-            if (EdlStopOperationButton != null)
+            if ((this.FindControlInPages("EdlStopOperationButton") as System.Windows.Controls.Button) != null)
             {
-                EdlStopOperationButton.Visibility = operationRunning ? Visibility.Visible : Visibility.Collapsed;
-                EdlStopOperationButton.IsEnabled = operationRunning;
-                EdlStopOperationButton.Content = "停止操作";
+                (this.FindControlInPages("EdlStopOperationButton") as System.Windows.Controls.Button).Visibility = operationRunning ? Visibility.Visible : Visibility.Collapsed;
+                (this.FindControlInPages("EdlStopOperationButton") as System.Windows.Controls.Button).IsEnabled = operationRunning;
+                (this.FindControlInPages("EdlStopOperationButton") as System.Windows.Controls.Button).Content = "停止操作";
             }
         }
 
@@ -4046,28 +4045,28 @@ namespace WpfApp1
             if (_edlEngine == null || !_edlEngine.RequestStop())
                 return;
 
-            if (EdlStopOperationButton != null)
+            if ((this.FindControlInPages("EdlStopOperationButton") as System.Windows.Controls.Button) != null)
             {
-                EdlStopOperationButton.IsEnabled = false;
-                EdlStopOperationButton.Content = "正在停止...";
+                (this.FindControlInPages("EdlStopOperationButton") as System.Windows.Controls.Button).IsEnabled = false;
+                (this.FindControlInPages("EdlStopOperationButton") as System.Windows.Controls.Button).Content = "正在停止...";
             }
             LogEdlMessage("已请求停止，当前分区完成后将结束操作。", "warn");
         }
 
         private void EdlPartSelectAllCheckBox_Click(object sender, RoutedEventArgs e)
         {
-            bool selected = EdlPartSelectAllCheckBox.IsChecked == true;
-            bool protect = EdlSkipSafeCheckBox?.IsChecked == true;
-            bool protectData = EdlSkipDataCheckBox?.IsChecked == true;
+            bool selected = (this.FindControlInPages("EdlPartSelectAllCheckBox") as System.Windows.Controls.CheckBox).IsChecked == true;
+            bool protect = (this.FindControlInPages("EdlSkipSafeCheckBox") as System.Windows.Controls.CheckBox)?.IsChecked == true;
+            bool protectData = (this.FindControlInPages("EdlSkipDataCheckBox") as System.Windows.Controls.CheckBox)?.IsChecked == true;
             foreach (var item in _edlPartitions)
                 item.IsSelected = (protect && item.IsBasebandPartition) || (protectData && item.IsDataPartition) ? false : selected;
-            EdlPartitionDataGrid.Items.Refresh();
+            (this.FindControlInPages("EdlPartitionDataGrid") as System.Windows.Controls.DataGrid).Items.Refresh();
         }
 
         private void EdlToggleSelectAllCheckBox_Click(object sender, RoutedEventArgs e)
         {
-            bool protect = EdlSkipSafeCheckBox?.IsChecked == true;
-            bool protectData = EdlSkipDataCheckBox?.IsChecked == true;
+            bool protect = (this.FindControlInPages("EdlSkipSafeCheckBox") as System.Windows.Controls.CheckBox)?.IsChecked == true;
+            bool protectData = (this.FindControlInPages("EdlSkipDataCheckBox") as System.Windows.Controls.CheckBox)?.IsChecked == true;
             var selectable = _edlPartitions
                 .Where(p => !(protect && p.IsBasebandPartition))
                 .Where(p => !(protectData && p.IsDataPartition))
@@ -4085,7 +4084,7 @@ namespace WpfApp1
                 foreach (var item in _edlPartitions.Where(p => p.IsDataPartition))
                     item.IsSelected = false;
             }
-            EdlPartitionDataGrid.Items.Refresh();
+            (this.FindControlInPages("EdlPartitionDataGrid") as System.Windows.Controls.DataGrid).Items.Refresh();
         }
 
         private void EdlDevMgrButton_Click(object sender, RoutedEventArgs e)
@@ -4106,17 +4105,17 @@ namespace WpfApp1
 
         private void EdlResetComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (EdlResetComboBox == null || EdlResetComboBox.SelectedIndex < 0)
+            if ((this.FindControlInPages("EdlResetComboBox") as System.Windows.Controls.ComboBox) == null || (this.FindControlInPages("EdlResetComboBox") as System.Windows.Controls.ComboBox).SelectedIndex < 0)
                 return;
 
             // 获取选中的选项
-            var selectedItem = EdlResetComboBox.SelectedItem as ComboBoxItem;
+            var selectedItem = (this.FindControlInPages("EdlResetComboBox") as System.Windows.Controls.ComboBox).SelectedItem as ComboBoxItem;
             if (selectedItem == null)
                 return;
 
             string selectedContent = selectedItem.Content?.ToString() ?? "";
-            if (EdlSendLoaderCheckBox != null)
-                EdlSendLoaderCheckBox.IsChecked = true;
+            if ((this.FindControlInPages("EdlSendLoaderCheckBox") as System.Windows.Controls.CheckBox) != null)
+                (this.FindControlInPages("EdlSendLoaderCheckBox") as System.Windows.Controls.CheckBox).IsChecked = true;
 
             // 判断选中的选项
             if (selectedContent == "重启到系统")
@@ -4125,8 +4124,7 @@ namespace WpfApp1
                 if (_edlEngine == null || _edlEngine.FirehoseServer == null)
                 {
                     System.Windows.MessageBox.Show("请先连接设备并执行一次操作。", "提示", MessageBoxButton.OK, MessageBoxImage.Information);
-                    // 重置选择
-                    EdlResetComboBox.SelectedIndex = -1;
+                    // 重置选择 EdlResetComboBox.SelectedIndex = -1;
                     return;
                 }
                 RunEdlResetAction(async () =>
@@ -4193,8 +4191,8 @@ namespace WpfApp1
             // 重置 ComboBox 到默认显示状态
             Dispatcher.BeginInvoke(new Action(() =>
             {
-                if (EdlResetComboBox != null)
-                    EdlResetComboBox.SelectedIndex = -1;
+                if ((this.FindControlInPages("EdlResetComboBox") as System.Windows.Controls.ComboBox) != null)
+                    (this.FindControlInPages("EdlResetComboBox") as System.Windows.Controls.ComboBox).SelectedIndex = -1;
             }), System.Windows.Threading.DispatcherPriority.Background);
         }
 
@@ -4217,8 +4215,8 @@ namespace WpfApp1
         {
             Dispatcher.BeginInvoke(new Action(() =>
             {
-                if (EdlSendLoaderCheckBox != null)
-                    EdlSendLoaderCheckBox.IsChecked = true;
+                if ((this.FindControlInPages("EdlSendLoaderCheckBox") as System.Windows.Controls.CheckBox) != null)
+                    (this.FindControlInPages("EdlSendLoaderCheckBox") as System.Windows.Controls.CheckBox).IsChecked = true;
             }), System.Windows.Threading.DispatcherPriority.Background);
         }
 
@@ -4241,8 +4239,8 @@ namespace WpfApp1
             bool sendLoader = false;
             Dispatcher.Invoke(() =>
             {
-                loaderPath = EdlLoaderTextBox?.Text ?? "";
-                sendLoader = EdlSendLoaderCheckBox?.IsChecked == true;
+                loaderPath = (this.FindControlInPages("EdlLoaderTextBox") as System.Windows.Controls.TextBox)?.Text ?? "";
+                sendLoader = (this.FindControlInPages("EdlSendLoaderCheckBox") as System.Windows.Controls.CheckBox)?.IsChecked == true;
             });
             if (resolvedLoaderPath != null)
                 loaderPath = resolvedLoaderPath;
@@ -4348,8 +4346,8 @@ namespace WpfApp1
         private string? RunChkdevQcedl()
         {
             string? manualPort = null;
-            if (EdlPortComboBox != null)
-                Dispatcher.Invoke(() => manualPort = EdlPortComboBox.Text?.Trim());
+            if ((this.FindControlInPages("EdlPortComboBox") as System.Windows.Controls.ComboBox) != null)
+                Dispatcher.Invoke(() => manualPort = (this.FindControlInPages("EdlPortComboBox") as System.Windows.Controls.ComboBox).Text?.Trim());
             var ports = FindQcedlPorts();
             if (!string.IsNullOrWhiteSpace(manualPort))
             {
@@ -4553,15 +4551,15 @@ namespace WpfApp1
             int[] rawProgramLuns = GetEdlRawProgramPhysicalLuns(_edlFlashPackProgramFiles);
             _edlFlashPackDir = null;
             _edlFlashPackProgramFiles = null;
-            EdlFlashPackTextBox?.Clear();
+            (this.FindControlInPages("EdlFlashPackTextBox") as System.Windows.Controls.TextBox)?.Clear();
 
-            string loaderPath = EdlLoaderTextBox.Text;
+            string loaderPath = (this.FindControlInPages("EdlLoaderTextBox") as System.Windows.Controls.TextBox).Text;
             if (string.IsNullOrWhiteSpace(loaderPath))
             {
                 LogEdlMessage("请先选择引导...", "error");
                 return;
             }
-            bool sendLoader = EdlSendLoaderCheckBox.IsChecked == true;
+            bool sendLoader = (this.FindControlInPages("EdlSendLoaderCheckBox") as System.Windows.Controls.CheckBox).IsChecked == true;
             bool manualAuth = false; // 不启用手动认证
             RunEdlAction(async () =>
             {
@@ -4570,9 +4568,9 @@ namespace WpfApp1
                     await WaitForEdlPortBeforeCloudLoaderDownloadAsync().ConfigureAwait(true);
 
                 LogEdlMessage(
-                    $"__EDL_PORT_CONNECT_BEGIN__|{EdlPortComboBox?.Text ?? "COM"}",
+                    $"__EDL_PORT_CONNECT_BEGIN__|{(this.FindControlInPages("EdlPortComboBox") as System.Windows.Controls.ComboBox)?.Text ?? "COM"}",
                     null);
-                UpdateEdlSpeedText($"正在连接{EdlPortComboBox?.Text ?? "串口"}...");
+                UpdateEdlSpeedText($"正在连接{(this.FindControlInPages("EdlPortComboBox") as System.Windows.Controls.ComboBox)?.Text ?? "串口"}...");
                 await Dispatcher.Yield(DispatcherPriority.Render);
                 bool skipLoaderResolveForOpenFirehose = !sendLoader && _edlEngine.HasOpenFirehoseSession;
                 string resolvedLoaderPath = skipLoaderResolveForOpenFirehose
@@ -4633,7 +4631,7 @@ namespace WpfApp1
             }
             if (deselectedDataPartitions.Count > 0)
             {
-                EdlPartitionDataGrid.Items.Refresh();
+                (this.FindControlInPages("EdlPartitionDataGrid") as System.Windows.Controls.DataGrid).Items.Refresh();
                 string names = string.Join("、", deselectedDataPartitions.Distinct(StringComparer.OrdinalIgnoreCase));
                 LogEdlMessage($"检测到勾选 {names}，已自动取消勾选！", "warn");
             }
@@ -4643,9 +4641,9 @@ namespace WpfApp1
                 System.Windows.MessageBox.Show("请勾选要读取的分区。", "提示", MessageBoxButton.OK, MessageBoxImage.Information);
                 return;
             }
-            bool generateProgram = EdlGenerateProgramCheckBox.IsChecked == true;
-            string loaderPath = EdlLoaderTextBox.Text;
-            bool sendLoader = EdlSendLoaderCheckBox.IsChecked == true;
+            bool generateProgram = (this.FindControlInPages("EdlGenerateProgramCheckBox") as System.Windows.Controls.CheckBox).IsChecked == true;
+            string loaderPath = (this.FindControlInPages("EdlLoaderTextBox") as System.Windows.Controls.TextBox).Text;
+            bool sendLoader = (this.FindControlInPages("EdlSendLoaderCheckBox") as System.Windows.Controls.CheckBox).IsChecked == true;
             bool manualAuth = false; // 不启用手动认证
             RunEdlAction(async () =>
             {
@@ -4677,7 +4675,7 @@ namespace WpfApp1
             string programPath = _edlFlashPackDir ?? "";
             if (string.IsNullOrEmpty(programPath))
             {
-                string text = EdlFlashPackTextBox.Text?.Trim() ?? "";
+                string text = (this.FindControlInPages("EdlFlashPackTextBox") as System.Windows.Controls.TextBox).Text?.Trim() ?? "";
                 if (!string.IsNullOrEmpty(text))
                 {
                     if (text.Contains(';'))
@@ -4695,8 +4693,8 @@ namespace WpfApp1
                     }
                 }
             }
-            bool skipSafe = EdlSkipSafeCheckBox.IsChecked == true;
-            bool skipData = EdlSkipDataCheckBox.IsChecked == true;
+            bool skipSafe = (this.FindControlInPages("EdlSkipSafeCheckBox") as System.Windows.Controls.CheckBox).IsChecked == true;
+            bool skipData = (this.FindControlInPages("EdlSkipDataCheckBox") as System.Windows.Controls.CheckBox).IsChecked == true;
             var selected = _edlPartitions
                 .Where(p => p.IsSelected)
                 .Where(p => !(skipSafe && p.IsBasebandPartition))
@@ -4708,11 +4706,11 @@ namespace WpfApp1
                 .Where(p => !p.IsSelected || (skipSafe && p.IsBasebandPartition) || (skipData && p.IsDataPartition))
                 .Select(p => (p.Model.Label, p.Model.Lun))
                 .ToList();
-            string loaderPath = EdlLoaderTextBox.Text;
-            bool sendLoader = EdlSendLoaderCheckBox.IsChecked == true;
+            string loaderPath = (this.FindControlInPages("EdlLoaderTextBox") as System.Windows.Controls.TextBox).Text;
+            bool sendLoader = (this.FindControlInPages("EdlSendLoaderCheckBox") as System.Windows.Controls.CheckBox).IsChecked == true;
             bool manualAuth = false; // 不启用手动认证
-            bool factoryReset = EdlFactoryResetCheckBox?.IsChecked == true;
-            bool autoReboot = EdlAutoRebootCheckBox?.IsChecked == true; // 检查是否需要自动重启
+            bool factoryReset = (this.FindControlInPages("EdlFactoryResetCheckBox") as System.Windows.Controls.CheckBox)?.IsChecked == true;
+            bool autoReboot = (this.FindControlInPages("EdlAutoRebootCheckBox") as System.Windows.Controls.CheckBox)?.IsChecked == true; // 检查是否需要自动重启
             RunEdlAction(async () =>
             {
                 bool skipLoaderResolveForOpenFirehose = !sendLoader && _edlEngine.HasOpenFirehoseSession;
@@ -4848,8 +4846,8 @@ namespace WpfApp1
             }
             if (System.Windows.MessageBox.Show("确定要擦除选中的分区吗？", "确认", MessageBoxButton.YesNo, MessageBoxImage.Warning) != MessageBoxResult.Yes)
                 return;
-            string loaderPath = EdlLoaderTextBox.Text;
-            bool sendLoader = EdlSendLoaderCheckBox.IsChecked == true;
+            string loaderPath = (this.FindControlInPages("EdlLoaderTextBox") as System.Windows.Controls.TextBox).Text;
+            bool sendLoader = (this.FindControlInPages("EdlSendLoaderCheckBox") as System.Windows.Controls.CheckBox).IsChecked == true;
             bool manualAuth = false; // 不启用手动认证
             RunEdlAction(async () =>
             {
@@ -4886,8 +4884,8 @@ namespace WpfApp1
                 {
                     item.SetFilePath(openFileDialog.FileName, isUserSelected: true);
                     // 自动勾选此行的复选框
-                    bool protectSafe = EdlSkipSafeCheckBox?.IsChecked == true;
-                    bool protectData = EdlSkipDataCheckBox?.IsChecked == true;
+                    bool protectSafe = (this.FindControlInPages("EdlSkipSafeCheckBox") as System.Windows.Controls.CheckBox)?.IsChecked == true;
+                    bool protectData = (this.FindControlInPages("EdlSkipDataCheckBox") as System.Windows.Controls.CheckBox)?.IsChecked == true;
                     if (!(protectSafe && item.IsBasebandPartition) && !(protectData && item.IsDataPartition))
                         item.IsSelected = true;
                 }

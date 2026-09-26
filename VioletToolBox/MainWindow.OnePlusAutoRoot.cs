@@ -41,12 +41,12 @@ namespace WpfApp1
                 return;
             }
 
-            var startButton = btnAutoRoot;
-            var cancelButton = this.FindName("btnCancelAutoRoot") as System.Windows.Controls.Button;
+            var startButton = (this.FindControlInPages("btnAutoRoot") as System.Windows.Controls.Button);
+            var cancelButton = this.FindControlInPages("btnCancelAutoRoot") as System.Windows.Controls.Button;
             if (startButton != null) startButton.IsEnabled = false;
             if (cancelButton != null) cancelButton.IsEnabled = true;
-            if (OnePlusAutoRootModeRadioButton != null) OnePlusAutoRootModeRadioButton.IsEnabled = false;
-            if (OfflinePatchModeRadioButton != null) OfflinePatchModeRadioButton.IsEnabled = false;
+            if ((this.FindControlInPages("OnePlusAutoRootModeRadioButton") as System.Windows.Controls.RadioButton) != null) (this.FindControlInPages("OnePlusAutoRootModeRadioButton") as System.Windows.Controls.RadioButton).IsEnabled = false;
+            if ((this.FindControlInPages("OfflinePatchModeRadioButton") as System.Windows.Controls.RadioButton) != null) (this.FindControlInPages("OfflinePatchModeRadioButton") as System.Windows.Controls.RadioButton).IsEnabled = false;
             SetPatchSchemeSelectionEnabled(false);
 
             string desktop = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
@@ -105,7 +105,7 @@ namespace WpfApp1
                 string patchScheme = GetSelectedAutoRootPatchScheme();
                 if (kernel.OnlyAlphaSupported && IsLkmPatchScheme(patchScheme))
                 {
-                    MagiskAlphaPatchRadioButton.IsChecked = true;
+                    (this.FindControlInPages("MagiskAlphaPatchRadioButton") as System.Windows.Controls.RadioButton).IsChecked = true;
                     patchScheme = "Alpha";
                     AppendAutorootLog("内核版本小于等于 5.4，仅支持 Alpha，已自动切换。", "yellow");
                 }
@@ -202,7 +202,7 @@ namespace WpfApp1
                 cancellation.Token.ThrowIfCancellationRequested();
 
                 UpdateAutorootProgress(80, "重启到刷写模式");
-                bool useFastbootD = chkFastbootD?.IsChecked == true;
+                bool useFastbootD = (this.FindControlInPages("chkFastbootD") as System.Windows.Controls.CheckBox)?.IsChecked == true;
                 string rebootTarget = useFastbootD ? "fastboot" : "bootloader";
                 await EnsureAdbDeviceReadyForRebootAsync(adbPath, adbSerial, cancellation.Token);
                 var rebootResult = await RunAutoRootToolAsync(
@@ -344,8 +344,8 @@ namespace WpfApp1
                 TryCleanupAutoRootDirectory(workDirectory, violetTmpRoot, createdTmpRoot);
                 if (_autoRootModeUiActive)
                 {
-                    if (txtBootPath != null) txtBootPath.Text = AutoRootCloudFileHint;
-                    if (txtMagiskPath != null) txtMagiskPath.Text = AutoRootCloudFileHint;
+                    if ((this.FindControlInPages("txtBootPath") as System.Windows.Controls.TextBox) != null) (this.FindControlInPages("txtBootPath") as System.Windows.Controls.TextBox).Text = AutoRootCloudFileHint;
+                    if ((this.FindControlInPages("txtMagiskPath") as System.Windows.Controls.TextBox) != null) (this.FindControlInPages("txtMagiskPath") as System.Windows.Controls.TextBox).Text = AutoRootCloudFileHint;
                 }
                 _onePlusAutoRootCriticalFlash = false;
                 if (ReferenceEquals(_onePlusAutoRootCancellation, cancellation))
@@ -354,8 +354,8 @@ namespace WpfApp1
                 }
                 cancellation.Dispose();
                 if (cancelButton != null) cancelButton.IsEnabled = false;
-                if (OnePlusAutoRootModeRadioButton != null) OnePlusAutoRootModeRadioButton.IsEnabled = true;
-                if (OfflinePatchModeRadioButton != null) OfflinePatchModeRadioButton.IsEnabled = true;
+                if ((this.FindControlInPages("OnePlusAutoRootModeRadioButton") as System.Windows.Controls.RadioButton) != null) (this.FindControlInPages("OnePlusAutoRootModeRadioButton") as System.Windows.Controls.RadioButton).IsEnabled = true;
+                if ((this.FindControlInPages("OfflinePatchModeRadioButton") as System.Windows.Controls.RadioButton) != null) (this.FindControlInPages("OfflinePatchModeRadioButton") as System.Windows.Controls.RadioButton).IsEnabled = true;
                 SetPatchSchemeSelectionEnabled(true);
                 if (startButton != null) startButton.IsEnabled = true;
             }
@@ -365,7 +365,7 @@ namespace WpfApp1
         {
             if (_onePlusAutoRootCancellation != null) return;
 
-            string sourceImage = txtBootPath?.Text?.Trim() ?? string.Empty;
+            string sourceImage = (this.FindControlInPages("txtBootPath") as System.Windows.Controls.TextBox)?.Text?.Trim() ?? string.Empty;
             if (string.IsNullOrWhiteSpace(sourceImage) || sourceImage == OfflineBootFileHint || !File.Exists(sourceImage))
             {
                 System.Windows.MessageBox.Show("请先选择有效的 init_boot.img 或 boot.img。", "错误", MessageBoxButton.OK, MessageBoxImage.Warning);
@@ -390,7 +390,7 @@ namespace WpfApp1
                 ? "boot"
                 : sourceSize == initBootSize ? "init_boot" : "boot";
             var manager = GetAutoRootManagerInfo(patchScheme);
-            string selectedManagerApk = txtMagiskPath?.Text?.Trim() ?? string.Empty;
+            string selectedManagerApk = (this.FindControlInPages("txtMagiskPath") as System.Windows.Controls.TextBox)?.Text?.Trim() ?? string.Empty;
             bool downloadManager = string.IsNullOrWhiteSpace(selectedManagerApk) ||
                                    selectedManagerApk == OfflineManagerFileHint;
             if (!downloadManager && !File.Exists(selectedManagerApk))
@@ -399,15 +399,15 @@ namespace WpfApp1
                 return;
             }
 
-            var startButton = btnAutoRoot;
-            var cancelButton = this.FindName("btnCancelAutoRoot") as System.Windows.Controls.Button;
+            var startButton = (this.FindControlInPages("btnAutoRoot") as System.Windows.Controls.Button);
+            var cancelButton = this.FindControlInPages("btnCancelAutoRoot") as System.Windows.Controls.Button;
             if (startButton != null) startButton.IsEnabled = false;
             if (cancelButton != null) cancelButton.IsEnabled = true;
-            if (OnePlusAutoRootModeRadioButton != null) OnePlusAutoRootModeRadioButton.IsEnabled = false;
-            if (OfflinePatchModeRadioButton != null) OfflinePatchModeRadioButton.IsEnabled = false;
-            if (AutoFlashAndInstallCheckBox != null) AutoFlashAndInstallCheckBox.IsEnabled = false;
-            if (btnSelectMagisk != null) btnSelectMagisk.IsEnabled = false;
-            if (btnSelectBoot != null) btnSelectBoot.IsEnabled = false;
+            if ((this.FindControlInPages("OnePlusAutoRootModeRadioButton") as System.Windows.Controls.RadioButton) != null) (this.FindControlInPages("OnePlusAutoRootModeRadioButton") as System.Windows.Controls.RadioButton).IsEnabled = false;
+            if ((this.FindControlInPages("OfflinePatchModeRadioButton") as System.Windows.Controls.RadioButton) != null) (this.FindControlInPages("OfflinePatchModeRadioButton") as System.Windows.Controls.RadioButton).IsEnabled = false;
+            if ((this.FindControlInPages("AutoFlashAndInstallCheckBox") as System.Windows.Controls.CheckBox) != null) (this.FindControlInPages("AutoFlashAndInstallCheckBox") as System.Windows.Controls.CheckBox).IsEnabled = false;
+            if ((this.FindControlInPages("btnSelectMagisk") as System.Windows.Controls.Button) != null) (this.FindControlInPages("btnSelectMagisk") as System.Windows.Controls.Button).IsEnabled = false;
+            if ((this.FindControlInPages("btnSelectBoot") as System.Windows.Controls.Button) != null) (this.FindControlInPages("btnSelectBoot") as System.Windows.Controls.Button).IsEnabled = false;
             SetPatchSchemeSelectionEnabled(false);
 
             string desktop = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
@@ -490,7 +490,7 @@ namespace WpfApp1
                 cancellation.Token.ThrowIfCancellationRequested();
 
                 UpdateAutorootProgress(60, "重启到刷写模式");
-                bool useFastbootD = chkFastbootD?.IsChecked == true;
+                bool useFastbootD = (this.FindControlInPages("chkFastbootD") as System.Windows.Controls.CheckBox)?.IsChecked == true;
                 string rebootTarget = useFastbootD ? "fastboot" : "bootloader";
                 await EnsureAdbDeviceReadyForRebootAsync(adbPath, adbSerial, cancellation.Token);
                 var rebootResult = await RunAutoRootToolAsync(
@@ -620,13 +620,13 @@ namespace WpfApp1
                 _onePlusAutoRootCriticalFlash = false;
                 if (ReferenceEquals(_onePlusAutoRootCancellation, cancellation)) _onePlusAutoRootCancellation = null;
                 cancellation.Dispose();
-                if (downloadManager && txtMagiskPath != null) txtMagiskPath.Text = OfflineManagerFileHint;
+                if (downloadManager && (this.FindControlInPages("txtMagiskPath") as System.Windows.Controls.TextBox) != null) (this.FindControlInPages("txtMagiskPath") as System.Windows.Controls.TextBox).Text = OfflineManagerFileHint;
                 if (cancelButton != null) cancelButton.IsEnabled = false;
-                if (OnePlusAutoRootModeRadioButton != null) OnePlusAutoRootModeRadioButton.IsEnabled = true;
-                if (OfflinePatchModeRadioButton != null) OfflinePatchModeRadioButton.IsEnabled = true;
-                if (AutoFlashAndInstallCheckBox != null) AutoFlashAndInstallCheckBox.IsEnabled = true;
-                if (btnSelectMagisk != null) btnSelectMagisk.IsEnabled = true;
-                if (btnSelectBoot != null) btnSelectBoot.IsEnabled = true;
+                if ((this.FindControlInPages("OnePlusAutoRootModeRadioButton") as System.Windows.Controls.RadioButton) != null) (this.FindControlInPages("OnePlusAutoRootModeRadioButton") as System.Windows.Controls.RadioButton).IsEnabled = true;
+                if ((this.FindControlInPages("OfflinePatchModeRadioButton") as System.Windows.Controls.RadioButton) != null) (this.FindControlInPages("OfflinePatchModeRadioButton") as System.Windows.Controls.RadioButton).IsEnabled = true;
+                if ((this.FindControlInPages("AutoFlashAndInstallCheckBox") as System.Windows.Controls.CheckBox) != null) (this.FindControlInPages("AutoFlashAndInstallCheckBox") as System.Windows.Controls.CheckBox).IsEnabled = true;
+                if ((this.FindControlInPages("btnSelectMagisk") as System.Windows.Controls.Button) != null) (this.FindControlInPages("btnSelectMagisk") as System.Windows.Controls.Button).IsEnabled = true;
+                if ((this.FindControlInPages("btnSelectBoot") as System.Windows.Controls.Button) != null) (this.FindControlInPages("btnSelectBoot") as System.Windows.Controls.Button).IsEnabled = true;
                 SetPatchSchemeSelectionEnabled(true);
                 if (startButton != null) startButton.IsEnabled = true;
             }
@@ -634,31 +634,31 @@ namespace WpfApp1
 
         private void PatchOperationMode_Checked(object sender, RoutedEventArgs e)
         {
-            if (txtMagiskPath == null || txtBootPath == null ||
-                btnSelectMagisk == null || btnSelectBoot == null)
+            if ((this.FindControlInPages("txtMagiskPath") as System.Windows.Controls.TextBox) == null || (this.FindControlInPages("txtBootPath") as System.Windows.Controls.TextBox) == null ||
+                (this.FindControlInPages("btnSelectMagisk") as System.Windows.Controls.Button) == null || (this.FindControlInPages("btnSelectBoot") as System.Windows.Controls.Button) == null)
             {
                 return;
             }
 
-            bool useAutoRoot = OnePlusAutoRootModeRadioButton?.IsChecked == true;
+            bool useAutoRoot = (this.FindControlInPages("OnePlusAutoRootModeRadioButton") as System.Windows.Controls.RadioButton)?.IsChecked == true;
             if (useAutoRoot && !_autoRootModeUiActive)
             {
-                _offlinePatchMagiskPath = txtMagiskPath.Text == OfflineManagerFileHint
+                _offlinePatchMagiskPath = (this.FindControlInPages("txtMagiskPath") as System.Windows.Controls.TextBox).Text == OfflineManagerFileHint
                     ? string.Empty
-                    : txtMagiskPath.Text;
-                _offlinePatchBootPath = txtBootPath.Text == OfflineBootFileHint ||
-                                        txtBootPath.Text == KernelPatchBootFileHint
+                    : (this.FindControlInPages("txtMagiskPath") as System.Windows.Controls.TextBox).Text;
+                _offlinePatchBootPath = (this.FindControlInPages("txtBootPath") as System.Windows.Controls.TextBox).Text == OfflineBootFileHint ||
+                                        (this.FindControlInPages("txtBootPath") as System.Windows.Controls.TextBox).Text == KernelPatchBootFileHint
                     ? string.Empty
-                    : txtBootPath.Text;
-                txtMagiskPath.Text = AutoRootCloudFileHint;
-                txtBootPath.Text = AutoRootCloudFileHint;
+                    : (this.FindControlInPages("txtBootPath") as System.Windows.Controls.TextBox).Text;
+                (this.FindControlInPages("txtMagiskPath") as System.Windows.Controls.TextBox).Text = AutoRootCloudFileHint;
+                (this.FindControlInPages("txtBootPath") as System.Windows.Controls.TextBox).Text = AutoRootCloudFileHint;
             }
             else if (!useAutoRoot && _autoRootModeUiActive)
             {
-                txtMagiskPath.Text = string.IsNullOrWhiteSpace(_offlinePatchMagiskPath)
+                (this.FindControlInPages("txtMagiskPath") as System.Windows.Controls.TextBox).Text = string.IsNullOrWhiteSpace(_offlinePatchMagiskPath)
                     ? OfflineManagerFileHint
                     : _offlinePatchMagiskPath;
-                txtBootPath.Text = string.IsNullOrWhiteSpace(_offlinePatchBootPath)
+                (this.FindControlInPages("txtBootPath") as System.Windows.Controls.TextBox).Text = string.IsNullOrWhiteSpace(_offlinePatchBootPath)
                     ? GetOfflineBootFileHint()
                     : _offlinePatchBootPath;
             }
@@ -669,16 +669,16 @@ namespace WpfApp1
 
         private void InitializeAutoRootModeUiState()
         {
-            _autoRootModeUiActive = OnePlusAutoRootModeRadioButton?.IsChecked == true;
+            _autoRootModeUiActive = (this.FindControlInPages("OnePlusAutoRootModeRadioButton") as System.Windows.Controls.RadioButton)?.IsChecked == true;
             if (_autoRootModeUiActive)
             {
-                if (txtMagiskPath != null) txtMagiskPath.Text = AutoRootCloudFileHint;
-                if (txtBootPath != null) txtBootPath.Text = AutoRootCloudFileHint;
+                if ((this.FindControlInPages("txtMagiskPath") as System.Windows.Controls.TextBox) != null) (this.FindControlInPages("txtMagiskPath") as System.Windows.Controls.TextBox).Text = AutoRootCloudFileHint;
+                if ((this.FindControlInPages("txtBootPath") as System.Windows.Controls.TextBox) != null) (this.FindControlInPages("txtBootPath") as System.Windows.Controls.TextBox).Text = AutoRootCloudFileHint;
             }
             else
             {
-                if (txtMagiskPath != null) txtMagiskPath.Text = OfflineManagerFileHint;
-                if (txtBootPath != null) txtBootPath.Text = GetOfflineBootFileHint();
+                if ((this.FindControlInPages("txtMagiskPath") as System.Windows.Controls.TextBox) != null) (this.FindControlInPages("txtMagiskPath") as System.Windows.Controls.TextBox).Text = OfflineManagerFileHint;
+                if ((this.FindControlInPages("txtBootPath") as System.Windows.Controls.TextBox) != null) (this.FindControlInPages("txtBootPath") as System.Windows.Controls.TextBox).Text = GetOfflineBootFileHint();
             }
             UpdatePatchSchemeUiState();
         }
@@ -692,29 +692,29 @@ namespace WpfApp1
         {
             string patchScheme = GetSelectedAutoRootPatchScheme();
             bool isLkm = IsLkmPatchScheme(patchScheme);
-            bool isOfflineMode = OfflinePatchModeRadioButton?.IsChecked == true;
+            bool isOfflineMode = (this.FindControlInPages("OfflinePatchModeRadioButton") as System.Windows.Controls.RadioButton)?.IsChecked == true;
 
-            if (LkmKmiPanel != null)
+            if ((this.FindControlInPages("LkmKmiPanel") as System.Windows.Controls.Grid) != null)
             {
-                LkmKmiPanel.Visibility = isLkm
+                (this.FindControlInPages("LkmKmiPanel") as System.Windows.Controls.Grid).Visibility = isLkm
                     ? Visibility.Visible
                     : Visibility.Collapsed;
-                LkmKmiPanel.IsEnabled = isLkm && isOfflineMode;
+                (this.FindControlInPages("LkmKmiPanel") as System.Windows.Controls.Grid).IsEnabled = isLkm && isOfflineMode;
             }
-            if (AutoDetectKmiCheckBox != null)
+            if ((this.FindControlInPages("AutoDetectKmiCheckBox") as System.Windows.Controls.CheckBox) != null)
             {
-                AutoDetectKmiCheckBox.Visibility = isLkm && isOfflineMode
+                (this.FindControlInPages("AutoDetectKmiCheckBox") as System.Windows.Controls.CheckBox).Visibility = isLkm && isOfflineMode
                     ? Visibility.Visible
                     : Visibility.Collapsed;
-                AutoDetectKmiCheckBox.IsHitTestVisible = isLkm && isOfflineMode;
-                AutoDetectKmiCheckBox.Opacity = 1;
-                if (!isLkm) AutoDetectKmiCheckBox.IsChecked = false;
+                (this.FindControlInPages("AutoDetectKmiCheckBox") as System.Windows.Controls.CheckBox).IsHitTestVisible = isLkm && isOfflineMode;
+                (this.FindControlInPages("AutoDetectKmiCheckBox") as System.Windows.Controls.CheckBox).Opacity = 1;
+                if (!isLkm) (this.FindControlInPages("AutoDetectKmiCheckBox") as System.Windows.Controls.CheckBox).IsChecked = false;
             }
 
-            if (!_autoRootModeUiActive && txtBootPath != null &&
-                (txtBootPath.Text == OfflineBootFileHint || txtBootPath.Text == KernelPatchBootFileHint))
+            if (!_autoRootModeUiActive && (this.FindControlInPages("txtBootPath") as System.Windows.Controls.TextBox) != null &&
+                ((this.FindControlInPages("txtBootPath") as System.Windows.Controls.TextBox).Text == OfflineBootFileHint || (this.FindControlInPages("txtBootPath") as System.Windows.Controls.TextBox).Text == KernelPatchBootFileHint))
             {
-                txtBootPath.Text = GetOfflineBootFileHint();
+                (this.FindControlInPages("txtBootPath") as System.Windows.Controls.TextBox).Text = GetOfflineBootFileHint();
             }
         }
 
@@ -727,12 +727,12 @@ namespace WpfApp1
 
         private void SetPatchSchemeSelectionEnabled(bool enabled)
         {
-            if (MagiskAlphaPatchRadioButton != null) MagiskAlphaPatchRadioButton.IsEnabled = enabled;
-            if (KernelSuLkmPatchRadioButton != null) KernelSuLkmPatchRadioButton.IsEnabled = enabled;
-            if (SukiSuLkmPatchRadioButton != null) SukiSuLkmPatchRadioButton.IsEnabled = enabled;
-            if (ReSukiSuLkmPatchRadioButton != null) ReSukiSuLkmPatchRadioButton.IsEnabled = enabled;
-            if (APatchPatchRadioButton != null) APatchPatchRadioButton.IsEnabled = enabled;
-            if (FolkPatchPatchRadioButton != null) FolkPatchPatchRadioButton.IsEnabled = enabled;
+            if ((this.FindControlInPages("MagiskAlphaPatchRadioButton") as System.Windows.Controls.RadioButton) != null) (this.FindControlInPages("MagiskAlphaPatchRadioButton") as System.Windows.Controls.RadioButton).IsEnabled = enabled;
+            if ((this.FindControlInPages("KernelSuLkmPatchRadioButton") as System.Windows.Controls.RadioButton) != null) (this.FindControlInPages("KernelSuLkmPatchRadioButton") as System.Windows.Controls.RadioButton).IsEnabled = enabled;
+            if ((this.FindControlInPages("SukiSuLkmPatchRadioButton") as System.Windows.Controls.RadioButton) != null) (this.FindControlInPages("SukiSuLkmPatchRadioButton") as System.Windows.Controls.RadioButton).IsEnabled = enabled;
+            if ((this.FindControlInPages("ReSukiSuLkmPatchRadioButton") as System.Windows.Controls.RadioButton) != null) (this.FindControlInPages("ReSukiSuLkmPatchRadioButton") as System.Windows.Controls.RadioButton).IsEnabled = enabled;
+            if ((this.FindControlInPages("APatchPatchRadioButton") as System.Windows.Controls.RadioButton) != null) (this.FindControlInPages("APatchPatchRadioButton") as System.Windows.Controls.RadioButton).IsEnabled = enabled;
+            if ((this.FindControlInPages("FolkPatchPatchRadioButton") as System.Windows.Controls.RadioButton) != null) (this.FindControlInPages("FolkPatchPatchRadioButton") as System.Windows.Controls.RadioButton).IsEnabled = enabled;
         }
 
         private void BtnCancelAutoRoot_Click(object sender, RoutedEventArgs e)
@@ -750,22 +750,22 @@ namespace WpfApp1
             var cancellation = _onePlusAutoRootCancellation;
             if (cancellation == null || cancellation.IsCancellationRequested) return;
 
-            var cancelButton = this.FindName("btnCancelAutoRoot") as System.Windows.Controls.Button;
+            var cancelButton = this.FindControlInPages("btnCancelAutoRoot") as System.Windows.Controls.Button;
             if (cancelButton != null) cancelButton.IsEnabled = false;
-            UpdateAutorootProgress(AutorootProgressBar?.Value ?? 0, "正在取消");
+            UpdateAutorootProgress((this.FindControlInPages("AutorootProgressBar") as System.Windows.Controls.ProgressBar)?.Value ?? 0, "正在取消");
             AppendAutorootLog("用户正在取消一加全自动ROOT任务...", "yellow");
             cancellation.Cancel();
         }
 
         private void SetAutoRootGeneratedPaths(string? imagePath, string? managerPath)
         {
-            if (!string.IsNullOrWhiteSpace(imagePath) && txtBootPath != null)
+            if (!string.IsNullOrWhiteSpace(imagePath) && (this.FindControlInPages("txtBootPath") as System.Windows.Controls.TextBox) != null)
             {
-                txtBootPath.Text = imagePath;
+                (this.FindControlInPages("txtBootPath") as System.Windows.Controls.TextBox).Text = imagePath;
             }
-            if (!string.IsNullOrWhiteSpace(managerPath) && txtMagiskPath != null)
+            if (!string.IsNullOrWhiteSpace(managerPath) && (this.FindControlInPages("txtMagiskPath") as System.Windows.Controls.TextBox) != null)
             {
-                txtMagiskPath.Text = managerPath;
+                (this.FindControlInPages("txtMagiskPath") as System.Windows.Controls.TextBox).Text = managerPath;
             }
         }
 
@@ -1033,7 +1033,7 @@ namespace WpfApp1
         {
             void Update()
             {
-                var usageRun = this.FindName("AutorootTrafficUsedRun") as System.Windows.Documents.Run;
+                var usageRun = this.FindControlInPages("AutorootTrafficUsedRun") as System.Windows.Documents.Run;
                 if (usageRun == null) return;
                 double megabytes = Math.Max(0, bytes) / 1024d / 1024d;
                 usageRun.Text = megabytes.ToString("0.##", System.Globalization.CultureInfo.InvariantCulture) + "MB流量.";
@@ -1198,11 +1198,11 @@ namespace WpfApp1
 
         private string GetSelectedAutoRootPatchScheme()
         {
-            if (APatchPatchRadioButton?.IsChecked == true) return "APatch";
-            if (FolkPatchPatchRadioButton?.IsChecked == true) return "FolkPatch";
-            if (KernelSuLkmPatchRadioButton?.IsChecked == true) return "KernelSU LKM";
-            if (SukiSuLkmPatchRadioButton?.IsChecked == true) return "SukiSU LKM";
-            if (ReSukiSuLkmPatchRadioButton?.IsChecked == true) return "ReSukiSU LKM";
+            if ((this.FindControlInPages("APatchPatchRadioButton") as System.Windows.Controls.RadioButton)?.IsChecked == true) return "APatch";
+            if ((this.FindControlInPages("FolkPatchPatchRadioButton") as System.Windows.Controls.RadioButton)?.IsChecked == true) return "FolkPatch";
+            if ((this.FindControlInPages("KernelSuLkmPatchRadioButton") as System.Windows.Controls.RadioButton)?.IsChecked == true) return "KernelSU LKM";
+            if ((this.FindControlInPages("SukiSuLkmPatchRadioButton") as System.Windows.Controls.RadioButton)?.IsChecked == true) return "SukiSU LKM";
+            if ((this.FindControlInPages("ReSukiSuLkmPatchRadioButton") as System.Windows.Controls.RadioButton)?.IsChecked == true) return "ReSukiSU LKM";
             return "Alpha";
         }
 
@@ -1232,7 +1232,7 @@ namespace WpfApp1
 
         private string GetSelectedOfflineLkmKmi()
         {
-            if (LkmKmiComboBox?.SelectedItem is System.Windows.Controls.ComboBoxItem item &&
+            if ((this.FindControlInPages("LkmKmiComboBox") as System.Windows.Controls.ComboBox)?.SelectedItem is System.Windows.Controls.ComboBoxItem item &&
                 item.Content is string value &&
                 !string.IsNullOrWhiteSpace(value))
             {
@@ -1246,7 +1246,7 @@ namespace WpfApp1
             string? adbPath = null,
             string? adbSerial = null)
         {
-            if (AutoDetectKmiCheckBox?.IsChecked != true)
+            if ((this.FindControlInPages("AutoDetectKmiCheckBox") as System.Windows.Controls.CheckBox)?.IsChecked != true)
             {
                 return GetSelectedOfflineLkmKmi();
             }
@@ -1263,14 +1263,14 @@ namespace WpfApp1
             bool supported = false;
             Dispatcher.Invoke(() =>
             {
-                if (LkmKmiComboBox == null) return;
+                if ((this.FindControlInPages("LkmKmiComboBox") as System.Windows.Controls.ComboBox) == null) return;
 
-                foreach (object entry in LkmKmiComboBox.Items)
+                foreach (object entry in (this.FindControlInPages("LkmKmiComboBox") as System.Windows.Controls.ComboBox).Items)
                 {
                     if (entry is System.Windows.Controls.ComboBoxItem item &&
                         string.Equals(item.Content?.ToString(), kmi, StringComparison.OrdinalIgnoreCase))
                     {
-                        LkmKmiComboBox.SelectedItem = item;
+                        (this.FindControlInPages("LkmKmiComboBox") as System.Windows.Controls.ComboBox).SelectedItem = item;
                         supported = true;
                         break;
                     }
@@ -2062,9 +2062,9 @@ namespace WpfApp1
         {
             void Update()
             {
-                if (AutorootProgressBar == null) return;
-                AutorootProgressBar.Value = Math.Clamp(value, 0, 100);
-                AutorootProgressBar.Tag = status;
+                if ((this.FindControlInPages("AutorootProgressBar") as System.Windows.Controls.ProgressBar) == null) return;
+                (this.FindControlInPages("AutorootProgressBar") as System.Windows.Controls.ProgressBar).Value = Math.Clamp(value, 0, 100);
+                (this.FindControlInPages("AutorootProgressBar") as System.Windows.Controls.ProgressBar).Tag = status;
             }
 
             if (Dispatcher.CheckAccess()) Update();

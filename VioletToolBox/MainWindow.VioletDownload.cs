@@ -35,9 +35,9 @@ namespace WpfApp1
             }
 
             _violetDownloadInitialized = true;
-            VioletDownloadOutputPathTextBox.Text = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + Path.DirectorySeparatorChar;
-            VioletDownloadProgressBar.Tag = "等待开始下载...";
-            VioletDownloadProgressTextBlock.Text = "等待开始下载...";
+            (this.FindControlInPages("VioletDownloadOutputPathTextBox") as System.Windows.Controls.TextBox).Text = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + Path.DirectorySeparatorChar;
+            (this.FindControlInPages("VioletDownloadProgressBar") as System.Windows.Controls.ProgressBar).Tag = "等待开始下载...";
+            (this.FindControlInPages("VioletDownloadProgressTextBlock") as System.Windows.Controls.TextBlock).Text = "等待开始下载...";
             UpdateVioletDownloadUiState(isRunning: false);
             Closing += VioletDownloadWindow_Closing;
         }
@@ -57,7 +57,7 @@ namespace WpfApp1
 
         private async void VioletDownloadStartButton_Click(object sender, RoutedEventArgs e)
         {
-            var url = VioletDownloadUrlTextBox.Text.Trim();
+            var url = (this.FindControlInPages("VioletDownloadUrlTextBox") as System.Windows.Controls.TextBox).Text.Trim();
             if (string.IsNullOrWhiteSpace(url))
             {
                 System.Windows.MessageBox.Show("请先输入初始下载链接。", "缺少链接", MessageBoxButton.OK, MessageBoxImage.Warning);
@@ -69,7 +69,7 @@ namespace WpfApp1
                 return;
             }
 
-            VioletDownloadReplacementUrlTextBox.Clear();
+            (this.FindControlInPages("VioletDownloadReplacementUrlTextBox") as System.Windows.Controls.TextBox).Clear();
             await StartVioletDownloadAsync(url, "开始下载");
         }
 
@@ -81,11 +81,11 @@ namespace WpfApp1
                 return;
             }
 
-            var url = !string.IsNullOrWhiteSpace(VioletDownloadReplacementUrlTextBox.Text)
-                ? VioletDownloadReplacementUrlTextBox.Text.Trim()
+            var url = !string.IsNullOrWhiteSpace((this.FindControlInPages("VioletDownloadReplacementUrlTextBox") as System.Windows.Controls.TextBox).Text)
+                ? (this.FindControlInPages("VioletDownloadReplacementUrlTextBox") as System.Windows.Controls.TextBox).Text.Trim()
                 : !string.IsNullOrWhiteSpace(_violetDownloadActiveUrl)
                     ? _violetDownloadActiveUrl
-                    : VioletDownloadUrlTextBox.Text.Trim();
+                    : (this.FindControlInPages("VioletDownloadUrlTextBox") as System.Windows.Controls.TextBox).Text.Trim();
 
             if (string.IsNullOrWhiteSpace(url))
             {
@@ -103,7 +103,7 @@ namespace WpfApp1
 
         private async void VioletDownloadReplaceUrlButton_Click(object sender, RoutedEventArgs e)
         {
-            var replacementUrl = VioletDownloadReplacementUrlTextBox.Text.Trim();
+            var replacementUrl = (this.FindControlInPages("VioletDownloadReplacementUrlTextBox") as System.Windows.Controls.TextBox).Text.Trim();
             if (string.IsNullOrWhiteSpace(replacementUrl))
             {
                 System.Windows.MessageBox.Show("请先粘贴新的动态链接。", "缺少新链接", MessageBoxButton.OK, MessageBoxImage.Warning);
@@ -134,7 +134,7 @@ namespace WpfApp1
 
         private void VioletDownloadBrowseOutputButton_Click(object sender, RoutedEventArgs e)
         {
-            var currentPath = VioletDownloadOutputPathTextBox.Text.Trim();
+            var currentPath = (this.FindControlInPages("VioletDownloadOutputPathTextBox") as System.Windows.Controls.TextBox).Text.Trim();
             var directory = Directory.Exists(currentPath) ? currentPath : Path.GetDirectoryName(currentPath);
 
             var dialog = new OpenFolderDialog
@@ -145,13 +145,13 @@ namespace WpfApp1
 
             if (dialog.ShowDialog(this) == true)
             {
-                VioletDownloadOutputPathTextBox.Text = dialog.FolderName + Path.DirectorySeparatorChar;
+                (this.FindControlInPages("VioletDownloadOutputPathTextBox") as System.Windows.Controls.TextBox).Text = dialog.FolderName + Path.DirectorySeparatorChar;
             }
         }
 
         private void VioletDownloadOpenFolderButton_Click(object sender, RoutedEventArgs e)
         {
-            var outputPath = VioletDownloadOutputPathTextBox.Text.Trim();
+            var outputPath = (this.FindControlInPages("VioletDownloadOutputPathTextBox") as System.Windows.Controls.TextBox).Text.Trim();
             var folderPath = Directory.Exists(outputPath)
                 ? outputPath
                 : Path.GetDirectoryName(outputPath);
@@ -186,7 +186,7 @@ namespace WpfApp1
                     return;
                 }
 
-                var outputPath = VioletDownloadOutputPathTextBox.Text.Trim();
+                var outputPath = (this.FindControlInPages("VioletDownloadOutputPathTextBox") as System.Windows.Controls.TextBox).Text.Trim();
                 var fullPath = NormalizeVioletDownloadOutputPath(outputPath);
                 var isDirectory = fullPath.EndsWith(Path.DirectorySeparatorChar)
                     || fullPath.EndsWith(Path.AltDirectorySeparatorChar)
@@ -212,10 +212,10 @@ namespace WpfApp1
                 _violetDownloadIsPaused = false;
                 _violetDownloadCurrentSpeed = "";
                 _violetDownloadCurrentEta = "";
-                VioletDownloadProgressBar.BeginAnimation(System.Windows.Controls.ProgressBar.ValueProperty, null);
-                VioletDownloadProgressBar.Value = 0;
-                VioletDownloadProgressBar.Tag = "等待进度...";
-                VioletDownloadProgressTextBlock.Text = "aria2c 已启动，正在等待下载进度...";
+                (this.FindControlInPages("VioletDownloadProgressBar") as System.Windows.Controls.ProgressBar).BeginAnimation(System.Windows.Controls.ProgressBar.ValueProperty, null);
+                (this.FindControlInPages("VioletDownloadProgressBar") as System.Windows.Controls.ProgressBar).Value = 0;
+                (this.FindControlInPages("VioletDownloadProgressBar") as System.Windows.Controls.ProgressBar).Tag = "等待进度...";
+                (this.FindControlInPages("VioletDownloadProgressTextBlock") as System.Windows.Controls.TextBlock).Text = "aria2c 已启动，正在等待下载进度...";
                 UpdateVioletDownloadUiState(isRunning: true);
 
                 AppendVioletDownloadLog($"{reason}：{url}");
@@ -256,16 +256,16 @@ namespace WpfApp1
 
                         if (exitCode == 0)
                         {
-                            VioletDownloadProgressBar.BeginAnimation(System.Windows.Controls.ProgressBar.ValueProperty, null);
-                            VioletDownloadProgressBar.Value = 100;
-                            VioletDownloadProgressBar.Tag = "下载完成";
-                            VioletDownloadProgressTextBlock.Text = "下载完成。";
+                            (this.FindControlInPages("VioletDownloadProgressBar") as System.Windows.Controls.ProgressBar).BeginAnimation(System.Windows.Controls.ProgressBar.ValueProperty, null);
+                            (this.FindControlInPages("VioletDownloadProgressBar") as System.Windows.Controls.ProgressBar).Value = 100;
+                            (this.FindControlInPages("VioletDownloadProgressBar") as System.Windows.Controls.ProgressBar).Tag = "下载完成";
+                            (this.FindControlInPages("VioletDownloadProgressTextBlock") as System.Windows.Controls.TextBlock).Text = "下载完成。";
                             AppendVioletDownloadLog("aria2c 退出：下载完成。");
                         }
                         else
                         {
-                            VioletDownloadProgressBar.Tag = "等待新链接";
-                            VioletDownloadProgressTextBlock.Text = "链接可能已失效。请获取新的动态链接后点击“使用新链接继续”。";
+                            (this.FindControlInPages("VioletDownloadProgressBar") as System.Windows.Controls.ProgressBar).Tag = "等待新链接";
+                            (this.FindControlInPages("VioletDownloadProgressTextBlock") as System.Windows.Controls.TextBlock).Text = "链接可能已失效。请获取新的动态链接后点击“使用新链接继续”。";
                             AppendVioletDownloadLog($"aria2c 异常退出，退出码：{exitCode}");
                         }
                     });
@@ -336,7 +336,7 @@ namespace WpfApp1
 
         private int ParseVioletDownloadSplitCount()
         {
-            if (VioletDownloadConnectionsComboBox.SelectedItem is ComboBoxItem item &&
+            if ((this.FindControlInPages("VioletDownloadConnectionsComboBox") as System.Windows.Controls.ComboBox).SelectedItem is ComboBoxItem item &&
                 int.TryParse(item.Content?.ToString(), out var selectedValue))
             {
                 return Math.Clamp(selectedValue, 1, 32);
@@ -347,7 +347,7 @@ namespace WpfApp1
 
         private List<string> ParseVioletDownloadHeaders()
         {
-            return VioletDownloadHeadersTextBox.Text
+            return (this.FindControlInPages("VioletDownloadHeadersTextBox") as System.Windows.Controls.TextBox).Text
                 .Split(new[] { "\r\n", "\n" }, StringSplitOptions.RemoveEmptyEntries)
                 .Select(line => line.Trim())
                 .Where(line => !string.IsNullOrWhiteSpace(line))
@@ -374,8 +374,8 @@ namespace WpfApp1
             if (percentMatch.Success &&
                 double.TryParse(percentMatch.Groups["value"].Value, out var percentValue))
             {
-                VioletDownloadProgressBar.BeginAnimation(System.Windows.Controls.ProgressBar.ValueProperty, null);
-                VioletDownloadProgressBar.Value = Math.Clamp(percentValue, 0, 100);
+                (this.FindControlInPages("VioletDownloadProgressBar") as System.Windows.Controls.ProgressBar).BeginAnimation(System.Windows.Controls.ProgressBar.ValueProperty, null);
+                (this.FindControlInPages("VioletDownloadProgressBar") as System.Windows.Controls.ProgressBar).Value = Math.Clamp(percentValue, 0, 100);
             }
 
             var speedMatch = VioletDownloadSpeedRegex.Match(line);
@@ -418,19 +418,19 @@ namespace WpfApp1
             if (parts.Count > 0)
             {
                 string text = string.Join("    ", parts);
-                VioletDownloadProgressBar.Tag = text;
-                VioletDownloadProgressTextBlock.Text = text;
+                (this.FindControlInPages("VioletDownloadProgressBar") as System.Windows.Controls.ProgressBar).Tag = text;
+                (this.FindControlInPages("VioletDownloadProgressTextBlock") as System.Windows.Controls.TextBlock).Text = text;
             }
-            else if (VioletDownloadProgressBar.Value <= 0)
+            else if ((this.FindControlInPages("VioletDownloadProgressBar") as System.Windows.Controls.ProgressBar).Value <= 0)
             {
-                VioletDownloadProgressBar.Tag = "等待开始下载...";
-                VioletDownloadProgressTextBlock.Text = "等待开始下载...";
+                (this.FindControlInPages("VioletDownloadProgressBar") as System.Windows.Controls.ProgressBar).Tag = "等待开始下载...";
+                (this.FindControlInPages("VioletDownloadProgressTextBlock") as System.Windows.Controls.TextBlock).Text = "等待开始下载...";
             }
         }
 
         private bool EnsureVioletDownloadOutputPath()
         {
-            var outputPath = VioletDownloadOutputPathTextBox.Text.Trim();
+            var outputPath = (this.FindControlInPages("VioletDownloadOutputPathTextBox") as System.Windows.Controls.TextBox).Text.Trim();
             if (string.IsNullOrWhiteSpace(outputPath))
             {
                 System.Windows.MessageBox.Show("请先选择保存文件路径。", "缺少保存路径", MessageBoxButton.OK, MessageBoxImage.Warning);
@@ -448,7 +448,7 @@ namespace WpfApp1
                 }
 
                 Directory.CreateDirectory(directory);
-                VioletDownloadOutputPathTextBox.Text = fullPath;
+                (this.FindControlInPages("VioletDownloadOutputPathTextBox") as System.Windows.Controls.TextBox).Text = fullPath;
                 return true;
             }
             catch (Exception ex)
@@ -479,11 +479,11 @@ namespace WpfApp1
 
         private string GuessVioletDownloadFileNameFromUrl()
         {
-            var candidateUrl = !string.IsNullOrWhiteSpace(VioletDownloadReplacementUrlTextBox.Text)
-                ? VioletDownloadReplacementUrlTextBox.Text.Trim()
+            var candidateUrl = !string.IsNullOrWhiteSpace((this.FindControlInPages("VioletDownloadReplacementUrlTextBox") as System.Windows.Controls.TextBox).Text)
+                ? (this.FindControlInPages("VioletDownloadReplacementUrlTextBox") as System.Windows.Controls.TextBox).Text.Trim()
                 : !string.IsNullOrWhiteSpace(_violetDownloadActiveUrl)
                     ? _violetDownloadActiveUrl
-                    : VioletDownloadUrlTextBox.Text.Trim();
+                    : (this.FindControlInPages("VioletDownloadUrlTextBox") as System.Windows.Controls.TextBox).Text.Trim();
 
             if (Uri.TryCreate(candidateUrl, UriKind.Absolute, out var uri))
             {
@@ -514,16 +514,16 @@ namespace WpfApp1
 
         private void UpdateVioletDownloadUiState(bool isRunning)
         {
-            VioletDownloadStartButton.IsEnabled = !isRunning;
-            VioletDownloadPauseButton.IsEnabled = isRunning;
-            VioletDownloadResumeButton.IsEnabled = !isRunning;
-            VioletDownloadReplaceUrlButton.IsEnabled = true;
+            (this.FindControlInPages("VioletDownloadStartButton") as System.Windows.Controls.Button).IsEnabled = !isRunning;
+            (this.FindControlInPages("VioletDownloadPauseButton") as System.Windows.Controls.Button).IsEnabled = isRunning;
+            (this.FindControlInPages("VioletDownloadResumeButton") as System.Windows.Controls.Button).IsEnabled = !isRunning;
+            (this.FindControlInPages("VioletDownloadReplaceUrlButton") as System.Windows.Controls.Button).IsEnabled = true;
         }
 
         private void AppendVioletDownloadLog(string message)
         {
-            VioletDownloadLogTextBox.AppendText($"[{DateTime.Now:HH:mm:ss}] {message}{Environment.NewLine}");
-            VioletDownloadLogTextBox.ScrollToEnd();
+            (this.FindControlInPages("VioletDownloadLogTextBox") as System.Windows.Controls.TextBox).AppendText($"[{DateTime.Now:HH:mm:ss}] {message}{Environment.NewLine}");
+            (this.FindControlInPages("VioletDownloadLogTextBox") as System.Windows.Controls.TextBox).ScrollToEnd();
         }
     }
 }

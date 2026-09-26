@@ -737,18 +737,18 @@ namespace WpfApp1
 
         private void RefreshDynamicLocalizedUi()
         {
-            RefreshDynamicTextBlock(DeviceStatusText);
-            RefreshDynamicTextBlock(ConnectionTypeText);
-            RefreshDynamicTextBlock(UnlockStatusText);
-            RefreshDynamicTextBlock(ABPartitionText);
-            RefreshDynamicTextBlock(SelinuxStatusText);
-            RefreshDynamicTextBlock(BottomConnectionTypeText);
-            RefreshDynamicTextBlock(BroadcastNoticeTextBlock);
+            RefreshDynamicTextBlock((this.FindControlInPages("DeviceStatusText") as System.Windows.Controls.TextBlock));
+            RefreshDynamicTextBlock((this.FindControlInPages("ConnectionTypeText") as System.Windows.Controls.TextBlock));
+            RefreshDynamicTextBlock((this.FindControlInPages("UnlockStatusText") as System.Windows.Controls.TextBlock));
+            RefreshDynamicTextBlock((this.FindControlInPages("ABPartitionText") as System.Windows.Controls.TextBlock));
+            RefreshDynamicTextBlock((this.FindControlInPages("SelinuxStatusText") as System.Windows.Controls.TextBlock));
+            RefreshDynamicTextBlock((this.FindControlInPages("BottomConnectionTypeText") as System.Windows.Controls.TextBlock));
+            RefreshDynamicTextBlock((this.FindControlInPages("BroadcastNoticeTextBlock") as System.Windows.Controls.TextBlock));
 
             if (_activeBroadcastNotice != null)
             {
                 string localizedNotice = LocalizeUiText(_activeBroadcastNotice.Text);
-                BroadcastNoticeHost.ToolTip = _activeBroadcastNotice.Url == null
+                (this.FindControlInPages("BroadcastNoticeHost") as System.Windows.Controls.Border).ToolTip = _activeBroadcastNotice.Url == null
                     ? localizedNotice
                     : $"{localizedNotice}\n{LocalizeUiText("点击打开链接")}";
             }
@@ -788,11 +788,11 @@ namespace WpfApp1
         private void UpdateLanguageSwitchButton()
         {
             bool isEnglish = _currentUiLanguage == UiLanguage.English;
-            LanguageSwitchLabel.Text = isEnglish ? "中" : "EN";
-            LanguageSwitchButton.ToolTip = isEnglish
+            (this.FindControlInPages("LanguageSwitchLabel") as System.Windows.Controls.TextBlock).Text = isEnglish ? "中" : "EN";
+            (this.FindControlInPages("LanguageSwitchButton") as System.Windows.Controls.Button).ToolTip = isEnglish
                 ? "Switch to 简体中文"
                 : "切换至 English";
-            LanguageSwitchButton.SetValue(
+            (this.FindControlInPages("LanguageSwitchButton") as System.Windows.Controls.Button).SetValue(
                 AutomationProperties.NameProperty,
                 isEnglish ? "Switch to Simplified Chinese" : "切换至英文");
         }

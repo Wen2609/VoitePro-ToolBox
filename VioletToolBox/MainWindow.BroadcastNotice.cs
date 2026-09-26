@@ -63,7 +63,7 @@ namespace WpfApp1
                 _broadcastNotices.Clear();
                 _broadcastNotices.AddRange(notices);
                 _activeBroadcastNoticeIndex = 0;
-                BroadcastNoticeHost.Visibility = Visibility.Visible;
+                (this.FindControlInPages("BroadcastNoticeHost") as System.Windows.Controls.Border).Visibility = Visibility.Visible;
 
                 _broadcastNoticeRotationTimer ??= new DispatcherTimer();
                 _broadcastNoticeRotationTimer.Tick -= BroadcastNoticeRotationTimer_Tick;
@@ -156,9 +156,9 @@ namespace WpfApp1
             _activeBroadcastNoticeIndex = (index + _broadcastNotices.Count) % _broadcastNotices.Count;
             _activeBroadcastNotice = _broadcastNotices[_activeBroadcastNoticeIndex];
             string localizedNotice = LocalizeUiText(_activeBroadcastNotice.Text);
-            SetLocalizedText(BroadcastNoticeTextBlock, _activeBroadcastNotice.Text);
-            BroadcastNoticeHost.Cursor = _activeBroadcastNotice.Url == null ? WpfCursors.Arrow : WpfCursors.Hand;
-            BroadcastNoticeHost.ToolTip = _activeBroadcastNotice.Url == null
+            SetLocalizedText((this.FindControlInPages("BroadcastNoticeTextBlock") as System.Windows.Controls.TextBlock), _activeBroadcastNotice.Text);
+            (this.FindControlInPages("BroadcastNoticeHost") as System.Windows.Controls.Border).Cursor = _activeBroadcastNotice.Url == null ? WpfCursors.Arrow : WpfCursors.Hand;
+            (this.FindControlInPages("BroadcastNoticeHost") as System.Windows.Controls.Border).ToolTip = _activeBroadcastNotice.Url == null
                 ? localizedNotice
                 : $"{localizedNotice}\n{LocalizeUiText("点击打开链接")}";
 
@@ -174,18 +174,18 @@ namespace WpfApp1
 
             Dispatcher.BeginInvoke(new Action(() =>
             {
-                if (_activeBroadcastNotice == null || BroadcastNoticeHost.ActualWidth <= 0)
+                if (_activeBroadcastNotice == null || (this.FindControlInPages("BroadcastNoticeHost") as System.Windows.Controls.Border).ActualWidth <= 0)
                 {
                     return;
                 }
 
-                var translateTransform = (TranslateTransform)BroadcastNoticeTextBlock.RenderTransform;
+                var translateTransform = (TranslateTransform)(this.FindControlInPages("BroadcastNoticeTextBlock") as System.Windows.Controls.TextBlock).RenderTransform;
                 translateTransform.BeginAnimation(TranslateTransform.XProperty, null);
 
-                BroadcastNoticeTextBlock.Measure(new WpfSize(double.PositiveInfinity, double.PositiveInfinity));
-                double textWidth = BroadcastNoticeTextBlock.DesiredSize.Width;
-                double viewportWidth = Math.Max(0, BroadcastNoticeHost.ActualWidth -
-                    BroadcastNoticeHost.Padding.Left - BroadcastNoticeHost.Padding.Right);
+                (this.FindControlInPages("BroadcastNoticeTextBlock") as System.Windows.Controls.TextBlock).Measure(new WpfSize(double.PositiveInfinity, double.PositiveInfinity));
+                double textWidth = (this.FindControlInPages("BroadcastNoticeTextBlock") as System.Windows.Controls.TextBlock).DesiredSize.Width;
+                double viewportWidth = Math.Max(0, (this.FindControlInPages("BroadcastNoticeHost") as System.Windows.Controls.Border).ActualWidth -
+                    (this.FindControlInPages("BroadcastNoticeHost") as System.Windows.Controls.Border).Padding.Left - (this.FindControlInPages("BroadcastNoticeHost") as System.Windows.Controls.Border).Padding.Right);
                 double rightAlignedPosition = Math.Max(0, viewportWidth - textWidth);
 
                 double displaySeconds = 6;

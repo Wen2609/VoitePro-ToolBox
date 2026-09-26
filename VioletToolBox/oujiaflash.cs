@@ -51,30 +51,30 @@ namespace WpfApp1
 
         private void FixSuperCheckBox_Checked(object sender, RoutedEventArgs e)
         {
-            if (FixSuperCheckBox.IsChecked == true)
+            if ((this.FindControlInPages("FixSuperCheckBox") as System.Windows.Controls.CheckBox).IsChecked == true)
             {
-                PureFBDCheckBox.IsChecked = false;
-                FlashABCheckBox.IsChecked = false;
+                (this.FindControlInPages("PureFBDCheckBox") as System.Windows.Controls.CheckBox).IsChecked = false;
+                (this.FindControlInPages("FlashABCheckBox") as System.Windows.Controls.CheckBox).IsChecked = false;
             }
         }
         
         // 仅FBD复选框选中事件处理器
         private void PureFBDCheckBox_Checked(object sender, RoutedEventArgs e)
         {
-            if (PureFBDCheckBox.IsChecked == true)
+            if ((this.FindControlInPages("PureFBDCheckBox") as System.Windows.Controls.CheckBox).IsChecked == true)
             {
-                FixSuperCheckBox.IsChecked = false;
-                FlashABCheckBox.IsChecked = false;
+                (this.FindControlInPages("FixSuperCheckBox") as System.Windows.Controls.CheckBox).IsChecked = false;
+                (this.FindControlInPages("FlashABCheckBox") as System.Windows.Controls.CheckBox).IsChecked = false;
             }
         }
 
         // AB通刷复选框选中事件处理器
         private void FlashABCheckBox_Checked(object sender, RoutedEventArgs e)
         {
-            if (FlashABCheckBox.IsChecked == true)
+            if ((this.FindControlInPages("FlashABCheckBox") as System.Windows.Controls.CheckBox).IsChecked == true)
             {
-                FixSuperCheckBox.IsChecked = false;
-                PureFBDCheckBox.IsChecked = false;
+                (this.FindControlInPages("FixSuperCheckBox") as System.Windows.Controls.CheckBox).IsChecked = false;
+                (this.FindControlInPages("PureFBDCheckBox") as System.Windows.Controls.CheckBox).IsChecked = false;
             }
         }
 
@@ -87,7 +87,7 @@ namespace WpfApp1
                 var partitionList = new List<PartitionInfo>();
                 
                 AppendOugaFlashParagraphLog("开始解析提取的分区文件...");
-                OugaFlashLogTextBox.ScrollToEnd();
+                (this.FindControlInPages("OugaFlashLogTextBox") as System.Windows.Controls.RichTextBox).ScrollToEnd();
                 
                 foreach (string partitionName in partitionNames)
                 {
@@ -133,10 +133,10 @@ namespace WpfApp1
                 // 更新DataGrid
                 Dispatcher.Invoke(() =>
                 {
-                    OugaPartitionTableDataGrid.ItemsSource = new ObservableCollection<PartitionInfo>(partitionList);
+                    (this.FindControlInPages("OugaPartitionTableDataGrid") as System.Windows.Controls.DataGrid).ItemsSource = new ObservableCollection<PartitionInfo>(partitionList);
                     
                     // 自动全选所有分区
-                    if (OugaPartitionTableDataGrid.ItemsSource is ObservableCollection<PartitionInfo> partitions)
+                    if ((this.FindControlInPages("OugaPartitionTableDataGrid") as System.Windows.Controls.DataGrid).ItemsSource is ObservableCollection<PartitionInfo> partitions)
                     {
                         foreach (var partition in partitions)
                         {
@@ -144,23 +144,23 @@ namespace WpfApp1
                         }
                         
                         // 更新全选复选框状态
-                        var selectAllCheckBox = this.FindName("SelectAllCheckBox") as System.Windows.Controls.CheckBox;
+                        var selectAllCheckBox = this.FindControlInPages("SelectAllCheckBox") as System.Windows.Controls.CheckBox;
                         if (selectAllCheckBox != null)
                         {
                             selectAllCheckBox.IsChecked = true;
                         }
                         
-                        OugaPartitionTableDataGrid.Items.Refresh();
+                        (this.FindControlInPages("OugaPartitionTableDataGrid") as System.Windows.Controls.DataGrid).Items.Refresh();
                     }
                 });
                 
                 AppendOugaFlashParagraphLog($"分区文件解析完成，共找到 {partitionList.Count} 个分区文件", "Green");
-                OugaFlashLogTextBox.ScrollToEnd();
+                (this.FindControlInPages("OugaFlashLogTextBox") as System.Windows.Controls.RichTextBox).ScrollToEnd();
             }
             catch (Exception ex)
             {
                 AppendOugaFlashParagraphLog($"解析分区文件时发生错误: {ex.Message}", "Red");
-                OugaFlashLogTextBox.ScrollToEnd();
+                (this.FindControlInPages("OugaFlashLogTextBox") as System.Windows.Controls.RichTextBox).ScrollToEnd();
             }
         }
         
@@ -174,7 +174,7 @@ namespace WpfApp1
         private void OugaPartitionSearchTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             if (sender is not System.Windows.Controls.TextBox searchTextBox ||
-                OugaPartitionTableDataGrid?.ItemsSource == null)
+                (this.FindControlInPages("OugaPartitionTableDataGrid") as System.Windows.Controls.DataGrid)?.ItemsSource == null)
             {
                 return;
             }
@@ -182,7 +182,7 @@ namespace WpfApp1
             string keyword = searchTextBox.Text.Trim();
             System.ComponentModel.ICollectionView view =
                 System.Windows.Data.CollectionViewSource.GetDefaultView(
-                    OugaPartitionTableDataGrid.ItemsSource);
+                    (this.FindControlInPages("OugaPartitionTableDataGrid") as System.Windows.Controls.DataGrid).ItemsSource);
             view.Filter = string.IsNullOrWhiteSpace(keyword)
                 ? null
                 : item => item is PartitionInfo partition &&
@@ -266,21 +266,21 @@ namespace WpfApp1
                 {
                     // 当选择云解包方案时，显示提示信息
                     AppendOugaFlashParagraphLog("已选择云解包方案，点击提取分区按钮开始云端解包", "Blue");
-                    OugaFlashLogTextBox.ScrollToEnd();
+                    (this.FindControlInPages("OugaFlashLogTextBox") as System.Windows.Controls.RichTextBox).ScrollToEnd();
                 }
             }
         }
 
         private string? ResolveOugaPayloadSourceInput()
         {
-            string payloadPath = (PayloadFilePathTextBox.Text ?? string.Empty).Trim().Trim('`');
+            string payloadPath = ((this.FindControlInPages("PayloadFilePathTextBox") as System.Windows.Controls.TextBox).Text ?? string.Empty).Trim().Trim('`');
             if (!string.IsNullOrEmpty(payloadPath) &&
                 !string.Equals(payloadPath, "请选择Payload.bin文件或全量包Zip文件...", StringComparison.Ordinal))
             {
                 return payloadPath;
             }
 
-            string binUrl = (BinUrlTextBox.Text ?? string.Empty).Trim().Trim('`');
+            string binUrl = ((this.FindControlInPages("BinUrlTextBox") as System.Windows.Controls.TextBox).Text ?? string.Empty).Trim().Trim('`');
             if (!string.IsNullOrEmpty(binUrl) &&
                 !string.Equals(binUrl, "全量包链接 or Payload.bin路径...", StringComparison.Ordinal) &&
                 !string.Equals(binUrl, "bin_URL", StringComparison.OrdinalIgnoreCase))
@@ -473,7 +473,7 @@ namespace WpfApp1
         {
             try
             {
-                string binUrl = (BinUrlTextBox.Text ?? string.Empty).Trim().Trim('`');
+                string binUrl = ((this.FindControlInPages("BinUrlTextBox") as System.Windows.Controls.TextBox).Text ?? string.Empty).Trim().Trim('`');
                 if (string.IsNullOrEmpty(binUrl) || binUrl == "全量包链接 or Payload.bin路径...")
                 {
                     AppendOugaFlashParagraphLog("错误: 请输入有效的全量包链接或Payload.bin路径", "Red");
@@ -523,7 +523,7 @@ namespace WpfApp1
                 {
                     AppendOugaFlashParagraphLog($"云解包完成！所有分区已提取到: {outputPath}", "Green");
                     await LoadExtractedPartitionsToDataGrid(outputPath, extractedPartitions.ToArray());
-                    FolderPathTextBox.Text = outputPath;
+                    (this.FindControlInPages("FolderPathTextBox") as System.Windows.Controls.TextBox).Text = outputPath;
                 }
             }
             catch (Exception ex)
@@ -683,10 +683,10 @@ namespace WpfApp1
                 emphasized: color.Equals("Green", StringComparison.OrdinalIgnoreCase) ||
                             color.Equals("Red", StringComparison.OrdinalIgnoreCase),
                 recognizeOperationTag: true);
-            OugaFlashLogTextBox.Document.Blocks.Add(paragraph);
+            (this.FindControlInPages("OugaFlashLogTextBox") as System.Windows.Controls.RichTextBox).Document.Blocks.Add(paragraph);
         }
 
-        OugaFlashLogTextBox.ScrollToEnd();
+        (this.FindControlInPages("OugaFlashLogTextBox") as System.Windows.Controls.RichTextBox).ScrollToEnd();
     }
 
     private void AppendOugaFlashPayloadExportLog(string message)
@@ -732,8 +732,8 @@ namespace WpfApp1
         AppendOugaFlashTimestamp(_ougaPayloadPendingExtractLine);
         AppendOugaFlashStyledText(_ougaPayloadPendingExtractLine, "[提取] ", "Purple", emphasized: true);
         AppendOugaFlashStyledText(_ougaPayloadPendingExtractLine, text, "Black");
-        OugaFlashLogTextBox.Document.Blocks.Add(_ougaPayloadPendingExtractLine);
-        OugaFlashLogTextBox.ScrollToEnd();
+        (this.FindControlInPages("OugaFlashLogTextBox") as System.Windows.Controls.RichTextBox).Document.Blocks.Add(_ougaPayloadPendingExtractLine);
+        (this.FindControlInPages("OugaFlashLogTextBox") as System.Windows.Controls.RichTextBox).ScrollToEnd();
     }
 
     private void AppendOugaFlashExtractOk()
@@ -753,7 +753,7 @@ namespace WpfApp1
 
         AppendOugaFlashStyledText(paragraph, " OK", "Green", emphasized: true);
         _ougaPayloadPendingExtractLine = null;
-        OugaFlashLogTextBox.ScrollToEnd();
+        (this.FindControlInPages("OugaFlashLogTextBox") as System.Windows.Controls.RichTextBox).ScrollToEnd();
     }
 
     private void AppendOugaFlashExtractFail(string text = "失败")
@@ -773,7 +773,7 @@ namespace WpfApp1
 
         AppendOugaFlashStyledText(paragraph, $" {text}", "Red", emphasized: true);
         _ougaPayloadPendingExtractLine = null;
-        OugaFlashLogTextBox.ScrollToEnd();
+        (this.FindControlInPages("OugaFlashLogTextBox") as System.Windows.Controls.RichTextBox).ScrollToEnd();
     }
 
     // 处理Payload解包功能
@@ -785,7 +785,7 @@ namespace WpfApp1
         try
         {
             // 从TextBox获取Payload.bin文件路径
-            string payloadFilePath = PayloadFilePathTextBox.Text.Trim();
+            string payloadFilePath = (this.FindControlInPages("PayloadFilePathTextBox") as System.Windows.Controls.TextBox).Text.Trim();
             
             // 验证Payload文件路径
             if (string.IsNullOrEmpty(payloadFilePath) || payloadFilePath == "请选择Payload.bin文件或全量包Zip文件...")
@@ -801,7 +801,7 @@ namespace WpfApp1
             }
             
             // 从TextBox获取输出目录路径
-            string outputPath = FolderPathTextBox.Text.Trim();
+            string outputPath = (this.FindControlInPages("FolderPathTextBox") as System.Windows.Controls.TextBox).Text.Trim();
             
             // 验证输出目录路径
             if (string.IsNullOrEmpty(outputPath) || outputPath == "请选择解包好的文件夹或解包输出路径...")
@@ -944,7 +944,7 @@ namespace WpfApp1
             AppendOugaFlashParagraphLog($"解包完成，文件保存在: {outputPath}", "Green");
             Dispatcher.Invoke(() =>
             {
-                FolderPathTextBox.Text = outputPath;
+                (this.FindControlInPages("FolderPathTextBox") as System.Windows.Controls.TextBox).Text = outputPath;
                 LoadPartitionsFromFolder(outputPath);
             });
         }
@@ -1044,9 +1044,9 @@ namespace WpfApp1
                 string selectedPath = folderDialog.SelectedPath;
                 
                 // 更新TextBox显示选择的路径
-                if (FolderPathTextBox != null)
+                if ((this.FindControlInPages("FolderPathTextBox") as System.Windows.Controls.TextBox) != null)
                 {
-                    FolderPathTextBox.Text = selectedPath;
+                    (this.FindControlInPages("FolderPathTextBox") as System.Windows.Controls.TextBox).Text = selectedPath;
                 }
                 
                 // 在选择的文件夹内创建images文件夹
@@ -1196,15 +1196,15 @@ namespace WpfApp1
                 }
                 
                 // 更新 DataGrid
-                if (OugaPartitionTableDataGrid != null)
+                if ((this.FindControlInPages("OugaPartitionTableDataGrid") as System.Windows.Controls.DataGrid) != null)
                 {
-                     OugaPartitionTableDataGrid.ItemsSource = partitions;
+                     (this.FindControlInPages("OugaPartitionTableDataGrid") as System.Windows.Controls.DataGrid).ItemsSource = partitions;
                 }
 
-                if (OugaFlashLogTextBox != null)
+                if ((this.FindControlInPages("OugaFlashLogTextBox") as System.Windows.Controls.RichTextBox) != null)
                 {
                     AppendOugaFlashParagraphLog($"已加载 {partitions.Count} 个镜像文件", "Green");
-                    OugaFlashLogTextBox.ScrollToEnd();
+                    (this.FindControlInPages("OugaFlashLogTextBox") as System.Windows.Controls.RichTextBox).ScrollToEnd();
                 }
             }
             catch (Exception ex)
@@ -1233,7 +1233,7 @@ namespace WpfApp1
                     return;
                 }
 
-                var textBox = this.FindName("AfterSalesFlashPackTextBox") as System.Windows.Controls.TextBox;
+                var textBox = this.FindControlInPages("AfterSalesFlashPackTextBox") as System.Windows.Controls.TextBox;
                 if (textBox != null)
                 {
                     textBox.Text = selectedPath;
@@ -1403,13 +1403,13 @@ namespace WpfApp1
             try
             {
                 var fullPackageCheckBox =
-                    this.FindName("FullPackageModeCheckBox") as System.Windows.Controls.CheckBox;
+                    this.FindControlInPages("FullPackageModeCheckBox") as System.Windows.Controls.CheckBox;
                 var afterSalesCheckBox =
-                    this.FindName("AfterSalesPackageModeCheckBox") as System.Windows.Controls.CheckBox;
-                var standardFlashContent = this.FindName("StandardFlashContent") as Grid;
-                var afterSalesContent = this.FindName("AfterSalesContent") as Grid;
+                    this.FindControlInPages("AfterSalesPackageModeCheckBox") as System.Windows.Controls.CheckBox;
+                var standardFlashContent = this.FindControlInPages("StandardFlashContent") as Grid;
+                var afterSalesContent = this.FindControlInPages("AfterSalesContent") as Grid;
                 var partitionTableValidationSettingPanel =
-                    this.FindName("PartitionTableValidationSettingPanel") as FrameworkElement;
+                    this.FindControlInPages("PartitionTableValidationSettingPanel") as FrameworkElement;
 
                 if (fullPackageCheckBox != null)
                 {
@@ -1460,7 +1460,7 @@ namespace WpfApp1
             }
 
             var afterSalesCheckBox =
-                this.FindName("AfterSalesPackageModeCheckBox") as System.Windows.Controls.CheckBox;
+                this.FindControlInPages("AfterSalesPackageModeCheckBox") as System.Windows.Controls.CheckBox;
             if (afterSalesCheckBox?.IsChecked != true)
             {
                 ApplyOugaPackageModeSelection(useAfterSalesMode: false);
@@ -1480,7 +1480,7 @@ namespace WpfApp1
             }
 
             var fullPackageCheckBox =
-                this.FindName("FullPackageModeCheckBox") as System.Windows.Controls.CheckBox;
+                this.FindControlInPages("FullPackageModeCheckBox") as System.Windows.Controls.CheckBox;
             if (fullPackageCheckBox?.IsChecked != true)
             {
                 ApplyOugaPackageModeSelection(useAfterSalesMode: true);
@@ -1500,10 +1500,10 @@ namespace WpfApp1
             try
             {
                 var enabledCheckBox =
-                    this.FindName("PartitionTableValidationEnabledCheckBox")
+                    this.FindControlInPages("PartitionTableValidationEnabledCheckBox")
                         as System.Windows.Controls.CheckBox;
                 var disabledCheckBox =
-                    this.FindName("PartitionTableValidationDisabledCheckBox")
+                    this.FindControlInPages("PartitionTableValidationDisabledCheckBox")
                         as System.Windows.Controls.CheckBox;
 
                 if (enabledCheckBox != null)
@@ -1539,7 +1539,7 @@ namespace WpfApp1
             }
 
             var disabledCheckBox =
-                this.FindName("PartitionTableValidationDisabledCheckBox")
+                this.FindControlInPages("PartitionTableValidationDisabledCheckBox")
                     as System.Windows.Controls.CheckBox;
             if (disabledCheckBox?.IsChecked != true)
             {
@@ -1564,7 +1564,7 @@ namespace WpfApp1
             }
 
             var enabledCheckBox =
-                this.FindName("PartitionTableValidationEnabledCheckBox")
+                this.FindControlInPages("PartitionTableValidationEnabledCheckBox")
                     as System.Windows.Controls.CheckBox;
             if (enabledCheckBox?.IsChecked != true)
             {
@@ -1671,7 +1671,7 @@ namespace WpfApp1
         private bool ValidateOujiaFlashSourceBeforeStart()
         {
             List<PartitionInfo> partitions =
-                (OugaPartitionTableDataGrid.ItemsSource as IEnumerable<PartitionInfo>)
+                ((this.FindControlInPages("OugaPartitionTableDataGrid") as System.Windows.Controls.DataGrid).ItemsSource as IEnumerable<PartitionInfo>)
                 ?.ToList() ?? new List<PartitionInfo>();
             if (partitions.Count == 0)
             {
@@ -1726,17 +1726,17 @@ namespace WpfApp1
 
         private OujiaFlashMode ResolveOujiaFlashMode()
         {
-            if (FlashABCheckBox.IsChecked == true)
+            if ((this.FindControlInPages("FlashABCheckBox") as System.Windows.Controls.CheckBox).IsChecked == true)
             {
                 return OujiaFlashMode.Ab;
             }
 
-            if (FixSuperCheckBox.IsChecked == true)
+            if ((this.FindControlInPages("FixSuperCheckBox") as System.Windows.Controls.CheckBox).IsChecked == true)
             {
                 return OujiaFlashMode.Force;
             }
 
-            return PureFBDCheckBox.IsChecked == true
+            return (this.FindControlInPages("PureFBDCheckBox") as System.Windows.Controls.CheckBox).IsChecked == true
                 ? OujiaFlashMode.PureFastbootd
                 : OujiaFlashMode.Normal;
         }
@@ -1748,9 +1748,9 @@ namespace WpfApp1
                 mode,
                 preferredSerial,
                 _isDeviceDetectionEnabled,
-                ClearDataCheckBox.IsChecked == true,
-                AutoRebootOugaCheckBox.IsChecked == true,
-                PartitionTableValidationEnabledCheckBox.IsChecked == true);
+                (this.FindControlInPages("ClearDataCheckBox") as System.Windows.Controls.CheckBox).IsChecked == true,
+                (this.FindControlInPages("AutoRebootOugaCheckBox") as System.Windows.Controls.CheckBox).IsChecked == true,
+                (this.FindControlInPages("PartitionTableValidationEnabledCheckBox") as System.Windows.Controls.CheckBox).IsChecked == true);
             _activeOujiaFlashSession = session;
 
             try
@@ -1758,8 +1758,8 @@ namespace WpfApp1
                 _isOugaFlashTaskRunning = true;
                 _ougaFlashStopRequested = false;
                 BeginOugaFlashPartitionResultTracking();
-                OugaFlashOverlay.Visibility = Visibility.Visible;
-                OugaPartitionTableDataGrid.IsEnabled = false;
+                (this.FindControlInPages("OugaFlashOverlay") as System.Windows.Controls.Grid).Visibility = Visibility.Visible;
+                (this.FindControlInPages("OugaPartitionTableDataGrid") as System.Windows.Controls.DataGrid).IsEnabled = false;
                 _flashElapsedTimer?.Stop();
                 _flashStartTime = DateTime.UtcNow;
                 FlashElapsedText = "耗时00:00";
@@ -1811,8 +1811,8 @@ namespace WpfApp1
             finally
             {
                 _flashElapsedTimer?.Stop();
-                OugaFlashOverlay.Visibility = Visibility.Collapsed;
-                OugaPartitionTableDataGrid.IsEnabled = true;
+                (this.FindControlInPages("OugaFlashOverlay") as System.Windows.Controls.Grid).Visibility = Visibility.Collapsed;
+                (this.FindControlInPages("OugaPartitionTableDataGrid") as System.Windows.Controls.DataGrid).IsEnabled = true;
 
                 LogOugaFlashPartitionResultSummary();
                 FinalizeOujiaFlashRunStatus();
@@ -1824,9 +1824,9 @@ namespace WpfApp1
                     {
                         LogStepBegin("委托主页开始异步设备检测");
                         InitializeDeviceStatusMonitoring();
-                        if (DeviceDetectionToggle != null)
+                        if ((this.FindControlInPages("DeviceDetectionToggle") as System.Windows.Controls.Primitives.ToggleButton) != null)
                         {
-                            DeviceDetectionToggle.IsChecked = true;
+                            (this.FindControlInPages("DeviceDetectionToggle") as System.Windows.Controls.Primitives.ToggleButton).IsChecked = true;
                         }
                         LogStepEndOk();
                     }
@@ -1841,9 +1841,9 @@ namespace WpfApp1
                     deviceStatusTimer?.Stop();
                     deviceStatusTimer = null;
                     _isDeviceDetectionEnabled = false;
-                    if (DeviceDetectionToggle != null)
+                    if ((this.FindControlInPages("DeviceDetectionToggle") as System.Windows.Controls.Primitives.ToggleButton) != null)
                     {
-                        DeviceDetectionToggle.IsChecked = false;
+                        (this.FindControlInPages("DeviceDetectionToggle") as System.Windows.Controls.Primitives.ToggleButton).IsChecked = false;
                     }
                 }
 
@@ -1875,9 +1875,9 @@ namespace WpfApp1
 
                 deviceStatusTimer?.Stop();
                 deviceStatusTimer = null;
-                if (DeviceDetectionToggle != null)
+                if ((this.FindControlInPages("DeviceDetectionToggle") as System.Windows.Controls.Primitives.ToggleButton) != null)
                 {
-                    DeviceDetectionToggle.IsChecked = false;
+                    (this.FindControlInPages("DeviceDetectionToggle") as System.Windows.Controls.Primitives.ToggleButton).IsChecked = false;
                 }
 
                 // 必须等待主页残留的 adb/fastboot 查询完全退出，避免与线刷命令竞争。
@@ -2918,13 +2918,13 @@ namespace WpfApp1
         private bool ShouldExecuteOujiaClearData()
         {
             return _activeOujiaFlashSession != null &&
-                   ClearDataCheckBox.IsChecked == true;
+                   (this.FindControlInPages("ClearDataCheckBox") as System.Windows.Controls.CheckBox).IsChecked == true;
         }
 
         private bool ShouldExecuteOujiaAutoReboot()
         {
             return _activeOujiaFlashSession != null &&
-                   AutoRebootOugaCheckBox.IsChecked == true;
+                   (this.FindControlInPages("AutoRebootOugaCheckBox") as System.Windows.Controls.CheckBox).IsChecked == true;
         }
 
         private async Task ExecuteOujiaPostFlashActionsAsync(
@@ -2944,7 +2944,7 @@ namespace WpfApp1
             if (cancelPureFastbootdAutoReboot)
             {
                 _activeOujiaFlashSession!.AutoRebootCancelledForPartitionFailure = true;
-                Dispatcher.Invoke(() => AutoRebootOugaCheckBox.IsChecked = false);
+                Dispatcher.Invoke(() => (this.FindControlInPages("AutoRebootOugaCheckBox") as System.Windows.Controls.CheckBox).IsChecked = false);
             }
 
             string fastbootPath = GetOugaFastbootExecutablePath();
@@ -3083,7 +3083,7 @@ namespace WpfApp1
         private List<PartitionInfo> GetSelectedPartitions()
         {
             var selectedPartitions = new List<PartitionInfo>();
-            if (OugaPartitionTableDataGrid.ItemsSource is IEnumerable<PartitionInfo> partitionInfos)
+            if ((this.FindControlInPages("OugaPartitionTableDataGrid") as System.Windows.Controls.DataGrid).ItemsSource is IEnumerable<PartitionInfo> partitionInfos)
             {
                 selectedPartitions = partitionInfos.Where(p => p.IsSelected).ToList();
             }
@@ -3378,8 +3378,8 @@ namespace WpfApp1
                     FontWeight = FontWeights.SemiBold
                 };
                 paragraph.Inlines.Add(resultRun);
-                OugaFlashLogTextBox.Document.Blocks.Add(paragraph);
-                OugaFlashLogTextBox.ScrollToEnd();
+                (this.FindControlInPages("OugaFlashLogTextBox") as System.Windows.Controls.RichTextBox).Document.Blocks.Add(paragraph);
+                (this.FindControlInPages("OugaFlashLogTextBox") as System.Windows.Controls.RichTextBox).ScrollToEnd();
             });
             return (paragraph!, resultRun!);
         }
@@ -3394,7 +3394,7 @@ namespace WpfApp1
                 resultRun.Text = result;
                 resultRun.Foreground = GetOugaFlashLogBrush(success ? "Green" : "Red");
                 resultRun.FontWeight = FontWeights.Bold;
-                OugaFlashLogTextBox.ScrollToEnd();
+                (this.FindControlInPages("OugaFlashLogTextBox") as System.Windows.Controls.RichTextBox).ScrollToEnd();
             });
         }
 
@@ -3405,7 +3405,7 @@ namespace WpfApp1
                 resultRun.Text = result;
                 resultRun.Foreground = GetOugaFlashLogBrush("Blue");
                 resultRun.FontWeight = FontWeights.SemiBold;
-                OugaFlashLogTextBox.ScrollToEnd();
+                (this.FindControlInPages("OugaFlashLogTextBox") as System.Windows.Controls.RichTextBox).ScrollToEnd();
             });
         }
 
@@ -3538,8 +3538,8 @@ namespace WpfApp1
                     FontWeight = FontWeights.SemiBold
                 };
                 paragraph.Inlines.Add(countdownRun);
-                OugaFlashLogTextBox.Document.Blocks.Add(paragraph);
-                OugaFlashLogTextBox.ScrollToEnd();
+                (this.FindControlInPages("OugaFlashLogTextBox") as System.Windows.Controls.RichTextBox).Document.Blocks.Add(paragraph);
+                (this.FindControlInPages("OugaFlashLogTextBox") as System.Windows.Controls.RichTextBox).ScrollToEnd();
             });
 
             var stopwatch = Stopwatch.StartNew();
@@ -3824,7 +3824,7 @@ namespace WpfApp1
             bool hasLk = false;
             bool hasXbl = false;
 
-            if (OugaPartitionTableDataGrid?.ItemsSource is not
+            if ((this.FindControlInPages("OugaPartitionTableDataGrid") as System.Windows.Controls.DataGrid)?.ItemsSource is not
                 IEnumerable<PartitionInfo> partitionInfos)
             {
                 return (false, false);
@@ -4575,9 +4575,9 @@ namespace WpfApp1
                                 emphasized: line.StartsWith("Finished", StringComparison.OrdinalIgnoreCase));
                         }
                     }
-                    OugaFlashLogTextBox.Document.Blocks.Add(paragraph);
+                    (this.FindControlInPages("OugaFlashLogTextBox") as System.Windows.Controls.RichTextBox).Document.Blocks.Add(paragraph);
                 }
-                OugaFlashLogTextBox.ScrollToEnd();
+                (this.FindControlInPages("OugaFlashLogTextBox") as System.Windows.Controls.RichTextBox).ScrollToEnd();
             });
         }
 
@@ -5534,7 +5534,7 @@ namespace WpfApp1
                 }
 
                 bool isAppend = actualMessage.Trim().Equals("OK", StringComparison.OrdinalIgnoreCase);
-                if (isAppend && OugaFlashLogTextBox.Document.Blocks.LastBlock is Paragraph lastParagraph)
+                if (isAppend && (this.FindControlInPages("OugaFlashLogTextBox") as System.Windows.Controls.RichTextBox).Document.Blocks.LastBlock is Paragraph lastParagraph)
                 {
                     AppendOugaFlashStyledText(lastParagraph, actualMessage, actualColor, emphasized: true);
                 }
@@ -5549,10 +5549,10 @@ namespace WpfApp1
                         emphasized: actualColor.Equals("Green", StringComparison.OrdinalIgnoreCase) ||
                                     actualColor.Equals("Red", StringComparison.OrdinalIgnoreCase),
                         recognizeOperationTag: true);
-                    OugaFlashLogTextBox.Document.Blocks.Add(paragraph);
+                    (this.FindControlInPages("OugaFlashLogTextBox") as System.Windows.Controls.RichTextBox).Document.Blocks.Add(paragraph);
                 }
 
-                OugaFlashLogTextBox.ScrollToEnd();
+                (this.FindControlInPages("OugaFlashLogTextBox") as System.Windows.Controls.RichTextBox).ScrollToEnd();
             });
         }
 
@@ -5571,8 +5571,8 @@ namespace WpfApp1
                     ? "Green"
                     : color2;
                 AppendOugaFlashStyledText(paragraph, part2, effectiveColor, emphasized);
-                OugaFlashLogTextBox.Document.Blocks.Add(paragraph);
-                OugaFlashLogTextBox.ScrollToEnd();
+                (this.FindControlInPages("OugaFlashLogTextBox") as System.Windows.Controls.RichTextBox).Document.Blocks.Add(paragraph);
+                (this.FindControlInPages("OugaFlashLogTextBox") as System.Windows.Controls.RichTextBox).ScrollToEnd();
             });
         }
 
@@ -5592,8 +5592,8 @@ namespace WpfApp1
                     ? "Green"
                     : color3;
                 AppendOugaFlashStyledText(paragraph, part3, effectiveColor, emphasized);
-                OugaFlashLogTextBox.Document.Blocks.Add(paragraph);
-                OugaFlashLogTextBox.ScrollToEnd();
+                (this.FindControlInPages("OugaFlashLogTextBox") as System.Windows.Controls.RichTextBox).Document.Blocks.Add(paragraph);
+                (this.FindControlInPages("OugaFlashLogTextBox") as System.Windows.Controls.RichTextBox).ScrollToEnd();
             });
         }
 
@@ -5659,8 +5659,8 @@ namespace WpfApp1
                 AppendOugaFlashTimestamp(paragraph);
                 AppendOugaFlashStyledText(paragraph, title, "Black", recognizeOperationTag: true);
                 AppendOugaFlashStyledText(paragraph, " ...", "Gray");
-                OugaFlashLogTextBox.Document.Blocks.Add(paragraph);
-                OugaFlashLogTextBox.ScrollToEnd();
+                (this.FindControlInPages("OugaFlashLogTextBox") as System.Windows.Controls.RichTextBox).Document.Blocks.Add(paragraph);
+                (this.FindControlInPages("OugaFlashLogTextBox") as System.Windows.Controls.RichTextBox).ScrollToEnd();
                 _pendingStepParagraph = paragraph;
             });
         }
@@ -5679,7 +5679,7 @@ namespace WpfApp1
                     {
                         AppendOugaFlashStyledText(_pendingStepParagraph, "OK", "Green", emphasized: true);
                     }
-                    OugaFlashLogTextBox.ScrollToEnd();
+                    (this.FindControlInPages("OugaFlashLogTextBox") as System.Windows.Controls.RichTextBox).ScrollToEnd();
                     _pendingStepParagraph = null;
                 }
             });
@@ -5699,7 +5699,7 @@ namespace WpfApp1
                     {
                         AppendOugaFlashStyledText(_pendingStepParagraph, "Done", "Green", emphasized: true);
                     }
-                    OugaFlashLogTextBox.ScrollToEnd();
+                    (this.FindControlInPages("OugaFlashLogTextBox") as System.Windows.Controls.RichTextBox).ScrollToEnd();
                     _pendingStepParagraph = null;
                 }
             });
@@ -5719,7 +5719,7 @@ namespace WpfApp1
                     {
                         AppendOugaFlashStyledText(_pendingStepParagraph, "Error", "Red", emphasized: true);
                     }
-                    OugaFlashLogTextBox.ScrollToEnd();
+                    (this.FindControlInPages("OugaFlashLogTextBox") as System.Windows.Controls.RichTextBox).ScrollToEnd();
                     _pendingStepParagraph = null;
                 }
             });
@@ -5742,8 +5742,8 @@ namespace WpfApp1
                     AppendOugaFlashStyledText(paragraph, title, "Black", recognizeOperationTag: true);
                     AppendOugaFlashStyledText(paragraph, " ...", "Gray");
                 }
-                OugaFlashLogTextBox.Document.Blocks.Add(paragraph);
-                OugaFlashLogTextBox.ScrollToEnd();
+                (this.FindControlInPages("OugaFlashLogTextBox") as System.Windows.Controls.RichTextBox).Document.Blocks.Add(paragraph);
+                (this.FindControlInPages("OugaFlashLogTextBox") as System.Windows.Controls.RichTextBox).ScrollToEnd();
                 _pendingStepParagraph = paragraph;
             });
         }
@@ -5846,12 +5846,12 @@ namespace WpfApp1
                         string filePath = Path.Combine(downloadsPath, fileName);
                         
                         // 从RichTextBox中提取纯文本内容
-                        string logContent = new TextRange(OugaFlashLogTextBox.Document.ContentStart, OugaFlashLogTextBox.Document.ContentEnd).Text;
+                        string logContent = new TextRange((this.FindControlInPages("OugaFlashLogTextBox") as System.Windows.Controls.RichTextBox).Document.ContentStart, (this.FindControlInPages("OugaFlashLogTextBox") as System.Windows.Controls.RichTextBox).Document.ContentEnd).Text;
                         
                         string logFileContent = BuildOujiaFlashLogFileContent(
                             logContent,
                             "全量包模式",
-                            FolderPathTextBox?.Text);
+                            (this.FindControlInPages("FolderPathTextBox") as System.Windows.Controls.TextBox)?.Text);
                          
                         // 写入文件
                         File.WriteAllText(filePath, logFileContent, Encoding.UTF8);
@@ -5891,12 +5891,12 @@ namespace WpfApp1
                         string filePath = Path.Combine(downloadsPath, fileName);
                         
                         // 从RichTextBox中提取纯文本内容
-                        string logContent = new TextRange(OugaFlashLogTextBox.Document.ContentStart, OugaFlashLogTextBox.Document.ContentEnd).Text;
+                        string logContent = new TextRange((this.FindControlInPages("OugaFlashLogTextBox") as System.Windows.Controls.RichTextBox).Document.ContentStart, (this.FindControlInPages("OugaFlashLogTextBox") as System.Windows.Controls.RichTextBox).Document.ContentEnd).Text;
                         
                         string logFileContent = BuildOujiaFlashLogFileContent(
                             logContent,
                             "售后包模式",
-                            AfterSalesFlashPackTextBox?.Text);
+                            (this.FindControlInPages("AfterSalesFlashPackTextBox") as System.Windows.Controls.TextBox)?.Text);
                          
                         // 写入文件
                         File.WriteAllText(filePath, logFileContent, Encoding.UTF8);
@@ -5921,7 +5921,7 @@ namespace WpfApp1
             string flashMode,
             string? flashSourcePath)
         {
-            string toolVersion = JoinQQGroupButton?.Content?.ToString()?.Trim()
+            string toolVersion = (this.FindControlInPages("JoinQQGroupButton") as System.Windows.Controls.Button)?.Content?.ToString()?.Trim()
                                  ?? "未知版本";
             string normalizedSourcePath = string.IsNullOrWhiteSpace(flashSourcePath)
                 ? "未记录"
@@ -5978,7 +5978,7 @@ namespace WpfApp1
             if (useAfterSalesPackage)
             {
                 foreach (PartitionInfo partition in
-                         OugaPartitionTableDataGrid.Items.OfType<PartitionInfo>())
+                         (this.FindControlInPages("OugaPartitionTableDataGrid") as System.Windows.Controls.DataGrid).Items.OfType<PartitionInfo>())
                 {
                     if (string.IsNullOrWhiteSpace(partition.FilePath) ||
                         partition.FilePath.Contains(
@@ -6128,10 +6128,10 @@ namespace WpfApp1
                 // 2. 根据当前包模式获取镜像来源。售后包优先使用分区表中
                 // 已解析的真实路径，全量包继续使用解包目录。
                 bool useAfterSalesPackage =
-                    AfterSalesPackageModeCheckBox.IsChecked == true;
+                    (this.FindControlInPages("AfterSalesPackageModeCheckBox") as System.Windows.Controls.CheckBox).IsChecked == true;
                 string imageDirectory = useAfterSalesPackage
-                    ? AfterSalesFlashPackTextBox.Text.Trim()
-                    : FolderPathTextBox.Text.Trim();
+                    ? (this.FindControlInPages("AfterSalesFlashPackTextBox") as System.Windows.Controls.TextBox).Text.Trim()
+                    : (this.FindControlInPages("FolderPathTextBox") as System.Windows.Controls.TextBox).Text.Trim();
                 bool isPlaceholderPath = useAfterSalesPackage
                     ? imageDirectory ==
                       "选择一个散包文件夹或将散包拖动到此自动选择..."
@@ -6636,7 +6636,7 @@ namespace WpfApp1
 
             if (openFileDialog.ShowDialog() == true)
             {
-                PayloadFilePathTextBox.Text = openFileDialog.FileName;
+                (this.FindControlInPages("PayloadFilePathTextBox") as System.Windows.Controls.TextBox).Text = openFileDialog.FileName;
                 // 可以添加日志输出
                 // LogToFlashTextBox($"已选择Payload文件: {openFileDialog.FileName}");
             }
@@ -6650,7 +6650,7 @@ namespace WpfApp1
                 if (!Directory.Exists(folderPath))
                 {
                     AppendOugaFlashParagraphLog($"错误: 文件夹不存在: {folderPath}", "Red");
-                    OugaFlashLogTextBox.ScrollToEnd();
+                    (this.FindControlInPages("OugaFlashLogTextBox") as System.Windows.Controls.RichTextBox).ScrollToEnd();
                     return;
                 }
                 
@@ -6658,7 +6658,7 @@ namespace WpfApp1
                 var imageFiles = Directory.GetFiles(folderPath, "*.img", SearchOption.TopDirectoryOnly);
                 
                 AppendOugaFlashParagraphLog("正在解析分区文件...");
-                OugaFlashLogTextBox.ScrollToEnd();
+                (this.FindControlInPages("OugaFlashLogTextBox") as System.Windows.Controls.RichTextBox).ScrollToEnd();
                 
                 foreach (var imageFile in imageFiles)
                 {
@@ -6680,21 +6680,21 @@ namespace WpfApp1
                 partitions = partitions.OrderBy(p => p.PartitionName).ToList();
                 
                 // 更新DataGrid
-                OugaPartitionTableDataGrid.ItemsSource = new ObservableCollection<PartitionInfo>(partitions);
+                (this.FindControlInPages("OugaPartitionTableDataGrid") as System.Windows.Controls.DataGrid).ItemsSource = new ObservableCollection<PartitionInfo>(partitions);
                 
                 // 使用Dispatcher确保在UI线程上执行SelectAll
                 Dispatcher.BeginInvoke(new Action(() =>
                 {
-                    OugaPartitionTableDataGrid.SelectAll();
+                    (this.FindControlInPages("OugaPartitionTableDataGrid") as System.Windows.Controls.DataGrid).SelectAll();
                 }), System.Windows.Threading.DispatcherPriority.Loaded);
                 
                 AppendOugaFlashParagraphLog($"成功加载 {partitions.Count} 个分区文件", "Green");
-                OugaFlashLogTextBox.ScrollToEnd();
+                (this.FindControlInPages("OugaFlashLogTextBox") as System.Windows.Controls.RichTextBox).ScrollToEnd();
             }
             catch (Exception ex)
             {
                 AppendOugaFlashParagraphLog($"加载分区文件失败: {ex.Message}", "Red");
-                OugaFlashLogTextBox.ScrollToEnd();
+                (this.FindControlInPages("OugaFlashLogTextBox") as System.Windows.Controls.RichTextBox).ScrollToEnd();
             }
         }
         
@@ -6703,9 +6703,9 @@ namespace WpfApp1
         {
             try
             {
-                System.Windows.Controls.ComboBox? activePartitionComboBox = sender == AfterSalesExtractPartitionButton
-                    ? AfterSalesPayloadPartitionComboBox
-                    : PayloadPartitionComboBox;
+                System.Windows.Controls.ComboBox? activePartitionComboBox = sender == (this.FindControlInPages("AfterSalesExtractPartitionButton") as System.Windows.Controls.Button)
+                    ? (this.FindControlInPages("AfterSalesPayloadPartitionComboBox") as System.Windows.Controls.ComboBox)
+                    : (this.FindControlInPages("PayloadPartitionComboBox") as System.Windows.Controls.ComboBox);
 
                 // 获取用户输入的分区名称（支持下拉选择和直接输入）
                 string partitionName = activePartitionComboBox?.Text ?? string.Empty;
@@ -6713,7 +6713,7 @@ namespace WpfApp1
                 if (string.IsNullOrEmpty(partitionName) || partitionName == "分区名")
                 {
                     AppendOugaFlashParagraphLog("错误: 请选择或输入要提取的分区名称", "Red");
-                    OugaFlashLogTextBox.ScrollToEnd();
+                    (this.FindControlInPages("OugaFlashLogTextBox") as System.Windows.Controls.RichTextBox).ScrollToEnd();
                     return;
                 }
                 
@@ -6743,7 +6743,7 @@ namespace WpfApp1
                     AppendOugaFlashParagraphLog("检测到高通修复FastbootD关键分区模式", "Blue");
                     AppendOugaFlashParagraphLog($"将自动提取以下分区: {string.Join(", ", criticalPartitions)}");
                     AppendOugaFlashParagraphLog($"保存路径: {selectedOutputPath}", "Gray");
-                    OugaFlashLogTextBox.ScrollToEnd();
+                    (this.FindControlInPages("OugaFlashLogTextBox") as System.Windows.Controls.RichTextBox).ScrollToEnd();
 
                     string? qcomSourceInput = ResolveOugaPayloadSourceInput();
                     if (string.IsNullOrEmpty(qcomSourceInput))
@@ -6762,7 +6762,7 @@ namespace WpfApp1
                     {
                         AppendOugaFlashParagraphLog("高通修复FastbootD关键分区提取完成！", "Green");
                         await LoadExtractedPartitionsToDataGrid(selectedOutputPath, qcomExtractedPartitions.ToArray());
-                        FolderPathTextBox.Text = selectedOutputPath;
+                        (this.FindControlInPages("FolderPathTextBox") as System.Windows.Controls.TextBox).Text = selectedOutputPath;
                     }
                     return;
                 }
@@ -6791,7 +6791,7 @@ namespace WpfApp1
                     AppendOugaFlashParagraphLog("检测到联发科修复FastbootD关键分区模式", "Blue");
                     AppendOugaFlashParagraphLog($"将自动提取以下分区: {string.Join(", ", criticalPartitions)}");
                     AppendOugaFlashParagraphLog($"保存路径: {selectedOutputPath}", "Gray");
-                    OugaFlashLogTextBox.ScrollToEnd();
+                    (this.FindControlInPages("OugaFlashLogTextBox") as System.Windows.Controls.RichTextBox).ScrollToEnd();
 
                     string? mtkSourceInput = ResolveOugaPayloadSourceInput();
                     if (string.IsNullOrEmpty(mtkSourceInput))
@@ -6810,7 +6810,7 @@ namespace WpfApp1
                     {
                         AppendOugaFlashParagraphLog("联发科修复FastbootD关键分区提取完成！", "Green");
                         await LoadExtractedPartitionsToDataGrid(selectedOutputPath, mtkExtractedPartitions.ToArray());
-                        FolderPathTextBox.Text = selectedOutputPath;
+                        (this.FindControlInPages("FolderPathTextBox") as System.Windows.Controls.TextBox).Text = selectedOutputPath;
                     }
                     return;
                 }
@@ -6832,7 +6832,7 @@ namespace WpfApp1
                 if (folderDialog.ShowDialog() != System.Windows.Forms.DialogResult.OK)
                 {
                     AppendOugaFlashParagraphLog("用户取消了文件夹选择", "Yellow");
-                    OugaFlashLogTextBox.ScrollToEnd();
+                    (this.FindControlInPages("OugaFlashLogTextBox") as System.Windows.Controls.RichTextBox).ScrollToEnd();
                     return;
                 }
                 
@@ -6855,7 +6855,7 @@ namespace WpfApp1
                 {
                     AppendOugaFlashParagraphLog($"分区 {partitionName} 提取完成！", "Green");
                     await LoadExtractedPartitionsToDataGrid(selectedOutputPath, extractedPartitions.ToArray());
-                    FolderPathTextBox.Text = selectedOutputPath;
+                    (this.FindControlInPages("FolderPathTextBox") as System.Windows.Controls.TextBox).Text = selectedOutputPath;
                 }
             }
             catch (Exception ex)
@@ -6913,13 +6913,13 @@ namespace WpfApp1
                         Dispatcher.Invoke(() =>
                         {
                             // 更新进度条
-                            FlashProgressBar.Value = percentage;
-                            FlashProgressBar.IsIndeterminate = false;
+                            (this.FindControlInPages("FlashProgressBar") as System.Windows.Controls.ProgressBar).Value = percentage;
+                            (this.FindControlInPages("FlashProgressBar") as System.Windows.Controls.ProgressBar).IsIndeterminate = false;
                             
                             // 显示进度条容器（如果之前隐藏的话）
-                            if (ProgressBarContainer.Visibility == Visibility.Collapsed)
+                            if ((this.FindControlInPages("ProgressBarContainer") as System.Windows.Controls.Grid).Visibility == Visibility.Collapsed)
                             {
-                                ProgressBarContainer.Visibility = Visibility.Visible;
+                                (this.FindControlInPages("ProgressBarContainer") as System.Windows.Controls.Grid).Visibility = Visibility.Visible;
                             }
                         });
                         
@@ -6940,12 +6940,12 @@ namespace WpfApp1
                     // 更新传输速率显示
                     Dispatcher.Invoke(() =>
                     {
-                        TransferRateTextBlock.Text = displayRate;
+                        (this.FindControlInPages("TransferRateTextBlock") as System.Windows.Controls.TextBlock).Text = displayRate;
                         
                         // 如果没有百分比更新，显示进度条容器
-                        if (!progressUpdated && ProgressBarContainer.Visibility == Visibility.Collapsed)
+                        if (!progressUpdated && (this.FindControlInPages("ProgressBarContainer") as System.Windows.Controls.Grid).Visibility == Visibility.Collapsed)
                         {
-                            ProgressBarContainer.Visibility = Visibility.Visible;
+                            (this.FindControlInPages("ProgressBarContainer") as System.Windows.Controls.Grid).Visibility = Visibility.Visible;
                         }
                     });
                     
@@ -6958,10 +6958,10 @@ namespace WpfApp1
                     Dispatcher.Invoke(() =>
                     {
                         // 显示进度条容器并重置显示
-                        ProgressBarContainer.Visibility = Visibility.Visible;
-                        FlashProgressBar.IsIndeterminate = false;
-                        FlashProgressBar.Value = 0;
-                        TransferRateTextBlock.Text = "0MB/s";
+                        (this.FindControlInPages("ProgressBarContainer") as System.Windows.Controls.Grid).Visibility = Visibility.Visible;
+                        (this.FindControlInPages("FlashProgressBar") as System.Windows.Controls.ProgressBar).IsIndeterminate = false;
+                        (this.FindControlInPages("FlashProgressBar") as System.Windows.Controls.ProgressBar).Value = 0;
+                        (this.FindControlInPages("TransferRateTextBlock") as System.Windows.Controls.TextBlock).Text = "0MB/s";
                     });
                     // 移除详细日志输出
                 }
@@ -6971,9 +6971,9 @@ namespace WpfApp1
                     Dispatcher.Invoke(() =>
                     {
                         // 设置进度条为100%
-                        FlashProgressBar.IsIndeterminate = false;
-                        FlashProgressBar.Value = 100;
-                        TransferRateTextBlock.Text = "刷写成功";
+                        (this.FindControlInPages("FlashProgressBar") as System.Windows.Controls.ProgressBar).IsIndeterminate = false;
+                        (this.FindControlInPages("FlashProgressBar") as System.Windows.Controls.ProgressBar).Value = 100;
+                        (this.FindControlInPages("TransferRateTextBlock") as System.Windows.Controls.TextBlock).Text = "刷写成功";
                     });
                     // 移除详细日志输出
                 }
@@ -6990,31 +6990,31 @@ namespace WpfApp1
         {
             Dispatcher.Invoke(() =>
             {
-                if (FlashProgressBar != null)
+                if ((this.FindControlInPages("FlashProgressBar") as System.Windows.Controls.ProgressBar) != null)
                 {
-                    FlashProgressBar.Value = 0;
-                    FlashProgressBar.IsIndeterminate = false;
+                    (this.FindControlInPages("FlashProgressBar") as System.Windows.Controls.ProgressBar).Value = 0;
+                    (this.FindControlInPages("FlashProgressBar") as System.Windows.Controls.ProgressBar).IsIndeterminate = false;
                 }
 
-                if (TransferRateTextBlock != null)
+                if ((this.FindControlInPages("TransferRateTextBlock") as System.Windows.Controls.TextBlock) != null)
                 {
-                    TransferRateTextBlock.Text = "0MB/s";
+                    (this.FindControlInPages("TransferRateTextBlock") as System.Windows.Controls.TextBlock).Text = "0MB/s";
                 }
 
-                if (AfterSalesFlashProgressBar != null)
+                if ((this.FindControlInPages("AfterSalesFlashProgressBar") as System.Windows.Controls.ProgressBar) != null)
                 {
-                    AfterSalesFlashProgressBar.Value = 0;
-                    AfterSalesFlashProgressBar.IsIndeterminate = false;
+                    (this.FindControlInPages("AfterSalesFlashProgressBar") as System.Windows.Controls.ProgressBar).Value = 0;
+                    (this.FindControlInPages("AfterSalesFlashProgressBar") as System.Windows.Controls.ProgressBar).IsIndeterminate = false;
                 }
 
-                if (AfterSalesTransferRateTextBlock != null)
+                if ((this.FindControlInPages("AfterSalesTransferRateTextBlock") as System.Windows.Controls.TextBlock) != null)
                 {
-                    AfterSalesTransferRateTextBlock.Text = "0MB/s";
+                    (this.FindControlInPages("AfterSalesTransferRateTextBlock") as System.Windows.Controls.TextBlock).Text = "0MB/s";
                 }
 
-                if (bootflash != null)
+                if ((this.FindControlInPages("bootflash") as System.Windows.Controls.ProgressBar) != null)
                 {
-                    bootflash.Value = 0;
+                    (this.FindControlInPages("bootflash") as System.Windows.Controls.ProgressBar).Value = 0;
                 }
             });
         }
@@ -7025,21 +7025,21 @@ namespace WpfApp1
             Dispatcher.Invoke(() =>
             {
                 // 全量包模式进度条
-                if (ProgressBarContainer != null)
+                if ((this.FindControlInPages("ProgressBarContainer") as System.Windows.Controls.Grid) != null)
                 {
-                    ProgressBarContainer.Visibility = Visibility.Visible;
-                    FlashProgressBar.Value = 0;
-                    FlashProgressBar.IsIndeterminate = false;
-                    TransferRateTextBlock.Text = "0MB/s";
+                    (this.FindControlInPages("ProgressBarContainer") as System.Windows.Controls.Grid).Visibility = Visibility.Visible;
+                    (this.FindControlInPages("FlashProgressBar") as System.Windows.Controls.ProgressBar).Value = 0;
+                    (this.FindControlInPages("FlashProgressBar") as System.Windows.Controls.ProgressBar).IsIndeterminate = false;
+                    (this.FindControlInPages("TransferRateTextBlock") as System.Windows.Controls.TextBlock).Text = "0MB/s";
                 }
                 
                 // 售后包模式进度条
-                if (AfterSalesProgressBarContainer != null)
+                if ((this.FindControlInPages("AfterSalesProgressBarContainer") as System.Windows.Controls.Grid) != null)
                 {
-                    AfterSalesProgressBarContainer.Visibility = Visibility.Visible;
-                    AfterSalesFlashProgressBar.Value = 0;
-                    AfterSalesFlashProgressBar.IsIndeterminate = false;
-                    AfterSalesTransferRateTextBlock.Text = "0MB/s";
+                    (this.FindControlInPages("AfterSalesProgressBarContainer") as System.Windows.Controls.Grid).Visibility = Visibility.Visible;
+                    (this.FindControlInPages("AfterSalesFlashProgressBar") as System.Windows.Controls.ProgressBar).Value = 0;
+                    (this.FindControlInPages("AfterSalesFlashProgressBar") as System.Windows.Controls.ProgressBar).IsIndeterminate = false;
+                    (this.FindControlInPages("AfterSalesTransferRateTextBlock") as System.Windows.Controls.TextBlock).Text = "0MB/s";
                 }
             });
         }
@@ -7051,19 +7051,19 @@ namespace WpfApp1
                 // 进度条常显，不隐藏，只重置进度值
                 
                 // 全量包模式进度条
-                if (ProgressBarContainer != null)
+                if ((this.FindControlInPages("ProgressBarContainer") as System.Windows.Controls.Grid) != null)
                 {
-                    FlashProgressBar.Value = 0;
-                    FlashProgressBar.IsIndeterminate = false;
-                    TransferRateTextBlock.Text = "0MB/s";
+                    (this.FindControlInPages("FlashProgressBar") as System.Windows.Controls.ProgressBar).Value = 0;
+                    (this.FindControlInPages("FlashProgressBar") as System.Windows.Controls.ProgressBar).IsIndeterminate = false;
+                    (this.FindControlInPages("TransferRateTextBlock") as System.Windows.Controls.TextBlock).Text = "0MB/s";
                 }
                 
                 // 售后包模式进度条
-                if (AfterSalesProgressBarContainer != null)
+                if ((this.FindControlInPages("AfterSalesProgressBarContainer") as System.Windows.Controls.Grid) != null)
                 {
-                    AfterSalesFlashProgressBar.Value = 0;
-                    AfterSalesFlashProgressBar.IsIndeterminate = false;
-                    AfterSalesTransferRateTextBlock.Text = "0MB/s";
+                    (this.FindControlInPages("AfterSalesFlashProgressBar") as System.Windows.Controls.ProgressBar).Value = 0;
+                    (this.FindControlInPages("AfterSalesFlashProgressBar") as System.Windows.Controls.ProgressBar).IsIndeterminate = false;
+                    (this.FindControlInPages("AfterSalesTransferRateTextBlock") as System.Windows.Controls.TextBlock).Text = "0MB/s";
                 }
             });
         }
@@ -7071,15 +7071,15 @@ namespace WpfApp1
         // 辅助方法：同时更新两个进度条的值
         private void UpdateProgressBarValue(double value)
         {
-            if (FlashProgressBar != null)
+            if ((this.FindControlInPages("FlashProgressBar") as System.Windows.Controls.ProgressBar) != null)
             {
-                FlashProgressBar.Value = value;
-                FlashProgressBar.IsIndeterminate = false;
+                (this.FindControlInPages("FlashProgressBar") as System.Windows.Controls.ProgressBar).Value = value;
+                (this.FindControlInPages("FlashProgressBar") as System.Windows.Controls.ProgressBar).IsIndeterminate = false;
             }
-            if (AfterSalesFlashProgressBar != null)
+            if ((this.FindControlInPages("AfterSalesFlashProgressBar") as System.Windows.Controls.ProgressBar) != null)
             {
-                AfterSalesFlashProgressBar.Value = value;
-                AfterSalesFlashProgressBar.IsIndeterminate = false;
+                (this.FindControlInPages("AfterSalesFlashProgressBar") as System.Windows.Controls.ProgressBar).Value = value;
+                (this.FindControlInPages("AfterSalesFlashProgressBar") as System.Windows.Controls.ProgressBar).IsIndeterminate = false;
             }
         }
 
@@ -7088,19 +7088,19 @@ namespace WpfApp1
         {
             Dispatcher.Invoke(() =>
             {
-                if (bootflash != null)
+                if ((this.FindControlInPages("bootflash") as System.Windows.Controls.ProgressBar) != null)
                 {
-                    bootflash.Tag = text;
+                    (this.FindControlInPages("bootflash") as System.Windows.Controls.ProgressBar).Tag = text;
                 }
 
-                if (TransferRateTextBlock != null)
+                if ((this.FindControlInPages("TransferRateTextBlock") as System.Windows.Controls.TextBlock) != null)
                 {
-                    TransferRateTextBlock.Text = text;
+                    (this.FindControlInPages("TransferRateTextBlock") as System.Windows.Controls.TextBlock).Text = text;
                 }
 
-                if (AfterSalesTransferRateTextBlock != null)
+                if ((this.FindControlInPages("AfterSalesTransferRateTextBlock") as System.Windows.Controls.TextBlock) != null)
                 {
-                    AfterSalesTransferRateTextBlock.Text = text;
+                    (this.FindControlInPages("AfterSalesTransferRateTextBlock") as System.Windows.Controls.TextBlock).Text = text;
                 }
             });
         }
@@ -7263,7 +7263,7 @@ namespace WpfApp1
             var selectFirmwareFileButton = new System.Windows.Controls.Button
             {
                 Content = selectFirmwareFileButtonContent,
-                Style = OujiaFlashView?.TryFindResource("OugaFlashPrimaryButtonStyle") as Style,
+                Style = (this.FindControlInPages("OujiaFlashView") as System.Windows.Controls.Grid)?.TryFindResource("OugaFlashPrimaryButtonStyle") as Style,
                 Width = 84,
                 Height = 32,
                 Margin = new Thickness(8, 0, 0, 0),
@@ -7913,8 +7913,8 @@ namespace WpfApp1
                     arbIndex > 0 ? "该固件版本已熔断." : "该固件版本未熔断.",
                     arbIndex > 0 ? "Red" : "Green",
                     emphasized: true);
-                OugaFlashLogTextBox.Document.Blocks.Add(paragraph);
-                OugaFlashLogTextBox.ScrollToEnd();
+                (this.FindControlInPages("OugaFlashLogTextBox") as System.Windows.Controls.RichTextBox).Document.Blocks.Add(paragraph);
+                (this.FindControlInPages("OugaFlashLogTextBox") as System.Windows.Controls.RichTextBox).ScrollToEnd();
             });
         }
 
@@ -8128,8 +8128,8 @@ namespace WpfApp1
                 AppendOugaFlashTimestamp(paragraph);
                 AppendOugaFlashStyledText(paragraph, title, "Black");
                 AppendOugaFlashStyledText(paragraph, "...", "Gray");
-                OugaFlashLogTextBox.Document.Blocks.Add(paragraph);
-                OugaFlashLogTextBox.ScrollToEnd();
+                (this.FindControlInPages("OugaFlashLogTextBox") as System.Windows.Controls.RichTextBox).Document.Blocks.Add(paragraph);
+                (this.FindControlInPages("OugaFlashLogTextBox") as System.Windows.Controls.RichTextBox).ScrollToEnd();
                 _pendingOugaArbStepParagraph = paragraph;
             });
         }
@@ -8151,7 +8151,7 @@ namespace WpfApp1
                     result,
                     resultColor,
                     emphasized);
-                OugaFlashLogTextBox.ScrollToEnd();
+                (this.FindControlInPages("OugaFlashLogTextBox") as System.Windows.Controls.RichTextBox).ScrollToEnd();
                 _pendingOugaArbStepParagraph = null;
             });
         }
@@ -8168,8 +8168,8 @@ namespace WpfApp1
                     arbIndex > 0 ? "该设备已熔断." : "该设备未熔断.",
                     arbIndex > 0 ? "Red" : "Green",
                     emphasized: true);
-                OugaFlashLogTextBox.Document.Blocks.Add(paragraph);
-                OugaFlashLogTextBox.ScrollToEnd();
+                (this.FindControlInPages("OugaFlashLogTextBox") as System.Windows.Controls.RichTextBox).Document.Blocks.Add(paragraph);
+                (this.FindControlInPages("OugaFlashLogTextBox") as System.Windows.Controls.RichTextBox).ScrollToEnd();
             });
         }
 
@@ -8186,8 +8186,8 @@ namespace WpfApp1
                 AppendOugaFlashStyledText(paragraph, "[ARB检测] ", "Purple", emphasized: true);
                 AppendOugaFlashStyledText(paragraph, label, "Black");
                 AppendOugaFlashStyledText(paragraph, value, valueColor, emphasized);
-                OugaFlashLogTextBox.Document.Blocks.Add(paragraph);
-                OugaFlashLogTextBox.ScrollToEnd();
+                (this.FindControlInPages("OugaFlashLogTextBox") as System.Windows.Controls.RichTextBox).Document.Blocks.Add(paragraph);
+                (this.FindControlInPages("OugaFlashLogTextBox") as System.Windows.Controls.RichTextBox).ScrollToEnd();
             });
         }
 
@@ -8287,17 +8287,17 @@ namespace WpfApp1
                     
                     Dispatcher.Invoke(() =>
                     {
-                        OperationProgressBar.Value = 0;
+                        (this.FindControlInPages("OperationProgressBar") as System.Windows.Controls.ProgressBar).Value = 0;
                         UpdateProgressBarValue(0);
                         SetOperationProgressTag("0MB/s");
                          UpdateTransferRateText("0MB/s");
-                         if (ProgressBarContainer != null && ProgressBarContainer.Visibility == Visibility.Collapsed)
+                         if ((this.FindControlInPages("ProgressBarContainer") as System.Windows.Controls.Grid) != null && (this.FindControlInPages("ProgressBarContainer") as System.Windows.Controls.Grid).Visibility == Visibility.Collapsed)
                          {
-                             ProgressBarContainer.Visibility = Visibility.Visible;
+                             (this.FindControlInPages("ProgressBarContainer") as System.Windows.Controls.Grid).Visibility = Visibility.Visible;
                          }
-                         if (AfterSalesProgressBarContainer != null && AfterSalesProgressBarContainer.Visibility == Visibility.Collapsed)
+                         if ((this.FindControlInPages("AfterSalesProgressBarContainer") as System.Windows.Controls.Grid) != null && (this.FindControlInPages("AfterSalesProgressBarContainer") as System.Windows.Controls.Grid).Visibility == Visibility.Collapsed)
                          {
-                             AfterSalesProgressBarContainer.Visibility = Visibility.Visible;
+                             (this.FindControlInPages("AfterSalesProgressBarContainer") as System.Windows.Controls.Grid).Visibility = Visibility.Visible;
                          }
                     });
                     
@@ -8353,7 +8353,7 @@ namespace WpfApp1
                         // 进度条只显示当前分区的进度
                         Dispatcher.Invoke(() =>
                         {
-                            OperationProgressBar.Value = percentage;
+                            (this.FindControlInPages("OperationProgressBar") as System.Windows.Controls.ProgressBar).Value = percentage;
                             UpdateProgressBarValue(percentage);
                         });
                         
@@ -8386,7 +8386,7 @@ namespace WpfApp1
                         if (allPartitionsComplete)
                         {
                             // 所有分区传输完成
-                            OperationProgressBar.Value = 100;
+                            (this.FindControlInPages("OperationProgressBar") as System.Windows.Controls.ProgressBar).Value = 100;
                             UpdateProgressBarValue(100);
                             SetOperationProgressTag("已完成");
                              
@@ -8399,7 +8399,7 @@ namespace WpfApp1
                         else
                         {
                             // 当前分区完成，进度条重置为0，准备显示下一个分区的进度
-                            OperationProgressBar.Value = 0;
+                            (this.FindControlInPages("OperationProgressBar") as System.Windows.Controls.ProgressBar).Value = 0;
                             UpdateProgressBarValue(0);
                             
                             // 重置传输速率和耗时显示
@@ -8414,7 +8414,7 @@ namespace WpfApp1
                     {
                         if (!progressUpdated)
                         {
-                            OperationProgressBar.Value = 50;
+                            (this.FindControlInPages("OperationProgressBar") as System.Windows.Controls.ProgressBar).Value = 50;
                             UpdateProgressBarValue(50);
                         }
                         SetOperationProgressTag("写入中...");
@@ -8434,7 +8434,7 @@ namespace WpfApp1
         {
             Dispatcher.Invoke(() =>
             {
-                OperationProgressBar.Value = 0;
+                (this.FindControlInPages("OperationProgressBar") as System.Windows.Controls.ProgressBar).Value = 0;
             });
         }
 
@@ -8442,13 +8442,13 @@ namespace WpfApp1
         {
             Dispatcher.Invoke(() =>
             {
-                OperationProgressBar.Value = 0;
+                (this.FindControlInPages("OperationProgressBar") as System.Windows.Controls.ProgressBar).Value = 0;
 
                 SetOperationProgressTag("0MB/s");
 
-                if (TransferRateTextBlock != null)
+                if ((this.FindControlInPages("TransferRateTextBlock") as System.Windows.Controls.TextBlock) != null)
                 {
-                    TransferRateTextBlock.Text = "0MB/s";
+                    (this.FindControlInPages("TransferRateTextBlock") as System.Windows.Controls.TextBlock).Text = "0MB/s";
                 }
             });
         }
@@ -8457,14 +8457,14 @@ namespace WpfApp1
         {
             Dispatcher.Invoke(() =>
             {
-                if (OperationProgressBar == null)
+                if ((this.FindControlInPages("OperationProgressBar") as System.Windows.Controls.ProgressBar) == null)
                 {
                     return;
                 }
 
-                OperationProgressBar.Minimum = 0;
-                OperationProgressBar.Maximum = 100;
-                OperationProgressBar.Value = Math.Max(0, Math.Min(100, progress));
+                (this.FindControlInPages("OperationProgressBar") as System.Windows.Controls.ProgressBar).Minimum = 0;
+                (this.FindControlInPages("OperationProgressBar") as System.Windows.Controls.ProgressBar).Maximum = 100;
+                (this.FindControlInPages("OperationProgressBar") as System.Windows.Controls.ProgressBar).Value = Math.Max(0, Math.Min(100, progress));
             });
         }
 
@@ -8476,9 +8476,9 @@ namespace WpfApp1
 
                 SetOperationProgressTag(formattedSpeed);
 
-                if (TransferRateTextBlock != null)
+                if ((this.FindControlInPages("TransferRateTextBlock") as System.Windows.Controls.TextBlock) != null)
                 {
-                    TransferRateTextBlock.Text = formattedSpeed;
+                    (this.FindControlInPages("TransferRateTextBlock") as System.Windows.Controls.TextBlock).Text = formattedSpeed;
                 }
             });
         }
@@ -8495,13 +8495,13 @@ namespace WpfApp1
         {
             Dispatcher.Invoke(() =>
             {
-                OperationProgressBar.Value = 100;
+                (this.FindControlInPages("OperationProgressBar") as System.Windows.Controls.ProgressBar).Value = 100;
 
                 SetOperationProgressTag("已完成");
 
-                if (TransferRateTextBlock != null)
+                if ((this.FindControlInPages("TransferRateTextBlock") as System.Windows.Controls.TextBlock) != null)
                 {
-                    TransferRateTextBlock.Text = "已完成";
+                    (this.FindControlInPages("TransferRateTextBlock") as System.Windows.Controls.TextBlock).Text = "已完成";
                 }
             });
         }
@@ -8514,13 +8514,13 @@ namespace WpfApp1
 
         private void RefreshOperationProgressTag()
         {
-            if (OperationProgressBar == null)
+            if ((this.FindControlInPages("OperationProgressBar") as System.Windows.Controls.ProgressBar) == null)
             {
                 return;
             }
 
             int elapsedSeconds = Math.Max(0, (int)(DateTime.Now - _transferStartTime).TotalSeconds);
-            OperationProgressBar.Tag = $"{_operationProgressStatus}  |  Time:{elapsedSeconds}s";
+            (this.FindControlInPages("OperationProgressBar") as System.Windows.Controls.ProgressBar).Tag = $"{_operationProgressStatus}  |  Time:{elapsedSeconds}s";
         }
 
         // 计算所有已勾选分区的总体积（以字节为单位）
@@ -8530,7 +8530,7 @@ namespace WpfApp1
             
             try
             {
-                if (PartitionTableDataGrid.ItemsSource is ObservableCollection<PartitionInfo> partitions)
+                if ((this.FindControlInPages("PartitionTableDataGrid") as System.Windows.Controls.DataGrid).ItemsSource is ObservableCollection<PartitionInfo> partitions)
                 {
                     foreach (var partition in partitions)
                     {
@@ -8933,8 +8933,8 @@ namespace WpfApp1
                         FontWeight = FontWeights.SemiBold
                     };
                     paragraph.Inlines.Add(countdownRun);
-                    OugaFlashLogTextBox.Document.Blocks.Add(paragraph);
-                    OugaFlashLogTextBox.ScrollToEnd();
+                    (this.FindControlInPages("OugaFlashLogTextBox") as System.Windows.Controls.RichTextBox).Document.Blocks.Add(paragraph);
+                    (this.FindControlInPages("OugaFlashLogTextBox") as System.Windows.Controls.RichTextBox).ScrollToEnd();
                 });
 
                 for (int remainingSeconds = 5; remainingSeconds >= 1; remainingSeconds--)
@@ -9386,14 +9386,14 @@ namespace WpfApp1
                 LogStepEndOk();
                 
                 // 检查是否开启全自动救砖模式
-                if (AfterSalesAutoBrickRecoveryModeToggle.IsChecked == true)
+                if ((this.FindControlInPages("AfterSalesAutoBrickRecoveryModeToggle") as System.Windows.Controls.CheckBox).IsChecked == true)
                 {
                     await HandleAutoBrickRecoveryMode();
                     return;
                 }
                 
                 // 获取选中的分区
-                var selectedPartitions = OugaPartitionTableDataGrid.ItemsSource as System.Collections.ObjectModel.ObservableCollection<PartitionInfo>;
+                var selectedPartitions = (this.FindControlInPages("OugaPartitionTableDataGrid") as System.Windows.Controls.DataGrid).ItemsSource as System.Collections.ObjectModel.ObservableCollection<PartitionInfo>;
                 if (selectedPartitions == null || selectedPartitions.Count == 0)
                 {
                     LogToOugaFlash("请先选择要刷写的分区", "Red");
@@ -9430,7 +9430,7 @@ namespace WpfApp1
                 ShowProgressBar();
 
                 // 检查是否开启了FB模式（Fastboot模式）
-                if (AfterSalesBootloaderModeToggle.IsChecked == true)
+                if ((this.FindControlInPages("AfterSalesBootloaderModeToggle") as System.Windows.Controls.CheckBox).IsChecked == true)
                 {
                     LogToOugaFlashDual(
                         "用户选择：",
@@ -9439,7 +9439,7 @@ namespace WpfApp1
                         "Purple");
 
                     // 获取散包文件夹路径
-                    string scatterPackPath = AfterSalesFlashPackTextBox.Text;
+                    string scatterPackPath = (this.FindControlInPages("AfterSalesFlashPackTextBox") as System.Windows.Controls.TextBox).Text;
                     if (string.IsNullOrWhiteSpace(scatterPackPath) || scatterPackPath == "选择一个散包文件夹或将散包拖动到此自动选择...")
                     {
                         LogToOugaFlash("请先选择散包文件夹", "Red");
@@ -9461,11 +9461,11 @@ namespace WpfApp1
                     }
 
                     // 自动勾选打包配置
-                    CleanupMyPartitionsCheckBox.IsChecked = true;
-                    FilterXmlCheckBox.IsChecked = true;
+                    (this.FindControlInPages("CleanupMyPartitionsCheckBox") as System.Windows.Controls.CheckBox).IsChecked = true;
+                    (this.FindControlInPages("FilterXmlCheckBox") as System.Windows.Controls.CheckBox).IsChecked = true;
 
                     // 设置散包路径到SuperScatterPathTextBox
-                    SuperScatterPathTextBox.Text = scatterPackPath;
+                    (this.FindControlInPages("SuperScatterPathTextBox") as System.Windows.Controls.TextBox).Text = scatterPackPath;
 
                     // 检测violet特征文件
                     string violetFilePath = Path.Combine(scatterPackPath, "violet");
@@ -9504,7 +9504,7 @@ namespace WpfApp1
                         LogStepEndDone();
 
                         // 清理残留文件
-                        if (CleanupMyPartitionsCheckBox.IsChecked == true)
+                        if ((this.FindControlInPages("CleanupMyPartitionsCheckBox") as System.Windows.Controls.CheckBox).IsChecked == true)
                         {
                             try
                             {
@@ -9566,7 +9566,7 @@ namespace WpfApp1
                         }
 
                         // 过滤XML文件
-                        if (FilterXmlCheckBox.IsChecked == true)
+                        if ((this.FindControlInPages("FilterXmlCheckBox") as System.Windows.Controls.CheckBox).IsChecked == true)
                         {
                             try
                             {
@@ -9701,8 +9701,8 @@ namespace WpfApp1
                         countdownRun.FontWeight = System.Windows.FontWeights.Bold;
                         countdownParagraph.Inlines.Add(countdownRun);
                         
-                        OugaFlashLogTextBox.Document.Blocks.Add(countdownParagraph);
-                        OugaFlashLogTextBox.ScrollToEnd();
+                        (this.FindControlInPages("OugaFlashLogTextBox") as System.Windows.Controls.RichTextBox).Document.Blocks.Add(countdownParagraph);
+                        (this.FindControlInPages("OugaFlashLogTextBox") as System.Windows.Controls.RichTextBox).ScrollToEnd();
                     });
                     
                     // 120秒倒计时
@@ -10006,10 +10006,10 @@ namespace WpfApp1
                     LogStepEndDone();
 
                     // 检查是否需要清除数据或自动重启
-                    if (AfterSalesClearDataCheckBox.IsChecked == true || AfterSalesAutoRebootCheckBox.IsChecked == true)
+                    if ((this.FindControlInPages("AfterSalesClearDataCheckBox") as System.Windows.Controls.CheckBox).IsChecked == true || (this.FindControlInPages("AfterSalesAutoRebootCheckBox") as System.Windows.Controls.CheckBox).IsChecked == true)
                     {
                         // 在FBD模式下清除数据
-                        if (AfterSalesClearDataCheckBox.IsChecked == true)
+                        if ((this.FindControlInPages("AfterSalesClearDataCheckBox") as System.Windows.Controls.CheckBox).IsChecked == true)
                         {
                             LogStepBegin("清除手机数据");
                             await ExecuteFastbootCommand(fastbootPath, "erase userdata");
@@ -10030,7 +10030,7 @@ namespace WpfApp1
                         }
 
                         // 自动重启
-                        if (AfterSalesAutoRebootCheckBox.IsChecked == true)
+                        if ((this.FindControlInPages("AfterSalesAutoRebootCheckBox") as System.Windows.Controls.CheckBox).IsChecked == true)
                         {
                             LogStepBegin("自动重启设备");
                             await ExecuteFastbootCommand(fastbootPath, "reboot");
@@ -10049,7 +10049,7 @@ namespace WpfApp1
                 }
 
                 // 检查是否开启了FBD模式
-                if (AfterSalesFastbootDModeToggle.IsChecked == true)
+                if ((this.FindControlInPages("AfterSalesFastbootDModeToggle") as System.Windows.Controls.CheckBox).IsChecked == true)
                 {
                     LogToOugaFlashDual(
                         "用户选择：",
@@ -10382,7 +10382,7 @@ namespace WpfApp1
                     }
 
                     // 检查是否需要清除数据或自动重启
-                    if (AfterSalesClearDataCheckBox.IsChecked == true || AfterSalesAutoRebootCheckBox.IsChecked == true)
+                    if ((this.FindControlInPages("AfterSalesClearDataCheckBox") as System.Windows.Controls.CheckBox).IsChecked == true || (this.FindControlInPages("AfterSalesAutoRebootCheckBox") as System.Windows.Controls.CheckBox).IsChecked == true)
                     {
                         // 与全量包收尾一致：仅当设备不在FastbootD时才执行重启，
                         // 并等待同一序列号重新连接、稳定。
@@ -10415,7 +10415,7 @@ namespace WpfApp1
                         if (fastbootdReady)
                         {
                             // 在FBD模式下清除数据
-                            if (AfterSalesClearDataCheckBox.IsChecked == true)
+                            if ((this.FindControlInPages("AfterSalesClearDataCheckBox") as System.Windows.Controls.CheckBox).IsChecked == true)
                             {
                                 LogStepBegin("清除手机数据");
                                 
@@ -10444,7 +10444,7 @@ namespace WpfApp1
                             }
 
                             // 自动重启
-                            if (AfterSalesAutoRebootCheckBox.IsChecked == true)
+                            if ((this.FindControlInPages("AfterSalesAutoRebootCheckBox") as System.Windows.Controls.CheckBox).IsChecked == true)
                             {
                                 LogStepBegin("自动重启设备");
                                 await ExecuteFastbootCommand(fastbootPath, "reboot");
@@ -10493,13 +10493,13 @@ namespace WpfApp1
 
         private void AfterSalesFastbootDModeToggle_Checked(object sender, RoutedEventArgs e)
         {
-            if (AfterSalesBootloaderModeToggle != null && AfterSalesBootloaderModeToggle.IsChecked == true)
+            if ((this.FindControlInPages("AfterSalesBootloaderModeToggle") as System.Windows.Controls.CheckBox) != null && (this.FindControlInPages("AfterSalesBootloaderModeToggle") as System.Windows.Controls.CheckBox).IsChecked == true)
             {
-                AfterSalesBootloaderModeToggle.IsChecked = false;
+                (this.FindControlInPages("AfterSalesBootloaderModeToggle") as System.Windows.Controls.CheckBox).IsChecked = false;
             }
-            if (AfterSalesAutoBrickRecoveryModeToggle != null && AfterSalesAutoBrickRecoveryModeToggle.IsChecked == true)
+            if ((this.FindControlInPages("AfterSalesAutoBrickRecoveryModeToggle") as System.Windows.Controls.CheckBox) != null && (this.FindControlInPages("AfterSalesAutoBrickRecoveryModeToggle") as System.Windows.Controls.CheckBox).IsChecked == true)
             {
-                AfterSalesAutoBrickRecoveryModeToggle.IsChecked = false;
+                (this.FindControlInPages("AfterSalesAutoBrickRecoveryModeToggle") as System.Windows.Controls.CheckBox).IsChecked = false;
             }
         }
 
@@ -10509,13 +10509,13 @@ namespace WpfApp1
 
         private void AfterSalesBootloaderModeToggle_Checked(object sender, RoutedEventArgs e)
         {
-            if (AfterSalesFastbootDModeToggle != null && AfterSalesFastbootDModeToggle.IsChecked == true)
+            if ((this.FindControlInPages("AfterSalesFastbootDModeToggle") as System.Windows.Controls.CheckBox) != null && (this.FindControlInPages("AfterSalesFastbootDModeToggle") as System.Windows.Controls.CheckBox).IsChecked == true)
             {
-                AfterSalesFastbootDModeToggle.IsChecked = false;
+                (this.FindControlInPages("AfterSalesFastbootDModeToggle") as System.Windows.Controls.CheckBox).IsChecked = false;
             }
-            if (AfterSalesAutoBrickRecoveryModeToggle != null && AfterSalesAutoBrickRecoveryModeToggle.IsChecked == true)
+            if ((this.FindControlInPages("AfterSalesAutoBrickRecoveryModeToggle") as System.Windows.Controls.CheckBox) != null && (this.FindControlInPages("AfterSalesAutoBrickRecoveryModeToggle") as System.Windows.Controls.CheckBox).IsChecked == true)
             {
-                AfterSalesAutoBrickRecoveryModeToggle.IsChecked = false;
+                (this.FindControlInPages("AfterSalesAutoBrickRecoveryModeToggle") as System.Windows.Controls.CheckBox).IsChecked = false;
             }
         }
 
@@ -10525,13 +10525,13 @@ namespace WpfApp1
 
         private void AfterSalesAutoBrickRecoveryModeToggle_Checked(object sender, RoutedEventArgs e)
         {
-            if (AfterSalesFastbootDModeToggle != null && AfterSalesFastbootDModeToggle.IsChecked == true)
+            if ((this.FindControlInPages("AfterSalesFastbootDModeToggle") as System.Windows.Controls.CheckBox) != null && (this.FindControlInPages("AfterSalesFastbootDModeToggle") as System.Windows.Controls.CheckBox).IsChecked == true)
             {
-                AfterSalesFastbootDModeToggle.IsChecked = false;
+                (this.FindControlInPages("AfterSalesFastbootDModeToggle") as System.Windows.Controls.CheckBox).IsChecked = false;
             }
-            if (AfterSalesBootloaderModeToggle != null && AfterSalesBootloaderModeToggle.IsChecked == true)
+            if ((this.FindControlInPages("AfterSalesBootloaderModeToggle") as System.Windows.Controls.CheckBox) != null && (this.FindControlInPages("AfterSalesBootloaderModeToggle") as System.Windows.Controls.CheckBox).IsChecked == true)
             {
-                AfterSalesBootloaderModeToggle.IsChecked = false;
+                (this.FindControlInPages("AfterSalesBootloaderModeToggle") as System.Windows.Controls.CheckBox).IsChecked = false;
             }
         }
 
@@ -10838,7 +10838,7 @@ namespace WpfApp1
                 // 10. 设置散包路径到文本框
                 await Dispatcher.InvokeAsync(() =>
                 {
-                    AfterSalesFlashPackTextBox.Text = actualPackPath;
+                    (this.FindControlInPages("AfterSalesFlashPackTextBox") as System.Windows.Controls.TextBox).Text = actualPackPath;
                 });
 
                 // 11. 加载分区列表
@@ -10853,7 +10853,7 @@ namespace WpfApp1
                 // 12. 开启FB模式并继续刷写流程
                 await Dispatcher.InvokeAsync(() =>
                 {
-                    AfterSalesBootloaderModeToggle.IsChecked = true;
+                    (this.FindControlInPages("AfterSalesBootloaderModeToggle") as System.Windows.Controls.CheckBox).IsChecked = true;
                 });
 
                 // 等待UI更新
@@ -11281,43 +11281,9 @@ namespace WpfApp1
         private void OugaFlashButton_Click(object sender, RoutedEventArgs e)
         {
             // 显示欧加刷写视图，隐藏其他视图
-            var homeView = this.FindName("HomeView") as Grid;
-            var screenMirrorView = this.FindName("ScreenMirrorView") as Grid;
-            var basicFlashView = this.FindName("BasicFlashView") as Grid;
-            var fastbootVisualizationView = this.FindName("FastbootVisualizationView") as Grid;
-            var hiddenEnvironmentView = this.FindName("HiddenEnvironmentView") as Grid;
-            var downloadView = this.FindName("DownloadView") as Grid;
-            var aboutToolView = this.FindName("AboutToolView") as Grid;
-            var systemZoneView = this.FindName("SystemZoneView") as Grid;
-            var oujiaFlashView = this.FindName("OujiaFlashView") as Grid;
-            var autorootView = this.FindName("AutorootView") as Grid;
-            var appManagementView = this.FindName("AppManagementView") as Grid;
-            var androidGeneralView = this.FindName("AndroidGeneralView") as Grid;
-            var payloadView = this.FindName("PayloadView") as Grid;
-            var romDownloadView = this.FindName("RomDownloadview") as Grid;
-            var edlFlashView = this.FindName("EdlFlashView") as Grid;
-            var colorOSAssistantView = this.FindName("ColorOSAssistantView") as Grid;
-            var backupAssistantView = this.FindName("BackupAssistantView") as Grid;
-            var violetDownloadView = this.FindName("VioletDownloadView") as Grid;
+            
 
-            if (homeView != null) homeView.Visibility = Visibility.Collapsed;
-            if (screenMirrorView != null) screenMirrorView.Visibility = Visibility.Collapsed;
-            if (basicFlashView != null) basicFlashView.Visibility = Visibility.Collapsed;
-            if (fastbootVisualizationView != null) fastbootVisualizationView.Visibility = Visibility.Collapsed;
-            if (hiddenEnvironmentView != null) hiddenEnvironmentView.Visibility = Visibility.Collapsed;
-            if (downloadView != null) downloadView.Visibility = Visibility.Collapsed;
-            if (aboutToolView != null) aboutToolView.Visibility = Visibility.Collapsed;
-            if (systemZoneView != null) systemZoneView.Visibility = Visibility.Collapsed;
-            if (oujiaFlashView != null) oujiaFlashView.Visibility = Visibility.Visible;
-            if (autorootView != null) autorootView.Visibility = Visibility.Collapsed;
-            if (appManagementView != null) appManagementView.Visibility = Visibility.Collapsed;
-            if (androidGeneralView != null) androidGeneralView.Visibility = Visibility.Collapsed;
-            if (payloadView != null) payloadView.Visibility = Visibility.Collapsed;
-            if (romDownloadView != null) romDownloadView.Visibility = Visibility.Collapsed;
-            if (edlFlashView != null) edlFlashView.Visibility = Visibility.Collapsed;
-            if (colorOSAssistantView != null) colorOSAssistantView.Visibility = Visibility.Collapsed;
-            if (backupAssistantView != null) backupAssistantView.Visibility = Visibility.Collapsed;
-            if (violetDownloadView != null) violetDownloadView.Visibility = Visibility.Collapsed;
+            ShowPage("OujiaFlashView");
 
             // 每次进入欧加线刷页时，统一恢复为全量包模式。
             ApplyOugaPackageModeSelection(useAfterSalesMode: false);
@@ -11334,7 +11300,7 @@ namespace WpfApp1
                 {
                     // 在日志框中显示错误信息
                  AppendOugaFlashParagraphLog("错误: 选择的文件夹不存在！", "Red");
-                 OugaFlashLogTextBox.ScrollToEnd();
+                 (this.FindControlInPages("OugaFlashLogTextBox") as System.Windows.Controls.RichTextBox).ScrollToEnd();
                     return;
                 }
                 
@@ -11364,9 +11330,9 @@ namespace WpfApp1
                 }
                 
                 // 更新DataGrid
-                if (OugaPartitionTableDataGrid != null)
+                if ((this.FindControlInPages("OugaPartitionTableDataGrid") as System.Windows.Controls.DataGrid) != null)
                 {
-                    OugaPartitionTableDataGrid.ItemsSource = partitionInfos;
+                    (this.FindControlInPages("OugaPartitionTableDataGrid") as System.Windows.Controls.DataGrid).ItemsSource = partitionInfos;
                 }
                 
                 // 自动全选所有加载的镜像
@@ -11376,7 +11342,7 @@ namespace WpfApp1
                 }
                 
                 // 更新全选CheckBox状态
-                var selectAllCheckBox = this.FindName("SelectAllCheckBox") as System.Windows.Controls.CheckBox;
+                var selectAllCheckBox = this.FindControlInPages("SelectAllCheckBox") as System.Windows.Controls.CheckBox;
                 if (selectAllCheckBox != null)
                 {
                     selectAllCheckBox.IsChecked = true;
@@ -11390,37 +11356,37 @@ namespace WpfApp1
                      "Purple",
                      " 个镜像文件，已自动全选",
                      "Black");
-                 OugaFlashLogTextBox.ScrollToEnd();
+                 (this.FindControlInPages("OugaFlashLogTextBox") as System.Windows.Controls.RichTextBox).ScrollToEnd();
             }
             catch (Exception ex)
             {
                 // 在日志框中显示错误信息
                  AppendOugaFlashParagraphLog($"错误: 加载镜像文件时发生错误: {ex.Message}", "Red");
-                 OugaFlashLogTextBox.ScrollToEnd();
+                 (this.FindControlInPages("OugaFlashLogTextBox") as System.Windows.Controls.RichTextBox).ScrollToEnd();
             }
         }
 
         private void SelectAllCheckBox_Checked(object sender, RoutedEventArgs e)
         {
-            if (OugaPartitionTableDataGrid.ItemsSource is IEnumerable<PartitionInfo> partitionInfos)
+            if ((this.FindControlInPages("OugaPartitionTableDataGrid") as System.Windows.Controls.DataGrid).ItemsSource is IEnumerable<PartitionInfo> partitionInfos)
             {
                 foreach (var partition in partitionInfos)
                 {
                     partition.IsSelected = true;
                 }
-                OugaPartitionTableDataGrid.Items.Refresh();
+                (this.FindControlInPages("OugaPartitionTableDataGrid") as System.Windows.Controls.DataGrid).Items.Refresh();
             }
         }
 
         private void SelectAllCheckBox_Unchecked(object sender, RoutedEventArgs e)
         {
-            if (OugaPartitionTableDataGrid.ItemsSource is IEnumerable<PartitionInfo> partitionInfos)
+            if ((this.FindControlInPages("OugaPartitionTableDataGrid") as System.Windows.Controls.DataGrid).ItemsSource is IEnumerable<PartitionInfo> partitionInfos)
             {
                 foreach (var partition in partitionInfos)
                 {
                     partition.IsSelected = false;
                 }
-                OugaPartitionTableDataGrid.Items.Refresh();
+                (this.FindControlInPages("OugaPartitionTableDataGrid") as System.Windows.Controls.DataGrid).Items.Refresh();
             }
         }
 

@@ -66,42 +66,25 @@ namespace WpfApp1
         {
             // 显示隐藏环境视图，隐藏其他视图
             var homeView = this.FindName("HomeView") as Grid;
-            var screenMirrorView = this.FindName("ScreenMirrorView") as Grid;
-            var basicFlashView = this.FindName("BasicFlashView") as Grid;
-            var fastbootVisualizationView = this.FindName("FastbootVisualizationView") as Grid;
-            var hiddenEnvironmentView = this.FindName("HiddenEnvironmentView") as Grid;
+            var screenMirrorView = this.FindControlInPages("ScreenMirrorView") as Grid;
+            var basicFlashView = this.FindControlInPages("BasicFlashView") as Grid;
+            var fastbootVisualizationView = this.FindControlInPages("FastbootVisualizationView") as Grid;
+            var hiddenEnvironmentView = this.FindControlInPages("HiddenEnvironmentView") as Grid;
             var downloadView = this.FindName("DownloadView") as Grid;
-            var aboutToolView = this.FindName("AboutToolView") as Grid;
-            var systemZoneView = this.FindName("SystemZoneView") as Grid;
-            var oujiaFlashView = this.FindName("OujiaFlashView") as Grid;
-            var autorootView = this.FindName("AutorootView") as Grid;
-            var appManagementView = this.FindName("AppManagementView") as Grid;
-            var androidGeneralView = this.FindName("AndroidGeneralView") as Grid;
-            var payloadView = this.FindName("PayloadView") as Grid;
-            var romDownloadView = this.FindName("RomDownloadview") as Grid;
-            var edlFlashView = this.FindName("EdlFlashView") as Grid;
-            var colorOSAssistantView = this.FindName("ColorOSAssistantView") as Grid;
-            var backupAssistantView = this.FindName("BackupAssistantView") as Grid;
-            var violetDownloadView = this.FindName("VioletDownloadView") as Grid;
+            var aboutToolView = this.FindControlInPages("AboutToolView") as Grid;
+            var systemZoneView = this.FindControlInPages("SystemZoneView") as Grid;
+            var oujiaFlashView = this.FindControlInPages("OujiaFlashView") as Grid;
+            var autorootView = this.FindControlInPages("AutorootView") as Grid;
+            var appManagementView = this.FindControlInPages("AppManagementView") as Grid;
+            var androidGeneralView = this.FindControlInPages("AndroidGeneralView") as Grid;
+            var payloadView = this.FindControlInPages("PayloadView") as Grid;
+            var romDownloadView = this.FindControlInPages("RomDownloadview") as Grid;
+            var edlFlashView = this.FindControlInPages("EdlFlashView") as Grid;
+            var colorOSAssistantView = this.FindControlInPages("ColorOSAssistantView") as Grid;
+            var backupAssistantView = this.FindControlInPages("BackupAssistantView") as Grid;
+            var violetDownloadView = this.FindControlInPages("VioletDownloadView") as Grid;
 
-            if (homeView != null) homeView.Visibility = Visibility.Collapsed;
-            if (screenMirrorView != null) screenMirrorView.Visibility = Visibility.Collapsed;
-            if (basicFlashView != null) basicFlashView.Visibility = Visibility.Collapsed;
-            if (fastbootVisualizationView != null) fastbootVisualizationView.Visibility = Visibility.Collapsed;
-            if (hiddenEnvironmentView != null) hiddenEnvironmentView.Visibility = Visibility.Visible;
-            if (downloadView != null) downloadView.Visibility = Visibility.Collapsed;
-            if (aboutToolView != null) aboutToolView.Visibility = Visibility.Collapsed;
-            if (systemZoneView != null) systemZoneView.Visibility = Visibility.Collapsed;
-            if (oujiaFlashView != null) oujiaFlashView.Visibility = Visibility.Collapsed;
-            if (autorootView != null) autorootView.Visibility = Visibility.Collapsed;
-            if (appManagementView != null) appManagementView.Visibility = Visibility.Collapsed;
-            if (androidGeneralView != null) androidGeneralView.Visibility = Visibility.Collapsed;
-            if (payloadView != null) payloadView.Visibility = Visibility.Collapsed;
-            if (romDownloadView != null) romDownloadView.Visibility = Visibility.Collapsed;
-            if (edlFlashView != null) edlFlashView.Visibility = Visibility.Collapsed;
-            if (colorOSAssistantView != null) colorOSAssistantView.Visibility = Visibility.Collapsed;
-            if (backupAssistantView != null) backupAssistantView.Visibility = Visibility.Collapsed;
-            if (violetDownloadView != null) violetDownloadView.Visibility = Visibility.Collapsed;
+            ShowPage("HiddenEnvironmentView");
 
             // 更新按钮状态
             UpdateButtonStates("HiddenEnvironment");
@@ -122,8 +105,8 @@ namespace WpfApp1
 
             if (openFileDialog.ShowDialog() == true)
             {
-                HiddenRootZipPathTextBox.Text = openFileDialog.FileName;
-                HiddenRootZipPathTextBox.Foreground = System.Windows.Media.Brushes.Black;
+                (this.FindControlInPages("HiddenRootZipPathTextBox") as System.Windows.Controls.TextBox).Text = openFileDialog.FileName;
+                (this.FindControlInPages("HiddenRootZipPathTextBox") as System.Windows.Controls.TextBox).Foreground = System.Windows.Media.Brushes.Black;
             }
         }
 
@@ -133,17 +116,17 @@ namespace WpfApp1
             if (sender is System.Windows.Controls.CheckBox checkedBox)
             {
                 // 取消其他复选框的勾选
-                if (checkedBox != MagiskAlpha28104CheckBox)
-                    MagiskAlpha28104CheckBox.IsChecked = false;
+                if (checkedBox != (this.FindControlInPages("MagiskAlpha28104CheckBox") as System.Windows.Controls.CheckBox))
+                    (this.FindControlInPages("MagiskAlpha28104CheckBox") as System.Windows.Controls.CheckBox).IsChecked = false;
                 
-                if (checkedBox != MagiskAlpha29000CheckBox)
-                    MagiskAlpha29000CheckBox.IsChecked = false;
+                if (checkedBox != (this.FindControlInPages("MagiskAlpha29000CheckBox") as System.Windows.Controls.CheckBox))
+                    (this.FindControlInPages("MagiskAlpha29000CheckBox") as System.Windows.Controls.CheckBox).IsChecked = false;
                 
-                if (checkedBox != SUkiSULKMCheckBox)
-                    SUkiSULKMCheckBox.IsChecked = false;
+                if (checkedBox != (this.FindControlInPages("SUkiSULKMCheckBox") as System.Windows.Controls.CheckBox))
+                    (this.FindControlInPages("SUkiSULKMCheckBox") as System.Windows.Controls.CheckBox).IsChecked = false;
                 
-                if (checkedBox != SUkiSUGKICheckBox)
-                    SUkiSUGKICheckBox.IsChecked = false;
+                if (checkedBox != (this.FindControlInPages("SUkiSUGKICheckBox") as System.Windows.Controls.CheckBox))
+                    (this.FindControlInPages("SUkiSUGKICheckBox") as System.Windows.Controls.CheckBox).IsChecked = false;
             }
         }
 
@@ -173,15 +156,15 @@ namespace WpfApp1
                 // APK文件名和显示名称映射
                 var apkMapping = new Dictionary<System.Windows.Controls.CheckBox, (string fileName, string displayName)>
                 {
-                    { DetectApp1CheckBox, ("1.apk", "momo") },
-                    { DetectApp2CheckBox, ("2.apk", "ruru") },
-                    { DetectApp3CheckBox, ("3.apk", "Hunter") },
-                    { DetectApp4CheckBox, ("4.apk", "Luna") },
-                    { DetectApp5CheckBox, ("5.apk", "紫色放大镜") },
-                    { DetectApp6CheckBox, ("6.apk", "密钥认证") },
-                    { DetectApp7CheckBox, ("7.apk", "应用列表检测器") },
-                    { DetectApp8CheckBox, ("8.apk", "春秋检测3.8") },
-                    { DetectApp9CheckBox, ("9.apk", "MT管理器") }
+                    { (this.FindControlInPages("DetectApp1CheckBox") as System.Windows.Controls.CheckBox), ("1.apk", "momo") },
+                    { (this.FindControlInPages("DetectApp2CheckBox") as System.Windows.Controls.CheckBox), ("2.apk", "ruru") },
+                    { (this.FindControlInPages("DetectApp3CheckBox") as System.Windows.Controls.CheckBox), ("3.apk", "Hunter") },
+                    { (this.FindControlInPages("DetectApp4CheckBox") as System.Windows.Controls.CheckBox), ("4.apk", "Luna") },
+                    { (this.FindControlInPages("DetectApp5CheckBox") as System.Windows.Controls.CheckBox), ("5.apk", "紫色放大镜") },
+                    { (this.FindControlInPages("DetectApp6CheckBox") as System.Windows.Controls.CheckBox), ("6.apk", "密钥认证") },
+                    { (this.FindControlInPages("DetectApp7CheckBox") as System.Windows.Controls.CheckBox), ("7.apk", "应用列表检测器") },
+                    { (this.FindControlInPages("DetectApp8CheckBox") as System.Windows.Controls.CheckBox), ("8.apk", "春秋检测3.8") },
+                    { (this.FindControlInPages("DetectApp9CheckBox") as System.Windows.Controls.CheckBox), ("9.apk", "MT管理器") }
                 };
 
                 // 获取选中的APK
@@ -194,7 +177,7 @@ namespace WpfApp1
                 }
 
                 // 检查是否选择了资源包
-                string zipPath = HiddenRootZipPathTextBox?.Text?.Trim() ?? "";
+                string zipPath = (this.FindControlInPages("HiddenRootZipPathTextBox") as System.Windows.Controls.TextBox)?.Text?.Trim() ?? "";
                 if (string.IsNullOrEmpty(zipPath)
                     || zipPath == "请选择隐藏环境资源包7z文件"
                     || !File.Exists(zipPath)
@@ -614,7 +597,7 @@ namespace WpfApp1
             try
             {
                 // 1. 检查是否有选中的模块
-                var selectedModules = ModuleListBox.Items.Cast<ModuleFileItem>()
+                var selectedModules = (this.FindControlInPages("ModuleListBox") as System.Windows.Controls.ListBox).Items.Cast<ModuleFileItem>()
                     .Where(m => m.IsSelected)
                     .ToList();
 
@@ -937,7 +920,7 @@ namespace WpfApp1
                     if (zipFiles.Count > 0)
                     {
                         // 获取已存在的文件路径（用于去重）
-                        var existingPaths = ModuleListBox.Items.Cast<ModuleFileItem>()
+                        var existingPaths = (this.FindControlInPages("ModuleListBox") as System.Windows.Controls.ListBox).Items.Cast<ModuleFileItem>()
                             .Select(m => m.FullPath)
                             .ToHashSet(StringComparer.OrdinalIgnoreCase);
 
@@ -960,19 +943,19 @@ namespace WpfApp1
                                 FullPath = zipFile,
                                 IsSelected = true  // 默认勾选
                             };
-                            ModuleListBox.Items.Add(moduleItem);
+                            (this.FindControlInPages("ModuleListBox") as System.Windows.Controls.ListBox).Items.Add(moduleItem);
                             addedCount++;
                         }
 
                         // 对整个列表按文件名排序
-                        var allItems = ModuleListBox.Items.Cast<ModuleFileItem>()
+                        var allItems = (this.FindControlInPages("ModuleListBox") as System.Windows.Controls.ListBox).Items.Cast<ModuleFileItem>()
                             .OrderBy(m => m.FileName)
                             .ToList();
                         
-                        ModuleListBox.Items.Clear();
+                        (this.FindControlInPages("ModuleListBox") as System.Windows.Controls.ListBox).Items.Clear();
                         foreach (var item in allItems)
                         {
-                            ModuleListBox.Items.Add(item);
+                            (this.FindControlInPages("ModuleListBox") as System.Windows.Controls.ListBox).Items.Add(item);
                         }
 
                         if (addedCount > 0)
@@ -1021,7 +1004,7 @@ namespace WpfApp1
                     AddHiddenRootLog("信息", $"用户选择了 {selectedFiles.Length} 个文件");
                     
                     // 获取已存在的文件路径（用于去重）
-                    var existingPaths = ModuleListBox.Items.Cast<ModuleFileItem>()
+                    var existingPaths = (this.FindControlInPages("ModuleListBox") as System.Windows.Controls.ListBox).Items.Cast<ModuleFileItem>()
                         .Select(m => m.FullPath)
                         .ToHashSet(StringComparer.OrdinalIgnoreCase);
 
@@ -1044,20 +1027,20 @@ namespace WpfApp1
                             FullPath = filePath,
                             IsSelected = true  // 默认勾选
                         };
-                        ModuleListBox.Items.Add(moduleItem);
+                        (this.FindControlInPages("ModuleListBox") as System.Windows.Controls.ListBox).Items.Add(moduleItem);
                         addedCount++;
 
                     }
 
                     // 对整个列表按文件名排序
-                    var allItems = ModuleListBox.Items.Cast<ModuleFileItem>()
+                    var allItems = (this.FindControlInPages("ModuleListBox") as System.Windows.Controls.ListBox).Items.Cast<ModuleFileItem>()
                         .OrderBy(m => m.FileName)
                         .ToList();
                     
-                    ModuleListBox.Items.Clear();
+                    (this.FindControlInPages("ModuleListBox") as System.Windows.Controls.ListBox).Items.Clear();
                     foreach (var item in allItems)
                     {
-                        ModuleListBox.Items.Add(item);
+                        (this.FindControlInPages("ModuleListBox") as System.Windows.Controls.ListBox).Items.Add(item);
                     }
 
                     if (addedCount > 0)
@@ -1085,10 +1068,10 @@ namespace WpfApp1
         // 清空模块列表按钮点击事件
         private void ClearModuleListButton_Click(object sender, RoutedEventArgs e)
         {
-            if (ModuleListBox.Items.Count > 0)
+            if ((this.FindControlInPages("ModuleListBox") as System.Windows.Controls.ListBox).Items.Count > 0)
             {
-                int count = ModuleListBox.Items.Count;
-                ModuleListBox.Items.Clear();
+                int count = (this.FindControlInPages("ModuleListBox") as System.Windows.Controls.ListBox).Items.Count;
+                (this.FindControlInPages("ModuleListBox") as System.Windows.Controls.ListBox).Items.Clear();
                 AddHiddenRootLog("提示", $"已清空 {count} 个模块文件");
             }
             else
@@ -1100,15 +1083,15 @@ namespace WpfApp1
         private async void StartHiddenRootButton_Click(object sender, RoutedEventArgs e)
                 {
                     UpdateHiddenRootProgress(0, "正在校验运行条件");
-                    StartHiddenRootButton.IsEnabled = false;
+                    (this.FindControlInPages("StartHiddenRootButton") as System.Windows.Controls.Button).IsEnabled = false;
 
                     try
                     {
                         // 检查是否勾选了方案
-                        bool is28104Version = MagiskAlpha28104CheckBox?.IsChecked == true;
-                        bool is29000Version = MagiskAlpha29000CheckBox?.IsChecked == true;
-                        bool isSUkiSULKM = SUkiSULKMCheckBox?.IsChecked == true;
-                        bool isSUkiSUGKI = SUkiSUGKICheckBox?.IsChecked == true;
+                        bool is28104Version = (this.FindControlInPages("MagiskAlpha28104CheckBox") as System.Windows.Controls.CheckBox)?.IsChecked == true;
+                        bool is29000Version = (this.FindControlInPages("MagiskAlpha29000CheckBox") as System.Windows.Controls.CheckBox)?.IsChecked == true;
+                        bool isSUkiSULKM = (this.FindControlInPages("SUkiSULKMCheckBox") as System.Windows.Controls.CheckBox)?.IsChecked == true;
+                        bool isSUkiSUGKI = (this.FindControlInPages("SUkiSUGKICheckBox") as System.Windows.Controls.CheckBox)?.IsChecked == true;
 
                         int selectedCount = (is28104Version ? 1 : 0) + (is29000Version ? 1 : 0) + (isSUkiSULKM ? 1 : 0) + (isSUkiSUGKI ? 1 : 0);
 
@@ -1147,7 +1130,7 @@ namespace WpfApp1
                         }
 
                         // 检查是否选择了7z文件
-                        string zipPath = HiddenRootZipPathTextBox?.Text?.Trim() ?? "";
+                        string zipPath = (this.FindControlInPages("HiddenRootZipPathTextBox") as System.Windows.Controls.TextBox)?.Text?.Trim() ?? "";
                         if (string.IsNullOrEmpty(zipPath)
                             || zipPath == "请选择隐藏环境资源包7z文件"
                             || !File.Exists(zipPath)
@@ -1474,8 +1457,8 @@ namespace WpfApp1
                             "target.txt"
                         };
                         if (isSUkiSUGKI) requiredModules.Add("8.zip");
-                        if (AddRescueModuleCheckBox?.IsChecked == true) requiredModules.Add("9.zip");
-                        if (InstallZip6CheckBox?.IsChecked == true) requiredModules.Add("6.zip");
+                        if ((this.FindControlInPages("AddRescueModuleCheckBox") as System.Windows.Controls.CheckBox)?.IsChecked == true) requiredModules.Add("9.zip");
+                        if ((this.FindControlInPages("InstallZip6CheckBox") as System.Windows.Controls.CheckBox)?.IsChecked == true) requiredModules.Add("6.zip");
                    
                         bool allFilesExist = true;
 
@@ -1504,8 +1487,8 @@ namespace WpfApp1
                         int totalModuleCount = firstBatchModules.Length
                             + (selectedPathmaskModule != null ? 1 : 0)
                             + (isSUkiSUGKI ? 1 : 0)
-                            + (AddRescueModuleCheckBox?.IsChecked == true ? 1 : 0)
-                            + (InstallZip6CheckBox?.IsChecked == true ? 1 : 0);
+                            + ((this.FindControlInPages("AddRescueModuleCheckBox") as System.Windows.Controls.CheckBox)?.IsChecked == true ? 1 : 0)
+                            + ((this.FindControlInPages("InstallZip6CheckBox") as System.Windows.Controls.CheckBox)?.IsChecked == true ? 1 : 0);
                         int installedModuleCount = 0;
 
                         foreach (string module in firstBatchModules)
@@ -1557,7 +1540,7 @@ namespace WpfApp1
                         }
 
                         // 6.2 如果勾选了添加救砖模块，安装9.zip
-                        if (AddRescueModuleCheckBox?.IsChecked == true)
+                        if ((this.FindControlInPages("AddRescueModuleCheckBox") as System.Windows.Controls.CheckBox)?.IsChecked == true)
                         {
                             if (!await InstallHiddenRootModuleAsync("9.zip", suCommand, moduleInstallCommand))
                             {
@@ -1573,7 +1556,7 @@ namespace WpfApp1
                         }
 
                         // 6.3 可选安装 LSP 模块 6.zip。
-                        if (InstallZip6CheckBox?.IsChecked == true)
+                        if ((this.FindControlInPages("InstallZip6CheckBox") as System.Windows.Controls.CheckBox)?.IsChecked == true)
                         {
                             if (!await InstallHiddenRootModuleAsync("6.zip", suCommand, moduleInstallCommand))
                             {
@@ -1811,7 +1794,7 @@ namespace WpfApp1
                     }
                     finally
                     {
-                        StartHiddenRootButton.IsEnabled = true;
+                        (this.FindControlInPages("StartHiddenRootButton") as System.Windows.Controls.Button).IsEnabled = true;
                     }
                 }
 
@@ -1881,8 +1864,8 @@ namespace WpfApp1
         {
             void Update()
             {
-                HiddenRootProgressBar.Value = Math.Clamp(value, 0, 100);
-                HiddenRootProgressBar.Tag = status;
+                (this.FindControlInPages("HiddenRootProgressBar") as System.Windows.Controls.ProgressBar).Value = Math.Clamp(value, 0, 100);
+                (this.FindControlInPages("HiddenRootProgressBar") as System.Windows.Controls.ProgressBar).Tag = status;
             }
 
             if (Dispatcher.CheckAccess())
@@ -1897,7 +1880,7 @@ namespace WpfApp1
 
         private void FailHiddenRootProgress(string status)
         {
-            UpdateHiddenRootProgress(HiddenRootProgressBar.Value, $"失败: {status}");
+            UpdateHiddenRootProgress((this.FindControlInPages("HiddenRootProgressBar") as System.Windows.Controls.ProgressBar).Value, $"失败: {status}");
         }
 
         private async Task<(bool Success, string Output)> ExecuteAdbPushWithProgressAsync(
@@ -2118,8 +2101,8 @@ namespace WpfApp1
         {
             if (sender is System.Windows.Controls.CheckBox checkBox && checkBox.IsChecked == true)
             {
-                var keepDataCheckBox = this.FindName("KeepDataCheckBox") as System.Windows.Controls.CheckBox;
-                var wipeAndLockBLCheckBox = this.FindName("WipeAndLockBLCheckBox") as System.Windows.Controls.CheckBox;
+                var keepDataCheckBox = this.FindControlInPages("KeepDataCheckBox") as System.Windows.Controls.CheckBox;
+                var wipeAndLockBLCheckBox = this.FindControlInPages("WipeAndLockBLCheckBox") as System.Windows.Controls.CheckBox;
                 
                 if (keepDataCheckBox != null) keepDataCheckBox.IsChecked = false;
                 if (wipeAndLockBLCheckBox != null) wipeAndLockBLCheckBox.IsChecked = false;
@@ -2130,8 +2113,8 @@ namespace WpfApp1
         {
             if (sender is System.Windows.Controls.CheckBox checkBox && checkBox.IsChecked == true)
             {
-                var completeWipeCheckBox = this.FindName("CompleteWipeCheckBox") as System.Windows.Controls.CheckBox;
-                var wipeAndLockBLCheckBox = this.FindName("WipeAndLockBLCheckBox") as System.Windows.Controls.CheckBox;
+                var completeWipeCheckBox = this.FindControlInPages("CompleteWipeCheckBox") as System.Windows.Controls.CheckBox;
+                var wipeAndLockBLCheckBox = this.FindControlInPages("WipeAndLockBLCheckBox") as System.Windows.Controls.CheckBox;
                 
                 if (completeWipeCheckBox != null) completeWipeCheckBox.IsChecked = false;
                 if (wipeAndLockBLCheckBox != null) wipeAndLockBLCheckBox.IsChecked = false;
@@ -2142,8 +2125,8 @@ namespace WpfApp1
         {
             if (sender is System.Windows.Controls.CheckBox checkBox && checkBox.IsChecked == true)
             {
-                var completeWipeCheckBox = this.FindName("CompleteWipeCheckBox") as System.Windows.Controls.CheckBox;
-                var keepDataCheckBox = this.FindName("KeepDataCheckBox") as System.Windows.Controls.CheckBox;
+                var completeWipeCheckBox = this.FindControlInPages("CompleteWipeCheckBox") as System.Windows.Controls.CheckBox;
+                var keepDataCheckBox = this.FindControlInPages("KeepDataCheckBox") as System.Windows.Controls.CheckBox;
                 
                 if (completeWipeCheckBox != null) completeWipeCheckBox.IsChecked = false;
                 if (keepDataCheckBox != null) keepDataCheckBox.IsChecked = false;
@@ -2192,7 +2175,7 @@ namespace WpfApp1
         // 比特率滑块值变化事件
         private void BitrateSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            var bitrateValueText = this.FindName("BitrateValueText") as TextBlock;
+            var bitrateValueText = this.FindControlInPages("BitrateValueText") as TextBlock;
             if (bitrateValueText != null)
             {
                 bitrateValueText.Text = ((int)e.NewValue).ToString();
@@ -2202,7 +2185,7 @@ namespace WpfApp1
         // 最大帧率滑块值变化事件
         private void MaxFpsSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            var maxFpsValueText = this.FindName("MaxFpsValueText") as TextBlock;
+            var maxFpsValueText = this.FindControlInPages("MaxFpsValueText") as TextBlock;
             if (maxFpsValueText != null)
             {
                 maxFpsValueText.Text = ((int)e.NewValue).ToString();
@@ -2242,11 +2225,11 @@ namespace WpfApp1
                 if (File.Exists(scrcpyPath))
                 {
                     // 获取帧率滑块的值
-                    var maxFpsSlider = this.FindName("MaxFpsSlider") as Slider;
+                    var maxFpsSlider = this.FindControlInPages("MaxFpsSlider") as Slider;
                     int maxFps = maxFpsSlider != null ? (int)maxFpsSlider.Value : 60; // 默认60fps
                     
                     // 获取比特率滑块的值
-                    var bitrateSlider = this.FindName("BitrateSlider") as Slider;
+                    var bitrateSlider = this.FindControlInPages("BitrateSlider") as Slider;
                     int bitrate = bitrateSlider != null ? (int)bitrateSlider.Value : 8; // 默认8Mbps
                     
                     int maxSize = GetWindowMaxSize();
@@ -2382,7 +2365,7 @@ namespace WpfApp1
                 batch.Append(message);
             }
 
-            var logTextBox = this.FindName("ScreenMirrorLogTextBox") as System.Windows.Controls.TextBox;
+            var logTextBox = this.FindControlInPages("ScreenMirrorLogTextBox") as System.Windows.Controls.TextBox;
             if (logTextBox != null && batch.Length > 0)
             {
                 string batchText = batch.ToString();
@@ -2433,7 +2416,7 @@ namespace WpfApp1
             try
             {
                 // 查找ListBox控件
-                var listBox = this.FindName("FileListTextBox") as System.Windows.Controls.ListBox;
+                var listBox = this.FindControlInPages("FileListTextBox") as System.Windows.Controls.ListBox;
                 if (listBox == null)
                 {
                     // 如果没有找到命名的ListBox，尝试查找所有ListBox
@@ -2539,7 +2522,7 @@ namespace WpfApp1
             catch (Exception ex)
             {
                 // 查找ListBox并显示错误信息
-                var listBox = this.FindName("FileListTextBox") as System.Windows.Controls.ListBox;
+                var listBox = this.FindControlInPages("FileListTextBox") as System.Windows.Controls.ListBox;
                 if (listBox == null)
                 {
                     listBox = FindVisualChild<System.Windows.Controls.ListBox>(this);
@@ -2652,7 +2635,7 @@ namespace WpfApp1
             {
                 try
                 {
-                    if (HiddenEnvironmentLogTextBox == null) return;
+                    if ((this.FindControlInPages("HiddenEnvironmentLogTextBox") as System.Windows.Controls.RichTextBox) == null) return;
 
                     var paragraph = new Paragraph
                     {
@@ -2677,9 +2660,9 @@ namespace WpfApp1
                         FontWeight = level is "成功" or "错误" ? FontWeights.SemiBold : FontWeights.Normal
                     });
 
-                    HiddenEnvironmentLogTextBox.Document.PagePadding = new Thickness(0);
-                    HiddenEnvironmentLogTextBox.Document.Blocks.Add(paragraph);
-                    HiddenEnvironmentLogTextBox.ScrollToEnd();
+                    (this.FindControlInPages("HiddenEnvironmentLogTextBox") as System.Windows.Controls.RichTextBox).Document.PagePadding = new Thickness(0);
+                    (this.FindControlInPages("HiddenEnvironmentLogTextBox") as System.Windows.Controls.RichTextBox).Document.Blocks.Add(paragraph);
+                    (this.FindControlInPages("HiddenEnvironmentLogTextBox") as System.Windows.Controls.RichTextBox).ScrollToEnd();
                 }
                 catch (Exception ex)
                 {
@@ -2695,9 +2678,9 @@ namespace WpfApp1
             {
                 try
                 {
-                    if (HiddenEnvironmentLogTextBox == null || HiddenEnvironmentLogTextBox.Document.Blocks.Count == 0) return;
+                    if ((this.FindControlInPages("HiddenEnvironmentLogTextBox") as System.Windows.Controls.RichTextBox) == null || (this.FindControlInPages("HiddenEnvironmentLogTextBox") as System.Windows.Controls.RichTextBox).Document.Blocks.Count == 0) return;
 
-                    if (HiddenEnvironmentLogTextBox.Document.Blocks.LastBlock is Paragraph lastParagraph && lastParagraph.Inlines.Count > 0)
+                    if ((this.FindControlInPages("HiddenEnvironmentLogTextBox") as System.Windows.Controls.RichTextBox).Document.Blocks.LastBlock is Paragraph lastParagraph && lastParagraph.Inlines.Count > 0)
                     {
                         string normalizedStatus = NormalizeHiddenRootLogText(status);
                         if (level == "成功" && normalizedStatus.Equals("Done", StringComparison.OrdinalIgnoreCase))
@@ -2719,7 +2702,7 @@ namespace WpfApp1
                         };
 
                         lastParagraph.Inlines.Add(statusRun);
-                        HiddenEnvironmentLogTextBox.ScrollToEnd();
+                        (this.FindControlInPages("HiddenEnvironmentLogTextBox") as System.Windows.Controls.RichTextBox).ScrollToEnd();
                     }
                 }
                 catch (Exception ex)

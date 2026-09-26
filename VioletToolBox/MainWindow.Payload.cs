@@ -229,7 +229,7 @@ namespace WpfApp1
             if (_payloadUiInitialized) return;
             _payloadUiInitialized = true;
 
-            PartitionsDataGrid.ItemsSource = _payloadPartitions;
+            (this.FindControlInPages("PartitionsDataGrid") as System.Windows.Controls.DataGrid).ItemsSource = _payloadPartitions;
             var view = CollectionViewSource.GetDefaultView(_payloadPartitions);
             view.Filter = FilterPayloadPartition;
 
@@ -237,30 +237,30 @@ namespace WpfApp1
             _payloadUiTimer.Start();
 
             UpdatePayloadSelectAllState();
-            ExportButton.IsEnabled = false;
-            StopOperationButton.IsEnabled = false;
+            (this.FindControlInPages("ExportButton") as System.Windows.Controls.Button).IsEnabled = false;
+            (this.FindControlInPages("StopOperationButton") as System.Windows.Controls.Button).IsEnabled = false;
         }
 
         private void PayloadButton_Click(object sender, RoutedEventArgs e)
         {
-            var homeView = this.FindName("HomeView") as Grid;
-            var screenMirrorView = this.FindName("ScreenMirrorView") as Grid;
-            var basicFlashView = this.FindName("BasicFlashView") as Grid;
-            var fastbootVisualizationView = this.FindName("FastbootVisualizationView") as Grid;
-            var hiddenEnvironmentView = this.FindName("HiddenEnvironmentView") as Grid;
-            var downloadView = this.FindName("DownloadView") as Grid;
-            var aboutToolView = this.FindName("AboutToolView") as Grid;
-            var systemZoneView = this.FindName("SystemZoneView") as Grid;
-            var oujiaFlashView = this.FindName("OujiaFlashView") as Grid;
-            var autorootView = this.FindName("AutorootView") as Grid;
-            var appManagementView = this.FindName("AppManagementView") as Grid;
-            var androidGeneralView = this.FindName("AndroidGeneralView") as Grid;
-            var payloadView = this.FindName("PayloadView") as Grid;
-            var romDownloadView = this.FindName("RomDownloadview") as Grid;
-            var edlFlashView = this.FindName("EdlFlashView") as Grid;
-            var colorOSAssistantView = this.FindName("ColorOSAssistantView") as Grid;
-            var backupAssistantView = this.FindName("BackupAssistantView") as Grid;
-            var violetDownloadView = this.FindName("VioletDownloadView") as Grid;
+            var homeView = this.FindControlInPages("HomeView") as Grid;
+            var screenMirrorView = this.FindControlInPages("ScreenMirrorView") as Grid;
+            var basicFlashView = this.FindControlInPages("BasicFlashView") as Grid;
+            var fastbootVisualizationView = this.FindControlInPages("FastbootVisualizationView") as Grid;
+            var hiddenEnvironmentView = this.FindControlInPages("HiddenEnvironmentView") as Grid;
+            var downloadView = this.FindControlInPages("DownloadView") as Grid;
+            var aboutToolView = this.FindControlInPages("AboutToolView") as Grid;
+            var systemZoneView = this.FindControlInPages("SystemZoneView") as Grid;
+            var oujiaFlashView = this.FindControlInPages("OujiaFlashView") as Grid;
+            var autorootView = this.FindControlInPages("AutorootView") as Grid;
+            var appManagementView = this.FindControlInPages("AppManagementView") as Grid;
+            var androidGeneralView = this.FindControlInPages("AndroidGeneralView") as Grid;
+            var payloadView = this.FindControlInPages("PayloadView") as Grid;
+            var romDownloadView = this.FindControlInPages("RomDownloadview") as Grid;
+            var edlFlashView = this.FindControlInPages("EdlFlashView") as Grid;
+            var colorOSAssistantView = this.FindControlInPages("ColorOSAssistantView") as Grid;
+            var backupAssistantView = this.FindControlInPages("BackupAssistantView") as Grid;
+            var violetDownloadView = this.FindControlInPages("VioletDownloadView") as Grid;
 
             if (homeView != null) homeView.Visibility = Visibility.Collapsed;
             if (screenMirrorView != null) screenMirrorView.Visibility = Visibility.Collapsed;
@@ -290,7 +290,7 @@ namespace WpfApp1
         private bool FilterPayloadPartition(object obj)
         {
             if (obj is not PartitionItem p) return false;
-            var key = SearchTextBox.Text?.Trim();
+            var key = (this.FindControlInPages("SearchTextBox") as System.Windows.Controls.TextBox).Text?.Trim();
             if (string.IsNullOrEmpty(key)) return true;
             return p.Name.Contains(key, StringComparison.OrdinalIgnoreCase);
         }
@@ -310,7 +310,7 @@ namespace WpfApp1
             };
             if (dlg.ShowDialog(this) == true)
             {
-                InputPathTextBox.Text = dlg.FileName;
+                (this.FindControlInPages("InputPathTextBox") as System.Windows.Controls.TextBox).Text = dlg.FileName;
             }
         }
 
@@ -325,7 +325,7 @@ namespace WpfApp1
             var r = dlg.ShowDialog();
             if (r == System.Windows.Forms.DialogResult.OK && !string.IsNullOrWhiteSpace(dlg.SelectedPath))
             {
-                OutputDirTextBox.Text = dlg.SelectedPath;
+                (this.FindControlInPages("OutputDirTextBox") as System.Windows.Controls.TextBox).Text = dlg.SelectedPath;
             }
         }
 
@@ -336,26 +336,26 @@ namespace WpfApp1
             bool readSucceeded = false;
             try
             {
-                ReadInfoButton.IsEnabled = false;
-                ExportButton.IsEnabled = false;
+                (this.FindControlInPages("ReadInfoButton") as System.Windows.Controls.Button).IsEnabled = false;
+                (this.FindControlInPages("ExportButton") as System.Windows.Controls.Button).IsEnabled = false;
                 SetPayloadStatus("读取中...");
                 ClearPayloadPartitions();
-                OverallProgressBar.Value = 0;
-                OverallPercentTextBlock.Text = "0.00%";
+                (this.FindControlInPages("OverallProgressBar") as System.Windows.Controls.ProgressBar).Value = 0;
+                (this.FindControlInPages("OverallPercentTextBlock") as System.Windows.Controls.TextBlock).Text = "0.00%";
                 _payloadIsGenericZip = false;
                 StartPayloadReadProgressSimulation();
 
                 await CloseOpenedPayloadReadersAsync().ConfigureAwait(true);
 
-                string input = InputPathTextBox.Text?.Trim() ?? "";
+                string input = (this.FindControlInPages("InputPathTextBox") as System.Windows.Controls.TextBox).Text?.Trim() ?? "";
                 if (string.IsNullOrWhiteSpace(input) || input.Contains("请选择", StringComparison.OrdinalIgnoreCase))
                     throw new InvalidOperationException("请输入路径或 URL");
 
                 var unzipProgress = new Progress<double>(p =>
                 {
                     _payloadReadUsingActualProgress = true;
-                    OverallProgressBar.Value = p;
-                    OverallPercentTextBlock.Text = $"{p:0.00}%";
+                    (this.FindControlInPages("OverallProgressBar") as System.Windows.Controls.ProgressBar).Value = p;
+                    (this.FindControlInPages("OverallPercentTextBlock") as System.Windows.Controls.TextBlock).Text = $"{p:0.00}%";
                 });
 
                 var (preparedInput, requestHeaders) = await PreparePayloadRemoteSourceAsync(input, cancellationToken).ConfigureAwait(true);
@@ -393,11 +393,11 @@ namespace WpfApp1
                 }
 
                 AppendPayloadLog($"读取完成: 共 {infos.Count} 个分区");
-                ExportButton.IsEnabled = true;
+                (this.FindControlInPages("ExportButton") as System.Windows.Controls.Button).IsEnabled = true;
                 SelectAllState = true;
                 UpdatePayloadSelectAllState();
 
-                if (OverallProgressBar.Value <= 0.1)
+                if ((this.FindControlInPages("OverallProgressBar") as System.Windows.Controls.ProgressBar).Value <= 0.1)
                 {
                     await SimulatePayloadOverallProgressOnceAsync(cancellationToken).ConfigureAwait(true);
                 }
@@ -471,8 +471,8 @@ namespace WpfApp1
             finally
             {
                 StopPayloadReadProgressSimulation(readSucceeded);
-                ReadInfoButton.IsEnabled = true;
-                ExportButton.IsEnabled = _payloadCtx is not null || _payloadIsGenericZip;
+                (this.FindControlInPages("ReadInfoButton") as System.Windows.Controls.Button).IsEnabled = true;
+                (this.FindControlInPages("ExportButton") as System.Windows.Controls.Button).IsEnabled = _payloadCtx is not null || _payloadIsGenericZip;
                 EndPayloadOperation(operationCts);
             }
         }
@@ -485,20 +485,20 @@ namespace WpfApp1
             {
                 if (_payloadCtx is null && !_payloadIsGenericZip) throw new InvalidOperationException("请先点击“读取信息”");
 
-                string outDir = OutputDirTextBox.Text?.Trim() ?? "";
+                string outDir = (this.FindControlInPages("OutputDirTextBox") as System.Windows.Controls.TextBox).Text?.Trim() ?? "";
                 if (string.IsNullOrWhiteSpace(outDir) || outDir.Contains("请选择", StringComparison.OrdinalIgnoreCase))
                 {
                     outDir = Path.Combine(Environment.CurrentDirectory, "output");
-                    OutputDirTextBox.Text = outDir;
+                    (this.FindControlInPages("OutputDirTextBox") as System.Windows.Controls.TextBox).Text = outDir;
                 }
 
-                PartitionsDataGrid.CommitEdit(DataGridEditingUnit.Cell, true);
-                PartitionsDataGrid.CommitEdit(DataGridEditingUnit.Row, true);
+                (this.FindControlInPages("PartitionsDataGrid") as System.Windows.Controls.DataGrid).CommitEdit(DataGridEditingUnit.Cell, true);
+                (this.FindControlInPages("PartitionsDataGrid") as System.Windows.Controls.DataGrid).CommitEdit(DataGridEditingUnit.Row, true);
 
                 var selected = _payloadPartitions.Where(p => p.IsSelected).Select(p => p.Name).ToHashSet(StringComparer.OrdinalIgnoreCase);
                 if (selected.Count == 0)
                 {
-                    foreach (var item in PartitionsDataGrid.SelectedItems)
+                    foreach (var item in (this.FindControlInPages("PartitionsDataGrid") as System.Windows.Controls.DataGrid).SelectedItems)
                     {
                         if (item is PartitionItem p) selected.Add(p.Name);
                     }
@@ -511,10 +511,10 @@ namespace WpfApp1
 
                 if (_payloadIsGenericZip)
                 {
-                    ReadInfoButton.IsEnabled = false;
-                    ExportButton.IsEnabled = false;
-                    OverallProgressBar.Value = 0;
-                    OverallPercentTextBlock.Text = "0.00%";
+                    (this.FindControlInPages("ReadInfoButton") as System.Windows.Controls.Button).IsEnabled = false;
+                    (this.FindControlInPages("ExportButton") as System.Windows.Controls.Button).IsEnabled = false;
+                    (this.FindControlInPages("OverallProgressBar") as System.Windows.Controls.ProgressBar).Value = 0;
+                    (this.FindControlInPages("OverallPercentTextBlock") as System.Windows.Controls.TextBlock).Text = "0.00%";
                     SetPayloadStatus("ZIP 提取中...");
                     long totalCompressedBytes = selected
                         .Select(name => _genericZipEntries != null && _genericZipEntries.TryGetValue(name, out var info)
@@ -526,36 +526,36 @@ namespace WpfApp1
                     {
                         if (totalCompressedBytes <= 0) return;
                         double percent = Math.Min(100d, doneBytes * 100d / totalCompressedBytes);
-                        OverallProgressBar.Value = percent;
-                        OverallPercentTextBlock.Text = $"{percent:0.00}%";
+                        (this.FindControlInPages("OverallProgressBar") as System.Windows.Controls.ProgressBar).Value = percent;
+                        (this.FindControlInPages("OverallPercentTextBlock") as System.Windows.Controls.TextBlock).Text = $"{percent:0.00}%";
                     });
 
                     await ExportGenericZipEntriesAsync(selected, outDir, zipProgress, cancellationToken).ConfigureAwait(true);
-                    OverallProgressBar.Value = 100;
-                    OverallPercentTextBlock.Text = "100.00%";
+                    (this.FindControlInPages("OverallProgressBar") as System.Windows.Controls.ProgressBar).Value = 100;
+                    (this.FindControlInPages("OverallPercentTextBlock") as System.Windows.Controls.TextBlock).Text = "100.00%";
                     AppendPayloadLog("[ZIP] 所选条目提取完成..");
                     SetPayloadStatus("完成");
                     return;
                 }
 
-                ReadInfoButton.IsEnabled = false;
-                ExportButton.IsEnabled = false;
+                (this.FindControlInPages("ReadInfoButton") as System.Windows.Controls.Button).IsEnabled = false;
+                (this.FindControlInPages("ExportButton") as System.Windows.Controls.Button).IsEnabled = false;
 
-                OverallProgressBar.Value = 0;
-                OverallPercentTextBlock.Text = "0.00%";
+                (this.FindControlInPages("OverallProgressBar") as System.Windows.Controls.ProgressBar).Value = 0;
+                (this.FindControlInPages("OverallPercentTextBlock") as System.Windows.Controls.TextBlock).Text = "0.00%";
 
                 if (_payloadCtx.Reader is ZipPayloadLazyReader lazy && !lazy.IsExtracted)
                 {
                     SetPayloadStatus("解压payload.bin中...");
                     var unzipProgress = new Progress<double>(p =>
                     {
-                        OverallProgressBar.Value = p;
-                        OverallPercentTextBlock.Text = $"{p:0.00}%";
+                        (this.FindControlInPages("OverallProgressBar") as System.Windows.Controls.ProgressBar).Value = p;
+                        (this.FindControlInPages("OverallPercentTextBlock") as System.Windows.Controls.TextBlock).Text = $"{p:0.00}%";
                     });
 
                     await lazy.EnsureExtractedAsync(unzipProgress, cancellationToken).ConfigureAwait(true);
-                    OverallProgressBar.Value = 0;
-                    OverallPercentTextBlock.Text = "0.00%";
+                    (this.FindControlInPages("OverallProgressBar") as System.Windows.Controls.ProgressBar).Value = 0;
+                    (this.FindControlInPages("OverallPercentTextBlock") as System.Windows.Controls.TextBlock).Text = "0.00%";
                 }
 
                 SetPayloadStatus("导出中...");
@@ -564,8 +564,8 @@ namespace WpfApp1
                 {
                     if (p.TotalBytes <= 0) return;
                     double percent = (double)p.DoneBytes * 100d / p.TotalBytes;
-                    OverallProgressBar.Value = percent;
-                    OverallPercentTextBlock.Text = $"{percent:0.00}%";
+                    (this.FindControlInPages("OverallProgressBar") as System.Windows.Controls.ProgressBar).Value = percent;
+                    (this.FindControlInPages("OverallPercentTextBlock") as System.Windows.Controls.TextBlock).Text = $"{percent:0.00}%";
                 });
 
                 await PayloadProcessing.ExtractPartitionsAsync(
@@ -595,8 +595,8 @@ namespace WpfApp1
             finally
             {
                 _payloadStopwatch.Stop();
-                ReadInfoButton.IsEnabled = true;
-                ExportButton.IsEnabled = _payloadCtx is not null || _payloadIsGenericZip;
+                (this.FindControlInPages("ReadInfoButton") as System.Windows.Controls.Button).IsEnabled = true;
+                (this.FindControlInPages("ExportButton") as System.Windows.Controls.Button).IsEnabled = _payloadCtx is not null || _payloadIsGenericZip;
                 EndPayloadOperation(operationCts);
             }
         }
@@ -654,21 +654,21 @@ namespace WpfApp1
             for (int i = 0; i <= steps; i++)
             {
                 double p = i * 100d / steps;
-                OverallProgressBar.Value = p;
-                OverallPercentTextBlock.Text = $"{p:0.00}%";
+                (this.FindControlInPages("OverallProgressBar") as System.Windows.Controls.ProgressBar).Value = p;
+                (this.FindControlInPages("OverallPercentTextBlock") as System.Windows.Controls.TextBlock).Text = $"{p:0.00}%";
                 await Task.Delay(totalMs / steps, cancellationToken).ConfigureAwait(true);
             }
 
             await Task.Delay(60, cancellationToken).ConfigureAwait(true);
-            OverallProgressBar.Value = 0;
-            OverallPercentTextBlock.Text = "0.00%";
+            (this.FindControlInPages("OverallProgressBar") as System.Windows.Controls.ProgressBar).Value = 0;
+            (this.FindControlInPages("OverallPercentTextBlock") as System.Windows.Controls.TextBlock).Text = "0.00%";
         }
 
         private void PayloadStopOperationButton_Click(object sender, RoutedEventArgs e)
         {
             if (_payloadOperationCts is null || _payloadOperationCts.IsCancellationRequested) return;
 
-            StopOperationButton.IsEnabled = false;
+            (this.FindControlInPages("StopOperationButton") as System.Windows.Controls.Button).IsEnabled = false;
             _payloadOperationCts.Cancel();
         }
 
@@ -676,7 +676,7 @@ namespace WpfApp1
         {
             _payloadOperationCts?.Dispose();
             _payloadOperationCts = new CancellationTokenSource();
-            StopOperationButton.IsEnabled = true;
+            (this.FindControlInPages("StopOperationButton") as System.Windows.Controls.Button).IsEnabled = true;
             return _payloadOperationCts;
         }
 
@@ -685,7 +685,7 @@ namespace WpfApp1
             if (ReferenceEquals(_payloadOperationCts, operationCts))
             {
                 _payloadOperationCts = null;
-                StopOperationButton.IsEnabled = false;
+                (this.FindControlInPages("StopOperationButton") as System.Windows.Controls.Button).IsEnabled = false;
             }
 
             operationCts.Dispose();
@@ -962,9 +962,9 @@ namespace WpfApp1
             {
                 var p = new Paragraph { Margin = new Thickness(0) };
                 p.Inlines.Add(new Run(line));
-                LogTextBox.Document.Blocks.Add(p);
+                (this.FindControlInPages("LogTextBox") as System.Windows.Controls.RichTextBox).Document.Blocks.Add(p);
             }
-            LogTextBox.ScrollToEnd();
+            (this.FindControlInPages("LogTextBox") as System.Windows.Controls.RichTextBox).ScrollToEnd();
         }
 
         private void AppendPayloadExportLog(string message)
@@ -1008,8 +1008,8 @@ namespace WpfApp1
 
             _payloadPendingExtractLine = new Paragraph { Margin = new Thickness(0) };
             _payloadPendingExtractLine.Inlines.Add(new Run($"[提取]{text}") { Foreground = System.Windows.Media.Brushes.Black });
-            LogTextBox.Document.Blocks.Add(_payloadPendingExtractLine);
-            LogTextBox.ScrollToEnd();
+            (this.FindControlInPages("LogTextBox") as System.Windows.Controls.RichTextBox).Document.Blocks.Add(_payloadPendingExtractLine);
+            (this.FindControlInPages("LogTextBox") as System.Windows.Controls.RichTextBox).ScrollToEnd();
         }
 
         private void AppendPayloadExtractOk()
@@ -1030,7 +1030,7 @@ namespace WpfApp1
             p.Inlines.Add(new Run(" ") { Foreground = System.Windows.Media.Brushes.Black });
             p.Inlines.Add(new Run("OK") { Foreground = System.Windows.Media.Brushes.Green });
             _payloadPendingExtractLine = null;
-            LogTextBox.ScrollToEnd();
+            (this.FindControlInPages("LogTextBox") as System.Windows.Controls.RichTextBox).ScrollToEnd();
         }
 
         private void AppendPayloadExtractFail(string text = "失败")
@@ -1051,7 +1051,7 @@ namespace WpfApp1
             p.Inlines.Add(new Run(" ") { Foreground = System.Windows.Media.Brushes.Black });
             p.Inlines.Add(new Run(text) { Foreground = System.Windows.Media.Brushes.Red });
             _payloadPendingExtractLine = null;
-            LogTextBox.ScrollToEnd();
+            (this.FindControlInPages("LogTextBox") as System.Windows.Controls.RichTextBox).ScrollToEnd();
         }
 
         private void SetPayloadStatus(string status)
@@ -1087,7 +1087,7 @@ namespace WpfApp1
         {
             TimeSpan elapsedTime = _payloadStopwatch.Elapsed;
             string elapsed = $"{(long)elapsedTime.TotalMinutes:00}:{elapsedTime.Seconds:00}";
-            OverallProgressBar.Tag = $"速度: {_payloadCurrentSpeed}  |  耗时: {elapsed}";
+            (this.FindControlInPages("OverallProgressBar") as System.Windows.Controls.ProgressBar).Tag = $"速度: {_payloadCurrentSpeed}  |  耗时: {elapsed}";
         }
 
         private static string ToPayloadReadableSpeed(double bytesPerSecond)
@@ -1125,15 +1125,15 @@ namespace WpfApp1
                 SetPayloadStatus("读取 ZIP 目录中...");
                 ClearPayloadPartitions();
                 _genericZipEntries = null;
-                OverallProgressBar.Value = 0;
-                OverallPercentTextBlock.Text = "0.00%";
+                (this.FindControlInPages("OverallProgressBar") as System.Windows.Controls.ProgressBar).Value = 0;
+                (this.FindControlInPages("OverallPercentTextBlock") as System.Windows.Controls.TextBlock).Text = "0.00%";
 
                 var entries = await ZipStoredEntryLocator.ListEntriesAsync(_payloadSourceReader, cancellationToken).ConfigureAwait(true);
                 InitializeGenericZipEntries(entries);
                 AppendPayloadLog("检测到 ZIP 包不包含 payload.bin，将作为通用 ZIP 处理。");
                 AppendPayloadLog($"ZIP 中共 {_payloadPartitions.Count} 个文件条目。");
 
-                ExportButton.IsEnabled = _payloadPartitions.Count > 0;
+                (this.FindControlInPages("ExportButton") as System.Windows.Controls.Button).IsEnabled = _payloadPartitions.Count > 0;
                 SelectAllState = _payloadPartitions.Count > 0;
                 UpdatePayloadSelectAllState();
 
@@ -1176,7 +1176,7 @@ namespace WpfApp1
 
             _genericZipEntries = map;
             _payloadIsGenericZip = true;
-            ExportButton.IsEnabled = _payloadPartitions.Count > 0;
+            (this.FindControlInPages("ExportButton") as System.Windows.Controls.Button).IsEnabled = _payloadPartitions.Count > 0;
             SelectAllState = _payloadPartitions.Count > 0;
             UpdatePayloadSelectAllState();
         }
@@ -1288,7 +1288,7 @@ namespace WpfApp1
                         {
                             if (cancellationToken.IsCancellationRequested) return;
 
-                            double current = OverallProgressBar.Value;
+                            double current = (this.FindControlInPages("OverallProgressBar") as System.Windows.Controls.ProgressBar).Value;
                             if (current >= 92) return;
 
                             double step =
@@ -1297,8 +1297,8 @@ namespace WpfApp1
                                 1;
 
                             double next = Math.Min(92, current + step);
-                            OverallProgressBar.Value = next;
-                            OverallPercentTextBlock.Text = $"{next:0.00}%";
+                            (this.FindControlInPages("OverallProgressBar") as System.Windows.Controls.ProgressBar).Value = next;
+                            (this.FindControlInPages("OverallPercentTextBlock") as System.Windows.Controls.TextBlock).Text = $"{next:0.00}%";
                         }, DispatcherPriority.Background);
                     }
 
@@ -1323,13 +1323,13 @@ namespace WpfApp1
 
             if (success)
             {
-                OverallProgressBar.Value = 100;
-                OverallPercentTextBlock.Text = "100.00%";
+                (this.FindControlInPages("OverallProgressBar") as System.Windows.Controls.ProgressBar).Value = 100;
+                (this.FindControlInPages("OverallPercentTextBlock") as System.Windows.Controls.TextBlock).Text = "100.00%";
                 return;
             }
 
-            OverallProgressBar.Value = 0;
-            OverallPercentTextBlock.Text = "0.00%";
+            (this.FindControlInPages("OverallProgressBar") as System.Windows.Controls.ProgressBar).Value = 0;
+            (this.FindControlInPages("OverallPercentTextBlock") as System.Windows.Controls.TextBlock).Text = "0.00%";
         }
 
         private async Task CloseOpenedPayloadReadersAsync()
@@ -1370,25 +1370,25 @@ namespace WpfApp1
 
         private void InputPathTextBox_GotFocus(object sender, RoutedEventArgs e)
         {
-            if (string.Equals(InputPathTextBox.Text, InputPlaceholderText, StringComparison.Ordinal))
+            if (string.Equals((this.FindControlInPages("InputPathTextBox") as System.Windows.Controls.TextBox).Text, InputPlaceholderText, StringComparison.Ordinal))
             {
-                InputPathTextBox.Clear();
+                (this.FindControlInPages("InputPathTextBox") as System.Windows.Controls.TextBox).Clear();
             }
         }
 
         private void InputPathTextBox_LostFocus(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(InputPathTextBox.Text))
+            if (string.IsNullOrWhiteSpace((this.FindControlInPages("InputPathTextBox") as System.Windows.Controls.TextBox).Text))
             {
-                InputPathTextBox.Text = InputPlaceholderText;
+                (this.FindControlInPages("InputPathTextBox") as System.Windows.Controls.TextBox).Text = InputPlaceholderText;
             }
         }
 
         private void OutputDirTextBox_GotFocus(object sender, RoutedEventArgs e)
         {
-            if (string.Equals(OutputDirTextBox.Text, OutputPlaceholderText, StringComparison.Ordinal))
+            if (string.Equals((this.FindControlInPages("OutputDirTextBox") as System.Windows.Controls.TextBox).Text, OutputPlaceholderText, StringComparison.Ordinal))
             {
-                OutputDirTextBox.Clear();
+                (this.FindControlInPages("OutputDirTextBox") as System.Windows.Controls.TextBox).Clear();
             }
         }
 

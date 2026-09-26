@@ -651,7 +651,7 @@ namespace WpfApp1
 
         private void AppendRomDownloadLog(string level, string message)
         {
-            var logRichTextBox = RomDownloadLogRichTextBox;
+            var logRichTextBox = (this.FindControlInPages("RomDownloadLogRichTextBox") as System.Windows.Controls.RichTextBox);
             if (logRichTextBox == null) return;
 
             string timestamp = DateTime.Now.ToString("HH:mm:ss");
@@ -686,9 +686,9 @@ namespace WpfApp1
             }
 
             _lastRomSelectOutputText = text;
-            if (RomSelectParsedLinkTextBox != null)
+            if ((this.FindControlInPages("RomSelectParsedLinkTextBox") as System.Windows.Controls.TextBlock) != null)
             {
-                RomSelectParsedLinkTextBox.Text = text;
+                (this.FindControlInPages("RomSelectParsedLinkTextBox") as System.Windows.Controls.TextBlock).Text = text;
             }
 
             if (!string.IsNullOrWhiteSpace(text))
@@ -706,9 +706,9 @@ namespace WpfApp1
             }
 
             _lastLenovoQueryOutputText = text;
-            if (LenovoQueryResultTextBox != null)
+            if ((this.FindControlInPages("LenovoQueryResultTextBox") as System.Windows.Controls.TextBlock) != null)
             {
-                LenovoQueryResultTextBox.Text = text;
+                (this.FindControlInPages("LenovoQueryResultTextBox") as System.Windows.Controls.TextBlock).Text = text;
             }
 
             if (!string.IsNullOrWhiteSpace(text))
@@ -1741,8 +1741,8 @@ namespace WpfApp1
             _romDownloadUiUpdating = true;
             try
             {
-                RomDeviceComboBox?.Items.Clear();
-                RomVersionComboBox?.Items.Clear();
+                (this.FindControlInPages("RomDeviceComboBox") as System.Windows.Controls.ComboBox)?.Items.Clear();
+                (this.FindControlInPages("RomVersionComboBox") as System.Windows.Controls.ComboBox)?.Items.Clear();
             }
             finally
             {
@@ -2181,8 +2181,8 @@ namespace WpfApp1
             _romSelectUiUpdating = true;
             try
             {
-                RomSelectDeviceComboBox?.Items.Clear();
-                RomSelectVersionComboBox?.Items.Clear();
+                (this.FindControlInPages("RomSelectDeviceComboBox") as System.Windows.Controls.ComboBox)?.Items.Clear();
+                (this.FindControlInPages("RomSelectVersionComboBox") as System.Windows.Controls.ComboBox)?.Items.Clear();
             }
             finally
             {
@@ -2199,7 +2199,7 @@ namespace WpfApp1
 
         private string GetSelectedRomSelectPackageType()
         {
-            var t = GetSelectedComboBoxItemText(RomSelectPackageTypeComboBox);
+            var t = GetSelectedComboBoxItemText((this.FindControlInPages("RomSelectPackageTypeComboBox") as System.Windows.Controls.ComboBox));
             if (string.IsNullOrWhiteSpace(t)) return RomSelectPackageTypeFull;
             return t;
         }
@@ -2363,9 +2363,9 @@ namespace WpfApp1
             _romSelectUiUpdating = true;
             try
             {
-                RomSelectSeriesComboBox?.Items.Clear();
-                RomSelectDeviceComboBox?.Items.Clear();
-                RomSelectVersionComboBox?.Items.Clear();
+                (this.FindControlInPages("RomSelectSeriesComboBox") as System.Windows.Controls.ComboBox)?.Items.Clear();
+                (this.FindControlInPages("RomSelectDeviceComboBox") as System.Windows.Controls.ComboBox)?.Items.Clear();
+                (this.FindControlInPages("RomSelectVersionComboBox") as System.Windows.Controls.ComboBox)?.Items.Clear();
             }
             finally
             {
@@ -2433,21 +2433,21 @@ namespace WpfApp1
 
         private void PopulateRomSelectDeviceComboBox(IEnumerable<string> devices)
         {
-            if (RomSelectDeviceComboBox == null) return;
+            if ((this.FindControlInPages("RomSelectDeviceComboBox") as System.Windows.Controls.ComboBox) == null) return;
 
             bool wasUpdating = _romSelectUiUpdating;
             _romSelectUiUpdating = true;
             try
             {
-                RomSelectDeviceComboBox.Items.Clear();
+                (this.FindControlInPages("RomSelectDeviceComboBox") as System.Windows.Controls.ComboBox).Items.Clear();
                 foreach (var d in devices)
                 {
-                    RomSelectDeviceComboBox.Items.Add(new ComboBoxItem { Content = d });
+                    (this.FindControlInPages("RomSelectDeviceComboBox") as System.Windows.Controls.ComboBox).Items.Add(new ComboBoxItem { Content = d });
                 }
 
-                if (RomSelectDeviceComboBox.Items.Count > 0)
+                if ((this.FindControlInPages("RomSelectDeviceComboBox") as System.Windows.Controls.ComboBox).Items.Count > 0)
                 {
-                    RomSelectDeviceComboBox.SelectedIndex = 0;
+                    (this.FindControlInPages("RomSelectDeviceComboBox") as System.Windows.Controls.ComboBox).SelectedIndex = 0;
                 }
             }
             finally
@@ -2458,30 +2458,30 @@ namespace WpfApp1
 
         private void PopulateRomSelectVersionComboBox(RomDeviceConfig deviceConfig)
         {
-            if (RomSelectVersionComboBox == null) return;
+            if ((this.FindControlInPages("RomSelectVersionComboBox") as System.Windows.Controls.ComboBox) == null) return;
 
             bool wasUpdating = _romSelectUiUpdating;
             _romSelectUiUpdating = true;
             try
             {
-                RomSelectVersionComboBox.Items.Clear();
+                (this.FindControlInPages("RomSelectVersionComboBox") as System.Windows.Controls.ComboBox).Items.Clear();
                 _romSelectLinksByVersionName.Clear();
                 _romSelectItemsByVersionName.Clear();
                 foreach (var item in deviceConfig.Items)
                 {
                     var name = (item.Name ?? string.Empty).Trim();
                     if (!IsValidVersionDisplayName(name)) continue;
-                    RomSelectVersionComboBox.Items.Add(new ComboBoxItem { Content = name });
+                    (this.FindControlInPages("RomSelectVersionComboBox") as System.Windows.Controls.ComboBox).Items.Add(new ComboBoxItem { Content = name });
                     _romSelectLinksByVersionName[name] = item.DownloadLinks ?? new List<string>();
                     _romSelectItemsByVersionName[name] = item;
                 }
 
                 AppendC16VersionsForRomSelect(deviceConfig);
-                SortRomVersionComboBoxAscending(RomSelectVersionComboBox);
+                SortRomVersionComboBoxAscending((this.FindControlInPages("RomSelectVersionComboBox") as System.Windows.Controls.ComboBox));
 
-                if (RomSelectVersionComboBox.Items.Count > 0)
+                if ((this.FindControlInPages("RomSelectVersionComboBox") as System.Windows.Controls.ComboBox).Items.Count > 0)
                 {
-                    RomSelectVersionComboBox.SelectedIndex = 0;
+                    (this.FindControlInPages("RomSelectVersionComboBox") as System.Windows.Controls.ComboBox).SelectedIndex = 0;
                 }
             }
             finally
@@ -2577,9 +2577,9 @@ namespace WpfApp1
             if (string.IsNullOrWhiteSpace(device)) return;
             var packageType = GetSelectedRomSelectPackageType();
             if (string.IsNullOrWhiteSpace(packageType)) packageType = _activeRomSelectPackageType;
-            var brand = (RomSelectBrandComboBox?.SelectedItem as ComboBoxItem)?.Content?.ToString() ?? string.Empty;
+            var brand = ((this.FindControlInPages("RomSelectBrandComboBox") as System.Windows.Controls.ComboBox)?.SelectedItem as ComboBoxItem)?.Content?.ToString() ?? string.Empty;
             if (string.IsNullOrWhiteSpace(brand)) brand = _activeRomSelectBrand;
-            var series = (RomSelectSeriesComboBox?.SelectedItem as ComboBoxItem)?.Content?.ToString() ?? string.Empty;
+            var series = ((this.FindControlInPages("RomSelectSeriesComboBox") as System.Windows.Controls.ComboBox)?.SelectedItem as ComboBoxItem)?.Content?.ToString() ?? string.Empty;
             if (string.IsNullOrWhiteSpace(series)) series = _activeRomSelectSeries;
             if (string.IsNullOrWhiteSpace(packageType) || string.IsNullOrWhiteSpace(brand) || string.IsNullOrWhiteSpace(series)) return;
 
@@ -2609,7 +2609,7 @@ namespace WpfApp1
             _romSelectUiUpdating = true;
             try
             {
-                RomSelectVersionComboBox?.Items.Clear();
+                (this.FindControlInPages("RomSelectVersionComboBox") as System.Windows.Controls.ComboBox)?.Items.Clear();
             }
             finally
             {
@@ -2619,50 +2619,50 @@ namespace WpfApp1
 
         private void RefreshRomSelectBrandOptions()
         {
-            if (RomSelectBrandComboBox == null) return;
+            if ((this.FindControlInPages("RomSelectBrandComboBox") as System.Windows.Controls.ComboBox) == null) return;
 
             var packageType = GetSelectedRomSelectPackageType();
 
             _romSelectUiUpdating = true;
             try
             {
-                RomSelectBrandComboBox.Items.Clear();
+                (this.FindControlInPages("RomSelectBrandComboBox") as System.Windows.Controls.ComboBox).Items.Clear();
                 ClearRomSelectAllOptions();
 
                 if (string.Equals(packageType, RomSelectPackageTypeAfterSales, StringComparison.OrdinalIgnoreCase))
                 {
-                    RomSelectBrandComboBox.Items.Add(new ComboBoxItem { Content = "OPPO" });
-                    RomSelectBrandComboBox.Items.Add(new ComboBoxItem { Content = "OnePlus" });
-                    RomSelectBrandComboBox.Items.Add(new ComboBoxItem { Content = "Realme" });
-                    RomSelectBrandComboBox.Items.Add(new ComboBoxItem { Content = "Xiaomi" });
-                    RomSelectBrandComboBox.Items.Add(new ComboBoxItem { Content = "Redmi" });
+                    (this.FindControlInPages("RomSelectBrandComboBox") as System.Windows.Controls.ComboBox).Items.Add(new ComboBoxItem { Content = "OPPO" });
+                    (this.FindControlInPages("RomSelectBrandComboBox") as System.Windows.Controls.ComboBox).Items.Add(new ComboBoxItem { Content = "OnePlus" });
+                    (this.FindControlInPages("RomSelectBrandComboBox") as System.Windows.Controls.ComboBox).Items.Add(new ComboBoxItem { Content = "Realme" });
+                    (this.FindControlInPages("RomSelectBrandComboBox") as System.Windows.Controls.ComboBox).Items.Add(new ComboBoxItem { Content = "Xiaomi" });
+                    (this.FindControlInPages("RomSelectBrandComboBox") as System.Windows.Controls.ComboBox).Items.Add(new ComboBoxItem { Content = "Redmi" });
                 }
                 else
                 {
-                    RomSelectBrandComboBox.Items.Add(new ComboBoxItem { Content = "OPPO" });
-                    RomSelectBrandComboBox.Items.Add(new ComboBoxItem { Content = "OnePlus" });
-                    RomSelectBrandComboBox.Items.Add(new ComboBoxItem { Content = "Realme" });
-                    RomSelectBrandComboBox.Items.Add(new ComboBoxItem { Content = "Xiaomi" });
-                    RomSelectBrandComboBox.Items.Add(new ComboBoxItem { Content = "Redmi" });
-                    RomSelectBrandComboBox.Items.Add(new ComboBoxItem { Content = "魅族" });
+                    (this.FindControlInPages("RomSelectBrandComboBox") as System.Windows.Controls.ComboBox).Items.Add(new ComboBoxItem { Content = "OPPO" });
+                    (this.FindControlInPages("RomSelectBrandComboBox") as System.Windows.Controls.ComboBox).Items.Add(new ComboBoxItem { Content = "OnePlus" });
+                    (this.FindControlInPages("RomSelectBrandComboBox") as System.Windows.Controls.ComboBox).Items.Add(new ComboBoxItem { Content = "Realme" });
+                    (this.FindControlInPages("RomSelectBrandComboBox") as System.Windows.Controls.ComboBox).Items.Add(new ComboBoxItem { Content = "Xiaomi" });
+                    (this.FindControlInPages("RomSelectBrandComboBox") as System.Windows.Controls.ComboBox).Items.Add(new ComboBoxItem { Content = "Redmi" });
+                    (this.FindControlInPages("RomSelectBrandComboBox") as System.Windows.Controls.ComboBox).Items.Add(new ComboBoxItem { Content = "魅族" });
                 }
 
                 // 不自动选择，保持空白
-                RomSelectBrandComboBox.SelectedIndex = -1;
+                (this.FindControlInPages("RomSelectBrandComboBox") as System.Windows.Controls.ComboBox).SelectedIndex = -1;
             }
             finally
             {
                 _romSelectUiUpdating = false;
             }
 
-            AppendRomDownloadLog("信息", $"已加载{RomSelectBrandComboBox.Items.Count}个机型品牌");
+            AppendRomDownloadLog("信息", $"已加载{(this.FindControlInPages("RomSelectBrandComboBox") as System.Windows.Controls.ComboBox).Items.Count}个机型品牌");
         }
 
         private async Task RefreshRomSelectSeriesOptionsAsync(CancellationToken cancellationToken = default)
         {
-            if (RomSelectBrandComboBox == null || RomSelectSeriesComboBox == null) return;
+            if ((this.FindControlInPages("RomSelectBrandComboBox") as System.Windows.Controls.ComboBox) == null || (this.FindControlInPages("RomSelectSeriesComboBox") as System.Windows.Controls.ComboBox) == null) return;
 
-            var brand = (RomSelectBrandComboBox.SelectedItem as ComboBoxItem)?.Content?.ToString() ?? string.Empty;
+            var brand = ((this.FindControlInPages("RomSelectBrandComboBox") as System.Windows.Controls.ComboBox).SelectedItem as ComboBoxItem)?.Content?.ToString() ?? string.Empty;
             if (string.IsNullOrWhiteSpace(brand)) return;
 
             var packageType = GetSelectedRomSelectPackageType();
@@ -2671,7 +2671,7 @@ namespace WpfApp1
                 : GetRomSelectSeriesNames(packageType, brand).ToList();
 
             cancellationToken.ThrowIfCancellationRequested();
-            var currentBrand = (RomSelectBrandComboBox.SelectedItem as ComboBoxItem)?.Content?.ToString() ?? string.Empty;
+            var currentBrand = ((this.FindControlInPages("RomSelectBrandComboBox") as System.Windows.Controls.ComboBox).SelectedItem as ComboBoxItem)?.Content?.ToString() ?? string.Empty;
             if (!string.Equals(currentBrand, brand, StringComparison.OrdinalIgnoreCase) ||
                 !string.Equals(GetSelectedRomSelectPackageType(), packageType, StringComparison.OrdinalIgnoreCase))
             {
@@ -2683,18 +2683,18 @@ namespace WpfApp1
             _romSelectUiUpdating = true;
             try
             {
-                RomSelectSeriesComboBox.Items.Clear();
+                (this.FindControlInPages("RomSelectSeriesComboBox") as System.Windows.Controls.ComboBox).Items.Clear();
                 ClearRomSelectDeviceAndVersion();
 
                 foreach (var s in seriesNames)
                 {
-                    RomSelectSeriesComboBox.Items.Add(new ComboBoxItem { Content = s });
+                    (this.FindControlInPages("RomSelectSeriesComboBox") as System.Windows.Controls.ComboBox).Items.Add(new ComboBoxItem { Content = s });
                     firstSeries ??= s;
                 }
 
-                if (RomSelectSeriesComboBox.Items.Count > 0)
+                if ((this.FindControlInPages("RomSelectSeriesComboBox") as System.Windows.Controls.ComboBox).Items.Count > 0)
                 {
-                    RomSelectSeriesComboBox.SelectedIndex = 0;
+                    (this.FindControlInPages("RomSelectSeriesComboBox") as System.Windows.Controls.ComboBox).SelectedIndex = 0;
                 }
             }
             finally
@@ -2714,21 +2714,21 @@ namespace WpfApp1
 
         private void PopulateDeviceComboBox(IEnumerable<string> devices)
         {
-            if (RomDeviceComboBox == null) return;
+            if ((this.FindControlInPages("RomDeviceComboBox") as System.Windows.Controls.ComboBox) == null) return;
 
             bool wasUpdating = _romDownloadUiUpdating;
             _romDownloadUiUpdating = true;
             try
             {
-                RomDeviceComboBox.Items.Clear();
+                (this.FindControlInPages("RomDeviceComboBox") as System.Windows.Controls.ComboBox).Items.Clear();
                 foreach (var d in devices)
                 {
-                    RomDeviceComboBox.Items.Add(new ComboBoxItem { Content = d });
+                    (this.FindControlInPages("RomDeviceComboBox") as System.Windows.Controls.ComboBox).Items.Add(new ComboBoxItem { Content = d });
                 }
 
-                if (RomDeviceComboBox.Items.Count > 0)
+                if ((this.FindControlInPages("RomDeviceComboBox") as System.Windows.Controls.ComboBox).Items.Count > 0)
                 {
-                    RomDeviceComboBox.SelectedIndex = 0;
+                    (this.FindControlInPages("RomDeviceComboBox") as System.Windows.Controls.ComboBox).SelectedIndex = 0;
                 }
             }
             finally
@@ -2739,13 +2739,13 @@ namespace WpfApp1
 
         private void PopulateVersionComboBox(RomDeviceConfig deviceConfig)
         {
-            if (RomVersionComboBox == null) return;
+            if ((this.FindControlInPages("RomVersionComboBox") as System.Windows.Controls.ComboBox) == null) return;
 
             bool wasUpdating = _romDownloadUiUpdating;
             _romDownloadUiUpdating = true;
             try
             {
-                RomVersionComboBox.Items.Clear();
+                (this.FindControlInPages("RomVersionComboBox") as System.Windows.Controls.ComboBox).Items.Clear();
                 _romDownloadLinksByVersionName.Clear();
                 _romDownloadItemsByVersionName.Clear();
                 _selectedRomDownloadLinks.Clear();
@@ -2753,17 +2753,17 @@ namespace WpfApp1
 
                 foreach (var item in deviceConfig.Items)
                 {
-                    RomVersionComboBox.Items.Add(new ComboBoxItem { Content = item.Name });
+                    (this.FindControlInPages("RomVersionComboBox") as System.Windows.Controls.ComboBox).Items.Add(new ComboBoxItem { Content = item.Name });
                     _romDownloadLinksByVersionName[item.Name] = item.DownloadLinks ?? new List<string>();
                     _romDownloadItemsByVersionName[item.Name] = item;
                 }
 
                 AppendC16VersionsForDevice(deviceConfig);
-                SortRomVersionComboBoxAscending(RomVersionComboBox);
+                SortRomVersionComboBoxAscending((this.FindControlInPages("RomVersionComboBox") as System.Windows.Controls.ComboBox));
 
-                if (RomVersionComboBox.Items.Count > 0)
+                if ((this.FindControlInPages("RomVersionComboBox") as System.Windows.Controls.ComboBox).Items.Count > 0)
                 {
-                    RomVersionComboBox.SelectedIndex = 0;
+                    (this.FindControlInPages("RomVersionComboBox") as System.Windows.Controls.ComboBox).SelectedIndex = 0;
                 }
             }
             finally
@@ -2774,7 +2774,7 @@ namespace WpfApp1
 
         private void RefreshSelectedLinksFromCurrentVersion()
         {
-            var version = (RomVersionComboBox?.SelectedItem as ComboBoxItem)?.Content?.ToString();
+            var version = ((this.FindControlInPages("RomVersionComboBox") as System.Windows.Controls.ComboBox)?.SelectedItem as ComboBoxItem)?.Content?.ToString();
             if (string.IsNullOrWhiteSpace(version))
             {
                 _selectedRomDownloadLinks.Clear();
@@ -2784,7 +2784,7 @@ namespace WpfApp1
 
             if (_romDownloadItemsByVersionName.TryGetValue(version, out var item) && item != null)
             {
-                var brand = (RomBrandComboBox?.SelectedItem as ComboBoxItem)?.Content?.ToString() ?? _activeRomDownloadBrand;
+                var brand = ((this.FindControlInPages("RomBrandComboBox") as System.Windows.Controls.ComboBox)?.SelectedItem as ComboBoxItem)?.Content?.ToString() ?? _activeRomDownloadBrand;
                 _selectedRomDownloadLinks = PreferRomArchiveLinks(RomSelectPackageTypeFull, brand, item.DownloadLinks ?? new List<string>());
                 _selectedRomDownloadHeaders = item.RequestHeaders != null
                     ? new Dictionary<string, string>(item.RequestHeaders, StringComparer.OrdinalIgnoreCase)
@@ -2792,7 +2792,7 @@ namespace WpfApp1
             }
             else if (_romDownloadLinksByVersionName.TryGetValue(version, out var links) && links != null)
             {
-                var brand = (RomBrandComboBox?.SelectedItem as ComboBoxItem)?.Content?.ToString() ?? _activeRomDownloadBrand;
+                var brand = ((this.FindControlInPages("RomBrandComboBox") as System.Windows.Controls.ComboBox)?.SelectedItem as ComboBoxItem)?.Content?.ToString() ?? _activeRomDownloadBrand;
                 _selectedRomDownloadLinks = PreferRomArchiveLinks(RomSelectPackageTypeFull, brand, links);
                 _selectedRomDownloadHeaders.Clear();
             }
@@ -2807,8 +2807,8 @@ namespace WpfApp1
         {
             if (string.IsNullOrWhiteSpace(device)) return;
 
-            var brand = (RomBrandComboBox?.SelectedItem as ComboBoxItem)?.Content?.ToString() ?? string.Empty;
-            var series = (RomSeriesComboBox?.SelectedItem as ComboBoxItem)?.Content?.ToString() ?? string.Empty;
+            var brand = ((this.FindControlInPages("RomBrandComboBox") as System.Windows.Controls.ComboBox)?.SelectedItem as ComboBoxItem)?.Content?.ToString() ?? string.Empty;
+            var series = ((this.FindControlInPages("RomSeriesComboBox") as System.Windows.Controls.ComboBox)?.SelectedItem as ComboBoxItem)?.Content?.ToString() ?? string.Empty;
             if (string.IsNullOrWhiteSpace(brand)) brand = _activeRomDownloadBrand;
             if (string.IsNullOrWhiteSpace(series)) series = _activeRomDownloadSeries;
             if (!string.IsNullOrWhiteSpace(brand) &&
@@ -2839,7 +2839,7 @@ namespace WpfApp1
                 }
             }
 
-            RomVersionComboBox?.Items.Clear();
+            (this.FindControlInPages("RomVersionComboBox") as System.Windows.Controls.ComboBox)?.Items.Clear();
             _romDownloadLinksByVersionName.Clear();
             _romDownloadItemsByVersionName.Clear();
             _selectedRomDownloadLinks.Clear();
@@ -2850,7 +2850,7 @@ namespace WpfApp1
         {
             if (_romDownloadUiUpdating) return;
 
-            var series = (RomSeriesComboBox?.SelectedItem as ComboBoxItem)?.Content?.ToString();
+            var series = ((this.FindControlInPages("RomSeriesComboBox") as System.Windows.Controls.ComboBox)?.SelectedItem as ComboBoxItem)?.Content?.ToString();
             if (string.IsNullOrWhiteSpace(series)) return;
 
             _romConfigLoadCts?.Cancel();
@@ -2860,7 +2860,7 @@ namespace WpfApp1
 
             try
             {
-                var brand = (RomBrandComboBox?.SelectedItem as ComboBoxItem)?.Content?.ToString() ?? string.Empty;
+                var brand = ((this.FindControlInPages("RomBrandComboBox") as System.Windows.Controls.ComboBox)?.SelectedItem as ComboBoxItem)?.Content?.ToString() ?? string.Empty;
                 if (string.IsNullOrWhiteSpace(brand))
                 {
                     ClearRomDeviceAndVersion();
@@ -2930,7 +2930,7 @@ namespace WpfApp1
         {
             if (_romDownloadUiUpdating) return;
 
-            var device = (RomDeviceComboBox?.SelectedItem as ComboBoxItem)?.Content?.ToString();
+            var device = ((this.FindControlInPages("RomDeviceComboBox") as System.Windows.Controls.ComboBox)?.SelectedItem as ComboBoxItem)?.Content?.ToString();
             if (string.IsNullOrWhiteSpace(device)) return;
 
             _ = LoadDeviceVersionsAndLogAsync(device);
@@ -2944,9 +2944,9 @@ namespace WpfApp1
 
         private async Task RefreshRomSeriesOptionsAsync(CancellationToken cancellationToken = default)
         {
-            if (RomSeriesComboBox == null) return;
+            if ((this.FindControlInPages("RomSeriesComboBox") as System.Windows.Controls.ComboBox) == null) return;
 
-            var selectedContent = (RomBrandComboBox?.SelectedItem as ComboBoxItem)?.Content?.ToString();
+            var selectedContent = ((this.FindControlInPages("RomBrandComboBox") as System.Windows.Controls.ComboBox)?.SelectedItem as ComboBoxItem)?.Content?.ToString();
             if (string.IsNullOrWhiteSpace(selectedContent)) return;
 
             var seriesNames = UseRomBackendApi
@@ -2954,7 +2954,7 @@ namespace WpfApp1
                 : GetRomDownloadSeriesNames(selectedContent).ToList();
 
             cancellationToken.ThrowIfCancellationRequested();
-            var currentBrand = (RomBrandComboBox?.SelectedItem as ComboBoxItem)?.Content?.ToString() ?? string.Empty;
+            var currentBrand = ((this.FindControlInPages("RomBrandComboBox") as System.Windows.Controls.ComboBox)?.SelectedItem as ComboBoxItem)?.Content?.ToString() ?? string.Empty;
             if (!string.Equals(currentBrand, selectedContent, StringComparison.OrdinalIgnoreCase))
             {
                 return;
@@ -2964,12 +2964,12 @@ namespace WpfApp1
             _romDownloadUiUpdating = true;
             try
             {
-                RomSeriesComboBox.Items.Clear();
+                (this.FindControlInPages("RomSeriesComboBox") as System.Windows.Controls.ComboBox).Items.Clear();
                 ClearRomDeviceAndVersion();
 
                 foreach (var s in seriesNames)
                 {
-                    RomSeriesComboBox.Items.Add(new ComboBoxItem { Content = s });
+                    (this.FindControlInPages("RomSeriesComboBox") as System.Windows.Controls.ComboBox).Items.Add(new ComboBoxItem { Content = s });
                 }
             }
             finally
@@ -2977,9 +2977,9 @@ namespace WpfApp1
                 _romDownloadUiUpdating = wasUpdating;
             }
 
-            if (!wasUpdating && RomSeriesComboBox.Items.Count > 0)
+            if (!wasUpdating && (this.FindControlInPages("RomSeriesComboBox") as System.Windows.Controls.ComboBox).Items.Count > 0)
             {
-                RomSeriesComboBox.SelectedIndex = 0;
+                (this.FindControlInPages("RomSeriesComboBox") as System.Windows.Controls.ComboBox).SelectedIndex = 0;
             }
         }
 
@@ -2987,7 +2987,7 @@ namespace WpfApp1
         {
             if (_romDownloadUiUpdating) return;
 
-            var brand = (RomBrandComboBox?.SelectedItem as ComboBoxItem)?.Content?.ToString() ?? string.Empty;
+            var brand = ((this.FindControlInPages("RomBrandComboBox") as System.Windows.Controls.ComboBox)?.SelectedItem as ComboBoxItem)?.Content?.ToString() ?? string.Empty;
             if (string.IsNullOrWhiteSpace(brand)) return;
 
             _romBrandSeriesLoadCts?.Cancel();
@@ -3007,14 +3007,14 @@ namespace WpfApp1
                 }
 
                 await RefreshRomSeriesOptionsAsync(cancellationToken).ConfigureAwait(true);
-                AppendRomDownloadLog("信息", $"已加载{RomSeriesComboBox?.Items.Count ?? 0}个{brand}系列");
+                AppendRomDownloadLog("信息", $"已加载{(this.FindControlInPages("RomSeriesComboBox") as System.Windows.Controls.ComboBox)?.Items.Count ?? 0}个{brand}系列");
             }
             catch (OperationCanceledException)
             {
             }
             catch (Exception ex)
             {
-                var currentBrand = (RomBrandComboBox?.SelectedItem as ComboBoxItem)?.Content?.ToString() ?? string.Empty;
+                var currentBrand = ((this.FindControlInPages("RomBrandComboBox") as System.Windows.Controls.ComboBox)?.SelectedItem as ComboBoxItem)?.Content?.ToString() ?? string.Empty;
                 if (cancellationToken.IsCancellationRequested ||
                     !string.Equals(currentBrand, brand, StringComparison.OrdinalIgnoreCase))
                 {
@@ -3022,7 +3022,7 @@ namespace WpfApp1
                 }
 
                 ClearRomDeviceAndVersion();
-                RomSeriesComboBox?.Items.Clear();
+                (this.FindControlInPages("RomSeriesComboBox") as System.Windows.Controls.ComboBox)?.Items.Clear();
                 AppendRomDownloadLog("错误", $"加载{brand}系列失败：{ex.Message}");
                 AddLogMessage("ROM下载", $"加载{brand}系列失败：{ex}");
             }
@@ -3032,7 +3032,7 @@ namespace WpfApp1
         {
             if (_romSelectUiUpdating) return;
 
-            var brand = (RomSelectBrandComboBox?.SelectedItem as ComboBoxItem)?.Content?.ToString() ?? string.Empty;
+            var brand = ((this.FindControlInPages("RomSelectBrandComboBox") as System.Windows.Controls.ComboBox)?.SelectedItem as ComboBoxItem)?.Content?.ToString() ?? string.Empty;
             if (string.IsNullOrWhiteSpace(brand)) return;
 
             _romSelectBrandSeriesLoadCts?.Cancel();
@@ -3052,7 +3052,7 @@ namespace WpfApp1
             }
             catch (Exception ex)
             {
-                var currentBrand = (RomSelectBrandComboBox?.SelectedItem as ComboBoxItem)?.Content?.ToString() ?? string.Empty;
+                var currentBrand = ((this.FindControlInPages("RomSelectBrandComboBox") as System.Windows.Controls.ComboBox)?.SelectedItem as ComboBoxItem)?.Content?.ToString() ?? string.Empty;
                 if (cancellationToken.IsCancellationRequested ||
                     !string.Equals(currentBrand, brand, StringComparison.OrdinalIgnoreCase))
                 {
@@ -3060,7 +3060,7 @@ namespace WpfApp1
                 }
 
                 ClearRomSelectDeviceAndVersion();
-                RomSelectSeriesComboBox?.Items.Clear();
+                (this.FindControlInPages("RomSelectSeriesComboBox") as System.Windows.Controls.ComboBox)?.Items.Clear();
                 SetRomSelectOutput($"加载{brand}系列失败：{ex.Message}", "错误");
                 AddLogMessage("ROM获取", $"加载{brand}系列失败：{ex}");
             }
@@ -3071,8 +3071,8 @@ namespace WpfApp1
             if (_romSelectUiUpdating) return;
             
             // 保存当前选择
-            var currentBrand = (RomSelectBrandComboBox?.SelectedItem as ComboBoxItem)?.Content?.ToString() ?? string.Empty;
-            var currentSeries = (RomSelectSeriesComboBox?.SelectedItem as ComboBoxItem)?.Content?.ToString() ?? string.Empty;
+            var currentBrand = ((this.FindControlInPages("RomSelectBrandComboBox") as System.Windows.Controls.ComboBox)?.SelectedItem as ComboBoxItem)?.Content?.ToString() ?? string.Empty;
+            var currentSeries = ((this.FindControlInPages("RomSelectSeriesComboBox") as System.Windows.Controls.ComboBox)?.SelectedItem as ComboBoxItem)?.Content?.ToString() ?? string.Empty;
             
             // 获取新的包类型
             var packageType = GetSelectedRomSelectPackageType();
@@ -3126,8 +3126,8 @@ namespace WpfApp1
             if (_romSelectUiUpdating) return;
 
             var packageType = GetSelectedRomSelectPackageType();
-            var brand = (RomSelectBrandComboBox?.SelectedItem as ComboBoxItem)?.Content?.ToString() ?? string.Empty;
-            var series = (RomSelectSeriesComboBox?.SelectedItem as ComboBoxItem)?.Content?.ToString() ?? string.Empty;
+            var brand = ((this.FindControlInPages("RomSelectBrandComboBox") as System.Windows.Controls.ComboBox)?.SelectedItem as ComboBoxItem)?.Content?.ToString() ?? string.Empty;
+            var series = ((this.FindControlInPages("RomSelectSeriesComboBox") as System.Windows.Controls.ComboBox)?.SelectedItem as ComboBoxItem)?.Content?.ToString() ?? string.Empty;
             if (string.IsNullOrWhiteSpace(brand) || string.IsNullOrWhiteSpace(series)) return;
 
             if (!TryGetRomSelectSeriesUrl(packageType, brand, series, out var url))
@@ -3173,7 +3173,7 @@ namespace WpfApp1
         {
             if (_romSelectUiUpdating) return;
 
-            var device = (RomSelectDeviceComboBox?.SelectedItem as ComboBoxItem)?.Content?.ToString();
+            var device = ((this.FindControlInPages("RomSelectDeviceComboBox") as System.Windows.Controls.ComboBox)?.SelectedItem as ComboBoxItem)?.Content?.ToString();
             if (string.IsNullOrWhiteSpace(device)) return;
             _ = LoadRomSelectDeviceVersionsAsync(device);
             UpdateRomSelectParsedLinkDisplay();
@@ -3284,7 +3284,7 @@ namespace WpfApp1
 
         private Dictionary<string, string> GetSelectedRomSelectRequestHeaders()
         {
-            var version = (RomSelectVersionComboBox?.SelectedItem as ComboBoxItem)?.Content?.ToString() ?? string.Empty;
+            var version = ((this.FindControlInPages("RomSelectVersionComboBox") as System.Windows.Controls.ComboBox)?.SelectedItem as ComboBoxItem)?.Content?.ToString() ?? string.Empty;
             if (string.IsNullOrWhiteSpace(version)) return new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
 
             if (_romSelectItemsByVersionName.TryGetValue(version, out var item) &&
@@ -3306,10 +3306,10 @@ namespace WpfApp1
         private IReadOnlyList<string> GetSelectedRomSelectDownloadLinks()
         {
             var packageType = GetSelectedRomSelectPackageType();
-            var brand = (RomSelectBrandComboBox?.SelectedItem as ComboBoxItem)?.Content?.ToString() ?? string.Empty;
-            var series = (RomSelectSeriesComboBox?.SelectedItem as ComboBoxItem)?.Content?.ToString() ?? string.Empty;
-            var device = (RomSelectDeviceComboBox?.SelectedItem as ComboBoxItem)?.Content?.ToString() ?? string.Empty;
-            var version = (RomSelectVersionComboBox?.SelectedItem as ComboBoxItem)?.Content?.ToString() ?? string.Empty;
+            var brand = ((this.FindControlInPages("RomSelectBrandComboBox") as System.Windows.Controls.ComboBox)?.SelectedItem as ComboBoxItem)?.Content?.ToString() ?? string.Empty;
+            var series = ((this.FindControlInPages("RomSelectSeriesComboBox") as System.Windows.Controls.ComboBox)?.SelectedItem as ComboBoxItem)?.Content?.ToString() ?? string.Empty;
+            var device = ((this.FindControlInPages("RomSelectDeviceComboBox") as System.Windows.Controls.ComboBox)?.SelectedItem as ComboBoxItem)?.Content?.ToString() ?? string.Empty;
+            var version = ((this.FindControlInPages("RomSelectVersionComboBox") as System.Windows.Controls.ComboBox)?.SelectedItem as ComboBoxItem)?.Content?.ToString() ?? string.Empty;
 
             if (string.IsNullOrWhiteSpace(brand) ||
                 string.IsNullOrWhiteSpace(series) ||
@@ -3359,11 +3359,11 @@ namespace WpfApp1
         private async void RomSelectCopyLinksButton_Click(object sender, RoutedEventArgs e)
         {
             var links = GetSelectedRomSelectDownloadLinks();
-            var versionName = (RomSelectVersionComboBox?.SelectedItem as ComboBoxItem)?.Content?.ToString() ?? string.Empty;
+            var versionName = ((this.FindControlInPages("RomSelectVersionComboBox") as System.Windows.Controls.ComboBox)?.SelectedItem as ComboBoxItem)?.Content?.ToString() ?? string.Empty;
             var packageType = ToRomApiPackageType(GetSelectedRomSelectPackageType());
-            var brand = (RomSelectBrandComboBox?.SelectedItem as ComboBoxItem)?.Content?.ToString() ?? _activeRomSelectBrand;
-            var series = (RomSelectSeriesComboBox?.SelectedItem as ComboBoxItem)?.Content?.ToString() ?? _activeRomSelectSeries;
-            var device = (RomSelectDeviceComboBox?.SelectedItem as ComboBoxItem)?.Content?.ToString() ?? string.Empty;
+            var brand = ((this.FindControlInPages("RomSelectBrandComboBox") as System.Windows.Controls.ComboBox)?.SelectedItem as ComboBoxItem)?.Content?.ToString() ?? _activeRomSelectBrand;
+            var series = ((this.FindControlInPages("RomSelectSeriesComboBox") as System.Windows.Controls.ComboBox)?.SelectedItem as ComboBoxItem)?.Content?.ToString() ?? _activeRomSelectSeries;
+            var device = ((this.FindControlInPages("RomSelectDeviceComboBox") as System.Windows.Controls.ComboBox)?.SelectedItem as ComboBoxItem)?.Content?.ToString() ?? string.Empty;
             bool refreshC16Link = UseRomBackendApi &&
                                   IsC16Brand(brand) &&
                                   device.StartsWith("[C16动态解析]", StringComparison.OrdinalIgnoreCase);
@@ -3372,9 +3372,9 @@ namespace WpfApp1
             {
                 if (UseRomBackendApi)
                 {
-                    if (RomSelectCopyLinksButton != null)
+                    if ((this.FindControlInPages("RomSelectCopyLinksButton") as System.Windows.Controls.Button) != null)
                     {
-                        RomSelectCopyLinksButton.IsEnabled = false;
+                        (this.FindControlInPages("RomSelectCopyLinksButton") as System.Windows.Controls.Button).IsEnabled = false;
                     }
 
                     try
@@ -3417,9 +3417,9 @@ namespace WpfApp1
                     }
                     finally
                     {
-                        if (RomSelectCopyLinksButton != null)
+                        if ((this.FindControlInPages("RomSelectCopyLinksButton") as System.Windows.Controls.Button) != null)
                         {
-                            RomSelectCopyLinksButton.IsEnabled = true;
+                            (this.FindControlInPages("RomSelectCopyLinksButton") as System.Windows.Controls.Button).IsEnabled = true;
                         }
                     }
                 }
@@ -3636,19 +3636,19 @@ namespace WpfApp1
 
         private void LenovoQueryInputTextBox_GotKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
         {
-            if (LenovoQueryInputTextBox == null) return;
-            if (string.Equals(LenovoQueryInputTextBox.Text, LenovoQueryInputPlaceholder, StringComparison.Ordinal))
+            if ((this.FindControlInPages("LenovoQueryInputTextBox") as System.Windows.Controls.TextBox) == null) return;
+            if (string.Equals((this.FindControlInPages("LenovoQueryInputTextBox") as System.Windows.Controls.TextBox).Text, LenovoQueryInputPlaceholder, StringComparison.Ordinal))
             {
-                LenovoQueryInputTextBox.Clear();
+                (this.FindControlInPages("LenovoQueryInputTextBox") as System.Windows.Controls.TextBox).Clear();
             }
         }
 
         private void LenovoQueryInputTextBox_LostKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
         {
-            if (LenovoQueryInputTextBox == null) return;
-            if (string.IsNullOrWhiteSpace(LenovoQueryInputTextBox.Text))
+            if ((this.FindControlInPages("LenovoQueryInputTextBox") as System.Windows.Controls.TextBox) == null) return;
+            if (string.IsNullOrWhiteSpace((this.FindControlInPages("LenovoQueryInputTextBox") as System.Windows.Controls.TextBox).Text))
             {
-                LenovoQueryInputTextBox.Text = LenovoQueryInputPlaceholder;
+                (this.FindControlInPages("LenovoQueryInputTextBox") as System.Windows.Controls.TextBox).Text = LenovoQueryInputPlaceholder;
             }
         }
 
@@ -3664,15 +3664,15 @@ namespace WpfApp1
 
             _lenovoQueryResolvedDownloadUrl = string.Empty;
             _lenovoQueryLastSummaryText = string.Empty;
-            if (LenovoQueryButton != null) LenovoQueryButton.IsEnabled = false;
-            if (LenovoPresetModelComboBox != null) LenovoPresetModelComboBox.IsEnabled = false;
+            if ((this.FindControlInPages("LenovoQueryButton") as System.Windows.Controls.Button) != null) (this.FindControlInPages("LenovoQueryButton") as System.Windows.Controls.Button).IsEnabled = false;
+            if ((this.FindControlInPages("LenovoPresetModelComboBox") as System.Windows.Controls.ComboBox) != null) (this.FindControlInPages("LenovoPresetModelComboBox") as System.Windows.Controls.ComboBox).IsEnabled = false;
             SetLenovoQueryOutput("联想查包查询中，请稍候...");
 
             try
             {
-                if (LenovoQueryInputTextBox != null && !string.Equals(LenovoQueryInputTextBox.Text, input, StringComparison.OrdinalIgnoreCase))
+                if ((this.FindControlInPages("LenovoQueryInputTextBox") as System.Windows.Controls.TextBox) != null && !string.Equals((this.FindControlInPages("LenovoQueryInputTextBox") as System.Windows.Controls.TextBox).Text, input, StringComparison.OrdinalIgnoreCase))
                 {
-                    LenovoQueryInputTextBox.Text = input;
+                    (this.FindControlInPages("LenovoQueryInputTextBox") as System.Windows.Controls.TextBox).Text = input;
                 }
 
                 string queryTarget = string.IsNullOrWhiteSpace(presetModelName)
@@ -3707,20 +3707,20 @@ namespace WpfApp1
             }
             finally
             {
-                if (LenovoQueryButton != null) LenovoQueryButton.IsEnabled = true;
-                if (LenovoPresetModelComboBox != null) LenovoPresetModelComboBox.IsEnabled = true;
+                if ((this.FindControlInPages("LenovoQueryButton") as System.Windows.Controls.Button) != null) (this.FindControlInPages("LenovoQueryButton") as System.Windows.Controls.Button).IsEnabled = true;
+                if ((this.FindControlInPages("LenovoPresetModelComboBox") as System.Windows.Controls.ComboBox) != null) (this.FindControlInPages("LenovoPresetModelComboBox") as System.Windows.Controls.ComboBox).IsEnabled = true;
             }
         }
 
         private async void LenovoQueryButton_Click(object sender, RoutedEventArgs e)
         {
-            string input = CleanLink(LenovoQueryInputTextBox?.Text ?? string.Empty).ToUpperInvariant();
+            string input = CleanLink((this.FindControlInPages("LenovoQueryInputTextBox") as System.Windows.Controls.TextBox)?.Text ?? string.Empty).ToUpperInvariant();
             await ExecuteLenovoQueryAsync(input).ConfigureAwait(true);
         }
 
         private async void LenovoPresetModelComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (LenovoPresetModelComboBox?.SelectedItem is not ComboBoxItem selectedItem)
+            if ((this.FindControlInPages("LenovoPresetModelComboBox") as System.Windows.Controls.ComboBox)?.SelectedItem is not ComboBoxItem selectedItem)
             {
                 return;
             }
@@ -3858,7 +3858,7 @@ namespace WpfApp1
                 return null;
             }
 
-            string deviceName = (RomDeviceComboBox?.SelectedItem as ComboBoxItem)?.Content?.ToString() ?? string.Empty;
+            string deviceName = ((this.FindControlInPages("RomDeviceComboBox") as System.Windows.Controls.ComboBox)?.SelectedItem as ComboBoxItem)?.Content?.ToString() ?? string.Empty;
             string deviceCode = string.Empty;
             string otaVersion = string.Empty;
 
@@ -3942,7 +3942,7 @@ namespace WpfApp1
                 return null;
             }
 
-            string deviceName = (RomSelectDeviceComboBox?.SelectedItem as ComboBoxItem)?.Content?.ToString() ?? string.Empty;
+            string deviceName = ((this.FindControlInPages("RomSelectDeviceComboBox") as System.Windows.Controls.ComboBox)?.SelectedItem as ComboBoxItem)?.Content?.ToString() ?? string.Empty;
             string deviceCode = string.Empty;
             string otaVersion = string.Empty;
 
@@ -4017,7 +4017,7 @@ namespace WpfApp1
             if ((deviceConfig.Items == null || deviceConfig.Items.Count == 0) &&
                 !IsC16NativeDevice(deviceConfig.Device ?? string.Empty)) return;
 
-            var brand = (RomBrandComboBox?.SelectedItem as ComboBoxItem)?.Content?.ToString() ?? string.Empty;
+            var brand = ((this.FindControlInPages("RomBrandComboBox") as System.Windows.Controls.ComboBox)?.SelectedItem as ComboBoxItem)?.Content?.ToString() ?? string.Empty;
             if (string.IsNullOrWhiteSpace(brand)) brand = _activeRomDownloadBrand;
             if (!IsC16Brand(brand)) return;
             if (_c16Records == null || _c16Records.Count == 0) return;
@@ -4054,7 +4054,7 @@ namespace WpfApp1
 
                 if (links.Count == 0) continue;
 
-                RomVersionComboBox?.Items.Add(new ComboBoxItem { Content = name });
+                (this.FindControlInPages("RomVersionComboBox") as System.Windows.Controls.ComboBox)?.Items.Add(new ComboBoxItem { Content = name });
                 _romDownloadLinksByVersionName[name] = links;
                 existingNames.Add(name);
             }
@@ -4071,15 +4071,15 @@ namespace WpfApp1
             if ((deviceConfig.Items == null || deviceConfig.Items.Count == 0) &&
                 !IsC16NativeDevice(deviceConfig.Device ?? string.Empty)) return;
 
-            var brand = (RomSelectBrandComboBox?.SelectedItem as ComboBoxItem)?.Content?.ToString() ?? string.Empty;
+            var brand = ((this.FindControlInPages("RomSelectBrandComboBox") as System.Windows.Controls.ComboBox)?.SelectedItem as ComboBoxItem)?.Content?.ToString() ?? string.Empty;
             if (string.IsNullOrWhiteSpace(brand)) brand = _activeRomSelectBrand;
             if (!IsC16Brand(brand)) return;
             if (_c16Records == null || _c16Records.Count == 0) return;
 
-            if (RomSelectVersionComboBox == null) return;
+            if ((this.FindControlInPages("RomSelectVersionComboBox") as System.Windows.Controls.ComboBox) == null) return;
 
             var existingNames = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
-            foreach (var item in RomSelectVersionComboBox.Items.OfType<ComboBoxItem>())
+            foreach (var item in (this.FindControlInPages("RomSelectVersionComboBox") as System.Windows.Controls.ComboBox).Items.OfType<ComboBoxItem>())
             {
                 var name = item.Content?.ToString();
                 if (string.IsNullOrWhiteSpace(name)) continue;
@@ -4104,7 +4104,7 @@ namespace WpfApp1
                 if (!IsValidVersionDisplayName(name)) continue;
                 if (existingNames.Contains(name)) continue;
 
-                RomSelectVersionComboBox.Items.Add(new ComboBoxItem { Content = name });
+                (this.FindControlInPages("RomSelectVersionComboBox") as System.Windows.Controls.ComboBox).Items.Add(new ComboBoxItem { Content = name });
                 var links = new List<string>();
                 if (!string.IsNullOrWhiteSpace(r.DownloadCheckUrl))
                 {
@@ -4126,55 +4126,21 @@ namespace WpfApp1
 
         private async void RomDownloadButton_Click(object sender, RoutedEventArgs e)
         {
-            var homeView = this.FindName("HomeView") as Grid;
-            var screenMirrorView = this.FindName("ScreenMirrorView") as Grid;
-            var basicFlashView = this.FindName("BasicFlashView") as Grid;
-            var fastbootVisualizationView = this.FindName("FastbootVisualizationView") as Grid;
-            var hiddenEnvironmentView = this.FindName("HiddenEnvironmentView") as Grid;
-            var downloadView = this.FindName("DownloadView") as Grid;
-            var aboutToolView = this.FindName("AboutToolView") as Grid;
-            var systemZoneView = this.FindName("SystemZoneView") as Grid;
-            var oujiaFlashView = this.FindName("OujiaFlashView") as Grid;
-            var autorootView = this.FindName("AutorootView") as Grid;
-            var appManagementView = this.FindName("AppManagementView") as Grid;
-            var androidGeneralView = this.FindName("AndroidGeneralView") as Grid;
-            var payloadView = this.FindName("PayloadView") as Grid;
-            var romDownloadView = this.FindName("RomDownloadview") as Grid;
-            var edlFlashView = this.FindName("EdlFlashView") as Grid;
-            var colorOSAssistantView = this.FindName("ColorOSAssistantView") as Grid;
-            var backupAssistantView = this.FindName("BackupAssistantView") as Grid;
-            var violetDownloadView = this.FindName("VioletDownloadView") as Grid;
+            
 
-            if (homeView != null) homeView.Visibility = Visibility.Collapsed;
-            if (screenMirrorView != null) screenMirrorView.Visibility = Visibility.Collapsed;
-            if (basicFlashView != null) basicFlashView.Visibility = Visibility.Collapsed;
-            if (fastbootVisualizationView != null) fastbootVisualizationView.Visibility = Visibility.Collapsed;
-            if (hiddenEnvironmentView != null) hiddenEnvironmentView.Visibility = Visibility.Collapsed;
-            if (downloadView != null) downloadView.Visibility = Visibility.Collapsed;
-            if (aboutToolView != null) aboutToolView.Visibility = Visibility.Collapsed;
-            if (systemZoneView != null) systemZoneView.Visibility = Visibility.Collapsed;
-            if (oujiaFlashView != null) oujiaFlashView.Visibility = Visibility.Collapsed;
-            if (autorootView != null) autorootView.Visibility = Visibility.Collapsed;
-            if (appManagementView != null) appManagementView.Visibility = Visibility.Collapsed;
-            if (androidGeneralView != null) androidGeneralView.Visibility = Visibility.Collapsed;
-            if (payloadView != null) payloadView.Visibility = Visibility.Collapsed;
-            if (romDownloadView != null) romDownloadView.Visibility = Visibility.Visible;
-            if (edlFlashView != null) edlFlashView.Visibility = Visibility.Collapsed;
-            if (colorOSAssistantView != null) colorOSAssistantView.Visibility = Visibility.Collapsed;
-            if (backupAssistantView != null) backupAssistantView.Visibility = Visibility.Collapsed;
-            if (violetDownloadView != null) violetDownloadView.Visibility = Visibility.Collapsed;
+            ShowPage("RomDownloadview");
 
             UpdateButtonStates("RomDownload");
 
             currentView = "RomDownload";
 
             // 只在首次加载时刷新选项，避免每次切换都重置内容
-            if (RomBrandComboBox?.Items.Count == 0)
+            if ((this.FindControlInPages("RomBrandComboBox") as System.Windows.Controls.ComboBox)?.Items.Count == 0)
             {
                 await RefreshRomSeriesOptionsAsync().ConfigureAwait(true);
                 RefreshRomSelectBrandOptions();
                 await RefreshRomSelectSeriesOptionsAsync().ConfigureAwait(true);
-                AppendRomDownloadLog("信息", $"已加载{RomBrandComboBox?.Items.Count ?? 0}个机型品牌");
+                AppendRomDownloadLog("信息", $"已加载{(this.FindControlInPages("RomBrandComboBox") as System.Windows.Controls.ComboBox)?.Items.Count ?? 0}个机型品牌");
             }
         }
 
@@ -4189,7 +4155,7 @@ namespace WpfApp1
                 ShowNewFolderButton = true
             };
 
-            var currentPath = RomDownloadSavePathTextBox?.Text?.Trim() ?? string.Empty;
+            var currentPath = (this.FindControlInPages("RomDownloadSavePathTextBox") as System.Windows.Controls.TextBox)?.Text?.Trim() ?? string.Empty;
             if (!string.IsNullOrWhiteSpace(currentPath) &&
                 currentPath != "双击选择存放路径" &&
                 Directory.Exists(currentPath))
@@ -4200,7 +4166,7 @@ namespace WpfApp1
             var result = dlg.ShowDialog();
             if (result == System.Windows.Forms.DialogResult.OK && !string.IsNullOrWhiteSpace(dlg.SelectedPath))
             {
-                RomDownloadSavePathTextBox.Text = dlg.SelectedPath;
+                (this.FindControlInPages("RomDownloadSavePathTextBox") as System.Windows.Controls.TextBox).Text = dlg.SelectedPath;
             }
         }
 
@@ -4263,12 +4229,12 @@ namespace WpfApp1
             var startedAt = DateTime.Now;
             try
             {
-                if (RomDownloadProgressBar != null)
+                if ((this.FindControlInPages("RomDownloadProgressBar") as System.Windows.Controls.ProgressBar) != null)
                 {
-                    RomDownloadProgressBar.Value = 0;
+                    (this.FindControlInPages("RomDownloadProgressBar") as System.Windows.Controls.ProgressBar).Value = 0;
                 }
 
-                var saveDir = RomDownloadSavePathTextBox?.Text?.Trim() ?? string.Empty;
+                var saveDir = (this.FindControlInPages("RomDownloadSavePathTextBox") as System.Windows.Controls.TextBox)?.Text?.Trim() ?? string.Empty;
                 if (string.IsNullOrWhiteSpace(saveDir) || saveDir == "双击选择存放路径")
                 {
                     AppendRomDownloadLog("错误", "请先双击选择保存路径");
@@ -4277,17 +4243,17 @@ namespace WpfApp1
 
                 Directory.CreateDirectory(saveDir);
 
-                var partitionName = GetSelectedComboBoxItemText(RomPartitionComboBox);
+                var partitionName = GetSelectedComboBoxItemText((this.FindControlInPages("RomPartitionComboBox") as System.Windows.Controls.ComboBox));
                 if (string.IsNullOrWhiteSpace(partitionName)) partitionName = "boot";
 
-                var versionName = GetSelectedComboBoxItemText(RomVersionComboBox) ?? string.Empty;
+                var versionName = GetSelectedComboBoxItemText((this.FindControlInPages("RomVersionComboBox") as System.Windows.Controls.ComboBox)) ?? string.Empty;
                 if (string.IsNullOrWhiteSpace(versionName)) versionName = "当前版本";
 
                 if (UseRomBackendApi && _selectedRomDownloadLinks.Count == 0)
                 {
-                    var brand = (RomBrandComboBox?.SelectedItem as ComboBoxItem)?.Content?.ToString() ?? _activeRomDownloadBrand;
-                    var series = (RomSeriesComboBox?.SelectedItem as ComboBoxItem)?.Content?.ToString() ?? _activeRomDownloadSeries;
-                    var device = (RomDeviceComboBox?.SelectedItem as ComboBoxItem)?.Content?.ToString() ?? string.Empty;
+                    var brand = ((this.FindControlInPages("RomBrandComboBox") as System.Windows.Controls.ComboBox)?.SelectedItem as ComboBoxItem)?.Content?.ToString() ?? _activeRomDownloadBrand;
+                    var series = ((this.FindControlInPages("RomSeriesComboBox") as System.Windows.Controls.ComboBox)?.SelectedItem as ComboBoxItem)?.Content?.ToString() ?? _activeRomDownloadSeries;
+                    var device = ((this.FindControlInPages("RomDeviceComboBox") as System.Windows.Controls.ComboBox)?.SelectedItem as ComboBoxItem)?.Content?.ToString() ?? string.Empty;
                     var response = await FetchRomApiDownloadLinksAsync(RomApiPackageTypeFull, brand, series, device, versionName, CancellationToken.None).ConfigureAwait(true);
                     _selectedRomDownloadLinks = PreferRomArchiveLinks(RomApiPackageTypeFull, brand, response.Links);
                     var routeDisplayName = GetRomResolveRouteDisplayName(response.ResolveRoute);
@@ -4354,9 +4320,9 @@ namespace WpfApp1
 
                 void UpdateProgress(double percent)
                 {
-                    if (RomDownloadProgressBar == null) return;
+                    if ((this.FindControlInPages("RomDownloadProgressBar") as System.Windows.Controls.ProgressBar) == null) return;
                     var p = Math.Max(0, Math.Min(100, percent));
-                    RomDownloadProgressBar.Value = p;
+                    (this.FindControlInPages("RomDownloadProgressBar") as System.Windows.Controls.ProgressBar).Value = p;
                 }
 
                 var unzipProgress = new Progress<double>(p => UpdateProgress(p));

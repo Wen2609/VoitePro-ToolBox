@@ -32,7 +32,7 @@ public partial class MainWindow
             Owner = this
         };
         _repairSuperWindow = window;
-        RepairSuperHardBrickButton.IsEnabled = false;
+        (this.FindControlInPages("RepairSuperHardBrickButton") as System.Windows.Controls.Button).IsEnabled = false;
         try
         {
             window.ShowDialog();
@@ -40,7 +40,7 @@ public partial class MainWindow
         finally
         {
             _repairSuperWindow = null;
-            RepairSuperHardBrickButton.IsEnabled = true;
+            (this.FindControlInPages("RepairSuperHardBrickButton") as System.Windows.Controls.Button).IsEnabled = true;
         }
     }
 
@@ -169,8 +169,8 @@ public partial class MainWindow
                 Foreground = GetOugaFlashLogBrush("Gray")
             };
             paragraph.Inlines.Add(resultRun);
-            OugaFlashLogTextBox.Document.Blocks.Add(paragraph);
-            OugaFlashLogTextBox.ScrollToEnd();
+            (this.FindControlInPages("OugaFlashLogTextBox") as System.Windows.Controls.RichTextBox).Document.Blocks.Add(paragraph);
+            (this.FindControlInPages("OugaFlashLogTextBox") as System.Windows.Controls.RichTextBox).ScrollToEnd();
         }
 
         if (Dispatcher.CheckAccess())
@@ -195,7 +195,7 @@ public partial class MainWindow
                         Foreground = GetOugaFlashLogBrush("Gray")
                     });
                 }
-                OugaFlashLogTextBox.ScrollToEnd();
+                (this.FindControlInPages("OugaFlashLogTextBox") as System.Windows.Controls.RichTextBox).ScrollToEnd();
             }
 
             if (Dispatcher.CheckAccess())

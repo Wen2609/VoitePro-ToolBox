@@ -146,7 +146,7 @@ namespace WpfApp1
             testingOptions.Children.Add(willingToTestRadioButton);
             testingOptions.Children.Add(unwillingToTestRadioButton);
 
-            var contactBorder = new Border
+            var contactBorder = new System.Windows.Controls.Border
             {
                 Visibility = Visibility.Collapsed,
                 Margin = new Thickness(0, 0, 0, 0),
@@ -359,11 +359,11 @@ namespace WpfApp1
 
         private string CaptureEdlUiLogText()
         {
-            if (EdlLogTextBox?.Document == null)
+            if ((this.FindControlInPages("EdlLogTextBox") as System.Windows.Controls.RichTextBox)?.Document == null)
                 return string.Empty;
 
             var lines = new List<string>();
-            foreach (Block block in EdlLogTextBox.Document.Blocks)
+            foreach (Block block in (this.FindControlInPages("EdlLogTextBox") as System.Windows.Controls.RichTextBox).Document.Blocks)
                 AppendEdlFlowBlockText(block, lines);
             return string.Join(Environment.NewLine, lines).Trim();
         }

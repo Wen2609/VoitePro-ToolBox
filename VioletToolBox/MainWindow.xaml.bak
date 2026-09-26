@@ -409,7 +409,7 @@
                     </MultiTrigger>
                 </Style.Triggers>
             </Style>
-    
+    </ResourceDictionary>
                     <!-- 跨View共享：FastbootCardGroupBoxStyle（HiddenEnvironment 引用） -->
                 <Style x:Key="FastbootCardGroupBoxStyle"
                                        TargetType="{x:Type GroupBox}"
@@ -8983,7 +8983,6 @@
                             </StackPanel></ScrollViewer>
                         </Grid>
                 </DataTemplate>
-</ResourceDictionary>
 </FrameworkElement.Resources>
     <Border
             Background="#FFF0F7FF"

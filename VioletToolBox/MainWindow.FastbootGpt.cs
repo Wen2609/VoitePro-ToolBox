@@ -58,7 +58,7 @@ namespace WpfApp1
         private async void BackupGptButton_Click(object sender, RoutedEventArgs e)
         {
             CancellationTokenSource? operationCancellation = null;
-            BackupGptButton.IsEnabled = false;
+            (this.FindControlInPages("BackupGptButton") as System.Windows.Controls.Button).IsEnabled = false;
             try
             {
                 string adbPath = GetAdbPath();
@@ -122,7 +122,7 @@ namespace WpfApp1
                 }
                 CompleteOperationTransferDisplay();
 
-                if (GenerateRawProgramXmlCheckBox?.IsChecked == true)
+                if ((this.FindControlInPages("GenerateRawProgramXmlCheckBox") as System.Windows.Controls.CheckBox)?.IsChecked == true)
                 {
                     GenerateRawProgramXmlFiles(saveDirectory, disks, new Dictionary<string, string>());
                 }
@@ -162,7 +162,7 @@ namespace WpfApp1
             _fastbootVisualizationOperationCancellation = cancellation;
             _fastbootVisualizationStopAtCommandBoundary = stopAtCommandBoundary;
             SetFastbootVisualizationOperationButtonsEnabled(false);
-            StopFastbootVisualizationOperationButton.IsEnabled = true;
+            (this.FindControlInPages("StopFastbootVisualizationOperationButton") as System.Windows.Controls.Button).IsEnabled = true;
             return cancellation;
         }
 
@@ -179,7 +179,7 @@ namespace WpfApp1
                 _fastbootVisualizationStopAtCommandBoundary = false;
                 _fastbootVisualizationWaitingForDevice = false;
                 _fastbootVisualizationStopRequestedWhileWaiting = false;
-                StopFastbootVisualizationOperationButton.IsEnabled = false;
+                (this.FindControlInPages("StopFastbootVisualizationOperationButton") as System.Windows.Controls.Button).IsEnabled = false;
                 SetFastbootVisualizationOperationButtonsEnabled(true);
             }
 
@@ -194,7 +194,7 @@ namespace WpfApp1
                 return;
             }
 
-            StopFastbootVisualizationOperationButton.IsEnabled = false;
+            (this.FindControlInPages("StopFastbootVisualizationOperationButton") as System.Windows.Controls.Button).IsEnabled = false;
             if (_fastbootVisualizationWaitingForDevice)
             {
                 _fastbootVisualizationStopRequestedWhileWaiting = true;
@@ -217,16 +217,16 @@ namespace WpfApp1
         private void SetFastbootVisualizationOperationButtonsEnabled(bool isEnabled)
         {
             bool adbOnlyEnabled = isEnabled && string.Equals(
-                BottomConnectionTypeText?.Text,
+                (this.FindControlInPages("BottomConnectionTypeText") as System.Windows.Controls.TextBlock)?.Text,
                 "系统",
                 StringComparison.OrdinalIgnoreCase);
-            AdbReadPartitionTableButton.IsEnabled = isEnabled;
-            ReadPartitionTableButton.IsEnabled = isEnabled;
-            WritePartitionButton.IsEnabled = isEnabled;
-            ErasePartitionButton.IsEnabled = isEnabled;
-            ReadPartitionButton.IsEnabled = adbOnlyEnabled;
-            BackupBasebandButton.IsEnabled = adbOnlyEnabled;
-            BackupGptButton.IsEnabled = adbOnlyEnabled;
+            (this.FindControlInPages("AdbReadPartitionTableButton") as System.Windows.Controls.Button).IsEnabled = isEnabled;
+            (this.FindControlInPages("ReadPartitionTableButton") as System.Windows.Controls.Button).IsEnabled = isEnabled;
+            (this.FindControlInPages("WritePartitionButton") as System.Windows.Controls.Button).IsEnabled = isEnabled;
+            (this.FindControlInPages("ErasePartitionButton") as System.Windows.Controls.Button).IsEnabled = isEnabled;
+            (this.FindControlInPages("ReadPartitionButton") as System.Windows.Controls.Button).IsEnabled = adbOnlyEnabled;
+            (this.FindControlInPages("BackupBasebandButton") as System.Windows.Controls.Button).IsEnabled = adbOnlyEnabled;
+            (this.FindControlInPages("BackupGptButton") as System.Windows.Controls.Button).IsEnabled = adbOnlyEnabled;
         }
 
         private void LogFastbootVisualizationOperationStopped(string operationName)
@@ -251,7 +251,7 @@ namespace WpfApp1
             CancellationToken cancellationToken = default)
         {
             cancellationToken.ThrowIfCancellationRequested();
-            if (GenerateRawProgramXmlCheckBox?.IsChecked != true || imageFiles.Count == 0)
+            if ((this.FindControlInPages("GenerateRawProgramXmlCheckBox") as System.Windows.Controls.CheckBox)?.IsChecked != true || imageFiles.Count == 0)
             {
                 return;
             }

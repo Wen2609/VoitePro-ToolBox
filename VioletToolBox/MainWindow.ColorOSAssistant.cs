@@ -52,42 +52,25 @@ namespace WpfApp1
         private void ColorOSAssistantButton_Click(object sender, RoutedEventArgs e)
         {
             var homeView = this.FindName("HomeView") as Grid;
-            var screenMirrorView = this.FindName("ScreenMirrorView") as Grid;
-            var basicFlashView = this.FindName("BasicFlashView") as Grid;
-            var fastbootVisualizationView = this.FindName("FastbootVisualizationView") as Grid;
-            var hiddenEnvironmentView = this.FindName("HiddenEnvironmentView") as Grid;
+            var screenMirrorView = this.FindControlInPages("ScreenMirrorView") as Grid;
+            var basicFlashView = this.FindControlInPages("BasicFlashView") as Grid;
+            var fastbootVisualizationView = this.FindControlInPages("FastbootVisualizationView") as Grid;
+            var hiddenEnvironmentView = this.FindControlInPages("HiddenEnvironmentView") as Grid;
             var downloadView = this.FindName("DownloadView") as Grid;
-            var aboutToolView = this.FindName("AboutToolView") as Grid;
-            var systemZoneView = this.FindName("SystemZoneView") as Grid;
-            var oujiaFlashView = this.FindName("OujiaFlashView") as Grid;
-            var autorootView = this.FindName("AutorootView") as Grid;
-            var appManagementView = this.FindName("AppManagementView") as Grid;
-            var androidGeneralView = this.FindName("AndroidGeneralView") as Grid;
-            var payloadView = this.FindName("PayloadView") as Grid;
-            var romDownloadView = this.FindName("RomDownloadview") as Grid;
-            var edlFlashView = this.FindName("EdlFlashView") as Grid;
-            var colorOSAssistantView = this.FindName("ColorOSAssistantView") as Grid;
-            var backupAssistantView = this.FindName("BackupAssistantView") as Grid;
-            var violetDownloadView = this.FindName("VioletDownloadView") as Grid;
+            var aboutToolView = this.FindControlInPages("AboutToolView") as Grid;
+            var systemZoneView = this.FindControlInPages("SystemZoneView") as Grid;
+            var oujiaFlashView = this.FindControlInPages("OujiaFlashView") as Grid;
+            var autorootView = this.FindControlInPages("AutorootView") as Grid;
+            var appManagementView = this.FindControlInPages("AppManagementView") as Grid;
+            var androidGeneralView = this.FindControlInPages("AndroidGeneralView") as Grid;
+            var payloadView = this.FindControlInPages("PayloadView") as Grid;
+            var romDownloadView = this.FindControlInPages("RomDownloadview") as Grid;
+            var edlFlashView = this.FindControlInPages("EdlFlashView") as Grid;
+            var colorOSAssistantView = this.FindControlInPages("ColorOSAssistantView") as Grid;
+            var backupAssistantView = this.FindControlInPages("BackupAssistantView") as Grid;
+            var violetDownloadView = this.FindControlInPages("VioletDownloadView") as Grid;
 
-            if (homeView != null) homeView.Visibility = Visibility.Collapsed;
-            if (screenMirrorView != null) screenMirrorView.Visibility = Visibility.Collapsed;
-            if (basicFlashView != null) basicFlashView.Visibility = Visibility.Collapsed;
-            if (fastbootVisualizationView != null) fastbootVisualizationView.Visibility = Visibility.Collapsed;
-            if (hiddenEnvironmentView != null) hiddenEnvironmentView.Visibility = Visibility.Collapsed;
-            if (downloadView != null) downloadView.Visibility = Visibility.Collapsed;
-            if (aboutToolView != null) aboutToolView.Visibility = Visibility.Collapsed;
-            if (systemZoneView != null) systemZoneView.Visibility = Visibility.Collapsed;
-            if (oujiaFlashView != null) oujiaFlashView.Visibility = Visibility.Collapsed;
-            if (autorootView != null) autorootView.Visibility = Visibility.Collapsed;
-            if (appManagementView != null) appManagementView.Visibility = Visibility.Collapsed;
-            if (androidGeneralView != null) androidGeneralView.Visibility = Visibility.Collapsed;
-            if (payloadView != null) payloadView.Visibility = Visibility.Collapsed;
-            if (romDownloadView != null) romDownloadView.Visibility = Visibility.Collapsed;
-            if (edlFlashView != null) edlFlashView.Visibility = Visibility.Collapsed;
-            if (colorOSAssistantView != null) colorOSAssistantView.Visibility = Visibility.Visible;
-            if (backupAssistantView != null) backupAssistantView.Visibility = Visibility.Collapsed;
-            if (violetDownloadView != null) violetDownloadView.Visibility = Visibility.Collapsed;
+            ShowPage("ColorOSAssistantView");
 
             UpdateButtonStates("ColorOSAssistant");
             currentView = "ColorOSAssistant";
@@ -101,7 +84,7 @@ namespace WpfApp1
 
         private void EnsureColorOSDefaultDownloadDir()
         {
-            var txtDownloadDir = this.FindName("TxtDownloadDir") as System.Windows.Controls.TextBox;
+            var txtDownloadDir = this.FindControlInPages("TxtDownloadDir") as System.Windows.Controls.TextBox;
             if (txtDownloadDir == null || !string.IsNullOrWhiteSpace(txtDownloadDir.Text))
                 return;
 
@@ -120,7 +103,7 @@ namespace WpfApp1
         {
             Dispatcher.Invoke(() =>
             {
-                var logBox = this.FindName("LogBox") as System.Windows.Controls.RichTextBox;
+                var logBox = this.FindControlInPages("LogBox") as System.Windows.Controls.RichTextBox;
                 if (logBox != null)
                 {
                     logBox.Document.PagePadding = new Thickness(0);
@@ -250,7 +233,7 @@ namespace WpfApp1
         {
             Dispatcher.Invoke(() =>
             {
-                var packagesGrid = this.FindName("PackagesGrid") as DataGrid;
+                var packagesGrid = this.FindControlInPages("PackagesGrid") as DataGrid;
                 if (packagesGrid != null)
                 {
                     _suppressColorOSPackageSelectionParsing = true;
@@ -310,7 +293,7 @@ namespace WpfApp1
             }
 
             e.Handled = true;
-            var packagesGrid = this.FindName("PackagesGrid") as DataGrid;
+            var packagesGrid = this.FindControlInPages("PackagesGrid") as DataGrid;
             if (packagesGrid != null)
             {
                 packagesGrid.SelectedItem = package;
@@ -386,8 +369,8 @@ namespace WpfApp1
 
         private void StartColorOSVersionInfoProgress()
         {
-            var progressBar = this.FindName("DownloadProgress") as System.Windows.Controls.ProgressBar;
-            var progressInfo = this.FindName("TxtProgressInfo") as TextBlock;
+            var progressBar = this.FindControlInPages("DownloadProgress") as System.Windows.Controls.ProgressBar;
+            var progressInfo = this.FindControlInPages("TxtProgressInfo") as TextBlock;
 
             _colorOSVersionInfoProgressTimer ??= new DispatcherTimer
             {
@@ -397,10 +380,10 @@ namespace WpfApp1
             _colorOSVersionInfoProgressTimer.Tick += ColorOSVersionInfoProgressTimer_Tick;
 
             _colorOSVersionInfoStopwatch.Restart();
-            if (progressBar != null)
+            if ((this.FindControlInPages("progressBar") as System.Windows.Controls.ProgressBar) != null)
             {
-                progressBar.Value = 2;
-                progressBar.Tag = "正在解析云端版本  |  Time:0s";
+                (this.FindControlInPages("progressBar") as System.Windows.Controls.ProgressBar).Value = 2;
+                (this.FindControlInPages("progressBar") as System.Windows.Controls.ProgressBar).Tag = "正在解析云端版本  |  Time:0s";
             }
             if (progressInfo != null)
             {
@@ -411,18 +394,18 @@ namespace WpfApp1
 
         private void ColorOSVersionInfoProgressTimer_Tick(object? sender, EventArgs e)
         {
-            var progressBar = this.FindName("DownloadProgress") as System.Windows.Controls.ProgressBar;
-            if (progressBar == null)
+            var progressBar = this.FindControlInPages("DownloadProgress") as System.Windows.Controls.ProgressBar;
+            if ((this.FindControlInPages("progressBar") as System.Windows.Controls.ProgressBar) == null)
                 return;
 
-            double increment = progressBar.Value < 60
+            double increment = (this.FindControlInPages("progressBar") as System.Windows.Controls.ProgressBar).Value < 60
                 ? 4
-                : progressBar.Value < 84
+                : (this.FindControlInPages("progressBar") as System.Windows.Controls.ProgressBar).Value < 84
                     ? 1.5
                     : 0.4;
 
-            progressBar.Value = Math.Min(92, progressBar.Value + increment);
-            progressBar.Tag =
+            (this.FindControlInPages("progressBar") as System.Windows.Controls.ProgressBar).Value = Math.Min(92, (this.FindControlInPages("progressBar") as System.Windows.Controls.ProgressBar).Value + increment);
+            (this.FindControlInPages("progressBar") as System.Windows.Controls.ProgressBar).Tag =
                 $"正在解析云端版本  |  Time:{(int)_colorOSVersionInfoStopwatch.Elapsed.TotalSeconds}s";
         }
 
@@ -431,12 +414,12 @@ namespace WpfApp1
             _colorOSVersionInfoProgressTimer?.Stop();
             _colorOSVersionInfoStopwatch.Stop();
 
-            var progressBar = this.FindName("DownloadProgress") as System.Windows.Controls.ProgressBar;
-            var progressInfo = this.FindName("TxtProgressInfo") as TextBlock;
-            if (progressBar != null)
+            var progressBar = this.FindControlInPages("DownloadProgress") as System.Windows.Controls.ProgressBar;
+            var progressInfo = this.FindControlInPages("TxtProgressInfo") as TextBlock;
+            if ((this.FindControlInPages("progressBar") as System.Windows.Controls.ProgressBar) != null)
             {
-                progressBar.Value = succeeded ? 100 : 0;
-                progressBar.Tag = statusText;
+                (this.FindControlInPages("progressBar") as System.Windows.Controls.ProgressBar).Value = succeeded ? 100 : 0;
+                (this.FindControlInPages("progressBar") as System.Windows.Controls.ProgressBar).Tag = statusText;
             }
             if (progressInfo != null)
             {
@@ -470,8 +453,8 @@ namespace WpfApp1
         {
             Dispatcher.Invoke(() =>
             {
-                var downloadProgress = this.FindName("DownloadProgress") as System.Windows.Controls.ProgressBar;
-                var txtProgressInfo = this.FindName("TxtProgressInfo") as TextBlock;
+                var downloadProgress = this.FindControlInPages("DownloadProgress") as System.Windows.Controls.ProgressBar;
+                var txtProgressInfo = this.FindControlInPages("TxtProgressInfo") as TextBlock;
                 
                 if (downloadProgress != null)
                 {
@@ -490,7 +473,7 @@ namespace WpfApp1
             var dialog = new FolderBrowserDialog();
             if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                var txtDownloadDir = this.FindName("TxtDownloadDir") as System.Windows.Controls.TextBox;
+                var txtDownloadDir = this.FindControlInPages("TxtDownloadDir") as System.Windows.Controls.TextBox;
                 if (txtDownloadDir != null)
                 {
                     txtDownloadDir.Text = dialog.SelectedPath;
@@ -504,7 +487,7 @@ namespace WpfApp1
             dialog.Filter = "ZIP/OZIP Files (*.zip;*.ozip)|*.zip;*.ozip|All Files (*.*)|*.*";
             if (dialog.ShowDialog() == true)
             {
-                var txtPushFile = this.FindName("TxtPushFile") as System.Windows.Controls.TextBox;
+                var txtPushFile = this.FindControlInPages("TxtPushFile") as System.Windows.Controls.TextBox;
                 if (txtPushFile != null)
                 {
                     txtPushFile.Text = dialog.FileName;
@@ -525,7 +508,7 @@ namespace WpfApp1
             if (dialog.ShowDialog() == true)
             {
                 var txtAssistantApk =
-                    this.FindName("TxtAssistantApk") as System.Windows.Controls.TextBox;
+                    this.FindControlInPages("TxtAssistantApk") as System.Windows.Controls.TextBox;
                 if (txtAssistantApk != null)
                 {
                     txtAssistantApk.Text = dialog.FileName;
@@ -568,15 +551,15 @@ namespace WpfApp1
             _colorOSVersionInfoProgressTimer?.Stop();
             _colorOSVersionInfoStopwatch.Stop();
             _colorOSQueryOnlyInProgress = queryOnly;
-            var startBtn = this.FindName("StartBtn") as System.Windows.Controls.Button;
-            var btnQueryOnly = this.FindName("BtnQueryOnly") as System.Windows.Controls.Button;
-            var logBox = this.FindName("LogBox") as System.Windows.Controls.RichTextBox;
-            var packagesGrid = this.FindName("PackagesGrid") as DataGrid;
-            var downloadProgress = this.FindName("DownloadProgress") as System.Windows.Controls.ProgressBar;
-            var txtProgressInfo = this.FindName("TxtProgressInfo") as TextBlock;
-            var txtDownloadDir = this.FindName("TxtDownloadDir") as System.Windows.Controls.TextBox;
-            var txtPushFile = this.FindName("TxtPushFile") as System.Windows.Controls.TextBox;
-            var txtAssistantApk = this.FindName("TxtAssistantApk") as System.Windows.Controls.TextBox;
+            var startBtn = this.FindControlInPages("StartBtn") as System.Windows.Controls.Button;
+            var btnQueryOnly = this.FindControlInPages("BtnQueryOnly") as System.Windows.Controls.Button;
+            var logBox = this.FindControlInPages("LogBox") as System.Windows.Controls.RichTextBox;
+            var packagesGrid = this.FindControlInPages("PackagesGrid") as DataGrid;
+            var downloadProgress = this.FindControlInPages("DownloadProgress") as System.Windows.Controls.ProgressBar;
+            var txtProgressInfo = this.FindControlInPages("TxtProgressInfo") as TextBlock;
+            var txtDownloadDir = this.FindControlInPages("TxtDownloadDir") as System.Windows.Controls.TextBox;
+            var txtPushFile = this.FindControlInPages("TxtPushFile") as System.Windows.Controls.TextBox;
+            var txtAssistantApk = this.FindControlInPages("TxtAssistantApk") as System.Windows.Controls.TextBox;
 
             if (startBtn != null) startBtn.IsEnabled = false;
             if (btnQueryOnly != null) btnQueryOnly.IsEnabled = false;

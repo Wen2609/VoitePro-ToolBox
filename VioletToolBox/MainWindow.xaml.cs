@@ -372,7 +372,7 @@ namespace WpfApp1
         private void SaveDeviceInfoText_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             e.Handled = true;
-            var serial = GetTextFromTextBlock(DeviceSerialText).Trim();
+            var serial = GetTextFromTextBlock((this.FindControlInPages("DeviceSerialText") as System.Windows.Controls.TextBlock)).Trim();
             if (string.IsNullOrWhiteSpace(serial) || serial == "--") serial = "--";
             foreach (var ch in IOPath.GetInvalidFileNameChars())
             {
@@ -387,21 +387,21 @@ namespace WpfApp1
             if (result == true)
             {
                 var sb = new StringBuilder();
-                sb.AppendLine("设备状态: " + GetTextFromTextBlock(DeviceStatusText));
-                sb.AppendLine("版本信息: " + GetTextFromTextBlock(VersionInfoText));
-                sb.AppendLine("连接类型: " + GetTextFromTextBlock(ConnectionTypeText));
-                sb.AppendLine("CPU厂家: " + GetTextFromTextBlock(CpuManufacturerText));
-                sb.AppendLine("设备序列号: " + GetTextFromTextBlock(DeviceSerialText));
-                sb.AppendLine("设备名称: " + GetTextFromTextBlock(DeviceModelText));
-                sb.AppendLine("CPU名称: " + GetTextFromTextBlock(CpuNameText));
-                sb.AppendLine("设备代号: " + GetTextFromTextBlock(DeviceCodeText));
-                sb.AppendLine("操作系统: " + GetTextFromTextBlock(WindowsVersionText));
-                sb.AppendLine("安卓版本: " + GetTextFromTextBlock(AndroidVersionText));
-                sb.AppendLine("解锁状态: " + GetTextFromTextBlock(UnlockStatusText));
-                sb.AppendLine("A/B分区: " + GetTextFromTextBlock(ABPartitionText));
-                sb.AppendLine("内核版本: " + GetTextFromTextBlock(KernelVersionText));
-                sb.AppendLine("构建日期: " + GetTextFromTextBlock(BuildDateText));
-                sb.AppendLine("CPU代号: " + GetTextFromTextBlock(CpuCodeNameText));
+                sb.AppendLine("设备状态: " + GetTextFromTextBlock((this.FindControlInPages("DeviceStatusText") as System.Windows.Controls.TextBlock)));
+                sb.AppendLine("版本信息: " + GetTextFromTextBlock((this.FindControlInPages("VersionInfoText") as System.Windows.Controls.TextBlock)));
+                sb.AppendLine("连接类型: " + GetTextFromTextBlock((this.FindControlInPages("ConnectionTypeText") as System.Windows.Controls.TextBlock)));
+                sb.AppendLine("CPU厂家: " + GetTextFromTextBlock((this.FindControlInPages("CpuManufacturerText") as System.Windows.Controls.TextBlock)));
+                sb.AppendLine("设备序列号: " + GetTextFromTextBlock((this.FindControlInPages("DeviceSerialText") as System.Windows.Controls.TextBlock)));
+                sb.AppendLine("设备名称: " + GetTextFromTextBlock((this.FindControlInPages("DeviceModelText") as System.Windows.Controls.TextBlock)));
+                sb.AppendLine("CPU名称: " + GetTextFromTextBlock((this.FindControlInPages("CpuNameText") as System.Windows.Controls.TextBlock)));
+                sb.AppendLine("设备代号: " + GetTextFromTextBlock((this.FindControlInPages("DeviceCodeText") as System.Windows.Controls.TextBlock)));
+                sb.AppendLine("操作系统: " + GetTextFromTextBlock((this.FindControlInPages("WindowsVersionText") as System.Windows.Controls.TextBlock)));
+                sb.AppendLine("安卓版本: " + GetTextFromTextBlock((this.FindControlInPages("AndroidVersionText") as System.Windows.Controls.TextBlock)));
+                sb.AppendLine("解锁状态: " + GetTextFromTextBlock((this.FindControlInPages("UnlockStatusText") as System.Windows.Controls.TextBlock)));
+                sb.AppendLine("A/B分区: " + GetTextFromTextBlock((this.FindControlInPages("ABPartitionText") as System.Windows.Controls.TextBlock)));
+                sb.AppendLine("内核版本: " + GetTextFromTextBlock((this.FindControlInPages("KernelVersionText") as System.Windows.Controls.TextBlock)));
+                sb.AppendLine("构建日期: " + GetTextFromTextBlock((this.FindControlInPages("BuildDateText") as System.Windows.Controls.TextBlock)));
+                sb.AppendLine("CPU代号: " + GetTextFromTextBlock((this.FindControlInPages("CpuCodeNameText") as System.Windows.Controls.TextBlock)));
                 IOFile.WriteAllText(dlg.FileName, sb.ToString(), Encoding.UTF8);
             }
         }
@@ -414,12 +414,12 @@ namespace WpfApp1
         {
             var allItems = new HandyControl.Controls.SideMenuItem[]
             {
-                HomeButton, ScreenMirrorButton, AboutToolButton,
-                BasicFlashButton, FastbootVisualizationButton, OugaFlashButton,
-                EdlFlashButton, ColorOSAssistantButton, HiddenEnvironmentButton,
-                SystemZoneButton, AutorootButton, AppManagementButton,
-                AndroidGeneralButton, PayloadButton, BackupAssistantButton,
-                DownloadZoneButton, RomDownload, VioletDownload
+                (this.FindControlInPages("HomeButton") as HandyControl.Controls.SideMenuItem), (this.FindControlInPages("ScreenMirrorButton") as HandyControl.Controls.SideMenuItem), (this.FindControlInPages("AboutToolButton") as HandyControl.Controls.SideMenuItem),
+                (this.FindControlInPages("BasicFlashButton") as HandyControl.Controls.SideMenuItem), (this.FindControlInPages("FastbootVisualizationButton") as HandyControl.Controls.SideMenuItem), (this.FindControlInPages("OugaFlashButton") as HandyControl.Controls.SideMenuItem),
+                (this.FindControlInPages("EdlFlashButton") as HandyControl.Controls.SideMenuItem), (this.FindControlInPages("ColorOSAssistantButton") as HandyControl.Controls.SideMenuItem), (this.FindControlInPages("HiddenEnvironmentButton") as HandyControl.Controls.SideMenuItem),
+                (this.FindControlInPages("SystemZoneButton") as HandyControl.Controls.SideMenuItem), (this.FindControlInPages("AutorootButton") as HandyControl.Controls.SideMenuItem), (this.FindControlInPages("AppManagementButton") as HandyControl.Controls.SideMenuItem),
+                (this.FindControlInPages("AndroidGeneralButton") as HandyControl.Controls.SideMenuItem), (this.FindControlInPages("PayloadButton") as HandyControl.Controls.SideMenuItem), (this.FindControlInPages("BackupAssistantButton") as HandyControl.Controls.SideMenuItem),
+                (this.FindControlInPages("DownloadZoneButton") as HandyControl.Controls.SideMenuItem), (this.FindControlInPages("RomDownload") as HandyControl.Controls.SideMenuItem), (this.FindControlInPages("VioletDownload") as HandyControl.Controls.SideMenuItem)
             };
 
             foreach (var item in allItems)
@@ -447,7 +447,7 @@ namespace WpfApp1
             bool newState = expand ?? !isExpanded;
             _groupExpanded[groupName] = newState;
 
-            var sideMenu = this.FindName("SideMenuControl") as HandyControl.Controls.SideMenu;
+            var sideMenu = this.FindControlInPages("SideMenuControl") as HandyControl.Controls.SideMenu;
             if (sideMenu == null) return;
 
             foreach (var itemName in _groupItems[groupName])
@@ -844,7 +844,7 @@ namespace WpfApp1
 
         private string ApplyFastbootVerificationOptions(string commandLine, string partitionName)
         {
-            if (DisableDmVerityCheckBox?.IsChecked != true ||
+            if ((this.FindControlInPages("DisableDmVerityCheckBox") as System.Windows.Controls.CheckBox)?.IsChecked != true ||
                 !partitionName.StartsWith("vbmeta", StringComparison.OrdinalIgnoreCase))
             {
                 return commandLine;
@@ -917,7 +917,7 @@ namespace WpfApp1
                             BeginFastbootPendingStep(_pendingFastbootFlashParagraphs, destPartition, BuildFastbootWriteStepTitle(sourceDisplayName, destPartition));
                         }
 
-                        FastbootLogTextBox.ScrollToEnd();
+                        (this.FindControlInPages("FastbootLogTextBox") as System.Windows.Controls.RichTextBox).ScrollToEnd();
                     });
                     isSending = true;
                 }
@@ -977,9 +977,9 @@ namespace WpfApp1
         {
             return Dispatcher.Invoke(() =>
             {
-                if (MultiDeviceComboBox.SelectedItem != null)
+                if ((this.FindControlInPages("MultiDeviceComboBox") as System.Windows.Controls.ComboBox).SelectedItem != null)
                 {
-                    string selectedText = MultiDeviceComboBox.SelectedItem.ToString();
+                    string selectedText = (this.FindControlInPages("MultiDeviceComboBox") as System.Windows.Controls.ComboBox).SelectedItem.ToString();
                     if (selectedText.Contains(" ("))
                     {
                         return selectedText.Substring(0, selectedText.IndexOf(" ("));
@@ -1020,6 +1020,7 @@ namespace WpfApp1
             // 初始化所有分区集合
             allPartitions = new ObservableCollection<PartitionInfo>();
             InitializeComponent();
+            CollectPageTemplateKeys();
             try { System.IO.File.AppendAllText(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "startup.log"), $"{System.DateTime.Now:HH:mm:ss.fff} InitializeComponent done: {_swStart.ElapsedMilliseconds}ms\r\n"); } catch { }
             allPartitions.CollectionChanged += AllPartitions_CollectionChanged;
             UpdatePartitionSelectionSummary();
@@ -1037,10 +1038,9 @@ namespace WpfApp1
             InitializeDeviceStatusMonitoring();
             ToggleAllPartitionsCommand = new RelayCommand(ToggleAllPartitions);
             
-            // 设置分区表容器
-            PartitionTableDataGrid.ItemsSource = allPartitions;
-            MultiDeviceComboBox.ItemsSource = DeviceSerials;
-            var appListDataGrid = this.FindName("AppListDataGrid") as DataGrid;
+            // 设置分区表容器 PartitionTableDataGrid.ItemsSource = allPartitions;
+            (this.FindControlInPages("MultiDeviceComboBox") as System.Windows.Controls.ComboBox).ItemsSource = DeviceSerials;
+            var appListDataGrid = this.FindControlInPages("AppListDataGrid") as DataGrid;
             if (appListDataGrid != null)
             {
                 appListDataGrid.ItemsSource = AppPackages;
@@ -1066,41 +1066,9 @@ namespace WpfApp1
             InitializeAutorootPaths();
 
             // 初始化时显示首页视图，隐藏其他视图
-            var homeView = this.FindName("HomeView") as Grid;
-            var screenMirrorView = this.FindName("ScreenMirrorView") as Grid;
-            var basicFlashView = this.FindName("BasicFlashView") as Grid;
-            var fastbootVisualizationView = this.FindName("FastbootVisualizationView") as Grid;
-            var hiddenEnvironmentView = this.FindName("HiddenEnvironmentView") as Grid;
-            var aboutToolView = this.FindName("AboutToolView") as Grid;
-            var systemZoneView = this.FindName("SystemZoneView") as Grid;
-            var oujiaFlashView = this.FindName("OujiaFlashView") as Grid;
-            var autorootView = this.FindName("AutorootView") as Grid;
-            var appManagementView = this.FindName("AppManagementView") as Grid;
-            var androidGeneralView = this.FindName("AndroidGeneralView") as Grid;
-            var payloadView = this.FindName("PayloadView") as Grid;
-            var romDownloadView = this.FindName("RomDownloadview") as Grid;
-            var edlFlashView = this.FindName("EdlFlashView") as Grid;
-            var colorOSAssistantView = this.FindName("ColorOSAssistantView") as Grid;
-            var backupAssistantView = this.FindName("BackupAssistantView") as Grid;
-            var violetDownloadView = this.FindName("VioletDownloadView") as Grid;
+            
 
-            if (homeView != null) homeView.Visibility = Visibility.Visible;
-            if (screenMirrorView != null) screenMirrorView.Visibility = Visibility.Collapsed;
-            if (basicFlashView != null) basicFlashView.Visibility = Visibility.Collapsed;
-            if (fastbootVisualizationView != null) fastbootVisualizationView.Visibility = Visibility.Collapsed;
-            if (hiddenEnvironmentView != null) hiddenEnvironmentView.Visibility = Visibility.Collapsed;
-            if (aboutToolView != null) aboutToolView.Visibility = Visibility.Collapsed;
-            if (systemZoneView != null) systemZoneView.Visibility = Visibility.Collapsed;
-            if (oujiaFlashView != null) oujiaFlashView.Visibility = Visibility.Collapsed;
-            if (autorootView != null) autorootView.Visibility = Visibility.Collapsed;
-            if (appManagementView != null) appManagementView.Visibility = Visibility.Collapsed;
-            if (androidGeneralView != null) androidGeneralView.Visibility = Visibility.Collapsed;
-            if (payloadView != null) payloadView.Visibility = Visibility.Collapsed;
-            if (romDownloadView != null) romDownloadView.Visibility = Visibility.Collapsed;
-            if (edlFlashView != null) edlFlashView.Visibility = Visibility.Collapsed;
-            if (colorOSAssistantView != null) colorOSAssistantView.Visibility = Visibility.Collapsed;
-            if (backupAssistantView != null) backupAssistantView.Visibility = Visibility.Collapsed;
-            if (violetDownloadView != null) violetDownloadView.Visibility = Visibility.Collapsed;
+            ShowPage("HomeView");
             
             UpdateButtonStates("Home");
             // 自动启动更新程序
@@ -1108,7 +1076,7 @@ namespace WpfApp1
             
             
             _storageViewModel = new StorageViewModel();
-            var storageBorder = this.FindName("StorageMemoryBorder") as Border;
+            var storageBorder = this.FindControlInPages("StorageMemoryBorder") as Border;
             if (storageBorder != null)
             {
                 storageBorder.DataContext = _storageViewModel;
@@ -1136,6 +1104,549 @@ namespace WpfApp1
             InitializeLanguageUi();
         }
 
+
+        private static readonly System.Collections.Generic.Dictionary<string, string> _nameViewMapStatic0 = new System.Collections.Generic.Dictionary<string, string>();
+        static MainWindow()
+        {
+            _nameViewMapStatic0["APatchPatchRadioButton"] = "AutorootView";
+            _nameViewMapStatic0["AboutSocialButtonBorder"] = "AboutToolView";
+            _nameViewMapStatic0["AboutToolView"] = "AboutToolView";
+            _nameViewMapStatic0["AdbReadPartitionTableButton"] = "FastbootVisualizationView";
+            _nameViewMapStatic0["AddRescueModuleCheckBox"] = "HiddenEnvironmentView";
+            _nameViewMapStatic0["AfterSalesArbFuseCheckButton"] = "OujiaFlashView";
+            _nameViewMapStatic0["AfterSalesAutoBrickMarqueeTransform"] = "OujiaFlashView";
+            _nameViewMapStatic0["AfterSalesAutoBrickRecoveryModeToggle"] = "OujiaFlashView";
+            _nameViewMapStatic0["AfterSalesAutoRebootCheckBox"] = "OujiaFlashView";
+            _nameViewMapStatic0["AfterSalesBinUrlTextBox"] = "OujiaFlashView";
+            _nameViewMapStatic0["AfterSalesBootloaderModeToggle"] = "OujiaFlashView";
+            _nameViewMapStatic0["AfterSalesClearDataCheckBox"] = "OujiaFlashView";
+            _nameViewMapStatic0["AfterSalesContent"] = "OujiaFlashView";
+            _nameViewMapStatic0["AfterSalesExtractPartitionButton"] = "OujiaFlashView";
+            _nameViewMapStatic0["AfterSalesFastbootDModeToggle"] = "OujiaFlashView";
+            _nameViewMapStatic0["AfterSalesFixFastbootDButton"] = "OujiaFlashView";
+            _nameViewMapStatic0["AfterSalesFlashPackTextBox"] = "OujiaFlashView";
+            _nameViewMapStatic0["AfterSalesFlashProgressBar"] = "OujiaFlashView";
+            _nameViewMapStatic0["AfterSalesPackageModeCheckBox"] = "OujiaFlashView";
+            _nameViewMapStatic0["AfterSalesPayloadPartitionComboBox"] = "OujiaFlashView";
+            _nameViewMapStatic0["AfterSalesProgressBarContainer"] = "OujiaFlashView";
+            _nameViewMapStatic0["AfterSalesSelectFolderButton"] = "OujiaFlashView";
+            _nameViewMapStatic0["AfterSalesStartFlashButton"] = "OujiaFlashView";
+            _nameViewMapStatic0["AfterSalesTransferRateTextBlock"] = "OujiaFlashView";
+            _nameViewMapStatic0["AfterSalesUnpackPayloadButton"] = "OujiaFlashView";
+            _nameViewMapStatic0["AnalyzeOcdtButton"] = "BasicFlashView";
+            _nameViewMapStatic0["AndroidGeneralView"] = "AndroidGeneralView";
+            _nameViewMapStatic0["AppListDataGrid"] = "AppManagementView";
+            _nameViewMapStatic0["AppListSwitchToggle"] = "AppManagementView";
+            _nameViewMapStatic0["AppListSwitchToggle复制__C_"] = "AppManagementView";
+            _nameViewMapStatic0["AppManagementLogTextBox"] = "AppManagementView";
+            _nameViewMapStatic0["AppManagementView"] = "AppManagementView";
+            _nameViewMapStatic0["AppPackageSearchComboBox"] = "AppManagementView";
+            _nameViewMapStatic0["ArbFuseCheckButton"] = "OujiaFlashView";
+            _nameViewMapStatic0["AutoDetectKmiCheckBox"] = "AutorootView";
+            _nameViewMapStatic0["AutoFlashAndInstallCheckBox"] = "AutorootView";
+            _nameViewMapStatic0["AutoMirrorCheckBox"] = "ScreenMirrorView";
+            _nameViewMapStatic0["AutoRebootCheckBox"] = "BasicFlashView";
+            _nameViewMapStatic0["AutoRebootOugaCheckBox"] = "OujiaFlashView";
+            _nameViewMapStatic0["AutoRotateButton"] = "ScreenMirrorView";
+            _nameViewMapStatic0["AutorootProgressBar"] = "AutorootView";
+            _nameViewMapStatic0["AutorootTrafficUsageTextBlock"] = "AutorootView";
+            _nameViewMapStatic0["AutorootTrafficUsedRun"] = "AutorootView";
+            _nameViewMapStatic0["AutorootView"] = "AutorootView";
+            _nameViewMapStatic0["AvbAnalyzeVbmetaButton"] = "AutorootView";
+            _nameViewMapStatic0["AvbAospBootPathTextBox"] = "AutorootView";
+            _nameViewMapStatic0["AvbAospRecoveryPathTextBox"] = "AutorootView";
+            _nameViewMapStatic0["AvbAospVbmetaPathTextBox"] = "AutorootView";
+            _nameViewMapStatic0["AvbAospVbmetaSystemPathTextBox"] = "AutorootView";
+            _nameViewMapStatic0["AvbBootPathTextBox"] = "AutorootView";
+            _nameViewMapStatic0["AvbChainedFilePanel"] = "AutorootView";
+            _nameViewMapStatic0["AvbInitBootPathTextBox"] = "AutorootView";
+            _nameViewMapStatic0["AvbModeComboBox"] = "AutorootView";
+            _nameViewMapStatic0["AvbNewAospFilePanel"] = "AutorootView";
+            _nameViewMapStatic0["AvbNonChainedFilePanel"] = "AutorootView";
+            _nameViewMapStatic0["AvbSignCard"] = "AutorootView";
+            _nameViewMapStatic0["AvbStartSignButton"] = "AutorootView";
+            _nameViewMapStatic0["AvbVbmetaPathTextBox"] = "AutorootView";
+            _nameViewMapStatic0["BackKeyButton"] = "ScreenMirrorView";
+            _nameViewMapStatic0["BackupAssistantView"] = "BackupAssistantView";
+            _nameViewMapStatic0["BackupBasebandButton"] = "FastbootVisualizationView";
+            _nameViewMapStatic0["BackupGptButton"] = "FastbootVisualizationView";
+            _nameViewMapStatic0["BasicFlashView"] = "BasicFlashView";
+            _nameViewMapStatic0["BinUrlTextBox"] = "OujiaFlashView";
+            _nameViewMapStatic0["BitrateSlider"] = "ScreenMirrorView";
+            _nameViewMapStatic0["BitrateValueText"] = "ScreenMirrorView";
+            _nameViewMapStatic0["BootFilePathTextBox"] = "BasicFlashView";
+            _nameViewMapStatic0["Border"] = "BasicFlashView";
+            _nameViewMapStatic0["BrowseInputButton"] = "PayloadView";
+            _nameViewMapStatic0["BrowseOutputButton"] = "PayloadView";
+            _nameViewMapStatic0["BtnBrowseAssistantApk"] = "ColorOSAssistantView";
+            _nameViewMapStatic0["BtnBrowseDir"] = "ColorOSAssistantView";
+            _nameViewMapStatic0["BtnBrowseFile"] = "ColorOSAssistantView";
+            _nameViewMapStatic0["BtnDownloadApk"] = "ColorOSAssistantView";
+            _nameViewMapStatic0["BtnQueryOnly"] = "ColorOSAssistantView";
+            _nameViewMapStatic0["C16DynamicCheckBox"] = "RomDownloadview";
+            _nameViewMapStatic0["CleanupMyPartitionsCheckBox"] = "AndroidGeneralView";
+            _nameViewMapStatic0["ClearAppDataButton"] = "AppManagementView";
+            _nameViewMapStatic0["ClearDataCheckBox"] = "OujiaFlashView";
+            _nameViewMapStatic0["ClearModuleListButton"] = "HiddenEnvironmentView";
+            _nameViewMapStatic1["ColorOSAssistantView"] = "ColorOSAssistantView";
+            _nameViewMapStatic1["CompleteWipeCheckBox"] = "BasicFlashView";
+            _nameViewMapStatic1["ContentSite"] = "BasicFlashView";
+            _nameViewMapStatic1["CopySelectedPackagesButton"] = "AppManagementView";
+            _nameViewMapStatic1["CustomHeightTextBox"] = "ScreenMirrorView";
+            _nameViewMapStatic1["CustomWidthTextBox"] = "ScreenMirrorView";
+            _nameViewMapStatic1["DetectApp1CheckBox"] = "HiddenEnvironmentView";
+            _nameViewMapStatic1["DetectApp2CheckBox"] = "HiddenEnvironmentView";
+            _nameViewMapStatic1["DetectApp3CheckBox"] = "HiddenEnvironmentView";
+            _nameViewMapStatic1["DetectApp4CheckBox"] = "HiddenEnvironmentView";
+            _nameViewMapStatic1["DetectApp5CheckBox"] = "HiddenEnvironmentView";
+            _nameViewMapStatic1["DetectApp6CheckBox"] = "HiddenEnvironmentView";
+            _nameViewMapStatic1["DetectApp7CheckBox"] = "HiddenEnvironmentView";
+            _nameViewMapStatic1["DetectApp8CheckBox"] = "HiddenEnvironmentView";
+            _nameViewMapStatic1["DetectApp9CheckBox"] = "HiddenEnvironmentView";
+            _nameViewMapStatic1["DisableDmVerityCheckBox"] = "FastbootVisualizationView";
+            _nameViewMapStatic1["DownloadHiddenPackageButton"] = "HiddenEnvironmentView";
+            _nameViewMapStatic1["DownloadProgress"] = "ColorOSAssistantView";
+            _nameViewMapStatic1["EdlAutoRebootCheckBox"] = "EdlFlashView";
+            _nameViewMapStatic1["EdlBackupGptButton"] = "EdlFlashView";
+            _nameViewMapStatic1["EdlBackupModemFingerprintButton"] = "EdlFlashView";
+            _nameViewMapStatic1["EdlBugFeedbackButton"] = "EdlFlashView";
+            _nameViewMapStatic1["EdlBuiltInLoaderComboBox"] = "EdlFlashView";
+            _nameViewMapStatic1["EdlErasePartButton"] = "EdlFlashView";
+            _nameViewMapStatic1["EdlFactoryResetButton"] = "EdlFlashView";
+            _nameViewMapStatic1["EdlFactoryResetCheckBox"] = "EdlFlashView";
+            _nameViewMapStatic1["EdlFlashPackBrowseButton"] = "EdlFlashView";
+            _nameViewMapStatic1["EdlFlashPackTextBox"] = "EdlFlashView";
+            _nameViewMapStatic1["EdlFlashView"] = "EdlFlashView";
+            _nameViewMapStatic1["EdlForceOemButton"] = "EdlFlashView";
+            _nameViewMapStatic1["EdlFormatLunButton"] = "EdlFlashView";
+            _nameViewMapStatic1["EdlGenerateProgramCheckBox"] = "EdlFlashView";
+            _nameViewMapStatic1["EdlLoaderBrowseButton"] = "EdlFlashView";
+            _nameViewMapStatic1["EdlLoaderTextBox"] = "EdlFlashView";
+            _nameViewMapStatic1["EdlLogTextBox"] = "EdlFlashView";
+            _nameViewMapStatic1["EdlOperationButtonsCanvas"] = "EdlFlashView";
+            _nameViewMapStatic1["EdlOperationOverlayText"] = "EdlFlashView";
+            _nameViewMapStatic1["EdlPartSelectAllCheckBox"] = "EdlFlashView";
+            _nameViewMapStatic1["EdlPartitionContentGrid"] = "EdlFlashView";
+            _nameViewMapStatic1["EdlPartitionDataGrid"] = "EdlFlashView";
+            _nameViewMapStatic1["EdlPartitionSearchComboBox"] = "EdlFlashView";
+            _nameViewMapStatic1["EdlPortComboBox"] = "EdlFlashView";
+            _nameViewMapStatic1["EdlProgressBar"] = "EdlFlashView";
+            _nameViewMapStatic1["EdlProgressTextBlock"] = "EdlFlashView";
+            _nameViewMapStatic1["EdlReadGptButton"] = "EdlFlashView";
+            _nameViewMapStatic1["EdlReadPartButton"] = "EdlFlashView";
+            _nameViewMapStatic1["EdlReadVersionInfoButton"] = "EdlFlashView";
+            _nameViewMapStatic1["EdlResetComboBox"] = "EdlFlashView";
+            _nameViewMapStatic1["EdlSelectAllCheckBox"] = "EdlFlashView";
+            _nameViewMapStatic1["EdlSendLoaderCheckBox"] = "EdlFlashView";
+            _nameViewMapStatic1["EdlSkipDataCheckBox"] = "EdlFlashView";
+            _nameViewMapStatic1["EdlSkipSafeCheckBox"] = "EdlFlashView";
+            _nameViewMapStatic1["EdlSlotManagementButton"] = "EdlFlashView";
+            _nameViewMapStatic1["EdlStopOperationButton"] = "EdlFlashView";
+            _nameViewMapStatic1["EdlStopOperationOverlay"] = "EdlFlashView";
+            _nameViewMapStatic1["EdlWriteGptButton"] = "EdlFlashView";
+            _nameViewMapStatic1["EdlWritePartButton"] = "EdlFlashView";
+            _nameViewMapStatic1["EnableDiagPortButton"] = "BasicFlashView";
+            _nameViewMapStatic1["EnableMiuiUsbButton"] = "BasicFlashView";
+            _nameViewMapStatic1["EraseGoogleLockButton"] = "BasicFlashView";
+            _nameViewMapStatic1["ErasePartitionButton"] = "FastbootVisualizationView";
+            _nameViewMapStatic1["ExportButton"] = "PayloadView";
+            _nameViewMapStatic1["ExtractApkButton"] = "AppManagementView";
+            _nameViewMapStatic1["ExtractPartitionButton"] = "OujiaFlashView";
+            _nameViewMapStatic1["FastbootLogTextBox"] = "FastbootVisualizationView";
+            _nameViewMapStatic1["FastbootVisualizationView"] = "FastbootVisualizationView";
+            _nameViewMapStatic1["FileListTextBox"] = "SystemZoneView";
+            _nameViewMapStatic1["FileTransferLogTextBox"] = "SystemZoneView";
+            _nameViewMapStatic1["FilterXmlCheckBox"] = "AndroidGeneralView";
+            _nameViewMapStatic1["FixAdbButton"] = "BasicFlashView";
+            _nameViewMapStatic1["FixSuperCheckBox"] = "OujiaFlashView";
+            _nameViewMapStatic1["FlashABCheckBox"] = "OujiaFlashView";
+            _nameViewMapStatic1["FlashBatTextBox"] = "FastbootVisualizationView";
+            _nameViewMapStatic1["FlashBootButton"] = "BasicFlashView";
+            _nameViewMapStatic1["FlashLogTextBox"] = "BasicFlashView";
+            _nameViewMapStatic1["FlashProgressBar"] = "OujiaFlashView";
+            _nameViewMapStatic1["FlashProgressRing"] = "OujiaFlashView";
+            _nameViewMapStatic1["FolderPathTextBox"] = "OujiaFlashView";
+            _nameViewMapStatic1["FolkPatchPatchRadioButton"] = "AutorootView";
+            _nameViewMapStatic1["ForceLandscapeButton"] = "ScreenMirrorView";
+            _nameViewMapStatic2["ForcePortraitButton"] = "ScreenMirrorView";
+            _nameViewMapStatic2["FormatDeviceButton"] = "BasicFlashView";
+            _nameViewMapStatic2["FreezeMiuiUpdaterButton"] = "AppManagementView";
+            _nameViewMapStatic2["FreezeSelectedAppsButton"] = "AppManagementView";
+            _nameViewMapStatic2["FullPackageModeCheckBox"] = "OujiaFlashView";
+            _nameViewMapStatic2["GenerateFlashScriptButton"] = "AndroidGeneralView";
+            _nameViewMapStatic2["GenerateOcdtButton"] = "AndroidGeneralView";
+            _nameViewMapStatic2["GenerateRawProgramXmlCheckBox"] = "FastbootVisualizationView";
+            _nameViewMapStatic2["GkiAk3PathTextBox"] = "AutorootView";
+            _nameViewMapStatic2["GkiBootPathTextBox"] = "AutorootView";
+            _nameViewMapStatic2["HiddenEnvironmentLogTextBox"] = "HiddenEnvironmentView";
+            _nameViewMapStatic2["HiddenEnvironmentView"] = "HiddenEnvironmentView";
+            _nameViewMapStatic2["HiddenRootProgressBar"] = "HiddenEnvironmentView";
+            _nameViewMapStatic2["HiddenRootZipPathTextBox"] = "HiddenEnvironmentView";
+            _nameViewMapStatic2["HomeKeyButton"] = "ScreenMirrorView";
+            _nameViewMapStatic2["ImageDirTextBox"] = "AndroidGeneralView";
+            _nameViewMapStatic2["InputPathTextBox"] = "PayloadView";
+            _nameViewMapStatic2["InstallDetectAppsButton"] = "HiddenEnvironmentView";
+            _nameViewMapStatic2["InstallZip6CheckBox"] = "HiddenEnvironmentView";
+            _nameViewMapStatic2["ItemBorder"] = "BasicFlashView";
+            _nameViewMapStatic2["KeepDataCheckBox"] = "BasicFlashView";
+            _nameViewMapStatic2["KeepUserDataCheckBox"] = "FastbootVisualizationView";
+            _nameViewMapStatic2["KernelSuLkmPatchRadioButton"] = "AutorootView";
+            _nameViewMapStatic2["LenovoPresetModelComboBox"] = "RomDownloadview";
+            _nameViewMapStatic2["LenovoQueryButton"] = "RomDownloadview";
+            _nameViewMapStatic2["LenovoQueryCopyButton"] = "RomDownloadview";
+            _nameViewMapStatic2["LenovoQueryInputTextBox"] = "RomDownloadview";
+            _nameViewMapStatic2["LenovoQueryResultTextBox"] = "RomDownloadview";
+            _nameViewMapStatic2["LkmKmiComboBox"] = "AutorootView";
+            _nameViewMapStatic2["LkmKmiPanel"] = "AutorootView";
+            _nameViewMapStatic2["LockBLButton"] = "BasicFlashView";
+            _nameViewMapStatic2["LockBootloaderCheckBox"] = "FastbootVisualizationView";
+            _nameViewMapStatic2["LockScreenButton"] = "ScreenMirrorView";
+            _nameViewMapStatic2["LogBox"] = "ColorOSAssistantView";
+            _nameViewMapStatic2["LogTextBox"] = "PayloadView";
+            _nameViewMapStatic2["MagiskAdvancedOptionsPanel"] = "AutorootView";
+            _nameViewMapStatic2["MagiskAlpha28104CheckBox"] = "HiddenEnvironmentView";
+            _nameViewMapStatic2["MagiskAlpha29000CheckBox"] = "HiddenEnvironmentView";
+            _nameViewMapStatic2["MagiskAlphaPatchRadioButton"] = "AutorootView";
+            _nameViewMapStatic2["MaxFpsSlider"] = "ScreenMirrorView";
+            _nameViewMapStatic2["MaxFpsValueText"] = "ScreenMirrorView";
+            _nameViewMapStatic2["MirrorClipboardSyncCheckBox"] = "ScreenMirrorView";
+            _nameViewMapStatic2["MirrorFullscreenCheckBox"] = "ScreenMirrorView";
+            _nameViewMapStatic2["MirrorNavigationBarToggle"] = "ScreenMirrorView";
+            _nameViewMapStatic2["MirrorOrientation180RadioButton"] = "ScreenMirrorView";
+            _nameViewMapStatic2["MirrorOrientation90RadioButton"] = "ScreenMirrorView";
+            _nameViewMapStatic2["MirrorOrientationOriginalRadioButton"] = "ScreenMirrorView";
+            _nameViewMapStatic2["MirrorStayAwakeCheckBox"] = "ScreenMirrorView";
+            _nameViewMapStatic2["MirrorTitleShowAndroidVersionCheckBox"] = "ScreenMirrorView";
+            _nameViewMapStatic2["MirrorTitleShowBatteryLevelCheckBox"] = "ScreenMirrorView";
+            _nameViewMapStatic2["MirrorTitleShowBatteryTempCheckBox"] = "ScreenMirrorView";
+            _nameViewMapStatic2["MirrorTitleShowBuildInfoCheckBox"] = "ScreenMirrorView";
+            _nameViewMapStatic2["MirrorTitleShowDeviceCodeCheckBox"] = "ScreenMirrorView";
+            _nameViewMapStatic2["MirrorTitleShowDeviceNameCheckBox"] = "ScreenMirrorView";
+            _nameViewMapStatic2["MirrorTitleShowSerialCheckBox"] = "ScreenMirrorView";
+            _nameViewMapStatic2["MirrorTitleShowSlotCheckBox"] = "ScreenMirrorView";
+            _nameViewMapStatic2["MirrorTitleShowStorageCheckBox"] = "ScreenMirrorView";
+            _nameViewMapStatic2["MirrorTitleShowUnlockStateCheckBox"] = "ScreenMirrorView";
+            _nameViewMapStatic2["ModuleListBox"] = "HiddenEnvironmentView";
+            _nameViewMapStatic2["OcdtProjIdTextBox"] = "AndroidGeneralView";
+            _nameViewMapStatic2["OcdtSizeComboBox"] = "AndroidGeneralView";
+            _nameViewMapStatic2["OcdtVariantComboBox"] = "AndroidGeneralView";
+            _nameViewMapStatic2["OfflinePatchModeRadioButton"] = "AutorootView";
+            _nameViewMapStatic2["OfpExtractProgressBar"] = "AndroidGeneralView";
+            _nameViewMapStatic2["OfpFilePathTextBox"] = "AndroidGeneralView";
+            _nameViewMapStatic2["OfpSuperSegmentsTextBox"] = "AndroidGeneralView";
+            _nameViewMapStatic2["OnePlusAutoRootModeRadioButton"] = "AutorootView";
+            _nameViewMapStatic2["OperationProgressBar"] = "FastbootVisualizationView";
+            _nameViewMapStatic2["OpsExtractProgressBar"] = "AndroidGeneralView";
+            _nameViewMapStatic2["OpsFilePathTextBox"] = "AndroidGeneralView";
+            _nameViewMapStatic2["OugaFlashLogTextBox"] = "OujiaFlashView";
+            _nameViewMapStatic2["OugaFlashOverlay"] = "OujiaFlashView";
+            _nameViewMapStatic2["OugaPartitionSearchTextBox"] = "OujiaFlashView";
+            _nameViewMapStatic2["OugaPartitionTableDataGrid"] = "OujiaFlashView";
+            _nameViewMapStatic2["OujiaFlashView"] = "OujiaFlashView";
+            _nameViewMapStatic2["OutputDirTextBox"] = "PayloadView";
+            _nameViewMapStatic2["OverallPercentTextBlock"] = "PayloadView";
+            _nameViewMapStatic2["OverallProgressBar"] = "PayloadView";
+            _nameViewMapStatic2["PART_ContentHost"] = "VioletDownloadView";
+            _nameViewMapStatic2["PART_Indicator"] = "BasicFlashView";
+            _nameViewMapStatic3["PART_Track"] = "BasicFlashView";
+            _nameViewMapStatic3["PackagesGrid"] = "ColorOSAssistantView";
+            _nameViewMapStatic3["PartitionComboBox"] = "BasicFlashView";
+            _nameViewMapStatic3["PartitionSearchTextBox"] = "FastbootVisualizationView";
+            _nameViewMapStatic3["PartitionSelectAllCheckBox"] = "FastbootVisualizationView";
+            _nameViewMapStatic3["PartitionSelectionSummaryTextBlock"] = "FastbootVisualizationView";
+            _nameViewMapStatic3["PartitionTableDataGrid"] = "FastbootVisualizationView";
+            _nameViewMapStatic3["PartitionTableValidationDisabledCheckBox"] = "OujiaFlashView";
+            _nameViewMapStatic3["PartitionTableValidationEnabledCheckBox"] = "OujiaFlashView";
+            _nameViewMapStatic3["PartitionTableValidationSettingPanel"] = "OujiaFlashView";
+            _nameViewMapStatic3["PartitionsDataGrid"] = "PayloadView";
+            _nameViewMapStatic3["PayloadFilePathTextBox"] = "OujiaFlashView";
+            _nameViewMapStatic3["PayloadPartitionComboBox"] = "OujiaFlashView";
+            _nameViewMapStatic3["PayloadView"] = "PayloadView";
+            _nameViewMapStatic3["Popup"] = "BasicFlashView";
+            _nameViewMapStatic3["ProgressBarContainer"] = "OujiaFlashView";
+            _nameViewMapStatic3["ProgressText"] = "FastbootVisualizationView";
+            _nameViewMapStatic3["ProtectPartitionCheckBox"] = "FastbootVisualizationView";
+            _nameViewMapStatic3["PureFBDCheckBox"] = "OujiaFlashView";
+            _nameViewMapStatic3["RadioSize60"] = "ScreenMirrorView";
+            _nameViewMapStatic3["RadioSize70"] = "ScreenMirrorView";
+            _nameViewMapStatic3["RadioSize80"] = "ScreenMirrorView";
+            _nameViewMapStatic3["RadioSize90"] = "ScreenMirrorView";
+            _nameViewMapStatic3["RadioSizeCustom"] = "ScreenMirrorView";
+            _nameViewMapStatic3["ReSukiSuLkmPatchRadioButton"] = "AutorootView";
+            _nameViewMapStatic3["ReadAppListButton"] = "AppManagementView";
+            _nameViewMapStatic3["ReadInfoButton"] = "PayloadView";
+            _nameViewMapStatic3["ReadOnePlusDdrButton"] = "BasicFlashView";
+            _nameViewMapStatic3["ReadPartitionButton"] = "FastbootVisualizationView";
+            _nameViewMapStatic3["ReadPartitionComboBox"] = "AndroidGeneralView";
+            _nameViewMapStatic3["ReadPartitionTableButton"] = "FastbootVisualizationView";
+            _nameViewMapStatic3["RecentAppsButton"] = "ScreenMirrorView";
+            _nameViewMapStatic3["RepairSuperHardBrickButton"] = "OujiaFlashView";
+            _nameViewMapStatic3["RestartCheckBox"] = "FastbootVisualizationView";
+            _nameViewMapStatic3["RomBrandComboBox"] = "RomDownloadview";
+            _nameViewMapStatic3["RomDeviceComboBox"] = "RomDownloadview";
+            _nameViewMapStatic3["RomDownloadLogRichTextBox"] = "RomDownloadview";
+            _nameViewMapStatic3["RomDownloadProgressBar"] = "RomDownloadview";
+            _nameViewMapStatic3["RomDownloadSavePathTextBox"] = "RomDownloadview";
+            _nameViewMapStatic3["RomDownloadview"] = "RomDownloadview";
+            _nameViewMapStatic3["RomNetworkRepairButton"] = "RomDownloadview";
+            _nameViewMapStatic3["RomPartitionComboBox"] = "RomDownloadview";
+            _nameViewMapStatic3["RomSelectBrandComboBox"] = "RomDownloadview";
+            _nameViewMapStatic3["RomSelectCopyLinksButton"] = "RomDownloadview";
+            _nameViewMapStatic3["RomSelectDeviceComboBox"] = "RomDownloadview";
+            _nameViewMapStatic3["RomSelectPackageTypeComboBox"] = "RomDownloadview";
+            _nameViewMapStatic3["RomSelectParsedLinkTextBox"] = "RomDownloadview";
+            _nameViewMapStatic3["RomSelectSeriesComboBox"] = "RomDownloadview";
+            _nameViewMapStatic3["RomSelectVersionComboBox"] = "RomDownloadview";
+            _nameViewMapStatic3["RomSeriesComboBox"] = "RomDownloadview";
+            _nameViewMapStatic3["RomVersionComboBox"] = "RomDownloadview";
+            _nameViewMapStatic3["SUkiSUGKICheckBox"] = "HiddenEnvironmentView";
+            _nameViewMapStatic3["SUkiSULKMCheckBox"] = "HiddenEnvironmentView";
+            _nameViewMapStatic3["ScreenMirrorLogTextBox"] = "ScreenMirrorView";
+            _nameViewMapStatic3["ScreenMirrorView"] = "ScreenMirrorView";
+            _nameViewMapStatic3["ScreenshotButton"] = "ScreenMirrorView";
+            _nameViewMapStatic3["SearchTextBox"] = "PayloadView";
+            _nameViewMapStatic3["SelectAllAppPackagesCheckBox"] = "AppManagementView";
+            _nameViewMapStatic3["SelectAllCheckBox"] = "OujiaFlashView";
+            _nameViewMapStatic3["SelectBootFileButton"] = "BasicFlashView";
+            _nameViewMapStatic3["SelectFlashBatButton"] = "FastbootVisualizationView";
+            _nameViewMapStatic3["SelectFolderButton"] = "OujiaFlashView";
+            _nameViewMapStatic3["SelectHiddenRootZipButton"] = "HiddenEnvironmentView";
+            _nameViewMapStatic3["SelectImageDirButton"] = "AndroidGeneralView";
+            _nameViewMapStatic3["SelectOfpFileButton"] = "AndroidGeneralView";
+            _nameViewMapStatic3["SelectOfpSuperSegmentsButton"] = "AndroidGeneralView";
+            _nameViewMapStatic3["SelectOpsFileButton"] = "AndroidGeneralView";
+            _nameViewMapStatic3["SelectPayloadFileButton"] = "OujiaFlashView";
+            _nameViewMapStatic3["SelectSuperScatterButton"] = "AndroidGeneralView";
+            _nameViewMapStatic3["SelectUnpackedFolderButton"] = "AndroidGeneralView";
+            _nameViewMapStatic3["SelectXiaomiFlashScriptButton"] = "BasicFlashView";
+            _nameViewMapStatic3["SkipCrcCheckBox"] = "FastbootVisualizationView";
+            _nameViewMapStatic3["StandardFlashContent"] = "OujiaFlashView";
+            _nameViewMapStatic3["StartBtn"] = "ColorOSAssistantView";
+            _nameViewMapStatic3["StartConvertFlashButton"] = "AndroidGeneralView";
+            _nameViewMapStatic3["StartHiddenRootButton"] = "HiddenEnvironmentView";
+            _nameViewMapStatic3["StartMergeOfpSuperButton"] = "AndroidGeneralView";
+            _nameViewMapStatic3["StartMirrorButton"] = "ScreenMirrorView";
+            _nameViewMapStatic3["StartModuleInstallButton"] = "HiddenEnvironmentView";
+            _nameViewMapStatic3["StartOfpExtractButton"] = "AndroidGeneralView";
+            _nameViewMapStatic4["StartOpsExtractButton"] = "AndroidGeneralView";
+            _nameViewMapStatic4["StartSuperPackButton"] = "AndroidGeneralView";
+            _nameViewMapStatic4["StartXiaomiFlashButton"] = "BasicFlashView";
+            _nameViewMapStatic4["StopFastbootVisualizationOperationButton"] = "FastbootVisualizationView";
+            _nameViewMapStatic4["StopMirrorButton"] = "ScreenMirrorView";
+            _nameViewMapStatic4["StopOperationButton"] = "PayloadView";
+            _nameViewMapStatic4["SukiSuLkmPatchRadioButton"] = "AutorootView";
+            _nameViewMapStatic4["SuperPackLogRichTextBox"] = "AndroidGeneralView";
+            _nameViewMapStatic4["SuperScatterPathTextBox"] = "AndroidGeneralView";
+            _nameViewMapStatic4["SwitchSlotACheckBox"] = "FastbootVisualizationView";
+            _nameViewMapStatic4["SwitchToMtpButton"] = "BasicFlashView";
+            _nameViewMapStatic4["SystemZoneCameraDirectoryRadioButton"] = "SystemZoneView";
+            _nameViewMapStatic4["SystemZoneCurrentPathTextBlock"] = "SystemZoneView";
+            _nameViewMapStatic4["SystemZoneDeleteMenuItem"] = "SystemZoneView";
+            _nameViewMapStatic4["SystemZoneInternalStorageRadioButton"] = "SystemZoneView";
+            _nameViewMapStatic4["SystemZoneLoadingOverlay"] = "SystemZoneView";
+            _nameViewMapStatic4["SystemZoneNewFileMenuItem"] = "SystemZoneView";
+            _nameViewMapStatic4["SystemZoneNewFolderMenuItem"] = "SystemZoneView";
+            _nameViewMapStatic4["SystemZoneProgressBar"] = "SystemZoneView";
+            _nameViewMapStatic4["SystemZoneRenameMenuItem"] = "SystemZoneView";
+            _nameViewMapStatic4["SystemZoneRootDirectoryRadioButton"] = "SystemZoneView";
+            _nameViewMapStatic4["SystemZoneView"] = "SystemZoneView";
+            _nameViewMapStatic4["ToggleButton"] = "BasicFlashView";
+            _nameViewMapStatic4["TopmostCheckBox"] = "ScreenMirrorView";
+            _nameViewMapStatic4["TransferRateTextBlock"] = "OujiaFlashView";
+            _nameViewMapStatic4["TxtAssistantApk"] = "ColorOSAssistantView";
+            _nameViewMapStatic4["TxtDownloadDir"] = "ColorOSAssistantView";
+            _nameViewMapStatic4["TxtProgressInfo"] = "ColorOSAssistantView";
+            _nameViewMapStatic4["TxtPushFile"] = "ColorOSAssistantView";
+            _nameViewMapStatic4["UnfreezeMiuiUpdaterButton"] = "AppManagementView";
+            _nameViewMapStatic4["UnfreezeSelectedAppsButton"] = "AppManagementView";
+            _nameViewMapStatic4["UninstallSelectedAppsButton"] = "AppManagementView";
+            _nameViewMapStatic4["UnlockBLComboBox"] = "BasicFlashView";
+            _nameViewMapStatic4["UnpackedFolderTextBox"] = "AndroidGeneralView";
+            _nameViewMapStatic4["ViewDisabledAppsButton"] = "AppManagementView";
+            _nameViewMapStatic4["VioletDownloadBrowseOutputButton"] = "VioletDownloadView";
+            _nameViewMapStatic4["VioletDownloadConnectionsComboBox"] = "VioletDownloadView";
+            _nameViewMapStatic4["VioletDownloadHeadersTextBox"] = "VioletDownloadView";
+            _nameViewMapStatic4["VioletDownloadLogTextBox"] = "VioletDownloadView";
+            _nameViewMapStatic4["VioletDownloadOpenFolderButton"] = "VioletDownloadView";
+            _nameViewMapStatic4["VioletDownloadOutputPathTextBox"] = "VioletDownloadView";
+            _nameViewMapStatic4["VioletDownloadPauseButton"] = "VioletDownloadView";
+            _nameViewMapStatic4["VioletDownloadProgressBar"] = "VioletDownloadView";
+            _nameViewMapStatic4["VioletDownloadProgressTextBlock"] = "VioletDownloadView";
+            _nameViewMapStatic4["VioletDownloadReplaceUrlButton"] = "VioletDownloadView";
+            _nameViewMapStatic4["VioletDownloadReplacementUrlTextBox"] = "VioletDownloadView";
+            _nameViewMapStatic4["VioletDownloadResumeButton"] = "VioletDownloadView";
+            _nameViewMapStatic4["VioletDownloadStartButton"] = "VioletDownloadView";
+            _nameViewMapStatic4["VioletDownloadUrlTextBox"] = "VioletDownloadView";
+            _nameViewMapStatic4["VioletDownloadView"] = "VioletDownloadView";
+            _nameViewMapStatic4["VioletTextBoxBorder"] = "VioletDownloadView";
+            _nameViewMapStatic4["VolumeDownButton"] = "ScreenMirrorView";
+            _nameViewMapStatic4["VolumeMuteButton"] = "ScreenMirrorView";
+            _nameViewMapStatic4["VolumeUpButton"] = "ScreenMirrorView";
+            _nameViewMapStatic4["WaitForFastbootCheckBox"] = "BasicFlashView";
+            _nameViewMapStatic4["WipeAndLockBLCheckBox"] = "BasicFlashView";
+            _nameViewMapStatic4["WritePartitionButton"] = "FastbootVisualizationView";
+            _nameViewMapStatic4["XiaomiFlashScriptPathTextBox"] = "BasicFlashView";
+            _nameViewMapStatic4["bootflash"] = "BasicFlashView";
+            _nameViewMapStatic4["btnAutoRoot"] = "AutorootView";
+            _nameViewMapStatic4["btnBackup"] = "BackupAssistantView";
+            _nameViewMapStatic4["btnCancelAutoRoot"] = "AutorootView";
+            _nameViewMapStatic4["btnClearLog"] = "AutorootView";
+            _nameViewMapStatic4["btnLoadImages"] = "BackupAssistantView";
+            _nameViewMapStatic4["btnNavContacts"] = "BackupAssistantView";
+            _nameViewMapStatic4["btnNavPhotos"] = "BackupAssistantView";
+            _nameViewMapStatic4["btnNavVideos"] = "BackupAssistantView";
+            _nameViewMapStatic4["btnRestoreContacts"] = "BackupAssistantView";
+            _nameViewMapStatic4["btnSelectBoot"] = "AutorootView";
+            _nameViewMapStatic4["btnSelectMagisk"] = "AutorootView";
+            _nameViewMapStatic4["btnToggleSelectAll"] = "BackupAssistantView";
+            _nameViewMapStatic4["cbArchitecture"] = "AutorootView";
+            _nameViewMapStatic4["cbThreadCount"] = "BackupAssistantView";
+            _nameViewMapStatic4["chkFastboot"] = "AutorootView";
+            _nameViewMapStatic4["chkFastbootD"] = "AutorootView";
+            _nameViewMapStatic4["chkKeepForceEncrypt"] = "AutorootView";
+            _nameViewMapStatic4["chkKeepVerity"] = "AutorootView";
+            _nameViewMapStatic4["chkLegacySar"] = "AutorootView";
+            _nameViewMapStatic4["chkPatchVbmeta"] = "AutorootView";
+            _nameViewMapStatic4["chkRecoveryMode"] = "AutorootView";
+            _nameViewMapStatic5["lblStatus"] = "BackupAssistantView";
+            _nameViewMapStatic5["photoGallery"] = "BackupAssistantView";
+            _nameViewMapStatic5["progressBar"] = "BackupAssistantView";
+            _nameViewMapStatic5["txtBootPath"] = "AutorootView";
+            _nameViewMapStatic5["txtLog"] = "AutorootView";
+            _nameViewMapStatic5["txtMagiskPath"] = "AutorootView";
+        }
+
+        private static readonly System.Collections.Generic.Dictionary<string, string> _nameViewMapStatic1 = new System.Collections.Generic.Dictionary<string, string>();
+        private static readonly System.Collections.Generic.Dictionary<string, string> _nameViewMapStatic2 = new System.Collections.Generic.Dictionary<string, string>();
+        private static readonly System.Collections.Generic.Dictionary<string, string> _nameViewMapStatic3 = new System.Collections.Generic.Dictionary<string, string>();
+        private static readonly System.Collections.Generic.Dictionary<string, string> _nameViewMapStatic4 = new System.Collections.Generic.Dictionary<string, string>();
+        private static readonly System.Collections.Generic.Dictionary<string, string> _nameViewMapStatic5 = new System.Collections.Generic.Dictionary<string, string>();
+        private static readonly System.Collections.Generic.Dictionary<string, string>[] _nameViewMapStaticAll = new System.Collections.Generic.Dictionary<string, string>[] { _nameViewMapStatic0, _nameViewMapStatic1, _nameViewMapStatic2, _nameViewMapStatic3, _nameViewMapStatic4, _nameViewMapStatic5 };
+        // ===== 懒加载页面支持（2026-09 性能重构） =====
+        private readonly Dictionary<string, FrameworkElement> _pageInstances = new Dictionary<string, FrameworkElement>();
+        private readonly List<string> _pageTemplateKeys = new List<string>();
+        private readonly Dictionary<string, string> _nameViewMap = new Dictionary<string, string>();
+        private string _currentPage = "HomeView";
+        private ContentControl _pageHost;
+
+        private void CollectPageTemplateKeys()
+        {
+            foreach (var key in this.Resources.Keys)
+            {
+                if (key is string s && s.StartsWith("Page_") && !_pageTemplateKeys.Contains(s))
+                    _pageTemplateKeys.Add(s);
+            }
+        }
+
+        private static string StaticNameView(string name)
+        {
+            foreach (var d in _nameViewMapStaticAll)
+            {
+                if (d.TryGetValue(name, out var v)) return v;
+            }
+            return null;
+        }
+
+        private void ShowPage(string viewName)
+        {
+            if (_pageHost == null)
+                _pageHost = this.FindControlInPages("PageHost") as ContentControl;
+            if (_pageHost == null) return;
+
+            FrameworkElement page;
+            if (viewName == "HomeView")
+            {
+                page = this.FindControlInPages("HomeView") as FrameworkElement;
+            }
+            else if (!_pageInstances.TryGetValue(viewName, out page))
+            {
+                page = InstantiatePage(viewName);
+                if (page != null) _pageInstances[viewName] = page;
+            }
+            if (page == null) return;
+            _currentPage = viewName;
+            _pageHost.Content = page;
+        }
+
+        private FrameworkElement InstantiatePage(string viewName)
+        {
+            try
+            {
+                var dt = this.FindResource("Page_" + viewName) as DataTemplate;
+                if (dt == null) return null;
+                return dt.LoadContent() as FrameworkElement;
+            }
+            catch { return null; }
+        }
+
+        /// <summary>按 x:Name 查找控件；name→页面 映射命中时直接实例化目标页，避免逐个页面试探（懒加载兼容）</summary>
+        private object FindControlInPages(string name)
+        {
+            string sVn = StaticNameView(name);
+            if (sVn != null)
+            {
+                if (_pageInstances.TryGetValue(sVn, out var sInst))
+                    return FindByName(sInst, name);
+                var sNew = InstantiatePage(sVn);
+                if (sNew == null) return null;
+                _pageInstances[sVn] = sNew;
+                return FindByName(sNew, name);
+            }
+            if (_nameViewMap.TryGetValue(name, out var vn))
+            {
+                if (_pageInstances.TryGetValue(vn, out var inst0))
+                    return FindByName(inst0, name);
+                var inst1 = InstantiatePage(vn);
+                if (inst1 == null) return null;
+                _pageInstances[vn] = inst1;
+                return FindByName(inst1, name);
+            }
+            if (_pageHost != null)
+            {
+                var f = FindByName(_pageHost, name);
+                if (f != null) { _nameViewMap[name] = "HomeView"; return f; }
+            }
+            foreach (var kv in _pageInstances)
+            {
+                var f = FindByName(kv.Value, name);
+                if (f != null) { _nameViewMap[name] = kv.Key; return f; }
+            }
+            foreach (var key in _pageTemplateKeys)
+            {
+                var vn2 = key.StartsWith("Page_") ? key.Substring("Page_".Length) : key;
+                if (_pageInstances.ContainsKey(vn2)) continue;
+                var inst = InstantiatePage(vn2);
+                if (inst == null) continue;
+                _pageInstances[vn2] = inst;
+                var f2 = FindByName(inst, name);
+                if (f2 != null) { _nameViewMap[name] = vn2; return f2; }
+            }
+            return null;
+        }
+
+        private static FrameworkElement FindByName(System.Windows.DependencyObject root, string name)
+        {
+            if (root is FrameworkElement fe)
+            {
+                if (fe.Name == name) return fe;
+                try
+                {
+                    var f = fe.FindName(name) as FrameworkElement;
+                    if (f != null) return f;
+                }
+                catch { }
+            }
+            int count = System.Windows.Media.VisualTreeHelper.GetChildrenCount(root);
+            for (int i = 0; i < count; i++)
+            {
+                var r = FindByName(System.Windows.Media.VisualTreeHelper.GetChild(root, i), name);
+                if (r != null) return r;
+            }
+            return null;
+        }
+
+
+
         private static void FreezeOne(System.Windows.Freezable f)
         {
             if (f != null && f.CanFreeze && !f.IsFrozen)
@@ -1158,10 +1669,10 @@ namespace WpfApp1
 
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            var homeItem = this.FindName("HomeButton") as HandyControl.Controls.SideMenuItem;
+            var homeItem = this.FindControlInPages("HomeButton") as HandyControl.Controls.SideMenuItem;
             
             // 显示加载遮罩层
-            if (this.FindName("LoadingOverlay") is Grid loadingOverlay && this.FindName("LoadingContent") is Grid loadingContent)
+            if (this.FindControlInPages("LoadingOverlay") is Grid loadingOverlay && this.FindControlInPages("LoadingContent") is Grid loadingContent)
             {
                 loadingOverlay.Visibility = Visibility.Visible;
                 loadingContent.Visibility = Visibility.Visible;
@@ -1174,7 +1685,7 @@ namespace WpfApp1
                 await Task.Delay(150);
 
                 // 设置分组头 Role=Header 并默认折叠
-                var sideMenu = this.FindName("SideMenuControl") as HandyControl.Controls.SideMenu;
+                var sideMenu = this.FindControlInPages("SideMenuControl") as HandyControl.Controls.SideMenu;
                 if (sideMenu != null)
                 {
                     var roleDPField = typeof(HandyControl.Controls.SideMenuItem).GetField("RoleProperty",
@@ -1200,7 +1711,7 @@ namespace WpfApp1
                 await Task.Delay(80);
 
                 // 隐藏加载遮罩层
-                if (this.FindName("LoadingOverlay") is Grid overlay && this.FindName("LoadingContent") is Grid content)
+                if (this.FindControlInPages("LoadingOverlay") is Grid overlay && this.FindControlInPages("LoadingContent") is Grid content)
                 {
                     overlay.Visibility = Visibility.Collapsed;
                     content.Visibility = Visibility.Collapsed;
@@ -1367,9 +1878,9 @@ namespace WpfApp1
                 partition.IsSelected = selectAll &&
                                        !IsFastbootVisualizationPartitionProtected(partition.PartitionName, adbMode);
             }
-            if (PartitionTableDataGrid.ItemsSource != null)
+            if ((this.FindControlInPages("PartitionTableDataGrid") as System.Windows.Controls.DataGrid).ItemsSource != null)
             {
-                PartitionTableDataGrid.Items.Refresh();
+                (this.FindControlInPages("PartitionTableDataGrid") as System.Windows.Controls.DataGrid).Items.Refresh();
             }
         }
 
@@ -1452,7 +1963,7 @@ namespace WpfApp1
                 return;
             }
 
-            if (PartitionSelectionSummaryTextBlock == null || allPartitions == null)
+            if ((this.FindControlInPages("PartitionSelectionSummaryTextBlock") as System.Windows.Controls.TextBlock) == null || allPartitions == null)
             {
                 return;
             }
@@ -1502,9 +2013,9 @@ namespace WpfApp1
                 : allSizesKnown
                     ? FormatByteSize(totalBytes)
                     : "--";
-            PartitionSelectionSummaryTextBlock.Text =
+            (this.FindControlInPages("PartitionSelectionSummaryTextBlock") as System.Windows.Controls.TextBlock).Text =
                 $"已选 {selectedPartitions.Count}/{allPartitions.Count} · {totalSizeText}";
-            PartitionSelectionSummaryTextBlock.Tag =
+            (this.FindControlInPages("PartitionSelectionSummaryTextBlock") as System.Windows.Controls.TextBlock).Tag =
                 $"已选择 {selectedPartitions.Count} / {allPartitions.Count}  |  总计 {totalSizeText}";
         }
 
@@ -1898,43 +2409,9 @@ namespace WpfApp1
         private void HomeButton_Click(object sender, RoutedEventArgs e)
         {
             // 显示主页视图，隐藏其他视图
-            var homeView = this.FindName("HomeView") as Grid;
-            var screenMirrorView = this.FindName("ScreenMirrorView") as Grid;
-            var basicFlashView = this.FindName("BasicFlashView") as Grid;
-            var fastbootVisualizationView = this.FindName("FastbootVisualizationView") as Grid;
-            var hiddenEnvironmentView = this.FindName("HiddenEnvironmentView") as Grid;
-            var downloadView = this.FindName("DownloadView") as Grid;
-            var aboutToolView = this.FindName("AboutToolView") as Grid;
-            var systemZoneView = this.FindName("SystemZoneView") as Grid;
-            var oujiaFlashView = this.FindName("OujiaFlashView") as Grid;
-            var autorootView = this.FindName("AutorootView") as Grid;
-            var appManagementView = this.FindName("AppManagementView") as Grid;
-            var androidGeneralView = this.FindName("AndroidGeneralView") as Grid;
-            var payloadView = this.FindName("PayloadView") as Grid;
-            var romDownloadView = this.FindName("RomDownloadview") as Grid;
-            var edlFlashView = this.FindName("EdlFlashView") as Grid;
-            var colorOSAssistantView = this.FindName("ColorOSAssistantView") as Grid;
-            var backupAssistantView = this.FindName("BackupAssistantView") as Grid;
-            var violetDownloadView = this.FindName("VioletDownloadView") as Grid;
+            
 
-            if (homeView != null) homeView.Visibility = Visibility.Visible;
-            if (screenMirrorView != null) screenMirrorView.Visibility = Visibility.Collapsed;
-            if (basicFlashView != null) basicFlashView.Visibility = Visibility.Collapsed;
-            if (fastbootVisualizationView != null) fastbootVisualizationView.Visibility = Visibility.Collapsed;
-            if (hiddenEnvironmentView != null) hiddenEnvironmentView.Visibility = Visibility.Collapsed;
-            if (downloadView != null) downloadView.Visibility = Visibility.Collapsed;
-            if (aboutToolView != null) aboutToolView.Visibility = Visibility.Collapsed;
-            if (systemZoneView != null) systemZoneView.Visibility = Visibility.Collapsed;
-            if (oujiaFlashView != null) oujiaFlashView.Visibility = Visibility.Collapsed;
-            if (autorootView != null) autorootView.Visibility = Visibility.Collapsed;
-            if (appManagementView != null) appManagementView.Visibility = Visibility.Collapsed;
-            if (androidGeneralView != null) androidGeneralView.Visibility = Visibility.Collapsed;
-            if (payloadView != null) payloadView.Visibility = Visibility.Collapsed;
-            if (romDownloadView != null) romDownloadView.Visibility = Visibility.Collapsed;
-            if (edlFlashView != null) edlFlashView.Visibility = Visibility.Collapsed;
-            if (colorOSAssistantView != null) colorOSAssistantView.Visibility = Visibility.Collapsed;
-            if (backupAssistantView != null) backupAssistantView.Visibility = Visibility.Collapsed;
-            if (violetDownloadView != null) violetDownloadView.Visibility = Visibility.Collapsed;
+            ShowPage("HomeView");
 
             // 更新按钮状态
             UpdateButtonStates("Home");
@@ -1943,43 +2420,9 @@ namespace WpfApp1
         private void ScreenMirrorButton_Click(object sender, RoutedEventArgs e)
         {
             // 显示投屏视图，隐藏其他视图
-            var homeView = this.FindName("HomeView") as Grid;
-            var screenMirrorView = this.FindName("ScreenMirrorView") as Grid;
-            var basicFlashView = this.FindName("BasicFlashView") as Grid;
-            var fastbootVisualizationView = this.FindName("FastbootVisualizationView") as Grid;
-            var hiddenEnvironmentView = this.FindName("HiddenEnvironmentView") as Grid;
-            var downloadView = this.FindName("DownloadView") as Grid;
-            var aboutToolView = this.FindName("AboutToolView") as Grid;
-            var systemZoneView = this.FindName("SystemZoneView") as Grid;
-            var oujiaFlashView = this.FindName("OujiaFlashView") as Grid;
-            var autorootView = this.FindName("AutorootView") as Grid;
-            var appManagementView = this.FindName("AppManagementView") as Grid;
-            var androidGeneralView = this.FindName("AndroidGeneralView") as Grid;
-            var payloadView = this.FindName("PayloadView") as Grid;
-            var romDownloadView = this.FindName("RomDownloadview") as Grid;
-            var edlFlashView = this.FindName("EdlFlashView") as Grid;
-            var colorOSAssistantView = this.FindName("ColorOSAssistantView") as Grid;
-            var backupAssistantView = this.FindName("BackupAssistantView") as Grid;
-            var violetDownloadView = this.FindName("VioletDownloadView") as Grid;
+            
 
-            if (homeView != null) homeView.Visibility = Visibility.Collapsed;
-            if (screenMirrorView != null) screenMirrorView.Visibility = Visibility.Visible;
-            if (basicFlashView != null) basicFlashView.Visibility = Visibility.Collapsed;
-            if (fastbootVisualizationView != null) fastbootVisualizationView.Visibility = Visibility.Collapsed;
-            if (hiddenEnvironmentView != null) hiddenEnvironmentView.Visibility = Visibility.Collapsed;
-            if (downloadView != null) downloadView.Visibility = Visibility.Collapsed;
-            if (aboutToolView != null) aboutToolView.Visibility = Visibility.Collapsed;
-            if (systemZoneView != null) systemZoneView.Visibility = Visibility.Collapsed;
-            if (oujiaFlashView != null) oujiaFlashView.Visibility = Visibility.Collapsed;
-            if (autorootView != null) autorootView.Visibility = Visibility.Collapsed;
-            if (appManagementView != null) appManagementView.Visibility = Visibility.Collapsed;
-            if (androidGeneralView != null) androidGeneralView.Visibility = Visibility.Collapsed;
-            if (payloadView != null) payloadView.Visibility = Visibility.Collapsed;
-            if (romDownloadView != null) romDownloadView.Visibility = Visibility.Collapsed;
-            if (edlFlashView != null) edlFlashView.Visibility = Visibility.Collapsed;
-            if (colorOSAssistantView != null) colorOSAssistantView.Visibility = Visibility.Collapsed;
-            if (backupAssistantView != null) backupAssistantView.Visibility = Visibility.Collapsed;
-            if (violetDownloadView != null) violetDownloadView.Visibility = Visibility.Collapsed;
+            ShowPage("ScreenMirrorView");
 
             // 更新按钮状态
             UpdateButtonStates("ScreenMirror");
@@ -1988,43 +2431,9 @@ namespace WpfApp1
         private void BasicFlashButton_Click(object sender, RoutedEventArgs e)
         {
             // 显示基本刷入视图，隐藏其他视图
-            var homeView = this.FindName("HomeView") as Grid;
-            var screenMirrorView = this.FindName("ScreenMirrorView") as Grid;
-            var basicFlashView = this.FindName("BasicFlashView") as Grid;
-            var fastbootVisualizationView = this.FindName("FastbootVisualizationView") as Grid;
-            var hiddenEnvironmentView = this.FindName("HiddenEnvironmentView") as Grid;
-            var downloadView = this.FindName("DownloadView") as Grid;
-            var aboutToolView = this.FindName("AboutToolView") as Grid;
-            var systemZoneView = this.FindName("SystemZoneView") as Grid;
-            var oujiaFlashView = this.FindName("OujiaFlashView") as Grid;
-            var autorootView = this.FindName("AutorootView") as Grid;
-            var appManagementView = this.FindName("AppManagementView") as Grid;
-            var androidGeneralView = this.FindName("AndroidGeneralView") as Grid;
-            var payloadView = this.FindName("PayloadView") as Grid;
-            var romDownloadView = this.FindName("RomDownloadview") as Grid;
-            var edlFlashView = this.FindName("EdlFlashView") as Grid;
-            var colorOSAssistantView = this.FindName("ColorOSAssistantView") as Grid;
-            var backupAssistantView = this.FindName("BackupAssistantView") as Grid;
-            var violetDownloadView = this.FindName("VioletDownloadView") as Grid;
+            
 
-            if (homeView != null) homeView.Visibility = Visibility.Collapsed;
-            if (screenMirrorView != null) screenMirrorView.Visibility = Visibility.Collapsed;
-            if (basicFlashView != null) basicFlashView.Visibility = Visibility.Visible;
-            if (fastbootVisualizationView != null) fastbootVisualizationView.Visibility = Visibility.Collapsed;
-            if (hiddenEnvironmentView != null) hiddenEnvironmentView.Visibility = Visibility.Collapsed;
-            if (downloadView != null) downloadView.Visibility = Visibility.Collapsed;
-            if (aboutToolView != null) aboutToolView.Visibility = Visibility.Collapsed;
-            if (systemZoneView != null) systemZoneView.Visibility = Visibility.Collapsed;
-            if (oujiaFlashView != null) oujiaFlashView.Visibility = Visibility.Collapsed;
-            if (autorootView != null) autorootView.Visibility = Visibility.Collapsed;
-            if (appManagementView != null) appManagementView.Visibility = Visibility.Collapsed;
-            if (androidGeneralView != null) androidGeneralView.Visibility = Visibility.Collapsed;
-            if (payloadView != null) payloadView.Visibility = Visibility.Collapsed;
-            if (romDownloadView != null) romDownloadView.Visibility = Visibility.Collapsed;
-            if (edlFlashView != null) edlFlashView.Visibility = Visibility.Collapsed;
-            if (colorOSAssistantView != null) colorOSAssistantView.Visibility = Visibility.Collapsed;
-            if (backupAssistantView != null) backupAssistantView.Visibility = Visibility.Collapsed;
-            if (violetDownloadView != null) violetDownloadView.Visibility = Visibility.Collapsed;
+            ShowPage("BasicFlashView");
 
             // 更新按钮状态
             UpdateButtonStates("BasicFlash");
@@ -2033,43 +2442,9 @@ namespace WpfApp1
         private void FastbootVisualizationButton_Click(object sender, RoutedEventArgs e)
         {
             // 显示Fastboot可视化视图，隐藏其他视图
-            var homeView = this.FindName("HomeView") as Grid;
-            var screenMirrorView = this.FindName("ScreenMirrorView") as Grid;
-            var basicFlashView = this.FindName("BasicFlashView") as Grid;
-            var fastbootVisualizationView = this.FindName("FastbootVisualizationView") as Grid;
-            var hiddenEnvironmentView = this.FindName("HiddenEnvironmentView") as Grid;
-            var downloadView = this.FindName("DownloadView") as Grid;
-            var aboutToolView = this.FindName("AboutToolView") as Grid;
-            var systemZoneView = this.FindName("SystemZoneView") as Grid;
-            var oujiaFlashView = this.FindName("OujiaFlashView") as Grid;
-            var autorootView = this.FindName("AutorootView") as Grid;
-            var appManagementView = this.FindName("AppManagementView") as Grid;
-            var androidGeneralView = this.FindName("AndroidGeneralView") as Grid;
-            var payloadView = this.FindName("PayloadView") as Grid;
-            var romDownloadView = this.FindName("RomDownloadview") as Grid;
-            var edlFlashView = this.FindName("EdlFlashView") as Grid;
-            var colorOSAssistantView = this.FindName("ColorOSAssistantView") as Grid;
-            var backupAssistantView = this.FindName("BackupAssistantView") as Grid;
-            var violetDownloadView = this.FindName("VioletDownloadView") as Grid;
+            
 
-            if (homeView != null) homeView.Visibility = Visibility.Collapsed;
-            if (screenMirrorView != null) screenMirrorView.Visibility = Visibility.Collapsed;
-            if (basicFlashView != null) basicFlashView.Visibility = Visibility.Collapsed;
-            if (fastbootVisualizationView != null) fastbootVisualizationView.Visibility = Visibility.Visible;
-            if (hiddenEnvironmentView != null) hiddenEnvironmentView.Visibility = Visibility.Collapsed;
-            if (downloadView != null) downloadView.Visibility = Visibility.Collapsed;
-            if (aboutToolView != null) aboutToolView.Visibility = Visibility.Collapsed;
-            if (systemZoneView != null) systemZoneView.Visibility = Visibility.Collapsed;
-            if (oujiaFlashView != null) oujiaFlashView.Visibility = Visibility.Collapsed;
-            if (autorootView != null) autorootView.Visibility = Visibility.Collapsed;
-            if (appManagementView != null) appManagementView.Visibility = Visibility.Collapsed;
-            if (androidGeneralView != null) androidGeneralView.Visibility = Visibility.Collapsed;
-            if (payloadView != null) payloadView.Visibility = Visibility.Collapsed;
-            if (romDownloadView != null) romDownloadView.Visibility = Visibility.Collapsed;
-            if (edlFlashView != null) edlFlashView.Visibility = Visibility.Collapsed;
-            if (colorOSAssistantView != null) colorOSAssistantView.Visibility = Visibility.Collapsed;
-            if (backupAssistantView != null) backupAssistantView.Visibility = Visibility.Collapsed;
-            if (violetDownloadView != null) violetDownloadView.Visibility = Visibility.Collapsed;
+            ShowPage("FastbootVisualizationView");
 
             // 更新按钮状态
             UpdateButtonStates("FastbootVisualization");
@@ -2080,43 +2455,9 @@ namespace WpfApp1
 
         private void DownloadZoneButton_Click(object sender, RoutedEventArgs e)
         {
-            var homeView = this.FindName("HomeView") as Grid;
-            var screenMirrorView = this.FindName("ScreenMirrorView") as Grid;
-            var basicFlashView = this.FindName("BasicFlashView") as Grid;
-            var fastbootVisualizationView = this.FindName("FastbootVisualizationView") as Grid;
-            var hiddenEnvironmentView = this.FindName("HiddenEnvironmentView") as Grid;
-            var downloadView = this.FindName("DownloadView") as Grid;
-            var aboutToolView = this.FindName("AboutToolView") as Grid;
-            var systemZoneView = this.FindName("SystemZoneView") as Grid;
-            var oujiaFlashView = this.FindName("OujiaFlashView") as Grid;
-            var autorootView = this.FindName("AutorootView") as Grid;
-            var appManagementView = this.FindName("AppManagementView") as Grid;
-            var androidGeneralView = this.FindName("AndroidGeneralView") as Grid;
-            var payloadView = this.FindName("PayloadView") as Grid;
-            var romDownloadView = this.FindName("RomDownloadview") as Grid;
-            var edlFlashView = this.FindName("EdlFlashView") as Grid;
-            var colorOSAssistantView = this.FindName("ColorOSAssistantView") as Grid;
-            var backupAssistantView = this.FindName("BackupAssistantView") as Grid;
-            var violetDownloadView = this.FindName("VioletDownloadView") as Grid;
+            
 
-            if (homeView != null) homeView.Visibility = Visibility.Collapsed;
-            if (screenMirrorView != null) screenMirrorView.Visibility = Visibility.Collapsed;
-            if (basicFlashView != null) basicFlashView.Visibility = Visibility.Collapsed;
-            if (fastbootVisualizationView != null) fastbootVisualizationView.Visibility = Visibility.Collapsed;
-            if (hiddenEnvironmentView != null) hiddenEnvironmentView.Visibility = Visibility.Collapsed;
-            if (downloadView != null) downloadView.Visibility = Visibility.Visible;
-            if (aboutToolView != null) aboutToolView.Visibility = Visibility.Collapsed;
-            if (systemZoneView != null) systemZoneView.Visibility = Visibility.Collapsed;
-            if (oujiaFlashView != null) oujiaFlashView.Visibility = Visibility.Collapsed;
-            if (autorootView != null) autorootView.Visibility = Visibility.Collapsed;
-            if (appManagementView != null) appManagementView.Visibility = Visibility.Collapsed;
-            if (androidGeneralView != null) androidGeneralView.Visibility = Visibility.Collapsed;
-            if (payloadView != null) payloadView.Visibility = Visibility.Collapsed;
-            if (romDownloadView != null) romDownloadView.Visibility = Visibility.Collapsed;
-            if (edlFlashView != null) edlFlashView.Visibility = Visibility.Collapsed;
-            if (colorOSAssistantView != null) colorOSAssistantView.Visibility = Visibility.Collapsed;
-            if (backupAssistantView != null) backupAssistantView.Visibility = Visibility.Collapsed;
-            if (violetDownloadView != null) violetDownloadView.Visibility = Visibility.Collapsed;
+            ShowPage("VioletDownloadView");
 
             UpdateButtonStates("DownloadZone");
 
@@ -2126,43 +2467,9 @@ namespace WpfApp1
 
         private void VioletDownloadButton_Click(object sender, RoutedEventArgs e)
         {
-            var homeView = this.FindName("HomeView") as Grid;
-            var screenMirrorView = this.FindName("ScreenMirrorView") as Grid;
-            var basicFlashView = this.FindName("BasicFlashView") as Grid;
-            var fastbootVisualizationView = this.FindName("FastbootVisualizationView") as Grid;
-            var hiddenEnvironmentView = this.FindName("HiddenEnvironmentView") as Grid;
-            var downloadView = this.FindName("DownloadView") as Grid;
-            var aboutToolView = this.FindName("AboutToolView") as Grid;
-            var systemZoneView = this.FindName("SystemZoneView") as Grid;
-            var oujiaFlashView = this.FindName("OujiaFlashView") as Grid;
-            var autorootView = this.FindName("AutorootView") as Grid;
-            var appManagementView = this.FindName("AppManagementView") as Grid;
-            var androidGeneralView = this.FindName("AndroidGeneralView") as Grid;
-            var payloadView = this.FindName("PayloadView") as Grid;
-            var romDownloadView = this.FindName("RomDownloadview") as Grid;
-            var edlFlashView = this.FindName("EdlFlashView") as Grid;
-            var colorOSAssistantView = this.FindName("ColorOSAssistantView") as Grid;
-            var backupAssistantView = this.FindName("BackupAssistantView") as Grid;
-            var violetDownloadView = this.FindName("VioletDownloadView") as Grid;
+            
 
-            if (homeView != null) homeView.Visibility = Visibility.Collapsed;
-            if (screenMirrorView != null) screenMirrorView.Visibility = Visibility.Collapsed;
-            if (basicFlashView != null) basicFlashView.Visibility = Visibility.Collapsed;
-            if (fastbootVisualizationView != null) fastbootVisualizationView.Visibility = Visibility.Collapsed;
-            if (hiddenEnvironmentView != null) hiddenEnvironmentView.Visibility = Visibility.Collapsed;
-            if (downloadView != null) downloadView.Visibility = Visibility.Collapsed;
-            if (aboutToolView != null) aboutToolView.Visibility = Visibility.Collapsed;
-            if (systemZoneView != null) systemZoneView.Visibility = Visibility.Collapsed;
-            if (oujiaFlashView != null) oujiaFlashView.Visibility = Visibility.Collapsed;
-            if (autorootView != null) autorootView.Visibility = Visibility.Collapsed;
-            if (appManagementView != null) appManagementView.Visibility = Visibility.Collapsed;
-            if (androidGeneralView != null) androidGeneralView.Visibility = Visibility.Collapsed;
-            if (payloadView != null) payloadView.Visibility = Visibility.Collapsed;
-            if (romDownloadView != null) romDownloadView.Visibility = Visibility.Collapsed;
-            if (edlFlashView != null) edlFlashView.Visibility = Visibility.Collapsed;
-            if (colorOSAssistantView != null) colorOSAssistantView.Visibility = Visibility.Collapsed;
-            if (backupAssistantView != null) backupAssistantView.Visibility = Visibility.Collapsed;
-            if (violetDownloadView != null) violetDownloadView.Visibility = Visibility.Visible;
+            ShowPage("VioletDownloadView");
 
             UpdateButtonStates("VioletDownload");
             currentView = "VioletDownload";
@@ -2171,43 +2478,9 @@ namespace WpfApp1
         private void AboutToolButton_Click(object sender, RoutedEventArgs e)
         {
             // 显示关于工具视图，隐藏其他视图
-            var homeView = this.FindName("HomeView") as Grid;
-            var screenMirrorView = this.FindName("ScreenMirrorView") as Grid;
-            var basicFlashView = this.FindName("BasicFlashView") as Grid;
-            var fastbootVisualizationView = this.FindName("FastbootVisualizationView") as Grid;
-            var hiddenEnvironmentView = this.FindName("HiddenEnvironmentView") as Grid;
-            var downloadView = this.FindName("DownloadView") as Grid;
-            var aboutToolView = this.FindName("AboutToolView") as Grid;
-            var systemZoneView = this.FindName("SystemZoneView") as Grid;
-            var oujiaFlashView = this.FindName("OujiaFlashView") as Grid;
-            var autorootView = this.FindName("AutorootView") as Grid;
-            var appManagementView = this.FindName("AppManagementView") as Grid;
-            var androidGeneralView = this.FindName("AndroidGeneralView") as Grid;
-            var payloadView = this.FindName("PayloadView") as Grid;
-            var romDownloadView = this.FindName("RomDownloadview") as Grid;
-            var edlFlashView = this.FindName("EdlFlashView") as Grid;
-            var colorOSAssistantView = this.FindName("ColorOSAssistantView") as Grid;
-            var backupAssistantView = this.FindName("BackupAssistantView") as Grid;
-            var violetDownloadView = this.FindName("VioletDownloadView") as Grid;
+            
 
-            if (homeView != null) homeView.Visibility = Visibility.Collapsed;
-            if (screenMirrorView != null) screenMirrorView.Visibility = Visibility.Collapsed;
-            if (basicFlashView != null) basicFlashView.Visibility = Visibility.Collapsed;
-            if (fastbootVisualizationView != null) fastbootVisualizationView.Visibility = Visibility.Collapsed;
-            if (hiddenEnvironmentView != null) hiddenEnvironmentView.Visibility = Visibility.Collapsed;
-            if (downloadView != null) downloadView.Visibility = Visibility.Collapsed;
-            if (aboutToolView != null) aboutToolView.Visibility = Visibility.Visible;
-            if (systemZoneView != null) systemZoneView.Visibility = Visibility.Collapsed;
-            if (oujiaFlashView != null) oujiaFlashView.Visibility = Visibility.Collapsed;
-            if (autorootView != null) autorootView.Visibility = Visibility.Collapsed;
-            if (appManagementView != null) appManagementView.Visibility = Visibility.Collapsed;
-            if (androidGeneralView != null) androidGeneralView.Visibility = Visibility.Collapsed;
-            if (payloadView != null) payloadView.Visibility = Visibility.Collapsed;
-            if (romDownloadView != null) romDownloadView.Visibility = Visibility.Collapsed;
-            if (edlFlashView != null) edlFlashView.Visibility = Visibility.Collapsed;
-            if (colorOSAssistantView != null) colorOSAssistantView.Visibility = Visibility.Collapsed;
-            if (backupAssistantView != null) backupAssistantView.Visibility = Visibility.Collapsed;
-            if (violetDownloadView != null) violetDownloadView.Visibility = Visibility.Collapsed;
+            ShowPage("AboutToolView");
 
             // 更新按钮状态
             UpdateButtonStates("AboutTool");
@@ -2217,43 +2490,9 @@ namespace WpfApp1
         private void AutorootButton_Click(object sender, RoutedEventArgs e)
         {
             // 显示一键ROOT视图，隐藏其他视图
-            var homeView = this.FindName("HomeView") as Grid;
-            var screenMirrorView = this.FindName("ScreenMirrorView") as Grid;
-            var basicFlashView = this.FindName("BasicFlashView") as Grid;
-            var fastbootVisualizationView = this.FindName("FastbootVisualizationView") as Grid;
-            var hiddenEnvironmentView = this.FindName("HiddenEnvironmentView") as Grid;
-            var downloadView = this.FindName("DownloadView") as Grid;
-            var aboutToolView = this.FindName("AboutToolView") as Grid;
-            var systemZoneView = this.FindName("SystemZoneView") as Grid;
-            var oujiaFlashView = this.FindName("OujiaFlashView") as Grid;
-            var autorootView = this.FindName("AutorootView") as Grid;
-            var appManagementView = this.FindName("AppManagementView") as Grid;
-            var androidGeneralView = this.FindName("AndroidGeneralView") as Grid;
-            var payloadView = this.FindName("PayloadView") as Grid;
-            var romDownloadView = this.FindName("RomDownloadview") as Grid;
-            var edlFlashView = this.FindName("EdlFlashView") as Grid;
-            var colorOSAssistantView = this.FindName("ColorOSAssistantView") as Grid;
-            var backupAssistantView = this.FindName("BackupAssistantView") as Grid;
-            var violetDownloadView = this.FindName("VioletDownloadView") as Grid;
+            
 
-            if (homeView != null) homeView.Visibility = Visibility.Collapsed;
-            if (screenMirrorView != null) screenMirrorView.Visibility = Visibility.Collapsed;
-            if (basicFlashView != null) basicFlashView.Visibility = Visibility.Collapsed;
-            if (fastbootVisualizationView != null) fastbootVisualizationView.Visibility = Visibility.Collapsed;
-            if (hiddenEnvironmentView != null) hiddenEnvironmentView.Visibility = Visibility.Collapsed;
-            if (downloadView != null) downloadView.Visibility = Visibility.Collapsed;
-            if (aboutToolView != null) aboutToolView.Visibility = Visibility.Collapsed;
-            if (systemZoneView != null) systemZoneView.Visibility = Visibility.Collapsed;
-            if (oujiaFlashView != null) oujiaFlashView.Visibility = Visibility.Collapsed;
-            if (autorootView != null) autorootView.Visibility = Visibility.Visible;
-            if (appManagementView != null) appManagementView.Visibility = Visibility.Collapsed;
-            if (androidGeneralView != null) androidGeneralView.Visibility = Visibility.Collapsed;
-            if (payloadView != null) payloadView.Visibility = Visibility.Collapsed;
-            if (romDownloadView != null) romDownloadView.Visibility = Visibility.Collapsed;
-            if (edlFlashView != null) edlFlashView.Visibility = Visibility.Collapsed;
-            if (colorOSAssistantView != null) colorOSAssistantView.Visibility = Visibility.Collapsed;
-            if (backupAssistantView != null) backupAssistantView.Visibility = Visibility.Collapsed;
-            if (violetDownloadView != null) violetDownloadView.Visibility = Visibility.Collapsed;
+            ShowPage("AutorootView");
 
             EnsureAndRefreshAutorootTrafficUsage();
 
@@ -2273,10 +2512,10 @@ namespace WpfApp1
 
             if (openFileDialog.ShowDialog() == true)
             {
-                var txtMagiskPath = this.FindName("txtMagiskPath") as System.Windows.Controls.TextBox;
-                if (txtMagiskPath != null)
+                var txtMagiskPath = this.FindControlInPages("txtMagiskPath") as System.Windows.Controls.TextBox;
+                if ((this.FindControlInPages("txtMagiskPath") as System.Windows.Controls.TextBox) != null)
                 {
-                    txtMagiskPath.Text = openFileDialog.FileName;
+                    (this.FindControlInPages("txtMagiskPath") as System.Windows.Controls.TextBox).Text = openFileDialog.FileName;
                     magiskApkPath = openFileDialog.FileName;
                 }
             }
@@ -2295,11 +2534,11 @@ namespace WpfApp1
 
             if (openFileDialog.ShowDialog() == true)
             {
-                var txtBootPath = this.FindName("txtBootPath") as System.Windows.Controls.TextBox;
-                if (txtBootPath != null)
+                var txtBootPath = this.FindControlInPages("txtBootPath") as System.Windows.Controls.TextBox;
+                if ((this.FindControlInPages("txtBootPath") as System.Windows.Controls.TextBox) != null)
                 {
-                    txtBootPath.Text = openFileDialog.FileName;
-                    txtBootPath.Foreground = System.Windows.Media.Brushes.Black;
+                    (this.FindControlInPages("txtBootPath") as System.Windows.Controls.TextBox).Text = openFileDialog.FileName;
+                    (this.FindControlInPages("txtBootPath") as System.Windows.Controls.TextBox).Foreground = System.Windows.Media.Brushes.Black;
                 }
             }
         }
@@ -2315,7 +2554,7 @@ namespace WpfApp1
 
             if (openFileDialog.ShowDialog() == true)
             {
-                var box = this.FindName("GkiBootPathTextBox") as System.Windows.Controls.TextBox;
+                var box = this.FindControlInPages("GkiBootPathTextBox") as System.Windows.Controls.TextBox;
                 if (box != null)
                 {
                     box.Text = openFileDialog.FileName;
@@ -2335,7 +2574,7 @@ namespace WpfApp1
 
             if (openFileDialog.ShowDialog() == true)
             {
-                var box = this.FindName("GkiAk3PathTextBox") as System.Windows.Controls.TextBox;
+                var box = this.FindControlInPages("GkiAk3PathTextBox") as System.Windows.Controls.TextBox;
                 if (box != null)
                 {
                     box.Text = openFileDialog.FileName;
@@ -2348,8 +2587,8 @@ namespace WpfApp1
         {
             try
             {
-                var bootBox = this.FindName("GkiBootPathTextBox") as System.Windows.Controls.TextBox;
-                var ak3Box = this.FindName("GkiAk3PathTextBox") as System.Windows.Controls.TextBox;
+                var bootBox = this.FindControlInPages("GkiBootPathTextBox") as System.Windows.Controls.TextBox;
+                var ak3Box = this.FindControlInPages("GkiAk3PathTextBox") as System.Windows.Controls.TextBox;
                 if (bootBox == null || ak3Box == null)
                 {
                     System.Windows.MessageBox.Show("缺少输入控件", "错误", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -2544,25 +2783,25 @@ namespace WpfApp1
 
         private async Task RunOfflinePatchAsync()
         {
-            if (AutoFlashAndInstallCheckBox?.IsChecked == true)
+            if ((this.FindControlInPages("AutoFlashAndInstallCheckBox") as System.Windows.Controls.CheckBox)?.IsChecked == true)
             {
                 await RunOfflinePatchAutoFlashAsync();
                 return;
             }
 
-            var txtBootPath = this.FindName("txtBootPath") as System.Windows.Controls.TextBox;
-            var txtMagiskPath = this.FindName("txtMagiskPath") as System.Windows.Controls.TextBox;
-            var startButton = btnAutoRoot;
+            var txtBootPath = this.FindControlInPages("txtBootPath") as System.Windows.Controls.TextBox;
+            var txtMagiskPath = this.FindControlInPages("txtMagiskPath") as System.Windows.Controls.TextBox;
+            var startButton = (this.FindControlInPages("btnAutoRoot") as System.Windows.Controls.Button);
             object? originalButtonContent = startButton?.Content;
             string patchScheme = GetSelectedAutoRootPatchScheme();
             bool isAlpha = string.Equals(patchScheme, "Alpha", StringComparison.OrdinalIgnoreCase);
             bool isKernelPatch = IsKernelPatchScheme(patchScheme);
 
             // 验证输入
-            if (string.IsNullOrWhiteSpace(txtBootPath?.Text) ||
-                txtBootPath.Text == "请选择你的boot.img文件路径:" ||
-                txtBootPath.Text == OfflineBootFileHint ||
-                txtBootPath.Text == KernelPatchBootFileHint)
+            if (string.IsNullOrWhiteSpace((this.FindControlInPages("txtBootPath") as System.Windows.Controls.TextBox)?.Text) ||
+                (this.FindControlInPages("txtBootPath") as System.Windows.Controls.TextBox).Text == "请选择你的boot.img文件路径:" ||
+                (this.FindControlInPages("txtBootPath") as System.Windows.Controls.TextBox).Text == OfflineBootFileHint ||
+                (this.FindControlInPages("txtBootPath") as System.Windows.Controls.TextBox).Text == KernelPatchBootFileHint)
             {
                 System.Windows.MessageBox.Show(
                     isKernelPatch ? "请先选择 boot.img 文件..." : "请先选择 init_boot 或 boot 文件...",
@@ -2572,11 +2811,11 @@ namespace WpfApp1
                 return;
             }
 
-            string selectedManagerPath = txtMagiskPath?.Text?.Trim() ?? string.Empty;
+            string selectedManagerPath = (this.FindControlInPages("txtMagiskPath") as System.Windows.Controls.TextBox)?.Text?.Trim() ?? string.Empty;
             bool downloadManager = string.IsNullOrWhiteSpace(selectedManagerPath) ||
                                    selectedManagerPath == OfflineManagerFileHint;
 
-            if (!File.Exists(txtBootPath.Text))
+            if (!File.Exists((this.FindControlInPages("txtBootPath") as System.Windows.Controls.TextBox).Text))
             {
                 System.Windows.MessageBox.Show("Boot文件不存在...", "错误", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
@@ -2590,7 +2829,7 @@ namespace WpfApp1
 
             try
             {
-                EnsureKernelPatchBootImage(txtBootPath.Text, patchScheme);
+                EnsureKernelPatchBootImage((this.FindControlInPages("txtBootPath") as System.Windows.Controls.TextBox).Text, patchScheme);
             }
             catch (Exception ex)
             {
@@ -2599,7 +2838,7 @@ namespace WpfApp1
             }
 
             // 检测boot文件名称是否包含特殊符号（括号或空格）
-            string bootFileName = IOPath.GetFileName(txtBootPath.Text);
+            string bootFileName = IOPath.GetFileName((this.FindControlInPages("txtBootPath") as System.Windows.Controls.TextBox).Text);
             if (isAlpha && (bootFileName.Contains("(") || bootFileName.Contains(")") || bootFileName.Contains(" ")))
             {
                 AppendAutorootLog("检测到boot文件名称存在特殊符号，请修改文件名称重试...", "red");
@@ -2626,7 +2865,7 @@ namespace WpfApp1
             // 开始修补过程
             try
             {
-                string bootPath = txtBootPath.Text;
+                string bootPath = (this.FindControlInPages("txtBootPath") as System.Windows.Controls.TextBox).Text;
                 string magiskPath = selectedManagerPath;
                 if (isAlpha && downloadManager)
                 {
@@ -2713,7 +2952,7 @@ namespace WpfApp1
                     !string.IsNullOrWhiteSpace(managerTmpRoot))
                 {
                     TryCleanupAutoRootDirectory(managerWorkDirectory, managerTmpRoot, createdManagerTmpRoot);
-                    if (txtMagiskPath != null) txtMagiskPath.Text = OfflineManagerFileHint;
+                    if ((this.FindControlInPages("txtMagiskPath") as System.Windows.Controls.TextBox) != null) (this.FindControlInPages("txtMagiskPath") as System.Windows.Controls.TextBox).Text = OfflineManagerFileHint;
                 }
 
                 // 恢复按钮状态
@@ -2728,7 +2967,7 @@ namespace WpfApp1
 
         private async void BtnAutoRoot_Click(object sender, RoutedEventArgs e)
         {
-            if (OnePlusAutoRootModeRadioButton?.IsChecked == true)
+            if ((this.FindControlInPages("OnePlusAutoRootModeRadioButton") as System.Windows.Controls.RadioButton)?.IsChecked == true)
             {
                 await RunOnePlusAutoRootAsync();
                 return;
@@ -2916,7 +3155,7 @@ namespace WpfApp1
                 
                 // 检测chkFastbootD复选框状态，决定使用哪个重启命令
                 string rebootCommand = "reboot bootloader"; // 默认命令
-                if (chkFastbootD.IsChecked == true)
+                if ((this.FindControlInPages("chkFastbootD") as System.Windows.Controls.CheckBox).IsChecked == true)
                 {
                     rebootCommand = "reboot fastboot";
                     AppendAutorootLog("检测到FastbootD模式已选择，使用 'adb reboot fastboot' 命令");
@@ -3044,8 +3283,8 @@ namespace WpfApp1
                 countdownParagraph = new Paragraph { Margin = new Thickness(0) };
                 countdownRun = new Run();
                 countdownParagraph.Inlines.Add(countdownRun);
-                FastbootLogTextBox.Document.Blocks.Add(countdownParagraph);
-                FastbootLogTextBox.ScrollToEnd();
+                (this.FindControlInPages("FastbootLogTextBox") as System.Windows.Controls.RichTextBox).Document.Blocks.Add(countdownParagraph);
+                (this.FindControlInPages("FastbootLogTextBox") as System.Windows.Controls.RichTextBox).ScrollToEnd();
             });
 
             try
@@ -3107,7 +3346,7 @@ namespace WpfApp1
                     {
                         if (countdownParagraph != null)
                         {
-                            FastbootLogTextBox.Document.Blocks.Remove(countdownParagraph);
+                            (this.FindControlInPages("FastbootLogTextBox") as System.Windows.Controls.RichTextBox).Document.Blocks.Remove(countdownParagraph);
                         }
                     }
                     catch
@@ -3203,47 +3442,47 @@ namespace WpfApp1
 
         private void BtnClearLog_Click(object sender, RoutedEventArgs e)
         {
-            var txtLog = this.FindName("txtLog") as System.Windows.Controls.RichTextBox;
-            if (txtLog != null)
+            var txtLog = this.FindControlInPages("txtLog") as System.Windows.Controls.RichTextBox;
+            if ((this.FindControlInPages("txtLog") as System.Windows.Controls.RichTextBox) != null)
             {
-                txtLog.Document.Blocks.Clear();
+                (this.FindControlInPages("txtLog") as System.Windows.Controls.RichTextBox).Document.Blocks.Clear();
                 AppendAutorootLog("日志已清空");
             }
         }
 
         private void AvbSelectBootButton_Click(object sender, RoutedEventArgs e)
         {
-            SelectAvbImageFile(AvbBootPathTextBox, "boot 镜像");
+            SelectAvbImageFile((this.FindControlInPages("AvbBootPathTextBox") as System.Windows.Controls.TextBox), "boot 镜像");
         }
 
         private void AvbSelectInitBootButton_Click(object sender, RoutedEventArgs e)
         {
-            SelectAvbImageFile(AvbInitBootPathTextBox, "boot/init_boot 镜像");
+            SelectAvbImageFile((this.FindControlInPages("AvbInitBootPathTextBox") as System.Windows.Controls.TextBox), "boot/init_boot 镜像");
         }
 
         private void AvbSelectVbmetaButton_Click(object sender, RoutedEventArgs e)
         {
-            SelectAvbImageFile(AvbVbmetaPathTextBox, "vbmeta 镜像");
+            SelectAvbImageFile((this.FindControlInPages("AvbVbmetaPathTextBox") as System.Windows.Controls.TextBox), "vbmeta 镜像");
         }
 
         private void AvbSelectAospVbmetaButton_Click(object sender, RoutedEventArgs e)
         {
-            SelectAvbImageFile(AvbAospVbmetaPathTextBox, "vbmeta 镜像");
+            SelectAvbImageFile((this.FindControlInPages("AvbAospVbmetaPathTextBox") as System.Windows.Controls.TextBox), "vbmeta 镜像");
         }
 
         private void AvbSelectAospBootButton_Click(object sender, RoutedEventArgs e)
         {
-            SelectAvbImageFile(AvbAospBootPathTextBox, "boot 镜像");
+            SelectAvbImageFile((this.FindControlInPages("AvbAospBootPathTextBox") as System.Windows.Controls.TextBox), "boot 镜像");
         }
 
         private void AvbSelectAospRecoveryButton_Click(object sender, RoutedEventArgs e)
         {
-            SelectAvbImageFile(AvbAospRecoveryPathTextBox, "recovery 镜像");
+            SelectAvbImageFile((this.FindControlInPages("AvbAospRecoveryPathTextBox") as System.Windows.Controls.TextBox), "recovery 镜像");
         }
 
         private void AvbSelectAospVbmetaSystemButton_Click(object sender, RoutedEventArgs e)
         {
-            SelectAvbImageFile(AvbAospVbmetaSystemPathTextBox, "vbmeta_system 镜像");
+            SelectAvbImageFile((this.FindControlInPages("AvbAospVbmetaSystemPathTextBox") as System.Windows.Controls.TextBox), "vbmeta_system 镜像");
         }
 
         private void AvbModeComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -3273,7 +3512,7 @@ namespace WpfApp1
 
             var vbmetaPath = dialog.FileName;
 
-            AvbAnalyzeVbmetaButton.IsEnabled = false;
+            (this.FindControlInPages("AvbAnalyzeVbmetaButton") as System.Windows.Controls.Button).IsEnabled = false;
             try
             {
                 var rebuilder = new NativeAvbRebuilder(AppendAutorootLog);
@@ -3316,7 +3555,7 @@ namespace WpfApp1
             }
             finally
             {
-                AvbAnalyzeVbmetaButton.IsEnabled = true;
+                (this.FindControlInPages("AvbAnalyzeVbmetaButton") as System.Windows.Controls.Button).IsEnabled = true;
             }
         }
 
@@ -3328,7 +3567,7 @@ namespace WpfApp1
                 return;
             }
 
-            var richTextBox = this.FindName("txtLog") as System.Windows.Controls.RichTextBox;
+            var richTextBox = this.FindControlInPages("txtLog") as System.Windows.Controls.RichTextBox;
             if (richTextBox == null) return;
 
             var accentColor = oldSchemeAvailable
@@ -3388,7 +3627,7 @@ namespace WpfApp1
                 return;
             }
 
-            var startButton = this.FindName("AvbStartSignButton") as System.Windows.Controls.Button;
+            var startButton = this.FindControlInPages("AvbStartSignButton") as System.Windows.Controls.Button;
             if (startButton != null) startButton.IsEnabled = false;
 
             try
@@ -3498,7 +3737,7 @@ namespace WpfApp1
         {
             if (isChainedMode)
             {
-                var bootPath = AvbBootPathTextBox?.Text?.Trim() ?? string.Empty;
+                var bootPath = (this.FindControlInPages("AvbBootPathTextBox") as System.Windows.Controls.TextBox)?.Text?.Trim() ?? string.Empty;
                 if (!ValidateAvbSelectedFile(bootPath, "boot 镜像")) return null;
 
                 var rebuilder = new NativeAvbRebuilder(AppendAutorootLog);
@@ -3512,8 +3751,8 @@ namespace WpfApp1
                     null);
             }
 
-            var targetPath = AvbInitBootPathTextBox?.Text?.Trim() ?? string.Empty;
-            var vbmetaPath = AvbVbmetaPathTextBox?.Text?.Trim() ?? string.Empty;
+            var targetPath = (this.FindControlInPages("AvbInitBootPathTextBox") as System.Windows.Controls.TextBox)?.Text?.Trim() ?? string.Empty;
+            var vbmetaPath = (this.FindControlInPages("AvbVbmetaPathTextBox") as System.Windows.Controls.TextBox)?.Text?.Trim() ?? string.Empty;
             if (!ValidateAvbSelectedFile(targetPath, "boot/init_boot 镜像")) return null;
             if (!ValidateAvbSelectedFile(vbmetaPath, "vbmeta 镜像")) return null;
 
@@ -3538,10 +3777,10 @@ namespace WpfApp1
 
         private AvbSelection? ResolveAvbNewAospSelection()
         {
-            var vbmetaPath = AvbAospVbmetaPathTextBox?.Text?.Trim() ?? string.Empty;
-            var bootPath = AvbAospBootPathTextBox?.Text?.Trim() ?? string.Empty;
-            var recoveryPath = AvbAospRecoveryPathTextBox?.Text?.Trim() ?? string.Empty;
-            var vbmetaSystemPath = AvbAospVbmetaSystemPathTextBox?.Text?.Trim() ?? string.Empty;
+            var vbmetaPath = (this.FindControlInPages("AvbAospVbmetaPathTextBox") as System.Windows.Controls.TextBox)?.Text?.Trim() ?? string.Empty;
+            var bootPath = (this.FindControlInPages("AvbAospBootPathTextBox") as System.Windows.Controls.TextBox)?.Text?.Trim() ?? string.Empty;
+            var recoveryPath = (this.FindControlInPages("AvbAospRecoveryPathTextBox") as System.Windows.Controls.TextBox)?.Text?.Trim() ?? string.Empty;
+            var vbmetaSystemPath = (this.FindControlInPages("AvbAospVbmetaSystemPathTextBox") as System.Windows.Controls.TextBox)?.Text?.Trim() ?? string.Empty;
 
             if (!ValidateAvbSelectedFile(vbmetaPath, "vbmeta 镜像")) return null;
             if (!ValidateAvbSelectedFile(bootPath, "boot 镜像")) return null;
@@ -3571,35 +3810,35 @@ namespace WpfApp1
 
         private bool IsAvbChainedMode()
         {
-            return (AvbModeComboBox?.SelectedIndex ?? 0) == 1;
+            return ((this.FindControlInPages("AvbModeComboBox") as System.Windows.Controls.ComboBox)?.SelectedIndex ?? 0) == 1;
         }
 
         private bool IsAvbNewAospMode()
         {
-            return (AvbModeComboBox?.SelectedIndex ?? 0) == 2;
+            return ((this.FindControlInPages("AvbModeComboBox") as System.Windows.Controls.ComboBox)?.SelectedIndex ?? 0) == 2;
         }
 
         private void UpdateAvbModeFileInputs()
         {
             var isChainedMode = IsAvbChainedMode();
             var isNewAospMode = IsAvbNewAospMode();
-            if (AvbChainedFilePanel != null)
+            if ((this.FindControlInPages("AvbChainedFilePanel") as System.Windows.Controls.StackPanel) != null)
             {
-                AvbChainedFilePanel.Visibility = isChainedMode && !isNewAospMode
+                (this.FindControlInPages("AvbChainedFilePanel") as System.Windows.Controls.StackPanel).Visibility = isChainedMode && !isNewAospMode
                     ? Visibility.Visible
                     : Visibility.Collapsed;
             }
 
-            if (AvbNonChainedFilePanel != null)
+            if ((this.FindControlInPages("AvbNonChainedFilePanel") as System.Windows.Controls.StackPanel) != null)
             {
-                AvbNonChainedFilePanel.Visibility = !isChainedMode && !isNewAospMode
+                (this.FindControlInPages("AvbNonChainedFilePanel") as System.Windows.Controls.StackPanel).Visibility = !isChainedMode && !isNewAospMode
                     ? Visibility.Visible
                     : Visibility.Collapsed;
             }
 
-            if (AvbNewAospFilePanel != null)
+            if ((this.FindControlInPages("AvbNewAospFilePanel") as System.Windows.Controls.StackPanel) != null)
             {
-                AvbNewAospFilePanel.Visibility = isNewAospMode
+                (this.FindControlInPages("AvbNewAospFilePanel") as System.Windows.Controls.StackPanel).Visibility = isNewAospMode
                     ? Visibility.Visible
                     : Visibility.Collapsed;
             }
@@ -3673,10 +3912,10 @@ namespace WpfApp1
         private void ChkFastboot_Checked(object sender, RoutedEventArgs e)
         {
             // chkFastboot选中时，取消chkFastbootD的选中状态
-            var chkFastbootD = this.FindName("chkFastbootD") as System.Windows.Controls.CheckBox;
-            if (chkFastbootD != null)
+            var chkFastbootD = this.FindControlInPages("chkFastbootD") as System.Windows.Controls.CheckBox;
+            if ((this.FindControlInPages("chkFastbootD") as System.Windows.Controls.CheckBox) != null)
             {
-                chkFastbootD.IsChecked = false;
+                (this.FindControlInPages("chkFastbootD") as System.Windows.Controls.CheckBox).IsChecked = false;
             }
             AppendAutorootLog("已选择Fastboot模式", "yellow");
         }
@@ -3689,10 +3928,10 @@ namespace WpfApp1
         private void ChkFastbootD_Checked(object sender, RoutedEventArgs e)
         {
             // chkFastbootD选中时，取消chkFastboot的选中状态
-            var chkFastboot = this.FindName("chkFastboot") as System.Windows.Controls.CheckBox;
-            if (chkFastboot != null)
+            var chkFastboot = this.FindControlInPages("chkFastboot") as System.Windows.Controls.CheckBox;
+            if ((this.FindControlInPages("chkFastboot") as System.Windows.Controls.CheckBox) != null)
             {
-                chkFastboot.IsChecked = false;
+                (this.FindControlInPages("chkFastboot") as System.Windows.Controls.CheckBox).IsChecked = false;
             }
             AppendAutorootLog("已选择FastbootD模式", "yellow");
         }
@@ -3705,43 +3944,9 @@ namespace WpfApp1
         private async void SystemZoneButton_Click(object sender, RoutedEventArgs e)
         {
             // 显示系统专区视图，隐藏其他视图
-            var homeView = this.FindName("HomeView") as Grid;
-            var screenMirrorView = this.FindName("ScreenMirrorView") as Grid;
-            var basicFlashView = this.FindName("BasicFlashView") as Grid;
-            var fastbootVisualizationView = this.FindName("FastbootVisualizationView") as Grid;
-            var hiddenEnvironmentView = this.FindName("HiddenEnvironmentView") as Grid;
-            var downloadView = this.FindName("DownloadView") as Grid;
-            var aboutToolView = this.FindName("AboutToolView") as Grid;
-            var systemZoneView = this.FindName("SystemZoneView") as Grid;
-            var oujiaFlashView = this.FindName("OujiaFlashView") as Grid;
-            var autorootView = this.FindName("AutorootView") as Grid;
-            var appManagementView = this.FindName("AppManagementView") as Grid;
-            var androidGeneralView = this.FindName("AndroidGeneralView") as Grid;
-            var payloadView = this.FindName("PayloadView") as Grid;
-            var romDownloadView = this.FindName("RomDownloadview") as Grid;
-            var edlFlashView = this.FindName("EdlFlashView") as Grid;
-            var colorOSAssistantView = this.FindName("ColorOSAssistantView") as Grid;
-            var backupAssistantView = this.FindName("BackupAssistantView") as Grid;
-            var violetDownloadView = this.FindName("VioletDownloadView") as Grid;
+            
 
-            if (homeView != null) homeView.Visibility = Visibility.Collapsed;
-            if (screenMirrorView != null) screenMirrorView.Visibility = Visibility.Collapsed;
-            if (basicFlashView != null) basicFlashView.Visibility = Visibility.Collapsed;
-            if (fastbootVisualizationView != null) fastbootVisualizationView.Visibility = Visibility.Collapsed;
-            if (hiddenEnvironmentView != null) hiddenEnvironmentView.Visibility = Visibility.Collapsed;
-            if (downloadView != null) downloadView.Visibility = Visibility.Collapsed;
-            if (aboutToolView != null) aboutToolView.Visibility = Visibility.Collapsed;
-            if (oujiaFlashView != null) oujiaFlashView.Visibility = Visibility.Collapsed;
-            if (systemZoneView != null) systemZoneView.Visibility = Visibility.Visible;
-            if (autorootView != null) autorootView.Visibility = Visibility.Collapsed;
-            if (appManagementView != null) appManagementView.Visibility = Visibility.Collapsed;
-            if (androidGeneralView != null) androidGeneralView.Visibility = Visibility.Collapsed;
-            if (payloadView != null) payloadView.Visibility = Visibility.Collapsed;
-            if (romDownloadView != null) romDownloadView.Visibility = Visibility.Collapsed;
-            if (edlFlashView != null) edlFlashView.Visibility = Visibility.Collapsed;
-            if (colorOSAssistantView != null) colorOSAssistantView.Visibility = Visibility.Collapsed;
-            if (backupAssistantView != null) backupAssistantView.Visibility = Visibility.Collapsed;
-            if (violetDownloadView != null) violetDownloadView.Visibility = Visibility.Collapsed;
+            ShowPage("SystemZoneView");
 
             // 更新按钮状态
             UpdateButtonStates("SystemZone");
@@ -3765,43 +3970,9 @@ namespace WpfApp1
         private void AppManagementButton_Click(object sender, RoutedEventArgs e)
         {
             // 显示应用管理视图，隐藏其他视图
-            var homeView = this.FindName("HomeView") as Grid;
-            var screenMirrorView = this.FindName("ScreenMirrorView") as Grid;
-            var basicFlashView = this.FindName("BasicFlashView") as Grid;
-            var fastbootVisualizationView = this.FindName("FastbootVisualizationView") as Grid;
-            var hiddenEnvironmentView = this.FindName("HiddenEnvironmentView") as Grid;
-            var aboutToolView = this.FindName("AboutToolView") as Grid;
-            var systemZoneView = this.FindName("SystemZoneView") as Grid;
-            var oujiaFlashView = this.FindName("OujiaFlashView") as Grid;
-            var autorootView = this.FindName("AutorootView") as Grid;
-            var appManagementView = this.FindName("AppManagementView") as Grid;
-            var androidGeneralView = this.FindName("AndroidGeneralView") as Grid;
-            var downloadView = this.FindName("DownloadView") as Grid;
-            var payloadView = this.FindName("PayloadView") as Grid;
-            var romDownloadView = this.FindName("RomDownloadview") as Grid;
-            var edlFlashView = this.FindName("EdlFlashView") as Grid;
-            var colorOSAssistantView = this.FindName("ColorOSAssistantView") as Grid;
-            var backupAssistantView = this.FindName("BackupAssistantView") as Grid;
-            var violetDownloadView = this.FindName("VioletDownloadView") as Grid;
+            
 
-            if (homeView != null) homeView.Visibility = Visibility.Collapsed;
-            if (screenMirrorView != null) screenMirrorView.Visibility = Visibility.Collapsed;
-            if (basicFlashView != null) basicFlashView.Visibility = Visibility.Collapsed;
-            if (fastbootVisualizationView != null) fastbootVisualizationView.Visibility = Visibility.Collapsed;
-            if (hiddenEnvironmentView != null) hiddenEnvironmentView.Visibility = Visibility.Collapsed;
-            if (aboutToolView != null) aboutToolView.Visibility = Visibility.Collapsed;
-            if (systemZoneView != null) systemZoneView.Visibility = Visibility.Collapsed;
-            if (oujiaFlashView != null) oujiaFlashView.Visibility = Visibility.Collapsed;
-            if (autorootView != null) autorootView.Visibility = Visibility.Collapsed;
-            if (appManagementView != null) appManagementView.Visibility = Visibility.Visible;
-            if (androidGeneralView != null) androidGeneralView.Visibility = Visibility.Collapsed;
-            if (downloadView != null) downloadView.Visibility = Visibility.Collapsed;
-            if (payloadView != null) payloadView.Visibility = Visibility.Collapsed;
-            if (romDownloadView != null) romDownloadView.Visibility = Visibility.Collapsed;
-            if (edlFlashView != null) edlFlashView.Visibility = Visibility.Collapsed;
-            if (colorOSAssistantView != null) colorOSAssistantView.Visibility = Visibility.Collapsed;
-            if (backupAssistantView != null) backupAssistantView.Visibility = Visibility.Collapsed;
-            if (violetDownloadView != null) violetDownloadView.Visibility = Visibility.Collapsed;
+            ShowPage("AppManagementView");
 
             // 更新按钮状态
             UpdateButtonStates("AppManagement");
@@ -3814,43 +3985,9 @@ namespace WpfApp1
         private void AndroidGeneralButton_Click(object sender, RoutedEventArgs e)
         {
             // 显示安卓常用视图，隐藏其他视图
-            var homeView = this.FindName("HomeView") as Grid;
-            var screenMirrorView = this.FindName("ScreenMirrorView") as Grid;
-            var basicFlashView = this.FindName("BasicFlashView") as Grid;
-            var fastbootVisualizationView = this.FindName("FastbootVisualizationView") as Grid;
-            var hiddenEnvironmentView = this.FindName("HiddenEnvironmentView") as Grid;
-            var aboutToolView = this.FindName("AboutToolView") as Grid;
-            var systemZoneView = this.FindName("SystemZoneView") as Grid;
-            var oujiaFlashView = this.FindName("OujiaFlashView") as Grid;
-            var autorootView = this.FindName("AutorootView") as Grid;
-            var appManagementView = this.FindName("AppManagementView") as Grid;
-            var androidGeneralView = this.FindName("AndroidGeneralView") as Grid;
-            var downloadView = this.FindName("DownloadView") as Grid;
-            var payloadView = this.FindName("PayloadView") as Grid;
-            var romDownloadView = this.FindName("RomDownloadview") as Grid;
-            var edlFlashView = this.FindName("EdlFlashView") as Grid;
-            var colorOSAssistantView = this.FindName("ColorOSAssistantView") as Grid;
-            var backupAssistantView = this.FindName("BackupAssistantView") as Grid;
-            var violetDownloadView = this.FindName("VioletDownloadView") as Grid;
+            
 
-            if (homeView != null) homeView.Visibility = Visibility.Collapsed;
-            if (screenMirrorView != null) screenMirrorView.Visibility = Visibility.Collapsed;
-            if (basicFlashView != null) basicFlashView.Visibility = Visibility.Collapsed;
-            if (fastbootVisualizationView != null) fastbootVisualizationView.Visibility = Visibility.Collapsed;
-            if (hiddenEnvironmentView != null) hiddenEnvironmentView.Visibility = Visibility.Collapsed;
-            if (aboutToolView != null) aboutToolView.Visibility = Visibility.Collapsed;
-            if (systemZoneView != null) systemZoneView.Visibility = Visibility.Collapsed;
-            if (oujiaFlashView != null) oujiaFlashView.Visibility = Visibility.Collapsed;
-            if (autorootView != null) autorootView.Visibility = Visibility.Collapsed;
-            if (appManagementView != null) appManagementView.Visibility = Visibility.Collapsed;
-            if (androidGeneralView != null) androidGeneralView.Visibility = Visibility.Visible;
-            if (downloadView != null) downloadView.Visibility = Visibility.Collapsed;
-            if (payloadView != null) payloadView.Visibility = Visibility.Collapsed;
-            if (romDownloadView != null) romDownloadView.Visibility = Visibility.Collapsed;
-            if (edlFlashView != null) edlFlashView.Visibility = Visibility.Collapsed;
-            if (colorOSAssistantView != null) colorOSAssistantView.Visibility = Visibility.Collapsed;
-            if (backupAssistantView != null) backupAssistantView.Visibility = Visibility.Collapsed;
-            if (violetDownloadView != null) violetDownloadView.Visibility = Visibility.Collapsed;
+            ShowPage("AndroidGeneralView");
 
             // 更新按钮状态
             UpdateButtonStates("AndroidGeneral");
@@ -3862,43 +3999,9 @@ namespace WpfApp1
 
         private void EdlFlashButton_Click(object sender, RoutedEventArgs e)
         {
-            var homeView = this.FindName("HomeView") as Grid;
-            var screenMirrorView = this.FindName("ScreenMirrorView") as Grid;
-            var basicFlashView = this.FindName("BasicFlashView") as Grid;
-            var fastbootVisualizationView = this.FindName("FastbootVisualizationView") as Grid;
-            var hiddenEnvironmentView = this.FindName("HiddenEnvironmentView") as Grid;
-            var downloadView = this.FindName("DownloadView") as Grid;
-            var aboutToolView = this.FindName("AboutToolView") as Grid;
-            var systemZoneView = this.FindName("SystemZoneView") as Grid;
-            var oujiaFlashView = this.FindName("OujiaFlashView") as Grid;
-            var autorootView = this.FindName("AutorootView") as Grid;
-            var appManagementView = this.FindName("AppManagementView") as Grid;
-            var androidGeneralView = this.FindName("AndroidGeneralView") as Grid;
-            var payloadView = this.FindName("PayloadView") as Grid;
-            var romDownloadView = this.FindName("RomDownloadview") as Grid;
-            var edlFlashView = this.FindName("EdlFlashView") as Grid;
-            var colorOSAssistantView = this.FindName("ColorOSAssistantView") as Grid;
-            var backupAssistantView = this.FindName("BackupAssistantView") as Grid;
-            var violetDownloadView = this.FindName("VioletDownloadView") as Grid;
+            
 
-            if (homeView != null) homeView.Visibility = Visibility.Collapsed;
-            if (screenMirrorView != null) screenMirrorView.Visibility = Visibility.Collapsed;
-            if (basicFlashView != null) basicFlashView.Visibility = Visibility.Collapsed;
-            if (fastbootVisualizationView != null) fastbootVisualizationView.Visibility = Visibility.Collapsed;
-            if (hiddenEnvironmentView != null) hiddenEnvironmentView.Visibility = Visibility.Collapsed;
-            if (downloadView != null) downloadView.Visibility = Visibility.Collapsed;
-            if (aboutToolView != null) aboutToolView.Visibility = Visibility.Collapsed;
-            if (systemZoneView != null) systemZoneView.Visibility = Visibility.Collapsed;
-            if (oujiaFlashView != null) oujiaFlashView.Visibility = Visibility.Collapsed;
-            if (autorootView != null) autorootView.Visibility = Visibility.Collapsed;
-            if (appManagementView != null) appManagementView.Visibility = Visibility.Collapsed;
-            if (androidGeneralView != null) androidGeneralView.Visibility = Visibility.Collapsed;
-            if (payloadView != null) payloadView.Visibility = Visibility.Collapsed;
-            if (romDownloadView != null) romDownloadView.Visibility = Visibility.Collapsed;
-            if (edlFlashView != null) edlFlashView.Visibility = Visibility.Visible;
-            if (colorOSAssistantView != null) colorOSAssistantView.Visibility = Visibility.Collapsed;
-            if (backupAssistantView != null) backupAssistantView.Visibility = Visibility.Collapsed;
-            if (violetDownloadView != null) violetDownloadView.Visibility = Visibility.Collapsed;
+            ShowPage("EdlFlashView");
 
             UpdateButtonStates("EdlFlash");
             currentView = "EdlFlash";
@@ -3916,8 +4019,8 @@ namespace WpfApp1
                 if (readButton != null) readButton.IsEnabled = false;
 
                 // 根据两个开关状态决定筛选：系统应用(-s) 或 第三方(-3)
-                var thirdPartyToggle = this.FindName("AppListSwitchToggle") as System.Windows.Controls.Primitives.ToggleButton;
-                var systemToggle = this.FindName("AppListSwitchToggle复制__C_") as System.Windows.Controls.Primitives.ToggleButton;
+                var thirdPartyToggle = this.FindControlInPages("AppListSwitchToggle") as System.Windows.Controls.Primitives.ToggleButton;
+                var systemToggle = this.FindControlInPages("AppListSwitchToggle复制__C_") as System.Windows.Controls.Primitives.ToggleButton;
                 string cmd =
                     (systemToggle?.IsChecked == true) ? "shell pm list packages -s" :
                     (thirdPartyToggle?.IsChecked == true) ? "shell pm list packages -3" :
@@ -3947,10 +4050,10 @@ namespace WpfApp1
                 }
 
                 // 根据当前搜索关键词应用过滤（已改用 TextBox）
-                var searchTextBox = this.FindName("AppPackageSearchComboBox") as System.Windows.Controls.TextBox;
+                var searchTextBox = this.FindControlInPages("AppPackageSearchComboBox") as System.Windows.Controls.TextBox;
                 ApplyAppPackageFilter(searchTextBox?.Text ?? string.Empty);
 
-                var appListDataGrid = this.FindName("AppListDataGrid") as DataGrid;
+                var appListDataGrid = this.FindControlInPages("AppListDataGrid") as DataGrid;
                 if (appListDataGrid != null)
                 {
                     appListDataGrid.ItemsSource = AppPackages;
@@ -4072,7 +4175,7 @@ namespace WpfApp1
                 AppPackages.Clear();
                 AppPackages.Add(new AppPackageItem { PackageName = $"读取失败: {ex.Message}", AppName = $"读取失败: {ex.Message}", Version = "", IsSelected = false });
 
-                var appListDataGrid = this.FindName("AppListDataGrid") as DataGrid;
+                var appListDataGrid = this.FindControlInPages("AppListDataGrid") as DataGrid;
                 if (appListDataGrid != null)
                 {
                     appListDataGrid.ItemsSource = AppPackages;
@@ -4093,7 +4196,7 @@ namespace WpfApp1
             {
                 item.IsSelected = true;
             }
-            var appListDataGrid = this.FindName("AppListDataGrid") as DataGrid;
+            var appListDataGrid = this.FindControlInPages("AppListDataGrid") as DataGrid;
             if (appListDataGrid != null)
             {
                 appListDataGrid.Items.Refresh();
@@ -4106,7 +4209,7 @@ namespace WpfApp1
             {
                 item.IsSelected = false;
             }
-            var appListDataGrid = this.FindName("AppListDataGrid") as DataGrid;
+            var appListDataGrid = this.FindControlInPages("AppListDataGrid") as DataGrid;
             if (appListDataGrid != null)
             {
                 appListDataGrid.Items.Refresh();
@@ -4116,7 +4219,7 @@ namespace WpfApp1
         // 互斥：第三方开关被勾选时，关闭系统开关
         private void AppListThirdPartyToggle_Checked(object sender, RoutedEventArgs e)
         {
-            var systemToggle = this.FindName("AppListSwitchToggle复制__C_") as System.Windows.Controls.Primitives.ToggleButton;
+            var systemToggle = this.FindControlInPages("AppListSwitchToggle复制__C_") as System.Windows.Controls.Primitives.ToggleButton;
             if (systemToggle != null && systemToggle.IsChecked == true)
             {
                 systemToggle.IsChecked = false;
@@ -4126,7 +4229,7 @@ namespace WpfApp1
         // 互斥：系统开关被勾选时，关闭第三方开关
         private void AppListSystemToggle_Checked(object sender, RoutedEventArgs e)
         {
-            var thirdPartyToggle = this.FindName("AppListSwitchToggle") as System.Windows.Controls.Primitives.ToggleButton;
+            var thirdPartyToggle = this.FindControlInPages("AppListSwitchToggle") as System.Windows.Controls.Primitives.ToggleButton;
             if (thirdPartyToggle != null && thirdPartyToggle.IsChecked == true)
             {
                 thirdPartyToggle.IsChecked = false;
@@ -4150,7 +4253,7 @@ namespace WpfApp1
         {
             try
             {
-                var logBox = this.FindName("AppManagementLogTextBox") as System.Windows.Controls.TextBox;
+                var logBox = this.FindControlInPages("AppManagementLogTextBox") as System.Windows.Controls.TextBox;
                 if (logBox != null)
                 {
                     Dispatcher.Invoke(() =>
@@ -4211,7 +4314,7 @@ namespace WpfApp1
                 }
 
                 // 刷新 DataGrid 展示状态
-                var appListDataGrid = this.FindName("AppListDataGrid") as DataGrid;
+                var appListDataGrid = this.FindControlInPages("AppListDataGrid") as DataGrid;
                 appListDataGrid?.Items.Refresh();
 
                 AddLogMessage("成功", "已完成卸载操作。");
@@ -4302,7 +4405,7 @@ namespace WpfApp1
                     var item = AppPackages.FirstOrDefault(x => x.PackageName.Equals(pkg, StringComparison.OrdinalIgnoreCase));
                     if (item != null) item.IsSelected = false;
                 }
-                var appListDataGrid = this.FindName("AppListDataGrid") as DataGrid;
+                var appListDataGrid = this.FindControlInPages("AppListDataGrid") as DataGrid;
                 appListDataGrid?.Items.Refresh();
 
                 if (button != null) button.IsEnabled = true;
@@ -4390,7 +4493,7 @@ namespace WpfApp1
                     var item = AppPackages.FirstOrDefault(x => x.PackageName.Equals(pkg, StringComparison.OrdinalIgnoreCase));
                     if (item != null) item.IsSelected = false;
                 }
-                var appListDataGrid = this.FindName("AppListDataGrid") as DataGrid;
+                var appListDataGrid = this.FindControlInPages("AppListDataGrid") as DataGrid;
                 appListDataGrid?.Items.Refresh();
 
                 if (button != null) button.IsEnabled = true;
@@ -4435,11 +4538,11 @@ namespace WpfApp1
                 }
 
                 // 应用当前搜索关键字过滤
-                var searchTextBox = this.FindName("AppPackageSearchComboBox") as System.Windows.Controls.TextBox;
+                var searchTextBox = this.FindControlInPages("AppPackageSearchComboBox") as System.Windows.Controls.TextBox;
                 ApplyAppPackageFilter(searchTextBox?.Text ?? string.Empty);
 
                 // 刷新DataGrid显示
-                var appListDataGrid = this.FindName("AppListDataGrid") as DataGrid;
+                var appListDataGrid = this.FindControlInPages("AppListDataGrid") as DataGrid;
                 if (appListDataGrid != null)
                 {
                     appListDataGrid.ItemsSource = AppPackages;
@@ -4541,7 +4644,7 @@ namespace WpfApp1
                 // 显示错误信息到集合和日志
                 AppPackages.Clear();
                 AppPackages.Add(new AppPackageItem { PackageName = $"读取冻结应用失败: {ex.Message}", AppName = $"读取冻结应用失败: {ex.Message}", Version = "", IsSelected = false });
-                var appListDataGrid = this.FindName("AppListDataGrid") as DataGrid;
+                var appListDataGrid = this.FindControlInPages("AppListDataGrid") as DataGrid;
                 if (appListDataGrid != null)
                 {
                     appListDataGrid.ItemsSource = AppPackages;
@@ -4834,7 +4937,7 @@ namespace WpfApp1
             view.Refresh();
 
             // 刷新数据网格显示
-            var appListDataGrid = this.FindName("AppListDataGrid") as DataGrid;
+            var appListDataGrid = this.FindControlInPages("AppListDataGrid") as DataGrid;
             appListDataGrid?.Items.Refresh();
         }
 
@@ -4870,14 +4973,14 @@ namespace WpfApp1
         // 根据设备连接状态更新分区操作按钮状态
         private void UpdatePartitionButtonStates()
         {
-            var readPartitionButton = this.FindName("ReadPartitionButton") as System.Windows.Controls.Button;
-            var backupBasebandButton = this.FindName("BackupBasebandButton") as System.Windows.Controls.Button;
-            var backupGptButton = this.FindName("BackupGptButton") as System.Windows.Controls.Button;
+            var readPartitionButton = this.FindControlInPages("ReadPartitionButton") as System.Windows.Controls.Button;
+            var backupBasebandButton = this.FindControlInPages("BackupBasebandButton") as System.Windows.Controls.Button;
+            var backupGptButton = this.FindControlInPages("BackupGptButton") as System.Windows.Controls.Button;
             
             if (readPartitionButton != null && backupBasebandButton != null && backupGptButton != null)
             {
                 bool adbMode = string.Equals(
-                    BottomConnectionTypeText?.Text,
+                    (this.FindControlInPages("BottomConnectionTypeText") as System.Windows.Controls.TextBlock)?.Text,
                     "系统",
                     StringComparison.OrdinalIgnoreCase);
                 readPartitionButton.IsEnabled = adbMode;
@@ -4935,7 +5038,7 @@ namespace WpfApp1
         private void PartitionSearchComboBox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
             var comboBox = sender as System.Windows.Controls.ComboBox;
-            var dataGrid = this.FindName("PartitionTableDataGrid") as System.Windows.Controls.DataGrid;
+            var dataGrid = this.FindControlInPages("PartitionTableDataGrid") as System.Windows.Controls.DataGrid;
             
             if (comboBox?.SelectedItem is PartitionInfo selectedPartition && dataGrid != null)
             {
@@ -4964,13 +5067,13 @@ namespace WpfApp1
         private void PartitionSearchTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             if (sender is not System.Windows.Controls.TextBox searchTextBox ||
-                PartitionTableDataGrid?.ItemsSource == null)
+                (this.FindControlInPages("PartitionTableDataGrid") as System.Windows.Controls.DataGrid)?.ItemsSource == null)
             {
                 return;
             }
 
             string keyword = searchTextBox.Text.Trim();
-            ICollectionView view = CollectionViewSource.GetDefaultView(PartitionTableDataGrid.ItemsSource);
+            ICollectionView view = CollectionViewSource.GetDefaultView((this.FindControlInPages("PartitionTableDataGrid") as System.Windows.Controls.DataGrid).ItemsSource);
             view.Filter = string.IsNullOrWhiteSpace(keyword)
                 ? null
                 : item => item is PartitionInfo partition &&
@@ -5591,7 +5694,7 @@ namespace WpfApp1
 
         private bool IsScrcpyControlBarEnabled()
         {
-            return MirrorNavigationBarToggle?.IsChecked == true;
+            return (this.FindControlInPages("MirrorNavigationBarToggle") as System.Windows.Controls.CheckBox)?.IsChecked == true;
         }
 
         private void MirrorNavigationBarToggle_Checked(object sender, RoutedEventArgs e)
@@ -5676,7 +5779,7 @@ namespace WpfApp1
                 return;
             }
 
-            var container = new Border
+            var container = new System.Windows.Controls.Border
             {
                 Background = new SolidColorBrush(MediaColor.FromArgb(245, 255, 255, 255)),
                 BorderBrush = new SolidColorBrush((MediaColor)MediaColorConverter.ConvertFromString("#FFD8D8D8")),
@@ -5788,10 +5891,10 @@ namespace WpfApp1
         private FrameworkElementFactory BuildScrcpyControlBarButtonTemplate()
         {
             var border = new FrameworkElementFactory(typeof(Border));
-            border.SetBinding(Border.BackgroundProperty, new Binding("Background") { RelativeSource = RelativeSource.TemplatedParent });
-            border.SetBinding(Border.BorderBrushProperty, new Binding("BorderBrush") { RelativeSource = RelativeSource.TemplatedParent });
-            border.SetBinding(Border.BorderThicknessProperty, new Binding("BorderThickness") { RelativeSource = RelativeSource.TemplatedParent });
-            border.SetValue(Border.CornerRadiusProperty, new CornerRadius(8));
+            border.SetBinding(System.Windows.Controls.Border.BackgroundProperty, new Binding("Background") { RelativeSource = RelativeSource.TemplatedParent });
+            border.SetBinding(System.Windows.Controls.Border.BorderBrushProperty, new Binding("BorderBrush") { RelativeSource = RelativeSource.TemplatedParent });
+            border.SetBinding(System.Windows.Controls.Border.BorderThicknessProperty, new Binding("BorderThickness") { RelativeSource = RelativeSource.TemplatedParent });
+            border.SetValue(System.Windows.Controls.Border.CornerRadiusProperty, new CornerRadius(8));
 
             var presenter = new FrameworkElementFactory(typeof(ContentPresenter));
             presenter.SetValue(FrameworkElement.HorizontalAlignmentProperty, System.Windows.HorizontalAlignment.Center);
@@ -6029,7 +6132,7 @@ namespace WpfApp1
             }
 
             isScrcpyStarting = true;
-            StartMirrorButton.IsEnabled = false;
+            (this.FindControlInPages("StartMirrorButton") as System.Windows.Controls.Button).IsEnabled = false;
 
             try
             {
@@ -6052,11 +6155,11 @@ namespace WpfApp1
                 if (File.Exists(scrcpyPath))
                 {
                     // 获取帧率滑块的值
-                    var maxFpsSlider = this.FindName("MaxFpsSlider") as Slider;
+                    var maxFpsSlider = this.FindControlInPages("MaxFpsSlider") as Slider;
                     int maxFps = maxFpsSlider != null ? (int)maxFpsSlider.Value : 60; // 默认60fps
                     
                     // 获取比特率滑块的值
-                    var bitrateSlider = this.FindName("BitrateSlider") as Slider;
+                    var bitrateSlider = this.FindControlInPages("BitrateSlider") as Slider;
                     int bitrate = bitrateSlider != null ? (int)bitrateSlider.Value : 8; // 默认8Mbps
                     
                     // 获取窗口大小设置
@@ -6144,7 +6247,7 @@ namespace WpfApp1
             finally
             {
                 isScrcpyStarting = false;
-                StartMirrorButton.IsEnabled = true;
+                (this.FindControlInPages("StartMirrorButton") as System.Windows.Controls.Button).IsEnabled = true;
             }
         }
 
@@ -6152,7 +6255,7 @@ namespace WpfApp1
         private void WindowSizeRadio_Checked(object sender, RoutedEventArgs e)
         {
             var radioButton = sender as System.Windows.Controls.RadioButton;
-            var customSizePanel = this.FindName("CustomSizePanel") as StackPanel;
+            var customSizePanel = this.FindControlInPages("CustomSizePanel") as StackPanel;
             
             if (radioButton != null && customSizePanel != null)
             {
@@ -6174,11 +6277,11 @@ namespace WpfApp1
         private int GetWindowMaxSize()
         {
             // 检查哪个 RadioButton 被选中
-            var radio90 = this.FindName("RadioSize90") as System.Windows.Controls.RadioButton;
-            var radio80 = this.FindName("RadioSize80") as System.Windows.Controls.RadioButton;
-            var radio70 = this.FindName("RadioSize70") as System.Windows.Controls.RadioButton;
-            var radio60 = this.FindName("RadioSize60") as System.Windows.Controls.RadioButton;
-            var radioCustom = this.FindName("RadioSizeCustom") as System.Windows.Controls.RadioButton;
+            var radio90 = this.FindControlInPages("RadioSize90") as System.Windows.Controls.RadioButton;
+            var radio80 = this.FindControlInPages("RadioSize80") as System.Windows.Controls.RadioButton;
+            var radio70 = this.FindControlInPages("RadioSize70") as System.Windows.Controls.RadioButton;
+            var radio60 = this.FindControlInPages("RadioSize60") as System.Windows.Controls.RadioButton;
+            var radioCustom = this.FindControlInPages("RadioSizeCustom") as System.Windows.Controls.RadioButton;
             
             if (radio90?.IsChecked == true) return 972;  // 90%
             if (radio80?.IsChecked == true) return 864;  // 80%
@@ -6203,16 +6306,16 @@ namespace WpfApp1
             {
                 string value = optionName switch
                 {
-                    nameof(MirrorTitleShowDeviceCodeCheckBox) => await GetAdbPropertyAsync("ro.product.device"),
-                    nameof(MirrorTitleShowAndroidVersionCheckBox) => await GetAdbPropertyAsync("ro.build.version.release"),
-                    nameof(MirrorTitleShowSlotCheckBox) => await GetCurrentBootSlotAsync(),
-                    nameof(MirrorTitleShowSerialCheckBox) => deviceSerial,
-                    nameof(MirrorTitleShowDeviceNameCheckBox) => await GetAdbPropertyAsync("ro.product.model"),
-                    nameof(MirrorTitleShowBuildInfoCheckBox) => await GetBuildInfoAsync(),
-                    nameof(MirrorTitleShowUnlockStateCheckBox) => await GetUnlockStateAsync(),
-                    nameof(MirrorTitleShowBatteryTempCheckBox) => await GetBatteryTemperatureAsync(),
-                    nameof(MirrorTitleShowBatteryLevelCheckBox) => await GetBatteryLevelAsync(),
-                    nameof(MirrorTitleShowStorageCheckBox) => await GetStorageSummaryAsync(),
+                    "MirrorTitleShowDeviceCodeCheckBox" => await GetAdbPropertyAsync("ro.product.device"),
+                    "MirrorTitleShowAndroidVersionCheckBox" => await GetAdbPropertyAsync("ro.build.version.release"),
+                    "MirrorTitleShowSlotCheckBox" => await GetCurrentBootSlotAsync(),
+                    "MirrorTitleShowSerialCheckBox" => deviceSerial,
+                    "MirrorTitleShowDeviceNameCheckBox" => await GetAdbPropertyAsync("ro.product.model"),
+                    "MirrorTitleShowBuildInfoCheckBox" => await GetBuildInfoAsync(),
+                    "MirrorTitleShowUnlockStateCheckBox" => await GetUnlockStateAsync(),
+                    "MirrorTitleShowBatteryTempCheckBox" => await GetBatteryTemperatureAsync(),
+                    "MirrorTitleShowBatteryLevelCheckBox" => await GetBatteryLevelAsync(),
+                    "MirrorTitleShowStorageCheckBox" => await GetStorageSummaryAsync(),
                     _ => string.Empty
                 };
 
@@ -6237,10 +6340,10 @@ namespace WpfApp1
         {
             return optionName switch
             {
-                nameof(MirrorTitleShowSlotCheckBox) => $"槽位{value.ToUpperInvariant()}",
-                nameof(MirrorTitleShowAndroidVersionCheckBox) => $"安卓{value}",
-                nameof(MirrorTitleShowSerialCheckBox) => $"序列号{value}",
-                nameof(MirrorTitleShowDeviceCodeCheckBox) => $"代号{value}",
+                "MirrorTitleShowSlotCheckBox" => $"槽位{value.ToUpperInvariant()}",
+                "MirrorTitleShowAndroidVersionCheckBox" => $"安卓{value}",
+                "MirrorTitleShowSerialCheckBox" => $"序列号{value}",
+                "MirrorTitleShowDeviceCodeCheckBox" => $"代号{value}",
                 _ => value
             };
         }
@@ -6264,10 +6367,10 @@ namespace WpfApp1
                 arguments.Add($"--max-size {maxSize}");
             }
 
-            if (RadioSizeCustom?.IsChecked == true)
+            if ((this.FindControlInPages("RadioSizeCustom") as System.Windows.Controls.RadioButton)?.IsChecked == true)
             {
-                if (!int.TryParse(CustomWidthTextBox?.Text, out int customWidth) || customWidth <= 0 ||
-                    !int.TryParse(CustomHeightTextBox?.Text, out int customHeight) || customHeight <= 0)
+                if (!int.TryParse((this.FindControlInPages("CustomWidthTextBox") as System.Windows.Controls.TextBox)?.Text, out int customWidth) || customWidth <= 0 ||
+                    !int.TryParse((this.FindControlInPages("CustomHeightTextBox") as System.Windows.Controls.TextBox)?.Text, out int customHeight) || customHeight <= 0)
                 {
                     throw new InvalidOperationException("自定义投屏宽度和高度必须是大于 0 的整数。");
                 }
@@ -6276,31 +6379,31 @@ namespace WpfApp1
                 arguments.Add($"--window-height {customHeight}");
             }
 
-            if (MirrorClipboardSyncCheckBox?.IsChecked != true)
+            if ((this.FindControlInPages("MirrorClipboardSyncCheckBox") as System.Windows.Controls.CheckBox)?.IsChecked != true)
             {
                 arguments.Add("--no-clipboard-autosync");
             }
 
-            if (MirrorStayAwakeCheckBox?.IsChecked == true)
+            if ((this.FindControlInPages("MirrorStayAwakeCheckBox") as System.Windows.Controls.CheckBox)?.IsChecked == true)
             {
                 arguments.Add("--stay-awake");
             }
 
-            if (MirrorFullscreenCheckBox?.IsChecked == true)
+            if ((this.FindControlInPages("MirrorFullscreenCheckBox") as System.Windows.Controls.CheckBox)?.IsChecked == true)
             {
                 arguments.Add("--fullscreen");
             }
 
-            if (TopmostCheckBox?.IsChecked == true)
+            if ((this.FindControlInPages("TopmostCheckBox") as System.Windows.Controls.CheckBox)?.IsChecked == true)
             {
                 arguments.Add("--always-on-top");
             }
 
-            if (MirrorOrientation90RadioButton?.IsChecked == true)
+            if ((this.FindControlInPages("MirrorOrientation90RadioButton") as System.Windows.Controls.RadioButton)?.IsChecked == true)
             {
                 arguments.Add("--capture-orientation 90");
             }
-            else if (MirrorOrientation180RadioButton?.IsChecked == true)
+            else if ((this.FindControlInPages("MirrorOrientation180RadioButton") as System.Windows.Controls.RadioButton)?.IsChecked == true)
             {
                 arguments.Add("--capture-orientation 180");
             }
@@ -6327,16 +6430,16 @@ namespace WpfApp1
         {
             string[] defaultOrder =
             {
-                nameof(MirrorTitleShowDeviceNameCheckBox),
-                nameof(MirrorTitleShowSlotCheckBox),
-                nameof(MirrorTitleShowAndroidVersionCheckBox),
-                nameof(MirrorTitleShowSerialCheckBox),
-                nameof(MirrorTitleShowDeviceCodeCheckBox),
-                nameof(MirrorTitleShowBuildInfoCheckBox),
-                nameof(MirrorTitleShowUnlockStateCheckBox),
-                nameof(MirrorTitleShowBatteryTempCheckBox),
-                nameof(MirrorTitleShowBatteryLevelCheckBox),
-                nameof(MirrorTitleShowStorageCheckBox)
+                "MirrorTitleShowDeviceNameCheckBox",
+                "MirrorTitleShowSlotCheckBox",
+                "MirrorTitleShowAndroidVersionCheckBox",
+                "MirrorTitleShowSerialCheckBox",
+                "MirrorTitleShowDeviceCodeCheckBox",
+                "MirrorTitleShowBuildInfoCheckBox",
+                "MirrorTitleShowUnlockStateCheckBox",
+                "MirrorTitleShowBatteryTempCheckBox",
+                "MirrorTitleShowBatteryLevelCheckBox",
+                "MirrorTitleShowStorageCheckBox"
             };
 
             List<string> checkedNames = defaultOrder
@@ -6365,16 +6468,16 @@ namespace WpfApp1
         {
             return checkBoxName switch
             {
-                nameof(MirrorTitleShowDeviceCodeCheckBox) => MirrorTitleShowDeviceCodeCheckBox?.IsChecked == true,
-                nameof(MirrorTitleShowAndroidVersionCheckBox) => MirrorTitleShowAndroidVersionCheckBox?.IsChecked == true,
-                nameof(MirrorTitleShowSlotCheckBox) => MirrorTitleShowSlotCheckBox?.IsChecked == true,
-                nameof(MirrorTitleShowSerialCheckBox) => MirrorTitleShowSerialCheckBox?.IsChecked == true,
-                nameof(MirrorTitleShowDeviceNameCheckBox) => MirrorTitleShowDeviceNameCheckBox?.IsChecked == true,
-                nameof(MirrorTitleShowBuildInfoCheckBox) => MirrorTitleShowBuildInfoCheckBox?.IsChecked == true,
-                nameof(MirrorTitleShowUnlockStateCheckBox) => MirrorTitleShowUnlockStateCheckBox?.IsChecked == true,
-                nameof(MirrorTitleShowBatteryTempCheckBox) => MirrorTitleShowBatteryTempCheckBox?.IsChecked == true,
-                nameof(MirrorTitleShowBatteryLevelCheckBox) => MirrorTitleShowBatteryLevelCheckBox?.IsChecked == true,
-                nameof(MirrorTitleShowStorageCheckBox) => MirrorTitleShowStorageCheckBox?.IsChecked == true,
+                "MirrorTitleShowDeviceCodeCheckBox" => (this.FindControlInPages("MirrorTitleShowDeviceCodeCheckBox") as System.Windows.Controls.CheckBox)?.IsChecked == true,
+                "MirrorTitleShowAndroidVersionCheckBox" => (this.FindControlInPages("MirrorTitleShowAndroidVersionCheckBox") as System.Windows.Controls.CheckBox)?.IsChecked == true,
+                "MirrorTitleShowSlotCheckBox" => (this.FindControlInPages("MirrorTitleShowSlotCheckBox") as System.Windows.Controls.CheckBox)?.IsChecked == true,
+                "MirrorTitleShowSerialCheckBox" => (this.FindControlInPages("MirrorTitleShowSerialCheckBox") as System.Windows.Controls.CheckBox)?.IsChecked == true,
+                "MirrorTitleShowDeviceNameCheckBox" => (this.FindControlInPages("MirrorTitleShowDeviceNameCheckBox") as System.Windows.Controls.CheckBox)?.IsChecked == true,
+                "MirrorTitleShowBuildInfoCheckBox" => (this.FindControlInPages("MirrorTitleShowBuildInfoCheckBox") as System.Windows.Controls.CheckBox)?.IsChecked == true,
+                "MirrorTitleShowUnlockStateCheckBox" => (this.FindControlInPages("MirrorTitleShowUnlockStateCheckBox") as System.Windows.Controls.CheckBox)?.IsChecked == true,
+                "MirrorTitleShowBatteryTempCheckBox" => (this.FindControlInPages("MirrorTitleShowBatteryTempCheckBox") as System.Windows.Controls.CheckBox)?.IsChecked == true,
+                "MirrorTitleShowBatteryLevelCheckBox" => (this.FindControlInPages("MirrorTitleShowBatteryLevelCheckBox") as System.Windows.Controls.CheckBox)?.IsChecked == true,
+                "MirrorTitleShowStorageCheckBox" => (this.FindControlInPages("MirrorTitleShowStorageCheckBox") as System.Windows.Controls.CheckBox)?.IsChecked == true,
                 _ => false
             };
         }
@@ -6525,9 +6628,9 @@ namespace WpfApp1
                     StopAutoMirrorTimer();
                     
                     // 取消勾选自动投屏复选框
-                    if (AutoMirrorCheckBox != null)
+                    if ((this.FindControlInPages("AutoMirrorCheckBox") as System.Windows.Controls.CheckBox) != null)
                     {
-                        AutoMirrorCheckBox.IsChecked = false;
+                        (this.FindControlInPages("AutoMirrorCheckBox") as System.Windows.Controls.CheckBox).IsChecked = false;
                     }
                     AppendToLogTextBox($"[{DateTime.Now:HH:mm:ss}] 已停止全自动投屏功能\n");
                 }
@@ -6743,7 +6846,7 @@ namespace WpfApp1
                     return;
                 }
 
-                FixAdbButton.IsEnabled = false;
+                (this.FindControlInPages("FixAdbButton") as System.Windows.Controls.Button).IsEnabled = false;
                 var taskStopwatch = Stopwatch.StartNew();
 
                 string? deviceSerial = await GetAuthorizedAdbDeviceSerialAsync();
@@ -6788,7 +6891,7 @@ namespace WpfApp1
             }
             finally
             {
-                FixAdbButton.IsEnabled = true;
+                (this.FindControlInPages("FixAdbButton") as System.Windows.Controls.Button).IsEnabled = true;
             }
         }
 
@@ -6808,7 +6911,7 @@ namespace WpfApp1
 
             try
             {
-                EnableMiuiUsbButton.IsEnabled = false;
+                (this.FindControlInPages("EnableMiuiUsbButton") as System.Windows.Controls.Button).IsEnabled = false;
                 var taskStopwatch = Stopwatch.StartNew();
 
                 string? deviceSerial = await GetAuthorizedAdbDeviceSerialAsync();
@@ -6867,14 +6970,14 @@ namespace WpfApp1
             }
             finally
             {
-                EnableMiuiUsbButton.IsEnabled = true;
+                (this.FindControlInPages("EnableMiuiUsbButton") as System.Windows.Controls.Button).IsEnabled = true;
             }
         }
 
         // ADB读取一加DDR版本
         private async void ReadOnePlusDdrButton_Click(object sender, RoutedEventArgs e)
         {
-            ReadOnePlusDdrButton.IsEnabled = false;
+            (this.FindControlInPages("ReadOnePlusDdrButton") as System.Windows.Controls.Button).IsEnabled = false;
             var taskStopwatch = Stopwatch.StartNew();
 
             try
@@ -6919,14 +7022,14 @@ namespace WpfApp1
             }
             finally
             {
-                ReadOnePlusDdrButton.IsEnabled = true;
+                (this.FindControlInPages("ReadOnePlusDdrButton") as System.Windows.Controls.Button).IsEnabled = true;
             }
         }
 
         // 强开基带调试端口
         private async void EnableDiagPortButton_Click(object sender, RoutedEventArgs e)
         {
-            EnableDiagPortButton.IsEnabled = false;
+            (this.FindControlInPages("EnableDiagPortButton") as System.Windows.Controls.Button).IsEnabled = false;
             var taskStopwatch = Stopwatch.StartNew();
 
             try
@@ -6971,7 +7074,7 @@ namespace WpfApp1
             }
             finally
             {
-                EnableDiagPortButton.IsEnabled = true;
+                (this.FindControlInPages("EnableDiagPortButton") as System.Windows.Controls.Button).IsEnabled = true;
             }
         }
 
@@ -6997,7 +7100,7 @@ namespace WpfApp1
         // 切换文件传输模式按钮
         private async void SwitchToMtpButton_Click(object sender, RoutedEventArgs e)
         {
-            SwitchToMtpButton.IsEnabled = false;
+            (this.FindControlInPages("SwitchToMtpButton") as System.Windows.Controls.Button).IsEnabled = false;
             var taskStopwatch = Stopwatch.StartNew();
 
             try
@@ -7031,7 +7134,7 @@ namespace WpfApp1
             }
             finally
             {
-                SwitchToMtpButton.IsEnabled = true;
+                (this.FindControlInPages("SwitchToMtpButton") as System.Windows.Controls.Button).IsEnabled = true;
             }
         }
 
@@ -7039,21 +7142,21 @@ namespace WpfApp1
         {
             try
             {
-                GenerateOcdtButton.IsEnabled = false;
-                SuperPackLogRichTextBox.Document.Blocks.Clear();
+                (this.FindControlInPages("GenerateOcdtButton") as System.Windows.Controls.Button).IsEnabled = false;
+                (this.FindControlInPages("SuperPackLogRichTextBox") as System.Windows.Controls.RichTextBox).Document.Blocks.Clear();
                 AppendOcdtLog("开始生成 OCDT 文件...");
 
                 // 收集参数
-                string projIdText = OcdtProjIdTextBox.Text.Trim();
+                string projIdText = (this.FindControlInPages("OcdtProjIdTextBox") as System.Windows.Controls.TextBox).Text.Trim();
                 if (string.IsNullOrEmpty(projIdText) || !int.TryParse(projIdText, out int projId))
                 {
                     AppendOcdtLog("错误：请输入有效的数字 Project ID", System.Windows.Media.Brushes.Red);
                     return;
                 }
 
-                string platform = ((ComboBoxItem)OcdtSizeComboBox.SelectedItem).Content.ToString();
+                string platform = ((ComboBoxItem)(this.FindControlInPages("OcdtSizeComboBox") as System.Windows.Controls.ComboBox).SelectedItem).Content.ToString();
                 string size = platform == "联发科" ? "8mb" : "128kb";
-                string variant = ((ComboBoxItem)OcdtVariantComboBox.SelectedItem).Content.ToString();
+                string variant = ((ComboBoxItem)(this.FindControlInPages("OcdtVariantComboBox") as System.Windows.Controls.ComboBox).SelectedItem).Content.ToString();
 
                 // 弹出文件夹选择对话框让用户选择保存的目录
                 using (var folderDialog = new System.Windows.Forms.FolderBrowserDialog())
@@ -7095,7 +7198,7 @@ namespace WpfApp1
             }
             finally
             {
-                GenerateOcdtButton.IsEnabled = true;
+                (this.FindControlInPages("GenerateOcdtButton") as System.Windows.Controls.Button).IsEnabled = true;
             }
         }
 
@@ -7107,8 +7210,8 @@ namespace WpfApp1
                 paragraph.Foreground = color;
             }
             paragraph.Margin = new Thickness(0);
-            SuperPackLogRichTextBox.Document.Blocks.Add(paragraph);
-            SuperPackLogRichTextBox.ScrollToEnd();
+            (this.FindControlInPages("SuperPackLogRichTextBox") as System.Windows.Controls.RichTextBox).Document.Blocks.Add(paragraph);
+            (this.FindControlInPages("SuperPackLogRichTextBox") as System.Windows.Controls.RichTextBox).ScrollToEnd();
         }
 
         #region OCDT Generator Logic (C# Port)
@@ -7193,7 +7296,7 @@ namespace WpfApp1
                 return;
             }
 
-            AnalyzeOcdtButton.IsEnabled = false;
+            (this.FindControlInPages("AnalyzeOcdtButton") as System.Windows.Controls.Button).IsEnabled = false;
             var taskStopwatch = Stopwatch.StartNew();
 
             try
@@ -7339,7 +7442,7 @@ namespace WpfApp1
             }
             finally
             {
-                AnalyzeOcdtButton.IsEnabled = true;
+                (this.FindControlInPages("AnalyzeOcdtButton") as System.Windows.Controls.Button).IsEnabled = true;
             }
         }
 
@@ -7648,7 +7751,7 @@ namespace WpfApp1
                         Dispatcher.Invoke(() =>
                         {
                             UpdateDeviceInfoUI(status, connectionType, "--", "--", "--", "--", "--", "--", "--", "--", "--", "--", windowsVersion);
-                            if (BuildDateText != null) BuildDateText.Text = "--";
+                            if ((this.FindControlInPages("BuildDateText") as System.Windows.Controls.TextBlock) != null) (this.FindControlInPages("BuildDateText") as System.Windows.Controls.TextBlock).Text = "--";
                         });
                         UpdateLastDeviceInfo(status, connectionType, "--", "--", "--", "--", "--", "--", "--", "--", "--", "--", windowsVersion);
                     }
@@ -7689,7 +7792,7 @@ namespace WpfApp1
                         Dispatcher.Invoke(() =>
                         {
                             UpdateDeviceInfoUI(status, connectionType, "--", "--", "--", "--", "--", "--", "--", "--", "--", "--", windowsVersion);
-                            if (BuildDateText != null) BuildDateText.Text = "--";
+                            if ((this.FindControlInPages("BuildDateText") as System.Windows.Controls.TextBlock) != null) (this.FindControlInPages("BuildDateText") as System.Windows.Controls.TextBlock).Text = "--";
                         });
                         UpdateLastDeviceInfo(status, connectionType, "--", "--", "--", "--", "--", "--", "--", "--", "--", "--", windowsVersion);
                     }
@@ -7734,7 +7837,7 @@ namespace WpfApp1
                     if (!IsDeviceDetectionCycleCurrent(detectionVersion)) return;
 
                     // 保存当前选中的设备序列号
-                    string currentSelectedSerial = MultiDeviceComboBox.SelectedItem as string;
+                    string currentSelectedSerial = (this.FindControlInPages("MultiDeviceComboBox") as System.Windows.Controls.ComboBox).SelectedItem as string;
                     
                     DeviceSerials.Clear();
                     foreach (var serial in allDeviceSerials)
@@ -7745,12 +7848,12 @@ namespace WpfApp1
                     // 尝试恢复之前选中的设备
                     if (!string.IsNullOrEmpty(currentSelectedSerial) && DeviceSerials.Contains(currentSelectedSerial))
                     {
-                        MultiDeviceComboBox.SelectedItem = currentSelectedSerial;
+                        (this.FindControlInPages("MultiDeviceComboBox") as System.Windows.Controls.ComboBox).SelectedItem = currentSelectedSerial;
                     }
                     // 如果之前选中的设备不存在或没有选中项，选中第一个
-                    else if (MultiDeviceComboBox.SelectedItem == null && DeviceSerials.Count > 0)
+                    else if ((this.FindControlInPages("MultiDeviceComboBox") as System.Windows.Controls.ComboBox).SelectedItem == null && DeviceSerials.Count > 0)
                     {
-                        MultiDeviceComboBox.SelectedIndex = 0;
+                        (this.FindControlInPages("MultiDeviceComboBox") as System.Windows.Controls.ComboBox).SelectedIndex = 0;
                     }
                 });
 
@@ -7758,7 +7861,7 @@ namespace WpfApp1
                 string selectedDevice = "";
                 Dispatcher.Invoke(() =>
                 {
-                    selectedDevice = MultiDeviceComboBox.SelectedItem as string ?? "";
+                    selectedDevice = (this.FindControlInPages("MultiDeviceComboBox") as System.Windows.Controls.ComboBox).SelectedItem as string ?? "";
                 });
 
                 if (hasAdbDevice && (selectedDevice.Contains("(ADB)") || !selectedDevice.Contains("(Fastboot)")))
@@ -7818,7 +7921,7 @@ namespace WpfApp1
                     if (string.IsNullOrEmpty(buildDate)) buildDate = "--";
                     if (buildDate != lastBuildDate)
                     {
-                        Dispatcher.Invoke(() => { if (BuildDateText != null) BuildDateText.Text = buildDate; });
+                        Dispatcher.Invoke(() => { if ((this.FindControlInPages("BuildDateText") as System.Windows.Controls.TextBlock) != null) (this.FindControlInPages("BuildDateText") as System.Windows.Controls.TextBlock).Text = buildDate; });
                         lastBuildDate = buildDate;
                     }
 
@@ -8013,7 +8116,7 @@ namespace WpfApp1
                                 "--",
                                 windowsVersion
                             );
-                            if (BuildDateText != null) BuildDateText.Text = "--";
+                            if ((this.FindControlInPages("BuildDateText") as System.Windows.Controls.TextBlock) != null) (this.FindControlInPages("BuildDateText") as System.Windows.Controls.TextBlock).Text = "--";
                         });
                         UpdateLastDeviceInfo(status, connectionType, deviceSerial, productName, productName, "--", unlockText, slotText, "--", "--", "--", "--", windowsVersion);
                     }
@@ -8034,7 +8137,7 @@ namespace WpfApp1
                     Dispatcher.Invoke(() =>
                     {
                         UpdateDeviceInfoUI(status, connectionType, "--", "--", "--", "--", "--", "--", "--", "--", "--", "--", windowsVersion);
-                        if (BuildDateText != null) BuildDateText.Text = "--";
+                        if ((this.FindControlInPages("BuildDateText") as System.Windows.Controls.TextBlock) != null) (this.FindControlInPages("BuildDateText") as System.Windows.Controls.TextBlock).Text = "--";
                     });
                     UpdateLastDeviceInfo(status, connectionType, "--", "--", "--", "--", "--", "--", "--", "--", "--", "--", windowsVersion);
                 }
@@ -8068,48 +8171,47 @@ namespace WpfApp1
 
         private void UpdateSelinuxStatusColor(string selinuxStatus)
         {
-            if (SelinuxStatusText == null)
+            if ((this.FindControlInPages("SelinuxStatusText") as System.Windows.Controls.TextBlock) == null)
             {
                 return;
             }
 
             if (selinuxStatus == "严格模式")
             {
-                SelinuxStatusText.Foreground = System.Windows.Media.Brushes.Green;
+                (this.FindControlInPages("SelinuxStatusText") as System.Windows.Controls.TextBlock).Foreground = System.Windows.Media.Brushes.Green;
             }
             else if (selinuxStatus == "宽容模式")
             {
-                SelinuxStatusText.Foreground = System.Windows.Media.Brushes.Red;
+                (this.FindControlInPages("SelinuxStatusText") as System.Windows.Controls.TextBlock).Foreground = System.Windows.Media.Brushes.Red;
             }
             else if (selinuxStatus == "已关闭")
             {
-                SelinuxStatusText.Foreground = System.Windows.Media.Brushes.DarkOrange;
+                (this.FindControlInPages("SelinuxStatusText") as System.Windows.Controls.TextBlock).Foreground = System.Windows.Media.Brushes.DarkOrange;
             }
             else
             {
-                SelinuxStatusText.Foreground = new SolidColorBrush(System.Windows.Media.Color.FromRgb(33, 150, 243));
+                (this.FindControlInPages("SelinuxStatusText") as System.Windows.Controls.TextBlock).Foreground = new SolidColorBrush(System.Windows.Media.Color.FromRgb(33, 150, 243));
             }
         }
 
         private void UpdateDeviceInfoUI(string status, string connectionType, string serial, string model, string code, string androidVersion, string unlockStatus, string abPartition, string selinuxStatus, string kernelVersion, string cpuManufacturer, string cpuCodeName, string windowsVersion)
         {
-            SetLocalizedText(DeviceStatusText, status);
-            SetLocalizedText(ConnectionTypeText, connectionType);
-            DeviceSerialText.Text = serial;
-            DeviceModelText.Text = model;
-            DeviceCodeText.Text = code;
-            AndroidVersionText.Text = androidVersion;
-            SetLocalizedText(UnlockStatusText, unlockStatus);
-            SetLocalizedText(ABPartitionText, abPartition);
-            SetLocalizedText(SelinuxStatusText, selinuxStatus);
-            KernelVersionText.Text = kernelVersion;
-            CpuManufacturerText.Text = cpuManufacturer;
-            CpuCodeNameText.Text = cpuCodeName;
-            WindowsVersionText.Text = windowsVersion;
+            SetLocalizedText((this.FindControlInPages("DeviceStatusText") as System.Windows.Controls.TextBlock), status);
+            SetLocalizedText((this.FindControlInPages("ConnectionTypeText") as System.Windows.Controls.TextBlock), connectionType);
+            (this.FindControlInPages("DeviceSerialText") as System.Windows.Controls.TextBlock).Text = serial;
+            (this.FindControlInPages("DeviceModelText") as System.Windows.Controls.TextBlock).Text = model;
+            (this.FindControlInPages("DeviceCodeText") as System.Windows.Controls.TextBlock).Text = code;
+            (this.FindControlInPages("AndroidVersionText") as System.Windows.Controls.TextBlock).Text = androidVersion;
+            SetLocalizedText((this.FindControlInPages("UnlockStatusText") as System.Windows.Controls.TextBlock), unlockStatus);
+            SetLocalizedText((this.FindControlInPages("ABPartitionText") as System.Windows.Controls.TextBlock), abPartition);
+            SetLocalizedText((this.FindControlInPages("SelinuxStatusText") as System.Windows.Controls.TextBlock), selinuxStatus);
+            (this.FindControlInPages("KernelVersionText") as System.Windows.Controls.TextBlock).Text = kernelVersion;
+            (this.FindControlInPages("CpuManufacturerText") as System.Windows.Controls.TextBlock).Text = cpuManufacturer;
+            (this.FindControlInPages("CpuCodeNameText") as System.Windows.Controls.TextBlock).Text = cpuCodeName;
+            (this.FindControlInPages("WindowsVersionText") as System.Windows.Controls.TextBlock).Text = windowsVersion;
             UpdateSelinuxStatusColor(selinuxStatus);
             
-            // 根据CPU代号更新CPU名称
-            CpuNameText.Text = GetCpuNameByCode(cpuCodeName);
+            // 根据CPU代号更新CPU名称 CpuNameText.Text = GetCpuNameByCode(cpuCodeName);
             
             // 更新版本信息
             if (status == "已连接" && connectionType == "系统" && !string.IsNullOrEmpty(code) && code != "--")
@@ -8118,13 +8220,13 @@ namespace WpfApp1
             }
             else
             {
-                VersionInfoText.Text = "--";
+                (this.FindControlInPages("VersionInfoText") as System.Windows.Controls.TextBlock).Text = "--";
             }
             
             // 更新底部的设备类型显示文本
-            if (BottomConnectionTypeText != null)
+            if ((this.FindControlInPages("BottomConnectionTypeText") as System.Windows.Controls.TextBlock) != null)
             {
-                SetLocalizedText(BottomConnectionTypeText, connectionType);
+                SetLocalizedText((this.FindControlInPages("BottomConnectionTypeText") as System.Windows.Controls.TextBlock), connectionType);
             }
             UpdateBottomConnectionStatusIndicator(status, connectionType);
             
@@ -8194,7 +8296,7 @@ namespace WpfApp1
                     {
                         if (IsDeviceDetectionCycleCurrent(detectionVersion))
                         {
-                            VersionInfoText.Text = "--";
+                            (this.FindControlInPages("VersionInfoText") as System.Windows.Controls.TextBlock).Text = "--";
                         }
                     });
                     return;
@@ -8218,7 +8320,7 @@ namespace WpfApp1
                 {
                     if (IsDeviceDetectionCycleCurrent(detectionVersion))
                     {
-                        VersionInfoText.Text = string.IsNullOrEmpty(trimmedVersionInfo) ? "--" : trimmedVersionInfo;
+                        (this.FindControlInPages("VersionInfoText") as System.Windows.Controls.TextBlock).Text = string.IsNullOrEmpty(trimmedVersionInfo) ? "--" : trimmedVersionInfo;
                     }
                 });
             }
@@ -8229,7 +8331,7 @@ namespace WpfApp1
                 {
                     if (IsDeviceDetectionCycleCurrent(detectionVersion))
                     {
-                        VersionInfoText.Text = "--";
+                        (this.FindControlInPages("VersionInfoText") as System.Windows.Controls.TextBlock).Text = "--";
                     }
                 });
             }
@@ -8237,29 +8339,26 @@ namespace WpfApp1
         
         private void UpdateStatusTextColor(string status, string connectionType)
         {
-            if (DeviceStatusText != null)
+            if ((this.FindControlInPages("DeviceStatusText") as System.Windows.Controls.TextBlock) != null)
             {
                 if (status == "正在检测中")
                 {
-                    // 正在检测 - 黄色
-                    DeviceStatusText.Foreground = new SolidColorBrush(System.Windows.Media.Color.FromRgb(255, 165, 0)); // #FFA500
+                    // 正在检测 - 黄色 DeviceStatusText.Foreground = new SolidColorBrush(System.Windows.Media.Color.FromRgb(255, 165, 0)); // #FFA500
                 }
                 else if (status == "已连接")
                 {
-                    // 已连接 - 绿色
-                    DeviceStatusText.Foreground = new SolidColorBrush(System.Windows.Media.Color.FromRgb(40, 167, 69)); // #28A745
+                    // 已连接 - 绿色 DeviceStatusText.Foreground = new SolidColorBrush(System.Windows.Media.Color.FromRgb(40, 167, 69)); // #28A745
                 }
                 else
                 {
-                    // 未连接 - 红色
-                    DeviceStatusText.Foreground = new SolidColorBrush(System.Windows.Media.Color.FromRgb(220, 53, 69)); // #DC3545
+                    // 未连接 - 红色 DeviceStatusText.Foreground = new SolidColorBrush(System.Windows.Media.Color.FromRgb(220, 53, 69)); // #DC3545
                 }
             }
         }
 
         private void UpdateBottomConnectionStatusIndicator(string status, string connectionType)
         {
-            if (BottomConnectionStatusIndicator == null)
+            if ((this.FindControlInPages("BottomConnectionStatusIndicator") as System.Windows.Shapes.Ellipse) == null)
             {
                 return;
             }
@@ -8268,7 +8367,7 @@ namespace WpfApp1
                             !string.IsNullOrWhiteSpace(connectionType) &&
                             connectionType != "--";
 
-            BottomConnectionStatusIndicator.Visibility = isOnline
+            (this.FindControlInPages("BottomConnectionStatusIndicator") as System.Windows.Shapes.Ellipse).Visibility = isOnline
                 ? Visibility.Visible
                 : Visibility.Collapsed;
         }
@@ -8478,12 +8577,12 @@ namespace WpfApp1
                         return;
                     }
 
-                    if (BatteryControl != null)
+                    if ((this.FindControlInPages("BatteryControl") as test1.HorizontalBattery) != null)
                     {
-                        BatteryControl.Maximum = scale > 0 ? scale : 100;
-                        BatteryControl.Value = Math.Clamp(level, 0, BatteryControl.Maximum);
-                        BatteryControl.IsCharging = isCharging;
-                        BatteryControl.TemperatureText = tempText;
+                        (this.FindControlInPages("BatteryControl") as test1.HorizontalBattery).Maximum = scale > 0 ? scale : 100;
+                        (this.FindControlInPages("BatteryControl") as test1.HorizontalBattery).Value = Math.Clamp(level, 0, (this.FindControlInPages("BatteryControl") as test1.HorizontalBattery).Maximum);
+                        (this.FindControlInPages("BatteryControl") as test1.HorizontalBattery).IsCharging = isCharging;
+                        (this.FindControlInPages("BatteryControl") as test1.HorizontalBattery).TemperatureText = tempText;
                     }
                 });
             }
@@ -8532,18 +8631,18 @@ namespace WpfApp1
         {
             AddDownloadLogMessage("信息", "正在获取刷机驱动列表...");
 
-            DriverTileView.Visibility = Visibility.Collapsed;
-            DriverListView.Visibility = Visibility.Visible;
-            DriverFileListBox.Visibility = Visibility.Collapsed;
-            DriverLoadingView.Visibility = Visibility.Visible;
+            (this.FindControlInPages("DriverTileView") as System.Windows.Controls.Grid).Visibility = Visibility.Collapsed;
+            (this.FindControlInPages("DriverListView") as System.Windows.Controls.Grid).Visibility = Visibility.Visible;
+            (this.FindControlInPages("DriverFileListBox") as System.Windows.Controls.ListBox).Visibility = Visibility.Collapsed;
+            (this.FindControlInPages("DriverLoadingView") as System.Windows.Controls.Grid).Visibility = Visibility.Visible;
 
             var items = await LoadDriverFileItemsAsync(DriverListSourceUrl);
             if (items.Count == 0)
             {
                 AddDownloadLogMessage("警告", "未解析到任何驱动文件条目");
-                DriverLoadingView.Visibility = Visibility.Collapsed;
-                DriverListView.Visibility = Visibility.Collapsed;
-                DriverTileView.Visibility = Visibility.Visible;
+                (this.FindControlInPages("DriverLoadingView") as System.Windows.Controls.Grid).Visibility = Visibility.Collapsed;
+                (this.FindControlInPages("DriverListView") as System.Windows.Controls.Grid).Visibility = Visibility.Collapsed;
+                (this.FindControlInPages("DriverTileView") as System.Windows.Controls.Grid).Visibility = Visibility.Visible;
                 return;
             }
 
@@ -8552,17 +8651,17 @@ namespace WpfApp1
                 item.IconSource = "images/exe.svg";
             }
 
-            DriverFileListBox.ItemsSource = items;
-            DriverLoadingView.Visibility = Visibility.Collapsed;
-            DriverFileListBox.Visibility = Visibility.Visible;
+            (this.FindControlInPages("DriverFileListBox") as System.Windows.Controls.ListBox).ItemsSource = items;
+            (this.FindControlInPages("DriverLoadingView") as System.Windows.Controls.Grid).Visibility = Visibility.Collapsed;
+            (this.FindControlInPages("DriverFileListBox") as System.Windows.Controls.ListBox).Visibility = Visibility.Visible;
             AddDownloadLogMessage("成功", $"已加载 {items.Count} 个驱动条目");
         }
         catch (Exception ex)
         {
             AddDownloadLogMessage("错误", $"获取驱动列表失败: {ex.Message}");
-            DriverLoadingView.Visibility = Visibility.Collapsed;
-            DriverListView.Visibility = Visibility.Collapsed;
-            DriverTileView.Visibility = Visibility.Visible;
+            (this.FindControlInPages("DriverLoadingView") as System.Windows.Controls.Grid).Visibility = Visibility.Collapsed;
+            (this.FindControlInPages("DriverListView") as System.Windows.Controls.Grid).Visibility = Visibility.Collapsed;
+            (this.FindControlInPages("DriverTileView") as System.Windows.Controls.Grid).Visibility = Visibility.Visible;
         }
         finally
         {
@@ -8589,18 +8688,18 @@ namespace WpfApp1
         {
             AddDownloadLogMessage("信息", "正在获取ROOT管理器列表...");
 
-            DriverTileView.Visibility = Visibility.Collapsed;
-            DriverListView.Visibility = Visibility.Visible;
-            DriverFileListBox.Visibility = Visibility.Collapsed;
-            DriverLoadingView.Visibility = Visibility.Visible;
+            (this.FindControlInPages("DriverTileView") as System.Windows.Controls.Grid).Visibility = Visibility.Collapsed;
+            (this.FindControlInPages("DriverListView") as System.Windows.Controls.Grid).Visibility = Visibility.Visible;
+            (this.FindControlInPages("DriverFileListBox") as System.Windows.Controls.ListBox).Visibility = Visibility.Collapsed;
+            (this.FindControlInPages("DriverLoadingView") as System.Windows.Controls.Grid).Visibility = Visibility.Visible;
 
             var items = await LoadDriverFileItemsAsync(RootManagerListSourceUrl);
             if (items.Count == 0)
             {
                 AddDownloadLogMessage("警告", "未解析到任何ROOT管理器文件条目");
-                DriverLoadingView.Visibility = Visibility.Collapsed;
-                DriverListView.Visibility = Visibility.Collapsed;
-                DriverTileView.Visibility = Visibility.Visible;
+                (this.FindControlInPages("DriverLoadingView") as System.Windows.Controls.Grid).Visibility = Visibility.Collapsed;
+                (this.FindControlInPages("DriverListView") as System.Windows.Controls.Grid).Visibility = Visibility.Collapsed;
+                (this.FindControlInPages("DriverTileView") as System.Windows.Controls.Grid).Visibility = Visibility.Visible;
                 return;
             }
 
@@ -8609,17 +8708,17 @@ namespace WpfApp1
                 item.IconSource = "images/安卓.svg";
             }
 
-            DriverFileListBox.ItemsSource = items;
-            DriverLoadingView.Visibility = Visibility.Collapsed;
-            DriverFileListBox.Visibility = Visibility.Visible;
+            (this.FindControlInPages("DriverFileListBox") as System.Windows.Controls.ListBox).ItemsSource = items;
+            (this.FindControlInPages("DriverLoadingView") as System.Windows.Controls.Grid).Visibility = Visibility.Collapsed;
+            (this.FindControlInPages("DriverFileListBox") as System.Windows.Controls.ListBox).Visibility = Visibility.Visible;
             AddDownloadLogMessage("成功", $"已加载 {items.Count} 个ROOT管理器条目");
         }
         catch (Exception ex)
         {
             AddDownloadLogMessage("错误", $"获取ROOT管理器列表失败: {ex.Message}");
-            DriverLoadingView.Visibility = Visibility.Collapsed;
-            DriverListView.Visibility = Visibility.Collapsed;
-            DriverTileView.Visibility = Visibility.Visible;
+            (this.FindControlInPages("DriverLoadingView") as System.Windows.Controls.Grid).Visibility = Visibility.Collapsed;
+            (this.FindControlInPages("DriverListView") as System.Windows.Controls.Grid).Visibility = Visibility.Collapsed;
+            (this.FindControlInPages("DriverTileView") as System.Windows.Controls.Grid).Visibility = Visibility.Visible;
         }
         finally
         {
@@ -8646,18 +8745,18 @@ namespace WpfApp1
         {
             AddDownloadLogMessage("信息", "正在获取4系内核AK3列表...");
 
-            DriverTileView.Visibility = Visibility.Collapsed;
-            DriverListView.Visibility = Visibility.Visible;
-            DriverFileListBox.Visibility = Visibility.Collapsed;
-            DriverLoadingView.Visibility = Visibility.Visible;
+            (this.FindControlInPages("DriverTileView") as System.Windows.Controls.Grid).Visibility = Visibility.Collapsed;
+            (this.FindControlInPages("DriverListView") as System.Windows.Controls.Grid).Visibility = Visibility.Visible;
+            (this.FindControlInPages("DriverFileListBox") as System.Windows.Controls.ListBox).Visibility = Visibility.Collapsed;
+            (this.FindControlInPages("DriverLoadingView") as System.Windows.Controls.Grid).Visibility = Visibility.Visible;
 
             var items = await LoadDriverFileItemsAsync(Kernel4ListSourceUrl);
             if (items.Count == 0)
             {
                 AddDownloadLogMessage("警告", "未解析到任何4系内核AK3文件条目");
-                DriverLoadingView.Visibility = Visibility.Collapsed;
-                DriverListView.Visibility = Visibility.Collapsed;
-                DriverTileView.Visibility = Visibility.Visible;
+                (this.FindControlInPages("DriverLoadingView") as System.Windows.Controls.Grid).Visibility = Visibility.Collapsed;
+                (this.FindControlInPages("DriverListView") as System.Windows.Controls.Grid).Visibility = Visibility.Collapsed;
+                (this.FindControlInPages("DriverTileView") as System.Windows.Controls.Grid).Visibility = Visibility.Visible;
                 return;
             }
 
@@ -8666,17 +8765,17 @@ namespace WpfApp1
                 item.IconSource = "images/压缩包.svg";
             }
 
-            DriverFileListBox.ItemsSource = items;
-            DriverLoadingView.Visibility = Visibility.Collapsed;
-            DriverFileListBox.Visibility = Visibility.Visible;
+            (this.FindControlInPages("DriverFileListBox") as System.Windows.Controls.ListBox).ItemsSource = items;
+            (this.FindControlInPages("DriverLoadingView") as System.Windows.Controls.Grid).Visibility = Visibility.Collapsed;
+            (this.FindControlInPages("DriverFileListBox") as System.Windows.Controls.ListBox).Visibility = Visibility.Visible;
             AddDownloadLogMessage("成功", $"已加载 {items.Count} 个4系内核AK3条目");
         }
         catch (Exception ex)
         {
             AddDownloadLogMessage("错误", $"获取4系内核AK3列表失败: {ex.Message}");
-            DriverLoadingView.Visibility = Visibility.Collapsed;
-            DriverListView.Visibility = Visibility.Collapsed;
-            DriverTileView.Visibility = Visibility.Visible;
+            (this.FindControlInPages("DriverLoadingView") as System.Windows.Controls.Grid).Visibility = Visibility.Collapsed;
+            (this.FindControlInPages("DriverListView") as System.Windows.Controls.Grid).Visibility = Visibility.Collapsed;
+            (this.FindControlInPages("DriverTileView") as System.Windows.Controls.Grid).Visibility = Visibility.Visible;
         }
         finally
         {
@@ -8703,18 +8802,18 @@ namespace WpfApp1
         {
             AddDownloadLogMessage("信息", "正在获取一加专用AK3列表...");
 
-            DriverTileView.Visibility = Visibility.Collapsed;
-            DriverListView.Visibility = Visibility.Visible;
-            DriverFileListBox.Visibility = Visibility.Collapsed;
-            DriverLoadingView.Visibility = Visibility.Visible;
+            (this.FindControlInPages("DriverTileView") as System.Windows.Controls.Grid).Visibility = Visibility.Collapsed;
+            (this.FindControlInPages("DriverListView") as System.Windows.Controls.Grid).Visibility = Visibility.Visible;
+            (this.FindControlInPages("DriverFileListBox") as System.Windows.Controls.ListBox).Visibility = Visibility.Collapsed;
+            (this.FindControlInPages("DriverLoadingView") as System.Windows.Controls.Grid).Visibility = Visibility.Visible;
 
             var items = await LoadDriverFileItemsAsync(OnePlusAk3ListSourceUrl);
             if (items.Count == 0)
             {
                 AddDownloadLogMessage("警告", "未解析到任何一加专用AK3文件条目");
-                DriverLoadingView.Visibility = Visibility.Collapsed;
-                DriverListView.Visibility = Visibility.Collapsed;
-                DriverTileView.Visibility = Visibility.Visible;
+                (this.FindControlInPages("DriverLoadingView") as System.Windows.Controls.Grid).Visibility = Visibility.Collapsed;
+                (this.FindControlInPages("DriverListView") as System.Windows.Controls.Grid).Visibility = Visibility.Collapsed;
+                (this.FindControlInPages("DriverTileView") as System.Windows.Controls.Grid).Visibility = Visibility.Visible;
                 return;
             }
 
@@ -8723,17 +8822,17 @@ namespace WpfApp1
                 item.IconSource = "images/压缩包.svg";
             }
 
-            DriverFileListBox.ItemsSource = items;
-            DriverLoadingView.Visibility = Visibility.Collapsed;
-            DriverFileListBox.Visibility = Visibility.Visible;
+            (this.FindControlInPages("DriverFileListBox") as System.Windows.Controls.ListBox).ItemsSource = items;
+            (this.FindControlInPages("DriverLoadingView") as System.Windows.Controls.Grid).Visibility = Visibility.Collapsed;
+            (this.FindControlInPages("DriverFileListBox") as System.Windows.Controls.ListBox).Visibility = Visibility.Visible;
             AddDownloadLogMessage("成功", $"已加载 {items.Count} 个一加专用AK3条目");
         }
         catch (Exception ex)
         {
             AddDownloadLogMessage("错误", $"获取一加专用AK3列表失败: {ex.Message}");
-            DriverLoadingView.Visibility = Visibility.Collapsed;
-            DriverListView.Visibility = Visibility.Collapsed;
-            DriverTileView.Visibility = Visibility.Visible;
+            (this.FindControlInPages("DriverLoadingView") as System.Windows.Controls.Grid).Visibility = Visibility.Collapsed;
+            (this.FindControlInPages("DriverListView") as System.Windows.Controls.Grid).Visibility = Visibility.Collapsed;
+            (this.FindControlInPages("DriverTileView") as System.Windows.Controls.Grid).Visibility = Visibility.Visible;
         }
         finally
         {
@@ -8760,18 +8859,18 @@ namespace WpfApp1
         {
             AddDownloadLogMessage("信息", "正在获取欧加通用AK3列表...");
 
-            DriverTileView.Visibility = Visibility.Collapsed;
-            DriverListView.Visibility = Visibility.Visible;
-            DriverFileListBox.Visibility = Visibility.Collapsed;
-            DriverLoadingView.Visibility = Visibility.Visible;
+            (this.FindControlInPages("DriverTileView") as System.Windows.Controls.Grid).Visibility = Visibility.Collapsed;
+            (this.FindControlInPages("DriverListView") as System.Windows.Controls.Grid).Visibility = Visibility.Visible;
+            (this.FindControlInPages("DriverFileListBox") as System.Windows.Controls.ListBox).Visibility = Visibility.Collapsed;
+            (this.FindControlInPages("DriverLoadingView") as System.Windows.Controls.Grid).Visibility = Visibility.Visible;
 
             var items = await LoadDriverFileItemsAsync(OujiaAk3ListSourceUrl);
             if (items.Count == 0)
             {
                 AddDownloadLogMessage("警告", "未解析到任何欧加通用AK3文件条目");
-                DriverLoadingView.Visibility = Visibility.Collapsed;
-                DriverListView.Visibility = Visibility.Collapsed;
-                DriverTileView.Visibility = Visibility.Visible;
+                (this.FindControlInPages("DriverLoadingView") as System.Windows.Controls.Grid).Visibility = Visibility.Collapsed;
+                (this.FindControlInPages("DriverListView") as System.Windows.Controls.Grid).Visibility = Visibility.Collapsed;
+                (this.FindControlInPages("DriverTileView") as System.Windows.Controls.Grid).Visibility = Visibility.Visible;
                 return;
             }
 
@@ -8780,17 +8879,17 @@ namespace WpfApp1
                 item.IconSource = "images/压缩包.svg";
             }
 
-            DriverFileListBox.ItemsSource = items;
-            DriverLoadingView.Visibility = Visibility.Collapsed;
-            DriverFileListBox.Visibility = Visibility.Visible;
+            (this.FindControlInPages("DriverFileListBox") as System.Windows.Controls.ListBox).ItemsSource = items;
+            (this.FindControlInPages("DriverLoadingView") as System.Windows.Controls.Grid).Visibility = Visibility.Collapsed;
+            (this.FindControlInPages("DriverFileListBox") as System.Windows.Controls.ListBox).Visibility = Visibility.Visible;
             AddDownloadLogMessage("成功", $"已加载 {items.Count} 个欧加通用AK3条目");
         }
         catch (Exception ex)
         {
             AddDownloadLogMessage("错误", $"获取欧加通用AK3列表失败: {ex.Message}");
-            DriverLoadingView.Visibility = Visibility.Collapsed;
-            DriverListView.Visibility = Visibility.Collapsed;
-            DriverTileView.Visibility = Visibility.Visible;
+            (this.FindControlInPages("DriverLoadingView") as System.Windows.Controls.Grid).Visibility = Visibility.Collapsed;
+            (this.FindControlInPages("DriverListView") as System.Windows.Controls.Grid).Visibility = Visibility.Collapsed;
+            (this.FindControlInPages("DriverTileView") as System.Windows.Controls.Grid).Visibility = Visibility.Visible;
         }
         finally
         {
@@ -8817,18 +8916,18 @@ namespace WpfApp1
         {
             AddDownloadLogMessage("信息", "正在获取安卓通用AK3列表...");
 
-            DriverTileView.Visibility = Visibility.Collapsed;
-            DriverListView.Visibility = Visibility.Visible;
-            DriverFileListBox.Visibility = Visibility.Collapsed;
-            DriverLoadingView.Visibility = Visibility.Visible;
+            (this.FindControlInPages("DriverTileView") as System.Windows.Controls.Grid).Visibility = Visibility.Collapsed;
+            (this.FindControlInPages("DriverListView") as System.Windows.Controls.Grid).Visibility = Visibility.Visible;
+            (this.FindControlInPages("DriverFileListBox") as System.Windows.Controls.ListBox).Visibility = Visibility.Collapsed;
+            (this.FindControlInPages("DriverLoadingView") as System.Windows.Controls.Grid).Visibility = Visibility.Visible;
 
             var items = await LoadDriverFileItemsAsync(AndroidAk3ListSourceUrl);
             if (items.Count == 0)
             {
                 AddDownloadLogMessage("警告", "未解析到任何安卓通用AK3文件条目");
-                DriverLoadingView.Visibility = Visibility.Collapsed;
-                DriverListView.Visibility = Visibility.Collapsed;
-                DriverTileView.Visibility = Visibility.Visible;
+                (this.FindControlInPages("DriverLoadingView") as System.Windows.Controls.Grid).Visibility = Visibility.Collapsed;
+                (this.FindControlInPages("DriverListView") as System.Windows.Controls.Grid).Visibility = Visibility.Collapsed;
+                (this.FindControlInPages("DriverTileView") as System.Windows.Controls.Grid).Visibility = Visibility.Visible;
                 return;
             }
 
@@ -8837,17 +8936,17 @@ namespace WpfApp1
                 item.IconSource = "images/压缩包.svg";
             }
 
-            DriverFileListBox.ItemsSource = items;
-            DriverLoadingView.Visibility = Visibility.Collapsed;
-            DriverFileListBox.Visibility = Visibility.Visible;
+            (this.FindControlInPages("DriverFileListBox") as System.Windows.Controls.ListBox).ItemsSource = items;
+            (this.FindControlInPages("DriverLoadingView") as System.Windows.Controls.Grid).Visibility = Visibility.Collapsed;
+            (this.FindControlInPages("DriverFileListBox") as System.Windows.Controls.ListBox).Visibility = Visibility.Visible;
             AddDownloadLogMessage("成功", $"已加载 {items.Count} 个安卓通用AK3条目");
         }
         catch (Exception ex)
         {
             AddDownloadLogMessage("错误", $"获取安卓通用AK3列表失败: {ex.Message}");
-            DriverLoadingView.Visibility = Visibility.Collapsed;
-            DriverListView.Visibility = Visibility.Collapsed;
-            DriverTileView.Visibility = Visibility.Visible;
+            (this.FindControlInPages("DriverLoadingView") as System.Windows.Controls.Grid).Visibility = Visibility.Collapsed;
+            (this.FindControlInPages("DriverListView") as System.Windows.Controls.Grid).Visibility = Visibility.Collapsed;
+            (this.FindControlInPages("DriverTileView") as System.Windows.Controls.Grid).Visibility = Visibility.Visible;
         }
         finally
         {
@@ -8874,18 +8973,18 @@ namespace WpfApp1
         {
             AddDownloadLogMessage("信息", "正在获取实用软件列表...");
 
-            DriverTileView.Visibility = Visibility.Collapsed;
-            DriverListView.Visibility = Visibility.Visible;
-            DriverFileListBox.Visibility = Visibility.Collapsed;
-            DriverLoadingView.Visibility = Visibility.Visible;
+            (this.FindControlInPages("DriverTileView") as System.Windows.Controls.Grid).Visibility = Visibility.Collapsed;
+            (this.FindControlInPages("DriverListView") as System.Windows.Controls.Grid).Visibility = Visibility.Visible;
+            (this.FindControlInPages("DriverFileListBox") as System.Windows.Controls.ListBox).Visibility = Visibility.Collapsed;
+            (this.FindControlInPages("DriverLoadingView") as System.Windows.Controls.Grid).Visibility = Visibility.Visible;
 
             var items = await LoadDriverFileItemsAsync(UtilitySoftwareListSourceUrl);
             if (items.Count == 0)
             {
                 AddDownloadLogMessage("警告", "未解析到任何实用软件条目");
-                DriverLoadingView.Visibility = Visibility.Collapsed;
-                DriverListView.Visibility = Visibility.Collapsed;
-                DriverTileView.Visibility = Visibility.Visible;
+                (this.FindControlInPages("DriverLoadingView") as System.Windows.Controls.Grid).Visibility = Visibility.Collapsed;
+                (this.FindControlInPages("DriverListView") as System.Windows.Controls.Grid).Visibility = Visibility.Collapsed;
+                (this.FindControlInPages("DriverTileView") as System.Windows.Controls.Grid).Visibility = Visibility.Visible;
                 return;
             }
 
@@ -8894,17 +8993,17 @@ namespace WpfApp1
                 item.IconSource = "images/压缩包.svg";
             }
 
-            DriverFileListBox.ItemsSource = items;
-            DriverLoadingView.Visibility = Visibility.Collapsed;
-            DriverFileListBox.Visibility = Visibility.Visible;
+            (this.FindControlInPages("DriverFileListBox") as System.Windows.Controls.ListBox).ItemsSource = items;
+            (this.FindControlInPages("DriverLoadingView") as System.Windows.Controls.Grid).Visibility = Visibility.Collapsed;
+            (this.FindControlInPages("DriverFileListBox") as System.Windows.Controls.ListBox).Visibility = Visibility.Visible;
             AddDownloadLogMessage("成功", $"已加载 {items.Count} 个实用软件条目");
         }
         catch (Exception ex)
         {
             AddDownloadLogMessage("错误", $"获取实用软件列表失败: {ex.Message}");
-            DriverLoadingView.Visibility = Visibility.Collapsed;
-            DriverListView.Visibility = Visibility.Collapsed;
-            DriverTileView.Visibility = Visibility.Visible;
+            (this.FindControlInPages("DriverLoadingView") as System.Windows.Controls.Grid).Visibility = Visibility.Collapsed;
+            (this.FindControlInPages("DriverListView") as System.Windows.Controls.Grid).Visibility = Visibility.Collapsed;
+            (this.FindControlInPages("DriverTileView") as System.Windows.Controls.Grid).Visibility = Visibility.Visible;
         }
         finally
         {
@@ -8931,18 +9030,18 @@ namespace WpfApp1
         {
             AddDownloadLogMessage("信息", "正在获取用户上传列表...");
 
-            DriverTileView.Visibility = Visibility.Collapsed;
-            DriverListView.Visibility = Visibility.Visible;
-            DriverFileListBox.Visibility = Visibility.Collapsed;
-            DriverLoadingView.Visibility = Visibility.Visible;
+            (this.FindControlInPages("DriverTileView") as System.Windows.Controls.Grid).Visibility = Visibility.Collapsed;
+            (this.FindControlInPages("DriverListView") as System.Windows.Controls.Grid).Visibility = Visibility.Visible;
+            (this.FindControlInPages("DriverFileListBox") as System.Windows.Controls.ListBox).Visibility = Visibility.Collapsed;
+            (this.FindControlInPages("DriverLoadingView") as System.Windows.Controls.Grid).Visibility = Visibility.Visible;
 
             var items = await LoadDriverFileItemsAsync(UserUploadListSourceUrl);
             if (items.Count == 0)
             {
                 AddDownloadLogMessage("警告", "未解析到任何用户上传条目");
-                DriverLoadingView.Visibility = Visibility.Collapsed;
-                DriverListView.Visibility = Visibility.Collapsed;
-                DriverTileView.Visibility = Visibility.Visible;
+                (this.FindControlInPages("DriverLoadingView") as System.Windows.Controls.Grid).Visibility = Visibility.Collapsed;
+                (this.FindControlInPages("DriverListView") as System.Windows.Controls.Grid).Visibility = Visibility.Collapsed;
+                (this.FindControlInPages("DriverTileView") as System.Windows.Controls.Grid).Visibility = Visibility.Visible;
                 return;
             }
 
@@ -8951,17 +9050,17 @@ namespace WpfApp1
                 item.IconSource = "images/压缩包.svg";
             }
 
-            DriverFileListBox.ItemsSource = items;
-            DriverLoadingView.Visibility = Visibility.Collapsed;
-            DriverFileListBox.Visibility = Visibility.Visible;
+            (this.FindControlInPages("DriverFileListBox") as System.Windows.Controls.ListBox).ItemsSource = items;
+            (this.FindControlInPages("DriverLoadingView") as System.Windows.Controls.Grid).Visibility = Visibility.Collapsed;
+            (this.FindControlInPages("DriverFileListBox") as System.Windows.Controls.ListBox).Visibility = Visibility.Visible;
             AddDownloadLogMessage("成功", $"已加载 {items.Count} 个用户上传条目");
         }
         catch (Exception ex)
         {
             AddDownloadLogMessage("错误", $"获取用户上传列表失败: {ex.Message}");
-            DriverLoadingView.Visibility = Visibility.Collapsed;
-            DriverListView.Visibility = Visibility.Collapsed;
-            DriverTileView.Visibility = Visibility.Visible;
+            (this.FindControlInPages("DriverLoadingView") as System.Windows.Controls.Grid).Visibility = Visibility.Collapsed;
+            (this.FindControlInPages("DriverListView") as System.Windows.Controls.Grid).Visibility = Visibility.Collapsed;
+            (this.FindControlInPages("DriverTileView") as System.Windows.Controls.Grid).Visibility = Visibility.Visible;
         }
         finally
         {
@@ -9045,10 +9144,10 @@ namespace WpfApp1
 
     private void BackToDriverTileButton_Click(object sender, RoutedEventArgs e)
     {
-        DriverLoadingView.Visibility = Visibility.Collapsed;
-        DriverFileListBox.Visibility = Visibility.Visible;
-        DriverListView.Visibility = Visibility.Collapsed;
-        DriverTileView.Visibility = Visibility.Visible;
+        (this.FindControlInPages("DriverLoadingView") as System.Windows.Controls.Grid).Visibility = Visibility.Collapsed;
+        (this.FindControlInPages("DriverFileListBox") as System.Windows.Controls.ListBox).Visibility = Visibility.Visible;
+        (this.FindControlInPages("DriverListView") as System.Windows.Controls.Grid).Visibility = Visibility.Collapsed;
+        (this.FindControlInPages("DriverTileView") as System.Windows.Controls.Grid).Visibility = Visibility.Visible;
     }
 
     private static string ToGiteeRawUrl(string url)
@@ -9405,7 +9504,7 @@ namespace WpfApp1
 
     private void DriverFileListBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
     {
-        if (DriverFileListBox.SelectedItem is not DriverFileItem item)
+        if ((this.FindControlInPages("DriverFileListBox") as System.Windows.Controls.ListBox).SelectedItem is not DriverFileItem item)
         {
             return;
         }
@@ -9527,7 +9626,7 @@ namespace WpfApp1
 
             if (openFileDialog.ShowDialog() == true)
             {
-                BootFilePathTextBox.Text = openFileDialog.FileName;
+                (this.FindControlInPages("BootFilePathTextBox") as System.Windows.Controls.TextBox).Text = openFileDialog.FileName;
                 LogSimpleStatus($"已选择镜像{openFileDialog.FileName}");
             }
         }
@@ -9642,11 +9741,11 @@ namespace WpfApp1
 
         private async void LockBLButton_Click(object sender, RoutedEventArgs e)
         {
-            LockBLButton.IsEnabled = false;
+            (this.FindControlInPages("LockBLButton") as System.Windows.Controls.Button).IsEnabled = false;
             try
             {
                 // 获取ComboBox中选择的命令
-                if (UnlockBLComboBox.SelectedItem is not ComboBoxItem selectedItem ||
+                if ((this.FindControlInPages("UnlockBLComboBox") as System.Windows.Controls.ComboBox).SelectedItem is not ComboBoxItem selectedItem ||
                     string.IsNullOrWhiteSpace(selectedItem.Content?.ToString()))
                 {
                     LogSimpleStatus("请先选择要执行的命令...");
@@ -9705,7 +9804,7 @@ namespace WpfApp1
             }
             finally
             {
-                LockBLButton.IsEnabled = true;
+                (this.FindControlInPages("LockBLButton") as System.Windows.Controls.Button).IsEnabled = true;
             }
         }
 
@@ -9715,7 +9814,7 @@ namespace WpfApp1
             try
             {
                 // 验证文件路径
-                string bootFilePath = BootFilePathTextBox.Text.Trim();
+                string bootFilePath = (this.FindControlInPages("BootFilePathTextBox") as System.Windows.Controls.TextBox).Text.Trim();
                 if (string.IsNullOrEmpty(bootFilePath))
                 {
                     LogSimpleStatus("错误: 请先选择镜像文件");
@@ -9732,22 +9831,20 @@ namespace WpfApp1
                 string targetDeviceSerial = GetSelectedDeviceSerial();
                 
                 // 如果没有勾选"等待FB设备"且没有选择设备，则报错
-                if (string.IsNullOrEmpty(targetDeviceSerial) && WaitForFastbootCheckBox.IsChecked != true)
+                if (string.IsNullOrEmpty(targetDeviceSerial) && (this.FindControlInPages("WaitForFastbootCheckBox") as System.Windows.Controls.CheckBox).IsChecked != true)
                 {
                     LogSimpleStatus("错误: 请先选择目标设备或勾选'等待FB设备'");
                     return;
                 }
 
-                // 禁用按钮防止重复操作
-                FlashBootButton.IsEnabled = false;
+                // 禁用按钮防止重复操作 FlashBootButton.IsEnabled = false;
                 
-                // 显示并初始化进度条
-                bootflash.Visibility = Visibility.Visible;
-                bootflash.Value = 0;
+                // 显示并初始化进度条 bootflash.Visibility = Visibility.Visible;
+                (this.FindControlInPages("bootflash") as System.Windows.Controls.ProgressBar).Value = 0;
                 UpdateTransferRateText("0MB/s");
 
                 string selectedPartition = "boot";
-                if (PartitionComboBox.SelectedItem is ComboBoxItem selectedItem)
+                if ((this.FindControlInPages("PartitionComboBox") as System.Windows.Controls.ComboBox).SelectedItem is ComboBoxItem selectedItem)
                 {
                     selectedPartition = selectedItem.Content?.ToString() ?? "boot";
                 }
@@ -9764,15 +9861,15 @@ namespace WpfApp1
                 if (!File.Exists(fastbootPath))
                 {
                     LogSimpleStatus($"错误: 未找到fastboot.exe文件，请确保文件存在于: {fastbootPath}");
-                    bootflash.Value = 0;
+                    (this.FindControlInPages("bootflash") as System.Windows.Controls.ProgressBar).Value = 0;
                     UpdateTransferRateText("0MB/s");
-                    FlashBootButton.IsEnabled = true;
+                    (this.FindControlInPages("FlashBootButton") as System.Windows.Controls.Button).IsEnabled = true;
                     return;
                 }
                 
                 // 检查是否需要等待Fastboot设备
                 bool deviceDetected = false;
-                if (WaitForFastbootCheckBox.IsChecked == true)
+                if ((this.FindControlInPages("WaitForFastbootCheckBox") as System.Windows.Controls.CheckBox).IsChecked == true)
                 {
                     AppendFlashCountdown("等待Fastboot设备...60s");
                     
@@ -9819,9 +9916,9 @@ namespace WpfApp1
                     if (!deviceDetected)
                     {
                         LogSimpleStatus("[失败] 连接超时，60 秒内未检测到 Fastboot 设备");
-                        bootflash.Value = 0;
+                        (this.FindControlInPages("bootflash") as System.Windows.Controls.ProgressBar).Value = 0;
                         UpdateTransferRateText("0MB/s");
-                        FlashBootButton.IsEnabled = true;
+                        (this.FindControlInPages("FlashBootButton") as System.Windows.Controls.Button).IsEnabled = true;
                         return;
                     }
 
@@ -9840,9 +9937,9 @@ namespace WpfApp1
                     if (string.IsNullOrEmpty(targetDeviceSerial))
                     {
                         LogSimpleStatus("错误: 请先选择目标设备");
-                        bootflash.Value = 0;
+                        (this.FindControlInPages("bootflash") as System.Windows.Controls.ProgressBar).Value = 0;
                         UpdateTransferRateText("0MB/s");
-                        FlashBootButton.IsEnabled = true;
+                        (this.FindControlInPages("FlashBootButton") as System.Windows.Controls.Button).IsEnabled = true;
                         return;
                     }
                     
@@ -9851,9 +9948,9 @@ namespace WpfApp1
                     if (string.IsNullOrEmpty(deviceCheckResult) || !deviceCheckResult.Contains("fastboot"))
                     {
                         LogSimpleStatus($"[失败] Fastboot 设备 {targetDeviceSerial} 不可用");
-                        bootflash.Value = 0;
+                        (this.FindControlInPages("bootflash") as System.Windows.Controls.ProgressBar).Value = 0;
                         UpdateTransferRateText("0MB/s");
-                        FlashBootButton.IsEnabled = true;
+                        (this.FindControlInPages("FlashBootButton") as System.Windows.Controls.Button).IsEnabled = true;
                         return;
                     }
                     
@@ -9866,8 +9963,7 @@ namespace WpfApp1
                 simulatedStopButton.Content = "停止检测设备";
                 Button_Click_1(simulatedStopButton, null);
 
-                bootflash.Value = 10; // 设备检测完成
-                bootflash.Value = 20;
+                (this.FindControlInPages("bootflash") as System.Windows.Controls.ProgressBar).Value = 10; // 设备检测完成 bootflash.Value = 20;
 
                 // 执行刷入命令，进度将由fastboot实时输出控制
                 string flashCommand = $"flash {selectedPartition} \"{bootFilePath}\""; 
@@ -9876,7 +9972,7 @@ namespace WpfApp1
                 if (flashResult.StartsWith("ERROR_DETECTED"))
                 {
                     LogSimpleStatus($"[失败] {GetFastbootErrorSummary(flashResult)}");
-                    bootflash.Value = 0;
+                    (this.FindControlInPages("bootflash") as System.Windows.Controls.ProgressBar).Value = 0;
                     UpdateTransferRateText("0MB/s");
                     // 错误时也不隐藏进度条
                 }
@@ -9886,10 +9982,10 @@ namespace WpfApp1
                     LogSimpleStatus($"Flashing {selectedPartition}.img...OK");
 
                     // 检查是否需要自动重启
-                    if (AutoRebootCheckBox.IsChecked == true)
+                    if ((this.FindControlInPages("AutoRebootCheckBox") as System.Windows.Controls.CheckBox).IsChecked == true)
                     {
                         LogSimpleStatus("[Rebooting]发送重启命令...");
-                        bootflash.Value = 95;
+                        (this.FindControlInPages("bootflash") as System.Windows.Controls.ProgressBar).Value = 95;
                         
                         string rebootResult = await ExecuteFastbootCommandWithSerial(fastbootPath, "reboot", targetDeviceSerial);
                         
@@ -9908,8 +10004,7 @@ namespace WpfApp1
                         await KillAllFastbootProcesses();
                     }
                     
-                    // 完成进度条
-                    bootflash.Value = 100;
+                    // 完成进度条 bootflash.Value = 100;
                     totalStopwatch.Stop();
                     LogSimpleStatus($"任务结束,耗时{totalStopwatch.Elapsed.TotalSeconds:F1}秒.");
                     await Task.Delay(2000); // 显示完成状态2秒
@@ -9920,22 +10015,20 @@ namespace WpfApp1
                     simulatedStartButton.Content = "开始检测设备";
                     Button_Click_1(simulatedStartButton, null);
                     
-                    // 刷写完成后进度条不隐藏，只重置为0
-                    bootflash.Value = 0;
+                    // 刷写完成后进度条不隐藏，只重置为0 bootflash.Value = 0;
                     UpdateTransferRateText("0MB/s");
                 }
                 else if (flashResult.Contains("FAILED", StringComparison.OrdinalIgnoreCase))
                 {
                     LogSimpleStatus($"[失败] {GetFastbootErrorSummary(flashResult)}");
-                    bootflash.Value = 0;
+                    (this.FindControlInPages("bootflash") as System.Windows.Controls.ProgressBar).Value = 0;
                     UpdateTransferRateText("0MB/s");
                     // 失败时也不隐藏进度条
                 }
                 else
                 {
                     LogSimpleStatus($"[警告] Fastboot 未返回明确结果 | {GetFastbootErrorSummary(flashResult)}");
-                    // 如果没有明确的成功或失败标识，假设成功
-                    bootflash.Value = 100;
+                    // 如果没有明确的成功或失败标识，假设成功 bootflash.Value = 100;
                     await Task.Delay(2000);
                     
                     // 镜像刷入完成后，自动开始设备检测
@@ -9944,22 +10037,19 @@ namespace WpfApp1
                     simulatedStartButton.Content = "开始检测设备";
                     Button_Click_1(simulatedStartButton, null);
                     
-                    // 完成后不隐藏进度条，只重置为0
-                    bootflash.Value = 0;
+                    // 完成后不隐藏进度条，只重置为0 bootflash.Value = 0;
                     UpdateTransferRateText("0MB/s");
                 }
             }
             catch (Exception ex)
             {
                 LogSimpleStatus($"[失败] 刷写过程中发生异常 | {ex.Message}");
-                //发生异常时也不隐藏进度条，只重置为0
-                bootflash.Value = 0;
+                //发生异常时也不隐藏进度条，只重置为0 bootflash.Value = 0;
                 UpdateTransferRateText("0MB/s");
             }
             finally
             {
-                // 重新启用按钮
-                FlashBootButton.IsEnabled = true;
+                // 重新启用按钮 FlashBootButton.IsEnabled = true;
             }
         }
 
@@ -10351,7 +10441,7 @@ namespace WpfApp1
                             // 确保百分比在有效范围内
                             if (percentage >= 0 && percentage <= 100)
                             {
-                                bootflash.Value = (int)Math.Round(percentage);
+                                (this.FindControlInPages("bootflash") as System.Windows.Controls.ProgressBar).Value = (int)Math.Round(percentage);
                                 
                                 // 同时更新FlashProgressBar
                                 UpdateProgressBarValue(percentage);
@@ -10382,10 +10472,10 @@ namespace WpfApp1
                         if (output.Contains("Sending"))
                         {
                             // 开始发送数据阶段，设置进度为30%
-                            if (bootflash.Value < 30)
+                            if ((this.FindControlInPages("bootflash") as System.Windows.Controls.ProgressBar).Value < 30)
                             {
-                                bootflash.Value = 30;
-                                if (FlashProgressBar != null && FlashProgressBar.Value < 30)
+                                (this.FindControlInPages("bootflash") as System.Windows.Controls.ProgressBar).Value = 30;
+                                if ((this.FindControlInPages("FlashProgressBar") as System.Windows.Controls.ProgressBar) != null && (this.FindControlInPages("FlashProgressBar") as System.Windows.Controls.ProgressBar).Value < 30)
                                 {
                                     UpdateProgressBarValue(30);
                                 }
@@ -10394,10 +10484,10 @@ namespace WpfApp1
                         else if (output.Contains("Writing"))
                         {
                             // 开始写入阶段，设置进度为70%
-                            if (bootflash.Value < 70)
+                            if ((this.FindControlInPages("bootflash") as System.Windows.Controls.ProgressBar).Value < 70)
                             {
-                                bootflash.Value = 70;
-                                if (FlashProgressBar != null && FlashProgressBar.Value < 70)
+                                (this.FindControlInPages("bootflash") as System.Windows.Controls.ProgressBar).Value = 70;
+                                if ((this.FindControlInPages("FlashProgressBar") as System.Windows.Controls.ProgressBar) != null && (this.FindControlInPages("FlashProgressBar") as System.Windows.Controls.ProgressBar).Value < 70)
                                 {
                                     UpdateProgressBarValue(70);
                                 }
@@ -10406,14 +10496,12 @@ namespace WpfApp1
                     }
                     else if (output.Contains("OKAY"))
                     {
-                        // 操作成功完成
-                        bootflash.Value = 90; // 设置为90%，等待最终完成
+                        // 操作成功完成 bootflash.Value = 90; // 设置为90%，等待最终完成
                         UpdateProgressBarValue(90);
                     }
                     else if (output.Contains("Finished") || output.Contains("镜像刷入成功"))
                     {
-                        // 刷入完全完成
-                        bootflash.Value = 100;
+                        // 刷入完全完成 bootflash.Value = 100;
                         UpdateProgressBarValue(100);
                         UpdateTransferRateText("完成");
                     }
@@ -10458,7 +10546,7 @@ namespace WpfApp1
             System.Windows.Media.Brush messageBrush,
             bool bold = false)
         {
-            if (FlashLogTextBox == null) return;
+            if ((this.FindControlInPages("FlashLogTextBox") as System.Windows.Controls.RichTextBox) == null) return;
 
             Dispatcher.Invoke(() =>
             {
@@ -10472,8 +10560,8 @@ namespace WpfApp1
                     Foreground = messageBrush,
                     FontWeight = bold ? FontWeights.SemiBold : FontWeights.Normal
                 });
-                FlashLogTextBox.Document.Blocks.Add(paragraph);
-                FlashLogTextBox.ScrollToEnd();
+                (this.FindControlInPages("FlashLogTextBox") as System.Windows.Controls.RichTextBox).Document.Blocks.Add(paragraph);
+                (this.FindControlInPages("FlashLogTextBox") as System.Windows.Controls.RichTextBox).ScrollToEnd();
             });
         }
 
@@ -10544,7 +10632,7 @@ namespace WpfApp1
 
         private void AppendFlashCountdown(string message)
         {
-            if (FlashLogTextBox == null) return;
+            if ((this.FindControlInPages("FlashLogTextBox") as System.Windows.Controls.RichTextBox) == null) return;
 
             Dispatcher.Invoke(() =>
             {
@@ -10559,8 +10647,8 @@ namespace WpfApp1
                     FontWeight = FontWeights.SemiBold
                 };
                 paragraph.Inlines.Add(_flashCountdownRun);
-                FlashLogTextBox.Document.Blocks.Add(paragraph);
-                FlashLogTextBox.ScrollToEnd();
+                (this.FindControlInPages("FlashLogTextBox") as System.Windows.Controls.RichTextBox).Document.Blocks.Add(paragraph);
+                (this.FindControlInPages("FlashLogTextBox") as System.Windows.Controls.RichTextBox).ScrollToEnd();
             });
         }
 
@@ -10571,14 +10659,14 @@ namespace WpfApp1
                 if (_flashCountdownRun != null)
                 {
                     _flashCountdownRun.Text = message;
-                    FlashLogTextBox.ScrollToEnd();
+                    (this.FindControlInPages("FlashLogTextBox") as System.Windows.Controls.RichTextBox).ScrollToEnd();
                 }
             });
         }
 
         private void AppendFlashNativeProgress(string message)
         {
-            if (FlashLogTextBox == null) return;
+            if ((this.FindControlInPages("FlashLogTextBox") as System.Windows.Controls.RichTextBox) == null) return;
 
             Dispatcher.Invoke(() =>
             {
@@ -10594,8 +10682,8 @@ namespace WpfApp1
                 };
                 paragraph.Inlines.Add(_flashNativeProgressTimeRun);
                 paragraph.Inlines.Add(_flashNativeProgressRun);
-                FlashLogTextBox.Document.Blocks.Add(paragraph);
-                FlashLogTextBox.ScrollToEnd();
+                (this.FindControlInPages("FlashLogTextBox") as System.Windows.Controls.RichTextBox).Document.Blocks.Add(paragraph);
+                (this.FindControlInPages("FlashLogTextBox") as System.Windows.Controls.RichTextBox).ScrollToEnd();
             });
         }
 
@@ -10607,7 +10695,7 @@ namespace WpfApp1
                 {
                     _flashNativeProgressTimeRun.Text = $"[{DateTime.Now:HH:mm:ss}] ";
                     _flashNativeProgressRun.Text = message;
-                    FlashLogTextBox.ScrollToEnd();
+                    (this.FindControlInPages("FlashLogTextBox") as System.Windows.Controls.RichTextBox).ScrollToEnd();
                 }
             });
         }
@@ -10801,9 +10889,9 @@ namespace WpfApp1
                 string scrcpyPath = Path.Combine(appDirectory, "platform-tools", "scrcpy.exe");
                 if (File.Exists(scrcpyPath))
                 {
-                    var maxFpsSlider = this.FindName("MaxFpsSlider") as Slider;
+                    var maxFpsSlider = this.FindControlInPages("MaxFpsSlider") as Slider;
                     int maxFps = maxFpsSlider != null ? (int)maxFpsSlider.Value : 60;
-                    var bitrateSlider = this.FindName("BitrateSlider") as Slider;
+                    var bitrateSlider = this.FindControlInPages("BitrateSlider") as Slider;
                     int bitrate = bitrateSlider != null ? (int)bitrateSlider.Value : 8; 
                     
                     int maxSize = GetWindowMaxSize();
@@ -10894,8 +10982,8 @@ namespace WpfApp1
 
         private async void ExecuteFastbootCommandButton_Click(object sender, RoutedEventArgs e)
         {
-            var commandTextBox = this.FindName("FastbootCommandTextBox") as System.Windows.Controls.TextBox;
-            var logTextBox = this.FindName("FastbootLogTextBox") as System.Windows.Controls.RichTextBox;
+            var commandTextBox = this.FindControlInPages("FastbootCommandTextBox") as System.Windows.Controls.TextBox;
+            var logTextBox = this.FindControlInPages("FastbootLogTextBox") as System.Windows.Controls.RichTextBox;
             
             if (commandTextBox != null && logTextBox != null)
             {
@@ -10923,7 +11011,7 @@ namespace WpfApp1
 
         private void ClearFastbootLogButton_Click(object sender, RoutedEventArgs e)
         {
-            var logTextBox = this.FindName("FastbootLogTextBox") as System.Windows.Controls.RichTextBox;
+            var logTextBox = this.FindControlInPages("FastbootLogTextBox") as System.Windows.Controls.RichTextBox;
             if (logTextBox != null)
             {
                 logTextBox.Document.Blocks.Clear();
@@ -10933,8 +11021,8 @@ namespace WpfApp1
 
         private async void ReadPartitionTableButton_Click(object sender, RoutedEventArgs e)
         {
-            var logTextBox = this.FindName("FastbootLogTextBox") as System.Windows.Controls.RichTextBox;
-            var dataGrid = this.FindName("PartitionTableDataGrid") as DataGrid;
+            var logTextBox = this.FindControlInPages("FastbootLogTextBox") as System.Windows.Controls.RichTextBox;
+            var dataGrid = this.FindControlInPages("PartitionTableDataGrid") as DataGrid;
             CancellationTokenSource? operationCancellation = null;
             
             if (logTextBox != null && dataGrid != null)
@@ -10950,7 +11038,7 @@ namespace WpfApp1
                     
                     operationCancellation = BeginFastbootVisualizationOperation();
                     CancellationToken cancellationToken = operationCancellation.Token;
-                    ReadPartitionTableButton.IsEnabled = false;
+                    (this.FindControlInPages("ReadPartitionTableButton") as System.Windows.Controls.Button).IsEnabled = false;
 
                     bool deviceReady;
                     _fastbootVisualizationWaitingForDevice = true;
@@ -11114,15 +11202,15 @@ namespace WpfApp1
                 finally
                 {
                     EndFastbootVisualizationOperation(operationCancellation);
-                    ReadPartitionTableButton.IsEnabled = true;
+                    (this.FindControlInPages("ReadPartitionTableButton") as System.Windows.Controls.Button).IsEnabled = true;
                 }
             }
         }
         
         private async void AdbReadPartitionTableButton_Click(object sender, RoutedEventArgs e)
         {
-            var logTextBox = this.FindName("FastbootLogTextBox") as System.Windows.Controls.RichTextBox;
-            var dataGrid = this.FindName("PartitionTableDataGrid") as DataGrid;
+            var logTextBox = this.FindControlInPages("FastbootLogTextBox") as System.Windows.Controls.RichTextBox;
+            var dataGrid = this.FindControlInPages("PartitionTableDataGrid") as DataGrid;
             CancellationTokenSource? operationCancellation = null;
             
             if (logTextBox != null && dataGrid != null)
@@ -11138,7 +11226,7 @@ namespace WpfApp1
 
                     operationCancellation = BeginFastbootVisualizationOperation();
                     CancellationToken cancellationToken = operationCancellation.Token;
-                    AdbReadPartitionTableButton.IsEnabled = false;
+                    (this.FindControlInPages("AdbReadPartitionTableButton") as System.Windows.Controls.Button).IsEnabled = false;
 
                     string devicesOutput = await GetCommandOutput(adbPath, "devices", cancellationToken);
                     var adbDevices = devicesOutput
@@ -11260,7 +11348,7 @@ namespace WpfApp1
                 finally
                 {
                     EndFastbootVisualizationOperation(operationCancellation);
-                    AdbReadPartitionTableButton.IsEnabled = true;
+                    (this.FindControlInPages("AdbReadPartitionTableButton") as System.Windows.Controls.Button).IsEnabled = true;
                 }
             }
         }
@@ -11374,8 +11462,8 @@ namespace WpfApp1
         
         private async void ErasePartitionButton_Click(object sender, RoutedEventArgs e)
         {
-            var logTextBox = this.FindName("FastbootLogTextBox") as System.Windows.Controls.RichTextBox;
-            var dataGrid = this.FindName("PartitionTableDataGrid") as DataGrid;
+            var logTextBox = this.FindControlInPages("FastbootLogTextBox") as System.Windows.Controls.RichTextBox;
+            var dataGrid = this.FindControlInPages("PartitionTableDataGrid") as DataGrid;
             CancellationTokenSource? operationCancellation = null;
             
             if (logTextBox != null && dataGrid != null)
@@ -11412,7 +11500,7 @@ namespace WpfApp1
                     CancellationToken cancellationToken = operationCancellation.Token;
 
                     // 检查设备连接状态
-                    string connectionType = BottomConnectionTypeText?.Text ?? "";
+                    string connectionType = (this.FindControlInPages("BottomConnectionTypeText") as System.Windows.Controls.TextBlock)?.Text ?? "";
                     if (connectionType == "系统")
                     {
                         await ErasePartitionsUsingAdb(selectedPartitions, logTextBox, cancellationToken);
@@ -11460,8 +11548,8 @@ namespace WpfApp1
 
         private async void ReadPartitionButton_Click(object sender, RoutedEventArgs e)
         {
-            var logTextBox = this.FindName("FastbootLogTextBox") as System.Windows.Controls.RichTextBox;
-            var dataGrid = this.FindName("PartitionTableDataGrid") as DataGrid;
+            var logTextBox = this.FindControlInPages("FastbootLogTextBox") as System.Windows.Controls.RichTextBox;
+            var dataGrid = this.FindControlInPages("PartitionTableDataGrid") as DataGrid;
             var partitionInfos = dataGrid?.ItemsSource as ObservableCollection<PartitionInfo>;
             CancellationTokenSource? operationCancellation = null;
             
@@ -11701,8 +11789,8 @@ namespace WpfApp1
 
         private async void WritePartitionButton_Click(object sender, RoutedEventArgs e)
         {
-            var logTextBox = this.FindName("FastbootLogTextBox") as System.Windows.Controls.RichTextBox;
-            var dataGrid = this.FindName("PartitionTableDataGrid") as DataGrid;
+            var logTextBox = this.FindControlInPages("FastbootLogTextBox") as System.Windows.Controls.RichTextBox;
+            var dataGrid = this.FindControlInPages("PartitionTableDataGrid") as DataGrid;
             CancellationTokenSource? operationCancellation = null;
             
             if (logTextBox != null && dataGrid != null)
@@ -11788,14 +11876,14 @@ namespace WpfApp1
                      });
                     
                     // 当前页面选择的是具体的 bat 文件，不能读取“基本刷入”页面的目录输入框。
-                    string selectedFlashScript = FlashBatTextBox?.Text?.Trim() ?? "";
+                    string selectedFlashScript = (this.FindControlInPages("FlashBatTextBox") as System.Windows.Controls.TextBox)?.Text?.Trim() ?? "";
                     bool hasXiaomiScript = HasActiveParsedXiaomiScript();
                     
                     // 检查设备连接状态
                     string currentConnectionType = "未知";
-                    if (BottomConnectionTypeText != null)
+                    if ((this.FindControlInPages("BottomConnectionTypeText") as System.Windows.Controls.TextBlock) != null)
                     {
-                        currentConnectionType = GetRawLocalizedText(BottomConnectionTypeText);
+                        currentConnectionType = GetRawLocalizedText((this.FindControlInPages("BottomConnectionTypeText") as System.Windows.Controls.TextBlock));
                     }
 
                     // 主页状态存在刷新延迟。除明确的系统模式外，直接通过 fastboot devices
@@ -12119,7 +12207,7 @@ namespace WpfApp1
                 Margin = new Thickness(25, 7, 0, 0)
             });
 
-            return new Border
+            return new System.Windows.Controls.Border
             {
                 Padding = new Thickness(14, 12, 14, 12),
                 CornerRadius = new CornerRadius(8),
@@ -12302,7 +12390,7 @@ namespace WpfApp1
                 allWritesSucceeded ? "Green" : "Orange");
 
             // 当前设备仍处于 Android 系统模式，自动重启必须使用 adb reboot。
-            if (RestartCheckBox.IsChecked == true)
+            if ((this.FindControlInPages("RestartCheckBox") as System.Windows.Controls.CheckBox).IsChecked == true)
             {
                 string rebootResult = await ExecuteAdbCommandWithOutput("reboot", cancellationToken);
                 bool rebootFailed = Regex.IsMatch(
@@ -12377,7 +12465,7 @@ namespace WpfApp1
                 allowBootloaderLock: false,
                 allowScriptOnlyActions: HasActiveParsedRawProgram() &&
                                         string.Equals(
-                                            BottomConnectionTypeText?.Text,
+                                            (this.FindControlInPages("BottomConnectionTypeText") as System.Windows.Controls.TextBlock)?.Text,
                                             "Fastboot",
                                             StringComparison.OrdinalIgnoreCase),
                 cancellationToken: cancellationToken);
@@ -12402,8 +12490,8 @@ namespace WpfApp1
 
         private async void BackupBasebandButton_Click(object sender, RoutedEventArgs e)
         {
-            var logTextBox = this.FindName("FastbootLogTextBox") as System.Windows.Controls.RichTextBox;
-            var dataGrid = this.FindName("PartitionTableDataGrid") as DataGrid;
+            var logTextBox = this.FindControlInPages("FastbootLogTextBox") as System.Windows.Controls.RichTextBox;
+            var dataGrid = this.FindControlInPages("PartitionTableDataGrid") as DataGrid;
             var partitionInfos = dataGrid?.ItemsSource as ObservableCollection<PartitionInfo>;
             CancellationTokenSource? operationCancellation = null;
             
@@ -12415,7 +12503,7 @@ namespace WpfApp1
 
             LogToFastboot("开始备份字库（所有分区）...", "Black");
 
-            if (GetRawLocalizedText(BottomConnectionTypeText) != "系统")
+            if (GetRawLocalizedText((this.FindControlInPages("BottomConnectionTypeText") as System.Windows.Controls.TextBlock)) != "系统")
             {
                 LogToFastboot("设备未处于系统模式，请在系统模式下执行此操作", "Red");
                 return;
@@ -12930,7 +13018,7 @@ namespace WpfApp1
 
             if (folderDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                var xiaomiFlashScriptPathTextBox = this.FindName("XiaomiFlashScriptPathTextBox") as System.Windows.Controls.TextBox;
+                var xiaomiFlashScriptPathTextBox = this.FindControlInPages("XiaomiFlashScriptPathTextBox") as System.Windows.Controls.TextBox;
                 if (xiaomiFlashScriptPathTextBox != null)
                 {
                     xiaomiFlashScriptPathTextBox.Text = folderDialog.SelectedPath;
@@ -12951,7 +13039,7 @@ namespace WpfApp1
             try
             {
                 // 验证刷机包路径
-                var xiaomiFlashScriptPathTextBox = this.FindName("XiaomiFlashScriptPathTextBox") as System.Windows.Controls.TextBox;
+                var xiaomiFlashScriptPathTextBox = this.FindControlInPages("XiaomiFlashScriptPathTextBox") as System.Windows.Controls.TextBox;
                 if (xiaomiFlashScriptPathTextBox == null)
                 {
                     LogToFlashTextBox("错误: 未找到小米刷机包路径输入框控件");
@@ -12971,9 +13059,9 @@ namespace WpfApp1
                 }
 
                 // 检查复选框状态并确定要执行的bat文件
-                var completeWipeCheckBox = this.FindName("CompleteWipeCheckBox") as System.Windows.Controls.CheckBox;
-                var keepDataCheckBox = this.FindName("KeepDataCheckBox") as System.Windows.Controls.CheckBox;
-                var wipeAndLockBLCheckBox = this.FindName("WipeAndLockBLCheckBox") as System.Windows.Controls.CheckBox;
+                var completeWipeCheckBox = this.FindControlInPages("CompleteWipeCheckBox") as System.Windows.Controls.CheckBox;
+                var keepDataCheckBox = this.FindControlInPages("KeepDataCheckBox") as System.Windows.Controls.CheckBox;
+                var wipeAndLockBLCheckBox = this.FindControlInPages("WipeAndLockBLCheckBox") as System.Windows.Controls.CheckBox;
 
                 string batFileName = "";
                 string operationType = "";
@@ -13010,19 +13098,19 @@ namespace WpfApp1
                 LogToFlashTextBox($"将执行脚本: {batFileName}");
 
                 // 禁用按钮防止重复操作
-var startXiaomiFlashButton = this.FindName("StartXiaomiFlashButton") as System.Windows.Controls.Button;
+var startXiaomiFlashButton = this.FindControlInPages("StartXiaomiFlashButton") as System.Windows.Controls.Button;
 if (startXiaomiFlashButton != null)
 {
     startXiaomiFlashButton.IsEnabled = false;
 }
                 
                 // 重置并显示进度条
-                if (bootflash != null)
+                if ((this.FindControlInPages("bootflash") as System.Windows.Controls.ProgressBar) != null)
                 {
                     _xiaomiFlashProgressState = null;
-                    bootflash.Value = 0;
-                    bootflash.Tag = "0MB/s  |  Time:0s";
-                    bootflash.Visibility = Visibility.Visible;
+                    (this.FindControlInPages("bootflash") as System.Windows.Controls.ProgressBar).Value = 0;
+                    (this.FindControlInPages("bootflash") as System.Windows.Controls.ProgressBar).Tag = "0MB/s  |  Time:0s";
+                    (this.FindControlInPages("bootflash") as System.Windows.Controls.ProgressBar).Visibility = Visibility.Visible;
                 }
                 
                 LogToFlashTextBox("开始小米线刷操作...");
@@ -13115,7 +13203,7 @@ if (startXiaomiFlashButton != null)
                                                           MessageBoxImage.Warning);
                                             
                                             // 重新启用按钮，让用户可以再次尝试
-                                            var startXiaomiFlashButton = this.FindName("StartXiaomiFlashButton") as System.Windows.Controls.Button;
+                                            var startXiaomiFlashButton = this.FindControlInPages("StartXiaomiFlashButton") as System.Windows.Controls.Button;
                                             if (startXiaomiFlashButton != null)
                                             {
                                                 startXiaomiFlashButton.IsEnabled = true;
@@ -13243,7 +13331,7 @@ if (startXiaomiFlashButton != null)
             finally
             {
                 // 重新启用按钮
-var startXiaomiFlashButton = this.FindName("StartXiaomiFlashButton") as System.Windows.Controls.Button;
+var startXiaomiFlashButton = this.FindControlInPages("StartXiaomiFlashButton") as System.Windows.Controls.Button;
 if (startXiaomiFlashButton != null)
 {
     startXiaomiFlashButton.IsEnabled = true;
@@ -13260,13 +13348,13 @@ if (startXiaomiFlashButton != null)
         {
             _xiaomiFlashProgressState = CreateXiaomiFlashProgressState(scriptPath);
 
-            if (bootflash == null)
+            if ((this.FindControlInPages("bootflash") as System.Windows.Controls.ProgressBar) == null)
             {
                 return;
             }
 
-            bootflash.Value = 0;
-            bootflash.Tag = "0MB/s  |  Time:0s";
+            (this.FindControlInPages("bootflash") as System.Windows.Controls.ProgressBar).Value = 0;
+            (this.FindControlInPages("bootflash") as System.Windows.Controls.ProgressBar).Tag = "0MB/s  |  Time:0s";
         }
 
         private static XiaomiFlashProgressState? CreateXiaomiFlashProgressState(string scriptPath)
@@ -13330,7 +13418,7 @@ if (startXiaomiFlashButton != null)
         {
             try
             {
-                if (string.IsNullOrWhiteSpace(output) || bootflash == null)
+                if (string.IsNullOrWhiteSpace(output) || (this.FindControlInPages("bootflash") as System.Windows.Controls.ProgressBar) == null)
                 {
                     return;
                 }
@@ -13543,7 +13631,7 @@ if (startXiaomiFlashButton != null)
 
         private void UpdateXiaomiFlashProgressUi(XiaomiFlashProgressState state)
         {
-            if (bootflash == null || state.TotalBytes <= 0)
+            if ((this.FindControlInPages("bootflash") as System.Windows.Controls.ProgressBar) == null || state.TotalBytes <= 0)
             {
                 return;
             }
@@ -13558,11 +13646,11 @@ if (startXiaomiFlashButton != null)
                 state.LastReportedBytes,
                 Math.Min(state.TotalBytes, transferredBytes));
 
-            bootflash.Value = Math.Clamp(
+            (this.FindControlInPages("bootflash") as System.Windows.Controls.ProgressBar).Value = Math.Clamp(
                 state.LastReportedBytes * 100d / state.TotalBytes,
                 0d,
                 100d);
-            bootflash.Tag =
+            (this.FindControlInPages("bootflash") as System.Windows.Controls.ProgressBar).Tag =
                 $"{state.TransferRate}  |  Time:{(int)state.Elapsed.Elapsed.TotalSeconds}s";
         }
 
@@ -13580,14 +13668,14 @@ if (startXiaomiFlashButton != null)
 
                 UpdateXiaomiFlashProgressUi(state);
             }
-            else if (bootflash != null)
+            else if ((this.FindControlInPages("bootflash") as System.Windows.Controls.ProgressBar) != null)
             {
                 if (succeeded)
                 {
-                    bootflash.Value = 100;
+                    (this.FindControlInPages("bootflash") as System.Windows.Controls.ProgressBar).Value = 100;
                 }
 
-                bootflash.Tag = "0MB/s  |  Time:0s";
+                (this.FindControlInPages("bootflash") as System.Windows.Controls.ProgressBar).Tag = "0MB/s  |  Time:0s";
             }
         }
 
@@ -13620,10 +13708,10 @@ if (startXiaomiFlashButton != null)
         {
             try
             {
-                if (string.IsNullOrEmpty(output) || bootflash == null)
+                if (string.IsNullOrEmpty(output) || (this.FindControlInPages("bootflash") as System.Windows.Controls.ProgressBar) == null)
                     return;
 
-                double currentValue = bootflash.Value;
+                double currentValue = (this.FindControlInPages("bootflash") as System.Windows.Controls.ProgressBar).Value;
 
                 // 匹配百分比格式: (XX.X%) 或 (XX%)
                 // 示例: "modem_ab: 3.9 MB/266.6 MB (1.5%) [raw] 38.75 MB/s"
@@ -13648,14 +13736,14 @@ if (startXiaomiFlashButton != null)
                         // 这时应该重置进度条
                         if (currentValue > 90 && percent < 50)
                         {
-                            bootflash.Value = percent;
+                            (this.FindControlInPages("bootflash") as System.Windows.Controls.ProgressBar).Value = percent;
                             return;
                         }
                         
                         // 正常情况：只增不减
                         if (percent > currentValue)
                         {
-                            bootflash.Value = Math.Min(100, percent);
+                            (this.FindControlInPages("bootflash") as System.Windows.Controls.ProgressBar).Value = Math.Min(100, percent);
                         }
                     }
                     return;
@@ -13667,7 +13755,7 @@ if (startXiaomiFlashButton != null)
                 // 只在真正重启时才设置为100%（检测"Rebooting"单独出现）
                 if (System.Text.RegularExpressions.Regex.IsMatch(output, @"^\s*Rebooting\s*$", System.Text.RegularExpressions.RegexOptions.IgnoreCase))
                 {
-                    bootflash.Value = 100;
+                    (this.FindControlInPages("bootflash") as System.Windows.Controls.ProgressBar).Value = 100;
                     return;
                 }
                 
@@ -13677,17 +13765,17 @@ if (startXiaomiFlashButton != null)
                     // 开始操作
                     if (lowerOutput.Contains("target reported max download size"))
                     {
-                        bootflash.Value = 1;
+                        (this.FindControlInPages("bootflash") as System.Windows.Controls.ProgressBar).Value = 1;
                     }
                     // 擦除操作
                     else if (lowerOutput.Contains("erasing") && !lowerOutput.Contains("erase successfully"))
                     {
-                        bootflash.Value = 3;
+                        (this.FindControlInPages("bootflash") as System.Windows.Controls.ProgressBar).Value = 3;
                     }
                     // 发送数据中
                     else if (lowerOutput.Contains("sending") && !lowerOutput.Contains("okay"))
                     {
-                        bootflash.Value = 5;
+                        (this.FindControlInPages("bootflash") as System.Windows.Controls.ProgressBar).Value = 5;
                     }
                 }
             }
@@ -13703,8 +13791,8 @@ if (startXiaomiFlashButton != null)
         // 添加日志消息的辅助方法
         private void AddLogMessage(string level, string message)
         {
-            var logTextBlock = this.FindName("LogTextBlock") as TextBlock;
-            var logScrollViewer = this.FindName("LogScrollViewer") as ScrollViewer;
+            var logTextBlock = this.FindControlInPages("LogTextBlock") as TextBlock;
+            var logScrollViewer = this.FindControlInPages("LogScrollViewer") as ScrollViewer;
             
             if (logTextBlock != null)
             {
@@ -14203,8 +14291,8 @@ public partial class MainWindow : Window
                     {
                         if (!transferLockAcquired)
                         {
-                            FileTransferLogTextBox.Text += $"\n[{DateTime.Now:HH:mm:ss}] 已有文件传输任务正在进行，请稍后再试";
-                            FileTransferLogTextBox.ScrollToEnd();
+                            (this.FindControlInPages("FileTransferLogTextBox") as WpfApp1.SystemZoneLogTextBox).Text += $"\n[{DateTime.Now:HH:mm:ss}] 已有文件传输任务正在进行，请稍后再试";
+                            (this.FindControlInPages("FileTransferLogTextBox") as WpfApp1.SystemZoneLogTextBox).ScrollToEnd();
                             return;
                         }
 
@@ -14238,8 +14326,8 @@ public partial class MainWindow : Window
         {
             Dispatcher.Invoke(() =>
             {
-                FileTransferLogTextBox.Text += $"\n[{DateTime.Now:HH:mm:ss}] 操作过程中发生异常: {ex.Message}";
-                FileTransferLogTextBox.ScrollToEnd();
+                (this.FindControlInPages("FileTransferLogTextBox") as WpfApp1.SystemZoneLogTextBox).Text += $"\n[{DateTime.Now:HH:mm:ss}] 操作过程中发生异常: {ex.Message}";
+                (this.FindControlInPages("FileTransferLogTextBox") as WpfApp1.SystemZoneLogTextBox).ScrollToEnd();
             });
         }
     }
@@ -14393,30 +14481,30 @@ public partial class MainWindow : Window
         {
             Dispatcher.Invoke(() =>
             {
-                if (SystemZoneProgressBar == null)
+                if ((this.FindControlInPages("SystemZoneProgressBar") as System.Windows.Controls.ProgressBar) == null)
                 {
                     return;
                 }
 
-                SystemZoneProgressBar.Visibility = Visibility.Visible;
-                SystemZoneProgressBar.Minimum = 0;
-                SystemZoneProgressBar.Maximum = 100;
+                (this.FindControlInPages("SystemZoneProgressBar") as System.Windows.Controls.ProgressBar).Visibility = Visibility.Visible;
+                (this.FindControlInPages("SystemZoneProgressBar") as System.Windows.Controls.ProgressBar).Minimum = 0;
+                (this.FindControlInPages("SystemZoneProgressBar") as System.Windows.Controls.ProgressBar).Maximum = 100;
                 double normalizedProgress = Math.Max(0, Math.Min(100, progress));
-                SystemZoneProgressBar.Value = normalizedProgress;
+                (this.FindControlInPages("SystemZoneProgressBar") as System.Windows.Controls.ProgressBar).Value = normalizedProgress;
                 UpdateSystemZoneProgressBarTag();
             });
         }
 
         private void UpdateSystemZoneProgressBarTag(string? indexText = null, string? speedText = null)
         {
-            if (SystemZoneProgressBar == null)
+            if ((this.FindControlInPages("SystemZoneProgressBar") as System.Windows.Controls.ProgressBar) == null)
             {
                 return;
             }
 
             string currentIndex = "0/0";
             string currentSpeed = "0.00 B/s";
-            string? currentTag = SystemZoneProgressBar.Tag?.ToString();
+            string? currentTag = (this.FindControlInPages("SystemZoneProgressBar") as System.Windows.Controls.ProgressBar).Tag?.ToString();
             if (!string.IsNullOrWhiteSpace(currentTag))
             {
                 string[] parts = currentTag.Split(new[] { "    " }, StringSplitOptions.None);
@@ -14431,14 +14519,14 @@ public partial class MainWindow : Window
                 }
             }
 
-            SystemZoneProgressBar.Tag = $"{indexText ?? currentIndex}    {speedText ?? currentSpeed}";
+            (this.FindControlInPages("SystemZoneProgressBar") as System.Windows.Controls.ProgressBar).Tag = $"{indexText ?? currentIndex}    {speedText ?? currentSpeed}";
         }
 
         private void SetSystemZoneTransferFileProgress(int currentFileIndex, int totalFileCount)
         {
             Dispatcher.Invoke(() =>
             {
-                if (SystemZoneProgressBar == null)
+                if ((this.FindControlInPages("SystemZoneProgressBar") as System.Windows.Controls.ProgressBar) == null)
                 {
                     return;
                 }
@@ -14453,7 +14541,7 @@ public partial class MainWindow : Window
         {
             Dispatcher.Invoke(() =>
             {
-                if (SystemZoneProgressBar == null)
+                if ((this.FindControlInPages("SystemZoneProgressBar") as System.Windows.Controls.ProgressBar) == null)
                 {
                     return;
                 }
@@ -15372,8 +15460,8 @@ public partial class MainWindow : Window
                 transferLockAcquired = _systemZoneTransferLock.Wait(0);
                 if (!transferLockAcquired)
                 {
-                    FileTransferLogTextBox.Text += $"\n[{DateTime.Now:HH:mm:ss}] 已有文件传输任务正在进行，本次拖放未执行";
-                    FileTransferLogTextBox.ScrollToEnd();
+                    (this.FindControlInPages("FileTransferLogTextBox") as WpfApp1.SystemZoneLogTextBox).Text += $"\n[{DateTime.Now:HH:mm:ss}] 已有文件传输任务正在进行，本次拖放未执行";
+                    (this.FindControlInPages("FileTransferLogTextBox") as WpfApp1.SystemZoneLogTextBox).ScrollToEnd();
                     return;
                 }
 
@@ -15410,9 +15498,9 @@ public partial class MainWindow : Window
                     catch (Exception ex)
                     {
                         preparationFailed++;
-                        FileTransferLogTextBox.Text += $"\n[{DateTime.Now:HH:mm:ss}] 无法读取拖放项目: {droppedPath}";
-                        FileTransferLogTextBox.Text += $"\n[{DateTime.Now:HH:mm:ss}] 错误: {ex.Message}";
-                        FileTransferLogTextBox.ScrollToEnd();
+                        (this.FindControlInPages("FileTransferLogTextBox") as WpfApp1.SystemZoneLogTextBox).Text += $"\n[{DateTime.Now:HH:mm:ss}] 无法读取拖放项目: {droppedPath}";
+                        (this.FindControlInPages("FileTransferLogTextBox") as WpfApp1.SystemZoneLogTextBox).Text += $"\n[{DateTime.Now:HH:mm:ss}] 错误: {ex.Message}";
+                        (this.FindControlInPages("FileTransferLogTextBox") as WpfApp1.SystemZoneLogTextBox).ScrollToEnd();
                     }
                 }
 
@@ -15431,9 +15519,9 @@ public partial class MainWindow : Window
                 SetSystemZoneTransferProgress(0);
                 SetSystemZoneTransferSpeed(0);
 
-                FileTransferLogTextBox.Text +=
+                (this.FindControlInPages("FileTransferLogTextBox") as WpfApp1.SystemZoneLogTextBox).Text +=
                     $"\n[{DateTime.Now:HH:mm:ss}] 检测到拖放项目 {droppedPaths.Length} 个，包含文件 {totalFiles} 个、目录 {remoteDirectories.Count} 个";
-                FileTransferLogTextBox.ScrollToEnd();
+                (this.FindControlInPages("FileTransferLogTextBox") as WpfApp1.SystemZoneLogTextBox).ScrollToEnd();
 
                 try
                 {
@@ -15442,8 +15530,8 @@ public partial class MainWindow : Window
                 catch (Exception ex)
                 {
                     preparationFailed++;
-                    FileTransferLogTextBox.Text += $"\n[{DateTime.Now:HH:mm:ss}] 创建设备目录结构失败: {ex.Message}";
-                    FileTransferLogTextBox.ScrollToEnd();
+                    (this.FindControlInPages("FileTransferLogTextBox") as WpfApp1.SystemZoneLogTextBox).Text += $"\n[{DateTime.Now:HH:mm:ss}] 创建设备目录结构失败: {ex.Message}";
+                    (this.FindControlInPages("FileTransferLogTextBox") as WpfApp1.SystemZoneLogTextBox).ScrollToEnd();
                 }
 
                 for (int i = 0; i < totalFiles; i++)
@@ -15455,11 +15543,11 @@ public partial class MainWindow : Window
 
                     SetSystemZoneTransferFileProgress(i + 1, progressTotal);
                     SetSystemZoneTransferSpeed(0);
-                    FileTransferLogTextBox.Text +=
+                    (this.FindControlInPages("FileTransferLogTextBox") as WpfApp1.SystemZoneLogTextBox).Text +=
                         $"\n[{DateTime.Now:HH:mm:ss}] [{i + 1}/{totalFiles}] 开始传输: {Path.GetFileName(pushFile.LocalPath)}";
-                    FileTransferLogTextBox.Text += $"\n[{DateTime.Now:HH:mm:ss}] 源: {pushFile.LocalPath}";
-                    FileTransferLogTextBox.Text += $"\n[{DateTime.Now:HH:mm:ss}] 目标: {pushFile.RemotePath}";
-                    FileTransferLogTextBox.ScrollToEnd();
+                    (this.FindControlInPages("FileTransferLogTextBox") as WpfApp1.SystemZoneLogTextBox).Text += $"\n[{DateTime.Now:HH:mm:ss}] 源: {pushFile.LocalPath}";
+                    (this.FindControlInPages("FileTransferLogTextBox") as WpfApp1.SystemZoneLogTextBox).Text += $"\n[{DateTime.Now:HH:mm:ss}] 目标: {pushFile.RemotePath}";
+                    (this.FindControlInPages("FileTransferLogTextBox") as WpfApp1.SystemZoneLogTextBox).ScrollToEnd();
 
                     try
                     {
@@ -15478,7 +15566,7 @@ public partial class MainWindow : Window
                         success++;
                         transferredCompletedBytes += pushFile.Size;
                         SetSystemZoneTransferProgress(CalculateTransferPercent(transferredCompletedBytes, totalBytes));
-                        FileTransferLogTextBox.Text +=
+                        (this.FindControlInPages("FileTransferLogTextBox") as WpfApp1.SystemZoneLogTextBox).Text +=
                             $"\n[{DateTime.Now:HH:mm:ss}] [{i + 1}/{totalFiles}] 传输成功: {Path.GetFileName(pushFile.LocalPath)}";
                     }
                     catch (Exception ex)
@@ -15487,12 +15575,12 @@ public partial class MainWindow : Window
                         SetSystemZoneTransferProgress(Math.Min(
                             99,
                             CalculateTransferPercent(transferredCompletedBytes, totalBytes)));
-                        FileTransferLogTextBox.Text +=
+                        (this.FindControlInPages("FileTransferLogTextBox") as WpfApp1.SystemZoneLogTextBox).Text +=
                             $"\n[{DateTime.Now:HH:mm:ss}] [{i + 1}/{totalFiles}] 传输失败: {Path.GetFileName(pushFile.LocalPath)}";
-                        FileTransferLogTextBox.Text += $"\n[{DateTime.Now:HH:mm:ss}] 错误: {ex.Message}";
+                        (this.FindControlInPages("FileTransferLogTextBox") as WpfApp1.SystemZoneLogTextBox).Text += $"\n[{DateTime.Now:HH:mm:ss}] 错误: {ex.Message}";
                     }
 
-                    FileTransferLogTextBox.ScrollToEnd();
+                    (this.FindControlInPages("FileTransferLogTextBox") as WpfApp1.SystemZoneLogTextBox).ScrollToEnd();
                 }
 
                 bool allSucceeded = failed == 0 && preparationFailed == 0;
@@ -15503,9 +15591,9 @@ public partial class MainWindow : Window
                         : Math.Min(99, CalculateTransferPercent(transferredCompletedBytes, totalBytes)));
                 SetSystemZoneTransferSpeed(0);
 
-                FileTransferLogTextBox.Text +=
+                (this.FindControlInPages("FileTransferLogTextBox") as WpfApp1.SystemZoneLogTextBox).Text +=
                     $"\n[{DateTime.Now:HH:mm:ss}] 拖放传输完成：文件成功 {success}，文件失败 {failed}，项目准备失败 {preparationFailed}，目录 {remoteDirectories.Count} 个";
-                FileTransferLogTextBox.ScrollToEnd();
+                (this.FindControlInPages("FileTransferLogTextBox") as WpfApp1.SystemZoneLogTextBox).ScrollToEnd();
 
                 await LoadFileListFromPath(currentPath);
             }
@@ -15514,8 +15602,8 @@ public partial class MainWindow : Window
                 SetSystemZoneTransferSpeed(0);
                 Dispatcher.Invoke(() =>
                 {
-                    FileTransferLogTextBox.Text += $"\n[{DateTime.Now:HH:mm:ss}] 拖放传输过程中发生异常: {ex.Message}";
-                    FileTransferLogTextBox.ScrollToEnd();
+                    (this.FindControlInPages("FileTransferLogTextBox") as WpfApp1.SystemZoneLogTextBox).Text += $"\n[{DateTime.Now:HH:mm:ss}] 拖放传输过程中发生异常: {ex.Message}";
+                    (this.FindControlInPages("FileTransferLogTextBox") as WpfApp1.SystemZoneLogTextBox).ScrollToEnd();
                 });
             }
             finally
@@ -15663,10 +15751,10 @@ public partial class MainWindow : Window
                     // 在文件传输日志窗口显示本次传输信息
                     Dispatcher.Invoke(() =>
                     {
-                        FileTransferLogTextBox.Text += $"\n[{DateTime.Now:HH:mm:ss}] [{i + 1}/{total}] 开始传输: {fileName}";
-                        FileTransferLogTextBox.Text += $"\n[{DateTime.Now:HH:mm:ss}] 源: {selectedFilePath}";
-                        FileTransferLogTextBox.Text += $"\n[{DateTime.Now:HH:mm:ss}] 目标: {targetPath}";
-                        FileTransferLogTextBox.ScrollToEnd();
+                        (this.FindControlInPages("FileTransferLogTextBox") as WpfApp1.SystemZoneLogTextBox).Text += $"\n[{DateTime.Now:HH:mm:ss}] [{i + 1}/{total}] 开始传输: {fileName}";
+                        (this.FindControlInPages("FileTransferLogTextBox") as WpfApp1.SystemZoneLogTextBox).Text += $"\n[{DateTime.Now:HH:mm:ss}] 源: {selectedFilePath}";
+                        (this.FindControlInPages("FileTransferLogTextBox") as WpfApp1.SystemZoneLogTextBox).Text += $"\n[{DateTime.Now:HH:mm:ss}] 目标: {targetPath}";
+                        (this.FindControlInPages("FileTransferLogTextBox") as WpfApp1.SystemZoneLogTextBox).ScrollToEnd();
                     });
                     SetSystemZoneTransferFileProgress(i + 1, total);
                     SetSystemZoneTransferSpeed(0);
@@ -15691,8 +15779,8 @@ public partial class MainWindow : Window
 
                         Dispatcher.Invoke(() =>
                         {
-                            FileTransferLogTextBox.Text += $"\n[{DateTime.Now:HH:mm:ss}] [{i + 1}/{total}] 传输成功: {fileName}";
-                            FileTransferLogTextBox.ScrollToEnd();
+                            (this.FindControlInPages("FileTransferLogTextBox") as WpfApp1.SystemZoneLogTextBox).Text += $"\n[{DateTime.Now:HH:mm:ss}] [{i + 1}/{total}] 传输成功: {fileName}";
+                            (this.FindControlInPages("FileTransferLogTextBox") as WpfApp1.SystemZoneLogTextBox).ScrollToEnd();
                         });
                     }
                     catch (Exception ex)
@@ -15703,9 +15791,9 @@ public partial class MainWindow : Window
                             CalculateTransferPercent(transferredCompletedBytes, totalBytes)));
                         Dispatcher.Invoke(() =>
                         {
-                            FileTransferLogTextBox.Text += $"\n[{DateTime.Now:HH:mm:ss}] [{i + 1}/{total}] 传输失败: {fileName}";
-                            FileTransferLogTextBox.Text += $"\n[{DateTime.Now:HH:mm:ss}] 错误: {ex.Message}";
-                            FileTransferLogTextBox.ScrollToEnd();
+                            (this.FindControlInPages("FileTransferLogTextBox") as WpfApp1.SystemZoneLogTextBox).Text += $"\n[{DateTime.Now:HH:mm:ss}] [{i + 1}/{total}] 传输失败: {fileName}";
+                            (this.FindControlInPages("FileTransferLogTextBox") as WpfApp1.SystemZoneLogTextBox).Text += $"\n[{DateTime.Now:HH:mm:ss}] 错误: {ex.Message}";
+                            (this.FindControlInPages("FileTransferLogTextBox") as WpfApp1.SystemZoneLogTextBox).ScrollToEnd();
                         });
                     }
                 }
@@ -15720,8 +15808,8 @@ public partial class MainWindow : Window
                 // 汇总统计
                 Dispatcher.Invoke(() =>
                 {
-                    FileTransferLogTextBox.Text += $"\n[{DateTime.Now:HH:mm:ss}] 传输完成：成功 {success}，失败 {failed}（共 {total}）";
-                    FileTransferLogTextBox.ScrollToEnd();
+                    (this.FindControlInPages("FileTransferLogTextBox") as WpfApp1.SystemZoneLogTextBox).Text += $"\n[{DateTime.Now:HH:mm:ss}] 传输完成：成功 {success}，失败 {failed}（共 {total}）";
+                    (this.FindControlInPages("FileTransferLogTextBox") as WpfApp1.SystemZoneLogTextBox).ScrollToEnd();
                 });
 
                 if (success > 0)
@@ -15737,8 +15825,8 @@ public partial class MainWindow : Window
             SetSystemZoneTransferSpeed(0);
             Dispatcher.Invoke(() =>
             {
-                FileTransferLogTextBox.Text += $"\n[{DateTime.Now:HH:mm:ss}] 传输过程中发生异常: {ex.Message}";
-                FileTransferLogTextBox.ScrollToEnd();
+                (this.FindControlInPages("FileTransferLogTextBox") as WpfApp1.SystemZoneLogTextBox).Text += $"\n[{DateTime.Now:HH:mm:ss}] 传输过程中发生异常: {ex.Message}";
+                (this.FindControlInPages("FileTransferLogTextBox") as WpfApp1.SystemZoneLogTextBox).ScrollToEnd();
             });
         }
     }
@@ -15753,7 +15841,7 @@ public partial class MainWindow : Window
                 transferOutButton.IsEnabled = false;
             }
 
-            var selectedFiles = FileListTextBox.SelectedItems
+            var selectedFiles = (this.FindControlInPages("FileListTextBox") as System.Windows.Controls.ListBox).SelectedItems
                 .OfType<FileItem>()
                 .Where(item => item.IsFile)
                 .ToList();
@@ -15762,8 +15850,8 @@ public partial class MainWindow : Window
             {
                 Dispatcher.Invoke(() =>
                 {
-                    FileTransferLogTextBox.Text += $"\n[{DateTime.Now:HH:mm:ss}] 请先选择要传出的文件";
-                    FileTransferLogTextBox.ScrollToEnd();
+                    (this.FindControlInPages("FileTransferLogTextBox") as WpfApp1.SystemZoneLogTextBox).Text += $"\n[{DateTime.Now:HH:mm:ss}] 请先选择要传出的文件";
+                    (this.FindControlInPages("FileTransferLogTextBox") as WpfApp1.SystemZoneLogTextBox).ScrollToEnd();
                 });
                 return;
             }
@@ -15771,8 +15859,8 @@ public partial class MainWindow : Window
             transferLockAcquired = _systemZoneTransferLock.Wait(0);
             if (!transferLockAcquired)
             {
-                FileTransferLogTextBox.Text += $"\n[{DateTime.Now:HH:mm:ss}] 已有文件传输任务正在进行，请稍后再试";
-                FileTransferLogTextBox.ScrollToEnd();
+                (this.FindControlInPages("FileTransferLogTextBox") as WpfApp1.SystemZoneLogTextBox).Text += $"\n[{DateTime.Now:HH:mm:ss}] 已有文件传输任务正在进行，请稍后再试";
+                (this.FindControlInPages("FileTransferLogTextBox") as WpfApp1.SystemZoneLogTextBox).ScrollToEnd();
                 return;
             }
             
@@ -15803,10 +15891,10 @@ public partial class MainWindow : Window
 
                         Dispatcher.Invoke(() =>
                         {
-                            FileTransferLogTextBox.Text += $"\n[{DateTime.Now:HH:mm:ss}] [{i + 1}/{total}] 开始传出文件: {selectedFileName}";
-                            FileTransferLogTextBox.Text += $"\n[{DateTime.Now:HH:mm:ss}] 手机路径: {phoneFilePath}";
-                            FileTransferLogTextBox.Text += $"\n[{DateTime.Now:HH:mm:ss}] 电脑路径: {computerFilePath}";
-                            FileTransferLogTextBox.ScrollToEnd();
+                            (this.FindControlInPages("FileTransferLogTextBox") as WpfApp1.SystemZoneLogTextBox).Text += $"\n[{DateTime.Now:HH:mm:ss}] [{i + 1}/{total}] 开始传出文件: {selectedFileName}";
+                            (this.FindControlInPages("FileTransferLogTextBox") as WpfApp1.SystemZoneLogTextBox).Text += $"\n[{DateTime.Now:HH:mm:ss}] 手机路径: {phoneFilePath}";
+                            (this.FindControlInPages("FileTransferLogTextBox") as WpfApp1.SystemZoneLogTextBox).Text += $"\n[{DateTime.Now:HH:mm:ss}] 电脑路径: {computerFilePath}";
+                            (this.FindControlInPages("FileTransferLogTextBox") as WpfApp1.SystemZoneLogTextBox).ScrollToEnd();
                         });
 
                         try
@@ -15826,8 +15914,8 @@ public partial class MainWindow : Window
                             SetSystemZoneTransferProgress(100);
                             Dispatcher.Invoke(() =>
                             {
-                                FileTransferLogTextBox.Text += $"\n[{DateTime.Now:HH:mm:ss}] [{i + 1}/{total}] 文件传出成功: {selectedFileName}";
-                                FileTransferLogTextBox.ScrollToEnd();
+                                (this.FindControlInPages("FileTransferLogTextBox") as WpfApp1.SystemZoneLogTextBox).Text += $"\n[{DateTime.Now:HH:mm:ss}] [{i + 1}/{total}] 文件传出成功: {selectedFileName}";
+                                (this.FindControlInPages("FileTransferLogTextBox") as WpfApp1.SystemZoneLogTextBox).ScrollToEnd();
                             });
                         }
                         catch (Exception ex)
@@ -15836,9 +15924,9 @@ public partial class MainWindow : Window
                             SetSystemZoneTransferProgress(success * 100d / total);
                             Dispatcher.Invoke(() =>
                             {
-                                FileTransferLogTextBox.Text += $"\n[{DateTime.Now:HH:mm:ss}] [{i + 1}/{total}] 文件传出失败: {selectedFileName}";
-                                FileTransferLogTextBox.Text += $"\n[{DateTime.Now:HH:mm:ss}] 错误: {ex.Message}";
-                                FileTransferLogTextBox.ScrollToEnd();
+                                (this.FindControlInPages("FileTransferLogTextBox") as WpfApp1.SystemZoneLogTextBox).Text += $"\n[{DateTime.Now:HH:mm:ss}] [{i + 1}/{total}] 文件传出失败: {selectedFileName}";
+                                (this.FindControlInPages("FileTransferLogTextBox") as WpfApp1.SystemZoneLogTextBox).Text += $"\n[{DateTime.Now:HH:mm:ss}] 错误: {ex.Message}";
+                                (this.FindControlInPages("FileTransferLogTextBox") as WpfApp1.SystemZoneLogTextBox).ScrollToEnd();
                             });
                         }
                     }
@@ -15851,8 +15939,8 @@ public partial class MainWindow : Window
                     SetSystemZoneTransferSpeed(0);
                     Dispatcher.Invoke(() =>
                     {
-                        FileTransferLogTextBox.Text += $"\n[{DateTime.Now:HH:mm:ss}] 批量传出完成：成功 {success}，失败 {failed}（共 {total}）";
-                        FileTransferLogTextBox.ScrollToEnd();
+                        (this.FindControlInPages("FileTransferLogTextBox") as WpfApp1.SystemZoneLogTextBox).Text += $"\n[{DateTime.Now:HH:mm:ss}] 批量传出完成：成功 {success}，失败 {failed}（共 {total}）";
+                        (this.FindControlInPages("FileTransferLogTextBox") as WpfApp1.SystemZoneLogTextBox).ScrollToEnd();
                     });
                 }
             }
@@ -15864,8 +15952,8 @@ public partial class MainWindow : Window
             SetSystemZoneTransferSpeed(0);
             Dispatcher.Invoke(() =>
             {
-                FileTransferLogTextBox.Text += $"\n[{DateTime.Now:HH:mm:ss}] 传出过程中发生异常: {ex.Message}";
-                FileTransferLogTextBox.ScrollToEnd();
+                (this.FindControlInPages("FileTransferLogTextBox") as WpfApp1.SystemZoneLogTextBox).Text += $"\n[{DateTime.Now:HH:mm:ss}] 传出过程中发生异常: {ex.Message}";
+                (this.FindControlInPages("FileTransferLogTextBox") as WpfApp1.SystemZoneLogTextBox).ScrollToEnd();
             });
          }
         finally
@@ -15908,10 +15996,10 @@ public partial class MainWindow : Window
              bool hasItemActions = contextItem != null && !contextItem.IsPlaceholder;
              _systemZoneContextMenuItem = hasItemActions ? contextItem : null;
 
-             SystemZoneNewFolderMenuItem.Visibility = hasItemActions ? Visibility.Collapsed : Visibility.Visible;
-             SystemZoneNewFileMenuItem.Visibility = hasItemActions ? Visibility.Collapsed : Visibility.Visible;
-             SystemZoneRenameMenuItem.Visibility = hasItemActions ? Visibility.Visible : Visibility.Collapsed;
-             SystemZoneDeleteMenuItem.Visibility = hasItemActions && !contextItem!.IsFile
+             (this.FindControlInPages("SystemZoneNewFolderMenuItem") as System.Windows.Controls.MenuItem).Visibility = hasItemActions ? Visibility.Collapsed : Visibility.Visible;
+             (this.FindControlInPages("SystemZoneNewFileMenuItem") as System.Windows.Controls.MenuItem).Visibility = hasItemActions ? Visibility.Collapsed : Visibility.Visible;
+             (this.FindControlInPages("SystemZoneRenameMenuItem") as System.Windows.Controls.MenuItem).Visibility = hasItemActions ? Visibility.Visible : Visibility.Collapsed;
+             (this.FindControlInPages("SystemZoneDeleteMenuItem") as System.Windows.Controls.MenuItem).Visibility = hasItemActions && !contextItem!.IsFile
                  ? Visibility.Visible
                  : Visibility.Collapsed;
 
@@ -15973,8 +16061,8 @@ public partial class MainWindow : Window
              bool transferLockAcquired = _systemZoneTransferLock.Wait(0);
              if (!transferLockAcquired)
              {
-                 FileTransferLogTextBox.Text += $"\n[{DateTime.Now:HH:mm:ss}] 已有文件传输任务正在进行，暂时无法重命名";
-                 FileTransferLogTextBox.ScrollToEnd();
+                 (this.FindControlInPages("FileTransferLogTextBox") as WpfApp1.SystemZoneLogTextBox).Text += $"\n[{DateTime.Now:HH:mm:ss}] 已有文件传输任务正在进行，暂时无法重命名";
+                 (this.FindControlInPages("FileTransferLogTextBox") as WpfApp1.SystemZoneLogTextBox).ScrollToEnd();
                  return;
              }
 
@@ -16007,16 +16095,16 @@ public partial class MainWindow : Window
                      throw new InvalidOperationException(errorMessage);
                  }
 
-                 FileTransferLogTextBox.Text +=
+                 (this.FindControlInPages("FileTransferLogTextBox") as WpfApp1.SystemZoneLogTextBox).Text +=
                      $"\n[{DateTime.Now:HH:mm:ss}] 重命名成功: {item.Name} → {newName}";
-                 FileTransferLogTextBox.ScrollToEnd();
+                 (this.FindControlInPages("FileTransferLogTextBox") as WpfApp1.SystemZoneLogTextBox).ScrollToEnd();
                  _systemZoneContextMenuItem = null;
                  await LoadFileListFromPath(currentPath);
              }
              catch (Exception ex)
              {
-                 FileTransferLogTextBox.Text += $"\n[{DateTime.Now:HH:mm:ss}] 重命名失败: {ex.Message}";
-                 FileTransferLogTextBox.ScrollToEnd();
+                 (this.FindControlInPages("FileTransferLogTextBox") as WpfApp1.SystemZoneLogTextBox).Text += $"\n[{DateTime.Now:HH:mm:ss}] 重命名失败: {ex.Message}";
+                 (this.FindControlInPages("FileTransferLogTextBox") as WpfApp1.SystemZoneLogTextBox).ScrollToEnd();
                  System.Windows.MessageBox.Show(ex.Message, "重命名失败", MessageBoxButton.OK, MessageBoxImage.Error);
              }
              finally
@@ -16047,8 +16135,8 @@ public partial class MainWindow : Window
              bool transferLockAcquired = _systemZoneTransferLock.Wait(0);
              if (!transferLockAcquired)
              {
-                 FileTransferLogTextBox.Text += $"\n[{DateTime.Now:HH:mm:ss}] 已有文件传输任务正在进行，暂时无法删除";
-                 FileTransferLogTextBox.ScrollToEnd();
+                 (this.FindControlInPages("FileTransferLogTextBox") as WpfApp1.SystemZoneLogTextBox).Text += $"\n[{DateTime.Now:HH:mm:ss}] 已有文件传输任务正在进行，暂时无法删除";
+                 (this.FindControlInPages("FileTransferLogTextBox") as WpfApp1.SystemZoneLogTextBox).ScrollToEnd();
                  return;
              }
 
@@ -16068,15 +16156,15 @@ public partial class MainWindow : Window
                      throw new InvalidOperationException(errorMessage);
                  }
 
-                 FileTransferLogTextBox.Text += $"\n[{DateTime.Now:HH:mm:ss}] 已删除{itemType}: {remotePath}";
-                 FileTransferLogTextBox.ScrollToEnd();
+                 (this.FindControlInPages("FileTransferLogTextBox") as WpfApp1.SystemZoneLogTextBox).Text += $"\n[{DateTime.Now:HH:mm:ss}] 已删除{itemType}: {remotePath}";
+                 (this.FindControlInPages("FileTransferLogTextBox") as WpfApp1.SystemZoneLogTextBox).ScrollToEnd();
                  _systemZoneContextMenuItem = null;
                  await LoadFileListFromPath(currentPath);
              }
              catch (Exception ex)
              {
-                 FileTransferLogTextBox.Text += $"\n[{DateTime.Now:HH:mm:ss}] 删除失败: {ex.Message}";
-                 FileTransferLogTextBox.ScrollToEnd();
+                 (this.FindControlInPages("FileTransferLogTextBox") as WpfApp1.SystemZoneLogTextBox).Text += $"\n[{DateTime.Now:HH:mm:ss}] 删除失败: {ex.Message}";
+                 (this.FindControlInPages("FileTransferLogTextBox") as WpfApp1.SystemZoneLogTextBox).ScrollToEnd();
                  System.Windows.MessageBox.Show(ex.Message, "删除失败", MessageBoxButton.OK, MessageBoxImage.Error);
              }
              finally
@@ -16113,8 +16201,8 @@ public partial class MainWindow : Window
              bool transferLockAcquired = _systemZoneTransferLock.Wait(0);
              if (!transferLockAcquired)
              {
-                 FileTransferLogTextBox.Text += $"\n[{DateTime.Now:HH:mm:ss}] 已有文件传输任务正在进行，暂时无法新建项目";
-                 FileTransferLogTextBox.ScrollToEnd();
+                 (this.FindControlInPages("FileTransferLogTextBox") as WpfApp1.SystemZoneLogTextBox).Text += $"\n[{DateTime.Now:HH:mm:ss}] 已有文件传输任务正在进行，暂时无法新建项目";
+                 (this.FindControlInPages("FileTransferLogTextBox") as WpfApp1.SystemZoneLogTextBox).ScrollToEnd();
                  return;
              }
 
@@ -16148,16 +16236,16 @@ public partial class MainWindow : Window
                      throw new InvalidOperationException(errorMessage);
                  }
 
-                 FileTransferLogTextBox.Text +=
+                 (this.FindControlInPages("FileTransferLogTextBox") as WpfApp1.SystemZoneLogTextBox).Text +=
                      $"\n[{DateTime.Now:HH:mm:ss}] 已新建{(isDirectory ? "文件夹" : "文件")}: {remotePath}";
-                 FileTransferLogTextBox.ScrollToEnd();
+                 (this.FindControlInPages("FileTransferLogTextBox") as WpfApp1.SystemZoneLogTextBox).ScrollToEnd();
                  await LoadFileListFromPath(currentPath);
              }
              catch (Exception ex)
              {
-                 FileTransferLogTextBox.Text +=
+                 (this.FindControlInPages("FileTransferLogTextBox") as WpfApp1.SystemZoneLogTextBox).Text +=
                      $"\n[{DateTime.Now:HH:mm:ss}] 新建{(isDirectory ? "文件夹" : "文件")}失败: {ex.Message}";
-                 FileTransferLogTextBox.ScrollToEnd();
+                 (this.FindControlInPages("FileTransferLogTextBox") as WpfApp1.SystemZoneLogTextBox).ScrollToEnd();
                  System.Windows.MessageBox.Show(
                      ex.Message,
                      isDirectory ? "新建文件夹失败" : "新建文件失败",
@@ -16283,7 +16371,7 @@ public partial class MainWindow : Window
          // FileListTextBox选择变化事件处理程序
          private void FileListTextBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
          {
-             var selectedFileItem = FileListTextBox.SelectedItems
+             var selectedFileItem = (this.FindControlInPages("FileListTextBox") as System.Windows.Controls.ListBox).SelectedItems
                  .OfType<FileItem>()
                  .LastOrDefault(item => item.IsFile);
 
@@ -16343,9 +16431,9 @@ public partial class MainWindow : Window
 
          private void UpdateSystemZoneCurrentPathDisplay()
          {
-             if (SystemZoneCurrentPathTextBlock != null)
+             if ((this.FindControlInPages("SystemZoneCurrentPathTextBlock") as System.Windows.Controls.TextBlock) != null)
              {
-                 SystemZoneCurrentPathTextBlock.Text = currentPath;
+                 (this.FindControlInPages("SystemZoneCurrentPathTextBlock") as System.Windows.Controls.TextBlock).Text = currentPath;
              }
          }
 
@@ -16356,7 +16444,7 @@ public partial class MainWindow : Window
              try
              {
                  // 查找ListBox控件
-                 var listBox = this.FindName("FileListTextBox") as System.Windows.Controls.ListBox;
+                 var listBox = this.FindControlInPages("FileListTextBox") as System.Windows.Controls.ListBox;
                  if (listBox == null)
                  {
                      listBox = FindVisualChild<System.Windows.Controls.ListBox>(this);
@@ -16481,7 +16569,7 @@ public partial class MainWindow : Window
              catch (Exception ex)
              {
                  // 查找ListBox并显示错误信息
-                 var listBox = this.FindName("FileListTextBox") as System.Windows.Controls.ListBox;
+                 var listBox = this.FindControlInPages("FileListTextBox") as System.Windows.Controls.ListBox;
                  if (listBox == null)
                  {
                      listBox = FindVisualChild<System.Windows.Controls.ListBox>(this);
@@ -16643,9 +16731,9 @@ public partial class MainWindow : Window
 
          private void SetSystemZoneDirectoryLoading(bool isLoading)
          {
-             if (SystemZoneLoadingOverlay != null)
+             if ((this.FindControlInPages("SystemZoneLoadingOverlay") as System.Windows.Controls.Border) != null)
              {
-                 SystemZoneLoadingOverlay.Visibility = isLoading
+                 (this.FindControlInPages("SystemZoneLoadingOverlay") as System.Windows.Controls.Border).Visibility = isLoading
                      ? Visibility.Visible
                      : Visibility.Collapsed;
              }
@@ -16797,7 +16885,7 @@ public partial class MainWindow : Window
 
         private bool IsSystemZoneRootDirectorySelected()
         {
-            return SystemZoneRootDirectoryRadioButton?.IsChecked == true;
+            return (this.FindControlInPages("SystemZoneRootDirectoryRadioButton") as System.Windows.Controls.RadioButton)?.IsChecked == true;
         }
 
         private async Task<bool> HasSystemZoneRootAccessAsync()
@@ -16815,8 +16903,8 @@ public partial class MainWindow : Window
             }
 
             string logMessage = $"[{DateTime.Now:HH:mm:ss}] 错误: {message}";
-            FileTransferLogTextBox.Text += $"\n{logMessage}";
-            FileTransferLogTextBox.ScrollToEnd();
+            (this.FindControlInPages("FileTransferLogTextBox") as WpfApp1.SystemZoneLogTextBox).Text += $"\n{logMessage}";
+            (this.FindControlInPages("FileTransferLogTextBox") as WpfApp1.SystemZoneLogTextBox).ScrollToEnd();
         }
 
         private async void BackButton_Click(object sender, RoutedEventArgs e)
@@ -16853,7 +16941,7 @@ public partial class MainWindow : Window
                 return;
             }
 
-            if (SystemZoneCameraDirectoryRadioButton?.IsChecked == true)
+            if ((this.FindControlInPages("SystemZoneCameraDirectoryRadioButton") as System.Windows.Controls.RadioButton)?.IsChecked == true)
             {
                 await LoadFileListFromPath("/sdcard/DCIM/Camera/");
                 return;
@@ -16864,7 +16952,7 @@ public partial class MainWindow : Window
 
         private async void DeleteSelectedFilesButton_Click(object sender, RoutedEventArgs e)
         {
-            var selectedFiles = FileListTextBox.SelectedItems
+            var selectedFiles = (this.FindControlInPages("FileListTextBox") as System.Windows.Controls.ListBox).SelectedItems
                 .OfType<FileItem>()
                 .Where(item => item.IsFile)
                 .ToList();
@@ -16893,9 +16981,9 @@ public partial class MainWindow : Window
 
             try
             {
-                FileTransferLogTextBox.Text +=
+                (this.FindControlInPages("FileTransferLogTextBox") as WpfApp1.SystemZoneLogTextBox).Text +=
                     $"[{DateTime.Now:yyyy-MM-dd HH:mm:ss}] 开始删除 {selectedFiles.Count} 个文件\n";
-                FileTransferLogTextBox.ScrollToEnd();
+                (this.FindControlInPages("FileTransferLogTextBox") as WpfApp1.SystemZoneLogTextBox).ScrollToEnd();
 
                 foreach (FileItem file in selectedFiles)
                 {
@@ -16915,17 +17003,17 @@ public partial class MainWindow : Window
                     if (succeeded)
                     {
                         successCount++;
-                        FileTransferLogTextBox.Text +=
+                        (this.FindControlInPages("FileTransferLogTextBox") as WpfApp1.SystemZoneLogTextBox).Text +=
                             $"[{DateTime.Now:yyyy-MM-dd HH:mm:ss}] 删除成功: {file.Name}\n";
                     }
                     else
                     {
                         failedCount++;
-                        FileTransferLogTextBox.Text +=
+                        (this.FindControlInPages("FileTransferLogTextBox") as WpfApp1.SystemZoneLogTextBox).Text +=
                             $"[{DateTime.Now:yyyy-MM-dd HH:mm:ss}] 删除失败: {file.Name}，{result.Trim()}\n";
                     }
 
-                    FileTransferLogTextBox.ScrollToEnd();
+                    (this.FindControlInPages("FileTransferLogTextBox") as WpfApp1.SystemZoneLogTextBox).ScrollToEnd();
                 }
 
                 progressCancellation.Cancel();
@@ -16944,9 +17032,9 @@ public partial class MainWindow : Window
                 }
                 await LoadFileListFromPath(currentPath);
 
-                FileTransferLogTextBox.Text +=
+                (this.FindControlInPages("FileTransferLogTextBox") as WpfApp1.SystemZoneLogTextBox).Text +=
                     $"[{DateTime.Now:yyyy-MM-dd HH:mm:ss}] 删除完成：成功 {successCount}，失败 {failedCount}\n";
-                FileTransferLogTextBox.ScrollToEnd();
+                (this.FindControlInPages("FileTransferLogTextBox") as WpfApp1.SystemZoneLogTextBox).ScrollToEnd();
 
                 if (failedCount > 0)
                 {
@@ -16962,9 +17050,9 @@ public partial class MainWindow : Window
                 progressCancellation.Cancel();
                 await progressAnimation;
 
-                FileTransferLogTextBox.Text +=
+                (this.FindControlInPages("FileTransferLogTextBox") as WpfApp1.SystemZoneLogTextBox).Text +=
                     $"[{DateTime.Now:yyyy-MM-dd HH:mm:ss}] 删除文件时发生错误: {ex.Message}\n";
-                FileTransferLogTextBox.ScrollToEnd();
+                (this.FindControlInPages("FileTransferLogTextBox") as WpfApp1.SystemZoneLogTextBox).ScrollToEnd();
 
                 System.Windows.MessageBox.Show(
                     $"删除文件失败：{ex.Message}",
@@ -17005,7 +17093,7 @@ public partial class MainWindow : Window
 
         private async Task CompleteDeleteProgressAsync(int totalFileCount)
         {
-            double start = Math.Max(90, SystemZoneProgressBar?.Value ?? 90);
+            double start = Math.Max(90, (this.FindControlInPages("SystemZoneProgressBar") as System.Windows.Controls.ProgressBar)?.Value ?? 90);
             for (double progress = start; progress < 100; progress += 2)
             {
                 SetSystemZoneTransferProgress(progress);
@@ -17055,7 +17143,7 @@ public partial class MainWindow : Window
 
                     if (ignoredFileCount > 0)
                     {
-                        FileTransferLogTextBox.Text +=
+                        (this.FindControlInPages("FileTransferLogTextBox") as WpfApp1.SystemZoneLogTextBox).Text +=
                             $"[{DateTime.Now:yyyy-MM-dd HH:mm:ss}] 已忽略 {ignoredFileCount} 个无法识别的文件\n";
                     }
 
@@ -17064,14 +17152,13 @@ public partial class MainWindow : Window
 
                     if (!File.Exists(adbPath))
                     {
-                        FileTransferLogTextBox.Text += $"[{DateTime.Now:yyyy-MM-dd HH:mm:ss}] 错误: 找不到ADB工具: {adbPath}\n请确保platform-tools文件夹存在于程序目录中。\n";
-                        FileTransferLogTextBox.ScrollToEnd();
+                        (this.FindControlInPages("FileTransferLogTextBox") as WpfApp1.SystemZoneLogTextBox).Text += $"[{DateTime.Now:yyyy-MM-dd HH:mm:ss}] 错误: 找不到ADB工具: {adbPath}\n请确保platform-tools文件夹存在于程序目录中。\n";
+                        (this.FindControlInPages("FileTransferLogTextBox") as WpfApp1.SystemZoneLogTextBox).ScrollToEnd();
                         return;
                     }
 
-                    // 检查ROOT权限
-                    FileTransferLogTextBox.Text += $"[{DateTime.Now:yyyy-MM-dd HH:mm:ss}] 检查ROOT权限...\n";
-                    FileTransferLogTextBox.ScrollToEnd();
+                    // 检查ROOT权限 FileTransferLogTextBox.Text += $"[{DateTime.Now:yyyy-MM-dd HH:mm:ss}] 检查ROOT权限...\n";
+                    (this.FindControlInPages("FileTransferLogTextBox") as WpfApp1.SystemZoneLogTextBox).ScrollToEnd();
 
                     string rootCheckResult = await ExecuteAdbCommandWithOutput(
                         "shell \"su -c 'echo root_check'\"");
@@ -17079,16 +17166,16 @@ public partial class MainWindow : Window
 
                     if (hasRoot)
                     {
-                        FileTransferLogTextBox.Text += $"[{DateTime.Now:yyyy-MM-dd HH:mm:ss}] ROOT权限已授予，将使用静默安装\n";
+                        (this.FindControlInPages("FileTransferLogTextBox") as WpfApp1.SystemZoneLogTextBox).Text += $"[{DateTime.Now:yyyy-MM-dd HH:mm:ss}] ROOT权限已授予，将使用静默安装\n";
                     }
                     else
                     {
-                        FileTransferLogTextBox.Text += $"[{DateTime.Now:yyyy-MM-dd HH:mm:ss}] 未获取ROOT权限，将使用普通安装\n";
+                        (this.FindControlInPages("FileTransferLogTextBox") as WpfApp1.SystemZoneLogTextBox).Text += $"[{DateTime.Now:yyyy-MM-dd HH:mm:ss}] 未获取ROOT权限，将使用普通安装\n";
                     }
-                    FileTransferLogTextBox.ScrollToEnd();
+                    (this.FindControlInPages("FileTransferLogTextBox") as WpfApp1.SystemZoneLogTextBox).ScrollToEnd();
 
-                    FileTransferLogTextBox.Text += $"[{DateTime.Now:yyyy-MM-dd HH:mm:ss}] 开始批量安装APK，共选择了 {apkPaths.Length} 个文件\n";
-                    FileTransferLogTextBox.ScrollToEnd();
+                    (this.FindControlInPages("FileTransferLogTextBox") as WpfApp1.SystemZoneLogTextBox).Text += $"[{DateTime.Now:yyyy-MM-dd HH:mm:ss}] 开始批量安装APK，共选择了 {apkPaths.Length} 个文件\n";
+                    (this.FindControlInPages("FileTransferLogTextBox") as WpfApp1.SystemZoneLogTextBox).ScrollToEnd();
 
                     // 异步排队安装每个APK文件
                     await InstallApksSequentially(apkPaths, adbPath, selectedSerial, hasRoot);
@@ -17134,8 +17221,8 @@ public partial class MainWindow : Window
                     totalFiles,
                     progressCancellation.Token);
                 
-                FileTransferLogTextBox.Text += $"[{DateTime.Now:yyyy-MM-dd HH:mm:ss}] 正在安装 ({currentIndex}/{totalFiles}): {fileName}\n";
-                FileTransferLogTextBox.ScrollToEnd();
+                (this.FindControlInPages("FileTransferLogTextBox") as WpfApp1.SystemZoneLogTextBox).Text += $"[{DateTime.Now:yyyy-MM-dd HH:mm:ss}] 正在安装 ({currentIndex}/{totalFiles}): {fileName}\n";
+                (this.FindControlInPages("FileTransferLogTextBox") as WpfApp1.SystemZoneLogTextBox).ScrollToEnd();
                 
                 try
                 {
@@ -17172,10 +17259,10 @@ public partial class MainWindow : Window
                             StringComparison.OrdinalIgnoreCase);
                         string status = installedSuccessfully ? "成功" : "失败";
                         
-                        FileTransferLogTextBox.Text += $"[{DateTime.Now:yyyy-MM-dd HH:mm:ss}] {fileName} 安装{status}\n";
+                        (this.FindControlInPages("FileTransferLogTextBox") as WpfApp1.SystemZoneLogTextBox).Text += $"[{DateTime.Now:yyyy-MM-dd HH:mm:ss}] {fileName} 安装{status}\n";
                         if (!installedSuccessfully)
                         {
-                            FileTransferLogTextBox.Text += $"[{DateTime.Now:yyyy-MM-dd HH:mm:ss}] 详情: {installResult.Trim()}\n";
+                            (this.FindControlInPages("FileTransferLogTextBox") as WpfApp1.SystemZoneLogTextBox).Text += $"[{DateTime.Now:yyyy-MM-dd HH:mm:ss}] 详情: {installResult.Trim()}\n";
                         }
                     }
                     else
@@ -17215,7 +17302,7 @@ public partial class MainWindow : Window
                             output.Contains("Success", StringComparison.OrdinalIgnoreCase);
                         string status = installedSuccessfully ? "成功" : "失败";
                         
-                        FileTransferLogTextBox.Text += $"[{DateTime.Now:yyyy-MM-dd HH:mm:ss}] {fileName} 安装{status}: {result.Trim()}\n";
+                        (this.FindControlInPages("FileTransferLogTextBox") as WpfApp1.SystemZoneLogTextBox).Text += $"[{DateTime.Now:yyyy-MM-dd HH:mm:ss}] {fileName} 安装{status}: {result.Trim()}\n";
                     }
 
                     if (installedSuccessfully)
@@ -17227,13 +17314,13 @@ public partial class MainWindow : Window
                         failedCount++;
                     }
                     
-                    FileTransferLogTextBox.ScrollToEnd();
+                    (this.FindControlInPages("FileTransferLogTextBox") as WpfApp1.SystemZoneLogTextBox).ScrollToEnd();
                 }
                 catch (Exception ex)
                 {
                     failedCount++;
-                    FileTransferLogTextBox.Text += $"[{DateTime.Now:yyyy-MM-dd HH:mm:ss}] 安装 {fileName} 时发生错误: {ex.Message}\n";
-                    FileTransferLogTextBox.ScrollToEnd();
+                    (this.FindControlInPages("FileTransferLogTextBox") as WpfApp1.SystemZoneLogTextBox).Text += $"[{DateTime.Now:yyyy-MM-dd HH:mm:ss}] 安装 {fileName} 时发生错误: {ex.Message}\n";
+                    (this.FindControlInPages("FileTransferLogTextBox") as WpfApp1.SystemZoneLogTextBox).ScrollToEnd();
                 }
                 finally
                 {
@@ -17252,9 +17339,9 @@ public partial class MainWindow : Window
             SetSystemZoneTransferProgress(100);
             SetSystemZoneTransferFileProgress(totalFiles, totalFiles);
             UpdateSystemZoneProgressBarTag(speedText: "安装完成");
-            FileTransferLogTextBox.Text +=
+            (this.FindControlInPages("FileTransferLogTextBox") as WpfApp1.SystemZoneLogTextBox).Text +=
                 $"[{DateTime.Now:yyyy-MM-dd HH:mm:ss}] 批量APK安装完成：成功 {successCount}，失败 {failedCount}（共 {totalFiles}）\n";
-            FileTransferLogTextBox.ScrollToEnd();
+            (this.FindControlInPages("FileTransferLogTextBox") as WpfApp1.SystemZoneLogTextBox).ScrollToEnd();
         }
 
         private async Task AnimateApkInstallProgressAsync(
@@ -17291,7 +17378,7 @@ public partial class MainWindow : Window
             int totalFileCount)
         {
             double target = currentFileIndex * 100d / totalFileCount;
-            double current = SystemZoneProgressBar?.Value ?? target;
+            double current = (this.FindControlInPages("SystemZoneProgressBar") as System.Windows.Controls.ProgressBar)?.Value ?? target;
             double step = Math.Max(0.5, (target - current) / 5);
 
             while (current < target)
@@ -17334,15 +17421,15 @@ public partial class MainWindow : Window
 
             if (dialog.ShowDialog() == true)
             {
-                OfpFilePathTextBox.Text = dialog.FileName;
-                OfpExtractProgressBar.Value = 0;
+                (this.FindControlInPages("OfpFilePathTextBox") as System.Windows.Controls.TextBox).Text = dialog.FileName;
+                (this.FindControlInPages("OfpExtractProgressBar") as System.Windows.Controls.ProgressBar).Value = 0;
                 AppendSuperLog($"[OFP] 已选择固件: {dialog.FileName}");
             }
         }
 
         private async void StartOfpExtractButton_Click(object sender, RoutedEventArgs e)
         {
-            string sourcePath = OfpFilePathTextBox.Text.Trim();
+            string sourcePath = (this.FindControlInPages("OfpFilePathTextBox") as System.Windows.Controls.TextBox).Text.Trim();
             if (string.IsNullOrWhiteSpace(sourcePath) || !File.Exists(sourcePath))
             {
                 System.Windows.MessageBox.Show(
@@ -17374,9 +17461,9 @@ public partial class MainWindow : Window
                 folderDialog.SelectedPath,
                 Path.GetFileNameWithoutExtension(sourcePath) + "_解包");
 
-            StartOfpExtractButton.IsEnabled = false;
-            SelectOfpFileButton.IsEnabled = false;
-            OfpExtractProgressBar.Value = 0;
+            (this.FindControlInPages("StartOfpExtractButton") as System.Windows.Controls.Button).IsEnabled = false;
+            (this.FindControlInPages("SelectOfpFileButton") as System.Windows.Controls.Button).IsEnabled = false;
+            (this.FindControlInPages("OfpExtractProgressBar") as System.Windows.Controls.ProgressBar).Value = 0;
             AppendSuperLog("=== 开始解包 OFP ===");
             AppendSuperLog($"[OFP] 源文件: {sourcePath}");
             AppendSuperLog($"[OFP] 输出目录: {outputDirectory}");
@@ -17384,7 +17471,7 @@ public partial class MainWindow : Window
 
             var progress = new Progress<OfpExtractProgress>(value =>
             {
-                OfpExtractProgressBar.Value = Math.Clamp(value.Percent, 0, 100);
+                (this.FindControlInPages("OfpExtractProgressBar") as System.Windows.Controls.ProgressBar).Value = Math.Clamp(value.Percent, 0, 100);
                 AppendSuperLog($"[OFP] {value.Message} ({value.Percent:0}%)");
             });
 
@@ -17404,10 +17491,10 @@ public partial class MainWindow : Window
                     catch
                     {
                         _selectedOfpSuperSegments = Array.Empty<string>();
-                        OfpSuperSegmentsTextBox.Text = "请选择 Super 分段文件";
+                        (this.FindControlInPages("OfpSuperSegmentsTextBox") as System.Windows.Controls.TextBox).Text = "请选择 Super 分段文件";
                     }
                 }
-                OfpExtractProgressBar.Value = 100;
+                (this.FindControlInPages("OfpExtractProgressBar") as System.Windows.Controls.ProgressBar).Value = 100;
                 AppendSuperLog(superFileCount > 0
                     ? $"COLOR:Green|[OFP] 解包完成，已提取 {superFileCount} 个 super 文件"
                     : "COLOR:Orange|[OFP] 解包完成，未发现 super 文件");
@@ -17438,8 +17525,8 @@ public partial class MainWindow : Window
             }
             finally
             {
-                StartOfpExtractButton.IsEnabled = true;
-                SelectOfpFileButton.IsEnabled = true;
+                (this.FindControlInPages("StartOfpExtractButton") as System.Windows.Controls.Button).IsEnabled = true;
+                (this.FindControlInPages("SelectOfpFileButton") as System.Windows.Controls.Button).IsEnabled = true;
             }
         }
 
@@ -17451,7 +17538,7 @@ public partial class MainWindow : Window
             string fileNames = string.Join(
                 "、",
                 _selectedOfpSuperSegments.Select(Path.GetFileName));
-            OfpSuperSegmentsTextBox.Text =
+            (this.FindControlInPages("OfpSuperSegmentsTextBox") as System.Windows.Controls.TextBox).Text =
                 $"已选择 {_selectedOfpSuperSegments.Length} 个：{fileNames}";
         }
 
@@ -17496,7 +17583,7 @@ public partial class MainWindow : Window
             catch (Exception ex)
             {
                 _selectedOfpSuperSegments = Array.Empty<string>();
-                OfpSuperSegmentsTextBox.Text = "请选择 Super 分段文件";
+                (this.FindControlInPages("OfpSuperSegmentsTextBox") as System.Windows.Controls.TextBox).Text = "请选择 Super 分段文件";
                 AppendSuperLog($"COLOR:Orange|[OFP Super] {ex.Message}");
             }
         }
@@ -17604,10 +17691,10 @@ public partial class MainWindow : Window
                     return;
             }
 
-            string originalButtonText = StartMergeOfpSuperButton.Content?.ToString() ?? "开始合并";
-            StartMergeOfpSuperButton.IsEnabled = false;
-            SelectOfpSuperSegmentsButton.IsEnabled = false;
-            StartMergeOfpSuperButton.Content = "准备中";
+            string originalButtonText = (this.FindControlInPages("StartMergeOfpSuperButton") as System.Windows.Controls.Button).Content?.ToString() ?? "开始合并";
+            (this.FindControlInPages("StartMergeOfpSuperButton") as System.Windows.Controls.Button).IsEnabled = false;
+            (this.FindControlInPages("SelectOfpSuperSegmentsButton") as System.Windows.Controls.Button).IsEnabled = false;
+            (this.FindControlInPages("StartMergeOfpSuperButton") as System.Windows.Controls.Button).Content = "准备中";
             AppendSuperLog("=== 开始合并 OFP 分段 Super ===");
             AppendSuperLog($"[OFP Super] 分段数量: {_selectedOfpSuperSegments.Length}");
             AppendSuperLog($"[OFP Super] 输出文件: {outputPath}");
@@ -17618,7 +17705,7 @@ public partial class MainWindow : Window
                 double percent = Math.Clamp(value.Percent, 0, 100);
                 if (percent >= 100 || percent - lastDisplayedPercent >= 1)
                 {
-                    StartMergeOfpSuperButton.Content = $"{percent:0}%";
+                    (this.FindControlInPages("StartMergeOfpSuperButton") as System.Windows.Controls.Button).Content = $"{percent:0}%";
                     lastDisplayedPercent = percent;
                 }
                 if (!string.IsNullOrWhiteSpace(value.Message))
@@ -17649,9 +17736,9 @@ public partial class MainWindow : Window
             }
             finally
             {
-                StartMergeOfpSuperButton.Content = originalButtonText;
-                StartMergeOfpSuperButton.IsEnabled = true;
-                SelectOfpSuperSegmentsButton.IsEnabled = true;
+                (this.FindControlInPages("StartMergeOfpSuperButton") as System.Windows.Controls.Button).Content = originalButtonText;
+                (this.FindControlInPages("StartMergeOfpSuperButton") as System.Windows.Controls.Button).IsEnabled = true;
+                (this.FindControlInPages("SelectOfpSuperSegmentsButton") as System.Windows.Controls.Button).IsEnabled = true;
             }
         }
 
@@ -17666,15 +17753,15 @@ public partial class MainWindow : Window
 
             if (dialog.ShowDialog() == true)
             {
-                OpsFilePathTextBox.Text = dialog.FileName;
-                OpsExtractProgressBar.Value = 0;
+                (this.FindControlInPages("OpsFilePathTextBox") as System.Windows.Controls.TextBox).Text = dialog.FileName;
+                (this.FindControlInPages("OpsExtractProgressBar") as System.Windows.Controls.ProgressBar).Value = 0;
                 AppendSuperLog($"[OPS] 已选择固件: {dialog.FileName}");
             }
         }
 
         private async void StartOpsExtractButton_Click(object sender, RoutedEventArgs e)
         {
-            string sourcePath = OpsFilePathTextBox.Text.Trim();
+            string sourcePath = (this.FindControlInPages("OpsFilePathTextBox") as System.Windows.Controls.TextBox).Text.Trim();
             if (string.IsNullOrWhiteSpace(sourcePath) || !File.Exists(sourcePath))
             {
                 System.Windows.MessageBox.Show(
@@ -17706,9 +17793,9 @@ public partial class MainWindow : Window
                 folderDialog.SelectedPath,
                 Path.GetFileNameWithoutExtension(sourcePath) + "_解包");
 
-            StartOpsExtractButton.IsEnabled = false;
-            SelectOpsFileButton.IsEnabled = false;
-            OpsExtractProgressBar.Value = 0;
+            (this.FindControlInPages("StartOpsExtractButton") as System.Windows.Controls.Button).IsEnabled = false;
+            (this.FindControlInPages("SelectOpsFileButton") as System.Windows.Controls.Button).IsEnabled = false;
+            (this.FindControlInPages("OpsExtractProgressBar") as System.Windows.Controls.ProgressBar).Value = 0;
             AppendSuperLog("=== 开始解包 OPS ===");
             AppendSuperLog($"[OPS] 源文件: {sourcePath}");
             AppendSuperLog($"[OPS] 输出目录: {outputDirectory}");
@@ -17716,7 +17803,7 @@ public partial class MainWindow : Window
 
             var progress = new Progress<OpsExtractProgress>(value =>
             {
-                OpsExtractProgressBar.Value = Math.Clamp(value.Percent, 0, 100);
+                (this.FindControlInPages("OpsExtractProgressBar") as System.Windows.Controls.ProgressBar).Value = Math.Clamp(value.Percent, 0, 100);
                 AppendSuperLog($"[OPS] {value.Message} ({value.Percent:0}%)");
             });
 
@@ -17726,7 +17813,7 @@ public partial class MainWindow : Window
                 int extractedFileCount = Directory
                     .EnumerateFiles(outputDirectory, "*", SearchOption.AllDirectories)
                     .Count();
-                OpsExtractProgressBar.Value = 100;
+                (this.FindControlInPages("OpsExtractProgressBar") as System.Windows.Controls.ProgressBar).Value = 100;
                 AppendSuperLog($"COLOR:Green|[OPS] 解包完成，共输出 {extractedFileCount} 个文件");
                 AppendSuperLog("=== OPS 解包任务结束 ===");
 
@@ -17753,8 +17840,8 @@ public partial class MainWindow : Window
             }
             finally
             {
-                StartOpsExtractButton.IsEnabled = true;
-                SelectOpsFileButton.IsEnabled = true;
+                (this.FindControlInPages("StartOpsExtractButton") as System.Windows.Controls.Button).IsEnabled = true;
+                (this.FindControlInPages("SelectOpsFileButton") as System.Windows.Controls.Button).IsEnabled = true;
             }
         }
 
@@ -17769,7 +17856,7 @@ public partial class MainWindow : Window
             if (folderDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 string selectedPath = folderDialog.SelectedPath;
-                var tb = this.FindName("ImageDirTextBox") as System.Windows.Controls.TextBox;
+                var tb = this.FindControlInPages("ImageDirTextBox") as System.Windows.Controls.TextBox;
                 if (tb != null)
                 {
                     tb.Text = selectedPath;
@@ -17780,8 +17867,8 @@ public partial class MainWindow : Window
 
         private void GenerateFlashScriptButton_Click(object sender, RoutedEventArgs e)
         {
-            var tb = this.FindName("ImageDirTextBox") as System.Windows.Controls.TextBox;
-            var logBox = this.FindName("SuperPackLogRichTextBox") as System.Windows.Controls.RichTextBox;
+            var tb = this.FindControlInPages("ImageDirTextBox") as System.Windows.Controls.TextBox;
+            var logBox = this.FindControlInPages("SuperPackLogRichTextBox") as System.Windows.Controls.RichTextBox;
             void Log(string msg)
             {
                 if (logBox != null)
@@ -17823,7 +17910,7 @@ public partial class MainWindow : Window
 
             // 检测是否勾选“排除敏感文件”
             bool excludeSensitive = false;
-            var genBtn = this.FindName("GenerateFlashScriptButton") as System.Windows.Controls.Button;
+            var genBtn = this.FindControlInPages("GenerateFlashScriptButton") as System.Windows.Controls.Button;
             var parentGrid = genBtn?.Parent as System.Windows.Controls.Grid;
             var sensitiveCb = parentGrid?.Children.OfType<System.Windows.Controls.CheckBox>()
                 .FirstOrDefault(cb => (cb.Content?.ToString() ?? string.Empty) == "排除敏感文件");
@@ -18630,7 +18717,7 @@ public partial class MainWindow : Window
                 partition.IsSelected =
                     !IsFastbootVisualizationPartitionProtected(partition.PartitionName, adbMode);
             }
-            PartitionTableDataGrid.Items.Refresh();
+            (this.FindControlInPages("PartitionTableDataGrid") as System.Windows.Controls.DataGrid).Items.Refresh();
         }
 
         private void PartitionSelectAllCheckBox_Unchecked(object sender, RoutedEventArgs e)
@@ -18639,20 +18726,20 @@ public partial class MainWindow : Window
             {
                 partition.IsSelected = false;
             }
-            PartitionTableDataGrid.Items.Refresh();
+            (this.FindControlInPages("PartitionTableDataGrid") as System.Windows.Controls.DataGrid).Items.Refresh();
         }
 
         private bool IsFastbootVisualizationAdbMode()
         {
             return string.Equals(
-                BottomConnectionTypeText?.Text,
+                (this.FindControlInPages("BottomConnectionTypeText") as System.Windows.Controls.TextBlock)?.Text,
                 "系统",
                 StringComparison.OrdinalIgnoreCase);
         }
 
         private bool IsFastbootVisualizationPartitionProtected(string? partitionName, bool adbMode)
         {
-            if (ProtectPartitionCheckBox?.IsChecked != true || string.IsNullOrWhiteSpace(partitionName))
+            if ((this.FindControlInPages("ProtectPartitionCheckBox") as System.Windows.Controls.CheckBox)?.IsChecked != true || string.IsNullOrWhiteSpace(partitionName))
             {
                 return false;
             }
@@ -18679,7 +18766,7 @@ public partial class MainWindow : Window
 
         private void ApplyFastbootVisualizationPartitionProtectionState(bool adbMode)
         {
-            if (ProtectPartitionCheckBox?.IsChecked != true)
+            if ((this.FindControlInPages("ProtectPartitionCheckBox") as System.Windows.Controls.CheckBox)?.IsChecked != true)
             {
                 return;
             }
@@ -18692,7 +18779,7 @@ public partial class MainWindow : Window
                 }
             }
 
-            PartitionTableDataGrid?.Items.Refresh();
+            (this.FindControlInPages("PartitionTableDataGrid") as System.Windows.Controls.DataGrid)?.Items.Refresh();
             UpdateSelectAllState();
         }
 
@@ -18742,7 +18829,7 @@ public partial class MainWindow : Window
                         return;
                     }
 
-                    FlashBatTextBox.Text = selectedFiles[0];
+                    (this.FindControlInPages("FlashBatTextBox") as System.Windows.Controls.TextBox).Text = selectedFiles[0];
                     // 解析小米线刷脚本中的分区信息
                     if (ParseXiaomiFlashScript(selectedFiles[0]))
                     {
@@ -18753,7 +18840,7 @@ public partial class MainWindow : Window
                 else if (allRawPrograms)
                 {
                     string displayText = string.Join("; ", selectedFiles);
-                    FlashBatTextBox.Text = displayText;
+                    (this.FindControlInPages("FlashBatTextBox") as System.Windows.Controls.TextBox).Text = displayText;
                     LogToFastbootStyled(
                         ("用户已选择RawProgram文件，共", "Black", false),
                         ($"{selectedFiles.Length}", "Purple", true),
@@ -18875,8 +18962,8 @@ public partial class MainWindow : Window
                 {
                     allPartitions.Add(partition);
                 }
-                PartitionTableDataGrid.ItemsSource = allPartitions;
-                PartitionTableDataGrid.Items.Refresh();
+                (this.FindControlInPages("PartitionTableDataGrid") as System.Windows.Controls.DataGrid).ItemsSource = allPartitions;
+                (this.FindControlInPages("PartitionTableDataGrid") as System.Windows.Controls.DataGrid).Items.Refresh();
                 ApplyFastbootVisualizationPartitionProtectionState(IsFastbootVisualizationAdbMode());
                 UpdateSelectAllState();
 
@@ -18894,7 +18981,7 @@ public partial class MainWindow : Window
                 UpdateXiaomiScriptOnlyOptionsState();
 
                 bool adbMode = IsFastbootVisualizationAdbMode();
-                bool protectionEnabled = ProtectPartitionCheckBox?.IsChecked == true;
+                bool protectionEnabled = (this.FindControlInPages("ProtectPartitionCheckBox") as System.Windows.Controls.CheckBox)?.IsChecked == true;
                 int skippedDataPartitionCount = protectionEnabled && adbMode
                     ? parsedPartitions.Count(partition => IsEdlDataPartitionLabel(partition.PartitionName))
                     : 0;
@@ -18955,7 +19042,7 @@ public partial class MainWindow : Window
             {
                 DeactivateXiaomiScriptMode();
                 allPartitions.Clear();
-                PartitionTableDataGrid?.Items.Refresh();
+                (this.FindControlInPages("PartitionTableDataGrid") as System.Windows.Controls.DataGrid)?.Items.Refresh();
                 LogToFastboot($"RawProgram解析失败：{ex.Message}", "Red");
                 return false;
             }
@@ -18979,19 +19066,19 @@ public partial class MainWindow : Window
 
         private void ApplySkipCrcSelectionState()
         {
-            if (!HasActiveParsedXiaomiScript() || SkipCrcCheckBox == null || allPartitions == null)
+            if (!HasActiveParsedXiaomiScript() || (this.FindControlInPages("SkipCrcCheckBox") as System.Windows.Controls.CheckBox) == null || allPartitions == null)
             {
                 return;
             }
 
-            bool selectCrcPartitions = SkipCrcCheckBox.IsChecked != true;
+            bool selectCrcPartitions = (this.FindControlInPages("SkipCrcCheckBox") as System.Windows.Controls.CheckBox).IsChecked != true;
             foreach (PartitionInfo partition in allPartitions.Where(partition =>
                          IsCrcListPartition(partition.PartitionName)))
             {
                 partition.IsSelected = selectCrcPartitions;
             }
 
-            PartitionTableDataGrid?.Items.Refresh();
+            (this.FindControlInPages("PartitionTableDataGrid") as System.Windows.Controls.DataGrid)?.Items.Refresh();
             UpdateSelectAllState();
         }
 
@@ -19000,15 +19087,15 @@ public partial class MainWindow : Window
             bool hasParsedScript = HasActiveParsedXiaomiScript();
             bool hasRawProgramInFastboot = HasActiveParsedRawProgram() &&
                                            string.Equals(
-                                               BottomConnectionTypeText?.Text,
+                                               (this.FindControlInPages("BottomConnectionTypeText") as System.Windows.Controls.TextBlock)?.Text,
                                                "Fastboot",
                                                StringComparison.OrdinalIgnoreCase);
 
-            SetFlashOptionState(SwitchSlotACheckBox, hasParsedScript || hasRawProgramInFastboot, false);
-            SetFlashOptionState(KeepUserDataCheckBox, hasParsedScript || hasRawProgramInFastboot, false);
-            SetFlashOptionState(LockBootloaderCheckBox, hasParsedScript, false);
-            SetFlashOptionState(DisableDmVerityCheckBox, hasParsedScript, false);
-            SetFlashOptionState(SkipCrcCheckBox, hasParsedScript, true);
+            SetFlashOptionState((this.FindControlInPages("SwitchSlotACheckBox") as System.Windows.Controls.CheckBox), hasParsedScript || hasRawProgramInFastboot, false);
+            SetFlashOptionState((this.FindControlInPages("KeepUserDataCheckBox") as System.Windows.Controls.CheckBox), hasParsedScript || hasRawProgramInFastboot, false);
+            SetFlashOptionState((this.FindControlInPages("LockBootloaderCheckBox") as System.Windows.Controls.CheckBox), hasParsedScript, false);
+            SetFlashOptionState((this.FindControlInPages("DisableDmVerityCheckBox") as System.Windows.Controls.CheckBox), hasParsedScript, false);
+            SetFlashOptionState((this.FindControlInPages("SkipCrcCheckBox") as System.Windows.Controls.CheckBox), hasParsedScript, true);
 
             if (hasParsedScript)
             {
@@ -19037,7 +19124,7 @@ public partial class MainWindow : Window
         {
             try
             {
-                string currentPath = FlashBatTextBox?.Text?.Trim() ?? string.Empty;
+                string currentPath = (this.FindControlInPages("FlashBatTextBox") as System.Windows.Controls.TextBox)?.Text?.Trim() ?? string.Empty;
                 return _parsedXiaomiFlashScriptLines != null &&
                        Path.IsPathFullyQualified(currentPath) &&
                        File.Exists(currentPath) &&
@@ -19057,7 +19144,7 @@ public partial class MainWindow : Window
         {
             try
             {
-                string currentPath = FlashBatTextBox?.Text?.Trim() ?? string.Empty;
+                string currentPath = (this.FindControlInPages("FlashBatTextBox") as System.Windows.Controls.TextBox)?.Text?.Trim() ?? string.Empty;
                 return _parsedRawProgramPaths.Count > 0 &&
                        _parsedRawProgramPaths.All(path =>
                            File.Exists(path) &&
@@ -19272,8 +19359,7 @@ public partial class MainWindow : Window
                     }
                 }
                 
-                // 刷新数据网格显示
-                PartitionTableDataGrid.Items.Refresh();
+                // 刷新数据网格显示 PartitionTableDataGrid.Items.Refresh();
                 
                 // 自动勾选所有分区
                 foreach (var partition in allPartitions)
@@ -19299,8 +19385,7 @@ public partial class MainWindow : Window
         {
             try
             {
-                // 始终自动勾选"自动重启"复选框
-                RestartCheckBox.IsChecked = true;
+                // 始终自动勾选"自动重启"复选框 RestartCheckBox.IsChecked = true;
                 
                 // 获取脚本文件名
                 string scriptFileName = Path.GetFileName(scriptPath);
@@ -19308,7 +19393,7 @@ public partial class MainWindow : Window
                 // 如果脚本名为flash_all.bat，自动勾选"清除数据"
                 if (string.Equals(scriptFileName, "flash_all.bat", StringComparison.OrdinalIgnoreCase))
                 {
-                    KeepUserDataCheckBox.IsChecked = true;
+                    (this.FindControlInPages("KeepUserDataCheckBox") as System.Windows.Controls.CheckBox).IsChecked = true;
                 }
                 
                 // 检查脚本内容
@@ -19317,14 +19402,14 @@ public partial class MainWindow : Window
                 // 如果脚本中有"set_active a"字样，自动勾选"切换A槽"
                 if (scriptContent.Contains("set_active a"))
                 {
-                    SwitchSlotACheckBox.IsChecked = true;
+                    (this.FindControlInPages("SwitchSlotACheckBox") as System.Windows.Controls.CheckBox).IsChecked = true;
                 }
                 
                 // 如果脚本中有"oem lock"字样，自动勾选"锁定BL"和"清除数据"
                 if (scriptContent.Contains("oem lock"))
                 {
-                    LockBootloaderCheckBox.IsChecked = true;
-                    KeepUserDataCheckBox.IsChecked = true;
+                    (this.FindControlInPages("LockBootloaderCheckBox") as System.Windows.Controls.CheckBox).IsChecked = true;
+                    (this.FindControlInPages("KeepUserDataCheckBox") as System.Windows.Controls.CheckBox).IsChecked = true;
                 }
             }
             catch (Exception ex)
@@ -19518,7 +19603,7 @@ public partial class MainWindow : Window
                     {
                         if (!shouldFlashCrcPartitions.HasValue)
                         {
-                            if (SkipCrcCheckBox?.IsChecked == true)
+                            if ((this.FindControlInPages("SkipCrcCheckBox") as System.Windows.Controls.CheckBox)?.IsChecked == true)
                             {
                                 shouldFlashCrcPartitions = false;
                                 LogToFastboot("已按选项跳过 CRC 分区：crclist、sparsecrclist", "Black");
@@ -19701,7 +19786,7 @@ public partial class MainWindow : Window
             try
             {
                 cancellationToken.ThrowIfCancellationRequested();
-                if (allowScriptOnlyActions && KeepUserDataCheckBox.IsChecked == true)
+                if (allowScriptOnlyActions && (this.FindControlInPages("KeepUserDataCheckBox") as System.Windows.Controls.CheckBox).IsChecked == true)
                 {
                     LogToFastboot("[Erase] 开始清除数据...");
                     
@@ -19735,7 +19820,7 @@ public partial class MainWindow : Window
                 
                 // 2. 切换A槽
                 if (allowScriptOnlyActions &&
-                    (forceSwitchSlotA || SwitchSlotACheckBox.IsChecked == true))
+                    (forceSwitchSlotA || (this.FindControlInPages("SwitchSlotACheckBox") as System.Windows.Controls.CheckBox).IsChecked == true))
                 {
                     LogToFastboot("正在切换到A槽...");
                     if (!await ExecuteSingleFastbootCommand(
@@ -19753,7 +19838,7 @@ public partial class MainWindow : Window
                 cancellationToken.ThrowIfCancellationRequested();
                 
                 // 3. 锁定BL
-                if (allowScriptOnlyActions && LockBootloaderCheckBox.IsChecked == true)
+                if (allowScriptOnlyActions && (this.FindControlInPages("LockBootloaderCheckBox") as System.Windows.Controls.CheckBox).IsChecked == true)
                 {
                     if (!allowBootloaderLock)
                     {
@@ -19778,7 +19863,7 @@ public partial class MainWindow : Window
                 cancellationToken.ThrowIfCancellationRequested();
                 
                 // 4. 自动重启
-                if (RestartCheckBox.IsChecked == true)
+                if ((this.FindControlInPages("RestartCheckBox") as System.Windows.Controls.CheckBox).IsChecked == true)
                 {
                     LogToFastboot("正在重启设备...");
                     if (!await ExecuteSingleFastbootCommand(
@@ -19947,8 +20032,8 @@ public partial class MainWindow : Window
                 {
                     Foreground = GetFastbootMessageBrush(color)
                 });
-                FastbootLogTextBox.Document.Blocks.Add(paragraph);
-                FastbootLogTextBox.ScrollToEnd();
+                (this.FindControlInPages("FastbootLogTextBox") as System.Windows.Controls.RichTextBox).Document.Blocks.Add(paragraph);
+                (this.FindControlInPages("FastbootLogTextBox") as System.Windows.Controls.RichTextBox).ScrollToEnd();
             });
         }
 
@@ -19968,8 +20053,8 @@ public partial class MainWindow : Window
                     });
                 }
 
-                FastbootLogTextBox.Document.Blocks.Add(paragraph);
-                FastbootLogTextBox.ScrollToEnd();
+                (this.FindControlInPages("FastbootLogTextBox") as System.Windows.Controls.RichTextBox).Document.Blocks.Add(paragraph);
+                (this.FindControlInPages("FastbootLogTextBox") as System.Windows.Controls.RichTextBox).ScrollToEnd();
             });
         }
 
@@ -19997,14 +20082,14 @@ public partial class MainWindow : Window
                     {
                         Foreground = valueBrush
                     });
-                    FastbootLogTextBox.Document.Blocks.Add(line);
+                    (this.FindControlInPages("FastbootLogTextBox") as System.Windows.Controls.RichTextBox).Document.Blocks.Add(line);
                 }
 
                 AddDeviceInfoLine("设备代号：", productName);
                 AddDeviceInfoLine("解锁状态：", unlockStatus);
                 AddDeviceInfoLine("当前槽位：", slot);
                 AddDeviceInfoLine("运行模式：", mode);
-                FastbootLogTextBox.ScrollToEnd();
+                (this.FindControlInPages("FastbootLogTextBox") as System.Windows.Controls.RichTextBox).ScrollToEnd();
             });
         }
 
@@ -20043,10 +20128,10 @@ public partial class MainWindow : Window
                     {
                         Foreground = new SolidColorBrush(System.Windows.Media.Color.FromRgb(220, 38, 38))
                     });
-                    FastbootLogTextBox.Document.Blocks.Add(paragraph);
+                    (this.FindControlInPages("FastbootLogTextBox") as System.Windows.Controls.RichTextBox).Document.Blocks.Add(paragraph);
                 }
 
-                FastbootLogTextBox.ScrollToEnd();
+                (this.FindControlInPages("FastbootLogTextBox") as System.Windows.Controls.RichTextBox).ScrollToEnd();
             });
         }
 
@@ -20145,8 +20230,8 @@ public partial class MainWindow : Window
             {
                 Foreground = new SolidColorBrush(System.Windows.Media.Color.FromRgb(148, 163, 184))
             });
-            FastbootLogTextBox.Document.Blocks.Add(paragraph);
-            FastbootLogTextBox.ScrollToEnd();
+            (this.FindControlInPages("FastbootLogTextBox") as System.Windows.Controls.RichTextBox).Document.Blocks.Add(paragraph);
+            (this.FindControlInPages("FastbootLogTextBox") as System.Windows.Controls.RichTextBox).ScrollToEnd();
             pendingParagraphs[key] = paragraph;
         }
 
@@ -20173,15 +20258,15 @@ public partial class MainWindow : Window
                     ? stepInfo
                     : (GetFastbootOperationLabel(pendingParagraphs, fallbackTitle), fallbackTitle);
                 RenderCompletedFastbootStep(paragraph, step.Item1, step.Item2, success);
-                FastbootLogTextBox.ScrollToEnd();
+                (this.FindControlInPages("FastbootLogTextBox") as System.Windows.Controls.RichTextBox).ScrollToEnd();
                 pendingParagraphs.Remove(key);
                 return;
             }
 
             var newParagraph = CreateFastbootLogParagraph();
             RenderCompletedFastbootStep(newParagraph, GetFastbootOperationLabel(pendingParagraphs, fallbackTitle), fallbackTitle, success);
-            FastbootLogTextBox.Document.Blocks.Add(newParagraph);
-            FastbootLogTextBox.ScrollToEnd();
+            (this.FindControlInPages("FastbootLogTextBox") as System.Windows.Controls.RichTextBox).Document.Blocks.Add(newParagraph);
+            (this.FindControlInPages("FastbootLogTextBox") as System.Windows.Controls.RichTextBox).ScrollToEnd();
         }
 
         private string GetFastbootOperationLabel(Dictionary<string, Paragraph> pendingParagraphs, string title)
@@ -20233,7 +20318,7 @@ public partial class MainWindow : Window
                 RenderCompletedFastbootStep(paragraph, step.Item1, step.Item2, success);
             }
 
-            FastbootLogTextBox.ScrollToEnd();
+            (this.FindControlInPages("FastbootLogTextBox") as System.Windows.Controls.RichTextBox).ScrollToEnd();
             pendingParagraphs.Clear();
         }
 
@@ -20436,9 +20521,9 @@ public partial class MainWindow : Window
         {
             try
             {
-                DeviceDetectionToggle.IsChecked = false;
+                (this.FindControlInPages("DeviceDetectionToggle") as System.Windows.Controls.Primitives.ToggleButton).IsChecked = false;
                 HandleStopDeviceDetection();
-                DeviceDetectionToggle.IsChecked = true;
+                (this.FindControlInPages("DeviceDetectionToggle") as System.Windows.Controls.Primitives.ToggleButton).IsChecked = true;
                 HandleStartDeviceDetection();
                 AddLogMessage("系统", "设备状态已刷新");
             }
@@ -20574,7 +20659,7 @@ public partial class MainWindow : Window
                 return;
             }
 
-            var richTextBox = this.FindName("txtLog") as System.Windows.Controls.RichTextBox;
+            var richTextBox = this.FindControlInPages("txtLog") as System.Windows.Controls.RichTextBox;
             if (richTextBox == null) return;
             _autorootFastbootWaitParagraph = new System.Windows.Documents.Paragraph
             {
@@ -20607,7 +20692,7 @@ public partial class MainWindow : Window
 
             if (_autorootFastbootWaitRun == null) return;
             _autorootFastbootWaitRun.Text = $"等待Fastboot设备...{seconds}s （如果卡在这里请检查数据线或驱动）";
-            (this.FindName("txtLog") as System.Windows.Controls.RichTextBox)?.ScrollToEnd();
+            (this.FindControlInPages("txtLog") as System.Windows.Controls.RichTextBox)?.ScrollToEnd();
         }
 
         private void EndAutorootFastbootWaitCountdown()
@@ -20626,7 +20711,7 @@ public partial class MainWindow : Window
         {
             if (Dispatcher.CheckAccess())
             {
-                var richTextBox = this.FindName("txtLog") as System.Windows.Controls.RichTextBox;
+                var richTextBox = this.FindControlInPages("txtLog") as System.Windows.Controls.RichTextBox;
                 if (richTextBox != null)
                 {
                     string normalized = color?.Trim().ToLowerInvariant() ?? "black";
@@ -20773,7 +20858,7 @@ public partial class MainWindow : Window
                 return;
             }
 
-            var richTextBox = this.FindName("txtLog") as System.Windows.Controls.RichTextBox;
+            var richTextBox = this.FindControlInPages("txtLog") as System.Windows.Controls.RichTextBox;
             if (richTextBox == null) return;
             var paragraph = new System.Windows.Documents.Paragraph
             {
@@ -20867,8 +20952,8 @@ public partial class MainWindow : Window
                 
                 // 如果需要修补vbmeta标志
                 var repackEnvVars = new Dictionary<string, string>();
-                var chkPatchVbmeta = this.FindName("chkPatchVbmeta") as System.Windows.Controls.CheckBox;
-                if (chkPatchVbmeta?.IsChecked == true)
+                var chkPatchVbmeta = this.FindControlInPages("chkPatchVbmeta") as System.Windows.Controls.CheckBox;
+                if ((this.FindControlInPages("chkPatchVbmeta") as System.Windows.Controls.CheckBox)?.IsChecked == true)
                 {
                     repackEnvVars["PATCHVBMETAFLAG"] = "true";
                     AppendAutorootLog("修补vbmeta标志");
@@ -20918,10 +21003,10 @@ public partial class MainWindow : Window
             {
                 // 获取处理器架构
                 string arch = "arm64-v8a"; // 默认arm64
-                var cbArchitecture = this.FindName("cbArchitecture") as System.Windows.Controls.ComboBox;
-                if (cbArchitecture?.SelectedItem != null)
+                var cbArchitecture = this.FindControlInPages("cbArchitecture") as System.Windows.Controls.ComboBox;
+                if ((this.FindControlInPages("cbArchitecture") as System.Windows.Controls.ComboBox)?.SelectedItem != null)
                 {
-                    string selectedArch = ((System.Windows.Controls.ComboBoxItem)cbArchitecture.SelectedItem).Content?.ToString() ?? "";
+                    string selectedArch = ((System.Windows.Controls.ComboBoxItem)(this.FindControlInPages("cbArchitecture") as System.Windows.Controls.ComboBox).SelectedItem).Content?.ToString() ?? "";
                     switch (selectedArch)
                     {
                         case "arm_64": arch = "arm64-v8a"; break;
@@ -21020,12 +21105,12 @@ public partial class MainWindow : Window
                 string configPath = IOPath.Combine(workDir, "config");
                 var configLines = new List<string>();
 
-                var chkKeepVerity = this.FindName("chkKeepVerity") as System.Windows.Controls.CheckBox;
-                var chkKeepForceEncrypt = this.FindName("chkKeepForceEncrypt") as System.Windows.Controls.CheckBox;
+                var chkKeepVerity = this.FindControlInPages("chkKeepVerity") as System.Windows.Controls.CheckBox;
+                var chkKeepForceEncrypt = this.FindControlInPages("chkKeepForceEncrypt") as System.Windows.Controls.CheckBox;
 
                 // 添加配置选项
-                configLines.Add($"KEEPVERITY={chkKeepVerity?.IsChecked == true}");
-                configLines.Add($"KEEPFORCEENCRYPT={chkKeepForceEncrypt?.IsChecked == true}");
+                configLines.Add($"KEEPVERITY={(this.FindControlInPages("chkKeepVerity") as System.Windows.Controls.CheckBox)?.IsChecked == true}");
+                configLines.Add($"KEEPFORCEENCRYPT={(this.FindControlInPages("chkKeepForceEncrypt") as System.Windows.Controls.CheckBox)?.IsChecked == true}");
                 configLines.Add($"RECOVERYMODE=false"); // 默认false
                 
                 // 计算SHA1
@@ -21274,9 +21359,9 @@ public partial class MainWindow : Window
                 
                 Dispatcher.Invoke(() =>
                 {
-                    if (DeviceDetectionToggle != null)
+                    if ((this.FindControlInPages("DeviceDetectionToggle") as System.Windows.Controls.Primitives.ToggleButton) != null)
                     {
-                        DeviceDetectionToggle.IsChecked = true;
+                        (this.FindControlInPages("DeviceDetectionToggle") as System.Windows.Controls.Primitives.ToggleButton).IsChecked = true;
                     }
                 });
             }
@@ -21318,86 +21403,86 @@ public partial class MainWindow : Window
                 // 清空设备状态显示
                 Dispatcher.Invoke(() =>
                 {
-                    if (DeviceDetectionToggle != null)
+                    if ((this.FindControlInPages("DeviceDetectionToggle") as System.Windows.Controls.Primitives.ToggleButton) != null)
                     {
-                        DeviceDetectionToggle.IsChecked = false;
+                        (this.FindControlInPages("DeviceDetectionToggle") as System.Windows.Controls.Primitives.ToggleButton).IsChecked = false;
                     }
 
                     // 清空设备列表
                     DeviceSerials.Clear();
                     
                     // 清空设备状态文本
-                    if (DeviceStatusText != null)
+                    if ((this.FindControlInPages("DeviceStatusText") as System.Windows.Controls.TextBlock) != null)
                     {
-                        SetLocalizedText(DeviceStatusText, "未检测到设备");
-                        DeviceStatusText.Foreground = new SolidColorBrush(System.Windows.Media.Color.FromRgb(220, 53, 69)); // 红色 #DC3545
+                        SetLocalizedText((this.FindControlInPages("DeviceStatusText") as System.Windows.Controls.TextBlock), "未检测到设备");
+                        (this.FindControlInPages("DeviceStatusText") as System.Windows.Controls.TextBlock).Foreground = new SolidColorBrush(System.Windows.Media.Color.FromRgb(220, 53, 69)); // 红色 #DC3545
                     }
                     
                     // 清空设备选择下拉框
-                    if (MultiDeviceComboBox != null)
+                    if ((this.FindControlInPages("MultiDeviceComboBox") as System.Windows.Controls.ComboBox) != null)
                     {
-                        MultiDeviceComboBox.SelectedItem = null;
+                        (this.FindControlInPages("MultiDeviceComboBox") as System.Windows.Controls.ComboBox).SelectedItem = null;
                     }
                     
                     // 清空设备详细信息
-                    if (ConnectionTypeText != null)
+                    if ((this.FindControlInPages("ConnectionTypeText") as System.Windows.Controls.TextBlock) != null)
                     {
-                        SetLocalizedText(ConnectionTypeText, "--");
+                        SetLocalizedText((this.FindControlInPages("ConnectionTypeText") as System.Windows.Controls.TextBlock), "--");
                     }
                     
-                    if (DeviceSerialText != null)
+                    if ((this.FindControlInPages("DeviceSerialText") as System.Windows.Controls.TextBlock) != null)
                     {
-                        DeviceSerialText.Text = "--";
+                        (this.FindControlInPages("DeviceSerialText") as System.Windows.Controls.TextBlock).Text = "--";
                     }
                     
-                    if (DeviceModelText != null)
+                    if ((this.FindControlInPages("DeviceModelText") as System.Windows.Controls.TextBlock) != null)
                     {
-                        DeviceModelText.Text = "--";
+                        (this.FindControlInPages("DeviceModelText") as System.Windows.Controls.TextBlock).Text = "--";
                     }
                     
-                    if (DeviceCodeText != null)
+                    if ((this.FindControlInPages("DeviceCodeText") as System.Windows.Controls.TextBlock) != null)
                     {
-                        DeviceCodeText.Text = "--";
+                        (this.FindControlInPages("DeviceCodeText") as System.Windows.Controls.TextBlock).Text = "--";
                     }
                     
-                    if (UnlockStatusText != null)
+                    if ((this.FindControlInPages("UnlockStatusText") as System.Windows.Controls.TextBlock) != null)
                     {
-                        SetLocalizedText(UnlockStatusText, "--");
+                        SetLocalizedText((this.FindControlInPages("UnlockStatusText") as System.Windows.Controls.TextBlock), "--");
                     }
                     
-                    if (BottomConnectionTypeText != null)
+                    if ((this.FindControlInPages("BottomConnectionTypeText") as System.Windows.Controls.TextBlock) != null)
                     {
-                        SetLocalizedText(BottomConnectionTypeText, "--");
+                        SetLocalizedText((this.FindControlInPages("BottomConnectionTypeText") as System.Windows.Controls.TextBlock), "--");
                     }
                     UpdateBottomConnectionStatusIndicator("未连接", "--");
                     
                     // 清空A/B分区信息
-                    if (ABPartitionText != null)
+                    if ((this.FindControlInPages("ABPartitionText") as System.Windows.Controls.TextBlock) != null)
                     {
-                        SetLocalizedText(ABPartitionText, "--");
+                        SetLocalizedText((this.FindControlInPages("ABPartitionText") as System.Windows.Controls.TextBlock), "--");
                     }
 
-                    if (SelinuxStatusText != null)
+                    if ((this.FindControlInPages("SelinuxStatusText") as System.Windows.Controls.TextBlock) != null)
                     {
-                        SetLocalizedText(SelinuxStatusText, "--");
-                        SelinuxStatusText.Foreground = new SolidColorBrush(System.Windows.Media.Color.FromRgb(33, 150, 243));
+                        SetLocalizedText((this.FindControlInPages("SelinuxStatusText") as System.Windows.Controls.TextBlock), "--");
+                        (this.FindControlInPages("SelinuxStatusText") as System.Windows.Controls.TextBlock).Foreground = new SolidColorBrush(System.Windows.Media.Color.FromRgb(33, 150, 243));
                     }
 
-                    if (CpuManufacturerText != null) CpuManufacturerText.Text = "--";
-                    if (CpuCodeNameText != null) CpuCodeNameText.Text = "--";
-                    if (CpuNameText != null) CpuNameText.Text = "--";
-                    if (WindowsVersionText != null) WindowsVersionText.Text = "--";
-                    if (AndroidVersionText != null) AndroidVersionText.Text = "--";
-                    if (VersionInfoText != null) VersionInfoText.Text = "--";
-                    if (KernelVersionText != null) KernelVersionText.Text = "--";
-                    if (BuildDateText != null) BuildDateText.Text = "--";
+                    if ((this.FindControlInPages("CpuManufacturerText") as System.Windows.Controls.TextBlock) != null) (this.FindControlInPages("CpuManufacturerText") as System.Windows.Controls.TextBlock).Text = "--";
+                    if ((this.FindControlInPages("CpuCodeNameText") as System.Windows.Controls.TextBlock) != null) (this.FindControlInPages("CpuCodeNameText") as System.Windows.Controls.TextBlock).Text = "--";
+                    if ((this.FindControlInPages("CpuNameText") as System.Windows.Controls.TextBlock) != null) (this.FindControlInPages("CpuNameText") as System.Windows.Controls.TextBlock).Text = "--";
+                    if ((this.FindControlInPages("WindowsVersionText") as System.Windows.Controls.TextBlock) != null) (this.FindControlInPages("WindowsVersionText") as System.Windows.Controls.TextBlock).Text = "--";
+                    if ((this.FindControlInPages("AndroidVersionText") as System.Windows.Controls.TextBlock) != null) (this.FindControlInPages("AndroidVersionText") as System.Windows.Controls.TextBlock).Text = "--";
+                    if ((this.FindControlInPages("VersionInfoText") as System.Windows.Controls.TextBlock) != null) (this.FindControlInPages("VersionInfoText") as System.Windows.Controls.TextBlock).Text = "--";
+                    if ((this.FindControlInPages("KernelVersionText") as System.Windows.Controls.TextBlock) != null) (this.FindControlInPages("KernelVersionText") as System.Windows.Controls.TextBlock).Text = "--";
+                    if ((this.FindControlInPages("BuildDateText") as System.Windows.Controls.TextBlock) != null) (this.FindControlInPages("BuildDateText") as System.Windows.Controls.TextBlock).Text = "--";
 
-                    if (BatteryControl != null)
+                    if ((this.FindControlInPages("BatteryControl") as test1.HorizontalBattery) != null)
                     {
-                        BatteryControl.Maximum = 100;
-                        BatteryControl.Value = 0;
-                        BatteryControl.IsCharging = false;
-                        BatteryControl.TemperatureText = "--";
+                        (this.FindControlInPages("BatteryControl") as test1.HorizontalBattery).Maximum = 100;
+                        (this.FindControlInPages("BatteryControl") as test1.HorizontalBattery).Value = 0;
+                        (this.FindControlInPages("BatteryControl") as test1.HorizontalBattery).IsCharging = false;
+                        (this.FindControlInPages("BatteryControl") as test1.HorizontalBattery).TemperatureText = "--";
                     }
 
                     if (_storageViewModel != null)
@@ -21438,7 +21523,7 @@ public partial class MainWindow : Window
         // 检测刷机包机型的方法
         private async void FormatDeviceButton_Click(object sender, RoutedEventArgs e)
         {
-            FormatDeviceButton.IsEnabled = false;
+            (this.FindControlInPages("FormatDeviceButton") as System.Windows.Controls.Button).IsEnabled = false;
             var taskStopwatch = Stopwatch.StartNew();
 
             try
@@ -21500,14 +21585,14 @@ public partial class MainWindow : Window
             }
             finally
             {
-                FormatDeviceButton.IsEnabled = true;
+                (this.FindControlInPages("FormatDeviceButton") as System.Windows.Controls.Button).IsEnabled = true;
             }
         }
 
         // 擦除谷歌锁按钮点击事件
         private async void EraseGoogleLockButton_Click(object sender, RoutedEventArgs e)
         {
-            EraseGoogleLockButton.IsEnabled = false;
+            (this.FindControlInPages("EraseGoogleLockButton") as System.Windows.Controls.Button).IsEnabled = false;
             var taskStopwatch = Stopwatch.StartNew();
 
             try
@@ -21561,7 +21646,7 @@ public partial class MainWindow : Window
             }
             finally
             {
-                EraseGoogleLockButton.IsEnabled = true;
+                (this.FindControlInPages("EraseGoogleLockButton") as System.Windows.Controls.Button).IsEnabled = true;
             }
         }
 
@@ -21571,9 +21656,9 @@ public partial class MainWindow : Window
             dialog.Description = "请选择散包(Images)所在目录";
             if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                if (SuperScatterPathTextBox != null)
+                if ((this.FindControlInPages("SuperScatterPathTextBox") as System.Windows.Controls.TextBox) != null)
                 {
-                    SuperScatterPathTextBox.Text = dialog.SelectedPath;
+                    (this.FindControlInPages("SuperScatterPathTextBox") as System.Windows.Controls.TextBox).Text = dialog.SelectedPath;
                     AppendSuperLog($"已选择散包路径: {dialog.SelectedPath}");
                 }
             }
@@ -21581,14 +21666,14 @@ public partial class MainWindow : Window
 
         private async void StartSuperPackButton_Click(object sender, RoutedEventArgs e)
         {
-            string dir = SuperScatterPathTextBox?.Text?.Trim() ?? "";
+            string dir = (this.FindControlInPages("SuperScatterPathTextBox") as System.Windows.Controls.TextBox)?.Text?.Trim() ?? "";
             if (string.IsNullOrWhiteSpace(dir) || !Directory.Exists(dir))
             {
                 System.Windows.MessageBox.Show("请先选择有效的散包路径！", "提示", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
-            StartSuperPackButton.IsEnabled = false;
+            (this.FindControlInPages("StartSuperPackButton") as System.Windows.Controls.Button).IsEnabled = false;
             AppendSuperLog("=== 开始构建 Super 镜像 ===");
             
             try
@@ -21606,7 +21691,7 @@ public partial class MainWindow : Window
                 
                 if (success)
                 {
-                    if (CleanupMyPartitionsCheckBox.IsChecked == true)
+                    if ((this.FindControlInPages("CleanupMyPartitionsCheckBox") as System.Windows.Controls.CheckBox).IsChecked == true)
                     {
                         try
                         {
@@ -21676,7 +21761,7 @@ public partial class MainWindow : Window
                         }
                     }
 
-                    if (FilterXmlCheckBox.IsChecked == true)
+                    if ((this.FindControlInPages("FilterXmlCheckBox") as System.Windows.Controls.CheckBox).IsChecked == true)
                     {
                         try
                         {
@@ -21723,7 +21808,7 @@ public partial class MainWindow : Window
             }
             finally
             {
-                StartSuperPackButton.IsEnabled = true;
+                (this.FindControlInPages("StartSuperPackButton") as System.Windows.Controls.Button).IsEnabled = true;
             }
         }
 
@@ -21733,15 +21818,15 @@ public partial class MainWindow : Window
 
         private void AppendSuperLog(string msg)
         {
-            if (SuperPackLogRichTextBox == null) return;
+            if ((this.FindControlInPages("SuperPackLogRichTextBox") as System.Windows.Controls.RichTextBox) == null) return;
             
             Dispatcher.Invoke(() =>
             {
-                var para = SuperPackLogRichTextBox.Document.Blocks.FirstBlock as Paragraph;
+                var para = (this.FindControlInPages("SuperPackLogRichTextBox") as System.Windows.Controls.RichTextBox).Document.Blocks.FirstBlock as Paragraph;
                 if (para == null)
                 {
                     para = new Paragraph();
-                    SuperPackLogRichTextBox.Document.Blocks.Add(para);
+                    (this.FindControlInPages("SuperPackLogRichTextBox") as System.Windows.Controls.RichTextBox).Document.Blocks.Add(para);
                 }
                 
                 string text = msg;
@@ -21789,7 +21874,7 @@ public partial class MainWindow : Window
                     run.FontWeight = FontWeights.Bold;
                 }
                 para.Inlines.Add(run);
-                SuperPackLogRichTextBox.ScrollToEnd();
+                (this.FindControlInPages("SuperPackLogRichTextBox") as System.Windows.Controls.RichTextBox).ScrollToEnd();
             });
         }
 

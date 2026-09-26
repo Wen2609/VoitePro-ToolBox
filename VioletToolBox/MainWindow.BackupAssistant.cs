@@ -54,7 +54,7 @@ namespace WpfApp1
         private void BackupAssistantButton_Click(object sender, RoutedEventArgs e)
         {
             HideAllViews();
-            var backupAssistantView = this.FindName("BackupAssistantView") as WpfGrid;
+            var backupAssistantView = this.FindControlInPages("BackupAssistantView") as WpfGrid;
             if (backupAssistantView != null) backupAssistantView.Visibility = Visibility.Visible;
 
             try
@@ -72,24 +72,24 @@ namespace WpfApp1
 
         private void HideAllViews()
         {
-            var homeView = this.FindName("HomeView") as WpfGrid;
-            var screenMirrorView = this.FindName("ScreenMirrorView") as WpfGrid;
-            var basicFlashView = this.FindName("BasicFlashView") as WpfGrid;
-            var fastbootVisualizationView = this.FindName("FastbootVisualizationView") as WpfGrid;
-            var hiddenEnvironmentView = this.FindName("HiddenEnvironmentView") as WpfGrid;
-            var downloadView = this.FindName("DownloadView") as WpfGrid;
-            var aboutToolView = this.FindName("AboutToolView") as WpfGrid;
-            var systemZoneView = this.FindName("SystemZoneView") as WpfGrid;
-            var oujiaFlashView = this.FindName("OujiaFlashView") as WpfGrid;
-            var autorootView = this.FindName("AutorootView") as WpfGrid;
-            var appManagementView = this.FindName("AppManagementView") as WpfGrid;
-            var androidGeneralView = this.FindName("AndroidGeneralView") as WpfGrid;
-            var payloadView = this.FindName("PayloadView") as WpfGrid;
-            var romDownloadView = this.FindName("RomDownloadview") as WpfGrid;
-            var edlFlashView = this.FindName("EdlFlashView") as WpfGrid;
-            var colorOSAssistantView = this.FindName("ColorOSAssistantView") as WpfGrid;
-            var backupAssistantView = this.FindName("BackupAssistantView") as WpfGrid;
-            var violetDownloadView = this.FindName("VioletDownloadView") as WpfGrid;
+            var homeView = this.FindControlInPages("HomeView") as WpfGrid;
+            var screenMirrorView = this.FindControlInPages("ScreenMirrorView") as WpfGrid;
+            var basicFlashView = this.FindControlInPages("BasicFlashView") as WpfGrid;
+            var fastbootVisualizationView = this.FindControlInPages("FastbootVisualizationView") as WpfGrid;
+            var hiddenEnvironmentView = this.FindControlInPages("HiddenEnvironmentView") as WpfGrid;
+            var downloadView = this.FindControlInPages("DownloadView") as WpfGrid;
+            var aboutToolView = this.FindControlInPages("AboutToolView") as WpfGrid;
+            var systemZoneView = this.FindControlInPages("SystemZoneView") as WpfGrid;
+            var oujiaFlashView = this.FindControlInPages("OujiaFlashView") as WpfGrid;
+            var autorootView = this.FindControlInPages("AutorootView") as WpfGrid;
+            var appManagementView = this.FindControlInPages("AppManagementView") as WpfGrid;
+            var androidGeneralView = this.FindControlInPages("AndroidGeneralView") as WpfGrid;
+            var payloadView = this.FindControlInPages("PayloadView") as WpfGrid;
+            var romDownloadView = this.FindControlInPages("RomDownloadview") as WpfGrid;
+            var edlFlashView = this.FindControlInPages("EdlFlashView") as WpfGrid;
+            var colorOSAssistantView = this.FindControlInPages("ColorOSAssistantView") as WpfGrid;
+            var backupAssistantView = this.FindControlInPages("BackupAssistantView") as WpfGrid;
+            var violetDownloadView = this.FindControlInPages("VioletDownloadView") as WpfGrid;
 
             if (homeView != null) homeView.Visibility = Visibility.Collapsed;
             if (screenMirrorView != null) screenMirrorView.Visibility = Visibility.Collapsed;
@@ -113,7 +113,7 @@ namespace WpfApp1
 
         private void BtnLoadImages_Click(object sender, RoutedEventArgs e)
         {
-            var photoGallery = this.FindName("photoGallery") as WpfWrapPanel;
+            var photoGallery = this.FindControlInPages("photoGallery") as WpfWrapPanel;
             
             if (_currentMode == "photos")
             {
@@ -122,7 +122,7 @@ namespace WpfApp1
                     _imageCache.Clear();
                     _selectedImages.Clear();
                     _isPreloaded = false;
-                    photoGallery?.Children.Clear();
+                    (this.FindControlInPages("photoGallery") as System.Windows.Controls.WrapPanel)?.Children.Clear();
                 }
                 
                 _ = PreloadAllImagesAsync();
@@ -140,30 +140,30 @@ namespace WpfApp1
 
         private async Task LoadPhonePhotoListAsync()
         {
-            var lblStatus = this.FindName("lblStatus") as WpfTextBlock;
-            var btnLoadImages = this.FindName("btnLoadImages") as WpfButton;
+            var lblStatus = this.FindControlInPages("lblStatus") as WpfTextBlock;
+            var btnLoadImages = this.FindControlInPages("btnLoadImages") as WpfButton;
             
-            if (lblStatus != null) lblStatus.Text = "正在检测ADB设备...";
+            if ((this.FindControlInPages("lblStatus") as System.Windows.Controls.TextBlock) != null) (this.FindControlInPages("lblStatus") as System.Windows.Controls.TextBlock).Text = "正在检测ADB设备...";
 
             var deviceId = await Task.Run(() => GetConnectedDeviceId());
             if (string.IsNullOrEmpty(deviceId))
             {
-                if (lblStatus != null) lblStatus.Text = "错误：未检测到安卓设备！";
+                if ((this.FindControlInPages("lblStatus") as System.Windows.Controls.TextBlock) != null) (this.FindControlInPages("lblStatus") as System.Windows.Controls.TextBlock).Text = "错误：未检测到安卓设备！";
                 WpfMessageBox.Show("请确认：\n1. 手机已开启USB调试\n2. 已授权电脑访问\n3. ADB能正常识别设备",
                     "设备检测失败", WpfMessageBoxButton.OK, WpfMessageBoxImage.Error);
                 return;
             }
 
-            if (lblStatus != null) lblStatus.Text = "正在加载手机图片列表...";
+            if ((this.FindControlInPages("lblStatus") as System.Windows.Controls.TextBlock) != null) (this.FindControlInPages("lblStatus") as System.Windows.Controls.TextBlock).Text = "正在加载手机图片列表...";
             _phonePhotoFiles = await Task.Run(() => GetPhonePhotoFiles());
             if (_phonePhotoFiles.Count == 0)
             {
-                if (lblStatus != null) lblStatus.Text = "未找到图片（路径：/sdcard/DCIM/Camera）";
+                if ((this.FindControlInPages("lblStatus") as System.Windows.Controls.TextBlock) != null) (this.FindControlInPages("lblStatus") as System.Windows.Controls.TextBlock).Text = "未找到图片（路径：/sdcard/DCIM/Camera）";
                 return;
             }
 
-            if (lblStatus != null) lblStatus.Text = $"检测到 {_phonePhotoFiles.Count} 张图片，点击「加载图片」按钮开始预加载";
-            if (btnLoadImages != null) btnLoadImages.IsEnabled = true;
+            if ((this.FindControlInPages("lblStatus") as System.Windows.Controls.TextBlock) != null) (this.FindControlInPages("lblStatus") as System.Windows.Controls.TextBlock).Text = $"检测到 {_phonePhotoFiles.Count} 张图片，点击「加载图片」按钮开始预加载";
+            if ((this.FindControlInPages("btnLoadImages") as System.Windows.Controls.Button) != null) (this.FindControlInPages("btnLoadImages") as System.Windows.Controls.Button).IsEnabled = true;
         }
 
         private string GetConnectedDeviceId()
@@ -248,14 +248,14 @@ namespace WpfApp1
         {
             if (_phonePhotoFiles.Count == 0) return;
 
-            var lblStatus = this.FindName("lblStatus") as WpfTextBlock;
-            var progressBar = this.FindName("progressBar") as WpfProgressBar;
-            var btnLoadImages = this.FindName("btnLoadImages") as WpfButton;
-            var cbThreadCount = this.FindName("cbThreadCount") as WpfComboBox;
-            var btnToggleSelectAll = this.FindName("btnToggleSelectAll") as WpfButton;
+            var lblStatus = this.FindControlInPages("lblStatus") as WpfTextBlock;
+            var progressBar = this.FindControlInPages("progressBar") as WpfProgressBar;
+            var btnLoadImages = this.FindControlInPages("btnLoadImages") as WpfButton;
+            var cbThreadCount = this.FindControlInPages("cbThreadCount") as WpfComboBox;
+            var btnToggleSelectAll = this.FindControlInPages("btnToggleSelectAll") as WpfButton;
 
             int threadCount = 32;
-            if (cbThreadCount?.SelectedItem is WpfComboBoxItem selectedItem)
+            if ((this.FindControlInPages("cbThreadCount") as System.Windows.Controls.ComboBox)?.SelectedItem is WpfComboBoxItem selectedItem)
             {
                 if (int.TryParse(selectedItem.Content.ToString(), out int count))
                 {
@@ -263,16 +263,16 @@ namespace WpfApp1
                 }
             }
 
-            if (lblStatus != null) lblStatus.Text = $"开始预加载所有图片到内存（并发数：{threadCount}）...";
-            if (progressBar != null)
+            if ((this.FindControlInPages("lblStatus") as System.Windows.Controls.TextBlock) != null) (this.FindControlInPages("lblStatus") as System.Windows.Controls.TextBlock).Text = $"开始预加载所有图片到内存（并发数：{threadCount}）...";
+            if ((this.FindControlInPages("progressBar") as System.Windows.Controls.ProgressBar) != null)
             {
-                progressBar.Visibility = Visibility.Visible;
-                progressBar.Maximum = _phonePhotoFiles.Count;
-                progressBar.Value = 0;
+                (this.FindControlInPages("progressBar") as System.Windows.Controls.ProgressBar).Visibility = Visibility.Visible;
+                (this.FindControlInPages("progressBar") as System.Windows.Controls.ProgressBar).Maximum = _phonePhotoFiles.Count;
+                (this.FindControlInPages("progressBar") as System.Windows.Controls.ProgressBar).Value = 0;
             }
 
-            if (btnLoadImages != null) btnLoadImages.IsEnabled = false;
-            if (cbThreadCount != null) cbThreadCount.IsEnabled = false;
+            if ((this.FindControlInPages("btnLoadImages") as System.Windows.Controls.Button) != null) (this.FindControlInPages("btnLoadImages") as System.Windows.Controls.Button).IsEnabled = false;
+            if ((this.FindControlInPages("cbThreadCount") as System.Windows.Controls.ComboBox) != null) (this.FindControlInPages("cbThreadCount") as System.Windows.Controls.ComboBox).IsEnabled = false;
 
             InitializeEmptyGallery();
 
@@ -319,46 +319,46 @@ namespace WpfApp1
 
                     Dispatcher.Invoke(() =>
                     {
-                        if (progressBar != null) progressBar.Value++;
+                        if ((this.FindControlInPages("progressBar") as System.Windows.Controls.ProgressBar) != null) (this.FindControlInPages("progressBar") as System.Windows.Controls.ProgressBar).Value++;
                         var total = successCount + failCount;
                         var elapsed = (DateTime.Now - startTime).TotalSeconds;
                         var speed = elapsed > 0 ? total / elapsed : 0;
-                        if (lblStatus != null) lblStatus.Text = $"预加载中：{total}/{_phonePhotoFiles.Count} (成功:{successCount} 失败:{failCount}) 速度:{speed:F1}张/秒";
+                        if ((this.FindControlInPages("lblStatus") as System.Windows.Controls.TextBlock) != null) (this.FindControlInPages("lblStatus") as System.Windows.Controls.TextBlock).Text = $"预加载中：{total}/{_phonePhotoFiles.Count} (成功:{successCount} 失败:{failCount}) 速度:{speed:F1}张/秒";
                     });
                 });
             });
 
             var totalTime = (DateTime.Now - startTime).TotalSeconds;
-            if (progressBar != null) progressBar.Visibility = Visibility.Collapsed;
+            if ((this.FindControlInPages("progressBar") as System.Windows.Controls.ProgressBar) != null) (this.FindControlInPages("progressBar") as System.Windows.Controls.ProgressBar).Visibility = Visibility.Collapsed;
             _isPreloaded = true;
 
-            if (btnLoadImages != null)
+            if ((this.FindControlInPages("btnLoadImages") as System.Windows.Controls.Button) != null)
             {
-                btnLoadImages.IsEnabled = true;
-                btnLoadImages.Content = "🔄 重新加载";
+                (this.FindControlInPages("btnLoadImages") as System.Windows.Controls.Button).IsEnabled = true;
+                (this.FindControlInPages("btnLoadImages") as System.Windows.Controls.Button).Content = "🔄 重新加载";
             }
-            if (cbThreadCount != null) cbThreadCount.IsEnabled = true;
-            if (btnToggleSelectAll != null) btnToggleSelectAll.IsEnabled = true;
+            if ((this.FindControlInPages("cbThreadCount") as System.Windows.Controls.ComboBox) != null) (this.FindControlInPages("cbThreadCount") as System.Windows.Controls.ComboBox).IsEnabled = true;
+            if ((this.FindControlInPages("btnToggleSelectAll") as System.Windows.Controls.Button) != null) (this.FindControlInPages("btnToggleSelectAll") as System.Windows.Controls.Button).IsEnabled = true;
 
-            if (lblStatus != null)
+            if ((this.FindControlInPages("lblStatus") as System.Windows.Controls.TextBlock) != null)
             {
                 if (failCount == 0)
                 {
-                    lblStatus.Text = $"预加载完成！共{successCount}张图片已缓存到内存，耗时 {totalTime:F1} 秒";
+                    (this.FindControlInPages("lblStatus") as System.Windows.Controls.TextBlock).Text = $"预加载完成！共{successCount}张图片已缓存到内存，耗时 {totalTime:F1} 秒";
                 }
                 else
                 {
-                    lblStatus.Text = $"预加载完成：成功{successCount}张，失败{failCount}张，耗时 {totalTime:F1} 秒";
+                    (this.FindControlInPages("lblStatus") as System.Windows.Controls.TextBlock).Text = $"预加载完成：成功{successCount}张，失败{failCount}张，耗时 {totalTime:F1} 秒";
                 }
             }
         }
 
         private void InitializeEmptyGallery()
         {
-            var photoGallery = this.FindName("photoGallery") as WpfWrapPanel;
-            if (photoGallery == null) return;
+            var photoGallery = this.FindControlInPages("photoGallery") as WpfWrapPanel;
+            if ((this.FindControlInPages("photoGallery") as System.Windows.Controls.WrapPanel) == null) return;
 
-            photoGallery.Children.Clear();
+            (this.FindControlInPages("photoGallery") as System.Windows.Controls.WrapPanel).Children.Clear();
 
             foreach (var fileName in _phonePhotoFiles)
             {
@@ -399,23 +399,23 @@ namespace WpfApp1
 
                 grid.Children.Add(loadingText);
                 grid.Children.Add(label);
-                border.Child = grid;
+                (this.FindControlInPages("border") as System.Windows.Controls.Border).Child = grid;
 
-                photoGallery.Children.Add(border);
+                (this.FindControlInPages("photoGallery") as System.Windows.Controls.WrapPanel).Children.Add((this.FindControlInPages("border") as System.Windows.Controls.Border));
             }
         }
 
         private void UpdateGalleryImage(string fileName, BitmapImage image)
         {
-            var photoGallery = this.FindName("photoGallery") as WpfWrapPanel;
-            if (photoGallery == null) return;
+            var photoGallery = this.FindControlInPages("photoGallery") as WpfWrapPanel;
+            if ((this.FindControlInPages("photoGallery") as System.Windows.Controls.WrapPanel) == null) return;
 
             WpfBorder? targetBorder = null;
-            foreach (var child in photoGallery.Children)
+            foreach (var child in (this.FindControlInPages("photoGallery") as System.Windows.Controls.WrapPanel).Children)
             {
-                if (child is WpfBorder border && border.Tag?.ToString() == fileName)
+                if (child is WpfBorder border && (this.FindControlInPages("border") as System.Windows.Controls.Border).Tag?.ToString() == fileName)
                 {
-                    targetBorder = border;
+                    targetBorder = (this.FindControlInPages("border") as System.Windows.Controls.Border);
                     break;
                 }
             }
@@ -522,10 +522,10 @@ namespace WpfApp1
 
         private void ToggleImageSelection(string fileName, WpfBorder border)
         {
-            var btnBackup = this.FindName("btnBackup") as WpfButton;
-            var lblStatus = this.FindName("lblStatus") as WpfTextBlock;
+            var btnBackup = this.FindControlInPages("btnBackup") as WpfButton;
+            var lblStatus = this.FindControlInPages("lblStatus") as WpfTextBlock;
             
-            var grid = border.Child as WpfGrid;
+            var grid = (this.FindControlInPages("border") as System.Windows.Controls.Border).Child as WpfGrid;
             if (grid == null) return;
 
             var checkMark = grid.Children.OfType<WpfTextBlock>().FirstOrDefault(t => t.Tag?.ToString() == "checkmark");
@@ -535,17 +535,17 @@ namespace WpfApp1
             {
                 _selectedImages.Remove(fileName);
                 checkMark.Visibility = Visibility.Collapsed;
-                border.BorderBrush = System.Windows.Media.Brushes.Gray;
+                (this.FindControlInPages("border") as System.Windows.Controls.Border).BorderBrush = System.Windows.Media.Brushes.Gray;
             }
             else
             {
                 _selectedImages.Add(fileName);
                 checkMark.Visibility = Visibility.Visible;
-                border.BorderBrush = System.Windows.Media.Brushes.DodgerBlue;
+                (this.FindControlInPages("border") as System.Windows.Controls.Border).BorderBrush = System.Windows.Media.Brushes.DodgerBlue;
             }
 
-            if (btnBackup != null) btnBackup.IsEnabled = _selectedImages.Count > 0;
-            if (lblStatus != null) lblStatus.Text = $"已选中 {_selectedImages.Count} 张图片";
+            if ((this.FindControlInPages("btnBackup") as System.Windows.Controls.Button) != null) (this.FindControlInPages("btnBackup") as System.Windows.Controls.Button).IsEnabled = _selectedImages.Count > 0;
+            if ((this.FindControlInPages("lblStatus") as System.Windows.Controls.TextBlock) != null) (this.FindControlInPages("lblStatus") as System.Windows.Controls.TextBlock).Text = $"已选中 {_selectedImages.Count} 张图片";
             UpdateToggleSelectAllButton();
         }
 
@@ -563,9 +563,9 @@ namespace WpfApp1
 
         private void SelectAll()
         {
-            var photoGallery = this.FindName("photoGallery") as WpfWrapPanel;
-            var btnBackup = this.FindName("btnBackup") as WpfButton;
-            var lblStatus = this.FindName("lblStatus") as WpfTextBlock;
+            var photoGallery = this.FindControlInPages("photoGallery") as WpfWrapPanel;
+            var btnBackup = this.FindControlInPages("btnBackup") as WpfButton;
+            var lblStatus = this.FindControlInPages("lblStatus") as WpfTextBlock;
             
             _selectedImages.Clear();
             
@@ -584,72 +584,72 @@ namespace WpfApp1
                 }
             }
 
-            if (photoGallery != null)
+            if ((this.FindControlInPages("photoGallery") as System.Windows.Controls.WrapPanel) != null)
             {
-                foreach (WpfBorder border in photoGallery.Children)
+                foreach (WpfBorder border in (this.FindControlInPages("photoGallery") as System.Windows.Controls.WrapPanel).Children)
                 {
-                    var grid = border.Child as WpfGrid;
+                    var grid = (this.FindControlInPages("border") as System.Windows.Controls.Border).Child as WpfGrid;
                     if (grid == null) continue;
 
                     var checkMark = grid.Children.OfType<WpfTextBlock>().FirstOrDefault(t => t.Tag?.ToString() == "checkmark");
                     if (checkMark != null)
                     {
                         checkMark.Visibility = Visibility.Visible;
-                        border.BorderBrush = System.Windows.Media.Brushes.DodgerBlue;
+                        (this.FindControlInPages("border") as System.Windows.Controls.Border).BorderBrush = System.Windows.Media.Brushes.DodgerBlue;
                     }
                 }
             }
 
-            if (btnBackup != null) btnBackup.IsEnabled = true;
+            if ((this.FindControlInPages("btnBackup") as System.Windows.Controls.Button) != null) (this.FindControlInPages("btnBackup") as System.Windows.Controls.Button).IsEnabled = true;
             
             var itemType = _currentMode == "photos" ? "图片" : "视频";
-            if (lblStatus != null) lblStatus.Text = $"已全选 {_selectedImages.Count} 个{itemType}";
+            if ((this.FindControlInPages("lblStatus") as System.Windows.Controls.TextBlock) != null) (this.FindControlInPages("lblStatus") as System.Windows.Controls.TextBlock).Text = $"已全选 {_selectedImages.Count} 个{itemType}";
             UpdateToggleSelectAllButton();
         }
 
         private void DeselectAll()
         {
-            var photoGallery = this.FindName("photoGallery") as WpfWrapPanel;
-            var btnBackup = this.FindName("btnBackup") as WpfButton;
-            var lblStatus = this.FindName("lblStatus") as WpfTextBlock;
+            var photoGallery = this.FindControlInPages("photoGallery") as WpfWrapPanel;
+            var btnBackup = this.FindControlInPages("btnBackup") as WpfButton;
+            var lblStatus = this.FindControlInPages("lblStatus") as WpfTextBlock;
             
             _selectedImages.Clear();
 
-            if (photoGallery != null)
+            if ((this.FindControlInPages("photoGallery") as System.Windows.Controls.WrapPanel) != null)
             {
-                foreach (WpfBorder border in photoGallery.Children)
+                foreach (WpfBorder border in (this.FindControlInPages("photoGallery") as System.Windows.Controls.WrapPanel).Children)
                 {
-                    var grid = border.Child as WpfGrid;
+                    var grid = (this.FindControlInPages("border") as System.Windows.Controls.Border).Child as WpfGrid;
                     if (grid == null) continue;
 
                     var checkMark = grid.Children.OfType<WpfTextBlock>().FirstOrDefault(t => t.Tag?.ToString() == "checkmark");
                     if (checkMark != null)
                     {
                         checkMark.Visibility = Visibility.Collapsed;
-                        border.BorderBrush = System.Windows.Media.Brushes.Gray;
+                        (this.FindControlInPages("border") as System.Windows.Controls.Border).BorderBrush = System.Windows.Media.Brushes.Gray;
                     }
                 }
             }
 
-            if (btnBackup != null) btnBackup.IsEnabled = false;
-            if (lblStatus != null) lblStatus.Text = "已取消全选";
+            if ((this.FindControlInPages("btnBackup") as System.Windows.Controls.Button) != null) (this.FindControlInPages("btnBackup") as System.Windows.Controls.Button).IsEnabled = false;
+            if ((this.FindControlInPages("lblStatus") as System.Windows.Controls.TextBlock) != null) (this.FindControlInPages("lblStatus") as System.Windows.Controls.TextBlock).Text = "已取消全选";
             UpdateToggleSelectAllButton();
         }
 
         private void UpdateToggleSelectAllButton()
         {
-            var btnToggleSelectAll = this.FindName("btnToggleSelectAll") as WpfButton;
-            if (btnToggleSelectAll == null) return;
+            var btnToggleSelectAll = this.FindControlInPages("btnToggleSelectAll") as WpfButton;
+            if ((this.FindControlInPages("btnToggleSelectAll") as System.Windows.Controls.Button) == null) return;
 
             int totalCount = _currentMode == "photos" ? _phonePhotoFiles.Count : _phoneVideoFiles.Count;
 
             if (_selectedImages.Count == totalCount && totalCount > 0)
             {
-                btnToggleSelectAll.Content = "✗ 取消全选";
+                (this.FindControlInPages("btnToggleSelectAll") as System.Windows.Controls.Button).Content = "✗ 取消全选";
             }
             else
             {
-                btnToggleSelectAll.Content = "✓ 全选";
+                (this.FindControlInPages("btnToggleSelectAll") as System.Windows.Controls.Button).Content = "✓ 全选";
             }
         }
 
@@ -688,16 +688,16 @@ namespace WpfApp1
                 return;
             }
 
-            var btnBackup = this.FindName("btnBackup") as WpfButton;
-            var progressBar = this.FindName("progressBar") as WpfProgressBar;
-            var lblStatus = this.FindName("lblStatus") as WpfTextBlock;
+            var btnBackup = this.FindControlInPages("btnBackup") as WpfButton;
+            var progressBar = this.FindControlInPages("progressBar") as WpfProgressBar;
+            var lblStatus = this.FindControlInPages("lblStatus") as WpfTextBlock;
 
-            if (btnBackup != null) btnBackup.IsEnabled = false;
-            if (progressBar != null)
+            if ((this.FindControlInPages("btnBackup") as System.Windows.Controls.Button) != null) (this.FindControlInPages("btnBackup") as System.Windows.Controls.Button).IsEnabled = false;
+            if ((this.FindControlInPages("progressBar") as System.Windows.Controls.ProgressBar) != null)
             {
-                progressBar.Visibility = Visibility.Visible;
-                progressBar.Maximum = selectedFiles.Count;
-                progressBar.Value = 0;
+                (this.FindControlInPages("progressBar") as System.Windows.Controls.ProgressBar).Visibility = Visibility.Visible;
+                (this.FindControlInPages("progressBar") as System.Windows.Controls.ProgressBar).Maximum = selectedFiles.Count;
+                (this.FindControlInPages("progressBar") as System.Windows.Controls.ProgressBar).Value = 0;
             }
 
             int successCount = 0;
@@ -752,8 +752,8 @@ namespace WpfApp1
 
                         Dispatcher.Invoke(() =>
                         {
-                            if (progressBar != null) progressBar.Value++;
-                            if (lblStatus != null) lblStatus.Text = $"备份中：{fileName} ({progressBar.Value}/{selectedFiles.Count})";
+                            if ((this.FindControlInPages("progressBar") as System.Windows.Controls.ProgressBar) != null) (this.FindControlInPages("progressBar") as System.Windows.Controls.ProgressBar).Value++;
+                            if ((this.FindControlInPages("lblStatus") as System.Windows.Controls.TextBlock) != null) (this.FindControlInPages("lblStatus") as System.Windows.Controls.TextBlock).Text = $"备份中：{fileName} ({(this.FindControlInPages("progressBar") as System.Windows.Controls.ProgressBar).Value}/{selectedFiles.Count})";
                         });
                     }
                     catch
@@ -761,14 +761,14 @@ namespace WpfApp1
                         failFiles.Add(_currentMode == "photos" ? file : Path.GetFileName(file));
                         Dispatcher.Invoke(() =>
                         {
-                            if (progressBar != null) progressBar.Value++;
+                            if ((this.FindControlInPages("progressBar") as System.Windows.Controls.ProgressBar) != null) (this.FindControlInPages("progressBar") as System.Windows.Controls.ProgressBar).Value++;
                         });
                     }
                 }
             });
 
-            if (progressBar != null) progressBar.Visibility = Visibility.Collapsed;
-            if (btnBackup != null) btnBackup.IsEnabled = true;
+            if ((this.FindControlInPages("progressBar") as System.Windows.Controls.ProgressBar) != null) (this.FindControlInPages("progressBar") as System.Windows.Controls.ProgressBar).Visibility = Visibility.Collapsed;
+            if ((this.FindControlInPages("btnBackup") as System.Windows.Controls.Button) != null) (this.FindControlInPages("btnBackup") as System.Windows.Controls.Button).IsEnabled = true;
 
             var itemTypeName = _currentMode == "photos" ? "图片" : "视频";
             
@@ -787,7 +787,7 @@ namespace WpfApp1
                 WpfMessageBox.Show(failMsg, "备份完成（部分失败）", WpfMessageBoxButton.OK, WpfMessageBoxImage.Warning);
             }
             
-            if (lblStatus != null) lblStatus.Text = $"备份完成：成功{successCount}，失败{failFiles.Count}";
+            if ((this.FindControlInPages("lblStatus") as System.Windows.Controls.TextBlock) != null) (this.FindControlInPages("lblStatus") as System.Windows.Controls.TextBlock).Text = $"备份完成：成功{successCount}，失败{failFiles.Count}";
         }
 
         #region 右侧导航栏
@@ -798,8 +798,8 @@ namespace WpfApp1
         {
             if (_currentMode == "photos") return;
             
-            var btnNavPhotos = this.FindName("btnNavPhotos") as WpfButton;
-            UpdateNavigationButtonStyle(btnNavPhotos);
+            var btnNavPhotos = this.FindControlInPages("btnNavPhotos") as WpfButton;
+            UpdateNavigationButtonStyle((this.FindControlInPages("btnNavPhotos") as System.Windows.Controls.Button));
             _currentMode = "photos";
             
             SwitchToPhotosMode();
@@ -810,8 +810,8 @@ namespace WpfApp1
         {
             if (_currentMode == "videos") return;
             
-            var btnNavVideos = this.FindName("btnNavVideos") as WpfButton;
-            UpdateNavigationButtonStyle(btnNavVideos);
+            var btnNavVideos = this.FindControlInPages("btnNavVideos") as WpfButton;
+            UpdateNavigationButtonStyle((this.FindControlInPages("btnNavVideos") as System.Windows.Controls.Button));
             _currentMode = "videos";
             
             await SwitchToVideosMode();
@@ -822,8 +822,8 @@ namespace WpfApp1
         {
             if (_currentMode == "contacts") return;
             
-            var btnNavContacts = this.FindName("btnNavContacts") as WpfButton;
-            UpdateNavigationButtonStyle(btnNavContacts);
+            var btnNavContacts = this.FindControlInPages("btnNavContacts") as WpfButton;
+            UpdateNavigationButtonStyle((this.FindControlInPages("btnNavContacts") as System.Windows.Controls.Button));
             _currentMode = "contacts";
             
             await SwitchToContactsMode();
@@ -832,25 +832,25 @@ namespace WpfApp1
         // 切换到图片模式
         private void SwitchToPhotosMode()
         {
-            var lblStatus = this.FindName("lblStatus") as WpfTextBlock;
-            var btnLoadImages = this.FindName("btnLoadImages") as WpfButton;
-            var btnBackup = this.FindName("btnBackup") as WpfButton;
-            var btnRestoreContacts = this.FindName("btnRestoreContacts") as WpfButton;
-            var photoGallery = this.FindName("photoGallery") as WpfWrapPanel;
+            var lblStatus = this.FindControlInPages("lblStatus") as WpfTextBlock;
+            var btnLoadImages = this.FindControlInPages("btnLoadImages") as WpfButton;
+            var btnBackup = this.FindControlInPages("btnBackup") as WpfButton;
+            var btnRestoreContacts = this.FindControlInPages("btnRestoreContacts") as WpfButton;
+            var photoGallery = this.FindControlInPages("photoGallery") as WpfWrapPanel;
 
-            if (lblStatus != null) lblStatus.Text = "图片模式";
-            if (btnLoadImages != null) btnLoadImages.Content = "🔄 加载图片";
-            if (btnBackup != null)
+            if ((this.FindControlInPages("lblStatus") as System.Windows.Controls.TextBlock) != null) (this.FindControlInPages("lblStatus") as System.Windows.Controls.TextBlock).Text = "图片模式";
+            if ((this.FindControlInPages("btnLoadImages") as System.Windows.Controls.Button) != null) (this.FindControlInPages("btnLoadImages") as System.Windows.Controls.Button).Content = "🔄 加载图片";
+            if ((this.FindControlInPages("btnBackup") as System.Windows.Controls.Button) != null)
             {
-                btnBackup.Content = "💾 备份选中图片";
-                btnBackup.Visibility = Visibility.Visible;
+                (this.FindControlInPages("btnBackup") as System.Windows.Controls.Button).Content = "💾 备份选中图片";
+                (this.FindControlInPages("btnBackup") as System.Windows.Controls.Button).Visibility = Visibility.Visible;
             }
             
-            if (btnRestoreContacts != null) btnRestoreContacts.Visibility = Visibility.Collapsed;
+            if ((this.FindControlInPages("btnRestoreContacts") as System.Windows.Controls.Button) != null) (this.FindControlInPages("btnRestoreContacts") as System.Windows.Controls.Button).Visibility = Visibility.Collapsed;
             
-            if (photoGallery != null)
+            if ((this.FindControlInPages("photoGallery") as System.Windows.Controls.WrapPanel) != null)
             {
-                photoGallery.Children.Clear();
+                (this.FindControlInPages("photoGallery") as System.Windows.Controls.WrapPanel).Children.Clear();
                 if (_imageCache.Count > 0)
                 {
                     DisplayPhotoGallery();
@@ -861,28 +861,28 @@ namespace WpfApp1
         // 切换到视频模式
         private async Task SwitchToVideosMode()
         {
-            var lblStatus = this.FindName("lblStatus") as WpfTextBlock;
-            var btnLoadImages = this.FindName("btnLoadImages") as WpfButton;
-            var btnBackup = this.FindName("btnBackup") as WpfButton;
-            var btnToggleSelectAll = this.FindName("btnToggleSelectAll") as WpfButton;
-            var btnRestoreContacts = this.FindName("btnRestoreContacts") as WpfButton;
-            var photoGallery = this.FindName("photoGallery") as WpfWrapPanel;
+            var lblStatus = this.FindControlInPages("lblStatus") as WpfTextBlock;
+            var btnLoadImages = this.FindControlInPages("btnLoadImages") as WpfButton;
+            var btnBackup = this.FindControlInPages("btnBackup") as WpfButton;
+            var btnToggleSelectAll = this.FindControlInPages("btnToggleSelectAll") as WpfButton;
+            var btnRestoreContacts = this.FindControlInPages("btnRestoreContacts") as WpfButton;
+            var photoGallery = this.FindControlInPages("photoGallery") as WpfWrapPanel;
 
-            if (lblStatus != null) lblStatus.Text = "正在检测视频文件...";
-            if (btnLoadImages != null)
+            if ((this.FindControlInPages("lblStatus") as System.Windows.Controls.TextBlock) != null) (this.FindControlInPages("lblStatus") as System.Windows.Controls.TextBlock).Text = "正在检测视频文件...";
+            if ((this.FindControlInPages("btnLoadImages") as System.Windows.Controls.Button) != null)
             {
-                btnLoadImages.Content = "🔄 加载视频";
-                btnLoadImages.IsEnabled = false;
+                (this.FindControlInPages("btnLoadImages") as System.Windows.Controls.Button).Content = "🔄 加载视频";
+                (this.FindControlInPages("btnLoadImages") as System.Windows.Controls.Button).IsEnabled = false;
             }
-            if (btnBackup != null)
+            if ((this.FindControlInPages("btnBackup") as System.Windows.Controls.Button) != null)
             {
-                btnBackup.Content = "💾 备份选中视频";
-                btnBackup.Visibility = Visibility.Visible;
+                (this.FindControlInPages("btnBackup") as System.Windows.Controls.Button).Content = "💾 备份选中视频";
+                (this.FindControlInPages("btnBackup") as System.Windows.Controls.Button).Visibility = Visibility.Visible;
             }
-            if (btnToggleSelectAll != null) btnToggleSelectAll.IsEnabled = false;
-            if (btnRestoreContacts != null) btnRestoreContacts.Visibility = Visibility.Collapsed;
+            if ((this.FindControlInPages("btnToggleSelectAll") as System.Windows.Controls.Button) != null) (this.FindControlInPages("btnToggleSelectAll") as System.Windows.Controls.Button).IsEnabled = false;
+            if ((this.FindControlInPages("btnRestoreContacts") as System.Windows.Controls.Button) != null) (this.FindControlInPages("btnRestoreContacts") as System.Windows.Controls.Button).Visibility = Visibility.Collapsed;
             
-            if (photoGallery != null) photoGallery.Children.Clear();
+            if ((this.FindControlInPages("photoGallery") as System.Windows.Controls.WrapPanel) != null) (this.FindControlInPages("photoGallery") as System.Windows.Controls.WrapPanel).Children.Clear();
             
             await LoadPhoneVideoListAsync();
         }
@@ -890,29 +890,29 @@ namespace WpfApp1
         // 切换到通讯录模式
         private async Task SwitchToContactsMode()
         {
-            var lblStatus = this.FindName("lblStatus") as WpfTextBlock;
-            var btnLoadImages = this.FindName("btnLoadImages") as WpfButton;
-            var btnBackup = this.FindName("btnBackup") as WpfButton;
-            var btnToggleSelectAll = this.FindName("btnToggleSelectAll") as WpfButton;
-            var btnRestoreContacts = this.FindName("btnRestoreContacts") as WpfButton;
-            var photoGallery = this.FindName("photoGallery") as WpfWrapPanel;
+            var lblStatus = this.FindControlInPages("lblStatus") as WpfTextBlock;
+            var btnLoadImages = this.FindControlInPages("btnLoadImages") as WpfButton;
+            var btnBackup = this.FindControlInPages("btnBackup") as WpfButton;
+            var btnToggleSelectAll = this.FindControlInPages("btnToggleSelectAll") as WpfButton;
+            var btnRestoreContacts = this.FindControlInPages("btnRestoreContacts") as WpfButton;
+            var photoGallery = this.FindControlInPages("photoGallery") as WpfWrapPanel;
 
-            if (lblStatus != null) lblStatus.Text = "通讯录模式";
-            if (btnLoadImages != null)
+            if ((this.FindControlInPages("lblStatus") as System.Windows.Controls.TextBlock) != null) (this.FindControlInPages("lblStatus") as System.Windows.Controls.TextBlock).Text = "通讯录模式";
+            if ((this.FindControlInPages("btnLoadImages") as System.Windows.Controls.Button) != null)
             {
-                btnLoadImages.Content = "📥 导出通讯录";
-                btnLoadImages.IsEnabled = true;
+                (this.FindControlInPages("btnLoadImages") as System.Windows.Controls.Button).Content = "📥 导出通讯录";
+                (this.FindControlInPages("btnLoadImages") as System.Windows.Controls.Button).IsEnabled = true;
             }
-            if (btnBackup != null) btnBackup.Visibility = Visibility.Collapsed;
-            if (btnToggleSelectAll != null) btnToggleSelectAll.IsEnabled = false;
+            if ((this.FindControlInPages("btnBackup") as System.Windows.Controls.Button) != null) (this.FindControlInPages("btnBackup") as System.Windows.Controls.Button).Visibility = Visibility.Collapsed;
+            if ((this.FindControlInPages("btnToggleSelectAll") as System.Windows.Controls.Button) != null) (this.FindControlInPages("btnToggleSelectAll") as System.Windows.Controls.Button).IsEnabled = false;
             
-            if (btnRestoreContacts != null)
+            if ((this.FindControlInPages("btnRestoreContacts") as System.Windows.Controls.Button) != null)
             {
-                btnRestoreContacts.Visibility = Visibility.Visible;
-                btnRestoreContacts.IsEnabled = true;
+                (this.FindControlInPages("btnRestoreContacts") as System.Windows.Controls.Button).Visibility = Visibility.Visible;
+                (this.FindControlInPages("btnRestoreContacts") as System.Windows.Controls.Button).IsEnabled = true;
             }
             
-            if (photoGallery != null) photoGallery.Children.Clear();
+            if ((this.FindControlInPages("photoGallery") as System.Windows.Controls.WrapPanel) != null) (this.FindControlInPages("photoGallery") as System.Windows.Controls.WrapPanel).Children.Clear();
             
             await Task.CompletedTask;
         }
@@ -920,24 +920,24 @@ namespace WpfApp1
         // 更新导航按钮样式
         private void UpdateNavigationButtonStyle(WpfButton activeButton)
         {
-            var btnNavPhotos = this.FindName("btnNavPhotos") as WpfButton;
-            var btnNavVideos = this.FindName("btnNavVideos") as WpfButton;
-            var btnNavContacts = this.FindName("btnNavContacts") as WpfButton;
+            var btnNavPhotos = this.FindControlInPages("btnNavPhotos") as WpfButton;
+            var btnNavVideos = this.FindControlInPages("btnNavVideos") as WpfButton;
+            var btnNavContacts = this.FindControlInPages("btnNavContacts") as WpfButton;
 
-            if (btnNavPhotos != null)
+            if ((this.FindControlInPages("btnNavPhotos") as System.Windows.Controls.Button) != null)
             {
-                btnNavPhotos.Background = System.Windows.Media.Brushes.White;
-                btnNavPhotos.Foreground = System.Windows.Media.Brushes.Black;
+                (this.FindControlInPages("btnNavPhotos") as System.Windows.Controls.Button).Background = System.Windows.Media.Brushes.White;
+                (this.FindControlInPages("btnNavPhotos") as System.Windows.Controls.Button).Foreground = System.Windows.Media.Brushes.Black;
             }
-            if (btnNavVideos != null)
+            if ((this.FindControlInPages("btnNavVideos") as System.Windows.Controls.Button) != null)
             {
-                btnNavVideos.Background = System.Windows.Media.Brushes.White;
-                btnNavVideos.Foreground = System.Windows.Media.Brushes.Black;
+                (this.FindControlInPages("btnNavVideos") as System.Windows.Controls.Button).Background = System.Windows.Media.Brushes.White;
+                (this.FindControlInPages("btnNavVideos") as System.Windows.Controls.Button).Foreground = System.Windows.Media.Brushes.Black;
             }
-            if (btnNavContacts != null)
+            if ((this.FindControlInPages("btnNavContacts") as System.Windows.Controls.Button) != null)
             {
-                btnNavContacts.Background = System.Windows.Media.Brushes.White;
-                btnNavContacts.Foreground = System.Windows.Media.Brushes.Black;
+                (this.FindControlInPages("btnNavContacts") as System.Windows.Controls.Button).Background = System.Windows.Media.Brushes.White;
+                (this.FindControlInPages("btnNavContacts") as System.Windows.Controls.Button).Foreground = System.Windows.Media.Brushes.Black;
             }
 
             if (activeButton != null)
@@ -950,16 +950,16 @@ namespace WpfApp1
         // 恢复通讯录按钮点击事件
         private async void BtnRestoreContacts_Click(object sender, RoutedEventArgs e)
         {
-            var lblStatus = this.FindName("lblStatus") as WpfTextBlock;
-            var btnRestoreContacts = this.FindName("btnRestoreContacts") as WpfButton;
-            var progressBar = this.FindName("progressBar") as WpfProgressBar;
+            var lblStatus = this.FindControlInPages("lblStatus") as WpfTextBlock;
+            var btnRestoreContacts = this.FindControlInPages("btnRestoreContacts") as WpfButton;
+            var progressBar = this.FindControlInPages("progressBar") as WpfProgressBar;
 
             // 检查ADB设备
-            if (lblStatus != null) lblStatus.Text = "正在检测ADB设备...";
+            if ((this.FindControlInPages("lblStatus") as System.Windows.Controls.TextBlock) != null) (this.FindControlInPages("lblStatus") as System.Windows.Controls.TextBlock).Text = "正在检测ADB设备...";
             var deviceId = await Task.Run(() => GetConnectedDeviceId());
             if (string.IsNullOrEmpty(deviceId))
             {
-                if (lblStatus != null) lblStatus.Text = "错误：未检测到安卓设备！";
+                if ((this.FindControlInPages("lblStatus") as System.Windows.Controls.TextBlock) != null) (this.FindControlInPages("lblStatus") as System.Windows.Controls.TextBlock).Text = "错误：未检测到安卓设备！";
                 WpfMessageBox.Show("请确认：\n1. 手机已开启USB调试\n2. 已授权电脑访问\n3. ADB能正常识别设备",
                     "设备检测失败", WpfMessageBoxButton.OK, WpfMessageBoxImage.Error);
                 return;
@@ -979,54 +979,54 @@ namespace WpfApp1
                 }
                 else
                 {
-                    if (lblStatus != null) lblStatus.Text = "已取消恢复";
+                    if ((this.FindControlInPages("lblStatus") as System.Windows.Controls.TextBlock) != null) (this.FindControlInPages("lblStatus") as System.Windows.Controls.TextBlock).Text = "已取消恢复";
                     return;
                 }
             }
 
             if (string.IsNullOrEmpty(vcfFilePath) || !File.Exists(vcfFilePath))
             {
-                if (lblStatus != null) lblStatus.Text = "文件不存在";
+                if ((this.FindControlInPages("lblStatus") as System.Windows.Controls.TextBlock) != null) (this.FindControlInPages("lblStatus") as System.Windows.Controls.TextBlock).Text = "文件不存在";
                 return;
             }
 
-            if (btnRestoreContacts != null) btnRestoreContacts.IsEnabled = false;
-            if (progressBar != null)
+            if ((this.FindControlInPages("btnRestoreContacts") as System.Windows.Controls.Button) != null) (this.FindControlInPages("btnRestoreContacts") as System.Windows.Controls.Button).IsEnabled = false;
+            if ((this.FindControlInPages("progressBar") as System.Windows.Controls.ProgressBar) != null)
             {
-                progressBar.Visibility = Visibility.Visible;
-                progressBar.IsIndeterminate = true;
+                (this.FindControlInPages("progressBar") as System.Windows.Controls.ProgressBar).Visibility = Visibility.Visible;
+                (this.FindControlInPages("progressBar") as System.Windows.Controls.ProgressBar).IsIndeterminate = true;
             }
 
             try
             {
-                if (lblStatus != null) lblStatus.Text = "正在上传通讯录文件到手机...";
+                if ((this.FindControlInPages("lblStatus") as System.Windows.Controls.TextBlock) != null) (this.FindControlInPages("lblStatus") as System.Windows.Controls.TextBlock).Text = "正在上传通讯录文件到手机...";
 
                 // 上传VCF文件到手机
                 var uploadResult = await Task.Run(() => UploadVcfToPhone(vcfFilePath));
                 if (!uploadResult)
                 {
-                    if (lblStatus != null) lblStatus.Text = "上传文件失败";
+                    if ((this.FindControlInPages("lblStatus") as System.Windows.Controls.TextBlock) != null) (this.FindControlInPages("lblStatus") as System.Windows.Controls.TextBlock).Text = "上传文件失败";
                     WpfMessageBox.Show("无法将通讯录文件上传到手机", "错误",
                         WpfMessageBoxButton.OK, WpfMessageBoxImage.Error);
                     return;
                 }
 
-                if (lblStatus != null) lblStatus.Text = $"通讯录文件已成功上传到手机 /sdcard/ 目录";
+                if ((this.FindControlInPages("lblStatus") as System.Windows.Controls.TextBlock) != null) (this.FindControlInPages("lblStatus") as System.Windows.Controls.TextBlock).Text = $"通讯录文件已成功上传到手机 /sdcard/ 目录";
             }
             catch (Exception ex)
             {
-                if (lblStatus != null) lblStatus.Text = $"恢复失败：{ex.Message}";
+                if ((this.FindControlInPages("lblStatus") as System.Windows.Controls.TextBlock) != null) (this.FindControlInPages("lblStatus") as System.Windows.Controls.TextBlock).Text = $"恢复失败：{ex.Message}";
                 WpfMessageBox.Show($"恢复通讯录时出错：{ex.Message}", "错误",
                     WpfMessageBoxButton.OK, WpfMessageBoxImage.Error);
             }
             finally
             {
-                if (progressBar != null)
+                if ((this.FindControlInPages("progressBar") as System.Windows.Controls.ProgressBar) != null)
                 {
-                    progressBar.IsIndeterminate = false;
-                    progressBar.Visibility = Visibility.Collapsed;
+                    (this.FindControlInPages("progressBar") as System.Windows.Controls.ProgressBar).IsIndeterminate = false;
+                    (this.FindControlInPages("progressBar") as System.Windows.Controls.ProgressBar).Visibility = Visibility.Collapsed;
                 }
-                if (btnRestoreContacts != null) btnRestoreContacts.IsEnabled = true;
+                if ((this.FindControlInPages("btnRestoreContacts") as System.Windows.Controls.Button) != null) (this.FindControlInPages("btnRestoreContacts") as System.Windows.Controls.Button).IsEnabled = true;
             }
         }
 
@@ -1075,13 +1075,13 @@ namespace WpfApp1
         // 显示相册网格
         private void DisplayPhotoGallery()
         {
-            var photoGallery = this.FindName("photoGallery") as WpfWrapPanel;
-            var btnToggleSelectAll = this.FindName("btnToggleSelectAll") as WpfButton;
-            var lblStatus = this.FindName("lblStatus") as WpfTextBlock;
+            var photoGallery = this.FindControlInPages("photoGallery") as WpfWrapPanel;
+            var btnToggleSelectAll = this.FindControlInPages("btnToggleSelectAll") as WpfButton;
+            var lblStatus = this.FindControlInPages("lblStatus") as WpfTextBlock;
             
-            if (photoGallery == null) return;
+            if ((this.FindControlInPages("photoGallery") as System.Windows.Controls.WrapPanel) == null) return;
             
-            photoGallery.Children.Clear();
+            (this.FindControlInPages("photoGallery") as System.Windows.Controls.WrapPanel).Children.Clear();
 
             foreach (var fileName in _phonePhotoFiles)
             {
@@ -1139,48 +1139,48 @@ namespace WpfApp1
                 grid.Children.Add(img);
                 grid.Children.Add(checkMark);
                 grid.Children.Add(label);
-                border.Child = grid;
+                (this.FindControlInPages("border") as System.Windows.Controls.Border).Child = grid;
 
-                border.MouseLeftButtonDown += (s, e) =>
+                (this.FindControlInPages("border") as System.Windows.Controls.Border).MouseLeftButtonDown += (s, e) =>
                 {
                     if (e.ClickCount == 1)
                     {
-                        ToggleImageSelection(fileName, border);
+                        ToggleImageSelection(fileName, (this.FindControlInPages("border") as System.Windows.Controls.Border));
                         e.Handled = true;
                     }
                 };
 
-                photoGallery.Children.Add(border);
+                (this.FindControlInPages("photoGallery") as System.Windows.Controls.WrapPanel).Children.Add((this.FindControlInPages("border") as System.Windows.Controls.Border));
             }
 
-            if (btnToggleSelectAll != null) btnToggleSelectAll.IsEnabled = true;
-            if (lblStatus != null) lblStatus.Text = $"相册加载完成，共{_phonePhotoFiles.Count}张图片。单击选中";
+            if ((this.FindControlInPages("btnToggleSelectAll") as System.Windows.Controls.Button) != null) (this.FindControlInPages("btnToggleSelectAll") as System.Windows.Controls.Button).IsEnabled = true;
+            if ((this.FindControlInPages("lblStatus") as System.Windows.Controls.TextBlock) != null) (this.FindControlInPages("lblStatus") as System.Windows.Controls.TextBlock).Text = $"相册加载完成，共{_phonePhotoFiles.Count}张图片。单击选中";
         }
 
         #region 视频功能
         // 加载手机视频列表
         private async Task LoadPhoneVideoListAsync()
         {
-            var lblStatus = this.FindName("lblStatus") as WpfTextBlock;
-            var btnLoadImages = this.FindName("btnLoadImages") as WpfButton;
+            var lblStatus = this.FindControlInPages("lblStatus") as WpfTextBlock;
+            var btnLoadImages = this.FindControlInPages("btnLoadImages") as WpfButton;
             
-            if (lblStatus != null) lblStatus.Text = "正在检测ADB设备...";
+            if ((this.FindControlInPages("lblStatus") as System.Windows.Controls.TextBlock) != null) (this.FindControlInPages("lblStatus") as System.Windows.Controls.TextBlock).Text = "正在检测ADB设备...";
 
             var deviceId = await Task.Run(() => GetConnectedDeviceId());
             if (string.IsNullOrEmpty(deviceId))
             {
-                if (lblStatus != null) lblStatus.Text = "错误：未检测到安卓设备！";
+                if ((this.FindControlInPages("lblStatus") as System.Windows.Controls.TextBlock) != null) (this.FindControlInPages("lblStatus") as System.Windows.Controls.TextBlock).Text = "错误：未检测到安卓设备！";
                 WpfMessageBox.Show("请确认：\n1. 手机已开启USB调试\n2. 已授权电脑访问\n3. ADB能正常识别设备",
                     "设备检测失败", WpfMessageBoxButton.OK, WpfMessageBoxImage.Error);
                 return;
             }
 
-            if (lblStatus != null) lblStatus.Text = "正在扫描视频文件...";
+            if ((this.FindControlInPages("lblStatus") as System.Windows.Controls.TextBlock) != null) (this.FindControlInPages("lblStatus") as System.Windows.Controls.TextBlock).Text = "正在扫描视频文件...";
             _phoneVideoFiles = await Task.Run(() => GetPhoneVideoFiles());
 
             if (_phoneVideoFiles.Count == 0)
             {
-                if (lblStatus != null) lblStatus.Text = "未找到视频文件";
+                if ((this.FindControlInPages("lblStatus") as System.Windows.Controls.TextBlock) != null) (this.FindControlInPages("lblStatus") as System.Windows.Controls.TextBlock).Text = "未找到视频文件";
                 WpfMessageBox.Show("未在以下路径找到视频文件：\n" +
                     "• /sdcard/DCIM/Camera/\n" +
                     "• /sdcard/Movies/\n" +
@@ -1190,8 +1190,8 @@ namespace WpfApp1
                 return;
             }
 
-            if (lblStatus != null) lblStatus.Text = $"检测到 {_phoneVideoFiles.Count} 个视频文件，点击「加载视频」按钮开始加载";
-            if (btnLoadImages != null) btnLoadImages.IsEnabled = true;
+            if ((this.FindControlInPages("lblStatus") as System.Windows.Controls.TextBlock) != null) (this.FindControlInPages("lblStatus") as System.Windows.Controls.TextBlock).Text = $"检测到 {_phoneVideoFiles.Count} 个视频文件，点击「加载视频」按钮开始加载";
+            if ((this.FindControlInPages("btnLoadImages") as System.Windows.Controls.Button) != null) (this.FindControlInPages("btnLoadImages") as System.Windows.Controls.Button).IsEnabled = true;
         }
 
         // 获取手机视频文件列表
@@ -1248,13 +1248,13 @@ namespace WpfApp1
         // 显示视频网格
         private void DisplayVideoGallery()
         {
-            var photoGallery = this.FindName("photoGallery") as WpfWrapPanel;
-            var btnToggleSelectAll = this.FindName("btnToggleSelectAll") as WpfButton;
-            var lblStatus = this.FindName("lblStatus") as WpfTextBlock;
+            var photoGallery = this.FindControlInPages("photoGallery") as WpfWrapPanel;
+            var btnToggleSelectAll = this.FindControlInPages("btnToggleSelectAll") as WpfButton;
+            var lblStatus = this.FindControlInPages("lblStatus") as WpfTextBlock;
             
-            if (photoGallery == null) return;
+            if ((this.FindControlInPages("photoGallery") as System.Windows.Controls.WrapPanel) == null) return;
             
-            photoGallery.Children.Clear();
+            (this.FindControlInPages("photoGallery") as System.Windows.Controls.WrapPanel).Children.Clear();
 
             foreach (var videoPath in _phoneVideoFiles)
             {
@@ -1313,31 +1313,31 @@ namespace WpfApp1
                 grid.Children.Add(videoIcon);
                 grid.Children.Add(checkMark);
                 grid.Children.Add(label);
-                border.Child = grid;
+                (this.FindControlInPages("border") as System.Windows.Controls.Border).Child = grid;
 
-                border.MouseLeftButtonDown += (s, e) =>
+                (this.FindControlInPages("border") as System.Windows.Controls.Border).MouseLeftButtonDown += (s, e) =>
                 {
                     if (e.ClickCount == 1)
                     {
-                        ToggleVideoSelection(videoPath, border);
+                        ToggleVideoSelection(videoPath, (this.FindControlInPages("border") as System.Windows.Controls.Border));
                         e.Handled = true;
                     }
                 };
 
-                photoGallery.Children.Add(border);
+                (this.FindControlInPages("photoGallery") as System.Windows.Controls.WrapPanel).Children.Add((this.FindControlInPages("border") as System.Windows.Controls.Border));
             }
 
-            if (btnToggleSelectAll != null) btnToggleSelectAll.IsEnabled = true;
-            if (lblStatus != null) lblStatus.Text = $"找到 {_phoneVideoFiles.Count} 个视频文件。单击选中，点击备份按钮保存";
+            if ((this.FindControlInPages("btnToggleSelectAll") as System.Windows.Controls.Button) != null) (this.FindControlInPages("btnToggleSelectAll") as System.Windows.Controls.Button).IsEnabled = true;
+            if ((this.FindControlInPages("lblStatus") as System.Windows.Controls.TextBlock) != null) (this.FindControlInPages("lblStatus") as System.Windows.Controls.TextBlock).Text = $"找到 {_phoneVideoFiles.Count} 个视频文件。单击选中，点击备份按钮保存";
         }
 
         // 切换视频选中状态
         private void ToggleVideoSelection(string videoPath, WpfBorder border)
         {
-            var btnBackup = this.FindName("btnBackup") as WpfButton;
-            var lblStatus = this.FindName("lblStatus") as WpfTextBlock;
+            var btnBackup = this.FindControlInPages("btnBackup") as WpfButton;
+            var lblStatus = this.FindControlInPages("lblStatus") as WpfTextBlock;
 
-            var grid = border.Child as WpfGrid;
+            var grid = (this.FindControlInPages("border") as System.Windows.Controls.Border).Child as WpfGrid;
             if (grid == null) return;
 
             var checkMark = grid.Children.OfType<WpfTextBlock>().FirstOrDefault(t => t.Tag?.ToString() == "checkmark");
@@ -1347,17 +1347,17 @@ namespace WpfApp1
             {
                 _selectedImages.Remove(videoPath);
                 checkMark.Visibility = Visibility.Collapsed;
-                border.BorderBrush = System.Windows.Media.Brushes.Gray;
+                (this.FindControlInPages("border") as System.Windows.Controls.Border).BorderBrush = System.Windows.Media.Brushes.Gray;
             }
             else
             {
                 _selectedImages.Add(videoPath);
                 checkMark.Visibility = Visibility.Visible;
-                border.BorderBrush = System.Windows.Media.Brushes.DodgerBlue;
+                (this.FindControlInPages("border") as System.Windows.Controls.Border).BorderBrush = System.Windows.Media.Brushes.DodgerBlue;
             }
 
-            if (btnBackup != null) btnBackup.IsEnabled = _selectedImages.Count > 0;
-            if (lblStatus != null) lblStatus.Text = $"已选中 {_selectedImages.Count} 个视频";
+            if ((this.FindControlInPages("btnBackup") as System.Windows.Controls.Button) != null) (this.FindControlInPages("btnBackup") as System.Windows.Controls.Button).IsEnabled = _selectedImages.Count > 0;
+            if ((this.FindControlInPages("lblStatus") as System.Windows.Controls.TextBlock) != null) (this.FindControlInPages("lblStatus") as System.Windows.Controls.TextBlock).Text = $"已选中 {_selectedImages.Count} 个视频";
             UpdateToggleSelectAllButton();
         }
         #endregion
@@ -1375,20 +1375,20 @@ namespace WpfApp1
         // 导出通讯录
         private async Task ExportContactsAsync()
         {
-            var lblStatus = this.FindName("lblStatus") as WpfTextBlock;
-            var btnLoadImages = this.FindName("btnLoadImages") as WpfButton;
-            var progressBar = this.FindName("progressBar") as WpfProgressBar;
+            var lblStatus = this.FindControlInPages("lblStatus") as WpfTextBlock;
+            var btnLoadImages = this.FindControlInPages("btnLoadImages") as WpfButton;
+            var progressBar = this.FindControlInPages("progressBar") as WpfProgressBar;
 
-            if (lblStatus != null) lblStatus.Text = "正在检测ADB设备...";
-            if (btnLoadImages != null) btnLoadImages.IsEnabled = false;
+            if ((this.FindControlInPages("lblStatus") as System.Windows.Controls.TextBlock) != null) (this.FindControlInPages("lblStatus") as System.Windows.Controls.TextBlock).Text = "正在检测ADB设备...";
+            if ((this.FindControlInPages("btnLoadImages") as System.Windows.Controls.Button) != null) (this.FindControlInPages("btnLoadImages") as System.Windows.Controls.Button).IsEnabled = false;
 
             var deviceId = await Task.Run(() => GetConnectedDeviceId());
             if (string.IsNullOrEmpty(deviceId))
             {
-                if (lblStatus != null) lblStatus.Text = "错误：未检测到安卓设备！";
+                if ((this.FindControlInPages("lblStatus") as System.Windows.Controls.TextBlock) != null) (this.FindControlInPages("lblStatus") as System.Windows.Controls.TextBlock).Text = "错误：未检测到安卓设备！";
                 WpfMessageBox.Show("请确认：\n1. 手机已开启USB调试\n2. 已授权电脑访问\n3. ADB能正常识别设备",
                     "设备检测失败", WpfMessageBoxButton.OK, WpfMessageBoxImage.Error);
-                if (btnLoadImages != null) btnLoadImages.IsEnabled = true;
+                if ((this.FindControlInPages("btnLoadImages") as System.Windows.Controls.Button) != null) (this.FindControlInPages("btnLoadImages") as System.Windows.Controls.Button).IsEnabled = true;
                 return;
             }
 
@@ -1406,65 +1406,65 @@ namespace WpfApp1
                 }
                 else
                 {
-                    if (lblStatus != null) lblStatus.Text = "已取消导出";
-                    if (btnLoadImages != null) btnLoadImages.IsEnabled = true;
+                    if ((this.FindControlInPages("lblStatus") as System.Windows.Controls.TextBlock) != null) (this.FindControlInPages("lblStatus") as System.Windows.Controls.TextBlock).Text = "已取消导出";
+                    if ((this.FindControlInPages("btnLoadImages") as System.Windows.Controls.Button) != null) (this.FindControlInPages("btnLoadImages") as System.Windows.Controls.Button).IsEnabled = true;
                     return;
                 }
             }
 
-            if (progressBar != null)
+            if ((this.FindControlInPages("progressBar") as System.Windows.Controls.ProgressBar) != null)
             {
-                progressBar.Visibility = Visibility.Visible;
-                progressBar.IsIndeterminate = true;
+                (this.FindControlInPages("progressBar") as System.Windows.Controls.ProgressBar).Visibility = Visibility.Visible;
+                (this.FindControlInPages("progressBar") as System.Windows.Controls.ProgressBar).IsIndeterminate = true;
             }
 
             try
             {
-                if (lblStatus != null) lblStatus.Text = "正在从手机读取联系人数据...";
+                if ((this.FindControlInPages("lblStatus") as System.Windows.Controls.TextBlock) != null) (this.FindControlInPages("lblStatus") as System.Windows.Controls.TextBlock).Text = "正在从手机读取联系人数据...";
 
                 var generateResult = await Task.Run(() => GenerateVcfOnPhone());
                 if (!generateResult)
                 {
-                    if (lblStatus != null) lblStatus.Text = "生成联系人文件失败";
+                    if ((this.FindControlInPages("lblStatus") as System.Windows.Controls.TextBlock) != null) (this.FindControlInPages("lblStatus") as System.Windows.Controls.TextBlock).Text = "生成联系人文件失败";
                     WpfMessageBox.Show("无法在手机上生成联系人文件，请检查手机权限", "错误",
                         WpfMessageBoxButton.OK, WpfMessageBoxImage.Error);
                     return;
                 }
 
-                if (lblStatus != null) lblStatus.Text = "正在下载联系人文件...";
+                if ((this.FindControlInPages("lblStatus") as System.Windows.Controls.TextBlock) != null) (this.FindControlInPages("lblStatus") as System.Windows.Controls.TextBlock).Text = "正在下载联系人文件...";
 
                 var pullResult = await Task.Run(() => PullVcfFromPhone(savePath));
                 if (!pullResult)
                 {
-                    if (lblStatus != null) lblStatus.Text = "下载联系人文件失败";
+                    if ((this.FindControlInPages("lblStatus") as System.Windows.Controls.TextBlock) != null) (this.FindControlInPages("lblStatus") as System.Windows.Controls.TextBlock).Text = "下载联系人文件失败";
                     WpfMessageBox.Show("无法从手机下载联系人文件", "错误",
                         WpfMessageBoxButton.OK, WpfMessageBoxImage.Error);
                     return;
                 }
 
-                if (lblStatus != null) lblStatus.Text = "正在解析联系人数据...";
+                if ((this.FindControlInPages("lblStatus") as System.Windows.Controls.TextBlock) != null) (this.FindControlInPages("lblStatus") as System.Windows.Controls.TextBlock).Text = "正在解析联系人数据...";
                 _contacts = await Task.Run(() => ParseVcfFile(savePath));
 
                 await Task.Run(() => DeleteVcfOnPhone());
 
                 DisplayContacts();
 
-                if (lblStatus != null) lblStatus.Text = $"通讯录导出成功！共 {_contacts.Count} 个联系人，已保存到：{savePath}";
+                if ((this.FindControlInPages("lblStatus") as System.Windows.Controls.TextBlock) != null) (this.FindControlInPages("lblStatus") as System.Windows.Controls.TextBlock).Text = $"通讯录导出成功！共 {_contacts.Count} 个联系人，已保存到：{savePath}";
             }
             catch (Exception ex)
             {
-                if (lblStatus != null) lblStatus.Text = $"导出失败：{ex.Message}";
+                if ((this.FindControlInPages("lblStatus") as System.Windows.Controls.TextBlock) != null) (this.FindControlInPages("lblStatus") as System.Windows.Controls.TextBlock).Text = $"导出失败：{ex.Message}";
                 WpfMessageBox.Show($"导出通讯录时出错：{ex.Message}", "错误",
                     WpfMessageBoxButton.OK, WpfMessageBoxImage.Error);
             }
             finally
             {
-                if (progressBar != null)
+                if ((this.FindControlInPages("progressBar") as System.Windows.Controls.ProgressBar) != null)
                 {
-                    progressBar.IsIndeterminate = false;
-                    progressBar.Visibility = Visibility.Collapsed;
+                    (this.FindControlInPages("progressBar") as System.Windows.Controls.ProgressBar).IsIndeterminate = false;
+                    (this.FindControlInPages("progressBar") as System.Windows.Controls.ProgressBar).Visibility = Visibility.Collapsed;
                 }
-                if (btnLoadImages != null) btnLoadImages.IsEnabled = true;
+                if ((this.FindControlInPages("btnLoadImages") as System.Windows.Controls.Button) != null) (this.FindControlInPages("btnLoadImages") as System.Windows.Controls.Button).IsEnabled = true;
             }
         }
 
@@ -1695,10 +1695,10 @@ namespace WpfApp1
         // 显示联系人列表
         private void DisplayContacts()
         {
-            var photoGallery = this.FindName("photoGallery") as WpfWrapPanel;
-            if (photoGallery == null) return;
+            var photoGallery = this.FindControlInPages("photoGallery") as WpfWrapPanel;
+            if ((this.FindControlInPages("photoGallery") as System.Windows.Controls.WrapPanel) == null) return;
 
-            photoGallery.Children.Clear();
+            (this.FindControlInPages("photoGallery") as System.Windows.Controls.WrapPanel).Children.Clear();
 
             if (_contacts.Count == 0)
             {
@@ -1710,7 +1710,7 @@ namespace WpfApp1
                     HorizontalAlignment = System.Windows.HorizontalAlignment.Center,
                     VerticalAlignment = VerticalAlignment.Center
                 };
-                photoGallery.Children.Add(emptyText);
+                (this.FindControlInPages("photoGallery") as System.Windows.Controls.WrapPanel).Children.Add(emptyText);
                 return;
             }
 
@@ -1751,9 +1751,9 @@ namespace WpfApp1
 
                 grid.Children.Add(nameText);
                 grid.Children.Add(phoneText);
-                border.Child = grid;
+                (this.FindControlInPages("border") as System.Windows.Controls.Border).Child = grid;
 
-                photoGallery.Children.Add(border);
+                (this.FindControlInPages("photoGallery") as System.Windows.Controls.WrapPanel).Children.Add((this.FindControlInPages("border") as System.Windows.Controls.Border));
             }
         }
         #endregion
