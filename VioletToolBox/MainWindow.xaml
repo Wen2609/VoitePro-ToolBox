@@ -3440,7 +3440,7 @@ Background="#FFFAFAFC"
 
                                         <Border Grid.Row="0"
                                                 Height="32"
-                                                Width="325"
+                                                Width="305"
                                                 Margin="0,0,0,8"
                                                 Padding="8,0"
                                                 HorizontalAlignment="Left"
@@ -3493,9 +3493,9 @@ Background="#FFFAFAFC"
 
                                         <Button x:Name="RepairSuperHardBrickButton"
                                                 Grid.Row="0"
-                                                Width="141"
+                                                Width="168"
                                                 Height="32"
-                                                Margin="334,0,0,0"
+                                                Margin="315,0,0,0"
                                                 HorizontalAlignment="Left"
                                                 VerticalAlignment="Top"
                                                 Click="RepairSuperHardBrickButton_Click"
@@ -3931,10 +3931,10 @@ Background="#FFFAFAFC"
                                             </StackPanel>
                                             <Button Content="修复FastbootD"
                                                     Style="{StaticResource PageSecondaryButton}"
-                                                    Width="105"
+                                                    Width="130"
                                                     Height="26"
                                                     HorizontalAlignment="Left"
-                                                    Click="FixFastbootDButton_Click" Margin="370,0,0,0" BorderBrush="#FFE6E6E6" Background="#FFF0F7FF"/>
+                                                    Click="FixFastbootDButton_Click" Margin="352,0,0,0" BorderBrush="#FFE6E6E6" Background="#FFF0F7FF"/>
                                         </Grid>
 
                                         <!-- Bottom Row -->
@@ -4183,7 +4183,7 @@ Background="#FFFAFAFC"
                                                     Grid.Column="2"
                                                     Content="修复FastbootD"
                                                     Style="{StaticResource PageSecondaryButton}"
-                                                    Width="105"
+                                                    Width="130"
                                                     Height="26"
                                                     Click="FixFastbootDButton_Click"
                                                     BorderBrush="#FFE6E6E6"
