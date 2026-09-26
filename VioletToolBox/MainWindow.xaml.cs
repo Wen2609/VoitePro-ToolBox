@@ -1524,6 +1524,7 @@ namespace WpfApp1
         private static readonly System.Collections.Generic.Dictionary<string, string>[] _nameViewMapStaticAll = new System.Collections.Generic.Dictionary<string, string>[] { _nameViewMapStatic0, _nameViewMapStatic1, _nameViewMapStatic2, _nameViewMapStatic3, _nameViewMapStatic4, _nameViewMapStatic5 };
         // ===== 懒加载页面支持（2026-09 性能重构） =====
         private readonly Dictionary<string, FrameworkElement> _pageInstances = new Dictionary<string, FrameworkElement>();
+        private readonly System.Collections.Generic.HashSet<string> _instantiating = new System.Collections.Generic.HashSet<string>();
         private readonly List<string> _pageTemplateKeys = new List<string>();
         private readonly Dictionary<string, string> _nameViewMap = new Dictionary<string, string>();
         private string _currentPage = "HomeView";
@@ -1553,10 +1554,16 @@ namespace WpfApp1
                 _pageHost = this.FindControlInPages("PageHost") as ContentControl;
             if (_pageHost == null) return;
 
-            FrameworkElement page;
+            FrameworkElement page = null;
             if (viewName == "HomeView")
             {
-                page = this.FindControlInPages("HomeView") as FrameworkElement;
+                // HomeView 已在窗口主内容区（窗口树内），不能赋给 PageHost（双父冲突）；
+                // 清空 PageHost 并显示 HomeView 即可
+                _pageHost.Content = null;
+                var home = this.FindControlInPages("HomeView") as FrameworkElement;
+                if (home != null) home.Visibility = System.Windows.Visibility.Visible;
+                _currentPage = viewName;
+                return;
             }
             else if (!_pageInstances.TryGetValue(viewName, out page))
             {
@@ -1564,12 +1571,15 @@ namespace WpfApp1
                 if (page != null) _pageInstances[viewName] = page;
             }
             if (page == null) return;
+            var hv = this.FindControlInPages("HomeView") as FrameworkElement;
+            if (hv != null) hv.Visibility = System.Windows.Visibility.Collapsed;
             _currentPage = viewName;
             _pageHost.Content = page;
         }
 
         private FrameworkElement InstantiatePage(string viewName)
         {
+            if (!_instantiating.Add(viewName)) return null;
             try
             {
                 var dt = this.FindResource("Page_" + viewName) as DataTemplate;
@@ -1577,11 +1587,17 @@ namespace WpfApp1
                 return dt.LoadContent() as FrameworkElement;
             }
             catch { return null; }
+            finally
+            {
+                _instantiating.Remove(viewName);
+            }
         }
 
         /// <summary>按 x:Name 查找控件；name→页面 映射命中时直接实例化目标页，避免逐个页面试探（懒加载兼容）</summary>
         private object FindControlInPages(string name)
         {
+            var wf0 = FindByName(this, name);
+            if (wf0 != null) return wf0;
             string sVn = StaticNameView(name);
             if (sVn != null)
             {
@@ -1606,6 +1622,8 @@ namespace WpfApp1
                 var f = FindByName(_pageHost, name);
                 if (f != null) { _nameViewMap[name] = "HomeView"; return f; }
             }
+            var wf = FindByName(this, name);
+            if (wf != null) { _nameViewMap[name] = "HomeView"; return wf; }
             foreach (var kv in _pageInstances)
             {
                 var f = FindByName(kv.Value, name);

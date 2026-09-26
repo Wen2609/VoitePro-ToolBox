@@ -163,7 +163,10 @@ namespace WpfApp1
         {
             base.OnInitialized(e);
             CollectPageTemplateKeys();
-            InitializeEdlEngine();
+            // 延迟 EDL 引擎初始化到窗口显示后，避免 WMI 端口枚举阻塞启动（懒加载下此初始化不依赖首帧）
+            System.Windows.Application.Current?.Dispatcher.BeginInvoke(
+                new System.Action(InitializeEdlEngine),
+                System.Windows.Threading.DispatcherPriority.Background);
         }
 
         private void InitializeEdlEngine()
