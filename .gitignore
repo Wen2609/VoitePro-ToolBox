@@ -394,3 +394,10 @@ _archive_*/
 *.txt
 *.log
 
+
+# VoitePro Tool Box: dev screenshots & debug outputs (repo root only)
+/*.png
+/*.jpg
+*.dmp
+pages_v*/
+/violet_tmp*/
