@@ -167,6 +167,35 @@ namespace WpfApp1
             System.Windows.Application.Current?.Dispatcher.BeginInvoke(
                 new System.Action(InitializeEdlEngine),
                 System.Windows.Threading.DispatcherPriority.Background);
+            // 后台预加载全部页面：后台线程延迟 3s（窗口已显示）后，按页在 Background 优先级逐页实例化，
+            // 每页之间消息循环可穿插渲染/输入，不阻塞界面响应，页面切换秒开
+            var _preloadPages = new System.Collections.Generic.List<string>();
+            foreach (var key in _pageTemplateKeys)
+            {
+                var vn2 = key.StartsWith("Page_") ? key.Substring("Page_".Length) : key;
+                if (!_pageInstances.ContainsKey(vn2)) _preloadPages.Add(vn2);
+            }
+            if (_preloadPages.Count > 0)
+            {
+                var _dispatcher = System.Windows.Application.Current?.Dispatcher;
+                if (_dispatcher != null)
+                {
+                    new System.Threading.Timer((_) =>
+                    {
+                        foreach (var vn2 in _preloadPages)
+                        {
+                            _dispatcher.BeginInvoke(new System.Action(() =>
+                            {
+                                if (!_pageInstances.ContainsKey(vn2))
+                                {
+                                    var inst = InstantiatePage(vn2);
+                                    if (inst != null) _pageInstances[vn2] = inst;
+                                }
+                            }), System.Windows.Threading.DispatcherPriority.Background);
+                        }
+                    }, null, 3000, System.Threading.Timeout.Infinite);
+                }
+            }
         }
 
         private void InitializeEdlEngine()
@@ -1490,9 +1519,19 @@ namespace WpfApp1
 
         private void LoadEdlPorts()
         {
-            if ((this.FindControlInPages("EdlPortComboBox") as System.Windows.Controls.ComboBox) == null)
-                return;
-            (this.FindControlInPages("EdlPortComboBox") as System.Windows.Controls.ComboBox).ItemsSource = BuildEdlPortOptions();
+            var cb = this.FindControlInPages("EdlPortComboBox") as System.Windows.Controls.ComboBox;
+            if (cb == null) return;
+            var ui = this.Dispatcher;
+            // WMI 端口枚举可能在 UI 线程阻塞数秒，移到后台线程，结果回 UI
+            System.Threading.Tasks.Task.Run(() => BuildEdlPortOptions()).ContinueWith(antecedent =>
+            {
+                ui.Invoke(new System.Action(() =>
+                {
+                    var c = this.FindControlInPages("EdlPortComboBox") as System.Windows.Controls.ComboBox;
+                    if (c != null && antecedent.IsCompletedSuccessfully)
+                        c.ItemsSource = antecedent.Result;
+                }));
+            });
         }
 
         private List<string> BuildEdlPortOptions()

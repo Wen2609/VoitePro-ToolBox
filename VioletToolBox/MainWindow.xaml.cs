@@ -1525,6 +1525,7 @@ namespace WpfApp1
         // ===== 懒加载页面支持（2026-09 性能重构） =====
         private readonly Dictionary<string, FrameworkElement> _pageInstances = new Dictionary<string, FrameworkElement>();
         private readonly System.Collections.Generic.HashSet<string> _instantiating = new System.Collections.Generic.HashSet<string>();
+        private readonly System.Collections.Generic.Dictionary<string, FrameworkElement> _controlCache = new System.Collections.Generic.Dictionary<string, FrameworkElement>();
         private readonly List<string> _pageTemplateKeys = new List<string>();
         private readonly Dictionary<string, string> _nameViewMap = new Dictionary<string, string>();
         private string _currentPage = "HomeView";
@@ -1575,6 +1576,7 @@ namespace WpfApp1
             if (hv != null) hv.Visibility = System.Windows.Visibility.Collapsed;
             _currentPage = viewName;
             _pageHost.Content = page;
+            page.Visibility = System.Windows.Visibility.Visible;
         }
 
         private FrameworkElement InstantiatePage(string viewName)
@@ -1595,6 +1597,14 @@ namespace WpfApp1
 
         /// <summary>按 x:Name 查找控件；name→页面 映射命中时直接实例化目标页，避免逐个页面试探（懒加载兼容）</summary>
         private object FindControlInPages(string name)
+        {
+            if (_controlCache.TryGetValue(name, out var _cc)) return _cc;
+            var _res = FindControlInPagesCore(name);
+            if (_res is FrameworkElement _cfe) _controlCache[name] = _cfe;
+            return _res;
+        }
+
+        private object FindControlInPagesCore(string name)
         {
             var wf0 = FindByName(this, name);
             if (wf0 != null) return wf0;
