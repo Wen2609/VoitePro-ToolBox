@@ -3927,7 +3927,6 @@ Background="#FFFAFAFC"
                                                 <CheckBox x:Name="AutoRebootOugaCheckBox" Content="自动重启" Style="{StaticResource PageCheckBox}" IsChecked="True"/>
                                                 <CheckBox x:Name="FlashABCheckBox" Content="AB通刷" Style="{StaticResource PageCheckBox}" ToolTip="勾选此项将同时刷入A和B两个分区,并且可以安全的切换设备槽位" Checked="FlashABCheckBox_Checked"/>
                                                 <CheckBox x:Name="FixSuperCheckBox" Content="强力线刷" Style="{StaticResource PageCheckBox}" Checked="FixSuperCheckBox_Checked" ToolTip="部分大分区刷不进去时可选择此模式修复super，默认刷A槽位"/>
-                                                <CheckBox x:Name="PureFBDCheckBox" Content="仅FBD" Style="{StaticResource PageCheckBox}" Checked="PureFBDCheckBox_Checked" ToolTip="没有Fastboot的机型勾选这个，天玑处理器设备请勿勾选"/>
                                             </StackPanel>
                                             <Button Content="修复FastbootD"
                                                     Style="{StaticResource PageSecondaryButton}"
@@ -3939,10 +3938,11 @@ Background="#FFFAFAFC"
 
                                         <!-- Bottom Row -->
                                         <StackPanel Grid.Row="2" Orientation="Horizontal">
+                                            <CheckBox x:Name="PureFBDCheckBox" Content="仅FBD" Style="{StaticResource PageCheckBox}" Checked="PureFBDCheckBox_Checked" ToolTip="没有Fastboot的机型勾选这个，天玑处理器设备请勿勾选" Margin="0,0,8,0" VerticalAlignment="Center"/>
                                             <Button x:Name="ArbFuseCheckButton"
                                                     Style="{StaticResource PageSecondaryButton}"
                                                     Margin="0,0,8,0"
-                                                    Width="153"
+                                                    Width="120"
                                                     Click="ArbFuseCheckButton_Click">
                                                 <StackPanel Orientation="Horizontal"
                                                             HorizontalAlignment="Center"
@@ -3958,11 +3958,11 @@ Background="#FFFAFAFC"
                                             <Button Content="解包Payload"
                                                     Style="{StaticResource PageSecondaryButton}"
                                                     Margin="0,0,8,0"
-                                                    Width="153"
+                                                    Width="120"
                                                     Click="Button_Click_1" Background="#FF0A84FF" Foreground="White" BorderBrush="#FFE6E6E6"/>
                                             <Button Content="开始线刷"
                                                     Style="{StaticResource PagePrimaryButton}"
-                                                    Width="153"
+                                                    Width="120"
                                                     Click="StartFlashButton_Click" Background="#FF0A84FF" BorderBrush="#FFE6E6E6"/>
                                         </StackPanel>
                                     </Grid>
