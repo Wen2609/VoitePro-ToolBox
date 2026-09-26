@@ -1006,11 +1006,21 @@ namespace WpfApp1
 
         public ICommand ToggleAllPartitionsCommand { get; }
 
+        private readonly System.Diagnostics.Stopwatch _swStart = System.Diagnostics.Stopwatch.StartNew();
+
         public MainWindow()
         {
+            // 性能：冻结静态 Freezable 资源（画刷/效果），减少渲染时资源切换开销
+            try
+            {
+                FreezeAllFreezables(this.Resources);
+                FreezeAllFreezables(System.Windows.Application.Current?.Resources);
+            }
+            catch { }
             // 初始化所有分区集合
             allPartitions = new ObservableCollection<PartitionInfo>();
             InitializeComponent();
+            try { System.IO.File.AppendAllText(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "startup.log"), $"{System.DateTime.Now:HH:mm:ss.fff} InitializeComponent done: {_swStart.ElapsedMilliseconds}ms\r\n"); } catch { }
             allPartitions.CollectionChanged += AllPartitions_CollectionChanged;
             UpdatePartitionSelectionSummary();
             InitializeAutoRootModeUiState();
@@ -1108,7 +1118,11 @@ namespace WpfApp1
             _storageTimer.Tick += async (s, e) => await RefreshStorageMemoryAsync(true);
             _storageTimer.Start();
             this.Loaded += async (s, e) => await RefreshStorageMemoryAsync();
-            this.Loaded += async (s, e) => await InitializeBroadcastNoticesAsync();
+            this.Loaded += async (s, e) => {
+                // 延迟网络请求，不阻塞窗口首帧渲染
+                await System.Threading.Tasks.Task.Delay(3000);
+                await InitializeBroadcastNoticesAsync();
+            };
             this.Loaded += MainWindow_Loaded;
             this.Activated += (s, e) => ClearScrcpyWindowTopMost();
             this.LocationChanged += (s, e) => UpdateScrcpyControlBarPosition();
@@ -1120,6 +1134,26 @@ namespace WpfApp1
             };
 
             InitializeLanguageUi();
+        }
+
+        private static void FreezeOne(System.Windows.Freezable f)
+        {
+            if (f != null && f.CanFreeze && !f.IsFrozen)
+            {
+                try { f.Freeze(); } catch { }
+            }
+        }
+        private static void FreezeAllFreezables(System.Windows.ResourceDictionary dic)
+        {
+            if (dic == null) return;
+            try
+            {
+                foreach (var key in dic.Keys.OfType<object>().ToList())
+                {
+                    if (dic[key] is System.Windows.Freezable f) FreezeOne(f);
+                }
+            }
+            catch { }
         }
 
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)

@@ -583,10 +583,8 @@
 					Margin="8,12,8,12"
 					Background="#FFFFFFFF"
 					CornerRadius="12"
+					CacheMode="BitmapCache"
 					BorderThickness="0">
-                        <Border.Effect>
-                            <DropShadowEffect Color="#FF1D1D1F" Opacity="0.06" BlurRadius="20" ShadowDepth="2" Direction="270"/>
-                        </Border.Effect>
                         <ScrollViewer Background="Transparent" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" PreviewMouseWheel="SideMenuScrollViewer_PreviewMouseWheel">
                             <hc:SideMenu x:Name="SideMenuControl" ExpandMode="Freedom"
                                          Background="Transparent"
@@ -3599,7 +3597,7 @@
                                                   HorizontalGridLinesBrush="Transparent"
                                                   VerticalGridLinesBrush="Transparent"
                                                   HorizontalScrollBarVisibility="Hidden"
-                                                  VerticalScrollBarVisibility="Auto">
+                                                  VerticalScrollBarVisibility="Auto" VirtualizingStackPanel.IsVirtualizing="True" VirtualizingStackPanel.VirtualizationMode="Recycling" ScrollViewer.CanContentScroll="True">
                                             <DataGrid.Resources>
                                                 <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#FF1D1D1F"/>
                                                 <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="#FF333333"/>
@@ -4168,7 +4166,7 @@
                                              Background="#FFFAFBFD"
                                              BorderBrush="#FFE6E6E6"
                                              BorderThickness="1"
-                                             HorizontalContentAlignment="Stretch">
+                                             HorizontalContentAlignment="Stretch" VirtualizingStackPanel.IsVirtualizing="True" VirtualizingStackPanel.VirtualizationMode="Recycling" ScrollViewer.CanContentScroll="True">
                                         <ListBox.Template>
                                             <ControlTemplate TargetType="ListBox">
                                                 <Grid>
@@ -5034,7 +5032,7 @@
                                                            MouseLeftButtonUp="CopyTextBlockContent"/>
                                             </Grid>
                                         </StackPanel>
-                                        <ListBox Name="FileListTextBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="807" Height="456" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Disabled" FontFamily="Consolas" FontSize="12" SelectionChanged="FileListTextBox_SelectionChanged" MouseDoubleClick="FileListTextBox_MouseDoubleClick" PreviewMouseLeftButtonDown="FileListTextBox_PreviewMouseLeftButtonDown" ContextMenuOpening="FileListTextBox_ContextMenuOpening" SelectionMode="Multiple" Margin="0,70,0,0" BorderBrush="#FFF0F7FF" HorizontalContentAlignment="Center" AllowDrop="True" Drop="FileListTextBox_Drop" DragOver="FileListTextBox_DragOver">
+                                        <ListBox Name="FileListTextBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="807" Height="456" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Disabled" FontFamily="Consolas" FontSize="12" SelectionChanged="FileListTextBox_SelectionChanged" MouseDoubleClick="FileListTextBox_MouseDoubleClick" PreviewMouseLeftButtonDown="FileListTextBox_PreviewMouseLeftButtonDown" ContextMenuOpening="FileListTextBox_ContextMenuOpening" SelectionMode="Multiple" Margin="0,70,0,0" BorderBrush="#FFF0F7FF" HorizontalContentAlignment="Center" AllowDrop="True" Drop="FileListTextBox_Drop" DragOver="FileListTextBox_DragOver" VirtualizingStackPanel.IsVirtualizing="True" VirtualizingStackPanel.VirtualizationMode="Recycling" ScrollViewer.CanContentScroll="True">
                                             <ListBox.ContextMenu>
                                                 <ContextMenu>
                                                     <MenuItem x:Name="SystemZoneNewFolderMenuItem" Header="新建文件夹" Click="CreateSystemZoneFolderMenuItem_Click"/>
@@ -5567,7 +5565,7 @@
                                                         ScrollViewer.PanningMode="VerticalOnly"
                                                         ScrollViewer.VerticalScrollBarVisibility="Auto"
                                                         ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                                                        MouseDoubleClick="DriverFileListBox_MouseDoubleClick">
+                                                        MouseDoubleClick="DriverFileListBox_MouseDoubleClick" VirtualizingStackPanel.IsVirtualizing="True" VirtualizingStackPanel.VirtualizationMode="Recycling" ScrollViewer.CanContentScroll="True">
                                                             <ListBox.ItemTemplate>
                                                                 <DataTemplate>
                                                                     <Border
@@ -5733,7 +5731,7 @@
 
                                         <DataGrid Grid.Row="1" Margin="0,10,0,0" Name="PartitionsDataGrid"
                                               AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="False"
-                                              HeadersVisibility="Column" SelectionMode="Extended" SelectionChanged="PartitionsDataGrid_SelectionChanged" FontSize="12" Background="#FFF0F7FF" Cursor="" RowHeight="26">
+                                              HeadersVisibility="Column" SelectionMode="Extended" SelectionChanged="PartitionsDataGrid_SelectionChanged" FontSize="12" Background="#FFF0F7FF" Cursor="" RowHeight="26" VirtualizingStackPanel.IsVirtualizing="True" VirtualizingStackPanel.VirtualizationMode="Recycling" ScrollViewer.CanContentScroll="True">
                                             <DataGrid.Columns>
                                                 <DataGridCheckBoxColumn Width="35" Binding="{Binding IsSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                                                     <DataGridCheckBoxColumn.CellStyle>
@@ -6827,7 +6825,7 @@
                                             ColumnHeaderHeight="32"
                                             Grid.Row="1"
                                             Margin="0"
-                                              MouseDoubleClick="EdlPartitionDataGrid_MouseDoubleClick">
+                                              MouseDoubleClick="EdlPartitionDataGrid_MouseDoubleClick" VirtualizingStackPanel.IsVirtualizing="True" VirtualizingStackPanel.VirtualizationMode="Recycling" ScrollViewer.CanContentScroll="True">
                                                     <DataGrid.Resources>
                                                         <Style x:Key="EdlPartitionTextStyle" TargetType="{x:Type TextBlock}">
                                                             <Setter Property="VerticalAlignment" Value="Center"/>
@@ -7673,7 +7671,7 @@
                                                       BorderThickness="1"
                                                       BorderBrush="#FFE6E6E6"
                                                       RowHeight="32"
-                                                      ColumnHeaderHeight="32">
+                                                      ColumnHeaderHeight="32" VirtualizingStackPanel.IsVirtualizing="True" VirtualizingStackPanel.VirtualizationMode="Recycling" ScrollViewer.CanContentScroll="True">
                                                 <DataGrid.Resources>
                                                     <Style TargetType="{x:Type DataGridRow}"
                                                            BasedOn="{StaticResource {x:Type DataGridRow}}">
@@ -8471,7 +8469,7 @@
                                               BorderThickness="0"
                                               RowHeight="30"
                                               GridLinesVisibility="Horizontal"
-                                              AlternatingRowBackground="#FFFCFAFE">
+                                              AlternatingRowBackground="#FFFCFAFE" VirtualizingStackPanel.IsVirtualizing="True" VirtualizingStackPanel.VirtualizationMode="Recycling" ScrollViewer.CanContentScroll="True">
                                         <DataGrid.Resources>
                                             <Style TargetType="{x:Type DataGridColumnHeader}">
                                                 <Setter Property="Background" Value="#FFE8E8E8"/>
@@ -9499,7 +9497,7 @@
                                 VerticalGridLinesBrush="Transparent"
                                 Cursor=""
                                 RowHeight="29"
-                                Margin="0">
+                                Margin="0" VirtualizingStackPanel.IsVirtualizing="True" VirtualizingStackPanel.VirtualizationMode="Recycling" ScrollViewer.CanContentScroll="True">
                                             <DataGrid.Columns>
                                                 <DataGridCheckBoxColumn Width="35" Binding="{Binding IsSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                                                     <DataGridCheckBoxColumn.CellStyle>
