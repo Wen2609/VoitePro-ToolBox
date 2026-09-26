@@ -1,0 +1,277 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <AssemblyName>VioletToolBox</AssemblyName>
+    <Product>VioletToolBox</Product>
+    <Title>VioletToolBox</Title>
+    <PackageId>VioletToolBox</PackageId>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <ApplicationIcon>logo2.ico</ApplicationIcon>
+   
+    <SelfContained>false</SelfContained>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="83bd092c1ca3ae795e2690adec399722.jpg" />
+    <None Remove="8b5b2e84f270b49fd4c61f0c6c5a3a79.png" />
+    <None Remove="b_117d80db99aac4929bd4d71bbc9b50e5.jpg" />
+    <None Remove="b_acb46219cb4a7c5616f816e7b67787f0.jpg" />
+    <None Remove="images\about_haohao.jpg" />
+    <None Remove="images\about_renji.jpg" />
+    <None Remove="images\about_wangting.jpg" />
+    <None Remove="images\about_xiri.jpg" />
+    <None Remove="images\about_yuebing.jpg" />
+    <None Remove="images\about_zhyi.jpg" />
+    <None Remove="images\coloros.svg" />
+    <None Remove="images\guanbi.svg" />
+    <None Remove="images\wenjianchuanshu.svg" />
+    <None Remove="images\touping.svg" />
+    <None Remove="images\shuaxin.svg" />
+    <None Remove="images\wenjian.svg" />
+    <None Remove="images\wendang.svg" />
+    <None Remove="images\xiazai.svg" />
+    <None Remove="images\zhuye.svg" />
+    <None Remove="images\guanyu.svg" />
+    <None Remove="images\banshou.svg" />
+    <None Remove="images\anquanyinsi.svg" />
+    <None Remove="images\shandian.svg" />
+    <None Remove="images\geshihuasdka.svg" />
+    <None Remove="images\guge.svg" />
+    <None Remove="images\adb.svg" />
+    <None Remove="images\iconxiaomiguishu.svg" />
+    <None Remove="images\wenjianjia.svg" />
+    <None Remove="images\kaishi1.svg" />
+    <None Remove="images\zanting.svg" />
+    <None Remove="images\hengpingzhuanshuping.svg" />
+    <None Remove="images\shupingzhuanhengping.svg" />
+    <None Remove="images\zidongxuanzhuan.svg" />
+    <None Remove="images\fanhui.svg" />
+    <None Remove="images\yuanquan.svg" />
+    <None Remove="images\iconduorenwu.svg" />
+    <None Remove="images\jingyin.svg" />
+    <None Remove="images\suoping.svg" />
+    <None Remove="images\yinliang.svg" />
+    <None Remove="images\anzhuo.svg" />
+    <None Remove="images\sousuo.svg" />
+    <None Remove="images\xiezai.svg" />
+    <None Remove="images\chakan.svg" />
+    <None Remove="images\xuehua.svg" />
+    <None Remove="images\jiedong.svg" />
+    <None Remove="images\APK.svg" />
+    <None Remove="images\yasuobao.svg" />
+    <None Remove="images\jingxiangwenjian.svg" />
+    <None Remove="single-line.runtimeconfig.json" />
+    <None Remove="zs.png" />
+    <None Remove="zs.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="logo2.ico" />
+    <None Update="Protos\update_metadata.proto">
+      <GrpcServices>None</GrpcServices>
+    </None>
+    <None Update="QSaharaServer.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToPublishDirectory>Always</CopyToPublishDirectory>
+    </None>
+    <!-- Official Release packages may provide these runtime tools separately. -->
+    <Content Include="exe\aria2c.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="exe\fix_usb3.bat">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="avbtool\**\*">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="KernelPatch\**\*">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="LKM_Patch\**\*">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <!-- 运行时工具（从发行包合并） -->
+    <Content Include="platform-tools\**\*">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="exe\**\*">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="magiskboot.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="GKIPatch.bat">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Version.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="single-line.runtimeconfig.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="HandyControl" Version="3.5.1" />
+    <PackageReference Include="Google.Protobuf" Version="3.33.2" />
+    <PackageReference Include="SharpVectors" Version="1.8.5" />
+    <PackageReference Include="SharpCompress" Version="0.44.0" />
+    <PackageReference Include="ZstdSharp.Port" Version="0.8.7" />
+    <PackageReference Include="SharpEDL" Version="1.0.4" />
+    <PackageReference Include="System.IO.Ports" Version="9.0.8" />
+    <PackageReference Include="System.Management" Version="9.0.8" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="BouncyCastle.Cryptography" Version="2.4.0" />
+  </ItemGroup>
+
+
+
+  <ItemGroup>
+    <Resource Include="83bd092c1ca3ae795e2690adec399722.jpg" />
+    <Resource Include="8b5b2e84f270b49fd4c61f0c6c5a3a79.png" />
+    <Resource Include="zs.png" />
+    <Resource Include="b_117d80db99aac4929bd4d71bbc9b50e5.jpg" />
+    <Resource Include="b_acb46219cb4a7c5616f816e7b67787f0.jpg" />
+    <Resource Include="images\about_haohao.jpg" />
+    <Resource Include="images\about_renji.jpg" />
+    <Resource Include="images\about_wangting.jpg" />
+    <Resource Include="images\about_xiri.jpg" />
+    <Resource Include="images\about_yuebing.jpg" />
+    <Resource Include="images\about_zhyi.jpg" />
+    <Resource Include="images\coloros.svg" />
+    <Resource Include="images\guanbi.svg" />
+    <Resource Include="images\wenjianchuanshu.svg" />
+    <Resource Include="images\touping.svg" />
+    <Resource Include="images\shuaxin.svg" />
+    <Resource Include="images\wenjian.svg" />
+    <Resource Include="images\wendang.svg" />
+    <Resource Include="images\xiazai.svg" />
+    <Resource Include="images\zhuye.svg" />
+    <Resource Include="images\guanyu.svg" />
+    <Resource Include="images\banshou.svg" />
+    <Resource Include="images\anquanyinsi.svg" />
+    <Resource Include="images\shandian.svg" />
+    <Resource Include="images\geshihuasdka.svg" />
+    <Resource Include="images\guge.svg" />
+    <Resource Include="images\adb.svg" />
+    <Resource Include="images\iconxiaomiguishu.svg" />
+    <Resource Include="images\wenjianjia.svg" />
+    <Resource Include="images\kaishi1.svg" />
+    <Resource Include="images\zanting.svg" />
+    <Resource Include="images\hengpingzhuanshuping.svg" />
+    <Resource Include="images\shupingzhuanhengping.svg" />
+    <Resource Include="images\zidongxuanzhuan.svg" />
+    <Resource Include="images\fanhui.svg" />
+    <Resource Include="images\yuanquan.svg" />
+    <Resource Include="images\iconduorenwu.svg" />
+    <Resource Include="images\jingyin.svg" />
+    <Resource Include="images\suoping.svg" />
+    <Resource Include="images\yinliang.svg" />
+    <Resource Include="images\anzhuo.svg" />
+    <Resource Include="images\sousuo.svg" />
+    <Resource Include="images\xiezai.svg" />
+    <Resource Include="images\chakan.svg" />
+    <Resource Include="images\xuehua.svg" />
+    <Resource Include="images\jiedong.svg" />
+    <Resource Include="images\APK.svg" />
+    <Resource Include="images\yasuobao.svg" />
+    <Resource Include="images\jingxiangwenjian.svg" />
+    <Resource Include="images\dunpai.svg" />
+    <Resource Include="images\Auto.svg" />
+    <Resource Include="images\GitHub.svg" />
+    <Resource Include="images\WIFI.svg" />
+    <Resource Include="images\android.svg" />
+    <Resource Include="images\back.svg" />
+    <Resource Include="images\exe.svg" />
+    <Resource Include="images\files.svg" />
+    <Resource Include="images\format-zip.svg" />
+    <Resource Include="images\icjieping.svg" />
+    <Resource Include="images\ndm.svg" />
+    <Resource Include="images\neko.svg" />
+    <Resource Include="images\yunduanxiazai.svg" />
+    <Resource Include="images\xiufu.svg" />
+    <Resource Include="images\xiufusuper.svg" />
+    <Resource Include="images\qiehuan.svg" />
+    <Resource Include="images\jiazai.svg" />
+    <Resource Include="images\xiangshang.svg" />
+    <Resource Include="images\xiangxia.svg" />
+    <Resource Include="images\xiangzuo.svg" />
+    <Resource Include="images\bilibili.svg" />
+    <Resource Include="images\jidai.svg" />
+    <Resource Include="images\beifen.svg" />
+    <Resource Include="images\beifenshuju.svg" />
+    <Resource Include="images\dui.svg" />
+    <Resource Include="images\yingyong.svg" />
+    <Resource Include="images\kaishi.svg" />
+    <Resource Include="images\kaishi1chengse.svg" />
+    <Resource Include="images\kaishi1shense.svg" />
+    <Resource Include="images\pintu.svg" />
+    <Resource Include="images\tiqu.svg" />
+    <Resource Include="images\shujuxian.svg" />
+    <Resource Include="images\zantingshense.svg" />
+    <Resource Include="images\zantinghongse.svg" />
+    <Resource Include="images\zuixiaohua.svg" />
+    <Resource Include="images\xiangpi.svg" />
+    <Resource Include="images\dianyuan.svg" />
+    <Resource Include="images\xinpianshuju.svg" />
+    <Resource Include="images\kuan.svg" />
+    <Resource Include="images\zhongqi.svg" />
+    <Resource Include="images\shancun.svg" />
+    <Resource Include="images\shandian2.svg" />
+    <Resource Include="images\gaotongxiaolong.svg" />
+    <Resource Include="images\mono\**\*.svg" />
+    <Resource Include="images\white\**\*.svg" />
+    <Content Include="fonts\OPPO_Sans_4.0.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="Payload_Dumper_C#\Payload_Dumper_C#.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Payload_Dumper_C#\**\*.cs" />
+    <Page Remove="Payload_Dumper_C#\**\*.xaml" />
+    <ApplicationDefinition Remove="Payload_Dumper_C#\**\*.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="paocai.jpg" />
+    <Resource Include="neko.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="wx.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="zfb.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="images\telegram.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="images\douyin.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+</Project>
+ 
