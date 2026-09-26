@@ -1260,37 +1260,37 @@ Background="#FFFAFAFC"
                                         <StackPanel>
                                             <StackPanel Orientation="Horizontal" Margin="0,0,0,12"><svg:SvgViewbox Source="images/pintu.svg" Width="16" Height="16" Margin="0,1,8,0" VerticalAlignment="Center"/><TextBlock Style="{StaticResource PageTitle}" Text="扩展功能"></TextBlock></StackPanel>
                                             <UniformGrid Margin="0,12,0,0" Columns="2">
-                                                <Button x:Name="FormatDeviceButton" Margin="0,0,8,8" Click="FormatDeviceButton_Click" Style="{StaticResource PageSecondaryButton}" ToolTip="恢复出厂设置" FontSize="11" Padding="8,0">
+                                                <Button x:Name="FormatDeviceButton" Margin="0,0,8,8" Click="FormatDeviceButton_Click" Style="{StaticResource PageSecondaryButton}" ToolTip="恢复出厂设置" FontSize="11" Padding="5,0">
                                                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                                                        <svg:SvgViewbox Source="images/geshihuasdka.svg" Width="16" Height="16" Margin="0,0,5,0"/>
-                                                        <TextBlock Text="格式化设备【双清】" VerticalAlignment="Center"/>
+                                                        <svg:SvgViewbox Source="images/geshihuasdka.svg" Width="13" Height="13" Margin="0,0,3,0"/>
+                                                        <TextBlock Text="格式化设备【双清】" VerticalAlignment="Center" TextTrimming="CharacterEllipsis"/>
                                                     </StackPanel>
                                                 </Button>
-                                                <Button x:Name="EraseGoogleLockButton" Margin="0,0,0,8" Click="EraseGoogleLockButton_Click" Style="{StaticResource PageSecondaryButton}" ToolTip="解决安卓15无法安装应用" FontSize="11" Padding="8,0">
+                                                <Button x:Name="EraseGoogleLockButton" Margin="0,0,0,8" Click="EraseGoogleLockButton_Click" Style="{StaticResource PageSecondaryButton}" ToolTip="解决安卓15无法安装应用" FontSize="11" Padding="5,0">
                                                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                                                        <svg:SvgViewbox Source="images/guge.svg" Width="16" Height="16" Margin="0,0,5,0"/>
-                                                        <TextBlock Text="擦除谷歌锁" VerticalAlignment="Center"/>
+                                                        <svg:SvgViewbox Source="images/guge.svg" Width="13" Height="13" Margin="0,0,3,0"/>
+                                                        <TextBlock Text="擦除谷歌锁" VerticalAlignment="Center" TextTrimming="CharacterEllipsis"/>
                                                     </StackPanel>
                                                 </Button>
-                                                <Button x:Name="FixAdbButton" Margin="0,0,8,8" Click="FixAdbButton_Click" Style="{StaticResource PageSecondaryButton}" ToolTip="【需ROOT】解决投屏报错adb push" FontSize="11" Padding="8,0">
+                                                <Button x:Name="FixAdbButton" Margin="0,0,8,8" Click="FixAdbButton_Click" Style="{StaticResource PageSecondaryButton}" ToolTip="【需ROOT】解决投屏报错adb push" FontSize="11" Padding="5,0">
                                                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                                                        <svg:SvgViewbox Source="images/adb.svg" Width="16" Height="16" Margin="0,0,5,0"/>
-                                                        <TextBlock Text="修复ADB异常" VerticalAlignment="Center"/>
+                                                        <svg:SvgViewbox Source="images/adb.svg" Width="13" Height="13" Margin="0,0,3,0"/>
+                                                        <TextBlock Text="修复ADB异常" VerticalAlignment="Center" TextTrimming="CharacterEllipsis"/>
                                                     </StackPanel>
                                                 </Button>
-                                                <Button x:Name="EnableMiuiUsbButton" Margin="0,0,0,8" Click="EnableMiuiUsbButton_Click" Style="{StaticResource PageSecondaryButton}" ToolTip="需ROOT" FontSize="11" Padding="8,0">
+                                                <Button x:Name="EnableMiuiUsbButton" Margin="0,0,0,8" Click="EnableMiuiUsbButton_Click" Style="{StaticResource PageSecondaryButton}" ToolTip="需ROOT" FontSize="11" Padding="5,0">
                                                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                                                         <svg:SvgViewbox Source="images/iconxiaomiguishu.svg" Width="16" Height="16" Margin="0,0,5,0"/>
-                                                        <TextBlock Text="强开小米USB安全设置" VerticalAlignment="Center"/>
+                                                        <TextBlock Text="强开小米USB安全设置" VerticalAlignment="Center" TextTrimming="CharacterEllipsis"/>
                                                     </StackPanel>
                                                 </Button>
-                                                <Button x:Name="ReadOnePlusDdrButton" Margin="0,0,8,8" Click="ReadOnePlusDdrButton_Click" Style="{StaticResource PageSecondaryButton}" FontSize="11" Padding="8,0">
+                                                <Button x:Name="ReadOnePlusDdrButton" Margin="0,0,8,8" Click="ReadOnePlusDdrButton_Click" Style="{StaticResource PageSecondaryButton}" FontSize="11" Padding="5,0">
                                                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                                                         <svg:SvgViewbox Source="images/shancun.svg" Width="16" Height="16" Margin="0,0,5,0"/>
-                                                        <TextBlock Text="ADB读一加DDR版本" VerticalAlignment="Center"/>
+                                                        <TextBlock Text="ADB读一加DDR版本" VerticalAlignment="Center" TextTrimming="CharacterEllipsis"/>
                                                     </StackPanel>
                                                 </Button>
-                                                <Button x:Name="EnableDiagPortButton" Margin="0,0,0,8" Click="EnableDiagPortButton_Click" Style="{StaticResource PageSecondaryButton}" ToolTip="需ROOT" FontSize="11" Padding="8,0">
+                                                <Button x:Name="EnableDiagPortButton" Margin="0,0,0,8" Click="EnableDiagPortButton_Click" Style="{StaticResource PageSecondaryButton}" ToolTip="需ROOT" FontSize="11" Padding="5,0">
                                                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                                                         <svg:SvgViewbox Source="images/jidai.svg" Width="16" Height="16" Margin="0,0,5,0"/>
                                                         <TextBlock VerticalAlignment="Center"><Run Language="zh-cn" Text="ADB"/><Run Text="强开基带调试端口"/></TextBlock>
@@ -1299,7 +1299,7 @@ Background="#FFFAFAFC"
                                                 <Button x:Name="SwitchToMtpButton" Margin="0,0,8,0" Click="SwitchToMtpButton_Click" Style="{StaticResource PageSecondaryButton}">
                                                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                                                         <svg:SvgViewbox Source="images/wenjianchuanshu.svg" Width="14" Height="16" Margin="0,0,5,0"/>
-                                                        <TextBlock Text="ADB切换文件传输" VerticalAlignment="Center"/>
+                                                        <TextBlock Text="ADB切换文件传输" VerticalAlignment="Center" TextTrimming="CharacterEllipsis"/>
                                                     </StackPanel>
                                                 </Button>
                                                 <Button x:Name="AnalyzeOcdtButton"
@@ -2348,7 +2348,7 @@ Background="#FFFAFAFC"
 </Grid>
                 </DataTemplate>
                 <DataTemplate x:Key="Page_AboutToolView">
-                        <Grid Name="AboutToolView" Visibility="Collapsed" Background="#FFF6F8FA" VerticalAlignment="Top">
+                        <Grid Name="AboutToolView" Visibility="Collapsed" Background="#FFF6F8FA">
                             <Grid.Resources>
                                 <Style x:Key="AboutCardStyle" TargetType="Border">
                                     <Setter Property="Background" Value="#FFFFFFFF"/>
@@ -3239,7 +3239,7 @@ Background="#FFFAFAFC"
                         Visibility="Collapsed"          
                         Background="#FFF8F8F8"
                         TextElement.FontFamily="pack://siteoforigin:,,,/fonts/OPPO_Sans_4.0.ttf#OPPO Sans 4.0"
-                        Cursor="" VerticalAlignment="Top">
+                        Cursor="">
 <!-- MONO_PAGE_MARKER_OujiaFlashView -->
     <Grid.Resources>
                                 <Style x:Key="OugaFlashCardGroupBoxStyle"
@@ -4286,7 +4286,7 @@ Background="#FFFAFAFC"
                         <Grid
                         Name="AutorootView"
                         Visibility="Collapsed"  
-                        Background="#FFFAFAFA" VerticalAlignment="Top">
+                        Background="#FFFAFAFA">
                             <Grid.Resources>
                                 <Style x:Key="AutorootCardStyle" TargetType="Border">
                                     <Setter Property="Background" Value="#FFFFFFFF"/>
@@ -6786,7 +6786,7 @@ Background="#FFFAFAFC"
                         <Grid
                         Name="ColorOSAssistantView"
                         Visibility="Collapsed"
-                        Background="#FFF8F8F8" VerticalAlignment="Top">
+                        Background="#FFF8F8F8">
 <!-- MONO_PAGE_MARKER_ColorOSAssistantView -->
     <Grid.Resources>
                                 <Style x:Key="ColorOSCardStyle" TargetType="Border">
@@ -7387,7 +7387,7 @@ Background="#FFFAFAFC"
                         <Grid
                         Name="VioletDownloadView"
                         Visibility="Collapsed"
-                        Background="#FFFAFAFA" VerticalAlignment="Top">
+                        Background="#FFFAFAFA">
                             <Grid.Resources>
                                 <Style x:Key="VioletCardStyle" TargetType="Border">
                                     <Setter Property="Background" Value="#FFFFFFFF"/>
