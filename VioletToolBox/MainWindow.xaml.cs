@@ -1063,8 +1063,8 @@ namespace WpfApp1
             UpdateAvbModeFileInputs();
             InitializeVioletDownload();
             
-            this.Width = 1000;
-            this.Height = 850;
+            this.Width = Math.Min(1000, System.Windows.SystemParameters.WorkArea.Width - 40);
+            this.Height = Math.Min(850, System.Windows.SystemParameters.WorkArea.Height - 24);
             this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             
             // 异步增加打开次数
