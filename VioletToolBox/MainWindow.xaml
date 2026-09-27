@@ -1554,8 +1554,8 @@ Background="#FFFAFAFC"
                                 <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
 <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="3*" />
-                                <ColumnDefinition Width="2*" />
+                                <ColumnDefinition Width="4*" />
+                                <ColumnDefinition Width="1*" />
                             </Grid.ColumnDefinitions>
 <Grid Grid.Column="0" Grid.Row="0" Margin="0,0,6,0">
                                 <Grid.RowDefinitions>
@@ -1876,9 +1876,9 @@ Background="#FFFAFAFC"
 <GroupBox.Header><StackPanel Orientation="Horizontal" Background="Transparent"><svg:SvgViewbox Source="images/shandian.svg" Width="15" Height="15" Margin="0,0,7,0" VerticalAlignment="Center"/><TextBlock Text="操作" VerticalAlignment="Center"/></StackPanel></GroupBox.Header>
                                     <Grid>
                                         <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="160"/>
                                             <ColumnDefinition Width="8"/>
-                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="160"/>
                                             <ColumnDefinition Width="8"/>
                                             <ColumnDefinition Width="*"/>
                                             <ColumnDefinition Width="8"/>
@@ -1931,15 +1931,15 @@ Background="#FFFAFAFC"
                                                 Grid.Row="2" Grid.Column="0"
                                                 Style="{StaticResource PageSecondaryButton}"
                                                 ToolTip="开机状态下读取（需ROOT）"
-                                                Click="AdbReadPartitionTableButton_Click" Width="146" HorizontalContentAlignment="Center" Padding="0,0">
-                                            <TextBlock Text="读分区表&#x0a;[开机]" TextWrapping="Wrap" TextAlignment="Center" FontSize="12" VerticalAlignment="Center" LineHeight="16"/>
+                                                Click="AdbReadPartitionTableButton_Click" Width="158" HorizontalContentAlignment="Center" Padding="0,0">
+                                            <TextBlock Text="读分区表[开机]" FontSize="12" VerticalAlignment="Center"/>
                                         </Button>
                                         <Button x:Name="ReadPartitionTableButton"
                                                 Grid.Row="2" Grid.Column="2"
                                                 Style="{StaticResource PageSecondaryButton}"
                                                 ToolTip="Fastboot模式下读取分区表"
-                                                Click="ReadPartitionTableButton_Click" Width="146" HorizontalContentAlignment="Center" Padding="0,0">
-                                            <TextBlock Text="读分区表&#x0a;[FB]" TextWrapping="Wrap" TextAlignment="Center" FontSize="12" VerticalAlignment="Center" LineHeight="16"/>
+                                                Click="ReadPartitionTableButton_Click" Width="158" HorizontalContentAlignment="Center" Padding="0,0">
+                                            <TextBlock Text="读分区表[FB]" FontSize="12" VerticalAlignment="Center"/>
                                         </Button>
                                         <Button x:Name="WritePartitionButton"
                                                 Grid.Row="2" Grid.Column="4"
