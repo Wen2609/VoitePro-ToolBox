@@ -1942,37 +1942,37 @@ Background="#FFFAFAFC"
                                             <TextBlock Text="读分区表[FB]" FontSize="12" VerticalAlignment="Center"/>
                                         </Button>
                                         <Button x:Name="WritePartitionButton"
-                                                Grid.Row="2" Grid.Column="4"
+                                                Grid.Row="4" Grid.Column="0"
                                                 Content="写入分区"
                                                 Style="{StaticResource PageSecondaryButton}"
                                                 Click="WritePartitionButton_Click" Width="150"/>
                                         <Button x:Name="ErasePartitionButton"
-                                                Grid.Row="2" Grid.Column="6"
+                                                Grid.Row="4" Grid.Column="2"
                                                 Content="擦除分区"
                                                 Style="{StaticResource PageSecondaryButton}"
                                                 ToolTip="擦除指定分区"
                                                 Click="ErasePartitionButton_Click" Width="150"/>
 
                                         <Button x:Name="BackupBasebandButton"
-                                                Grid.Row="4" Grid.Column="0"
+                                                Grid.Row="4" Grid.Column="4"
                                                 Content="备份字库"
                                                 Style="{StaticResource PageLightButton}"
                                                 ToolTip="仅在开机模式下可用（需ROOT）"
                                                 Click="BackupBasebandButton_Click" Width="150"/>
                                         <Button x:Name="ReadPartitionButton"
-                                                Grid.Row="4" Grid.Column="2"
+                                                Grid.Row="2" Grid.Column="4"
                                                 Content="回读分区"
                                                 Style="{StaticResource PageLightButton}"
                                                 ToolTip="仅在开机模式下可用（需ROOT）"
                                                 Click="ReadPartitionButton_Click" Width="150"/>
                                         <Button x:Name="BackupGptButton"
-                                                Grid.Row="4" Grid.Column="4"
+                                                Grid.Row="4" Grid.Column="6"
                                                 Content="备份GPT"
                                                 Style="{StaticResource PageLightButton}"
                                                 ToolTip="仅在开机模式下可用（需ROOT）"
                                                 Click="BackupGptButton_Click" Width="150"/>
                                         <Button x:Name="StopFastbootVisualizationOperationButton"
-                                                Grid.Row="4" Grid.Column="6"
+                                                Grid.Row="2" Grid.Column="6"
                                                 Content="停止操作"
                                                 Style="{StaticResource PageSecondaryButton}"
                                                 IsEnabled="False"
