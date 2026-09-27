@@ -1932,14 +1932,14 @@ Background="#FFFAFAFC"
                                                 Style="{StaticResource PageSecondaryButton}"
                                                 ToolTip="开机状态下读取（需ROOT）"
                                                 Click="AdbReadPartitionTableButton_Click" Width="146" HorizontalContentAlignment="Center" Padding="0,0">
-                                            <TextBlock Text="读分区表[开机]" FontSize="11" VerticalAlignment="Center"/>
+                                            <TextBlock Text="读分区表&#x0a;[开机]" TextWrapping="Wrap" TextAlignment="Center" FontSize="12" VerticalAlignment="Center" LineHeight="16"/>
                                         </Button>
                                         <Button x:Name="ReadPartitionTableButton"
                                                 Grid.Row="2" Grid.Column="2"
                                                 Style="{StaticResource PageSecondaryButton}"
                                                 ToolTip="Fastboot模式下读取分区表"
                                                 Click="ReadPartitionTableButton_Click" Width="146" HorizontalContentAlignment="Center" Padding="0,0">
-                                            <TextBlock Text="读分区表[FB]" FontSize="11" VerticalAlignment="Center"/>
+                                            <TextBlock Text="读分区表&#x0a;[FB]" TextWrapping="Wrap" TextAlignment="Center" FontSize="12" VerticalAlignment="Center" LineHeight="16"/>
                                         </Button>
                                         <Button x:Name="WritePartitionButton"
                                                 Grid.Row="2" Grid.Column="4"
