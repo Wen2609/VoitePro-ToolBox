@@ -1561,7 +1561,7 @@ Background="#FFFAFAFC"
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="*" />
                                     <RowDefinition Height="62" />
-                                    <RowDefinition Height="151" />
+                                    <RowDefinition Height="215" />
                                 </Grid.RowDefinitions>
 
                                 <!-- Flash File Selection -->
@@ -1886,10 +1886,11 @@ Background="#FFFAFAFC"
                                         </Grid.ColumnDefinitions>
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="27"/>
-                                            <RowDefinition Height="7"/>
-                                            <RowDefinition Height="32"/>
-                                            <RowDefinition Height="7"/>
-                                            <RowDefinition Height="32"/>
+                                            <RowDefinition Height="18"/>
+                                            <RowDefinition Height="34"/>
+                                            <RowDefinition Height="18"/>
+                                            <RowDefinition Height="34"/>
+                                            <RowDefinition Height="38"/>
                                         </Grid.RowDefinitions>
 
                                         <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="7"
@@ -1927,6 +1928,12 @@ Background="#FFFAFAFC"
                                                       IsEnabled="False"
                                                       ToolTip="刷写 vbmeta 时添加 --disable-verity 和 --disable-verification"/>
                                         </StackPanel>
+                                        <TextBlock Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="7"
+                                                   Text="读取分区" FontSize="11" FontWeight="SemiBold"
+                                                   Foreground="#FF8E8E93" Margin="2,2,0,0" VerticalAlignment="Center"/>
+                                        <TextBlock Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="7"
+                                                   Text="写入与备份" FontSize="11" FontWeight="SemiBold"
+                                                   Foreground="#FF8E8E93" Margin="2,2,0,0" VerticalAlignment="Center"/>
                                         <Button x:Name="AdbReadPartitionTableButton"
                                                 Grid.Row="2" Grid.Column="0"
                                                 Style="{StaticResource PageSecondaryButton}"
@@ -1972,7 +1979,7 @@ Background="#FFFAFAFC"
                                                 ToolTip="仅在开机模式下可用（需ROOT）"
                                                 Click="BackupGptButton_Click" Width="150"/>
                                         <Button x:Name="StopFastbootVisualizationOperationButton"
-                                                Grid.Row="2" Grid.Column="6"
+                                                Grid.Row="5" Grid.Column="6"
                                                 Content="停止操作"
                                                 Style="{StaticResource PageSecondaryButton}"
                                                 IsEnabled="False"
