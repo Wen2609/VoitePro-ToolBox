@@ -14,6 +14,7 @@ using System.Windows.Threading;
 using System.IO;
 using System.Linq;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Forms;
 using System.Net.Http;
 using System.Text;
@@ -1734,7 +1735,11 @@ namespace WpfApp1
                 // 清空 PageHost 并显示 HomeView 即可
                 _pageHost.Content = null;
                 var home = this.FindControlInPages("HomeView") as FrameworkElement;
-                if (home != null) home.Visibility = System.Windows.Visibility.Visible;
+                if (home != null)
+                {
+                    home.Visibility = System.Windows.Visibility.Visible;
+                    AnimatePageIn(home, true);
+                }
                 _currentPage = viewName;
                 return;
             }
@@ -1749,6 +1754,83 @@ namespace WpfApp1
             _currentPage = viewName;
             _pageHost.Content = page;
             page.Visibility = System.Windows.Visibility.Visible;
+            AnimatePageIn(page, true);
+            // 预取下一个可能切换的页面（后台低优先级实例化，减少首次切换卡顿）
+            PrefetchPageAsync(viewName);
+        }
+
+        /// <summary>页面入场动画：淡入 + 轻微上移（RenderTransform GPU 合成，不触发布局重算）</summary>
+        private void AnimatePageIn(FrameworkElement page, bool slide)
+        {
+            if (page == null) return;
+            try
+            {
+                page.BeginAnimation(UIElement.OpacityProperty, null);
+                page.BeginAnimation(UIElement.RenderTransformProperty, null);
+                page.RenderTransformOrigin = new System.Windows.Point(0.5, 0.5);
+                page.Opacity = 0.0;
+                if (slide)
+                {
+                    page.RenderTransform = new TranslateTransform(0, 14);
+                }
+                var sb = new Storyboard();
+                var oa = new DoubleAnimation(0.0, 1.0, TimeSpan.FromMilliseconds(190));
+                oa.EasingFunction = new QuadraticEase { EasingMode = EasingMode.EaseOut };
+                Storyboard.SetTarget(oa, page);
+                Storyboard.SetTargetProperty(oa, new PropertyPath(UIElement.OpacityProperty));
+                sb.Children.Add(oa);
+                if (slide)
+                {
+                    var ta = new DoubleAnimation(14.0, 0.0, TimeSpan.FromMilliseconds(240));
+                    ta.EasingFunction = new CubicEase { EasingMode = EasingMode.EaseOut };
+                    Storyboard.SetTarget(ta, page);
+                    Storyboard.SetTargetProperty(ta, new PropertyPath("(UIElement.RenderTransform).(TranslateTransform.Y)"));
+                    sb.Children.Add(ta);
+                }
+                sb.Begin(page);
+            }
+            catch { }
+        }
+
+        /// <summary>低优先级预实例化相邻页面，切页零等待</summary>
+        private void PrefetchPageAsync(string currentView)
+        {
+            try
+            {
+                string[] neighbors = null;
+                if (currentView == "HomeView") neighbors = new[] { "ScreenMirrorView" };
+                else if (currentView == "ScreenMirrorView") neighbors = new[] { "BasicFlashView" };
+                else if (currentView == "BasicFlashView") neighbors = new[] { "FastbootVisualizationView" };
+                else if (currentView == "FastbootVisualizationView") neighbors = new[] { "OujiaFlashView" };
+                else if (currentView == "OujiaFlashView") neighbors = new[] { "EdlFlashView" };
+                else if (currentView == "EdlFlashView") neighbors = new[] { "ColorOSAssistantView" };
+                else if (currentView == "ColorOSAssistantView") neighbors = new[] { "HiddenEnvironmentView" };
+                else if (currentView == "HiddenEnvironmentView") neighbors = new[] { "SystemZoneView" };
+                else if (currentView == "SystemZoneView") neighbors = new[] { "AutorootView" };
+                else if (currentView == "AutorootView") neighbors = new[] { "AppManagementView" };
+                else if (currentView == "AppManagementView") neighbors = new[] { "AndroidGeneralView" };
+                else if (currentView == "AndroidGeneralView") neighbors = new[] { "PayloadView" };
+                else if (currentView == "PayloadView") neighbors = new[] { "RomDownloadview" };
+                else if (currentView == "RomDownloadview") neighbors = new[] { "BackupAssistantView" };
+                else if (currentView == "BackupAssistantView") neighbors = new[] { "VioletDownloadView" };
+                else if (currentView == "VioletDownloadView") neighbors = new[] { "AboutToolView" };
+                else if (currentView == "AboutToolView") neighbors = null;
+                if (neighbors == null) return;
+                Dispatcher.BeginInvoke(new Action(() =>
+                {
+                    try
+                    {
+                        foreach (var n in neighbors)
+                        {
+                            if (_pageInstances.ContainsKey(n)) continue;
+                            var inst = InstantiatePage(n);
+                            if (inst != null) _pageInstances[n] = inst;
+                        }
+                    }
+                    catch { }
+                }), DispatcherPriority.Background);
+            }
+            catch { }
         }
 
         private FrameworkElement InstantiatePage(string viewName)
