@@ -1903,13 +1903,13 @@ Background="#FFFAFAFC"
 <GroupBox.Header><StackPanel Orientation="Horizontal" Background="Transparent"><svg:SvgViewbox Source="images/shandian.svg" Width="15" Height="15" Margin="0,0,7,0" VerticalAlignment="Center"/><TextBlock Text="操作" VerticalAlignment="Center"/></StackPanel></GroupBox.Header>
                                     <Grid>
                                         <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="150"/>
+                                            <ColumnDefinition Width="*"/>
                                             <ColumnDefinition Width="8"/>
-                                            <ColumnDefinition Width="150"/>
+                                            <ColumnDefinition Width="*"/>
                                             <ColumnDefinition Width="8"/>
-                                            <ColumnDefinition Width="150"/>
+                                            <ColumnDefinition Width="*"/>
                                             <ColumnDefinition Width="8"/>
-                                            <ColumnDefinition Width="150"/>
+                                            <ColumnDefinition Width="*"/>
                                         </Grid.ColumnDefinitions>
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="27"/>
@@ -1965,53 +1965,53 @@ Background="#FFFAFAFC"
                                                 Grid.Row="2" Grid.Column="0"
                                                 Style="{StaticResource PageSecondaryButton}"
                                                 ToolTip="开机状态下读取（需ROOT）"
-                                                Click="AdbReadPartitionTableButton_Click" Width="150" HorizontalContentAlignment="Center" Padding="0,0">
+                                                Click="AdbReadPartitionTableButton_Click" HorizontalAlignment="Stretch" Margin="0,0,0,0" HorizontalContentAlignment="Center" Padding="0,0">
                                             <TextBlock Text="读分区表[开机]" FontSize="12" VerticalAlignment="Center"/>
                                         </Button>
                                         <Button x:Name="ReadPartitionTableButton"
                                                 Grid.Row="2" Grid.Column="2"
                                                 Style="{StaticResource PageSecondaryButton}"
                                                 ToolTip="Fastboot模式下读取分区表"
-                                                Click="ReadPartitionTableButton_Click" Width="150" HorizontalContentAlignment="Center" Padding="0,0">
+                                                Click="ReadPartitionTableButton_Click" HorizontalAlignment="Stretch" Margin="0,0,0,0" HorizontalContentAlignment="Center" Padding="0,0">
                                             <TextBlock Text="读分区表[FB]" FontSize="12" VerticalAlignment="Center"/>
                                         </Button>
                                         <Button x:Name="WritePartitionButton"
                                                 Grid.Row="4" Grid.Column="0"
                                                 Content="写入分区"
                                                 Style="{StaticResource PageSecondaryButton}"
-                                                Click="WritePartitionButton_Click" Width="150"/>
+                                                Click="WritePartitionButton_Click" HorizontalAlignment="Stretch"/>
                                         <Button x:Name="ErasePartitionButton"
                                                 Grid.Row="4" Grid.Column="2"
                                                 Content="擦除分区"
                                                 Style="{StaticResource PageSecondaryButton}"
                                                 ToolTip="擦除指定分区"
-                                                Click="ErasePartitionButton_Click" Width="150"/>
+                                                Click="ErasePartitionButton_Click" HorizontalAlignment="Stretch"/>
 
                                         <Button x:Name="BackupBasebandButton"
                                                 Grid.Row="4" Grid.Column="4"
                                                 Content="备份字库"
                                                 Style="{StaticResource PageLightButton}"
                                                 ToolTip="仅在开机模式下可用（需ROOT）"
-                                                Click="BackupBasebandButton_Click" Width="150"/>
+                                                Click="BackupBasebandButton_Click" HorizontalAlignment="Stretch"/>
                                         <Button x:Name="ReadPartitionButton"
                                                 Grid.Row="2" Grid.Column="4"
                                                 Content="回读分区"
                                                 Style="{StaticResource PageLightButton}"
                                                 ToolTip="仅在开机模式下可用（需ROOT）"
-                                                Click="ReadPartitionButton_Click" Width="150"/>
+                                                Click="ReadPartitionButton_Click" HorizontalAlignment="Stretch"/>
                                         <Button x:Name="BackupGptButton"
                                                 Grid.Row="4" Grid.Column="6"
                                                 Content="备份GPT"
                                                 Style="{StaticResource PageLightButton}"
                                                 ToolTip="仅在开机模式下可用（需ROOT）"
-                                                Click="BackupGptButton_Click" Width="150"/>
+                                                Click="BackupGptButton_Click" HorizontalAlignment="Stretch"/>
                                         <Button x:Name="StopFastbootVisualizationOperationButton"
                                                 Grid.Row="5" Grid.Column="6"
                                                 Content="停止操作"
                                                 Style="{StaticResource PageSecondaryButton}"
                                                 IsEnabled="False"
                                                 ToolTip="停止当前页面正在执行的操作"
-                                                Click="StopFastbootVisualizationOperationButton_Click" Width="150"/>
+                                                Click="StopFastbootVisualizationOperationButton_Click" HorizontalAlignment="Stretch"/>
                                     </Grid>
                                 </GroupBox>
                             </Grid>
