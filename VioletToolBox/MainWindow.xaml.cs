@@ -4167,11 +4167,14 @@ namespace WpfApp1
         private void EdlFlashButton_Click(object sender, RoutedEventArgs e)
         {
             
-
             ShowPage("EdlFlashView");
-
             UpdateButtonStates("EdlFlash");
             currentView = "EdlFlash";
+            try { EnsureEdl(); }
+            catch (Exception ex)
+            {
+                try { System.IO.File.AppendAllText(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "edl_debug.txt"), $"[EnsureEdl] {ex}\n"); } catch { }
+            }
                     }
 
         // 读取应用列表按钮点击事件：执行 adb shell pm list packages 并填充可勾选列表
