@@ -1759,7 +1759,7 @@ namespace WpfApp1
             PrefetchPageAsync(viewName);
         }
 
-        /// <summary>页面入场动画：淡入 + 轻微上移（RenderTransform GPU 合成，不触发布局重算）</summary>
+        /// <summary>页面入场动画：淡入 + 轻微上移 + 缩放（RenderTransform GPU 合成，不触发布局重算）</summary>
         private void AnimatePageIn(FrameworkElement page, bool slide)
         {
             if (page == null) return;
@@ -1769,23 +1769,40 @@ namespace WpfApp1
                 page.BeginAnimation(UIElement.RenderTransformProperty, null);
                 page.RenderTransformOrigin = new System.Windows.Point(0.5, 0.5);
                 page.Opacity = 0.0;
+                var tg = new TransformGroup();
                 if (slide)
                 {
-                    page.RenderTransform = new TranslateTransform(0, 14);
+                    tg.Children.Add(new TranslateTransform(0, 16));
+                    tg.Children.Add(new ScaleTransform(0.985, 0.985));
                 }
+                else
+                {
+                    tg.Children.Add(new ScaleTransform(0.99, 0.99));
+                }
+                page.RenderTransform = tg;
                 var sb = new Storyboard();
-                var oa = new DoubleAnimation(0.0, 1.0, TimeSpan.FromMilliseconds(190));
+                var oa = new DoubleAnimation(0.0, 1.0, TimeSpan.FromMilliseconds(150));
                 oa.EasingFunction = new QuadraticEase { EasingMode = EasingMode.EaseOut };
                 Storyboard.SetTarget(oa, page);
                 Storyboard.SetTargetProperty(oa, new PropertyPath(UIElement.OpacityProperty));
                 sb.Children.Add(oa);
                 if (slide)
                 {
-                    var ta = new DoubleAnimation(14.0, 0.0, TimeSpan.FromMilliseconds(240));
+                    var ta = new DoubleAnimation(16.0, 0.0, TimeSpan.FromMilliseconds(200));
                     ta.EasingFunction = new CubicEase { EasingMode = EasingMode.EaseOut };
                     Storyboard.SetTarget(ta, page);
-                    Storyboard.SetTargetProperty(ta, new PropertyPath("(UIElement.RenderTransform).(TranslateTransform.Y)"));
+                    Storyboard.SetTargetProperty(ta, new PropertyPath("(UIElement.RenderTransform).Children[0].(TranslateTransform.Y)"));
                     sb.Children.Add(ta);
+                    var sa = new DoubleAnimation(0.985, 1.0, TimeSpan.FromMilliseconds(200));
+                    sa.EasingFunction = new CubicEase { EasingMode = EasingMode.EaseOut };
+                    Storyboard.SetTarget(sa, page);
+                    Storyboard.SetTargetProperty(sa, new PropertyPath("(UIElement.RenderTransform).Children[1].(ScaleTransform.ScaleX)"));
+                    sb.Children.Add(sa);
+                    var sa2 = new DoubleAnimation(0.985, 1.0, TimeSpan.FromMilliseconds(200));
+                    sa2.EasingFunction = new CubicEase { EasingMode = EasingMode.EaseOut };
+                    Storyboard.SetTarget(sa2, page);
+                    Storyboard.SetTargetProperty(sa2, new PropertyPath("(UIElement.RenderTransform).Children[1].(ScaleTransform.ScaleY)"));
+                    sb.Children.Add(sa2);
                 }
                 sb.Begin(page);
             }
@@ -1824,7 +1841,18 @@ namespace WpfApp1
                         {
                             if (_pageInstances.ContainsKey(n)) continue;
                             var inst = InstantiatePage(n);
-                            if (inst != null) _pageInstances[n] = inst;
+                            if (inst == null) continue;
+                            _pageInstances[n] = inst;
+                            // 离屏热身：强制 Measure/Arrange，缓存布局结果，切页时接近零布局
+                            try
+                            {
+                                double w = _pageHost != null && _pageHost.ActualWidth > 10 ? _pageHost.ActualWidth : 990;
+                                double h = _pageHost != null && _pageHost.ActualHeight > 10 ? _pageHost.ActualHeight : 820;
+                                inst.Measure(new System.Windows.Size(w, h));
+                                inst.Arrange(new System.Windows.Rect(0, 0, w, h));
+                                inst.UpdateLayout();
+                            }
+                            catch { }
                         }
                     }
                     catch { }
