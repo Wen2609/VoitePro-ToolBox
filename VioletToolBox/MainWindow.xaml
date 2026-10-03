@@ -36,6 +36,33 @@ Background="#FFFAFAFC"
                 <GradientStop Color="#AEAEB2" Offset="0"/>
                 <GradientStop Color="#48484A" Offset="1"/>
             </LinearGradientBrush>
+            <Style x:Key="EdlDgHeaderStyle" TargetType="{x:Type DataGridColumnHeader}">
+                <Setter Property="Height" Value="32"/>
+                <Setter Property="Background" Value="#FFF4F4F4"/>
+                <Setter Property="Foreground" Value="#FF1D1D1F"/>
+                <Setter Property="FontWeight" Value="SemiBold"/>
+                <Setter Property="BorderThickness" Value="0,0,0,1"/>
+                <Setter Property="BorderBrush" Value="#FFE9E9E9"/>
+                <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            </Style>
+            <Style x:Key="EdlDgRowStyle" TargetType="{x:Type DataGridRow}">
+                <Setter Property="Background" Value="#FFFFFFFF"/>
+                <Style.Triggers>
+                    <Trigger Property="AlternationIndex" Value="1">
+                        <Setter Property="Background" Value="#FFFCFBFD"/>
+                    </Trigger>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter Property="Background" Value="#FFF5F5F5"/>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+            <Style x:Key="EdlDgCellStyle" TargetType="{x:Type DataGridCell}">
+                <Setter Property="BorderThickness" Value="0"/>
+                <Setter Property="VerticalContentAlignment" Value="Center"/>
+                <Setter Property="Padding" Value="6,0"/>
+                <Setter Property="FontSize" Value="12"/>
+                <Setter Property="Foreground" Value="#FF1D1D1F"/>
+            </Style>
             <Style x:Key="FastbootButtonBaseStyle"
                    TargetType="{x:Type Button}"
                    BasedOn="{StaticResource {x:Type Button}}">
@@ -6782,35 +6809,6 @@ Background="#FFFAFAFC"
                         Name="EdlFlashView"
                         Visibility="Collapsed"
                         Background="#FFF8F8F8">
-                        <Grid.Resources>
-                                <Style x:Key="EdlDgHeaderStyle" TargetType="{x:Type DataGridColumnHeader}">
-                                    <Setter Property="Height" Value="32"/>
-                                    <Setter Property="Background" Value="#FFF4F4F4"/>
-                                    <Setter Property="Foreground" Value="#FF1D1D1F"/>
-                                    <Setter Property="FontWeight" Value="SemiBold"/>
-                                    <Setter Property="BorderThickness" Value="0,0,0,1"/>
-                                    <Setter Property="BorderBrush" Value="#FFE9E9E9"/>
-                                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
-                                </Style>
-                                <Style x:Key="EdlDgRowStyle" TargetType="{x:Type DataGridRow}">
-                                    <Setter Property="Background" Value="#FFFFFFFF"/>
-                                    <Style.Triggers>
-                                        <Trigger Property="AlternationIndex" Value="1">
-                                            <Setter Property="Background" Value="#FFFCFBFD"/>
-                                        </Trigger>
-                                        <Trigger Property="IsMouseOver" Value="True">
-                                            <Setter Property="Background" Value="#FFF5F5F5"/>
-                                        </Trigger>
-                                    </Style.Triggers>
-                                </Style>
-                                <Style x:Key="EdlDgCellStyle" TargetType="{x:Type DataGridCell}">
-                                    <Setter Property="BorderThickness" Value="0"/>
-                                    <Setter Property="VerticalContentAlignment" Value="Center"/>
-                                    <Setter Property="Padding" Value="6,0"/>
-                                    <Setter Property="FontSize" Value="12"/>
-                                    <Setter Property="Foreground" Value="#FF1D1D1F"/>
-                                </Style>
-                            </Grid.Resources>
                         <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
                             <StackPanel Margin="24,20,24,18">
                                 <!-- 标题 -->

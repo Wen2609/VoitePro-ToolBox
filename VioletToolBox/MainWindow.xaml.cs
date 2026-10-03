@@ -1155,8 +1155,42 @@ namespace WpfApp1
             
             InitializeDeviceStatusMonitoring();
             ToggleAllPartitionsCommand = new RelayCommand(ToggleAllPartitions);
-            
+
             // 设置分区表容器 PartitionTableDataGrid.ItemsSource = allPartitions;
+            // 命令行导航（验证/调试）：-page=BasicFlashView 启动后自动打开指定页面
+            Loaded += (s2, e2) =>
+            {
+                try
+                {
+                    var args = Environment.GetCommandLineArgs();
+                    try { System.IO.File.AppendAllText(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "startup.log"), $"{System.DateTime.Now:HH:mm:ss} nav args: {string.Join("|", args)}\r\n"); } catch { }
+                    foreach (var a in args)
+                    {
+                        if (a.StartsWith("-page="))
+                        {
+                            var pname = a.Substring(6);
+                            Dispatcher.BeginInvoke(new Action(() =>
+                            {
+                                try
+                                {
+                                    var inst = _pageInstances.TryGetValue(pname, out var _p) ? _p : null;
+                                    var page = inst ?? InstantiatePage(pname);
+                                    try { System.IO.File.AppendAllText(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "startup.log"), $"{System.DateTime.Now:HH:mm:ss} nav {pname} page={(page == null ? "NULL" : "OK")}\r\n"); } catch { }
+                                    ShowPage(pname);
+                                    if (pname.EndsWith("View")) UpdateButtonStates(pname.Substring(0, pname.Length - 4));
+                                    try { System.IO.File.AppendAllText(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "startup.log"), $"{System.DateTime.Now:HH:mm:ss} nav {pname} done, current={_currentPage}\r\n"); } catch { }
+                                }
+                                catch (Exception ex)
+                                {
+                                    try { System.IO.File.AppendAllText(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "startup.log"), $"{System.DateTime.Now:HH:mm:ss} nav {pname} EX: {ex}\r\n"); } catch { }
+                                }
+                            }));
+                            break;
+                        }
+                    }
+                }
+                catch { }
+            };
             (this.FindControlInPages("MultiDeviceComboBox") as System.Windows.Controls.ComboBox).ItemsSource = DeviceSerials;
             var appListDataGrid = this.FindControlInPages("AppListDataGrid") as DataGrid;
             if (appListDataGrid != null)
@@ -1719,14 +1753,22 @@ namespace WpfApp1
 
         private FrameworkElement InstantiatePage(string viewName)
         {
-            if (!_instantiating.Add(viewName)) return null;
+            if (!_instantiating.Add(viewName))
+            {
+                try { System.IO.File.AppendAllText(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "page_error.log"), $"{System.DateTime.Now:HH:mm:ss} {viewName} REENTRANT\r\n"); } catch { }
+                return null;
+            }
             try
             {
                 var dt = this.FindResource("Page_" + viewName) as DataTemplate;
                 if (dt == null) return null;
                 return dt.LoadContent() as FrameworkElement;
             }
-            catch { return null; }
+            catch (Exception ex)
+            {
+                try { System.IO.File.AppendAllText(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "page_error.log"), $"{System.DateTime.Now:HH:mm:ss} {viewName}: {ex}\r\n"); } catch { }
+                return null;
+            }
             finally
             {
                 _instantiating.Remove(viewName);
