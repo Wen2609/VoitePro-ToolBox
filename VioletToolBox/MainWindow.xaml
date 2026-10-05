@@ -47,12 +47,19 @@ Background="#FFFAFAFC"
             </Style>
             <Style x:Key="EdlDgRowStyle" TargetType="{x:Type DataGridRow}">
                 <Setter Property="Background" Value="#FFFFFFFF"/>
+                <Setter Property="Foreground" Value="#FF1D1D1F"/>
+                <Setter Property="Height" Value="30"/>
                 <Style.Triggers>
                     <Trigger Property="AlternationIndex" Value="1">
                         <Setter Property="Background" Value="#FFFCFBFD"/>
                     </Trigger>
                     <Trigger Property="IsMouseOver" Value="True">
                         <Setter Property="Background" Value="#FFF5F5F5"/>
+                    </Trigger>
+                    <Trigger Property="IsSelected" Value="True">
+                        <Setter Property="Background" Value="#FFE8F0FF"/>
+                        <Setter Property="Foreground" Value="#FF1D1D1F"/>
+                        <Setter Property="BorderBrush" Value="#FFE8F0FF"/>
                     </Trigger>
                 </Style.Triggers>
             </Style>
@@ -8846,10 +8853,50 @@ Background="#FFFAFAFC"
                                                     </Border>
                                                     <ControlTemplate.Triggers>
                                                         <Trigger Property="IsMouseOver" Value="True">
-                                                            <Setter TargetName="bd" Property="Background" Value="#FFE8F0FF"/>
+                                                            <Trigger.EnterActions>
+                                                                <BeginStoryboard>
+                                                                    <Storyboard>
+                                                                        <ColorAnimation Storyboard.TargetName="bd"
+                                                                                        Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+                                                                                        To="#FFE8F0FF" Duration="0:0:0.12">
+                                                                            <ColorAnimation.EasingFunction><CubicEase EasingMode="EaseOut"/></ColorAnimation.EasingFunction>
+                                                                        </ColorAnimation>
+                                                                    </Storyboard>
+                                                                </BeginStoryboard>
+                                                            </Trigger.EnterActions>
+                                                            <Trigger.ExitActions>
+                                                                <BeginStoryboard>
+                                                                    <Storyboard>
+                                                                        <ColorAnimation Storyboard.TargetName="bd"
+                                                                                        Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+                                                                                        Duration="0:0:0.15">
+                                                                            <ColorAnimation.EasingFunction><CubicEase EasingMode="EaseOut"/></ColorAnimation.EasingFunction>
+                                                                        </ColorAnimation>
+                                                                    </Storyboard>
+                                                                </BeginStoryboard>
+                                                            </Trigger.ExitActions>
                                                         </Trigger>
                                                         <Trigger Property="IsPressed" Value="True">
-                                                            <Setter TargetName="bd" Property="Background" Value="#FFE5E5EA"/>
+                                                            <Trigger.EnterActions>
+                                                                <BeginStoryboard>
+                                                                    <Storyboard>
+                                                                        <ColorAnimation Storyboard.TargetName="bd"
+                                                                                        Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+                                                                                        To="#FFE5E5EA" Duration="0:0:0.08"/>
+                                                                    </Storyboard>
+                                                                </BeginStoryboard>
+                                                            </Trigger.EnterActions>
+                                                            <Trigger.ExitActions>
+                                                                <BeginStoryboard>
+                                                                    <Storyboard>
+                                                                        <ColorAnimation Storyboard.TargetName="bd"
+                                                                                        Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+                                                                                        Duration="0:0:0.12">
+                                                                            <ColorAnimation.EasingFunction><CubicEase EasingMode="EaseOut"/></ColorAnimation.EasingFunction>
+                                                                        </ColorAnimation>
+                                                                    </Storyboard>
+                                                                </BeginStoryboard>
+                                                            </Trigger.ExitActions>
                                                         </Trigger>
                                                     </ControlTemplate.Triggers>
                                                 </ControlTemplate>
@@ -8884,10 +8931,50 @@ Background="#FFFAFAFC"
                                                     </Border>
                                                     <ControlTemplate.Triggers>
                                                         <Trigger Property="IsMouseOver" Value="True">
-                                                            <Setter TargetName="bd" Property="Background" Value="#FFE8F0FF"/>
+                                                            <Trigger.EnterActions>
+                                                                <BeginStoryboard>
+                                                                    <Storyboard>
+                                                                        <ColorAnimation Storyboard.TargetName="bd"
+                                                                                        Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+                                                                                        To="#FFE8F0FF" Duration="0:0:0.12">
+                                                                            <ColorAnimation.EasingFunction><CubicEase EasingMode="EaseOut"/></ColorAnimation.EasingFunction>
+                                                                        </ColorAnimation>
+                                                                    </Storyboard>
+                                                                </BeginStoryboard>
+                                                            </Trigger.EnterActions>
+                                                            <Trigger.ExitActions>
+                                                                <BeginStoryboard>
+                                                                    <Storyboard>
+                                                                        <ColorAnimation Storyboard.TargetName="bd"
+                                                                                        Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+                                                                                        Duration="0:0:0.15">
+                                                                            <ColorAnimation.EasingFunction><CubicEase EasingMode="EaseOut"/></ColorAnimation.EasingFunction>
+                                                                        </ColorAnimation>
+                                                                    </Storyboard>
+                                                                </BeginStoryboard>
+                                                            </Trigger.ExitActions>
                                                         </Trigger>
                                                         <Trigger Property="IsPressed" Value="True">
-                                                            <Setter TargetName="bd" Property="Background" Value="#FFD1E2FF"/>
+                                                            <Trigger.EnterActions>
+                                                                <BeginStoryboard>
+                                                                    <Storyboard>
+                                                                        <ColorAnimation Storyboard.TargetName="bd"
+                                                                                        Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+                                                                                        To="#FFD1E2FF" Duration="0:0:0.08"/>
+                                                                    </Storyboard>
+                                                                </BeginStoryboard>
+                                                            </Trigger.EnterActions>
+                                                            <Trigger.ExitActions>
+                                                                <BeginStoryboard>
+                                                                    <Storyboard>
+                                                                        <ColorAnimation Storyboard.TargetName="bd"
+                                                                                        Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+                                                                                        Duration="0:0:0.12">
+                                                                            <ColorAnimation.EasingFunction><CubicEase EasingMode="EaseOut"/></ColorAnimation.EasingFunction>
+                                                                        </ColorAnimation>
+                                                                    </Storyboard>
+                                                                </BeginStoryboard>
+                                                            </Trigger.ExitActions>
                                                         </Trigger>
                                                     </ControlTemplate.Triggers>
                                                 </ControlTemplate>
@@ -8922,10 +9009,50 @@ Background="#FFFAFAFC"
                                                     </Border>
                                                     <ControlTemplate.Triggers>
                                                         <Trigger Property="IsMouseOver" Value="True">
-                                                            <Setter TargetName="bd" Property="Background" Value="#FFE8F0FF"/>
+                                                            <Trigger.EnterActions>
+                                                                <BeginStoryboard>
+                                                                    <Storyboard>
+                                                                        <ColorAnimation Storyboard.TargetName="bd"
+                                                                                        Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+                                                                                        To="#FFE8F0FF" Duration="0:0:0.12">
+                                                                            <ColorAnimation.EasingFunction><CubicEase EasingMode="EaseOut"/></ColorAnimation.EasingFunction>
+                                                                        </ColorAnimation>
+                                                                    </Storyboard>
+                                                                </BeginStoryboard>
+                                                            </Trigger.EnterActions>
+                                                            <Trigger.ExitActions>
+                                                                <BeginStoryboard>
+                                                                    <Storyboard>
+                                                                        <ColorAnimation Storyboard.TargetName="bd"
+                                                                                        Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+                                                                                        Duration="0:0:0.15">
+                                                                            <ColorAnimation.EasingFunction><CubicEase EasingMode="EaseOut"/></ColorAnimation.EasingFunction>
+                                                                        </ColorAnimation>
+                                                                    </Storyboard>
+                                                                </BeginStoryboard>
+                                                            </Trigger.ExitActions>
                                                         </Trigger>
                                                         <Trigger Property="IsPressed" Value="True">
-                                                            <Setter TargetName="bd" Property="Background" Value="#FFE5E5EA"/>
+                                                            <Trigger.EnterActions>
+                                                                <BeginStoryboard>
+                                                                    <Storyboard>
+                                                                        <ColorAnimation Storyboard.TargetName="bd"
+                                                                                        Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+                                                                                        To="#FFE5E5EA" Duration="0:0:0.08"/>
+                                                                    </Storyboard>
+                                                                </BeginStoryboard>
+                                                            </Trigger.EnterActions>
+                                                            <Trigger.ExitActions>
+                                                                <BeginStoryboard>
+                                                                    <Storyboard>
+                                                                        <ColorAnimation Storyboard.TargetName="bd"
+                                                                                        Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+                                                                                        Duration="0:0:0.12">
+                                                                            <ColorAnimation.EasingFunction><CubicEase EasingMode="EaseOut"/></ColorAnimation.EasingFunction>
+                                                                        </ColorAnimation>
+                                                                    </Storyboard>
+                                                                </BeginStoryboard>
+                                                            </Trigger.ExitActions>
                                                         </Trigger>
                                                     </ControlTemplate.Triggers>
                                                 </ControlTemplate>
