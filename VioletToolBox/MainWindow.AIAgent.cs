@@ -270,14 +270,48 @@ namespace WpfApp1
                 {
                     var sv = AiCtl<ScrollViewer>("AIAgentScrollViewer");
                     sv?.ScrollToEnd();
+                    // 新消息入场动画：淡入 + 6px 上滑（与全局 150-200ms 动效语言一致）
+                    var ic = AiCtl<ItemsControl>("AIAgentMessagesBox");
+                    if (ic != null)
+                    {
+                        Dispatcher.BeginInvoke(new Action(() =>
+                        {
+                            try
+                            {
+                                var idx = ic.Items.Count - 1;
+                                if (idx >= 0 && ic.ItemContainerGenerator != null)
+                                {
+                                    var c = ic.ItemContainerGenerator.ContainerFromIndex(idx) as System.Windows.FrameworkElement;
+                                    AnimateMessageEntry(c);
+                                }
+                            }
+                            catch { }
+                        }), System.Windows.Threading.DispatcherPriority.Loaded);
+                    }
                 }
                 catch { }
             });
         }
 
+        private static void AnimateMessageEntry(System.Windows.FrameworkElement? container)
+        {
+            if (container == null) return;
+            container.Opacity = 0;
+            var tt = new System.Windows.Media.TranslateTransform(0, 6);
+            container.RenderTransform = tt;
+            var fade = new System.Windows.Media.Animation.DoubleAnimation(0, 1, TimeSpan.FromMilliseconds(200));
+            fade.EasingFunction = new System.Windows.Media.Animation.CubicEase { EasingMode = System.Windows.Media.Animation.EasingMode.EaseOut };
+            var slide = new System.Windows.Media.Animation.DoubleAnimation(6, 0, TimeSpan.FromMilliseconds(200));
+            slide.EasingFunction = new System.Windows.Media.Animation.CubicEase { EasingMode = System.Windows.Media.Animation.EasingMode.EaseOut };
+            container.BeginAnimation(System.Windows.UIElement.OpacityProperty, fade);
+            tt.BeginAnimation(System.Windows.Media.TranslateTransform.YProperty, slide);
+        }
+
         private void AddAiSystem(string text) => AddAiMessage(new AgentChatMessage { Role = "system", Text = text });
 
         private static readonly System.Windows.Media.Animation.DoubleAnimation[] AiDotPulseAnims = BuildAiDotPulseAnims();
+
+        private static readonly string[] TypingDotNames = { "AiDot1", "AiDot2", "AiDot3" };
 
         private static System.Windows.Media.Animation.DoubleAnimation[] BuildAiDotPulseAnims()
         {
@@ -303,10 +337,9 @@ namespace WpfApp1
                 if (panel == null || st == null) return;
                 panel.Visibility = show ? Visibility.Visible : Visibility.Collapsed;
                 st.Text = status;
-                var dots = new[] { AiCtl<TextBlock>("AiDot1"), AiCtl<TextBlock>("AiDot2"), AiCtl<TextBlock>("AiDot3") };
-                for (var i = 0; i < dots.Length; i++)
+                for (var i = 0; i < TypingDotNames.Length; i++)
                 {
-                    var dot = dots[i];
+                    var dot = AiCtl<TextBlock>(TypingDotNames[i]);
                     if (dot == null) continue;
                     if (show)
                     {

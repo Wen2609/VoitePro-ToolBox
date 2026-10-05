@@ -53,19 +53,23 @@
     <SolidColorBrush x:Key="BackgroundBrush" Color="{StaticResource Gray50}"/>
     <SolidColorBrush x:Key="SurfaceBrush" Color="{StaticResource Gray25}"/>
     <SolidColorBrush x:Key="SurfaceSecondaryBrush" Color="{StaticResource Gray75}"/>
+    <SolidColorBrush x:Key="SurfaceTintBrush" Color="{StaticResource Gray50}"/>
     <SolidColorBrush x:Key="SurfaceHoverBrush" Color="{StaticResource Gray100}"/>
     <SolidColorBrush x:Key="SurfacePressedBrush" Color="{StaticResource Gray200}"/>
     <SolidColorBrush x:Key="SidebarBackgroundBrush" Color="#FFF5F5F7"/>
     <SolidColorBrush x:Key="SidebarHoverBrush" Color="#FFE5E5EA"/>
     <SolidColorBrush x:Key="SidebarSelectedBrush" Color="{StaticResource Violet500}"/>
 
+    <SolidColorBrush x:Key="TextStrongBrush" Color="{StaticResource Gray800}"/>
     <SolidColorBrush x:Key="TextPrimaryBrush" Color="{StaticResource Gray900}"/>
     <SolidColorBrush x:Key="TextSecondaryBrush" Color="{StaticResource Gray600}"/>
+    <SolidColorBrush x:Key="TextMutedBrush" Color="{StaticResource Gray500}"/>
     <SolidColorBrush x:Key="TextTertiaryBrush" Color="{StaticResource Gray400}"/>
     <SolidColorBrush x:Key="TextDisabledBrush" Color="{StaticResource Gray300}"/>
     <SolidColorBrush x:Key="TextOnPrimaryBrush" Color="White"/>
     <SolidColorBrush x:Key="TextOnBrandBrush" Color="White"/>
 
+    <SolidColorBrush x:Key="BorderSubtleBrush" Color="{StaticResource Gray100}"/>
     <SolidColorBrush x:Key="BorderBrush" Color="{StaticResource Gray200}"/>
     <SolidColorBrush x:Key="BorderStrongBrush" Color="{StaticResource Gray300}"/>
     <SolidColorBrush x:Key="SeparatorBrush" Color="{StaticResource Gray100}"/>

@@ -8725,39 +8725,37 @@ namespace WpfApp1
             }
         }
         
+        /// 设置/重置页面文本控件（判空 + 本地化，免去重复查找样板）
+        private void ResetTextControl(string name, string text)
+        {
+            var tb = this.FindControlInPages(name) as System.Windows.Controls.TextBlock;
+            if (tb == null) return;
+            SetLocalizedText(tb, text);
+        }
+
         private void UpdateStatusTextColor(string status, string connectionType)
         {
-            if ((this.FindControlInPages("DeviceStatusText") as System.Windows.Controls.TextBlock) != null)
-            {
-                if (status == "正在检测中")
-                {
-                    // 正在检测 - 黄色 DeviceStatusText.Foreground = new SolidColorBrush(System.Windows.Media.Color.FromRgb(255, 165, 0)); // #FFA500
-                }
-                else if (status == "已连接")
-                {
-                    // 已连接 - 绿色 DeviceStatusText.Foreground = new SolidColorBrush(System.Windows.Media.Color.FromRgb(40, 167, 69)); // #28A745
-                }
-                else
-                {
-                    // 未连接 - 红色 DeviceStatusText.Foreground = new SolidColorBrush(System.Windows.Media.Color.FromRgb(220, 53, 69)); // #DC3545
-                }
-            }
+            var tb = this.FindControlInPages("DeviceStatusText") as System.Windows.Controls.TextBlock;
+            if (tb == null) return;
+            // macOS 语义色：检测中橙 / 已连接绿 / 未连接红
+            System.Windows.Media.Brush brush = status == "正在检测中"
+                ? new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromRgb(255, 149, 0))
+                : status == "已连接"
+                    ? new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromRgb(52, 199, 89))
+                    : new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromRgb(255, 59, 48));
+            tb.Foreground = brush;
         }
 
         private void UpdateBottomConnectionStatusIndicator(string status, string connectionType)
         {
-            if ((this.FindControlInPages("BottomConnectionStatusIndicator") as System.Windows.Shapes.Ellipse) == null)
-            {
-                return;
-            }
+            var dot = this.FindControlInPages("BottomConnectionStatusIndicator") as System.Windows.Shapes.Ellipse;
+            if (dot == null) return;
 
             bool isOnline = status == "已连接" &&
                             !string.IsNullOrWhiteSpace(connectionType) &&
                             connectionType != "--";
 
-            (this.FindControlInPages("BottomConnectionStatusIndicator") as System.Windows.Shapes.Ellipse).Visibility = isOnline
-                ? Visibility.Visible
-                : Visibility.Collapsed;
+            dot.Visibility = isOnline ? Visibility.Visible : Visibility.Collapsed;
         }
         
         private string ExtractFastbootVar(string output, string varName)
@@ -8768,33 +8766,13 @@ namespace WpfApp1
                 foreach (var line in lines)
                 {
                     string trimmedLine = line.Trim();
-                    
-                    // 处理多种可能的fastboot输出格式
-                    // 格式1: varName: value
-                    if (trimmedLine.Contains($"{varName}:"))
-                    {
-                        var parts = trimmedLine.Split(':');
-                        if (parts.Length >= 2)
-                        {
-                            string value = parts[1].Trim();
-                            System.Diagnostics.Debug.WriteLine($"提取变量 {varName}: '{value}' (格式1)");
-                            return value;
-                        }
-                    }
-                    
-                    // 格式2: (bootloader) varName: value
-                    if (trimmedLine.Contains("(bootloader)") && trimmedLine.Contains($"{varName}:"))
-                    {
-                        int colonIndex = trimmedLine.IndexOf(':');
-                        if (colonIndex > 0 && colonIndex < trimmedLine.Length - 1)
-                        {
-                            string value = trimmedLine.Substring(colonIndex + 1).Trim();
-                            System.Diagnostics.Debug.WriteLine($"提取变量 {varName}: '{value}' (格式2)");
-                            return value;
-                        }
-                    }
+                    // 兼容格式1: varName: value 与 格式2: (bootloader) varName: value
+                    if (!trimmedLine.Contains($"{varName}:")) continue;
+                    int colonIndex = trimmedLine.IndexOf(':');
+                    if (colonIndex < 0 || colonIndex >= trimmedLine.Length - 1) continue;
+                    string value = trimmedLine.Substring(colonIndex + 1).Trim();
+                    if (value.Length > 0) return value;
                 }
-                System.Diagnostics.Debug.WriteLine($"未找到变量 {varName}");
                 return "--";
             }
             catch (Exception ex)
@@ -21943,48 +21921,24 @@ public partial class MainWindow : Window
                     DeviceSerials.Clear();
                     
                     // 清空设备状态文本
-                    if ((this.FindControlInPages("DeviceStatusText") as System.Windows.Controls.TextBlock) != null)
+                    var stText = this.FindControlInPages("DeviceStatusText") as System.Windows.Controls.TextBlock;
+                    if (stText != null)
                     {
-                        SetLocalizedText((this.FindControlInPages("DeviceStatusText") as System.Windows.Controls.TextBlock), "未检测到设备");
-                        (this.FindControlInPages("DeviceStatusText") as System.Windows.Controls.TextBlock).Foreground = new SolidColorBrush(System.Windows.Media.Color.FromRgb(220, 53, 69)); // 红色 #DC3545
+                        SetLocalizedText(stText, "未检测到设备");
+                        stText.Foreground = new SolidColorBrush(System.Windows.Media.Color.FromRgb(255, 59, 48)); // macOS 红
                     }
-                    
+
                     // 清空设备选择下拉框
-                    if ((this.FindControlInPages("MultiDeviceComboBox") as System.Windows.Controls.ComboBox) != null)
-                    {
-                        (this.FindControlInPages("MultiDeviceComboBox") as System.Windows.Controls.ComboBox).SelectedItem = null;
-                    }
-                    
+                    var deviceCombo = this.FindControlInPages("MultiDeviceComboBox") as System.Windows.Controls.ComboBox;
+                    if (deviceCombo != null) deviceCombo.SelectedItem = null;
+
                     // 清空设备详细信息
-                    if ((this.FindControlInPages("ConnectionTypeText") as System.Windows.Controls.TextBlock) != null)
-                    {
-                        SetLocalizedText((this.FindControlInPages("ConnectionTypeText") as System.Windows.Controls.TextBlock), "--");
-                    }
-                    
-                    if ((this.FindControlInPages("DeviceSerialText") as System.Windows.Controls.TextBlock) != null)
-                    {
-                        (this.FindControlInPages("DeviceSerialText") as System.Windows.Controls.TextBlock).Text = "--";
-                    }
-                    
-                    if ((this.FindControlInPages("DeviceModelText") as System.Windows.Controls.TextBlock) != null)
-                    {
-                        (this.FindControlInPages("DeviceModelText") as System.Windows.Controls.TextBlock).Text = "--";
-                    }
-                    
-                    if ((this.FindControlInPages("DeviceCodeText") as System.Windows.Controls.TextBlock) != null)
-                    {
-                        (this.FindControlInPages("DeviceCodeText") as System.Windows.Controls.TextBlock).Text = "--";
-                    }
-                    
-                    if ((this.FindControlInPages("UnlockStatusText") as System.Windows.Controls.TextBlock) != null)
-                    {
-                        SetLocalizedText((this.FindControlInPages("UnlockStatusText") as System.Windows.Controls.TextBlock), "--");
-                    }
-                    
-                    if ((this.FindControlInPages("BottomConnectionTypeText") as System.Windows.Controls.TextBlock) != null)
-                    {
-                        SetLocalizedText((this.FindControlInPages("BottomConnectionTypeText") as System.Windows.Controls.TextBlock), "--");
-                    }
+                    ResetTextControl("ConnectionTypeText", "--");
+                    ResetTextControl("DeviceSerialText", "--");
+                    ResetTextControl("DeviceModelText", "--");
+                    ResetTextControl("DeviceCodeText", "--");
+                    ResetTextControl("UnlockStatusText", "--");
+                    ResetTextControl("BottomConnectionTypeText", "--");
                     UpdateBottomConnectionStatusIndicator("未连接", "--");
                     
                     // 清空A/B分区信息
