@@ -262,7 +262,10 @@ namespace WpfApp1
         {
             RunOnUi(() =>
             {
-                _aiMessages?.Add(message);
+                if (_aiMessages == null) return;
+                // 限制消息条数，防止超长对话导致内存与渲染膨胀（虚拟化之外的硬上限）
+                while (_aiMessages.Count >= 300) _aiMessages.RemoveAt(0);
+                _aiMessages.Add(message);
                 try
                 {
                     var sv = AiCtl<ScrollViewer>("AIAgentScrollViewer");
@@ -922,6 +925,29 @@ namespace WpfApp1
             using var stream = await resp.Content.ReadAsStreamAsync(ct);
             using var reader = new StreamReader(stream, Encoding.UTF8);
             bool sawAny = false;
+            // 流式节流：chunk 先在局部缓冲，约 40ms 合并一次刷新 UI，避免逐 token 重排掉帧
+            var pendingText = new StringBuilder();
+            long lastUiFlushMs = Environment.TickCount64;
+            void FlushStreamText(bool force)
+            {
+                long now = Environment.TickCount64;
+                if (!force && now - lastUiFlushMs < 40) return;
+                lastUiFlushMs = now;
+                string flush = pendingText.ToString();
+                pendingText.Clear();
+                if (flush.Length == 0) return;
+                RunOnUi(() =>
+                {
+                    if (_aiMessages != null && !_aiMessages.Contains(bubble)) _aiMessages.Add(bubble);
+                    bubble.Text += flush;
+                    try
+                    {
+                        var sv = AiCtl<ScrollViewer>("AIAgentScrollViewer");
+                        sv?.ScrollToEnd();
+                    }
+                    catch { }
+                });
+            }
             while (true)
             {
                 ct.ThrowIfCancellationRequested();
@@ -946,18 +972,8 @@ namespace WpfApp1
                         string s = cp.GetString() ?? "";
                         if (s.Length > 0)
                         {
-                            string chunk = s;
-                            RunOnUi(() =>
-                            {
-                                if (_aiMessages != null && !_aiMessages.Contains(bubble)) _aiMessages.Add(bubble);
-                                bubble.Text += chunk;
-                                try
-                                {
-                                    var sv = AiCtl<ScrollViewer>("AIAgentScrollViewer");
-                                    sv?.ScrollToEnd();
-                                }
-                                catch { }
-                            });
+                            pendingText.Append(s);
+                            FlushStreamText(false);
                         }
                     }
                     if (delta.TryGetProperty("tool_calls", out var tcs))
@@ -981,6 +997,8 @@ namespace WpfApp1
                     // 忽略无法解析的 SSE 行
                 }
             }
+            // 流结束：强制刷新剩余文本
+            FlushStreamText(true);
             if (!sawAny) throw new Exception("API 未返回有效数据（流为空），请检查接口地址与模型名");
         }
 

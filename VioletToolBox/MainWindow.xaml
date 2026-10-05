@@ -3224,6 +3224,12 @@ Background="#FFFAFAFC"
                                 <Grid>
                                     <ScrollViewer x:Name="AIAgentScrollViewer" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Padding="8">
                                         <ItemsControl x:Name="AIAgentMessagesBox" Margin="4,4,8,4">
+                                            <ItemsControl.ItemsPanel>
+                                                <ItemsPanelTemplate>
+                                                    <!-- 虚拟化：长对话只渲染可视区域，滚动流畅 -->
+                                                    <VirtualizingStackPanel VirtualizingPanel.VirtualizationMode="Recycling"/>
+                                                </ItemsPanelTemplate>
+                                            </ItemsControl.ItemsPanel>
                                             <ItemsControl.ItemTemplate>
                                                 <DataTemplate>
                                                     <Border x:Name="AIMsgBubble" MaxWidth="560" Padding="12,9" CornerRadius="12" Margin="2,5"

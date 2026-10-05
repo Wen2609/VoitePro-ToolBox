@@ -1821,6 +1821,12 @@ namespace WpfApp1
                     Storyboard.SetTargetProperty(sa2, new PropertyPath("(UIElement.RenderTransform).Children[0].(ScaleTransform.ScaleY)"));
                     sb.Children.Add(sa2);
                 }
+                // 动画期间使用位图缓存：缩放/位移/淡入只作用于缓存位图（GPU 合成），避免整页逐元素重栅格化掉帧
+                try { page.CacheMode = new BitmapCache(); } catch { }
+                sb.Completed += (_, _) =>
+                {
+                    try { page.CacheMode = null; } catch { }
+                };
                 sb.Begin(page);
             }
             catch { }
@@ -1874,7 +1880,7 @@ namespace WpfApp1
                         }
                     }
                     catch { }
-                }), DispatcherPriority.Background);
+                }), DispatcherPriority.ContextIdle);
             }
             catch { }
         }
@@ -2555,11 +2561,20 @@ namespace WpfApp1
             deviceStatusTimer = new DispatcherTimer            {
                 Interval = TimeSpan.FromSeconds(3) // 每3秒检测一次
             };
-            deviceStatusTimer.Tick += async (object? s, EventArgs e) => await CheckDeviceStatus();
+            // 防重入：adb 响应慢时跳过本次 tick，避免多个检测协程叠加抢占
+            deviceStatusTimer.Tick += async (object? s, EventArgs e) =>
+            {
+                if (_deviceCheckRunning) return;
+                _deviceCheckRunning = true;
+                try { await CheckDeviceStatus(); }
+                finally { _deviceCheckRunning = false; }
+            };
             deviceStatusTimer.Start();
             
             _ = CheckDeviceStatus();
         }
+
+        private bool _deviceCheckRunning;
 
         private bool IsDeviceDetectionCycleCurrent(int detectionVersion)
         {
@@ -8028,7 +8043,8 @@ namespace WpfApp1
                         Dispatcher.Invoke(() =>
                         {
                             UpdateDeviceInfoUI(status, connectionType, "--", "--", "--", "--", "--", "--", "--", "--", "--", "--", windowsVersion);
-                            if ((this.FindControlInPages("BuildDateText") as System.Windows.Controls.TextBlock) != null) (this.FindControlInPages("BuildDateText") as System.Windows.Controls.TextBlock).Text = "--";
+                            var buildDateText = this.FindControlInPages("BuildDateText") as System.Windows.Controls.TextBlock;
+                            if (buildDateText != null) buildDateText.Text = "--";
                         });
                         UpdateLastDeviceInfo(status, connectionType, "--", "--", "--", "--", "--", "--", "--", "--", "--", "--", windowsVersion);
                     }
@@ -8069,7 +8085,8 @@ namespace WpfApp1
                         Dispatcher.Invoke(() =>
                         {
                             UpdateDeviceInfoUI(status, connectionType, "--", "--", "--", "--", "--", "--", "--", "--", "--", "--", windowsVersion);
-                            if ((this.FindControlInPages("BuildDateText") as System.Windows.Controls.TextBlock) != null) (this.FindControlInPages("BuildDateText") as System.Windows.Controls.TextBlock).Text = "--";
+                            var buildDateText = this.FindControlInPages("BuildDateText") as System.Windows.Controls.TextBlock;
+                            if (buildDateText != null) buildDateText.Text = "--";
                         });
                         UpdateLastDeviceInfo(status, connectionType, "--", "--", "--", "--", "--", "--", "--", "--", "--", "--", windowsVersion);
                     }
@@ -8115,6 +8132,14 @@ namespace WpfApp1
 
                     // 保存当前选中的设备序列号
                     string currentSelectedSerial = (this.FindControlInPages("MultiDeviceComboBox") as System.Windows.Controls.ComboBox).SelectedItem as string;
+                    
+                    // 列表无变化时跳过重建，避免每 3 秒触发 ComboBox 布局刷新
+                    if (DeviceSerials.Count == allDeviceSerials.Count &&
+                        allDeviceSerials.TrueForAll(s => DeviceSerials.Contains(s)) &&
+                        currentSelectedSerial != null && DeviceSerials.Contains(currentSelectedSerial))
+                    {
+                        return;
+                    }
                     
                     DeviceSerials.Clear();
                     foreach (var serial in allDeviceSerials)
@@ -10831,23 +10856,85 @@ namespace WpfApp1
             System.Windows.Media.Brush messageBrush,
             bool bold = false)
         {
-            if ((this.FindControlInPages("FlashLogTextBox") as System.Windows.Controls.RichTextBox) == null) return;
+            // 入队 + 定时批量刷新：避免刷机高频日志逐行 Dispatcher.Invoke 阻塞线程池线程与 UI
+            _flashLogQueue.Enqueue(new FlashLogEntry(message, messageBrush, bold));
+            StartFlashLogPump();
+        }
 
-            Dispatcher.Invoke(() =>
+        private sealed record FlashLogEntry(string Text, System.Windows.Media.Brush Brush, bool Bold);
+
+        private readonly System.Collections.Concurrent.ConcurrentQueue<FlashLogEntry> _flashLogQueue = new();
+        private int _flashLogPumpActive;
+        private DispatcherTimer? _flashLogPumpTimer;
+
+        private void StartFlashLogPump()
+        {
+            if (Interlocked.CompareExchange(ref _flashLogPumpActive, 1, 0) != 0) return;
+            void Start()
             {
-                var paragraph = new Paragraph { Margin = new Thickness(0, 0, 0, 2) };
-                paragraph.Inlines.Add(new Run($"[{DateTime.Now:HH:mm:ss}] ")
+                try
                 {
-                    Foreground = FlashLogTimeBrush
-                });
-                paragraph.Inlines.Add(new Run(message)
+                    if (_flashLogPumpTimer == null)
+                    {
+                        _flashLogPumpTimer = new DispatcherTimer(DispatcherPriority.Background)
+                        {
+                            Interval = TimeSpan.FromMilliseconds(80)
+                        };
+                        _flashLogPumpTimer.Tick += (s, e) => FlushFlashLogQueue();
+                    }
+                    _flashLogPumpTimer.Start();
+                }
+                catch { Interlocked.Exchange(ref _flashLogPumpActive, 0); }
+            }
+            if (Dispatcher.CheckAccess()) Start();
+            else
+            {
+                try { Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(Start)); }
+                catch { Interlocked.Exchange(ref _flashLogPumpActive, 0); }
+            }
+        }
+
+        private void FlushFlashLogQueue()
+        {
+            try
+            {
+                var rt = this.FindControlInPages("FlashLogTextBox") as System.Windows.Controls.RichTextBox;
+                if (rt == null)
                 {
-                    Foreground = messageBrush,
-                    FontWeight = bold ? FontWeights.SemiBold : FontWeights.Normal
-                });
-                (this.FindControlInPages("FlashLogTextBox") as System.Windows.Controls.RichTextBox).Document.Blocks.Add(paragraph);
-                (this.FindControlInPages("FlashLogTextBox") as System.Windows.Controls.RichTextBox).ScrollToEnd();
-            });
+                    Interlocked.Exchange(ref _flashLogPumpActive, 0);
+                    return;
+                }
+                bool any = false;
+                while (_flashLogQueue.TryDequeue(out var entry))
+                {
+                    var paragraph = new Paragraph { Margin = new Thickness(0, 0, 0, 2) };
+                    paragraph.Inlines.Add(new Run($"[{DateTime.Now:HH:mm:ss}] ") { Foreground = FlashLogTimeBrush });
+                    paragraph.Inlines.Add(new Run(entry.Text)
+                    {
+                        Foreground = entry.Brush,
+                        FontWeight = entry.Bold ? FontWeights.SemiBold : FontWeights.Normal
+                    });
+                    rt.Document.Blocks.Add(paragraph);
+                    any = true;
+                }
+                // 限制日志段落数量，防止长时间刷机内存与渲染膨胀
+                if (any && rt.Document.Blocks.Count > 2000)
+                {
+                    var excess = rt.Document.Blocks.Count - 1000;
+                    for (int i = 0; i < excess && rt.Document.Blocks.Count > 0; i++)
+                    {
+                        var first = rt.Document.Blocks.FirstBlock;
+                        if (first != null) rt.Document.Blocks.Remove(first);
+                    }
+                }
+                if (any) rt.ScrollToEnd();
+                if (_flashLogQueue.IsEmpty)
+                {
+                    _flashLogPumpTimer?.Stop();
+                    Interlocked.Exchange(ref _flashLogPumpActive, 0);
+                }
+            }
+            catch { }
         }
 
         // 简化的状态日志方法，只显示关键状态信息
@@ -20341,39 +20428,95 @@ public partial class MainWindow : Window
 
         private void LogToFastboot(string message, string color = "Black")
         {
-            Dispatcher.Invoke(() =>
-            {
-                string normalizedMessage = Regex.Replace(message ?? string.Empty, @"^\[(Done|Flash|Prepare|Warning|Error)\]\s*", string.Empty, RegexOptions.IgnoreCase);
-                var paragraph = CreateFastbootLogParagraph();
-                AppendFastbootTimestamp(paragraph);
-                paragraph.Inlines.Add(new Run(normalizedMessage)
-                {
-                    Foreground = GetFastbootMessageBrush(color)
-                });
-                (this.FindControlInPages("FastbootLogTextBox") as System.Windows.Controls.RichTextBox).Document.Blocks.Add(paragraph);
-                (this.FindControlInPages("FastbootLogTextBox") as System.Windows.Controls.RichTextBox).ScrollToEnd();
-            });
+            string normalizedMessage = Regex.Replace(message ?? string.Empty, @"^\[(Done|Flash|Prepare|Warning|Error)\]\s*", string.Empty, RegexOptions.IgnoreCase);
+            _fastbootLogQueue.Enqueue(new FastbootLogLine(new[] { (normalizedMessage, color, false) }));
+            StartFastbootLogPump();
         }
 
         private void LogToFastbootStyled(
             params (string Text, string Color, bool Emphasized)[] segments)
         {
-            Dispatcher.Invoke(() =>
-            {
-                var paragraph = CreateFastbootLogParagraph();
-                AppendFastbootTimestamp(paragraph);
-                foreach ((string text, string color, bool emphasized) in segments)
-                {
-                    paragraph.Inlines.Add(new Run(text)
-                    {
-                        Foreground = GetFastbootMessageBrush(color),
-                        FontWeight = emphasized ? FontWeights.SemiBold : FontWeights.Normal
-                    });
-                }
+            _fastbootLogQueue.Enqueue(new FastbootLogLine(segments));
+            StartFastbootLogPump();
+        }
 
-                (this.FindControlInPages("FastbootLogTextBox") as System.Windows.Controls.RichTextBox).Document.Blocks.Add(paragraph);
-                (this.FindControlInPages("FastbootLogTextBox") as System.Windows.Controls.RichTextBox).ScrollToEnd();
-            });
+        private sealed record FastbootLogLine((string Text, string Color, bool Emphasized)[] Segments);
+
+        private readonly System.Collections.Concurrent.ConcurrentQueue<FastbootLogLine> _fastbootLogQueue = new();
+        private int _fastbootLogPumpActive;
+        private DispatcherTimer? _fastbootLogPumpTimer;
+
+        private void StartFastbootLogPump()
+        {
+            if (Interlocked.CompareExchange(ref _fastbootLogPumpActive, 1, 0) != 0) return;
+            void Start()
+            {
+                try
+                {
+                    if (_fastbootLogPumpTimer == null)
+                    {
+                        _fastbootLogPumpTimer = new DispatcherTimer(DispatcherPriority.Background)
+                        {
+                            Interval = TimeSpan.FromMilliseconds(80)
+                        };
+                        _fastbootLogPumpTimer.Tick += (s, e) => FlushFastbootLogQueue();
+                    }
+                    _fastbootLogPumpTimer.Start();
+                }
+                catch { Interlocked.Exchange(ref _fastbootLogPumpActive, 0); }
+            }
+            if (Dispatcher.CheckAccess()) Start();
+            else
+            {
+                try { Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(Start)); }
+                catch { Interlocked.Exchange(ref _fastbootLogPumpActive, 0); }
+            }
+        }
+
+        private void FlushFastbootLogQueue()
+        {
+            try
+            {
+                var rt = this.FindControlInPages("FastbootLogTextBox") as System.Windows.Controls.RichTextBox;
+                if (rt == null)
+                {
+                    Interlocked.Exchange(ref _fastbootLogPumpActive, 0);
+                    return;
+                }
+                bool any = false;
+                while (_fastbootLogQueue.TryDequeue(out var line))
+                {
+                    var paragraph = CreateFastbootLogParagraph();
+                    AppendFastbootTimestamp(paragraph);
+                    foreach ((string text, string color, bool emphasized) in line.Segments)
+                    {
+                        paragraph.Inlines.Add(new Run(text)
+                        {
+                            Foreground = GetFastbootMessageBrush(color),
+                            FontWeight = emphasized ? FontWeights.SemiBold : FontWeights.Normal
+                        });
+                    }
+                    rt.Document.Blocks.Add(paragraph);
+                    any = true;
+                }
+                // 限制日志段落数量，防止长时间运行内存与渲染膨胀
+                if (any && rt.Document.Blocks.Count > 2000)
+                {
+                    var excess = rt.Document.Blocks.Count - 1000;
+                    for (int i = 0; i < excess && rt.Document.Blocks.Count > 0; i++)
+                    {
+                        var first = rt.Document.Blocks.FirstBlock;
+                        if (first != null) rt.Document.Blocks.Remove(first);
+                    }
+                }
+                if (any) rt.ScrollToEnd();
+                if (_fastbootLogQueue.IsEmpty)
+                {
+                    _fastbootLogPumpTimer?.Stop();
+                    Interlocked.Exchange(ref _fastbootLogPumpActive, 0);
+                }
+            }
+            catch { }
         }
 
         private void LogFastbootDeviceInfo(
