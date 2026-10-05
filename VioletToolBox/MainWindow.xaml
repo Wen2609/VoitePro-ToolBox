@@ -3188,6 +3188,169 @@ Background="#FFFAFAFC"
                             </StackPanel></ScrollViewer>
                         </Grid>
                 </DataTemplate>
+                <DataTemplate x:Key="Page_AIAgentView">
+                        <Grid Name="AIAgentView" Visibility="Collapsed" Background="#FFF6F8FA">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <!-- 页头 -->
+                            <Grid Grid.Row="0" Margin="6,12,6,10">
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+                                    <Border Width="40" Height="40" CornerRadius="12" Background="#FF007AFF">
+                                        <svg:SvgViewbox Source="images/white/ai.svg" Width="21" Height="21"/>
+                                    </Border>
+                                    <StackPanel VerticalAlignment="Center" Margin="12,0,0,0">
+                                        <TextBlock Text="AI助手" FontSize="20" FontWeight="Bold" Foreground="#FF1D1D1F"/>
+                                        <TextBlock Text="可执行操作的智能刷机 Agent · 对话即可读设备、跑命令、查教程" FontSize="12" Foreground="#FF8E8E93" Margin="0,2,0,0"/>
+                                    </StackPanel>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+                                    <Border x:Name="AIAgentDeviceBadge" Background="#FFEAF2FF" BorderBrush="#FFD1E2FF" BorderThickness="1" CornerRadius="12" Padding="10,5" VerticalAlignment="Center">
+                                        <StackPanel Orientation="Horizontal">
+                                            <Ellipse x:Name="AIAgentDeviceDot" Width="7" Height="7" Fill="#FF8E8E93" VerticalAlignment="Center" Margin="0,0,6,0"/>
+                                            <TextBlock x:Name="AIAgentDeviceText" Text="设备: 未连接" FontSize="12" Foreground="#FF1D1D1F" VerticalAlignment="Center"/>
+                                        </StackPanel>
+                                    </Border>
+                                    <Button x:Name="AIAgentClearButton" Content="清空对话" Style="{StaticResource PageLightButton}" Margin="8,0,0,0" Click="AIAgentClearButton_Click"/>
+                                    <Button x:Name="AIAgentConfigButton" Content="设置" Style="{StaticResource PageLightButton}" Margin="8,0,0,0" Click="AIAgentConfigButton_Click"/>
+                                </StackPanel>
+                            </Grid>
+                            <!-- 聊天区 -->
+                            <Border Grid.Row="1" Margin="6,0,6,0" Background="#FFFFFFFF" BorderBrush="#FFE8E8ED" BorderThickness="1" CornerRadius="12">
+                                <Grid>
+                                    <ScrollViewer x:Name="AIAgentScrollViewer" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Padding="8">
+                                        <ItemsControl x:Name="AIAgentMessagesBox" Margin="4,4,8,4">
+                                            <ItemsControl.ItemTemplate>
+                                                <DataTemplate>
+                                                    <Border x:Name="AIMsgBubble" MaxWidth="560" Padding="12,9" CornerRadius="12" Margin="2,5"
+                                                            Background="#FFFFFFFF" BorderBrush="#FFE5E5EA" BorderThickness="1" HorizontalAlignment="Left">
+                                                        <TextBlock x:Name="AIMsgText" Text="{Binding Text}" TextWrapping="Wrap" FontSize="13"
+                                                                   Foreground="#FF1D1D1F" FontFamily="Microsoft YaHei UI" LineHeight="20"/>
+                                                    </Border>
+                                                    <DataTemplate.Triggers>
+                                                        <DataTrigger Binding="{Binding Role}" Value="user">
+                                                            <Setter TargetName="AIMsgBubble" Property="HorizontalAlignment" Value="Right"/>
+                                                            <Setter TargetName="AIMsgBubble" Property="Background" Value="#FF007AFF"/>
+                                                            <Setter TargetName="AIMsgBubble" Property="BorderBrush" Value="#FF007AFF"/>
+                                                            <Setter TargetName="AIMsgBubble" Property="BorderThickness" Value="0"/>
+                                                            <Setter TargetName="AIMsgText" Property="Foreground" Value="#FFFFFFFF"/>
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding Role}" Value="tool">
+                                                            <Setter TargetName="AIMsgBubble" Property="Background" Value="#FFF0F4FF"/>
+                                                            <Setter TargetName="AIMsgBubble" Property="BorderBrush" Value="#FFD8E4FF"/>
+                                                            <Setter TargetName="AIMsgBubble" Property="CornerRadius" Value="8"/>
+                                                            <Setter TargetName="AIMsgText" Property="FontFamily" Value="Consolas"/>
+                                                            <Setter TargetName="AIMsgText" Property="FontSize" Value="12"/>
+                                                            <Setter TargetName="AIMsgText" Property="Foreground" Value="#FF3A3A3C"/>
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding Role}" Value="system">
+                                                            <Setter TargetName="AIMsgBubble" Property="HorizontalAlignment" Value="Center"/>
+                                                            <Setter TargetName="AIMsgBubble" Property="Background" Value="Transparent"/>
+                                                            <Setter TargetName="AIMsgBubble" Property="BorderThickness" Value="0"/>
+                                                            <Setter TargetName="AIMsgText" Property="FontSize" Value="12"/>
+                                                            <Setter TargetName="AIMsgText" Property="Foreground" Value="#FF8E8E93"/>
+                                                            <Setter TargetName="AIMsgBubble" Property="Padding" Value="4,2"/>
+                                                        </DataTrigger>
+                                                    </DataTemplate.Triggers>
+                                                </DataTemplate>
+                                            </ItemsControl.ItemTemplate>
+                                        </ItemsControl>
+                                    </ScrollViewer>
+                                    <!-- 思考中指示 -->
+                                    <Border x:Name="AIAgentTypingPanel" Visibility="Collapsed" HorizontalAlignment="Left" VerticalAlignment="Bottom"
+                                            Margin="12,6" Padding="12,9" CornerRadius="12" Background="#FFFFFFFF" BorderBrush="#FFE5E5EA" BorderThickness="1">
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock x:Name="AiDot1" Text="●" FontSize="8" Foreground="#FF007AFF" VerticalAlignment="Center" Margin="0,0,4,0"/>
+                                            <TextBlock x:Name="AiDot2" Text="●" FontSize="8" Foreground="#FF007AFF" VerticalAlignment="Center" Margin="0,0,4,0"/>
+                                            <TextBlock x:Name="AiDot3" Text="●" FontSize="8" Foreground="#FF007AFF" VerticalAlignment="Center" Margin="0,0,0,0"/>
+                                            <TextBlock x:Name="AIAgentStatusText" Text="正在思考…" FontSize="12" Foreground="#FF6E6E73" Margin="8,0,0,0" VerticalAlignment="Center"/>
+                                        </StackPanel>
+                                    </Border>
+                                    <!-- 命令确认条 -->
+                                    <Border x:Name="AIAgentConfirmPanel" Visibility="Collapsed" HorizontalAlignment="Center" VerticalAlignment="Top"
+                                            Margin="12,20,12,0" MaxWidth="640" Padding="14,12" CornerRadius="12" Background="#FFFFFFFF"
+                                            BorderBrush="#FFFFD60A" BorderThickness="1.5">
+                                        <Border.Effect>
+                                            <DropShadowEffect BlurRadius="12" ShadowDepth="1.5" Direction="270" Opacity="0.10"/>
+                                        </Border.Effect>
+                                        <StackPanel>
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock Text="⚠" FontSize="15" Foreground="#FFFF9500" VerticalAlignment="Center" Margin="0,0,6,0"/>
+                                                <TextBlock Text="AI 请求执行命令，请确认" FontSize="13" FontWeight="SemiBold" Foreground="#FF1D1D1F" VerticalAlignment="Center"/>
+                                            </StackPanel>
+                                            <TextBlock x:Name="AIAgentConfirmText" FontFamily="Consolas" FontSize="12.5" Foreground="#FF3A3A3C"
+                                                       TextWrapping="Wrap" Margin="0,8,0,0"/>
+                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,10,0,0">
+                                                <Button x:Name="AIAgentConfirmDenyButton" Content="拒绝" Style="{StaticResource PageSecondaryButton}" Click="AIAgentConfirmDenyButton_Click" MinWidth="64" Margin="0,0,8,0"/>
+                                                <Button x:Name="AIAgentConfirmAllowButton" Content="允许执行" Style="{StaticResource PagePrimaryButton}" Click="AIAgentConfirmAllowButton_Click" MinWidth="84"/>
+                                            </StackPanel>
+                                        </StackPanel>
+                                    </Border>
+                                </Grid>
+                            </Border>
+                            <!-- 快捷提问 -->
+                            <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="12,10,12,0">
+                                <TextBlock Text="快捷提问:" FontSize="12" Foreground="#FF8E8E93" VerticalAlignment="Center" Margin="0,0,8,0"/>
+                                <Button x:Name="AIAgentQuickDeviceButton" Content="查看设备状态" Style="{StaticResource PageLightButton}" Click="AIAgentQuickDeviceButton_Click" Margin="0,0,8,0"/>
+                                <Button x:Name="AIAgentQuickCommandButton" Content="生成刷机命令" Style="{StaticResource PageLightButton}" Click="AIAgentQuickCommandButton_Click" Margin="0,0,8,0"/>
+                                <Button x:Name="AIAgentQuickDiagnoseButton" Content="诊断日志" Style="{StaticResource PageLightButton}" Click="AIAgentQuickDiagnoseButton_Click" Margin="0,0,8,0"/>
+                                <Button x:Name="AIAgentQuickTutorialButton" Content="刷机教程" Style="{StaticResource PageLightButton}" Click="AIAgentQuickTutorialButton_Click" Margin="0,0,8,0"/>
+                            </StackPanel>
+                            <!-- 输入区 -->
+                            <Border Grid.Row="3" Margin="12,10,12,0" Background="#FFFFFFFF" BorderBrush="#FFE5E5EA" BorderThickness="1" CornerRadius="12" Padding="6">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBox x:Name="AIAgentInputBox" Grid.Column="0" Height="38" VerticalContentAlignment="Center" Padding="10,0"
+                                             FontSize="13" BorderThickness="0" Background="Transparent"
+                                             KeyDown="AIAgentInputBox_KeyDown" TextWrapping="Wrap" AcceptsReturn="True"
+                                             ToolTip="输入问题后回车发送；Shift+Enter 换行"/>
+                                    <Button x:Name="AIAgentStopButton" Grid.Column="1" Content="停止" Style="{StaticResource PageSecondaryButton}"
+                                            Visibility="Collapsed" Click="AIAgentStopButton_Click" Margin="4,0,0,0" MinWidth="64" VerticalAlignment="Center"/>
+                                    <Button x:Name="AIAgentSendButton" Grid.Column="2" Content="发送" Style="{StaticResource PagePrimaryButton}"
+                                            Click="AIAgentSendButton_Click" Margin="6,0,0,0" MinWidth="76" VerticalAlignment="Center"/>
+                                </Grid>
+                            </Border>
+                            <!-- 底部状态 -->
+                            <TextBlock x:Name="AIAgentFooterText" Grid.Row="4" FontSize="11.5" Foreground="#FF8E8E93" Margin="14,6,14,8" TextWrapping="Wrap"/>
+                            <!-- 配置浮层 -->
+                            <Grid x:Name="AIAgentConfigOverlay" Grid.RowSpan="5" Visibility="Collapsed" Background="#59000000">
+                                <Border Width="440" HorizontalAlignment="Center" VerticalAlignment="Center" Background="#FFFFFFFF"
+                                        CornerRadius="14" Padding="22,18" BorderBrush="#FFE5E5EA" BorderThickness="1">
+                                    <Border.Effect>
+                                        <DropShadowEffect BlurRadius="16" ShadowDepth="2" Direction="270" Opacity="0.14"/>
+                                    </Border.Effect>
+                                    <StackPanel>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="AI 设置" FontSize="16" FontWeight="Bold" Foreground="#FF1D1D1F"/>
+                                            <TextBlock Text="OpenAI 兼容接口 · DeepSeek / 通义 / 豆包等" FontSize="11.5" Foreground="#FF8E8E93" VerticalAlignment="Center" Margin="10,2,0,0"/>
+                                        </StackPanel>
+                                        <TextBlock Text="接口地址 (BaseUrl)" Style="{StaticResource PageLabel}" Margin="0,14,0,4"/>
+                                        <TextBox x:Name="AIAgentConfigBaseUrlBox" Style="{StaticResource PageTextBox}" Text="https://api.deepseek.com/v1" Height="34"/>
+                                        <TextBlock Text="API Key（仅保存在本机）" Style="{StaticResource PageLabel}" Margin="0,12,0,4"/>
+                                        <PasswordBox x:Name="AIAgentConfigKeyBox" Height="34" Padding="10,0" FontSize="13" BorderBrush="#FFD1D1D6" BorderThickness="1" Background="#FFFFFFFF"/>
+                                        <TextBlock Text="模型" Style="{StaticResource PageLabel}" Margin="0,12,0,4"/>
+                                        <TextBox x:Name="AIAgentConfigModelBox" Style="{StaticResource PageTextBox}" Text="deepseek-chat" Height="34"/>
+                                        <CheckBox x:Name="AIAgentConfigConfirmCheck" Style="{StaticResource PageCheckBox}" Content="执行 ADB / Fastboot 命令前需要我确认（推荐）" FontSize="12.5" Foreground="#FF3A3A3C" Margin="0,14,0,0" IsChecked="True"/>
+                                        <TextBlock x:Name="AIAgentConfigStatusText" FontSize="11.5" Foreground="#FF8E8E93" TextWrapping="Wrap" MinHeight="16" Margin="0,10,0,0"/>
+                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,10,0,0">
+                                            <Button Content="关闭" Style="{StaticResource PageLightButton}" Click="AIAgentConfigCloseButton_Click" Margin="0,0,8,0"/>
+                                            <Button Content="恢复默认" Style="{StaticResource PageLightButton}" Click="AIAgentConfigResetButton_Click" Margin="0,0,8,0"/>
+                                            <Button Content="测试连接" Style="{StaticResource PageLightButton}" Click="AIAgentConfigTestButton_Click" Margin="0,0,8,0"/>
+                                            <Button Content="保存" Style="{StaticResource PagePrimaryButton}" Click="AIAgentConfigSaveButton_Click" MinWidth="72"/>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </Border>
+                            </Grid>
+                        </Grid>
+                </DataTemplate>
                 <DataTemplate x:Key="Page_SystemZoneView">
                         <Grid
                         Name="SystemZoneView"
@@ -8803,6 +8966,13 @@ Background="#FFFAFAFC"
                                     Cursor="Hand" FontSize="13" PreviewMouseLeftButtonUp="DirectItem_PreviewMouseLeftButtonUp" Header="投屏">
                                     <hc:SideMenuItem.Icon>
                                         <svg:SvgViewbox Source="images/touping.svg" Width="16" Height="16"/>
+                                    </hc:SideMenuItem.Icon>
+                                </hc:SideMenuItem>
+                                <hc:SideMenuItem
+                                    Name="AIAgentButton"
+                                    Cursor="Hand" FontSize="13" PreviewMouseLeftButtonUp="DirectItem_PreviewMouseLeftButtonUp" Header="AI助手">
+                                    <hc:SideMenuItem.Icon>
+                                        <svg:SvgViewbox Source="images/ai.svg" Width="16" Height="16"/>
                                     </hc:SideMenuItem.Icon>
                                 </hc:SideMenuItem>
 

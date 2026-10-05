@@ -582,6 +582,7 @@ namespace WpfApp1
                 {
                     case "HomeButton": HomeButton_Click(this, null); break;
                     case "ScreenMirrorButton": ScreenMirrorButton_Click(this, null); break;
+                    case "AIAgentButton": AIAgentButton_Click(this, null); break;
                     case "BasicFlashButton": BasicFlashButton_Click(this, null); break;
                     case "FastbootVisualizationButton": FastbootVisualizationButton_Click(this, null); break;
                     case "HiddenEnvironmentButton": HiddenEnvironmentButton_Click(this, null); break;
@@ -619,6 +620,7 @@ namespace WpfApp1
                     case "HomeButton": HomeButton_Click(this, null); break;
                     case "ScreenMirrorButton": ScreenMirrorButton_Click(this, null); break;
                     case "AboutToolButton": AboutToolButton_Click(this, null); break;
+                    case "AIAgentButton": AIAgentButton_Click(this, null); break;
                     case "BasicFlashButton": BasicFlashButton_Click(this, null); break;
                     case "FastbootVisualizationButton": FastbootVisualizationButton_Click(this, null); break;
                     case "OugaFlashButton": OugaFlashButton_Click(this, null); break;
@@ -2817,6 +2819,20 @@ namespace WpfApp1
             // 更新按钮状态
             UpdateButtonStates("AboutTool");
 
+        }
+
+        private void AIAgentButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                EnsureAIAgentPageReady();
+                ShowPage("AIAgentView");
+                RefreshAIAgentPageState();
+            }
+            catch (Exception ex)
+            {
+                try { System.IO.File.AppendAllText(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "page_error.log"), $"{System.DateTime.Now:HH:mm:ss} AIAgentButton_Click: {ex}\r\n"); } catch { }
+            }
         }
 
         private void AutorootButton_Click(object sender, RoutedEventArgs e)
