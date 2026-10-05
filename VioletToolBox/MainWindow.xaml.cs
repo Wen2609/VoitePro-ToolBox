@@ -1139,6 +1139,18 @@ namespace WpfApp1
             catch { }
             // Windows 11：窗口系统圆角（与 macOS 卡片语言一致）
             SourceInitialized += (_, _) => ApplyRoundedCorners();
+            // 窗口启动淡入（与全局 150-200ms 动效语言一致）
+            Loaded += (_, _) =>
+            {
+                try
+                {
+                    Opacity = 0;
+                    var anim = new DoubleAnimation(0, 1, TimeSpan.FromMilliseconds(220));
+                    anim.EasingFunction = new CubicEase { EasingMode = EasingMode.EaseOut };
+                    BeginAnimation(OpacityProperty, anim);
+                }
+                catch { }
+            };
             // 初始化所有分区集合
             allPartitions = new ObservableCollection<PartitionInfo>();
             InitializeComponent();
@@ -2643,12 +2655,32 @@ namespace WpfApp1
             await CheckDeviceStatus(waitForCurrentDetection: true);
         }
 
+        private long _lastTitleBarClick;
+
         private void Border_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             if (e.ChangedButton == MouseButton.Left && !IsOnButton(e.OriginalSource))
             {
+                // 双击标题栏最大化/还原
+                var now = Environment.TickCount64;
+                if (now - _lastTitleBarClick < 500)
+                {
+                    _lastTitleBarClick = 0;
+                    ToggleWindowState();
+                    return;
+                }
+                _lastTitleBarClick = now;
                 this.DragMove();
             }
+        }
+
+        private void ToggleWindowState()
+        {
+            try
+            {
+                WindowState = WindowState == WindowState.Maximized ? WindowState.Normal : WindowState.Maximized;
+            }
+            catch { }
         }
 
         private static bool IsOnButton(object? originalSource)

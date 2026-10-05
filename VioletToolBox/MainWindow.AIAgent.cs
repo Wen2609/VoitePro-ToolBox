@@ -277,11 +277,22 @@ namespace WpfApp1
 
         private void AddAiSystem(string text) => AddAiMessage(new AgentChatMessage { Role = "system", Text = text });
 
-        private static readonly System.Windows.Media.Animation.DoubleAnimation AiDotPulseAnim = new System.Windows.Media.Animation.DoubleAnimation(0.25, 1.0, TimeSpan.FromMilliseconds(560))
+        private static readonly System.Windows.Media.Animation.DoubleAnimation[] AiDotPulseAnims = BuildAiDotPulseAnims();
+
+        private static System.Windows.Media.Animation.DoubleAnimation[] BuildAiDotPulseAnims()
         {
-            AutoReverse = true,
-            RepeatBehavior = System.Windows.Media.Animation.RepeatBehavior.Forever
-        };
+            var arr = new System.Windows.Media.Animation.DoubleAnimation[3];
+            for (var i = 0; i < 3; i++)
+            {
+                arr[i] = new System.Windows.Media.Animation.DoubleAnimation(0.25, 1.0, TimeSpan.FromMilliseconds(560))
+                {
+                    AutoReverse = true,
+                    RepeatBehavior = System.Windows.Media.Animation.RepeatBehavior.Forever,
+                    BeginTime = TimeSpan.FromMilliseconds(i * 187) // 三点错相位呼吸，如原生打字动画
+                };
+            }
+            return arr;
+        }
 
         private void ShowAiTyping(bool show, string status)
         {
@@ -293,12 +304,13 @@ namespace WpfApp1
                 panel.Visibility = show ? Visibility.Visible : Visibility.Collapsed;
                 st.Text = status;
                 var dots = new[] { AiCtl<TextBlock>("AiDot1"), AiCtl<TextBlock>("AiDot2"), AiCtl<TextBlock>("AiDot3") };
-                foreach (var dot in dots)
+                for (var i = 0; i < dots.Length; i++)
                 {
+                    var dot = dots[i];
                     if (dot == null) continue;
                     if (show)
                     {
-                        dot.BeginAnimation(UIElement.OpacityProperty, AiDotPulseAnim);
+                        dot.BeginAnimation(UIElement.OpacityProperty, AiDotPulseAnims[i]);
                     }
                     else
                     {
@@ -473,6 +485,19 @@ namespace WpfApp1
             {
                 LogAiError("Send", ex);
             }
+        }
+
+        private void AIAgentInputBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+            try
+            {
+                var tb = sender as System.Windows.Controls.TextBox;
+                if (tb == null) return;
+                var ph = AiCtl<TextBlock>("AIAgentInputPlaceholder");
+                if (ph == null) return;
+                ph.Visibility = string.IsNullOrEmpty(tb.Text) ? Visibility.Visible : Visibility.Collapsed;
+            }
+            catch { }
         }
 
         private void AIAgentInputBox_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)

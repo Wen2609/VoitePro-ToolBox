@@ -3321,10 +3321,15 @@ Background="#FFFAFAFC"
                                         <ColumnDefinition Width="Auto"/>
                                         <ColumnDefinition Width="Auto"/>
                                     </Grid.ColumnDefinitions>
-                                    <TextBox x:Name="AIAgentInputBox" Grid.Column="0" Height="38" MaxHeight="96" VerticalContentAlignment="Center" Padding="10,0"
-                                             FontSize="13" BorderThickness="0" Background="Transparent"
-                                             KeyDown="AIAgentInputBox_KeyDown" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Auto"
-                                             ToolTip="输入问题后回车发送；Shift+Enter 换行"/>
+                                    <Grid Grid.Column="0">
+                                        <TextBox x:Name="AIAgentInputBox" Height="38" MaxHeight="96" VerticalContentAlignment="Center" Padding="10,0"
+                                                 FontSize="13" BorderThickness="0" Background="Transparent"
+                                                 KeyDown="AIAgentInputBox_KeyDown" TextChanged="AIAgentInputBox_TextChanged" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Auto"
+                                                 ToolTip="输入问题后回车发送；Shift+Enter 换行"/>
+                                        <TextBlock x:Name="AIAgentInputPlaceholder" Text="输入问题，回车发送…（Shift+Enter 换行）" FontSize="13"
+                                                   Foreground="#FFB8B8BC" Margin="12,0,0,0" VerticalAlignment="Center"
+                                                   IsHitTestVisible="False" TextTrimming="CharacterEllipsis"/>
+                                    </Grid>
                                     <Button x:Name="AIAgentStopButton" Grid.Column="1" Content="停止" Style="{StaticResource PageSecondaryButton}"
                                             Visibility="Collapsed" Click="AIAgentStopButton_Click" Margin="4,0,0,0" MinWidth="64" VerticalAlignment="Center"/>
                                     <Button x:Name="AIAgentSendButton" Grid.Column="2" Content="发送" Style="{StaticResource PagePrimaryButton}"
@@ -3346,11 +3351,11 @@ Background="#FFFAFAFC"
                                             <TextBlock Text="OpenAI 兼容接口 · DeepSeek / 通义 / 豆包等" FontSize="11.5" Foreground="#FF8E8E93" VerticalAlignment="Center" Margin="10,2,0,0"/>
                                         </StackPanel>
                                         <TextBlock Text="接口地址 (BaseUrl)" Style="{StaticResource PageLabel}" Margin="0,14,0,4"/>
-                                        <TextBox x:Name="AIAgentConfigBaseUrlBox" Style="{StaticResource PageTextBox}" Text="https://api.deepseek.com/v1" Height="34"/>
+                                        <TextBox x:Name="AIAgentConfigBaseUrlBox" Style="{StaticResource PageTextBox}" Text="https://api.deepseek.com/v1" Height="36"/>
                                         <TextBlock Text="API Key（仅保存在本机）" Style="{StaticResource PageLabel}" Margin="0,12,0,4"/>
-                                        <PasswordBox x:Name="AIAgentConfigKeyBox" Height="34"/>
+                                        <PasswordBox x:Name="AIAgentConfigKeyBox" Height="36"/>
                                         <TextBlock Text="模型" Style="{StaticResource PageLabel}" Margin="0,12,0,4"/>
-                                        <TextBox x:Name="AIAgentConfigModelBox" Style="{StaticResource PageTextBox}" Text="deepseek-chat" Height="34"/>
+                                        <TextBox x:Name="AIAgentConfigModelBox" Style="{StaticResource PageTextBox}" Text="deepseek-chat" Height="36"/>
                                         <CheckBox x:Name="AIAgentConfigConfirmCheck" Style="{StaticResource PageCheckBox}" Content="执行 ADB / Fastboot 命令前需要我确认（推荐）" FontSize="12.5" Foreground="#FF3A3A3C" Margin="0,14,0,0" IsChecked="True"/>
                                         <TextBlock x:Name="AIAgentConfigStatusText" FontSize="11.5" Foreground="#FF8E8E93" TextWrapping="Wrap" MinHeight="16" Margin="0,10,0,0"/>
                                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,10,0,0">
@@ -3383,7 +3388,7 @@ Background="#FFFAFAFC"
     </Grid>
 <Grid Grid.Row="1" Margin="0,0,0,0"><ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
 <Border
-                                    Background="#F8F9FA"
+                                    Background="#F5F5F7"
                                     CornerRadius="10"
                                     Padding="20"
                                     Margin="0,0,0,20" Cursor="">
@@ -3392,7 +3397,7 @@ Background="#FFFAFAFC"
                                             CornerRadius="8"
                                             Padding="20"
                                             BorderThickness="1"
-                                            BorderBrush="#E0E0E0"
+                                            BorderBrush="#FFE5E5EA"
                                             Margin="0,0,0,0" Width="840" HorizontalAlignment="Left">
                                     <Grid>
                                         <Grid.RowDefinitions>
@@ -8783,11 +8788,16 @@ Background="#FFFAFAFC"
 </ResourceDictionary>
 </FrameworkElement.Resources>
     <Border
-            Background="#FFF5F5F7"
             CornerRadius="0"
             BorderThickness="0"
             x:Name="MainContentBorder">
-            <Grid>
+        <Border.Background>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                <GradientStop Color="#FFFBFBFD" Offset="0"/>
+                <GradientStop Color="#FFF1F2F6" Offset="1"/>
+            </LinearGradientBrush>
+        </Border.Background>
+        <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="130*"/>
                     <ColumnDefinition Width="369*"/>
@@ -8824,7 +8834,7 @@ Background="#FFFAFAFC"
                                        Margin="14,0,0,0"/>
                         </StackPanel>
                         <!-- 中间为窗口拖动区 -->
-                        <Grid Grid.Column="1"/>
+                        <Grid Grid.Column="1" Cursor="Hand"/>
                         <!-- 右侧：最小化 + 关闭 -->
                         <StackPanel Grid.Column="2" Orientation="Horizontal">
                             <Button
