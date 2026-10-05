@@ -95,7 +95,7 @@
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="False">
                             <Setter Property="Foreground" Value="{StaticResource TextDisabledBrush}"/>
-                            <Setter TargetName="bdr" Property="Background" Value="#FFF7F7F9"/>
+                            <Setter TargetName="bdr" Property="Background" Value="{StaticResource BorderSubtleBrush}"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -1771,7 +1771,7 @@
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter TargetName="border" Property="Background" Value="#FFF0F0F5"/>
+                            <Setter TargetName="border" Property="Background" Value="{StaticResource BorderSubtleBrush}"/>
                         </Trigger>
                         <Trigger Property="IsPressed" Value="True">
                             <Setter TargetName="border" Property="Background" Value="{StaticResource BorderSubtleBrush}"/>
@@ -1787,7 +1787,7 @@
 
     <!-- ActionCardButton - 图标化功能大按钮 -->
     <Style x:Key="ActionCardButton" TargetType="Button">
-        <Setter Property="Background" Value="#FFFAFAFC"/>
+        <Setter Property="Background" Value="{StaticResource SurfaceTintBrush}"/>
         <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
         <Setter Property="BorderBrush" Value="{StaticResource SurfaceTintBrush}"/>
         <Setter Property="BorderThickness" Value="1"/>
@@ -1817,7 +1817,7 @@
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter TargetName="bdr" Property="Background" Value="{StaticResource BrandTintBrush}"/>
-                            <Setter TargetName="bdr" Property="BorderBrush" Value="#FFC7C7CC"/>
+                            <Setter TargetName="bdr" Property="BorderBrush" Value="{StaticResource TextTertiaryBrush}"/>
                             <Setter TargetName="bdr" Property="RenderTransform">
                                 <Setter.Value>
                                     <TranslateTransform Y="-2"/>

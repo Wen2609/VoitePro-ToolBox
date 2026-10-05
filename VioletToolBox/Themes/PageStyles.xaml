@@ -580,7 +580,7 @@
                 <ControlTemplate TargetType="{x:Type CheckBox}">
                     <StackPanel Orientation="Horizontal" Background="Transparent">
                         <Border x:Name="box" Width="18" Height="18" CornerRadius="5"
-                                Background="#FFFFFFFF" BorderBrush="#FFC7C7CC" BorderThickness="1.5"
+                                Background="#FFFFFFFF" BorderBrush="{StaticResource TextTertiaryBrush}" BorderThickness="1.5"
                                 VerticalAlignment="Center"
                                 RenderTransformOrigin="0.5,0.5">
                             <Border.RenderTransform>

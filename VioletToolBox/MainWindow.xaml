@@ -12,7 +12,7 @@
 	WindowStyle="None"
 	Width="1010" Height="850" MinWidth="1010" MinHeight="760"
 	FontFamily="pack://siteoforigin:,,,/fonts/OPPO_Sans_4.0.ttf#OPPO Sans 4.0"
-Background="#FFFAFAFC"
+Background="{StaticResource SurfaceTintBrush}"
 	UseLayoutRounding="True"
 	SnapsToDevicePixels="True"
 	TextOptions.TextFormattingMode="Display"
@@ -40,7 +40,7 @@ Background="#FFFAFAFC"
                 <GradientStop Color="{StaticResource Gray900}" Offset="1"/>
             </LinearGradientBrush>
             <LinearGradientBrush x:Key="MemoryGradient" StartPoint="0,0" EndPoint="1,0">
-                <GradientStop Color="#AEAEB2" Offset="0"/>
+                <GradientStop Color="{StaticResource Gray400}" Offset="0"/>
                 <GradientStop Color="#48484A" Offset="1"/>
             </LinearGradientBrush>
             <Style x:Key="EdlDgHeaderStyle" TargetType="{x:Type DataGridColumnHeader}">
@@ -58,7 +58,7 @@ Background="#FFFAFAFC"
                 <Setter Property="Height" Value="30"/>
                 <Style.Triggers>
                     <Trigger Property="AlternationIndex" Value="1">
-                        <Setter Property="Background" Value="#FFFCFBFD"/>
+                        <Setter Property="Background" Value="{StaticResource SurfaceTintBrush}"/>
                     </Trigger>
                     <Trigger Property="IsMouseOver" Value="True">
                         <Trigger.EnterActions>
@@ -362,7 +362,7 @@ Background="#FFFAFAFC"
                                             <Storyboard>
                                                 <ColorAnimation Storyboard.TargetName="MainBd"
                                                                 Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
-                                                                To="#D1D1D6" Duration="0:0:0.14">
+                                                                To="{StaticResource Gray200}" Duration="0:0:0.14">
                                                     <ColorAnimation.EasingFunction>
                                                         <CubicEase EasingMode="EaseOut"/>
                                                     </ColorAnimation.EasingFunction>
@@ -438,7 +438,7 @@ Background="#FFFAFAFC"
                             <Border x:Name="PART_Border" 
                                     Width="40" 
                                     Height="20" 
-                                    Background="#6E6E73" 
+                                    Background="{StaticResource TextMutedBrush}" 
                                     CornerRadius="10">
                                 <VisualStateManager.VisualStateGroups>
                                     <VisualStateGroup x:Name="CheckStates">
@@ -578,7 +578,7 @@ Background="#FFFAFAFC"
                 <Setter Property="Padding" Value="10,0"/>
                 <Setter Property="Height" Value="32"/>
                 <Setter Property="Background" Value="White"/>
-                <Setter Property="BorderBrush" Value="#D1D1D6"/>
+                <Setter Property="BorderBrush" Value="{StaticResource BorderBrush}"/>
                 <Setter Property="BorderThickness" Value="1"/>
                 <Setter Property="VerticalContentAlignment" Value="Center"/>
                 <Setter Property="Template">
@@ -833,7 +833,7 @@ Background="#FFFAFAFC"
                                         <StackPanel>
                                             <!-- 状态行 -->
                                             <StackPanel Orientation="Horizontal" Margin="0,0,0,18">
-                                                <Ellipse Width="8" Height="8" Fill="#1D1D1F" Margin="0,0,9,0" VerticalAlignment="Center">
+                                                <Ellipse Width="8" Height="8" Fill="{StaticResource TextPrimaryBrush}" Margin="0,0,9,0" VerticalAlignment="Center">
                                                     <Ellipse.Effect>
                                                         <DropShadowEffect Color="{StaticResource Gray900}" Opacity="0.8" BlurRadius="6" ShadowDepth="0"/>
                                                     </Ellipse.Effect>
@@ -1436,7 +1436,7 @@ Background="#FFFAFAFC"
                                                         </Trigger.ExitActions>
                                                     </Trigger>
                                                     <Trigger Property="IsEnabled" Value="False">
-                                                        <Setter Property="Background" Value="#D1D1D6"/>
+                                                        <Setter Property="Background" Value="{StaticResource BorderBrush}"/>
                                                     </Trigger>
                                                 </ControlTemplate.Triggers>
                                             </ControlTemplate>
@@ -1904,7 +1904,7 @@ Background="#FFFAFAFC"
                                        BasedOn="{StaticResource FastbootButtonBaseStyle}">
                                     <Setter Property="Background" Value="#FFFFFFFF"/>
                                     <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
-                                    <Setter Property="BorderBrush" Value="#FFD1D1D1"/>
+                                    <Setter Property="BorderBrush" Value="{StaticResource BorderBrush}"/>
                                     <Setter Property="BorderThickness" Value="1"/>
                                 </Style>
 
@@ -1915,7 +1915,7 @@ Background="#FFFAFAFC"
                                     <Style.Triggers>
                                         <Trigger Property="IsEnabled" Value="False">
                                             <Setter Property="Background" Value="{StaticResource BorderSubtleBrush}"/>
-                                            <Setter Property="Foreground" Value="#AEAEB2"/>
+                                            <Setter Property="Foreground" Value="{StaticResource TextTertiaryBrush}"/>
                                             <Setter Property="BorderBrush" Value="{StaticResource BorderSubtleBrush}"/>
                                             <Setter Property="Cursor" Value="Arrow"/>
                                         </Trigger>
@@ -1956,7 +1956,7 @@ Background="#FFFAFAFC"
                                     <Setter Property="BorderThickness" Value="0,0,0,1"/>
                                     <Style.Triggers>
                                         <Trigger Property="AlternationIndex" Value="1">
-                                            <Setter Property="Background" Value="#FFFCFBFD"/>
+                                            <Setter Property="Background" Value="{StaticResource SurfaceTintBrush}"/>
                                         </Trigger>
                                         <Trigger Property="IsMouseOver" Value="True">
                                             <Trigger.EnterActions>
@@ -2019,7 +2019,7 @@ Background="#FFFAFAFC"
                                             </MultiDataTrigger.Conditions>
                                             <Setter Property="Background" Value="{StaticResource BorderSubtleBrush}"/>
                                             <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
-                                            <Setter Property="BorderBrush" Value="#D1D1D6"/>
+                                            <Setter Property="BorderBrush" Value="{StaticResource BorderBrush}"/>
                                             <Setter Property="Cursor" Value="No"/>
                                             <Setter Property="IsEnabled" Value="False"/>
                                             <Setter Property="ToolTip" Value="该分区已受保护，当前禁止选择和写入"/>
@@ -2032,7 +2032,7 @@ Background="#FFFAFAFC"
                                             </MultiDataTrigger.Conditions>
                                             <Setter Property="Background" Value="{StaticResource BorderSubtleBrush}"/>
                                             <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
-                                            <Setter Property="BorderBrush" Value="#D1D1D6"/>
+                                            <Setter Property="BorderBrush" Value="{StaticResource BorderBrush}"/>
                                             <Setter Property="Cursor" Value="No"/>
                                             <Setter Property="IsEnabled" Value="False"/>
                                             <Setter Property="ToolTip" Value="ADB模式下该数据分区已受保护，当前禁止选择和写入"/>
@@ -2342,11 +2342,11 @@ Background="#FFFAFAFC"
                                                 <Style.Triggers>
                                                     <DataTrigger Binding="{Binding FilePath}" Value="">
                                                         <Setter Property="Text" Value="双击选择文件路径"/>
-                                                        <Setter Property="Foreground" Value="#FF999999"/>
+                                                        <Setter Property="Foreground" Value="{StaticResource TextTertiaryBrush}"/>
                                                     </DataTrigger>
                                                     <DataTrigger Binding="{Binding FilePath}" Value="{x:Null}">
                                                         <Setter Property="Text" Value="双击选择文件路径"/>
-                                                        <Setter Property="Foreground" Value="#FF999999"/>
+                                                        <Setter Property="Foreground" Value="{StaticResource TextTertiaryBrush}"/>
                                                     </DataTrigger>
                                                     <MultiDataTrigger>
                                                         <MultiDataTrigger.Conditions>
@@ -2377,7 +2377,7 @@ Background="#FFFAFAFC"
                            Grid.Row="1"
                            HorizontalAlignment="Center"
                            VerticalAlignment="Center"
-                           Foreground="#FFAEAEB2"
+                           Foreground="{StaticResource TextTertiaryBrush}"
                            FontSize="12"
                            IsHitTestVisible="False">
                     <TextBlock.Style>
@@ -2706,7 +2706,7 @@ Background="#FFFAFAFC"
                                        BasedOn="{StaticResource FastbootButtonBaseStyle}">
                                     <Setter Property="Background" Value="#FFFFFFFF"/>
                                     <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
-                                    <Setter Property="BorderBrush" Value="#FFD1D1D1"/>
+                                    <Setter Property="BorderBrush" Value="{StaticResource BorderBrush}"/>
                                     <Setter Property="BorderThickness" Value="1"/>
                                 </Style>
                                 <Style x:Key="FastbootCardGroupBoxStyle"
@@ -2805,7 +2805,7 @@ Background="#FFFAFAFC"
                             <CheckBox x:Name="MagiskAlpha29000CheckBox" Content="Magisk Alpha方案  支持版本：29000~最新" HorizontalAlignment="Left" Margin="76,83,0,0" VerticalAlignment="Top" Width="327" Style="{StaticResource PageCheckBox}" Checked="HiddenRootScheme_Checked"/>
                             <CheckBox x:Name="SUkiSULKMCheckBox" Content="SUkiSU LKM方案  支持版本：≥4.0 （KernelSU适用≥3.0）" HorizontalAlignment="Left" Margin="76,112,0,0" VerticalAlignment="Top" Width="398" Style="{StaticResource PageCheckBox}" Checked="HiddenRootScheme_Checked"/>
                             <CheckBox x:Name="SUkiSUGKICheckBox" Content="SUkiSU GKI/Built-in方案  支持版本：≥3.18" HorizontalAlignment="Left" Margin="76,138,0,0" VerticalAlignment="Top" Width="362" Style="{StaticResource PageCheckBox}" Checked="HiddenRootScheme_Checked"/>
-                            <Button x:Name="StartHiddenRootButton" HorizontalAlignment="Left" Margin="15,166,0,0" VerticalAlignment="Top" Width="154" Click="StartHiddenRootButton_Click" Style="{StaticResource PagePrimaryButton}" Background="{StaticResource BrandPrimaryBrush}" BorderBrush="#FF1D1D1F">
+                            <Button x:Name="StartHiddenRootButton" HorizontalAlignment="Left" Margin="15,166,0,0" VerticalAlignment="Top" Width="154" Click="StartHiddenRootButton_Click" Style="{StaticResource PagePrimaryButton}" Background="{StaticResource BrandPrimaryBrush}" BorderBrush="{StaticResource TextPrimaryBrush}">
                                 <Button.Content>
                                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
                                         <TextBlock Text="开始隐藏" VerticalAlignment="Center"/>
@@ -2993,7 +2993,7 @@ Background="#FFFAFAFC"
                             <Grid.Resources>
                                 <Style x:Key="AboutCardStyle" TargetType="Border">
                                     <Setter Property="Background" Value="#FFFFFFFF"/>
-                                    <Setter Property="BorderBrush" Value="#FFD1D1D1"/>
+                                    <Setter Property="BorderBrush" Value="{StaticResource BorderBrush}"/>
                                     <Setter Property="BorderThickness" Value="1"/>
                                     <Setter Property="CornerRadius" Value="6"/>
                                     <Setter Property="Padding" Value="16"/>
@@ -3012,7 +3012,7 @@ Background="#FFFAFAFC"
                                 </Style>
                                 <Style x:Key="AboutTagBorderStyle" TargetType="Border">
                                     <Setter Property="Background" Value="#FFF6F8FA"/>
-                                    <Setter Property="BorderBrush" Value="#FFD1D1D1"/>
+                                    <Setter Property="BorderBrush" Value="{StaticResource BorderBrush}"/>
                                     <Setter Property="BorderThickness" Value="1"/>
                                     <Setter Property="CornerRadius" Value="6"/>
                                     <Setter Property="Padding" Value="9,4"/>
@@ -3024,7 +3024,7 @@ Background="#FFFAFAFC"
                                     <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
                                 </Style>
                                 <Style TargetType="Ellipse">
-                                    <Setter Property="Stroke" Value="#FFD1D1D1"/>
+                                    <Setter Property="Stroke" Value="{StaticResource BorderBrush}"/>
                                     <Setter Property="StrokeThickness" Value="1"/>
                                     <Setter Property="SnapsToDevicePixels" Value="True"/>
                                 </Style>
@@ -3034,7 +3034,7 @@ Background="#FFFAFAFC"
                                     <Setter Property="Width" Value="36"/>
                                     <Setter Property="Height" Value="36"/>
                                     <Setter Property="Background" Value="#FFFFFFFF"/>
-                                    <Setter Property="BorderBrush" Value="#FFD1D1D1"/>
+                                    <Setter Property="BorderBrush" Value="{StaticResource BorderBrush}"/>
                                     <Setter Property="BorderThickness" Value="1"/>
                                     <Setter Property="Cursor" Value="Hand"/>
                                     <Setter Property="Padding" Value="0"/>
@@ -3140,7 +3140,7 @@ Background="#FFFAFAFC"
 
                                             <StackPanel Grid.Column="1" Margin="16,0,0,0" VerticalAlignment="Center">
                                                 <TextBlock Text="泡菜" FontSize="18" FontWeight="SemiBold" Foreground="{StaticResource TextPrimaryBrush}"/>
-                                                <Border Background="{StaticResource SurfaceTintBrush}" BorderBrush="#1D1D1F" BorderThickness="1" CornerRadius="6" Padding="9,4" HorizontalAlignment="Left" Margin="0,6,0,8">
+                                                <Border Background="{StaticResource SurfaceTintBrush}" BorderBrush="{StaticResource TextPrimaryBrush}" BorderThickness="1" CornerRadius="6" Padding="9,4" HorizontalAlignment="Left" Margin="0,6,0,8">
                                                     <TextBlock Text="前后端开发 &amp; 核心架构" FontSize="12" Foreground="{StaticResource TextPrimaryBrush}" FontWeight="SemiBold"/>
                                                 </Border>
                                                 <TextBlock Text="该项目由哔哩哔哩UP主”泡菜学不会“开发，开发此项目希望能为安卓玩机生态贡献自己的一份力量。"
@@ -3771,7 +3771,7 @@ Background="#FFFAFAFC"
                                                     </StackPanel>
                                                 </Button.Content>
                                             </Button>
-                                            <Button VerticalAlignment="Top" Width="94" Height="36" Background="#1D1D1F" Foreground="White" Margin="10,0,0,0" Click="DeleteSelectedFilesButton_Click">
+                                            <Button VerticalAlignment="Top" Width="94" Height="36" Background="{StaticResource TextPrimaryBrush}" Foreground="White" Margin="10,0,0,0" Click="DeleteSelectedFilesButton_Click">
                                                 <Button.Content>
                                                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                                                         <svg:SvgViewbox Source="images/xiezai.svg" Width="16" Height="16" Margin="0,0,6,0" />
@@ -3782,7 +3782,7 @@ Background="#FFFAFAFC"
                                             </StackPanel>
                                             <Grid Width="807" VerticalAlignment="Center" Margin="2,8,0,0">
                                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                                                    <TextBlock Text="加载位置：" VerticalAlignment="Center" Foreground="#FF666666" FontSize="13"/>
+                                                    <TextBlock Text="加载位置：" VerticalAlignment="Center" Foreground="{StaticResource TextMutedBrush}" FontSize="13"/>
                                                     <RadioButton x:Name="SystemZoneInternalStorageRadioButton"
                                                                  GroupName="SystemZoneLoadLocation"
                                                                  Content="内部存储"
@@ -3817,7 +3817,7 @@ Background="#FFFAFAFC"
                                                            MouseLeftButtonUp="CopyTextBlockContent"/>
                                             </Grid>
                                         </StackPanel>
-                                        <ListBox Name="FileListTextBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="807" Height="456" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Disabled" FontFamily="Consolas" FontSize="12" SelectionChanged="FileListTextBox_SelectionChanged" MouseDoubleClick="FileListTextBox_MouseDoubleClick" PreviewMouseLeftButtonDown="FileListTextBox_PreviewMouseLeftButtonDown" ContextMenuOpening="FileListTextBox_ContextMenuOpening" SelectionMode="Multiple" Margin="0,70,0,0" BorderBrush="#FFE8F0FF" HorizontalContentAlignment="Center" AllowDrop="True" Drop="FileListTextBox_Drop" DragOver="FileListTextBox_DragOver" VirtualizingStackPanel.IsVirtualizing="True" VirtualizingStackPanel.VirtualizationMode="Recycling" ScrollViewer.CanContentScroll="True">
+                                        <ListBox Name="FileListTextBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="807" Height="456" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Disabled" FontFamily="Consolas" FontSize="12" SelectionChanged="FileListTextBox_SelectionChanged" MouseDoubleClick="FileListTextBox_MouseDoubleClick" PreviewMouseLeftButtonDown="FileListTextBox_PreviewMouseLeftButtonDown" ContextMenuOpening="FileListTextBox_ContextMenuOpening" SelectionMode="Multiple" Margin="0,70,0,0" BorderBrush="{StaticResource BrandTintBrush}" HorizontalContentAlignment="Center" AllowDrop="True" Drop="FileListTextBox_Drop" DragOver="FileListTextBox_DragOver" VirtualizingStackPanel.IsVirtualizing="True" VirtualizingStackPanel.VirtualizationMode="Recycling" ScrollViewer.CanContentScroll="True">
                                             <ListBox.ContextMenu>
                                                 <ContextMenu>
                                                     <MenuItem x:Name="SystemZoneNewFolderMenuItem" Header="新建文件夹" Click="CreateSystemZoneFolderMenuItem_Click"/>
@@ -3861,7 +3861,7 @@ Background="#FFFAFAFC"
                                                                                 </Style>
                                                                             </Path.Style>
                                                                         </Path>
-                                                                        <Path Fill="#1D1D1F" Data="M895.2 425.1H509.1s-44.2-71.4-89.1-71.4H125.1c-20.7 0-38.9 16.3-38.9 36l40 429.2c0 19.7 19.8 35.8 44 35.8h685c24.2 0 44-16.1 44-35.8l40-358c0-19.7-19.8-35.8-44-35.8z">
+                                                                        <Path Fill="{StaticResource TextPrimaryBrush}" Data="M895.2 425.1H509.1s-44.2-71.4-89.1-71.4H125.1c-20.7 0-38.9 16.3-38.9 36l40 429.2c0 19.7 19.8 35.8 44 35.8h685c24.2 0 44-16.1 44-35.8l40-358c0-19.7-19.8-35.8-44-35.8z">
                                                                             <Path.Style>
                                                                                 <Style TargetType="Path">
                                                                                     <Setter Property="Visibility" Value="Visible"/>
@@ -3874,7 +3874,7 @@ Background="#FFFAFAFC"
                                                                             </Path.Style>
                                                                         </Path>
                                                                         <!-- 文档图标（仅普通文件显示，不包含压缩包和镜像） -->
-                                                                        <Path Fill="#1D1D1F" Data="M889.412267 101.0944c-8.785067-9.6384-21.960533-9.6384-30.7456 0L628.078933 349.269333a24.8832 24.8832 0 0 0 0 33.732267c4.394667 4.821333 10.978133 7.227733 15.3728 7.227733 6.587733 0 10.978133-2.410667 15.3728-7.227733L889.412267 134.826667a24.8832 24.8832 0 0 0 0-33.732267z m-116.394667 265.0368v481.877333c0 7.232-6.587733 14.464-13.175467 14.464H206.429867c-6.587733 2.4064-13.175467-4.821333-13.175467-12.049066V204.6976c0-7.227733 6.587733-14.455467 13.175467-14.455467h423.8464c13.175467 0 21.960533-9.6384 21.960533-24.093866 0-14.455467-8.789333-24.093867-21.960533-24.093867H206.429867C175.684267 142.0544 149.333333 170.9696 149.333333 204.6976v645.725867C149.333333 884.155733 175.684267 913.066667 206.429867 913.066667h553.412266c32.938667 0 57.1008-28.910933 57.1008-62.6432V368.5376c0-14.455467-8.789333-26.500267-21.960533-26.500267-13.179733 0-21.9648 9.634133-21.9648 24.093867zM551.214933 416.725333h-256.938666c-13.179733 0-21.960533 9.634133-21.960534 24.093867 0 14.455467 8.7808 24.093867 21.960534 24.093867h254.7456c13.175467 0 21.960533-9.642667 21.960533-24.093867 0-14.459733-8.789333-24.093867-19.767467-24.093867z m-278.8992 255.394134c0 14.459733 8.7808 24.093867 21.960534 24.093866h377.728c13.1712 0 21.956267-9.634133 21.956266-24.093866 0-14.455467-8.785067-24.093867-21.960533-24.093867H294.272c-10.978133 0-21.956267 9.642667-21.956267 24.093867z">
+                                                                        <Path Fill="{StaticResource TextPrimaryBrush}" Data="M889.412267 101.0944c-8.785067-9.6384-21.960533-9.6384-30.7456 0L628.078933 349.269333a24.8832 24.8832 0 0 0 0 33.732267c4.394667 4.821333 10.978133 7.227733 15.3728 7.227733 6.587733 0 10.978133-2.410667 15.3728-7.227733L889.412267 134.826667a24.8832 24.8832 0 0 0 0-33.732267z m-116.394667 265.0368v481.877333c0 7.232-6.587733 14.464-13.175467 14.464H206.429867c-6.587733 2.4064-13.175467-4.821333-13.175467-12.049066V204.6976c0-7.227733 6.587733-14.455467 13.175467-14.455467h423.8464c13.175467 0 21.960533-9.6384 21.960533-24.093866 0-14.455467-8.789333-24.093867-21.960533-24.093867H206.429867C175.684267 142.0544 149.333333 170.9696 149.333333 204.6976v645.725867C149.333333 884.155733 175.684267 913.066667 206.429867 913.066667h553.412266c32.938667 0 57.1008-28.910933 57.1008-62.6432V368.5376c0-14.455467-8.789333-26.500267-21.960533-26.500267-13.179733 0-21.9648 9.634133-21.9648 24.093867zM551.214933 416.725333h-256.938666c-13.179733 0-21.960533 9.634133-21.960534 24.093867 0 14.455467 8.7808 24.093867 21.960534 24.093867h254.7456c13.175467 0 21.960533-9.642667 21.960533-24.093867 0-14.459733-8.789333-24.093867-19.767467-24.093867z m-278.8992 255.394134c0 14.459733 8.7808 24.093867 21.960534 24.093866h377.728c13.1712 0 21.956267-9.634133 21.956266-24.093866 0-14.455467-8.785067-24.093867-21.960533-24.093867H294.272c-10.978133 0-21.956267 9.642667-21.956267 24.093867z">
                                                                             <Path.Style>
                                                                                 <Style TargetType="Path">
                                                                                     <Setter Property="Visibility" Value="Collapsed"/>
@@ -4023,7 +4023,7 @@ Background="#FFFAFAFC"
                                                                             Text="无需打开文件传输模式，仅充电模式下可进行正常文件传输，支持直接从电脑端批量拖动文件到窗口传输文件，加载根目录文件需要提前在设备上授予SHELL ROOT权限。"
                                                                             IsReadOnly="True"
                                                                             Background="{StaticResource SurfaceTintBrush}"
-                                                                            BorderBrush="#FFE8F0FF"
+                                                                            BorderBrush="{StaticResource BrandTintBrush}"
                                                                             BorderThickness="1"
                                                                             Padding="7,7"
                                                                             HorizontalContentAlignment="Stretch"
@@ -4126,7 +4126,7 @@ Background="#FFFAFAFC"
                                        BasedOn="{StaticResource FastbootButtonBaseStyle}">
                                     <Setter Property="Background" Value="#FFFFFFFF"/>
                                     <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
-                                    <Setter Property="BorderBrush" Value="#FFD1D1D1"/>
+                                    <Setter Property="BorderBrush" Value="{StaticResource BorderBrush}"/>
                                     <Setter Property="BorderThickness" Value="1"/>
                                 </Style>
 
@@ -4195,7 +4195,7 @@ Background="#FFFAFAFC"
                                     <Setter Property="BorderThickness" Value="0,0,0,1"/>
                                     <Style.Triggers>
                                         <Trigger Property="AlternationIndex" Value="1">
-                                            <Setter Property="Background" Value="#FFFCFBFD"/>
+                                            <Setter Property="Background" Value="{StaticResource SurfaceTintBrush}"/>
                                         </Trigger>
                                         <Trigger Property="IsMouseOver" Value="True">
                                             <Trigger.EnterActions>
@@ -4533,7 +4533,7 @@ Background="#FFFAFAFC"
                                 <Grid x:Name="OugaFlashOverlay" Visibility="Collapsed" Background="#AAFFFFFF" DataContext="{Binding RelativeSource={RelativeSource AncestorType=Window}}">
                                     <Grid.Resources>
                                         <LinearGradientBrush x:Key="FlashProgressGradient" StartPoint="0,0" EndPoint="1,1">
-                                            <GradientStop Color="#D1D1D6" Offset="0.0" />
+                                            <GradientStop Color="{StaticResource Gray200}" Offset="0.0" />
                                             <GradientStop Color="{StaticResource Gray900}" Offset="1.0" />
                                         </LinearGradientBrush>
                                     </Grid.Resources>
@@ -5167,7 +5167,7 @@ Background="#FFFAFAFC"
                                     Margin="766,671,0,0"
                                     Width="80"
                                     Height="32"
-                                    Background="#1D1D1F"
+                                    Background="{StaticResource TextPrimaryBrush}"
                                     BorderBrush="{StaticResource BorderSubtleBrush}"
                                     BorderThickness="1"
                                     CornerRadius="6">
@@ -5872,7 +5872,7 @@ Background="#FFFAFAFC"
                                                         Margin="0,0,8,0"
                                                         Click="BtnCancelAutoRoot_Click"
                                                         IsEnabled="False"
-                                                        Style="{StaticResource PagePrimaryButton}" Background="#1D1D1F">
+                                                        Style="{StaticResource PagePrimaryButton}" Background="{StaticResource TextPrimaryBrush}">
                                                     <TextBlock Text="停止操作" Foreground="White"/>
                                                 </Button>
                                                 <Button x:Name="btnClearLog"
@@ -6130,7 +6130,7 @@ Background="#FFFAFAFC"
                                                             Margin="0,0,8,0"
                                                             ToolTip="不知道自己当前版本使用新旧方案的先分析一下"
                                                             Click="AvbAnalyzeVbmetaButton_Click"
-                                                            Style="{StaticResource PageSecondaryButton}" Background="#1D1D1F" Foreground="White" BorderBrush="#1D1D1F">
+                                                            Style="{StaticResource PageSecondaryButton}" Background="{StaticResource TextPrimaryBrush}" Foreground="White" BorderBrush="{StaticResource TextPrimaryBrush}">
                                                         <TextBlock Text="分析 vbmeta"/>
                                                     </Button>
                                                     <Button x:Name="AvbStartSignButton"
@@ -6199,7 +6199,7 @@ Background="#FFFAFAFC"
                                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                                                 <TextBlock
                                                            VerticalAlignment="Center"
-                                                           Foreground="#FF444444"><Run Text="仅"/><Run Language="zh-cn" Text="显示"/><Run Text="用户应用"/></TextBlock>
+                                                           Foreground="{StaticResource TextStrongBrush}"><Run Text="仅"/><Run Language="zh-cn" Text="显示"/><Run Text="用户应用"/></TextBlock>
                                                 <ToggleButton x:Name="AppListSwitchToggle"
                                                               Style="{StaticResource PageSwitch}"
                                                               Checked="AppListThirdPartyToggle_Checked"
@@ -6207,7 +6207,7 @@ Background="#FFFAFAFC"
                                                               Margin="8,0,18,0"/>
                                                 <TextBlock Text="仅看系统应用"
                                                            VerticalAlignment="Center"
-                                                           Foreground="#FF444444"/>
+                                                           Foreground="{StaticResource TextStrongBrush}"/>
                                                 <ToggleButton x:Name="AppListSwitchToggle复制__C_"
                                                               Style="{StaticResource PageSwitch}"
                                                               Checked="AppListSystemToggle_Checked"
@@ -6222,7 +6222,7 @@ Background="#FFFAFAFC"
                                                 <TextBlock Text="包名搜索"
                                                            VerticalAlignment="Center"
                                                            Margin="0,0,12,0"
-                                                           Foreground="#FF444444"/>
+                                                           Foreground="{StaticResource TextStrongBrush}"/>
                                                 <TextBox x:Name="AppPackageSearchComboBox"
                                                          Grid.Column="1"
                                                          Style="{StaticResource PageTextBox}"
@@ -6241,7 +6241,7 @@ Background="#FFFAFAFC"
                                     <TextBlock Grid.Row="1"
                                                Text="支持多选应用后进行卸载、冻结、提取 APK 等批量操作。"
                                                Margin="0,0,0,8"
-                                               Foreground="#FF7A7A7A"
+                                               Foreground="{StaticResource TextMutedBrush}"
                                                FontSize="11"/>
 
                                     <DataGrid Grid.Row="2"
@@ -6981,7 +6981,7 @@ Background="#FFFAFAFC"
 
                                     <Button x:Name="GenerateOcdtButton" Content="生成 OCDT" HorizontalAlignment="Left" Margin="0,73,0,0" VerticalAlignment="Top" Width="338" Height="30" Click="GenerateOcdtButton_Click" Background="{StaticResource BorderSubtleBrush}" BorderBrush="{StaticResource BorderSubtleBrush}" Foreground="White"/>
 
-                                    <TextBlock HorizontalAlignment="Left" Margin="0,113,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="338" FontSize="11" Foreground="#FF666666" LineHeight="16"><Run Text="只需要选择你对应的处理器和项目和然后点击生成即可"/><Run Text="！"/><LineBreak/><Run/><Run Text="项目号如何获取？只需下载一个线刷包（售后包）并解压，然后找到线刷包中的version_info.txt文件，然后打开找到project=‘项目号’"/><Run Text="，将"/><Run Language="zh-cn" Text="项目号填入到此处点击生成."/></TextBlock>
+                                    <TextBlock HorizontalAlignment="Left" Margin="0,113,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="338" FontSize="11" Foreground="{StaticResource TextMutedBrush}" LineHeight="16"><Run Text="只需要选择你对应的处理器和项目和然后点击生成即可"/><Run Text="！"/><LineBreak/><Run/><Run Text="项目号如何获取？只需下载一个线刷包（售后包）并解压，然后找到线刷包中的version_info.txt文件，然后打开找到project=‘项目号’"/><Run Text="，将"/><Run Language="zh-cn" Text="项目号填入到此处点击生成."/></TextBlock>
                                 </Grid>
                             </GroupBox>
 </Grid></ScrollViewer>
@@ -7213,8 +7213,8 @@ Background="#FFFAFAFC"
 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Row="2" Grid.Column="2" VerticalAlignment="Center">
 
                                     <Button Name="ReadInfoButton" Width="90" Height="32" Margin="0,0,10,0" Content="读取信息" Click="ReadInfoButton_Click" Background="{StaticResource BorderBrush}" Foreground="White"/>
-                                    <Button Name="ExportButton" Width="89" Height="32" Margin="0,0,10,0" Content="提取镜像" Click="ExportButton_Click" Background="#1D1D1F" Foreground="White"/>
-                                    <Button Name="StopOperationButton" Width="75" Height="32" Content="停止操作" Click="PayloadStopOperationButton_Click" Background="#1D1D1F" Foreground="White"/>
+                                    <Button Name="ExportButton" Width="89" Height="32" Margin="0,0,10,0" Content="提取镜像" Click="ExportButton_Click" Background="{StaticResource TextPrimaryBrush}" Foreground="White"/>
+                                    <Button Name="StopOperationButton" Width="75" Height="32" Content="停止操作" Click="PayloadStopOperationButton_Click" Background="{StaticResource TextPrimaryBrush}" Foreground="White"/>
                                 
                             </StackPanel>
                         </Grid>
@@ -7319,7 +7319,7 @@ Background="#FFFAFAFC"
                                                         <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
                                                     </Trigger>
                                                     <Trigger Property="IsEnabled" Value="False">
-                                                        <Setter Property="Foreground" Value="#AEAEB2"/>
+                                                        <Setter Property="Foreground" Value="{StaticResource TextTertiaryBrush}"/>
                                                     </Trigger>
                                                 </ControlTemplate.Triggers>
                                             </ControlTemplate>
@@ -7723,7 +7723,7 @@ Background="#FFFAFAFC"
                             <StackPanel Margin="24,20,24,18">
                                 <!-- 标题 -->
                                 <StackPanel Orientation="Horizontal" Margin="0,0,0,16">
-                                    <Border Width="46" Height="46" CornerRadius="23" Background="#FFD1E2FF" VerticalAlignment="Center">
+                                    <Border Width="46" Height="46" CornerRadius="23" Background="{StaticResource BrandTintStrongBrush}" VerticalAlignment="Center">
                                         <TextBlock Text="EDL" FontSize="18" FontWeight="Bold" Foreground="{StaticResource BrandPrimaryBrush}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                     </Border>
                                     <StackPanel Margin="14,0,0,0" VerticalAlignment="Center">
@@ -7989,7 +7989,7 @@ Background="#FFFAFAFC"
                                     <Setter Property="HorizontalAlignment" Value="Center"/>
                                     <Setter Property="Background" Value="#FFFFFFFF"/>
                                     <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
-                                    <Setter Property="BorderBrush" Value="#FFD1D1D1"/>
+                                    <Setter Property="BorderBrush" Value="{StaticResource BorderBrush}"/>
                                     <Setter Property="BorderThickness" Value="1"/>
                                     <Setter Property="FontSize" Value="11.5"/>
                                     <Setter Property="FontWeight" Value="Medium"/>
@@ -8576,7 +8576,7 @@ Background="#FFFAFAFC"
                                                     <Trigger Property="IsEnabled" Value="False">
                                                         <Setter Property="Opacity" Value="1"/>
                                                         <Setter Property="Background" Value="{StaticResource BorderSubtleBrush}"/>
-                                                        <Setter Property="BorderBrush" Value="#D1D1D6"/>
+                                                        <Setter Property="BorderBrush" Value="{StaticResource BorderBrush}"/>
                                                         <Setter Property="Foreground" Value="{StaticResource TextMutedBrush}"/>
                                                     </Trigger>
                                                 </ControlTemplate.Triggers>
@@ -8603,13 +8603,13 @@ Background="#FFFAFAFC"
                                                             <BeginStoryboard>
                                                                 <Storyboard>
                                                                     <ColorAnimation Storyboard.TargetProperty="Background.Color"
-                                                                                    To="#F5F5F7" Duration="0:0:0.12">
+                                                                                    To="{StaticResource Gray50}" Duration="0:0:0.12">
                                                                         <ColorAnimation.EasingFunction>
                                                                             <CubicEase EasingMode="EaseOut"/>
                                                                         </ColorAnimation.EasingFunction>
                                                                     </ColorAnimation>
                                                                     <ColorAnimation Storyboard.TargetProperty="BorderBrush.Color"
-                                                                                    To="#D1D1D6" Duration="0:0:0.12">
+                                                                                    To="{StaticResource Gray200}" Duration="0:0:0.12">
                                                                         <ColorAnimation.EasingFunction>
                                                                             <CubicEase EasingMode="EaseOut"/>
                                                                         </ColorAnimation.EasingFunction>
@@ -8687,7 +8687,7 @@ Background="#FFFAFAFC"
                                                             <BeginStoryboard>
                                                                 <Storyboard>
                                                                     <ColorAnimation Storyboard.TargetProperty="Background.Color"
-                                                                                    To="#F5F5F7" Duration="0:0:0.12">
+                                                                                    To="{StaticResource Gray50}" Duration="0:0:0.12">
                                                                         <ColorAnimation.EasingFunction>
                                                                             <CubicEase EasingMode="EaseOut"/>
                                                                         </ColorAnimation.EasingFunction>
@@ -8811,7 +8811,7 @@ Background="#FFFAFAFC"
                                                                 <Storyboard>
                                                                     <ColorAnimation Storyboard.TargetName="VioletTextBoxBorder"
                                                                                     Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)"
-                                                                                    To="#D1D1D6" Duration="0:0:0.12">
+                                                                                    To="{StaticResource Gray200}" Duration="0:0:0.12">
                                                                         <ColorAnimation.EasingFunction>
                                                                             <CubicEase EasingMode="EaseOut"/>
                                                                         </ColorAnimation.EasingFunction>
@@ -8843,7 +8843,7 @@ Background="#FFFAFAFC"
                                                     <Trigger Property="IsEnabled" Value="False">
                                                         <Setter TargetName="VioletTextBoxBorder" Property="Background" Value="{StaticResource SurfaceTintBrush}"/>
                                                         <Setter TargetName="VioletTextBoxBorder" Property="BorderBrush" Value="{StaticResource BorderSubtleBrush}"/>
-                                                        <Setter Property="Foreground" Value="#AEAEB2"/>
+                                                        <Setter Property="Foreground" Value="{StaticResource TextTertiaryBrush}"/>
                                                     </Trigger>
                                                 </ControlTemplate.Triggers>
                                             </ControlTemplate>
@@ -9150,7 +9150,7 @@ Background="#FFFAFAFC"
                                                     <Button x:Name="VioletDownloadPauseButton"
                                                             Click="VioletDownloadPauseButton_Click"
                                                             Style="{StaticResource PageSecondaryButton}"
-                                                            Margin="4,0,4,0" Foreground="White" BorderBrush="#1D1D1F" Background="#1D1D1F">
+                                                            Margin="4,0,4,0" Foreground="White" BorderBrush="{StaticResource TextPrimaryBrush}" Background="{StaticResource TextPrimaryBrush}">
                                                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                                                             <Grid Width="14" Height="14" Margin="0,0,5,0">
                                                                 <svg:SvgViewbox Source="images/zanting.svg" Width="14" Height="14">
@@ -9478,7 +9478,7 @@ Background="#FFFAFAFC"
                                 Click="MaximizeButton_Click"
                                 ToolTip="最大化/还原">
                                 <Button.Content>
-                                    <Rectangle Width="11" Height="11" Stroke="#FF1D1D1F" StrokeThickness="1.2" Fill="Transparent"/>
+                                    <Rectangle Width="11" Height="11" Stroke="{StaticResource TextPrimaryBrush}" StrokeThickness="1.2" Fill="Transparent"/>
                                 </Button.Content>
                                 <Button.Style>
                                     <Style TargetType="{x:Type Button}">
@@ -9677,8 +9677,8 @@ Background="#FFFAFAFC"
                                     <hc:SideMenuItem x:Name="FlashFeatureGroup" FontSize="13" PreviewMouseLeftButtonDown="GroupHeader_Click">
                                     <hc:SideMenuItem.Header>
                                         <DockPanel>
-                                            <Border DockPanel.Dock="Left" Width="20" Height="20" CornerRadius="10" Background="#FFD1E2FF" VerticalAlignment="Center" Margin="0,0,8,0">
-                                                <Path Width="10" Height="6" Stretch="Uniform" Stroke="#FF007AFF" StrokeThickness="1.8" Fill="Transparent"
+                                            <Border DockPanel.Dock="Left" Width="20" Height="20" CornerRadius="10" Background="{StaticResource BrandTintStrongBrush}" VerticalAlignment="Center" Margin="0,0,8,0">
+                                                <Path Width="10" Height="6" Stretch="Uniform" Stroke="{StaticResource BrandPrimaryBrush}" StrokeThickness="1.8" Fill="Transparent"
                                                       HorizontalAlignment="Center" VerticalAlignment="Center"
                                                       RenderTransformOrigin="0.5,0.5" Data="M0,0 L5,5 L10,0">
                                                     <Path.RenderTransform>
@@ -9752,8 +9752,8 @@ Background="#FFFAFAFC"
                                     <hc:SideMenuItem x:Name="UtilityGroup" FontSize="13" PreviewMouseLeftButtonDown="GroupHeader_Click">
                                     <hc:SideMenuItem.Header>
                                         <DockPanel>
-                                            <Border DockPanel.Dock="Left" Width="20" Height="20" CornerRadius="10" Background="#FFD1E2FF" VerticalAlignment="Center" Margin="0,0,8,0">
-                                                <Path Width="10" Height="6" Stretch="Uniform" Stroke="#FF007AFF" StrokeThickness="1.8" Fill="Transparent"
+                                            <Border DockPanel.Dock="Left" Width="20" Height="20" CornerRadius="10" Background="{StaticResource BrandTintStrongBrush}" VerticalAlignment="Center" Margin="0,0,8,0">
+                                                <Path Width="10" Height="6" Stretch="Uniform" Stroke="{StaticResource BrandPrimaryBrush}" StrokeThickness="1.8" Fill="Transparent"
                                                       HorizontalAlignment="Center" VerticalAlignment="Center"
                                                       RenderTransformOrigin="0.5,0.5" Data="M0,0 L5,5 L10,0">
                                                     <Path.RenderTransform>
@@ -9848,8 +9848,8 @@ Background="#FFFAFAFC"
                                     <hc:SideMenuItem x:Name="ResourceGroup" FontSize="13" PreviewMouseLeftButtonDown="GroupHeader_Click">
                                     <hc:SideMenuItem.Header>
                                         <DockPanel>
-                                            <Border DockPanel.Dock="Left" Width="20" Height="20" CornerRadius="10" Background="#FFD1E2FF" VerticalAlignment="Center" Margin="0,0,8,0">
-                                                <Path Width="10" Height="6" Stretch="Uniform" Stroke="#FF007AFF" StrokeThickness="1.8" Fill="Transparent"
+                                            <Border DockPanel.Dock="Left" Width="20" Height="20" CornerRadius="10" Background="{StaticResource BrandTintStrongBrush}" VerticalAlignment="Center" Margin="0,0,8,0">
+                                                <Path Width="10" Height="6" Stretch="Uniform" Stroke="{StaticResource BrandPrimaryBrush}" StrokeThickness="1.8" Fill="Transparent"
                                                       HorizontalAlignment="Center" VerticalAlignment="Center"
                                                       RenderTransformOrigin="0.5,0.5" Data="M0,0 L5,5 L10,0">
                                                     <Path.RenderTransform>
@@ -10037,7 +10037,7 @@ Background="#FFFAFAFC"
                                     <Setter Property="Padding" Value="10,0"/>
                                     <Setter Property="Background" Value="#FFFFFFFF"/>
                                     <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
-                                    <Setter Property="BorderBrush" Value="#FFC7C7CC"/>
+                                    <Setter Property="BorderBrush" Value="{StaticResource TextTertiaryBrush}"/>
                                     <Setter Property="BorderThickness" Value="1"/>
                                     <Setter Property="FontSize" Value="13"/>
                                     <Setter Property="FontWeight" Value="Medium"/>
