@@ -1772,36 +1772,49 @@ namespace WpfApp1
                 var tg = new TransformGroup();
                 if (slide)
                 {
-                    tg.Children.Add(new TranslateTransform(0, 16));
-                    tg.Children.Add(new ScaleTransform(0.985, 0.985));
+                    tg.Children.Add(new TranslateTransform(0, 26));
+                    tg.Children.Add(new ScaleTransform(0.97, 0.97));
                 }
                 else
                 {
-                    tg.Children.Add(new ScaleTransform(0.99, 0.99));
+                    tg.Children.Add(new ScaleTransform(0.98, 0.98));
                 }
                 page.RenderTransform = tg;
                 var sb = new Storyboard();
-                var oa = new DoubleAnimation(0.0, 1.0, TimeSpan.FromMilliseconds(150));
-                oa.EasingFunction = new QuadraticEase { EasingMode = EasingMode.EaseOut };
+                var oa = new DoubleAnimation(0.0, 1.0, TimeSpan.FromMilliseconds(220));
+                oa.EasingFunction = new CubicEase { EasingMode = EasingMode.EaseOut };
                 Storyboard.SetTarget(oa, page);
                 Storyboard.SetTargetProperty(oa, new PropertyPath(UIElement.OpacityProperty));
                 sb.Children.Add(oa);
                 if (slide)
                 {
-                    var ta = new DoubleAnimation(16.0, 0.0, TimeSpan.FromMilliseconds(200));
+                    var ta = new DoubleAnimation(26.0, 0.0, TimeSpan.FromMilliseconds(300));
                     ta.EasingFunction = new CubicEase { EasingMode = EasingMode.EaseOut };
                     Storyboard.SetTarget(ta, page);
                     Storyboard.SetTargetProperty(ta, new PropertyPath("(UIElement.RenderTransform).Children[0].(TranslateTransform.Y)"));
                     sb.Children.Add(ta);
-                    var sa = new DoubleAnimation(0.985, 1.0, TimeSpan.FromMilliseconds(200));
+                    var sa = new DoubleAnimation(0.97, 1.0, TimeSpan.FromMilliseconds(300));
                     sa.EasingFunction = new CubicEase { EasingMode = EasingMode.EaseOut };
                     Storyboard.SetTarget(sa, page);
                     Storyboard.SetTargetProperty(sa, new PropertyPath("(UIElement.RenderTransform).Children[1].(ScaleTransform.ScaleX)"));
                     sb.Children.Add(sa);
-                    var sa2 = new DoubleAnimation(0.985, 1.0, TimeSpan.FromMilliseconds(200));
+                    var sa2 = new DoubleAnimation(0.97, 1.0, TimeSpan.FromMilliseconds(300));
                     sa2.EasingFunction = new CubicEase { EasingMode = EasingMode.EaseOut };
                     Storyboard.SetTarget(sa2, page);
                     Storyboard.SetTargetProperty(sa2, new PropertyPath("(UIElement.RenderTransform).Children[1].(ScaleTransform.ScaleY)"));
+                    sb.Children.Add(sa2);
+                }
+                else
+                {
+                    var sa = new DoubleAnimation(0.98, 1.0, TimeSpan.FromMilliseconds(240));
+                    sa.EasingFunction = new CubicEase { EasingMode = EasingMode.EaseOut };
+                    Storyboard.SetTarget(sa, page);
+                    Storyboard.SetTargetProperty(sa, new PropertyPath("(UIElement.RenderTransform).Children[0].(ScaleTransform.ScaleX)"));
+                    sb.Children.Add(sa);
+                    var sa2 = new DoubleAnimation(0.98, 1.0, TimeSpan.FromMilliseconds(240));
+                    sa2.EasingFunction = new CubicEase { EasingMode = EasingMode.EaseOut };
+                    Storyboard.SetTarget(sa2, page);
+                    Storyboard.SetTargetProperty(sa2, new PropertyPath("(UIElement.RenderTransform).Children[0].(ScaleTransform.ScaleY)"));
                     sb.Children.Add(sa2);
                 }
                 sb.Begin(page);

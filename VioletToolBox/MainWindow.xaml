@@ -81,17 +81,108 @@ Background="#FFFAFAFC"
                                     BorderBrush="{TemplateBinding BorderBrush}"
                                     BorderThickness="{TemplateBinding BorderThickness}"
                                     CornerRadius="6"
-                                    SnapsToDevicePixels="True">
+                                    SnapsToDevicePixels="True"
+                                    RenderTransformOrigin="0.5,0.5">
+                                <Border.RenderTransform>
+                                    <ScaleTransform/>
+                                </Border.RenderTransform>
                                 <ContentPresenter TextElement.Foreground="{TemplateBinding Foreground}" HorizontalAlignment="Center"
                                                   VerticalAlignment="Center"
                                                   Margin="{TemplateBinding Padding}"/>
                             </Border>
                             <ControlTemplate.Triggers>
                                 <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter TargetName="ButtonBorder" Property="Opacity" Value="0.88"/>
+                                    <Trigger.EnterActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetName="ButtonBorder"
+                                                                 Storyboard.TargetProperty="Opacity"
+                                                                 To="0.88" Duration="0:0:0.14">
+                                                    <DoubleAnimation.EasingFunction>
+                                                        <CubicEase EasingMode="EaseOut"/>
+                                                    </DoubleAnimation.EasingFunction>
+                                                </DoubleAnimation>
+                                                <DoubleAnimation Storyboard.TargetName="ButtonBorder"
+                                                                 Storyboard.TargetProperty="(Border.RenderTransform).(ScaleTransform.ScaleX)"
+                                                                 To="1.02" Duration="0:0:0.14">
+                                                    <DoubleAnimation.EasingFunction>
+                                                        <CubicEase EasingMode="EaseOut"/>
+                                                    </DoubleAnimation.EasingFunction>
+                                                </DoubleAnimation>
+                                                <DoubleAnimation Storyboard.TargetName="ButtonBorder"
+                                                                 Storyboard.TargetProperty="(Border.RenderTransform).(ScaleTransform.ScaleY)"
+                                                                 To="1.02" Duration="0:0:0.14">
+                                                    <DoubleAnimation.EasingFunction>
+                                                        <CubicEase EasingMode="EaseOut"/>
+                                                    </DoubleAnimation.EasingFunction>
+                                                </DoubleAnimation>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </Trigger.EnterActions>
+                                    <Trigger.ExitActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetName="ButtonBorder"
+                                                                 Storyboard.TargetProperty="Opacity"
+                                                                 Duration="0:0:0.2">
+                                                    <DoubleAnimation.EasingFunction>
+                                                        <CubicEase EasingMode="EaseOut"/>
+                                                    </DoubleAnimation.EasingFunction>
+                                                </DoubleAnimation>
+                                                <DoubleAnimation Storyboard.TargetName="ButtonBorder"
+                                                                 Storyboard.TargetProperty="(Border.RenderTransform).(ScaleTransform.ScaleX)"
+                                                                 Duration="0:0:0.2">
+                                                    <DoubleAnimation.EasingFunction>
+                                                        <CubicEase EasingMode="EaseOut"/>
+                                                    </DoubleAnimation.EasingFunction>
+                                                </DoubleAnimation>
+                                                <DoubleAnimation Storyboard.TargetName="ButtonBorder"
+                                                                 Storyboard.TargetProperty="(Border.RenderTransform).(ScaleTransform.ScaleY)"
+                                                                 Duration="0:0:0.2">
+                                                    <DoubleAnimation.EasingFunction>
+                                                        <CubicEase EasingMode="EaseOut"/>
+                                                    </DoubleAnimation.EasingFunction>
+                                                </DoubleAnimation>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </Trigger.ExitActions>
                                 </Trigger>
                                 <Trigger Property="IsPressed" Value="True">
-                                    <Setter TargetName="ButtonBorder" Property="Opacity" Value="0.72"/>
+                                    <Trigger.EnterActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetName="ButtonBorder"
+                                                                 Storyboard.TargetProperty="Opacity"
+                                                                 To="0.72" Duration="0:0:0.08"/>
+                                                <DoubleAnimation Storyboard.TargetName="ButtonBorder"
+                                                                 Storyboard.TargetProperty="(Border.RenderTransform).(ScaleTransform.ScaleX)"
+                                                                 To="0.97" Duration="0:0:0.08"/>
+                                                <DoubleAnimation Storyboard.TargetName="ButtonBorder"
+                                                                 Storyboard.TargetProperty="(Border.RenderTransform).(ScaleTransform.ScaleY)"
+                                                                 To="0.97" Duration="0:0:0.08"/>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </Trigger.EnterActions>
+                                    <Trigger.ExitActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetName="ButtonBorder"
+                                                                 Storyboard.TargetProperty="(Border.RenderTransform).(ScaleTransform.ScaleX)"
+                                                                 To="1.02" Duration="0:0:0.14">
+                                                    <DoubleAnimation.EasingFunction>
+                                                        <CubicEase EasingMode="EaseOut"/>
+                                                    </DoubleAnimation.EasingFunction>
+                                                </DoubleAnimation>
+                                                <DoubleAnimation Storyboard.TargetName="ButtonBorder"
+                                                                 Storyboard.TargetProperty="(Border.RenderTransform).(ScaleTransform.ScaleY)"
+                                                                 To="1.02" Duration="0:0:0.14">
+                                                    <DoubleAnimation.EasingFunction>
+                                                        <CubicEase EasingMode="EaseOut"/>
+                                                    </DoubleAnimation.EasingFunction>
+                                                </DoubleAnimation>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </Trigger.ExitActions>
                                 </Trigger>
                                 <Trigger Property="IsEnabled" Value="False">
                                     <Setter TargetName="ButtonBorder" Property="Opacity" Value="0.42"/>
@@ -395,9 +486,14 @@ Background="#FFFAFAFC"
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="hc:SideMenuItem">
-                            <Border Background="{TemplateBinding Panel.Background}"
+                            <Border x:Name="bd"
+                                    Background="{TemplateBinding Panel.Background}"
                                     CornerRadius="18"
-                                    Padding="{TemplateBinding Control.Padding}">
+                                    Padding="{TemplateBinding Control.Padding}"
+                                    RenderTransformOrigin="0.5,0.5">
+                                <Border.RenderTransform>
+                                    <ScaleTransform/>
+                                </Border.RenderTransform>
                                 <Grid>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="Auto"/>
@@ -412,28 +508,152 @@ Background="#FFFAFAFC"
                                                       HorizontalAlignment="Left" VerticalAlignment="Center"/>
                                 </Grid>
                             </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                        <Trigger.EnterActions>
+                                            <BeginStoryboard>
+                                                <Storyboard>
+                                                    <ColorAnimation Storyboard.TargetName="bd"
+                                                                    Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+                                                                    To="#FFE8F0FF" Duration="0:0:0.15">
+                                                        <ColorAnimation.EasingFunction>
+                                                            <CubicEase EasingMode="EaseOut"/>
+                                                        </ColorAnimation.EasingFunction>
+                                                    </ColorAnimation>
+                                                    <ColorAnimation Storyboard.TargetProperty="(Control.Foreground).(SolidColorBrush.Color)"
+                                                                    To="#FF004C9E" Duration="0:0:0.15">
+                                                        <ColorAnimation.EasingFunction>
+                                                            <CubicEase EasingMode="EaseOut"/>
+                                                        </ColorAnimation.EasingFunction>
+                                                    </ColorAnimation>
+                                                    <DoubleAnimation Storyboard.TargetName="bd"
+                                                                     Storyboard.TargetProperty="(Border.RenderTransform).(ScaleTransform.ScaleX)"
+                                                                     To="1.02" Duration="0:0:0.15">
+                                                        <DoubleAnimation.EasingFunction>
+                                                            <CubicEase EasingMode="EaseOut"/>
+                                                        </DoubleAnimation.EasingFunction>
+                                                    </DoubleAnimation>
+                                                    <DoubleAnimation Storyboard.TargetName="bd"
+                                                                     Storyboard.TargetProperty="(Border.RenderTransform).(ScaleTransform.ScaleY)"
+                                                                     To="1.02" Duration="0:0:0.15">
+                                                        <DoubleAnimation.EasingFunction>
+                                                            <CubicEase EasingMode="EaseOut"/>
+                                                        </DoubleAnimation.EasingFunction>
+                                                    </DoubleAnimation>
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </Trigger.EnterActions>
+                                        <Trigger.ExitActions>
+                                            <BeginStoryboard>
+                                                <Storyboard>
+                                                    <ColorAnimation Storyboard.TargetName="bd"
+                                                                    Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+                                                                    Duration="0:0:0.2">
+                                                        <ColorAnimation.EasingFunction>
+                                                            <CubicEase EasingMode="EaseOut"/>
+                                                        </ColorAnimation.EasingFunction>
+                                                    </ColorAnimation>
+                                                    <ColorAnimation Storyboard.TargetProperty="(Control.Foreground).(SolidColorBrush.Color)"
+                                                                    Duration="0:0:0.2">
+                                                        <ColorAnimation.EasingFunction>
+                                                            <CubicEase EasingMode="EaseOut"/>
+                                                        </ColorAnimation.EasingFunction>
+                                                    </ColorAnimation>
+                                                    <DoubleAnimation Storyboard.TargetName="bd"
+                                                                     Storyboard.TargetProperty="(Border.RenderTransform).(ScaleTransform.ScaleX)"
+                                                                     Duration="0:0:0.2">
+                                                        <DoubleAnimation.EasingFunction>
+                                                            <CubicEase EasingMode="EaseOut"/>
+                                                        </DoubleAnimation.EasingFunction>
+                                                    </DoubleAnimation>
+                                                    <DoubleAnimation Storyboard.TargetName="bd"
+                                                                     Storyboard.TargetProperty="(Border.RenderTransform).(ScaleTransform.ScaleY)"
+                                                                     Duration="0:0:0.2">
+                                                        <DoubleAnimation.EasingFunction>
+                                                            <CubicEase EasingMode="EaseOut"/>
+                                                        </DoubleAnimation.EasingFunction>
+                                                    </DoubleAnimation>
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </Trigger.ExitActions>
+                                    </Trigger>
+                                    <Trigger Property="IsSelected" Value="True">
+                                        <Setter Property="FontWeight" Value="SemiBold"/>
+                                        <Trigger.EnterActions>
+                                            <BeginStoryboard>
+                                                <Storyboard>
+                                                    <ColorAnimation Storyboard.TargetName="bd"
+                                                                    Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+                                                                    To="#FF007AFF" Duration="0:0:0.18">
+                                                        <ColorAnimation.EasingFunction>
+                                                            <CubicEase EasingMode="EaseOut"/>
+                                                        </ColorAnimation.EasingFunction>
+                                                    </ColorAnimation>
+                                                    <ColorAnimation Storyboard.TargetProperty="(Control.Foreground).(SolidColorBrush.Color)"
+                                                                    To="#FFFFFFFF" Duration="0:0:0.18">
+                                                        <ColorAnimation.EasingFunction>
+                                                            <CubicEase EasingMode="EaseOut"/>
+                                                        </ColorAnimation.EasingFunction>
+                                                    </ColorAnimation>
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </Trigger.EnterActions>
+                                        <Trigger.ExitActions>
+                                            <BeginStoryboard>
+                                                <Storyboard>
+                                                    <ColorAnimation Storyboard.TargetName="bd"
+                                                                    Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+                                                                    Duration="0:0:0.2">
+                                                        <ColorAnimation.EasingFunction>
+                                                            <CubicEase EasingMode="EaseOut"/>
+                                                        </ColorAnimation.EasingFunction>
+                                                    </ColorAnimation>
+                                                    <ColorAnimation Storyboard.TargetProperty="(Control.Foreground).(SolidColorBrush.Color)"
+                                                                    Duration="0:0:0.2">
+                                                        <ColorAnimation.EasingFunction>
+                                                            <CubicEase EasingMode="EaseOut"/>
+                                                        </ColorAnimation.EasingFunction>
+                                                    </ColorAnimation>
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </Trigger.ExitActions>
+                                    </Trigger>
+                                    <MultiTrigger>
+                                        <MultiTrigger.Conditions>
+                                            <Condition Property="IsSelected" Value="True"/>
+                                            <Condition Property="IsMouseOver" Value="True"/>
+                                        </MultiTrigger.Conditions>
+                                        <MultiTrigger.EnterActions>
+                                            <BeginStoryboard>
+                                                <Storyboard>
+                                                    <ColorAnimation Storyboard.TargetName="bd"
+                                                                    Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+                                                                    To="#FF0066D6" Duration="0:0:0.12">
+                                                        <ColorAnimation.EasingFunction>
+                                                            <CubicEase EasingMode="EaseOut"/>
+                                                        </ColorAnimation.EasingFunction>
+                                                    </ColorAnimation>
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </MultiTrigger.EnterActions>
+                                        <MultiTrigger.ExitActions>
+                                            <BeginStoryboard>
+                                                <Storyboard>
+                                                    <ColorAnimation Storyboard.TargetName="bd"
+                                                                    Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+                                                                    To="#FF007AFF" Duration="0:0:0.15">
+                                                        <ColorAnimation.EasingFunction>
+                                                            <CubicEase EasingMode="EaseOut"/>
+                                                        </ColorAnimation.EasingFunction>
+                                                    </ColorAnimation>
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </MultiTrigger.ExitActions>
+                                    </MultiTrigger>
+                                </ControlTemplate.Triggers>
                         </ControlTemplate>
                     </Setter.Value>
                 </Setter>
-                <Style.Triggers>
-                    <Trigger Property="IsSelected" Value="True">
-                        <Setter Property="Background" Value="#FF007AFF"/>
-                        <Setter Property="Foreground" Value="White"/>
-                        <Setter Property="FontWeight" Value="SemiBold"/>
-                    </Trigger>
-                    <Trigger Property="IsMouseOver" Value="True">
-                        <Setter Property="Background" Value="#FFE8F0FF"/>
-                        <Setter Property="Foreground" Value="#FF004C9E"/>
-                    </Trigger>
-                    <MultiTrigger>
-                        <MultiTrigger.Conditions>
-                            <Condition Property="IsSelected" Value="True"/>
-                            <Condition Property="IsMouseOver" Value="True"/>
-                        </MultiTrigger.Conditions>
-                        <Setter Property="Background" Value="#FF0066D6"/>
-                        <Setter Property="Foreground" Value="White"/>
-                    </MultiTrigger>
-                </Style.Triggers>
             </Style>
     
                     <!-- 跨View共享：FastbootCardGroupBoxStyle（HiddenEnvironment 引用） -->
@@ -448,6 +668,11 @@ Background="#FFFAFAFC"
                                     <Setter Property="FontSize" Value="12"/>
                                     <Setter Property="FontWeight" Value="SemiBold"/>
                                     <Setter Property="Padding" Value="10"/>
+                                    <Setter Property="Effect">
+                                        <Setter.Value>
+                                            <DropShadowEffect BlurRadius="12" ShadowDepth="1.5" Opacity="0.08" Color="#FF000000" Direction="270"/>
+                                        </Setter.Value>
+                                    </Setter>
                                 </Style>
                 <!-- 懒加载页面模板：首次实例化才构建视觉树（加速启动） -->
                 <DataTemplate x:Key="Page_ScreenMirrorView">
@@ -1435,6 +1660,11 @@ Background="#FFFAFAFC"
                                     <Setter Property="FontSize" Value="12"/>
                                     <Setter Property="FontWeight" Value="SemiBold"/>
                                     <Setter Property="Padding" Value="10"/>
+                                    <Setter Property="Effect">
+                                        <Setter.Value>
+                                            <DropShadowEffect BlurRadius="12" ShadowDepth="1.5" Opacity="0.08" Color="#FF000000" Direction="270"/>
+                                        </Setter.Value>
+                                    </Setter>
                                 </Style>
 
                                 <Style x:Key="FastbootSecondaryButtonStyle"
@@ -1463,9 +1693,9 @@ Background="#FFFAFAFC"
                                 <Style x:Key="FastbootStopButtonStyle"
                                        TargetType="{x:Type Button}"
                                        BasedOn="{StaticResource FastbootButtonBaseStyle}">
-                                    <Setter Property="Background" Value="#1D1D1F"/>
+                                    <Setter Property="Background" Value="#FF3B30"/>
                                     <Setter Property="Foreground" Value="#FFFFFFFF"/>
-                                    <Setter Property="BorderBrush" Value="#1D1D1F"/>
+                                    <Setter Property="BorderBrush" Value="#FF3B30"/>
                                     <Setter Property="BorderThickness" Value="1"/>
                                 </Style>
 
@@ -1500,9 +1730,9 @@ Background="#FFFAFAFC"
                                             <Setter Property="Background" Value="#FFF5F5F5"/>
                                         </Trigger>
                                         <Trigger Property="IsSelected" Value="True">
-                                            <Setter Property="Background" Value="#FF1D1D1F"/>
+                                            <Setter Property="Background" Value="#FFE8F0FF"/>
                                             <Setter Property="Foreground" Value="#1D1D1F"/>
-                                            <Setter Property="BorderBrush" Value="#1D1D1F"/>
+                                            <Setter Property="BorderBrush" Value="#FFE8F0FF"/>
                                         </Trigger>
                                         <MultiDataTrigger>
                                             <MultiDataTrigger.Conditions>
@@ -1540,7 +1770,7 @@ Background="#FFFAFAFC"
                                     <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
                                     <Style.Triggers>
                                         <Trigger Property="IsSelected" Value="True">
-                                            <Setter Property="Background" Value="#FF1D1D1F"/>
+                                            <Setter Property="Background" Value="#FFE8F0FF"/>
                                             <Setter Property="Foreground" Value="#1D1D1F"/>
                                         </Trigger>
                                         <MultiDataTrigger>
@@ -1563,8 +1793,16 @@ Background="#FFFAFAFC"
                                     </Style.Triggers>
                                 </Style>
                             </Grid.Resources>
-<Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="*"/></Grid.RowDefinitions>
-<Grid Grid.Row="0" Grid.ColumnSpan="4" Margin="6,12,6,10">
+<Grid.RowDefinitions>
+    <RowDefinition Height="Auto"/>
+    <RowDefinition Height="*"/>
+    <RowDefinition Height="Auto"/>
+    <RowDefinition Height="Auto"/>
+    <RowDefinition Height="Auto"/>
+</Grid.RowDefinitions>
+
+    <!-- ===== 页头 ===== -->
+    <Grid Grid.Row="0" Margin="6,10,6,8">
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
             <Border Width="40" Height="40" CornerRadius="12" Background="#FF007AFF">
                 <svg:SvgViewbox Source="images/white/adb.svg" Width="21" Height="21"/>
@@ -1575,523 +1813,607 @@ Background="#FFFAFAFC"
             </StackPanel>
         </StackPanel>
     </Grid>
-<ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled"><Grid Grid.Row="1" Margin="0,0,0,12">
-<Grid.RowDefinitions>
-                                <RowDefinition Height="*" />
-                                <RowDefinition Height="Auto" />
-                            </Grid.RowDefinitions>
-<Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="4*" />
-                                <ColumnDefinition Width="1*" />
+
+    <!-- ===== 主区域：分区表 + 执行日志 ===== -->
+    <Grid Grid.Row="1" Margin="0,0,0,8">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="7*"/>
+            <ColumnDefinition Width="3*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- 分区表 -->
+        <GroupBox Grid.Column="0"
+                  Margin="0,0,6,0"
+                  Style="{StaticResource FastbootCardGroupBoxStyle}"
+                  Padding="10,12,10,10">
+            <GroupBox.Header>
+                <StackPanel Orientation="Horizontal" Background="Transparent">
+                    <svg:SvgViewbox Source="images/xinpianshuju.svg" Width="15" Height="15" Margin="0,0,7,0" VerticalAlignment="Center"/>
+                    <TextBlock Text="分区表" VerticalAlignment="Center"/>
+                </StackPanel>
+            </GroupBox.Header>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <!-- 工具行：搜索 / 生成XML / 保护分区 / 已选统计 -->
+                <Grid Grid.Row="0" Margin="0,0,0,8">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Border Grid.Column="0"
+                            Height="28"
+                            Width="190"
+                            Padding="8,0"
+                            Background="#FFFFFFFF"
+                            BorderBrush="#FFE1E1E1"
+                            BorderThickness="1"
+                            CornerRadius="5">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="21"/>
+                                <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
-<Grid Grid.Column="0" Grid.Row="0" Margin="0,0,6,0">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="*" />
-                                    <RowDefinition Height="62" />
-                                    <RowDefinition Height="215" />
-                                </Grid.RowDefinitions>
-
-                                <!-- Flash File Selection -->
-                                <GroupBox Grid.Row="1"
-                                          Style="{StaticResource FastbootCardGroupBoxStyle}"
-                                          Margin="0,0,0,8"
-                                          Padding="10,9,10,8">
-<GroupBox.Header><StackPanel Orientation="Horizontal" Background="Transparent"><svg:SvgViewbox Source="images/wenjian.svg" Width="15" Height="15" Margin="0,0,7,0" VerticalAlignment="Center"/><TextBlock Text="刷写文件" VerticalAlignment="Center"/></StackPanel></GroupBox.Header>
-                                    <Grid VerticalAlignment="Center">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="*"/>
-                                            <ColumnDefinition Width="8"/>
-                                            <ColumnDefinition Width="84"/>
-                                        </Grid.ColumnDefinitions>
-                                        <TextBox x:Name="FlashBatTextBox"
-                                                 Grid.Column="0"
-                                                 Text="flash_all*.bat 或 rawprogram*.xml"
-                                                 VerticalContentAlignment="Center"
-                                                 FontFamily="pack://siteoforigin:,,,/fonts/OPPO_Sans_4.0.ttf#OPPO Sans 4.0"
-                                                 FontSize="12"
-                                                 Padding="9,0"
-                                                 BorderBrush="#FFE1E1E1"
-                                                 BorderThickness="1"
-                                                 Background="#FFFFFFFF"
-                                                 Foreground="#6E6E73"
-                                                 Height="32"
-                                                 TextChanged="FlashBatTextBox_TextChanged"
-                                                 GotKeyboardFocus="FlashBatTextBox_GotKeyboardFocus"
-                                                 FontWeight="Normal"/>
-                                        <Button x:Name="SelectFlashBatButton"
-                                                Grid.Column="2"
-                                                Click="SelectFlashBatButton_Click"
-                                                Style="{StaticResource PagePrimaryButton}"
-                                                Width="84" BorderBrush="#FFE6E6E6" Background="#FF007AFF">
-                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                                                <svg:SvgViewbox Source="images/wenjianjia.svg" Width="16" Height="16" Margin="0,0,5,0"/>
-                                                <TextBlock Text="选择" VerticalAlignment="Center" Foreground="White"/>
-                                            </StackPanel>
-                                        </Button>
-                                    </Grid>
-                                </GroupBox>
-
-                                <!-- Partition Table -->
-                                <GroupBox Grid.Row="0"
-                                          Style="{StaticResource FastbootCardGroupBoxStyle}"
-                                          Margin="0,0,0,8"
-                                          Padding="10,12,10,10">
-<GroupBox.Header><StackPanel Orientation="Horizontal" Background="Transparent"><svg:SvgViewbox Source="images/xinpianshuju.svg" Width="15" Height="15" Margin="0,0,7,0" VerticalAlignment="Center"/><TextBlock Text="分区表" VerticalAlignment="Center"/></StackPanel></GroupBox.Header>
-                                    <Grid>
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="Auto"/>
-                                            <RowDefinition Height="*"/>
-                                        </Grid.RowDefinitions>
-
-                                        <Border Grid.Row="0"
-                                                Height="28"
-                                                Width="150"
-                                                Margin="0,0,0,8"
-                                                Padding="8,0"
-                                                HorizontalAlignment="Left"
-                                                Background="#FFFFFFFF"
-                                                BorderBrush="#FFE1E1E1"
-                                                BorderThickness="1"
-                                                CornerRadius="5">
-                                            <Grid>
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="21"/>
-                                                    <ColumnDefinition Width="*"/>
-                                                </Grid.ColumnDefinitions>
-                                                <TextBlock Grid.Column="0"
-                                                           Text="&#xE721;"
-                                                           FontFamily="Segoe MDL2 Assets"
-                                                           FontSize="13"
-                                                           Foreground="#AEAEB2"
-                                                           VerticalAlignment="Center"/>
-                                                <TextBox x:Name="PartitionSearchTextBox"
-                                                         Grid.Column="1"
-                                                         Padding="2,0,0,0"
-                                                         BorderThickness="0"
-                                                         Background="Transparent"
-                                                         VerticalContentAlignment="Center"
-                                                         FontSize="12"
-                                                         Foreground="#1D1D1F"
-                                                         ToolTip="搜索分区名称"
-                                                         TextChanged="PartitionSearchTextBox_TextChanged"
-                                                         KeyDown="PartitionSearchTextBox_KeyDown"/>
-                                                <TextBlock Grid.Column="1"
-                                                           Margin="4,0,0,0"
-                                                           Text="请输入分区名称..."
-                                                           FontSize="12"
-                                                           Foreground="#AEAEB2"
-                                                           VerticalAlignment="Center"
-                                                           IsHitTestVisible="False">
-                                                    <TextBlock.Style>
-                                                        <Style TargetType="{x:Type TextBlock}">
-                                                            <Setter Property="Visibility" Value="Collapsed"/>
-                                                            <Style.Triggers>
-                                                                <DataTrigger Binding="{Binding Text, ElementName=PartitionSearchTextBox}" Value="">
-                                                                    <Setter Property="Visibility" Value="Visible"/>
-                                                                </DataTrigger>
-                                                            </Style.Triggers>
-                                                        </Style>
-                                                    </TextBlock.Style>
-                                                </TextBlock>
-                                            </Grid>
-                                        </Border>
-
-                                        <CheckBox x:Name="GenerateRawProgramXmlCheckBox"
-                                                  Grid.Row="0"
-                                                  Content="生成XML"
-                                                  IsChecked="True"
-                                                  Margin="162,0,0,8"
-                                                  FontSize="12"
-                                                  HorizontalAlignment="Left"
-                                                  VerticalAlignment="Center"
-                                                  ToolTip="回读完成后，生成 rawprogram*.xml文件"/>
-
-                                        <CheckBox x:Name="ProtectPartitionCheckBox"
-                                                  Grid.Row="0"
-                                                  Content="保护分区"
-                                                  IsChecked="True"
-                                                  Margin="245,0,0,8"
-                                                  FontSize="12"
-                                                  HorizontalAlignment="Left"
-                                                  VerticalAlignment="Center"
-                                                  Checked="ProtectPartitionCheckBox_Checked"
-                                                  ToolTip="保护基带分区和数据分区不被写入"/>
-
-                                        <TextBlock x:Name="PartitionSelectionSummaryTextBlock"
-                                                   Grid.Row="0"
-                                                   Width="151"
-                                                   Margin="336,8,0,0"
-                                                   HorizontalAlignment="Left"
-                                                   VerticalAlignment="Top"
-                                                   FontFamily="pack://siteoforigin:,,,/fonts/OPPO_Sans_4.0.ttf#OPPO Sans 4.0"
-                                                   FontSize="11"
-                                                   FontWeight="Medium"
-                                                   Foreground="#6E6E73"
-                                                   Text="已选 0/0 · 0 B"
-                                                   Tag="已选择 0 / 0  |  总计 0 B"
-                                                   TextTrimming="CharacterEllipsis"
-                                                   ToolTip="{Binding Tag, RelativeSource={RelativeSource Self}}"/>
-
-                                        <DataGrid x:Name="PartitionTableDataGrid"
-                                                  Grid.Row="1"
-                                                  AutoGenerateColumns="False"
-                                                  HeadersVisibility="Column"
-                                                  Foreground="#1D1D1F"
-                                                  Background="#FFFFFFFF"
-                                                  FontFamily="pack://siteoforigin:,,,/fonts/OPPO_Sans_4.0.ttf#OPPO Sans 4.0"
-                                                  FontSize="12"
-                                                  IsSynchronizedWithCurrentItem="True"
-                                                  RowHeight="29"
-                                                  AlternationCount="2"
-                                                  SelectionChanged="PartitionTableDataGrid_SelectionChanged"
-                                                  MouseDoubleClick="PartitionTableDataGrid_MouseDoubleClick"
-                                                  BorderBrush="#FFE9E9E9"
-                                                  BorderThickness="1"
-                                                  GridLinesVisibility="None"
-                                                  HorizontalGridLinesBrush="Transparent"
-                                                  VerticalGridLinesBrush="Transparent"
-                                                  HorizontalScrollBarVisibility="Hidden"
-                                                  VerticalScrollBarVisibility="Auto" VirtualizingStackPanel.IsVirtualizing="True" VirtualizingStackPanel.VirtualizationMode="Recycling" ScrollViewer.CanContentScroll="True">
-                                            <DataGrid.Resources>
-                                                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#FF1D1D1F"/>
-                                                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="#FF333333"/>
-                                                <Style x:Key="FastbootPartitionTextCellStyle" TargetType="{x:Type TextBlock}">
-                                                    <Setter Property="HorizontalAlignment" Value="Stretch"/>
-                                                    <Setter Property="VerticalAlignment" Value="Center"/>
-                                                    <Setter Property="TextAlignment" Value="Center"/>
-                                                </Style>
-                                            </DataGrid.Resources>
-                                            <DataGrid.Columns>
-                                                <DataGridTemplateColumn Header="选择" Width="40">
-                                                    <DataGridTemplateColumn.HeaderTemplate>
-                                                        <DataTemplate>
-                                                            <CheckBox x:Name="PartitionSelectAllCheckBox" Content="" Checked="PartitionSelectAllCheckBox_Checked" Unchecked="PartitionSelectAllCheckBox_Unchecked" HorizontalAlignment="Center"/>
-                                                        </DataTemplate>
-                                                    </DataGridTemplateColumn.HeaderTemplate>
-                                                    <DataGridTemplateColumn.CellTemplate>
-                                                        <DataTemplate>
-                                                            <Grid Width="18"
-                                                                  Height="18"
-                                                                  HorizontalAlignment="Center">
-                                                                <CheckBox IsChecked="{Binding IsSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                                                          Click="PartitionSelectionCheckBox_Click"
-                                                                          Width="16"
-                                                                          Height="16"
-                                                                          HorizontalAlignment="Center"
-                                                                          VerticalAlignment="Center"
-                                                                          Focusable="False">
-                                                                    <CheckBox.Style>
-                                                                        <Style TargetType="{x:Type CheckBox}"
-                                                                               BasedOn="{StaticResource {x:Type CheckBox}}">
-                                                                            <Style.Triggers>
-                                                                                <MultiDataTrigger>
-                                                                                    <MultiDataTrigger.Conditions>
-                                                                                        <Condition Binding="{Binding ElementName=ProtectPartitionCheckBox, Path=IsChecked}" Value="True"/>
-                                                                                        <Condition Binding="{Binding IsBasebandFingerprintProtected}" Value="True"/>
-                                                                                    </MultiDataTrigger.Conditions>
-                                                                                    <Setter Property="Visibility" Value="Collapsed"/>
-                                                                                    <Setter Property="IsEnabled" Value="False"/>
-                                                                                </MultiDataTrigger>
-                                                                                <MultiDataTrigger>
-                                                                                    <MultiDataTrigger.Conditions>
-                                                                                        <Condition Binding="{Binding ElementName=ProtectPartitionCheckBox, Path=IsChecked}" Value="True"/>
-                                                                                        <Condition Binding="{Binding IsAdbDataProtected}" Value="True"/>
-                                                                                        <Condition Binding="{Binding ElementName=BottomConnectionTypeText, Path=Tag.RawText}" Value="系统"/>
-                                                                                    </MultiDataTrigger.Conditions>
-                                                                                    <Setter Property="Visibility" Value="Collapsed"/>
-                                                                                    <Setter Property="IsEnabled" Value="False"/>
-                                                                                </MultiDataTrigger>
-                                                                            </Style.Triggers>
-                                                                        </Style>
-                                                                    </CheckBox.Style>
-                                                                </CheckBox>
-                                                                <svg:SvgViewbox Source="images/dunpai.svg"
-                                                                                Width="16"
-                                                                                Height="16"
-                                                                                HorizontalAlignment="Center"
-                                                                                VerticalAlignment="Center"
-                                                                                ToolTip="该分区已受保护，当前禁止写入">
-                                                                    <svg:SvgViewbox.Style>
-                                                                        <Style TargetType="{x:Type svg:SvgViewbox}">
-                                                                            <Setter Property="Visibility" Value="Collapsed"/>
-                                                                            <Style.Triggers>
-                                                                                <MultiDataTrigger>
-                                                                                    <MultiDataTrigger.Conditions>
-                                                                                        <Condition Binding="{Binding ElementName=ProtectPartitionCheckBox, Path=IsChecked}" Value="True"/>
-                                                                                        <Condition Binding="{Binding IsBasebandFingerprintProtected}" Value="True"/>
-                                                                                    </MultiDataTrigger.Conditions>
-                                                                                    <Setter Property="Visibility" Value="Visible"/>
-                                                                                </MultiDataTrigger>
-                                                                                <MultiDataTrigger>
-                                                                                    <MultiDataTrigger.Conditions>
-                                                                                        <Condition Binding="{Binding ElementName=ProtectPartitionCheckBox, Path=IsChecked}" Value="True"/>
-                                                                                        <Condition Binding="{Binding IsAdbDataProtected}" Value="True"/>
-                                                                                        <Condition Binding="{Binding ElementName=BottomConnectionTypeText, Path=Tag.RawText}" Value="系统"/>
-                                                                                    </MultiDataTrigger.Conditions>
-                                                                                    <Setter Property="Visibility" Value="Visible"/>
-                                                                                </MultiDataTrigger>
-                                                                            </Style.Triggers>
-                                                                        </Style>
-                                                                    </svg:SvgViewbox.Style>
-                                                                </svg:SvgViewbox>
-                                                            </Grid>
-                                                        </DataTemplate>
-                                                    </DataGridTemplateColumn.CellTemplate>
-                                                </DataGridTemplateColumn>
-                                                <DataGridTextColumn Header="名称"
-                                                                    Binding="{Binding PartitionName}"
-                                                                    ElementStyle="{StaticResource FastbootPartitionTextCellStyle}"
-                                                                    IsReadOnly="True"
-                                                                    Width="140" />
-                                                <DataGridTextColumn Header="大小"
-                                                                    Binding="{Binding PartitionSize}"
-                                                                    ElementStyle="{StaticResource FastbootPartitionTextCellStyle}"
-                                                                    IsReadOnly="True"
-                                                                    Width="100" />
-                                                <DataGridTemplateColumn Header="文件路径" Width="*">
-                                                    <DataGridTemplateColumn.CellTemplate>
-                                                        <DataTemplate>
-                                                            <TextBlock HorizontalAlignment="Stretch"
-                                                                       VerticalAlignment="Center"
-                                                                       TextAlignment="Center"
-                                                                       TextTrimming="CharacterEllipsis"
-                                                                       ToolTip="{Binding FilePath}"
-                                                                       Margin="0">
-                                                                <TextBlock.Style>
-                                                                    <Style TargetType="TextBlock">
-                                                                        <Setter Property="Text" Value="{Binding FilePath}"/>
-                                                                        <Style.Triggers>
-                                                                            <DataTrigger Binding="{Binding FilePath}" Value="">
-                                                                                <Setter Property="Text" Value="双击选择文件路径"/>
-                                                                                <Setter Property="Foreground" Value="#FF999999"/>
-                                                                            </DataTrigger>
-                                                                            <DataTrigger Binding="{Binding FilePath}" Value="{x:Null}">
-                                                                                <Setter Property="Text" Value="双击选择文件路径"/>
-                                                                                <Setter Property="Foreground" Value="#FF999999"/>
-                                                                            </DataTrigger>
-                                                                            <MultiDataTrigger>
-                                                                                <MultiDataTrigger.Conditions>
-                                                                                    <Condition Binding="{Binding ElementName=ProtectPartitionCheckBox, Path=IsChecked}" Value="True"/>
-                                                                                    <Condition Binding="{Binding IsBasebandFingerprintProtected}" Value="True"/>
-                                                                                </MultiDataTrigger.Conditions>
-                                                                                <Setter Property="Foreground" Value="#1D1D1F"/>
-                                                                            </MultiDataTrigger>
-                                                                            <MultiDataTrigger>
-                                                                                <MultiDataTrigger.Conditions>
-                                                                                    <Condition Binding="{Binding ElementName=ProtectPartitionCheckBox, Path=IsChecked}" Value="True"/>
-                                                                                    <Condition Binding="{Binding IsAdbDataProtected}" Value="True"/>
-                                                                                    <Condition Binding="{Binding ElementName=BottomConnectionTypeText, Path=Tag.RawText}" Value="系统"/>
-                                                                                </MultiDataTrigger.Conditions>
-                                                                                <Setter Property="Foreground" Value="#1D1D1F"/>
-                                                                            </MultiDataTrigger>
-                                                                        </Style.Triggers>
-                                                                    </Style>
-                                                                </TextBlock.Style>
-                                                            </TextBlock>
-                                                        </DataTemplate>
-                                                    </DataGridTemplateColumn.CellTemplate>
-                                                </DataGridTemplateColumn>
-                                            </DataGrid.Columns>
-                                        </DataGrid>
-                                    </Grid>
-                                </GroupBox>
-
-                                <!-- Operations Console -->
-                                <GroupBox Grid.Row="2"
-                                          Style="{StaticResource FastbootCardGroupBoxStyle}"
-                                          Padding="10,11,10,10">
-<GroupBox.Header><StackPanel Orientation="Horizontal" Background="Transparent"><svg:SvgViewbox Source="images/shandian.svg" Width="15" Height="15" Margin="0,0,7,0" VerticalAlignment="Center"/><TextBlock Text="操作" VerticalAlignment="Center"/></StackPanel></GroupBox.Header>
-                                    <Grid>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="*"/>
-                                            <ColumnDefinition Width="8"/>
-                                            <ColumnDefinition Width="*"/>
-                                            <ColumnDefinition Width="8"/>
-                                            <ColumnDefinition Width="*"/>
-                                            <ColumnDefinition Width="8"/>
-                                            <ColumnDefinition Width="*"/>
-                                        </Grid.ColumnDefinitions>
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="27"/>
-                                            <RowDefinition Height="18"/>
-                                            <RowDefinition Height="34"/>
-                                            <RowDefinition Height="18"/>
-                                            <RowDefinition Height="34"/>
-                                            <RowDefinition Height="38"/>
-                                        </Grid.RowDefinitions>
-
-                                        <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="7"
-                                                    Orientation="Horizontal" VerticalAlignment="Center">
-                                            <CheckBox x:Name="RestartCheckBox"
-                                                      Content="自动重启"
-                                                      Style="{StaticResource PageCheckBox}"/>
-                                            <CheckBox x:Name="SwitchSlotACheckBox"
-                                                      Content="切换A槽"
-                                                      Style="{StaticResource PageCheckBox}"
-                                                      IsEnabled="False"
-                                                      ToolTip="对小米线刷BAT，或Fastboot模式下选择的RawProgram生效"/>
-                                            <CheckBox x:Name="KeepUserDataCheckBox"
-                                                      Content="清除数据"
-                                                      Style="{StaticResource PageCheckBox}"
-                                                      IsEnabled="False"
-                                                      ToolTip="对小米线刷BAT，或Fastboot模式下选择的RawProgram生效"/>
-                                            <CheckBox x:Name="LockBootloaderCheckBox"
-                                                      Content="锁定BL"
-                                                      Style="{StaticResource PageCheckBox}"
-                                                      IsEnabled="False"
-                                                      ToolTip="仅对已选择的小米线刷 BAT 脚本生效"/>
-                                            <CheckBox x:Name="SkipCrcCheckBox"
-                                                      Content="跳过CRC"
-                                                      Style="{StaticResource PageCheckBox}"
-                                                      IsChecked="True"
-                                                      IsEnabled="False"
-                                                      Checked="SkipCrcCheckBox_Changed"
-                                                      Unchecked="SkipCrcCheckBox_Changed"
-                                                      ToolTip="跳过 crclist 和 sparsecrclist 分区，仅对小米线刷 BAT 脚本生效"/>
-                                            <CheckBox x:Name="DisableDmVerityCheckBox"
-                                                      Content="禁用DM校验"
-                                                      Style="{StaticResource PageCheckBox}"
-                                                      Margin="0"
-                                                      IsEnabled="False"
-                                                      ToolTip="刷写 vbmeta 时添加 --disable-verity 和 --disable-verification"/>
-                                        </StackPanel>
-                                        <TextBlock Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="7"
-                                                   Text="读取分区" FontSize="11" FontWeight="SemiBold"
-                                                   Foreground="#FF8E8E93" Margin="2,2,0,0" VerticalAlignment="Center"/>
-                                        <TextBlock Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="7"
-                                                   Text="写入与备份" FontSize="11" FontWeight="SemiBold"
-                                                   Foreground="#FF8E8E93" Margin="2,2,0,0" VerticalAlignment="Center"/>
-                                        <Button x:Name="AdbReadPartitionTableButton"
-                                                Grid.Row="2" Grid.Column="0"
-                                                Style="{StaticResource PageSecondaryButton}"
-                                                ToolTip="开机状态下读取（需ROOT）"
-                                                Click="AdbReadPartitionTableButton_Click" HorizontalAlignment="Stretch" Margin="0,0,0,0" HorizontalContentAlignment="Center" Padding="0,0">
-                                            <TextBlock Text="读分区表[开机]" FontSize="12" VerticalAlignment="Center"/>
-                                        </Button>
-                                        <Button x:Name="ReadPartitionTableButton"
-                                                Grid.Row="2" Grid.Column="2"
-                                                Style="{StaticResource PageSecondaryButton}"
-                                                ToolTip="Fastboot模式下读取分区表"
-                                                Click="ReadPartitionTableButton_Click" HorizontalAlignment="Stretch" Margin="0,0,0,0" HorizontalContentAlignment="Center" Padding="0,0">
-                                            <TextBlock Text="读分区表[FB]" FontSize="12" VerticalAlignment="Center"/>
-                                        </Button>
-                                        <Button x:Name="WritePartitionButton"
-                                                Grid.Row="4" Grid.Column="0"
-                                                Content="写入分区"
-                                                Style="{StaticResource PageSecondaryButton}"
-                                                Click="WritePartitionButton_Click" HorizontalAlignment="Stretch"/>
-                                        <Button x:Name="ErasePartitionButton"
-                                                Grid.Row="4" Grid.Column="2"
-                                                Content="擦除分区"
-                                                Style="{StaticResource PageSecondaryButton}"
-                                                ToolTip="擦除指定分区"
-                                                Click="ErasePartitionButton_Click" HorizontalAlignment="Stretch"/>
-
-                                        <Button x:Name="BackupBasebandButton"
-                                                Grid.Row="4" Grid.Column="4"
-                                                Content="备份字库"
-                                                Style="{StaticResource PageLightButton}"
-                                                ToolTip="仅在开机模式下可用（需ROOT）"
-                                                Click="BackupBasebandButton_Click" HorizontalAlignment="Stretch"/>
-                                        <Button x:Name="ReadPartitionButton"
-                                                Grid.Row="2" Grid.Column="4"
-                                                Content="回读分区"
-                                                Style="{StaticResource PageLightButton}"
-                                                ToolTip="仅在开机模式下可用（需ROOT）"
-                                                Click="ReadPartitionButton_Click" HorizontalAlignment="Stretch"/>
-                                        <Button x:Name="BackupGptButton"
-                                                Grid.Row="4" Grid.Column="6"
-                                                Content="备份GPT"
-                                                Style="{StaticResource PageLightButton}"
-                                                ToolTip="仅在开机模式下可用（需ROOT）"
-                                                Click="BackupGptButton_Click" HorizontalAlignment="Stretch"/>
-                                        <Button x:Name="StopFastbootVisualizationOperationButton"
-                                                Grid.Row="5" Grid.Column="6"
-                                                Content="停止操作"
-                                                Style="{StaticResource PageSecondaryButton}"
-                                                IsEnabled="False"
-                                                ToolTip="停止当前页面正在执行的操作"
-                                                Click="StopFastbootVisualizationOperationButton_Click" HorizontalAlignment="Stretch"/>
-                                    </Grid>
-                                </GroupBox>
-                            </Grid>
-
-                            <!-- Right Column: Log & Options -->
-                            <Grid Grid.Column="1" Grid.Row="0" Margin="6,0,0,0">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="*" />
-                                </Grid.RowDefinitions>
-
-                                <!-- Log -->
-                                <GroupBox Grid.Row="0"
-                                          Style="{StaticResource FastbootCardGroupBoxStyle}"
-                                          Padding="0,10,0,0"
-                                          HorizontalContentAlignment="Stretch"
-                                          VerticalContentAlignment="Stretch" Margin="-5,0,0,0">
-<GroupBox.Header><StackPanel Orientation="Horizontal" Background="Transparent"><svg:SvgViewbox Source="images/wendang.svg" Width="15" Height="15" Margin="0,0,7,0" VerticalAlignment="Center"/><TextBlock Text="执行日志" VerticalAlignment="Center"/></StackPanel></GroupBox.Header>
-                                    <Grid Background="#FFFAFBFD">
-                                        <RichTextBox x:Name="FastbootLogTextBox" IsReadOnly="True" Background="#FFFAFBFD" BorderThickness="0" Padding="7,7" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" FontFamily="Cascadia Mono,pack://siteoforigin:,,,/fonts/OPPO_Sans_4.0.ttf#OPPO Sans 4.0,Consolas" FontSize="12" FontWeight="Normal" Foreground="#1D1D1F" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" TextChanged="FastbootLogTextBox_TextChanged_3" Margin="0,-5,0,0">
-                                            <FlowDocument PagePadding="0" ColumnWidth="10000" ColumnGap="0" TextAlignment="Left" LineHeight="19"/>
-                                        </RichTextBox>
-                                    </Grid>
-                                </GroupBox>
-                            </Grid>
-
-                            <!-- Progress Bar -->
-                            <ProgressBar x:Name="OperationProgressBar"
-                                         Grid.Row="1"
-                                         Grid.ColumnSpan="2"
-                                         Height="24"
-                                         Minimum="0"
-                                         Maximum="100"
-                                         Value="0"
-                                         Tag="0MB/s  |  Time:0s"
-                                         Background="#FFF3F3F3"
-                                         BorderBrush="#FFE0E0E0"
-                                         BorderThickness="1"
-                                         Margin="0,8,0,0">
-                                <ProgressBar.Style>
-                                    <Style TargetType="{x:Type ProgressBar}">
-                                        <Setter Property="SnapsToDevicePixels" Value="True" />
-                                        <Setter Property="Template">
-                                            <Setter.Value>
-                                                <ControlTemplate TargetType="{x:Type ProgressBar}">
-                                                    <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="4">
-                                                        <Grid ClipToBounds="True">
-                                                            <Border x:Name="PART_Track" Background="{TemplateBinding Background}" CornerRadius="4" />
-                                                            <Border x:Name="PART_Indicator" HorizontalAlignment="Left" CornerRadius="4">
-                                                                <Border.Background>
-                                                                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
-                                                                        <GradientStop Offset="0" Color="#FF1D1D1F" />
-                                                                        <GradientStop Offset="1" Color="#1D1D1F" />
-                                                                    </LinearGradientBrush>
-                                                                </Border.Background>
-                                                            </Border>
-                                                            <TextBlock Text="{Binding Tag, RelativeSource={RelativeSource TemplatedParent}}"
-                                                                           HorizontalAlignment="Left"
-                                                                           VerticalAlignment="Center"
-                                                                           Margin="8,0,0,0"
-                                                                           FontSize="12"
-                                                                           Foreground="#FF333333"
-                                                                           FontWeight="Medium"/>
-                                                            <TextBlock x:Name="ProgressText" 
-                                                                           Text="{Binding Value, RelativeSource={RelativeSource TemplatedParent}, StringFormat={}{0:0}%}" 
-                                                                           HorizontalAlignment="Right" 
-                                                                           VerticalAlignment="Center" 
-                                                                           Margin="0,0,8,0"
-                                                                           FontSize="12" 
-                                                                           Foreground="#FF333333" 
-                                                                           FontWeight="Medium"/>
-                                                        </Grid>
-                                                    </Border>
-                                                </ControlTemplate>
-                                            </Setter.Value>
-                                        </Setter>
+                            <TextBlock Grid.Column="0"
+                                       Text="&#xE721;"
+                                       FontFamily="Segoe MDL2 Assets"
+                                       FontSize="13"
+                                       Foreground="#AEAEB2"
+                                       VerticalAlignment="Center"/>
+                            <TextBox x:Name="PartitionSearchTextBox"
+                                     Grid.Column="1"
+                                     Padding="2,0,0,0"
+                                     BorderThickness="0"
+                                     Background="Transparent"
+                                     VerticalContentAlignment="Center"
+                                     FontSize="12"
+                                     Foreground="#1D1D1F"
+                                     ToolTip="搜索分区名称"
+                                     TextChanged="PartitionSearchTextBox_TextChanged"
+                                     KeyDown="PartitionSearchTextBox_KeyDown"/>
+                            <TextBlock Grid.Column="1"
+                                       Margin="4,0,0,0"
+                                       Text="请输入分区名称..."
+                                       FontSize="12"
+                                       Foreground="#AEAEB2"
+                                       VerticalAlignment="Center"
+                                       IsHitTestVisible="False">
+                                <TextBlock.Style>
+                                    <Style TargetType="{x:Type TextBlock}">
+                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Text, ElementName=PartitionSearchTextBox}" Value="">
+                                                <Setter Property="Visibility" Value="Visible"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
                                     </Style>
-                                </ProgressBar.Style>
-                            </ProgressBar>
+                                </TextBlock.Style>
+                            </TextBlock>
+                        </Grid>
+                    </Border>
+
+                    <CheckBox x:Name="GenerateRawProgramXmlCheckBox"
+                              Grid.Column="1"
+                              Content="生成XML"
+                              IsChecked="True"
+                              Margin="14,0,0,0"
+                              FontSize="12"
+                              VerticalAlignment="Center"
+                              ToolTip="回读完成后，生成 rawprogram*.xml文件"/>
+
+                    <CheckBox x:Name="ProtectPartitionCheckBox"
+                              Grid.Column="2"
+                              Content="保护分区"
+                              IsChecked="True"
+                              Margin="14,0,0,0"
+                              FontSize="12"
+                              VerticalAlignment="Center"
+                              Checked="ProtectPartitionCheckBox_Checked"
+                              ToolTip="保护基带分区和数据分区不被写入"/>
+
+                    <TextBlock x:Name="PartitionSelectionSummaryTextBlock"
+                               Grid.Column="3"
+                               Margin="14,0,0,0"
+                               HorizontalAlignment="Right"
+                               VerticalAlignment="Center"
+                               FontFamily="pack://siteoforigin:,,,/fonts/OPPO_Sans_4.0.ttf#OPPO Sans 4.0"
+                               FontSize="11"
+                               FontWeight="Medium"
+                               Foreground="#6E6E73"
+                               Text="已选 0/0 · 0 B"
+                               Tag="已选择 0 / 0  |  总计 0 B"
+                               TextTrimming="CharacterEllipsis"
+                               ToolTip="{Binding Tag, RelativeSource={RelativeSource Self}}"/>
+                </Grid>
+
+                <!-- 分区数据表 -->
+                <DataGrid x:Name="PartitionTableDataGrid"
+                          Grid.Row="1"
+                          AutoGenerateColumns="False"
+                          HeadersVisibility="Column"
+                          Foreground="#1D1D1F"
+                          Background="#FFFFFFFF"
+                          FontFamily="pack://siteoforigin:,,,/fonts/OPPO_Sans_4.0.ttf#OPPO Sans 4.0"
+                          FontSize="12"
+                          IsSynchronizedWithCurrentItem="True"
+                          RowHeight="29"
+                          AlternationCount="2"
+                          SelectionChanged="PartitionTableDataGrid_SelectionChanged"
+                          MouseDoubleClick="PartitionTableDataGrid_MouseDoubleClick"
+                          BorderBrush="#FFE9E9E9"
+                          BorderThickness="1"
+                          GridLinesVisibility="None"
+                          HorizontalGridLinesBrush="Transparent"
+                          VerticalGridLinesBrush="Transparent"
+                          HorizontalScrollBarVisibility="Hidden"
+                          VerticalScrollBarVisibility="Auto" VirtualizingStackPanel.IsVirtualizing="True" VirtualizingStackPanel.VirtualizationMode="Recycling" ScrollViewer.CanContentScroll="True">
+                    <DataGrid.Resources>
+                        <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#FF007AFF"/>
+                        <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="#FFFFFFFF"/>
+                        <Style x:Key="FastbootPartitionTextCellStyle" TargetType="{x:Type TextBlock}">
+                            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+                            <Setter Property="VerticalAlignment" Value="Center"/>
+                            <Setter Property="TextAlignment" Value="Center"/>
+                        </Style>
+                    </DataGrid.Resources>
+                    <DataGrid.Columns>
+                        <DataGridTemplateColumn Header="选择" Width="40">
+                            <DataGridTemplateColumn.HeaderTemplate>
+                                <DataTemplate>
+                                    <CheckBox x:Name="PartitionSelectAllCheckBox" Content="" Checked="PartitionSelectAllCheckBox_Checked" Unchecked="PartitionSelectAllCheckBox_Unchecked" HorizontalAlignment="Center"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.HeaderTemplate>
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Grid Width="18"
+                                          Height="18"
+                                          HorizontalAlignment="Center">
+                                        <CheckBox IsChecked="{Binding IsSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                  Click="PartitionSelectionCheckBox_Click"
+                                                  Width="16"
+                                                  Height="16"
+                                                  HorizontalAlignment="Center"
+                                                  VerticalAlignment="Center"
+                                                  Focusable="False">
+                                            <CheckBox.Style>
+                                                <Style TargetType="{x:Type CheckBox}"
+                                                       BasedOn="{StaticResource {x:Type CheckBox}}">
+                                                    <Style.Triggers>
+                                                        <MultiDataTrigger>
+                                                            <MultiDataTrigger.Conditions>
+                                                                <Condition Binding="{Binding ElementName=ProtectPartitionCheckBox, Path=IsChecked}" Value="True"/>
+                                                                <Condition Binding="{Binding IsBasebandFingerprintProtected}" Value="True"/>
+                                                            </MultiDataTrigger.Conditions>
+                                                            <Setter Property="Visibility" Value="Collapsed"/>
+                                                            <Setter Property="IsEnabled" Value="False"/>
+                                                        </MultiDataTrigger>
+                                                        <MultiDataTrigger>
+                                                            <MultiDataTrigger.Conditions>
+                                                                <Condition Binding="{Binding ElementName=ProtectPartitionCheckBox, Path=IsChecked}" Value="True"/>
+                                                                <Condition Binding="{Binding IsAdbDataProtected}" Value="True"/>
+                                                                <Condition Binding="{Binding ElementName=BottomConnectionTypeText, Path=Tag.RawText}" Value="系统"/>
+                                                            </MultiDataTrigger.Conditions>
+                                                            <Setter Property="Visibility" Value="Collapsed"/>
+                                                            <Setter Property="IsEnabled" Value="False"/>
+                                                        </MultiDataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </CheckBox.Style>
+                                        </CheckBox>
+                                        <svg:SvgViewbox Source="images/dunpai.svg"
+                                                        Width="16"
+                                                        Height="16"
+                                                        HorizontalAlignment="Center"
+                                                        VerticalAlignment="Center"
+                                                        ToolTip="该分区已受保护，当前禁止写入">
+                                            <svg:SvgViewbox.Style>
+                                                <Style TargetType="{x:Type svg:SvgViewbox}">
+                                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                                    <Style.Triggers>
+                                                        <MultiDataTrigger>
+                                                            <MultiDataTrigger.Conditions>
+                                                                <Condition Binding="{Binding ElementName=ProtectPartitionCheckBox, Path=IsChecked}" Value="True"/>
+                                                                <Condition Binding="{Binding IsBasebandFingerprintProtected}" Value="True"/>
+                                                            </MultiDataTrigger.Conditions>
+                                                            <Setter Property="Visibility" Value="Visible"/>
+                                                        </MultiDataTrigger>
+                                                        <MultiDataTrigger>
+                                                            <MultiDataTrigger.Conditions>
+                                                                <Condition Binding="{Binding ElementName=ProtectPartitionCheckBox, Path=IsChecked}" Value="True"/>
+                                                                <Condition Binding="{Binding IsAdbDataProtected}" Value="True"/>
+                                                                <Condition Binding="{Binding ElementName=BottomConnectionTypeText, Path=Tag.RawText}" Value="系统"/>
+                                                            </MultiDataTrigger.Conditions>
+                                                            <Setter Property="Visibility" Value="Visible"/>
+                                                        </MultiDataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </svg:SvgViewbox.Style>
+                                        </svg:SvgViewbox>
+                                    </Grid>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTextColumn Header="名称"
+                                            Binding="{Binding PartitionName}"
+                                            ElementStyle="{StaticResource FastbootPartitionTextCellStyle}"
+                                            IsReadOnly="True"
+                                            Width="140" />
+                        <DataGridTextColumn Header="大小"
+                                            Binding="{Binding PartitionSize}"
+                                            ElementStyle="{StaticResource FastbootPartitionTextCellStyle}"
+                                            IsReadOnly="True"
+                                            Width="100" />
+                        <DataGridTemplateColumn Header="文件路径" Width="*">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock HorizontalAlignment="Stretch"
+                                               VerticalAlignment="Center"
+                                               TextAlignment="Center"
+                                               TextTrimming="CharacterEllipsis"
+                                               ToolTip="{Binding FilePath}"
+                                               Margin="0">
+                                        <TextBlock.Style>
+                                            <Style TargetType="TextBlock">
+                                                <Setter Property="Text" Value="{Binding FilePath}"/>
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding FilePath}" Value="">
+                                                        <Setter Property="Text" Value="双击选择文件路径"/>
+                                                        <Setter Property="Foreground" Value="#FF999999"/>
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding FilePath}" Value="{x:Null}">
+                                                        <Setter Property="Text" Value="双击选择文件路径"/>
+                                                        <Setter Property="Foreground" Value="#FF999999"/>
+                                                    </DataTrigger>
+                                                    <MultiDataTrigger>
+                                                        <MultiDataTrigger.Conditions>
+                                                            <Condition Binding="{Binding ElementName=ProtectPartitionCheckBox, Path=IsChecked}" Value="True"/>
+                                                            <Condition Binding="{Binding IsBasebandFingerprintProtected}" Value="True"/>
+                                                        </MultiDataTrigger.Conditions>
+                                                        <Setter Property="Foreground" Value="#1D1D1F"/>
+                                                    </MultiDataTrigger>
+                                                    <MultiDataTrigger>
+                                                        <MultiDataTrigger.Conditions>
+                                                            <Condition Binding="{Binding ElementName=ProtectPartitionCheckBox, Path=IsChecked}" Value="True"/>
+                                                            <Condition Binding="{Binding IsAdbDataProtected}" Value="True"/>
+                                                            <Condition Binding="{Binding ElementName=BottomConnectionTypeText, Path=Tag.RawText}" Value="系统"/>
+                                                        </MultiDataTrigger.Conditions>
+                                                        <Setter Property="Foreground" Value="#1D1D1F"/>
+                                                    </MultiDataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </TextBlock.Style>
+                                    </TextBlock>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+                <!-- 空态占位：未读取到分区时居中提示 -->
+                <TextBlock Text="未检测到设备 · 连接设备后自动读取分区表"
+                           Grid.Row="1"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           Foreground="#FFAEAEB2"
+                           FontSize="12"
+                           IsHitTestVisible="False">
+                    <TextBlock.Style>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="Visibility" Value="Collapsed"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Items.Count, ElementName=PartitionTableDataGrid}" Value="0">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
+            </Grid>
+        </GroupBox>
+
+        <!-- 执行日志 -->
+        <GroupBox Grid.Column="1"
+                  Margin="0,0,0,0"
+                  Style="{StaticResource FastbootCardGroupBoxStyle}"
+                  Padding="0,10,0,0"
+                  HorizontalContentAlignment="Stretch"
+                  VerticalContentAlignment="Stretch">
+            <GroupBox.Header>
+                <StackPanel Orientation="Horizontal" Background="Transparent">
+                    <svg:SvgViewbox Source="images/wendang.svg" Width="15" Height="15" Margin="0,0,7,0" VerticalAlignment="Center"/>
+                    <TextBlock Text="执行日志" VerticalAlignment="Center"/>
+                </StackPanel>
+            </GroupBox.Header>
+            <Grid Background="#FFFAFBFD">
+                <RichTextBox x:Name="FastbootLogTextBox"
+                             IsReadOnly="True"
+                             Background="#FFFAFBFD"
+                             BorderThickness="0"
+                             Padding="7,7"
+                             HorizontalContentAlignment="Stretch"
+                             VerticalContentAlignment="Stretch"
+                             FontFamily="Cascadia Mono,pack://siteoforigin:,,,/fonts/OPPO_Sans_4.0.ttf#OPPO Sans 4.0,Consolas"
+                             FontSize="12"
+                             FontWeight="Normal"
+                             Foreground="#1D1D1F"
+                             VerticalScrollBarVisibility="Auto"
+                             HorizontalScrollBarVisibility="Disabled"
+                             TextChanged="FastbootLogTextBox_TextChanged_3">
+                    <FlowDocument PagePadding="0" ColumnWidth="10000" ColumnGap="0" TextAlignment="Left" LineHeight="19"/>
+                </RichTextBox>
+            </Grid>
+        </GroupBox>
+    </Grid>
+
+    <!-- ===== 刷写文件 ===== -->
+    <GroupBox Grid.Row="2"
+              Margin="0,0,0,8"
+              Style="{StaticResource FastbootCardGroupBoxStyle}"
+              Padding="10,9,10,8">
+        <GroupBox.Header>
+            <StackPanel Orientation="Horizontal" Background="Transparent">
+                <svg:SvgViewbox Source="images/wenjian.svg" Width="15" Height="15" Margin="0,0,7,0" VerticalAlignment="Center"/>
+                <TextBlock Text="刷写文件" VerticalAlignment="Center"/>
+            </StackPanel>
+        </GroupBox.Header>
+        <Grid VerticalAlignment="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="8"/>
+                <ColumnDefinition Width="84"/>
+            </Grid.ColumnDefinitions>
+            <TextBox x:Name="FlashBatTextBox"
+                     Grid.Column="0"
+                     Text="flash_all*.bat 或 rawprogram*.xml"
+                     VerticalContentAlignment="Center"
+                     FontFamily="pack://siteoforigin:,,,/fonts/OPPO_Sans_4.0.ttf#OPPO Sans 4.0"
+                     FontSize="12"
+                     Padding="9,0"
+                     BorderBrush="#FFE1E1E1"
+                     BorderThickness="1"
+                     Background="#FFFFFFFF"
+                     Foreground="#6E6E73"
+                     Height="32"
+                     TextChanged="FlashBatTextBox_TextChanged"
+                     GotKeyboardFocus="FlashBatTextBox_GotKeyboardFocus"
+                     FontWeight="Normal"/>
+            <Button x:Name="SelectFlashBatButton"
+                    Grid.Column="2"
+                    Click="SelectFlashBatButton_Click"
+                    Style="{StaticResource PagePrimaryButton}"
+                    Width="84" BorderBrush="#FFE6E6E6" Background="#FF007AFF">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <svg:SvgViewbox Source="images/wenjianjia.svg" Width="16" Height="16" Margin="0,0,5,0"/>
+                    <TextBlock Text="选择" VerticalAlignment="Center" Foreground="White"/>
+                </StackPanel>
+            </Button>
+        </Grid>
+    </GroupBox>
+
+    <!-- ===== 操作 ===== -->
+    <GroupBox Grid.Row="3"
+              Margin="0,0,0,8"
+              Style="{StaticResource FastbootCardGroupBoxStyle}"
+              Padding="10,11,10,10">
+        <GroupBox.Header>
+            <StackPanel Orientation="Horizontal" Background="Transparent">
+                <svg:SvgViewbox Source="images/shandian.svg" Width="15" Height="15" Margin="0,0,7,0" VerticalAlignment="Center"/>
+                <TextBlock Text="操作" VerticalAlignment="Center"/>
+            </StackPanel>
+        </GroupBox.Header>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="8"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="8"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <!-- 选项复选框 -->
+            <StackPanel Grid.Row="0"
+                        Orientation="Horizontal"
+                        VerticalAlignment="Center">
+                <CheckBox x:Name="RestartCheckBox"
+                          Content="自动重启"
+                          Style="{StaticResource PageCheckBox}"/>
+                <CheckBox x:Name="SwitchSlotACheckBox"
+                          Content="切换A槽"
+                          Style="{StaticResource PageCheckBox}"
+                          IsEnabled="False"
+                          ToolTip="对小米线刷BAT，或Fastboot模式下选择的RawProgram生效"/>
+                <CheckBox x:Name="KeepUserDataCheckBox"
+                          Content="清除数据"
+                          Style="{StaticResource PageCheckBox}"
+                          IsEnabled="False"
+                          ToolTip="对小米线刷BAT，或Fastboot模式下选择的RawProgram生效"/>
+                <CheckBox x:Name="LockBootloaderCheckBox"
+                          Content="锁定BL"
+                          Style="{StaticResource PageCheckBox}"
+                          IsEnabled="False"
+                          ToolTip="仅对已选择的小米线刷 BAT 脚本生效"/>
+                <CheckBox x:Name="SkipCrcCheckBox"
+                          Content="跳过CRC"
+                          Style="{StaticResource PageCheckBox}"
+                          IsChecked="True"
+                          IsEnabled="False"
+                          Checked="SkipCrcCheckBox_Changed"
+                          Unchecked="SkipCrcCheckBox_Changed"
+                          ToolTip="跳过 crclist 和 sparsecrclist 分区，仅对小米线刷 BAT 脚本生效"/>
+                <CheckBox x:Name="DisableDmVerityCheckBox"
+                          Content="禁用DM校验"
+                          Style="{StaticResource PageCheckBox}"
+                          Margin="0"
+                          IsEnabled="False"
+                          ToolTip="刷写 vbmeta 时添加 --disable-verity 和 --disable-verification"/>
+            </StackPanel>
+
+            <!-- 读取分区 -->
+            <StackPanel Grid.Row="2"
+                        Orientation="Horizontal"
+                        VerticalAlignment="Center">
+                <TextBlock Text="读取分区"
+                           FontSize="11"
+                           FontWeight="SemiBold"
+                           Foreground="#FF8E8E93"
+                           Margin="2,0,10,0"
+                           VerticalAlignment="Center"/>
+                <Button x:Name="AdbReadPartitionTableButton"
+                        Content="读分区表[开机]"
+                        Style="{StaticResource FastbootAdbOnlyButtonStyle}"
+                        ToolTip="开机状态下读取（需ROOT）"
+                        Click="AdbReadPartitionTableButton_Click"
+                        Width="104"
+                        Height="30"
+                        Margin="0,0,8,0"
+                        HorizontalContentAlignment="Center"/>
+                <Button x:Name="ReadPartitionTableButton"
+                        Content="读分区表[FB]"
+                        Style="{StaticResource FastbootSecondaryButtonStyle}"
+                        ToolTip="Fastboot模式下读取分区表"
+                        Click="ReadPartitionTableButton_Click"
+                        Width="104"
+                        Height="30"
+                        Margin="0,0,8,0"
+                        HorizontalContentAlignment="Center"/>
+                <Button x:Name="ReadPartitionButton"
+                        Content="回读分区"
+                        Style="{StaticResource FastbootAdbOnlyButtonStyle}"
+                        ToolTip="仅在开机模式下可用（需ROOT）"
+                        Click="ReadPartitionButton_Click"
+                        Width="104"
+                        Height="30"
+                        HorizontalContentAlignment="Center"/>
+            </StackPanel>
+
+            <!-- 写入与备份 + 停止 -->
+            <Grid Grid.Row="4">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0"
+                           Text="写入与备份"
+                           FontSize="11"
+                           FontWeight="SemiBold"
+                           Foreground="#FF8E8E93"
+                           Margin="2,0,10,0"
+                           VerticalAlignment="Center"/>
+                <Button x:Name="WritePartitionButton"
+                        Grid.Column="1"
+                        Content="写入分区"
+                        Style="{StaticResource FastbootSecondaryButtonStyle}"
+                        Click="WritePartitionButton_Click"
+                        Width="96"
+                        Height="30"
+                        Margin="0,0,8,0"
+                        HorizontalContentAlignment="Center"/>
+                <Button x:Name="ErasePartitionButton"
+                        Grid.Column="2"
+                        Content="擦除分区"
+                        Style="{StaticResource FastbootSecondaryButtonStyle}"
+                        ToolTip="擦除指定分区"
+                        Click="ErasePartitionButton_Click"
+                        Width="96"
+                        Height="30"
+                        Margin="0,0,8,0"
+                        HorizontalContentAlignment="Center"/>
+                <Button x:Name="BackupBasebandButton"
+                        Grid.Column="3"
+                        Content="备份字库"
+                        Style="{StaticResource FastbootAdbOnlyButtonStyle}"
+                        ToolTip="仅在开机模式下可用（需ROOT）"
+                        Click="BackupBasebandButton_Click"
+                        Width="96"
+                        Height="30"
+                        Margin="0,0,8,0"
+                        HorizontalContentAlignment="Center"/>
+                <Button x:Name="BackupGptButton"
+                        Grid.Column="4"
+                        Content="备份GPT"
+                        Style="{StaticResource FastbootAdbOnlyButtonStyle}"
+                        ToolTip="仅在开机模式下可用（需ROOT）"
+                        Click="BackupGptButton_Click"
+                        Width="96"
+                        Height="30"
+                        HorizontalContentAlignment="Center"/>
+                <Button x:Name="StopFastbootVisualizationOperationButton"
+                        Grid.Column="6"
+                        Content="停止操作"
+                        Style="{StaticResource FastbootStopButtonStyle}"
+                        IsEnabled="False"
+                        ToolTip="停止当前页面正在执行的操作"
+                        Click="StopFastbootVisualizationOperationButton_Click"
+                        Width="96"
+                        Height="30"
+                        HorizontalContentAlignment="Center"/>
+            </Grid>
+        </Grid>
+    </GroupBox>
+
+    <!-- ===== 进度条 ===== -->
+    <ProgressBar x:Name="OperationProgressBar"
+                 Grid.Row="4"
+                 Height="24"
+                 Minimum="0"
+                 Maximum="100"
+                 Value="0"
+                 Tag="0MB/s  |  Time:0s"
+                 Background="#FFF3F3F3"
+                 BorderBrush="#FFE0E0E0"
+                 BorderThickness="1"
+                 Margin="0,0,0,0">
+        <ProgressBar.Style>
+            <Style TargetType="{x:Type ProgressBar}">
+                <Setter Property="SnapsToDevicePixels" Value="True" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type ProgressBar}">
+                            <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="4">
+                                <Grid ClipToBounds="True">
+                                    <Border x:Name="PART_Track" Background="{TemplateBinding Background}" CornerRadius="4" />
+                                    <Border x:Name="PART_Indicator" HorizontalAlignment="Left" CornerRadius="4">
+                                        <Border.Background>
+                                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                                                <GradientStop Offset="0" Color="#FF007AFF" />
+                                                <GradientStop Offset="1" Color="#FF007AFF" />
+                                            </LinearGradientBrush>
+                                        </Border.Background>
+                                    </Border>
+                                    <TextBlock Text="{Binding Tag, RelativeSource={RelativeSource TemplatedParent}}"
+                                               HorizontalAlignment="Left"
+                                               VerticalAlignment="Center"
+                                               Margin="8,0,0,0"
+                                               FontSize="12"
+                                               Foreground="#FF333333"
+                                               FontWeight="Medium"/>
+                                    <TextBlock x:Name="ProgressText"
+                                               Text="{Binding Value, RelativeSource={RelativeSource TemplatedParent}, StringFormat={}{0:0}%}"
+                                               HorizontalAlignment="Right"
+                                               VerticalAlignment="Center"
+                                               Margin="0,0,8,0"
+                                               FontSize="12"
+                                               Foreground="#FF333333"
+                                               FontWeight="Medium"/>
+                                </Grid>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </ProgressBar.Style>
+    </ProgressBar>
 </Grid>
-</ScrollViewer></Grid>
                 </DataTemplate>
                 <DataTemplate x:Key="Page_HiddenEnvironmentView">
                         <Grid
@@ -2120,6 +2442,11 @@ Background="#FFFAFAFC"
                                     <Setter Property="FontSize" Value="12"/>
                                     <Setter Property="FontWeight" Value="SemiBold"/>
                                     <Setter Property="Padding" Value="10"/>
+                                    <Setter Property="Effect">
+                                        <Setter.Value>
+                                            <DropShadowEffect BlurRadius="12" ShadowDepth="1.5" Opacity="0.08" Color="#FF000000" Direction="270"/>
+                                        </Setter.Value>
+                                    </Setter>
                                 </Style>
                                 <Style x:Key="HiddenEnvironmentCheckBoxStyle"
                                        TargetType="{x:Type CheckBox}"
@@ -3289,6 +3616,11 @@ Background="#FFFAFAFC"
                                     <Setter Property="FontSize" Value="12"/>
                                     <Setter Property="FontWeight" Value="SemiBold"/>
                                     <Setter Property="Padding" Value="10"/>
+                                    <Setter Property="Effect">
+                                        <Setter.Value>
+                                            <DropShadowEffect BlurRadius="12" ShadowDepth="1.5" Opacity="0.08" Color="#FF000000" Direction="270"/>
+                                        </Setter.Value>
+                                    </Setter>
                                 </Style>
 
                                 <Style x:Key="OugaFlashSecondaryButtonStyle"
@@ -3371,9 +3703,9 @@ Background="#FFFAFAFC"
                                             <Setter Property="Background" Value="#FFF5F5F5"/>
                                         </Trigger>
                                         <Trigger Property="IsSelected" Value="True">
-                                            <Setter Property="Background" Value="#FF1D1D1F"/>
+                                            <Setter Property="Background" Value="#FFE8F0FF"/>
                                             <Setter Property="Foreground" Value="#1D1D1F"/>
-                                            <Setter Property="BorderBrush" Value="#1D1D1F"/>
+                                            <Setter Property="BorderBrush" Value="#FFE8F0FF"/>
                                         </Trigger>
                                     </Style.Triggers>
                                 </Style>
@@ -3387,7 +3719,7 @@ Background="#FFFAFAFC"
                                     <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
                                     <Style.Triggers>
                                         <Trigger Property="IsSelected" Value="True">
-                                            <Setter Property="Background" Value="#FF1D1D1F"/>
+                                            <Setter Property="Background" Value="#FFE8F0FF"/>
                                             <Setter Property="Foreground" Value="#1D1D1F"/>
                                         </Trigger>
                                     </Style.Triggers>
@@ -7102,6 +7434,11 @@ Background="#FFFAFAFC"
                                     <Setter Property="FontSize" Value="12"/>
                                     <Setter Property="FontWeight" Value="SemiBold"/>
                                     <Setter Property="Padding" Value="10"/>
+                                    <Setter Property="Effect">
+                                        <Setter.Value>
+                                            <DropShadowEffect BlurRadius="12" ShadowDepth="1.5" Opacity="0.08" Color="#FF000000" Direction="270"/>
+                                        </Setter.Value>
+                                    </Setter>
                                 </Style>
                                 <Style x:Key="ColorOSProgressBarStyle" TargetType="{x:Type ProgressBar}">
                                     <Setter Property="SnapsToDevicePixels" Value="True"/>
