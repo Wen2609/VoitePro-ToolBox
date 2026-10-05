@@ -232,6 +232,23 @@ namespace WpfApp1
             ["关于"] = "AboutToolView", ["关于工具"] = "AboutToolView"
         };
 
+        // 主题中文/别名 → 知识库键 映射（GetTutorial 用）
+        private static readonly Dictionary<string, string[]> AiTopicAliases = new()
+        {
+            ["unlock"] = new[] { "解锁", "解bl", "解 bootloader", "bl锁", "bootloader 解锁", "unlock" },
+            ["flash"] = new[] { "线刷", "刷机", "刷入", "卡刷", "刷包", "flash" },
+            ["rescue"] = new[] { "救砖", "变砖", "砖", "黑砖", "白砖", "9008", "rescue" },
+            ["partition"] = new[] { "分区", "boot", "vbmeta", "super", "userdata", "partition" },
+            ["adb"] = new[] { "adb命令", "adb 命令", "推文件", "拉文件", "adb" },
+            ["fastboot"] = new[] { "fastboot", "fastboot命令", "fb" },
+            ["backup"] = new[] { "备份", "备份分区", "回读", "备份字库", "backup" },
+            ["relock"] = new[] { "回锁", "上锁", "重新锁定", "relock" },
+            ["xiaomi"] = new[] { "小米", "红米", "miui", "hyperos", "xiaomi" },
+            ["oplus"] = new[] { "欧加", "oppo", "一加", "oneplus", "真我", "realme", "coloros", "oplus" },
+            ["format"] = new[] { "双清", "格式化", "清除数据", "wipe", "format" },
+            ["edl"] = new[] { "edl", "9008", "工程模式", "深刷" }
+        };
+
         // ==================== UI 辅助 ====================
         private T? AiCtl<T>(string name) where T : class => FindControlInPages(name) as T;
 
@@ -347,10 +364,30 @@ namespace WpfApp1
         }
 
         // ==================== 页面初始化 ====================
+        /// <summary>注册 AI 页控件名→AIAgentView 直通映射，避免 FindControlInPages 触发全页面模板扫描</summary>
+        private void RegisterAiControlNameMappings()
+        {
+            if (_nameViewMap.ContainsKey("AIAgentView")) return;
+            var names = new[]
+            {
+                "AIAgentView", "AIAgentMessagesBox", "AIAgentInputBox", "AIAgentSendButton", "AIAgentStopButton",
+                "AIAgentScrollViewer", "AIAgentTypingPanel", "AIAgentStatusText", "AiDot1", "AiDot2", "AiDot3",
+                "AIAgentConfirmPanel", "AIAgentConfirmText", "AIAgentConfirmAllowButton", "AIAgentConfirmDenyButton",
+                "AIAgentDeviceText", "AIAgentDeviceDot", "AIAgentDeviceBadge", "AIAgentFooterText",
+                "AIAgentConfigOverlay", "AIAgentConfigBaseUrlBox", "AIAgentConfigKeyBox", "AIAgentConfigModelBox",
+                "AIAgentConfigConfirmCheck", "AIAgentConfigStatusText"
+            };
+            foreach (var n in names)
+            {
+                if (!_nameViewMap.ContainsKey(n)) _nameViewMap[n] = "AIAgentView";
+            }
+        }
+
         private void EnsureAIAgentPageReady()
         {
             try
             {
+                RegisterAiControlNameMappings();
                 if (FindControlInPages("AIAgentView") as FrameworkElement == null) return;
                 if (_aiReady) return;
                 _aiConfig = LoadOrCreateConfig();
@@ -437,7 +474,8 @@ namespace WpfApp1
 
         private void AIAgentInputBox_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
         {
-            if (e.Key == Key.Enter && (Keyboard.Modifiers & ModifierKeys.Shift) == 0)
+            // 输入法（中文候选词确认等）处理的回车键值为 Key.ImeProcessed，不应触发发送
+            if (e.Key == Key.Enter && e.Key != Key.ImeProcessed && (Keyboard.Modifiers & ModifierKeys.Shift) == 0)
             {
                 e.Handled = true;
                 AIAgentSendButton_Click(sender, new RoutedEventArgs());
@@ -446,6 +484,7 @@ namespace WpfApp1
 
         private void AIAgentStopButton_Click(object sender, RoutedEventArgs e)
         {
+            if (!_agentBusy) return;
             try { _agentCts?.Cancel(); } catch { }
             FinishConfirm(false);
             AddAiSystem("正在停止…");
@@ -457,6 +496,12 @@ namespace WpfApp1
             {
                 EnsureAIAgentPageReady();
                 try { _agentCts?.Cancel(); } catch { }
+                try { _agentCts?.Dispose(); } catch { }
+                _agentCts = null;
+                _agentBusy = false;
+                SetAiBusyUi(false);
+                ShowAiTyping(false, "");
+                FinishConfirm(false);
                 RunOnUi(() =>
                 {
                     _aiMessages?.Clear();
@@ -518,6 +563,8 @@ namespace WpfApp1
                 {
                     var status = AiCtl<TextBlock>("AIAgentConfigStatusText");
                     if (status != null) status.Text = "已保存 ✓（配置保存在本机，不会上传）";
+                    var overlay = AiCtl<Grid>("AIAgentConfigOverlay");
+                    if (overlay != null) overlay.Visibility = Visibility.Collapsed;
                 });
                 RefreshAiFooter();
                 RefreshAiDeviceBadge();
@@ -627,6 +674,8 @@ namespace WpfApp1
                     _agentBusy = false;
                     SetAiBusyUi(false);
                     ShowAiTyping(false, "");
+                    try { _agentCts?.Dispose(); } catch { }
+                    _agentCts = null;
                 }
             });
         }
@@ -728,6 +777,8 @@ namespace WpfApp1
                         apiMsgs.Add(AsstMsg(hasText ? bubble.Text : null, toolCalls));
                         foreach (var tc in toolCalls)
                         {
+                            // 跳过流式增量错位产生的空占位（仅当 index 空洞时出现）
+                            if (string.IsNullOrWhiteSpace(tc.Name)) continue;
                             ct.ThrowIfCancellationRequested();
                             ShowAiTyping(true, $"正在执行工具 {tc.Name} …");
                             string result;
@@ -1084,9 +1135,11 @@ namespace WpfApp1
         {
             var tcs = new TaskCompletionSource<bool>(TaskCreationOptions.RunContinuationsAsynchronously);
             _pendingConfirmTcs = tcs;
+            CancellationTokenRegistration reg = default;
             try
             {
-                using var reg = ct.Register(() => tcs.TrySetResult(false));
+                // 注意：必须在方法返回 tcs.Task 之前保持注册有效，否则取消回调被注销，停止按钮将无法解除确认等待。
+                reg = ct.Register(() => tcs.TrySetResult(false));
                 RunOnUi(() =>
                 {
                     var txt = AiCtl<TextBlock>("AIAgentConfirmText");
@@ -1101,6 +1154,12 @@ namespace WpfApp1
             {
                 tcs.TrySetResult(false);
             }
+            // 等待用户操作或取消；无论何种方式结束，都需要注销回调并清理引用。
+            tcs.Task.ContinueWith(_ =>
+            {
+                reg.Dispose();
+                if (ReferenceEquals(_pendingConfirmTcs, tcs)) _pendingConfirmTcs = null;
+            }, TaskScheduler.Default);
             return tcs.Task;
         }
 
@@ -1200,6 +1259,17 @@ namespace WpfApp1
         {
             string key = (topic ?? "").Trim().ToLowerInvariant();
             if (key.Length == 0) return GetTutorialOverview();
+            // 中文/别名 → 主题键 映射，避免“解锁BL”“线刷”等常见说法匹配不到英文 key
+            foreach (var alias in AiTopicAliases)
+            {
+                foreach (var name in alias.Value)
+                {
+                    if (key == name || key.Contains(name) || name.Contains(key))
+                    {
+                        return $"【{alias.Key}】\n{AiKnowledgeBase[alias.Key]}";
+                    }
+                }
+            }
             foreach (var kv in AiKnowledgeBase)
             {
                 if (key == kv.Key || key.Contains(kv.Key) || kv.Key.Contains(key))
@@ -1233,6 +1303,10 @@ namespace WpfApp1
         {
             try
             {
+                if (string.IsNullOrWhiteSpace(cfg.ApiKey))
+                {
+                    return "连接失败：请先填写 API Key 再测试（Key 仅保存在本机）。";
+                }
                 var msgs = new List<Dictionary<string, object?>> { new() { ["role"] = "user", ["content"] = "ping" } };
                 var payload = new Dictionary<string, object?>
                 {
@@ -1267,6 +1341,7 @@ namespace WpfApp1
         private static string Truncate(string text, int max)
         {
             if (string.IsNullOrEmpty(text)) return text;
+            if (max <= 0) return "";
             if (text.Length <= max) return text;
             return text.Substring(0, max) + "…(截断)";
         }

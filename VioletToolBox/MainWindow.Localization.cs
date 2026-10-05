@@ -724,6 +724,7 @@ namespace WpfApp1
 
         private void SetLocalizedText(TextBlock textBlock, string rawText)
         {
+            if (textBlock == null) return;
             textBlock.Tag = new LocalizedTextState(rawText);
             textBlock.Text = LocalizeUiText(rawText);
         }

@@ -1061,9 +1061,10 @@ namespace WpfApp1
         {
             return Dispatcher.Invoke(() =>
             {
-                if ((this.FindControlInPages("MultiDeviceComboBox") as System.Windows.Controls.ComboBox).SelectedItem != null)
+                var combo = this.FindControlInPages("MultiDeviceComboBox") as System.Windows.Controls.ComboBox;
+                if (combo?.SelectedItem != null)
                 {
-                    string selectedText = (this.FindControlInPages("MultiDeviceComboBox") as System.Windows.Controls.ComboBox).SelectedItem.ToString();
+                    string selectedText = combo.SelectedItem.ToString() ?? "";
                     if (selectedText.Contains(" ("))
                     {
                         return selectedText.Substring(0, selectedText.IndexOf(" ("));
@@ -1180,6 +1181,7 @@ namespace WpfApp1
                                     var page = inst ?? InstantiatePage(pname);
                                     try { System.IO.File.AppendAllText(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "startup.log"), $"{System.DateTime.Now:HH:mm:ss} nav {pname} page={(page == null ? "NULL" : "OK")}\r\n"); } catch { }
                                     ShowPage(pname);
+                                    if (pname == "AIAgentView") EnsureAIAgentPageReady();
                                     if (pname.EndsWith("View")) UpdateButtonStates(pname.Substring(0, pname.Length - 4));
                                     try { System.IO.File.AppendAllText(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "startup.log"), $"{System.DateTime.Now:HH:mm:ss} nav {pname} done, current={_currentPage}\r\n"); } catch { }
                                 }
@@ -1238,7 +1240,7 @@ namespace WpfApp1
                         {
                             System.Windows.Application.Current?.Dispatcher.BeginInvoke(new Action(() =>
                             {
-                                try { ShowPage(_vn); } catch { }
+                                try { ShowPage(_vn); if (_vn == "AIAgentView") EnsureAIAgentPageReady(); } catch { }
                             }));
                             break;
                         }
@@ -1831,7 +1833,8 @@ namespace WpfApp1
             {
                 string[] neighbors = null;
                 if (currentView == "HomeView") neighbors = new[] { "ScreenMirrorView" };
-                else if (currentView == "ScreenMirrorView") neighbors = new[] { "BasicFlashView" };
+                else if (currentView == "ScreenMirrorView") neighbors = new[] { "AIAgentView", "BasicFlashView" };
+                else if (currentView == "AIAgentView") neighbors = new[] { "ScreenMirrorView", "BasicFlashView" };
                 else if (currentView == "BasicFlashView") neighbors = new[] { "FastbootVisualizationView" };
                 else if (currentView == "FastbootVisualizationView") neighbors = new[] { "OujiaFlashView" };
                 else if (currentView == "OujiaFlashView") neighbors = new[] { "EdlFlashView" };
@@ -1878,9 +1881,9 @@ namespace WpfApp1
 
         private FrameworkElement InstantiatePage(string viewName)
         {
+            // 重入（模板初始化链循环引用）时快速失败，防止无限递归；外层调用会最终完成实例化
             if (!_instantiating.Add(viewName))
             {
-                try { System.IO.File.AppendAllText(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "page_error.log"), $"{System.DateTime.Now:HH:mm:ss} {viewName} REENTRANT\r\n"); } catch { }
                 return null;
             }
             try
@@ -2617,7 +2620,22 @@ namespace WpfApp1
             deviceStatusTimer?.Stop();
             deviceStatusTimer = null;
             StopAutoMirrorTimer();
+            TryKillScrcpyProcess();
             System.Windows.Application.Current.Shutdown();
+        }
+
+        private void TryKillScrcpyProcess()
+        {
+            try
+            {
+                if (scrcpyProcess != null && !scrcpyProcess.HasExited)
+                {
+                    scrcpyProcess.Kill(entireProcessTree: true);
+                }
+            }
+            catch { }
+            try { scrcpyProcess?.Dispose(); } catch { }
+            scrcpyProcess = null;
         }
 
         private async Task ShowCleanupDialogAndExit()
@@ -8546,17 +8564,17 @@ namespace WpfApp1
         {
             SetLocalizedText((this.FindControlInPages("DeviceStatusText") as System.Windows.Controls.TextBlock), status);
             SetLocalizedText((this.FindControlInPages("ConnectionTypeText") as System.Windows.Controls.TextBlock), connectionType);
-            (this.FindControlInPages("DeviceSerialText") as System.Windows.Controls.TextBlock).Text = serial;
-            (this.FindControlInPages("DeviceModelText") as System.Windows.Controls.TextBlock).Text = model;
-            (this.FindControlInPages("DeviceCodeText") as System.Windows.Controls.TextBlock).Text = code;
-            (this.FindControlInPages("AndroidVersionText") as System.Windows.Controls.TextBlock).Text = androidVersion;
+            SetTextSafely("DeviceSerialText", serial);
+            SetTextSafely("DeviceModelText", model);
+            SetTextSafely("DeviceCodeText", code);
+            SetTextSafely("AndroidVersionText", androidVersion);
             SetLocalizedText((this.FindControlInPages("UnlockStatusText") as System.Windows.Controls.TextBlock), unlockStatus);
             SetLocalizedText((this.FindControlInPages("ABPartitionText") as System.Windows.Controls.TextBlock), abPartition);
             SetLocalizedText((this.FindControlInPages("SelinuxStatusText") as System.Windows.Controls.TextBlock), selinuxStatus);
-            (this.FindControlInPages("KernelVersionText") as System.Windows.Controls.TextBlock).Text = kernelVersion;
-            (this.FindControlInPages("CpuManufacturerText") as System.Windows.Controls.TextBlock).Text = cpuManufacturer;
-            (this.FindControlInPages("CpuCodeNameText") as System.Windows.Controls.TextBlock).Text = cpuCodeName;
-            (this.FindControlInPages("WindowsVersionText") as System.Windows.Controls.TextBlock).Text = windowsVersion;
+            SetTextSafely("KernelVersionText", kernelVersion);
+            SetTextSafely("CpuManufacturerText", cpuManufacturer);
+            SetTextSafely("CpuCodeNameText", cpuCodeName);
+            SetTextSafely("WindowsVersionText", windowsVersion);
             UpdateSelinuxStatusColor(selinuxStatus);
             
             // 根据CPU代号更新CPU名称 CpuNameText.Text = GetCpuNameByCode(cpuCodeName);
@@ -8568,7 +8586,7 @@ namespace WpfApp1
             }
             else
             {
-                (this.FindControlInPages("VersionInfoText") as System.Windows.Controls.TextBlock).Text = "--";
+                SetTextSafely("VersionInfoText", "--");
             }
             
             // 更新底部的设备类型显示文本
@@ -8584,6 +8602,22 @@ namespace WpfApp1
             // 更新分区操作按钮状态
             UpdatePartitionButtonStates();
             UpdateXiaomiScriptOnlyOptionsState();
+
+            // 设备状态变化时同步刷新 AI 助手页的设备徽章（页面已实例化时）
+            if (_aiReady)
+            {
+                RefreshAiDeviceBadge();
+            }
+        }
+
+        private void SetTextSafely(string controlName, string text)
+        {
+            try
+            {
+                var tb = this.FindControlInPages(controlName) as System.Windows.Controls.TextBlock;
+                if (tb != null) tb.Text = text;
+            }
+            catch { }
         }
         
         private bool HasDeviceInfoChanged(string status, string connectionType, string serial, string model, string code, string androidVersion, string unlockStatus, string abPartition, string selinuxStatus, string kernelVersion, string cpuManufacturer, string cpuCodeName, string windowsVersion)

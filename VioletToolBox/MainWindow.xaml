@@ -3212,7 +3212,7 @@ Background="#FFFAFAFC"
                                     <Border x:Name="AIAgentDeviceBadge" Background="#FFEAF2FF" BorderBrush="#FFD1E2FF" BorderThickness="1" CornerRadius="12" Padding="10,5" VerticalAlignment="Center">
                                         <StackPanel Orientation="Horizontal">
                                             <Ellipse x:Name="AIAgentDeviceDot" Width="7" Height="7" Fill="#FF8E8E93" VerticalAlignment="Center" Margin="0,0,6,0"/>
-                                            <TextBlock x:Name="AIAgentDeviceText" Text="设备: 未连接" FontSize="12" Foreground="#FF1D1D1F" VerticalAlignment="Center"/>
+                                            <TextBlock x:Name="AIAgentDeviceText" Text="设备: 未连接" FontSize="12" Foreground="#FF1D1D1F" VerticalAlignment="Center" MaxWidth="180" TextTrimming="CharacterEllipsis" ToolTip="设备连接状态"/>
                                         </StackPanel>
                                     </Border>
                                     <Button x:Name="AIAgentClearButton" Content="清空对话" Style="{StaticResource PageLightButton}" Margin="8,0,0,0" Click="AIAgentClearButton_Click"/>
@@ -3308,9 +3308,9 @@ Background="#FFFAFAFC"
                                         <ColumnDefinition Width="Auto"/>
                                         <ColumnDefinition Width="Auto"/>
                                     </Grid.ColumnDefinitions>
-                                    <TextBox x:Name="AIAgentInputBox" Grid.Column="0" Height="38" VerticalContentAlignment="Center" Padding="10,0"
+                                    <TextBox x:Name="AIAgentInputBox" Grid.Column="0" Height="38" MaxHeight="96" VerticalContentAlignment="Center" Padding="10,0"
                                              FontSize="13" BorderThickness="0" Background="Transparent"
-                                             KeyDown="AIAgentInputBox_KeyDown" TextWrapping="Wrap" AcceptsReturn="True"
+                                             KeyDown="AIAgentInputBox_KeyDown" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Auto"
                                              ToolTip="输入问题后回车发送；Shift+Enter 换行"/>
                                     <Button x:Name="AIAgentStopButton" Grid.Column="1" Content="停止" Style="{StaticResource PageSecondaryButton}"
                                             Visibility="Collapsed" Click="AIAgentStopButton_Click" Margin="4,0,0,0" MinWidth="64" VerticalAlignment="Center"/>
@@ -3368,7 +3368,7 @@ Background="#FFFAFAFC"
             </StackPanel>
         </StackPanel>
     </Grid>
-<Grid Grid.Row="1" Margin="0,0,0,0"><ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled"><ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+<Grid Grid.Row="1" Margin="0,0,0,0"><ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
 <Border
                                     Background="#F8F9FA"
                                     CornerRadius="10"
@@ -3388,7 +3388,7 @@ Background="#FFFAFAFC"
                                         </Grid.RowDefinitions>
                                         <StackPanel Margin="0,0,0,0" Grid.RowSpan="2">
                                             <StackPanel Orientation="Horizontal">
-                                            <Button VerticalAlignment="Top" Width="105" Click="LoadSystemZoneLocationButton_Click" Height="36" Background="#FFD1D1D6" Foreground="White">
+                                            <Button VerticalAlignment="Top" Width="105" Click="LoadSystemZoneLocationButton_Click" Height="36" Background="#FFE5E5EA" Foreground="#FF1D1D1F">
                                                 <Button.Content>
                                                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                                                         <svg:SvgViewbox Source="images/jiazai.svg" Width="16" Height="16" Margin="0,0,6,0" />
@@ -3396,7 +3396,7 @@ Background="#FFFAFAFC"
                                                     </StackPanel>
                                                 </Button.Content>
                                             </Button>
-                                            <Button VerticalAlignment="Top" Width="130" Height="36" Background="#FFD1D1D6" Foreground="White" Margin="10,0,0,0" Click="Button_Click_1" Tag="传入文件到手机">
+                                            <Button VerticalAlignment="Top" Width="130" Height="36" Background="#FFE5E5EA" Foreground="#FF1D1D1F" Margin="10,0,0,0" Click="Button_Click_1" Tag="传入文件到手机">
                                                 <Button.Content>
                                                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                                                         <svg:SvgViewbox Source="images/xiangxia.svg" Width="16" Height="16" Margin="0,0,6,0" />
@@ -3404,7 +3404,7 @@ Background="#FFFAFAFC"
                                                     </StackPanel>
                                                 </Button.Content>
                                             </Button>
-                                            <Button VerticalAlignment="Top" Width="130" Height="36" Background="#FFD1D1D6" Foreground="White" Margin="10,0,0,0" Click="Button_Click_2">
+                                            <Button VerticalAlignment="Top" Width="130" Height="36" Background="#FFE5E5EA" Foreground="#FF1D1D1F" Margin="10,0,0,0" Click="Button_Click_2">
                                                 <Button.Content>
                                                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                                                         <svg:SvgViewbox Source="images/xiangshang.svg" Width="16" Height="16" Margin="0,0,6,0" />
@@ -3756,7 +3756,7 @@ Background="#FFFAFAFC"
                                     </Grid>
                                 </Border>
                             </Border>
-</ScrollViewer></ScrollViewer></Grid>
+</ScrollViewer></Grid>
 </Grid>
                 </DataTemplate>
                 <DataTemplate x:Key="Page_OujiaFlashView">
