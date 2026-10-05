@@ -1732,6 +1732,17 @@ namespace WpfApp1
                 _pageHost = this.FindControlInPages("PageHost") as ContentControl;
             if (_pageHost == null) return;
 
+            // 防抖：重复点击当前已显示的页面不重启动画（避免闪烁）
+            if (viewName == _currentPage)
+            {
+                if (viewName == "HomeView")
+                {
+                    var homeNow = this.FindControlInPages("HomeView") as FrameworkElement;
+                    if (homeNow != null && homeNow.Visibility == System.Windows.Visibility.Visible) return;
+                }
+                else if (_pageHost.Content != null) return;
+            }
+
             FrameworkElement page = null;
             if (viewName == "HomeView")
             {
@@ -2566,7 +2577,12 @@ namespace WpfApp1
             {
                 if (_deviceCheckRunning) return;
                 _deviceCheckRunning = true;
-                try { await CheckDeviceStatus(); }
+                try
+                {
+                    await CheckDeviceStatus();
+                    // 自适应降频：设备已连接时 5 秒轮询，未连接时 3 秒（稳定期减少 adb 进程开销）
+                    deviceStatusTimer.Interval = TimeSpan.FromSeconds(_lastDeviceConnected ? 5 : 3);
+                }
                 finally { _deviceCheckRunning = false; }
             };
             deviceStatusTimer.Start();
@@ -2575,6 +2591,7 @@ namespace WpfApp1
         }
 
         private bool _deviceCheckRunning;
+        private bool _lastDeviceConnected;
 
         private bool IsDeviceDetectionCycleCurrent(int detectionVersion)
         {
@@ -8498,6 +8515,8 @@ namespace WpfApp1
 
         private void UpdateDeviceInfoUI(string status, string connectionType, string serial, string model, string code, string androidVersion, string unlockStatus, string abPartition, string selinuxStatus, string kernelVersion, string cpuManufacturer, string cpuCodeName, string windowsVersion)
         {
+            // 记录设备在线状态，用于轮询自适应降频
+            _lastDeviceConnected = status != "未连接";
             SetLocalizedText((this.FindControlInPages("DeviceStatusText") as System.Windows.Controls.TextBlock), status);
             SetLocalizedText((this.FindControlInPages("ConnectionTypeText") as System.Windows.Controls.TextBlock), connectionType);
             SetTextSafely("DeviceSerialText", serial);

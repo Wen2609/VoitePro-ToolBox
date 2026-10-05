@@ -277,6 +277,12 @@ namespace WpfApp1
 
         private void AddAiSystem(string text) => AddAiMessage(new AgentChatMessage { Role = "system", Text = text });
 
+        private static readonly System.Windows.Media.Animation.DoubleAnimation AiDotPulseAnim = new System.Windows.Media.Animation.DoubleAnimation(0.25, 1.0, TimeSpan.FromMilliseconds(560))
+        {
+            AutoReverse = true,
+            RepeatBehavior = System.Windows.Media.Animation.RepeatBehavior.Forever
+        };
+
         private void ShowAiTyping(bool show, string status)
         {
             RunOnUi(() =>
@@ -292,13 +298,7 @@ namespace WpfApp1
                     if (dot == null) continue;
                     if (show)
                     {
-                        dot.BeginAnimation(UIElement.OpacityProperty, null);
-                        var anim = new System.Windows.Media.Animation.DoubleAnimation(0.25, 1.0, TimeSpan.FromMilliseconds(560))
-                        {
-                            AutoReverse = true,
-                            RepeatBehavior = System.Windows.Media.Animation.RepeatBehavior.Forever
-                        };
-                        dot.BeginAnimation(UIElement.OpacityProperty, anim);
+                        dot.BeginAnimation(UIElement.OpacityProperty, AiDotPulseAnim);
                     }
                     else
                     {
@@ -1163,7 +1163,40 @@ namespace WpfApp1
                     var txt = AiCtl<TextBlock>("AIAgentConfirmText");
                     if (txt != null) txt.Text = $"[{tool}] {command}";
                     var panel = AiCtl<Border>("AIAgentConfirmPanel");
-                    if (panel != null) panel.Visibility = Visibility.Visible;
+                    if (panel != null)
+                    {
+                        // 弹出动画：轻微放大 + 淡入，避免突兀出现
+                        panel.Visibility = Visibility.Visible;
+                        panel.RenderTransformOrigin = new System.Windows.Point(0.5, 0.5);
+                        panel.BeginAnimation(UIElement.RenderTransformProperty, null);
+                        panel.RenderTransform = new System.Windows.Media.ScaleTransform(0.96, 0.96);
+                        panel.BeginAnimation(UIElement.OpacityProperty, null);
+                        panel.Opacity = 0.0;
+                        var sb = new System.Windows.Media.Animation.Storyboard();
+                        var oa = new System.Windows.Media.Animation.DoubleAnimation(0.0, 1.0, TimeSpan.FromMilliseconds(160))
+                        {
+                            EasingFunction = new System.Windows.Media.Animation.CubicEase { EasingMode = System.Windows.Media.Animation.EasingMode.EaseOut }
+                        };
+                        System.Windows.Media.Animation.Storyboard.SetTarget(oa, panel);
+                        System.Windows.Media.Animation.Storyboard.SetTargetProperty(oa, new System.Windows.PropertyPath(UIElement.OpacityProperty));
+                        sb.Children.Add(oa);
+                        var sa = new System.Windows.Media.Animation.DoubleAnimation(0.96, 1.0, TimeSpan.FromMilliseconds(180))
+                        {
+                            EasingFunction = new System.Windows.Media.Animation.CubicEase { EasingMode = System.Windows.Media.Animation.EasingMode.EaseOut }
+                        };
+                        System.Windows.Media.Animation.Storyboard.SetTarget(sa, panel);
+                        System.Windows.Media.Animation.Storyboard.SetTargetProperty(sa, new System.Windows.PropertyPath("(UIElement.RenderTransform).(ScaleTransform.ScaleX)"));
+                        sb.Children.Add(sa);
+                        var sa2 = new System.Windows.Media.Animation.DoubleAnimation(0.96, 1.0, TimeSpan.FromMilliseconds(180))
+                        {
+                            EasingFunction = new System.Windows.Media.Animation.CubicEase { EasingMode = System.Windows.Media.Animation.EasingMode.EaseOut }
+                        };
+                        System.Windows.Media.Animation.Storyboard.SetTarget(sa2, panel);
+                        System.Windows.Media.Animation.Storyboard.SetTargetProperty(sa2, new System.Windows.PropertyPath("(UIElement.RenderTransform).(ScaleTransform.ScaleY)"));
+                        sb.Children.Add(sa2);
+                        sb.Completed += (_, _) => { try { panel.RenderTransform = null; } catch { } };
+                        sb.Begin(panel);
+                    }
                     AiCtl<System.Windows.Controls.Button>("AIAgentConfirmAllowButton")?.Focus();
                     AddAiMessage(new AgentChatMessage { Role = "system", Text = $"⏸ 等待确认执行命令（尚未执行）\n[{tool}] {command}" });
                 });
