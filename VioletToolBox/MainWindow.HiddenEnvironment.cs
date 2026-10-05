@@ -2082,17 +2082,7 @@ namespace WpfApp1
             }
         }
 
-        private void FlashLogTextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
         private void XiaomiFlashScriptPathTextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
-        private void WipeAndLockBLCheckBox_Checked(object sender, RoutedEventArgs e)
         {
 
         }
@@ -2133,11 +2123,6 @@ namespace WpfApp1
             }
         }
 
-        private void FlashLogTextBox_TextChanged_1(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
         private void AutoRebootCheckBox_Checked(object sender, RoutedEventArgs e)
         {
 
@@ -2158,16 +2143,6 @@ namespace WpfApp1
         }
 
         private void GridSplitter_DragDelta_1(object sender, System.Windows.Controls.Primitives.DragDeltaEventArgs e)
-        {
-
-        }
-
-        private void CheckBox_Checked(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void CheckBox_Checked_1(object sender, RoutedEventArgs e)
         {
 
         }
@@ -2195,16 +2170,11 @@ namespace WpfApp1
         // 登录缓存滑块值变化事件
         private void LoginCacheSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            var loginCacheValueText = this.FindName("LoginCacheValueText") as TextBlock;
+            var loginCacheValueText = this.FindControlInPages("LoginCacheValueText") as TextBlock;
             if (loginCacheValueText != null)
             {
                 loginCacheValueText.Text = ((int)e.NewValue).ToString();
             }
-        }
-
-        private void CheckBox_Checked_2(object sender, RoutedEventArgs e)
-        {
-
         }
 
         private void ScreenMirrorLogTextBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -2710,11 +2680,6 @@ namespace WpfApp1
                     Debug.WriteLine($"日志状态追加失败: {ex.Message}");
                 }
             });
-        }
-
-        private void DetectApp2CheckBox_Checked()
-        {
-
         }
 
         private void DetectApp5CheckBox_Checked(object sender, RoutedEventArgs e)

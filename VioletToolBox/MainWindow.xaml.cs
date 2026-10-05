@@ -2391,11 +2391,8 @@ namespace WpfApp1
                         UseShellExecute = true
                     });
                 }
-                else
-                {
-                }
             }
-            catch (Exception ex)
+            catch
             {
             }
         }
@@ -5458,125 +5455,39 @@ namespace WpfApp1
             }
         }
 
-        private async void RebootPhoneButton_Click(object sender, RoutedEventArgs e)
+        /// <summary>通用设备重启逻辑：先 adb 命令，输出含 "found" 时转 fastboot 命令，最后清理 adb/fastboot 进程</summary>
+        private async Task ExecuteRebootAsync(string adbCmd, string fastbootCmd)
         {
             try
             {
-                // 执行adb reboot命令并获取输出
-                string adbOutput = await ExecuteAdbCommandWithOutput("reboot");
-                
+                string adbOutput = await ExecuteAdbCommandWithOutput(adbCmd);
+
                 // 如果输出中包含"found"，说明设备不在adb界面，需要执行fastboot命令
                 if (!string.IsNullOrEmpty(adbOutput) && adbOutput.ToLower().Contains("found"))
                 {
                     // 等待一段时间让设备重启到fastboot模式
                     await Task.Delay(3000);
-                    await ExecuteFastbootCommand("reboot");
+                    await ExecuteFastbootCommand(fastbootCmd);
                 }
                 // 如果输出为空，说明设备在adb界面，不需要执行fastboot命令
-                
+
                 // 在所有重启命令执行完成后终止adb.exe和fastboot.exe进程
                 await KillAllAdbAndFastbootProcesses();
             }
-            catch (Exception ex)
+            catch
             {
             }
         }
 
-        private async void RebootToFastbootButton_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                // 执行adb reboot bootloader命令并获取输出
-                string adbOutput = await ExecuteAdbCommandWithOutput("reboot bootloader");
-                
-                // 如果输出中包含"found"，说明设备不在adb界面，需要执行fastboot命令
-                if (!string.IsNullOrEmpty(adbOutput) && adbOutput.ToLower().Contains("found"))
-                {
-                    // 等待一段时间让设备重启到fastboot模式
-                    await Task.Delay(3000);
-                    await ExecuteFastbootCommand("reboot-bootloader");
-                }
-                // 如果输出为空，说明设备在adb界面，不需要执行fastboot命令
-                
-                // 在所有重启命令执行完成后终止adb.exe和fastboot.exe进程
-                await KillAllAdbAndFastbootProcesses();
-            }
-            catch (Exception ex)
-            {
-            }
-        }
+        private async void RebootPhoneButton_Click(object sender, RoutedEventArgs e) => await ExecuteRebootAsync("reboot", "reboot");
 
-        private async void RebootToFastbootDButton_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                // 执行adb reboot fastboot命令并获取输出
-                string adbOutput = await ExecuteAdbCommandWithOutput("reboot fastboot");
-                
-                // 如果输出中包含"found"，说明设备不在adb界面，需要执行fastboot命令
-                if (!string.IsNullOrEmpty(adbOutput) && adbOutput.ToLower().Contains("found"))
-                {
-                    // 等待一段时间让设备重启到fastboot模式
-                    await Task.Delay(3000);
-                    await ExecuteFastbootCommand("reboot fastboot");
-                }
-                // 如果输出为空，说明设备在adb界面，不需要执行fastboot命令
-                
-                // 在所有重启命令执行完成后终止adb.exe和fastboot.exe进程
-                await KillAllAdbAndFastbootProcesses();
-            }
-            catch (Exception ex)
-            {
-            }
-        }
+        private async void RebootToFastbootButton_Click(object sender, RoutedEventArgs e) => await ExecuteRebootAsync("reboot bootloader", "reboot-bootloader");
 
-        private async void RebootTo9008Button_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                // 执行adb reboot edl命令并获取输出
-                string adbOutput = await ExecuteAdbCommandWithOutput("reboot edl");
-                
-                // 如果输出中包含"found"，说明设备不在adb界面，需要执行fastboot命令
-                if (!string.IsNullOrEmpty(adbOutput) && adbOutput.ToLower().Contains("found"))
-                {
-                    // 等待一段时间让设备重启到fastboot模式
-                    await Task.Delay(3000);
-                    await ExecuteFastbootCommand("oem edl");
-                }
-                // 如果输出为空，说明设备在adb界面，不需要执行fastboot命令
-                
-                // 在所有重启命令执行完成后终止adb.exe和fastboot.exe进程
-                await KillAllAdbAndFastbootProcesses();
-            }
-            catch (Exception ex)
-            {
-            }
-        }
+        private async void RebootToFastbootDButton_Click(object sender, RoutedEventArgs e) => await ExecuteRebootAsync("reboot fastboot", "reboot fastboot");
 
-        private async void RebootToRecoveryButton_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                // 执行adb reboot recovery命令并获取输出
-                string adbOutput = await ExecuteAdbCommandWithOutput("reboot recovery");
-                
-                // 如果输出中包含"found"，说明设备不在adb界面，需要执行fastboot命令
-                if (!string.IsNullOrEmpty(adbOutput) && adbOutput.ToLower().Contains("found"))
-                {
-                    // 等待一段时间让设备重启到fastboot模式
-                    await Task.Delay(3000);
-                    await ExecuteFastbootCommand("reboot recovery");
-                }
-                // 如果输出为空，说明设备在adb界面，不需要执行fastboot命令
-                
-                // 在所有重启命令执行完成后终止adb.exe和fastboot.exe进程
-                await KillAllAdbAndFastbootProcesses();
-            }
-            catch (Exception ex)
-            {
-            }
-        }
+        private async void RebootTo9008Button_Click(object sender, RoutedEventArgs e) => await ExecuteRebootAsync("reboot edl", "oem edl");
+
+        private async void RebootToRecoveryButton_Click(object sender, RoutedEventArgs e) => await ExecuteRebootAsync("reboot recovery", "reboot recovery");
 
         private async void SwitchSlotButton_Click(object sender, RoutedEventArgs e)
         {
@@ -7158,7 +7069,7 @@ namespace WpfApp1
                 };
                 Process.Start(startInfo);
             }
-            catch (Exception ex)
+            catch
             {
                 // 如果管理员权限失败，尝试普通权限
                 try
@@ -8064,7 +7975,7 @@ namespace WpfApp1
                     }
                 }
             }
-            catch (Exception ex)
+            catch
             {
             }
         }
@@ -8706,7 +8617,7 @@ namespace WpfApp1
                     }
                 });
             }
-            catch (Exception ex)
+            catch
             {
                 // 发生错误时显示未知
                 Dispatcher.Invoke(() =>
@@ -10641,11 +10552,7 @@ namespace WpfApp1
                     if (!string.IsNullOrEmpty(e.Data))
                     {
                         // 【已隐藏】不再显示fastboot原生输出到日志
-                        // Dispatcher.BeginInvoke(new Action(() => 
-                        // {
-                        //     LogToOugaFlash($"[FASTBOOT] {e.Data}", "Gray");
-                        // }));
-                        
+
                         // 限制输出缓冲区大小，只保留最近的输出
                         if (outputLineCount < MAX_OUTPUT_LINES)
                         {
@@ -10696,11 +10603,7 @@ namespace WpfApp1
                     if (!string.IsNullOrEmpty(e.Data))
                     {
                         // 【已隐藏】不再显示fastboot错误输出到日志
-                        // Dispatcher.BeginInvoke(new Action(() => 
-                        // {
-                        //     LogToOugaFlash($"[FASTBOOT ERROR] {e.Data}", "Red");
-                        // }));
-                        
+
                         // 限制输出缓冲区大小
                         if (outputLineCount < MAX_OUTPUT_LINES)
                         {
@@ -12814,7 +12717,6 @@ namespace WpfApp1
             // 重置进度条
             ResetOperationProgressBar();
             
-            bool allFlashesSucceeded = true;
             foreach (var partition in selectedPartitions)
             {
                 cancellationToken.ThrowIfCancellationRequested();
@@ -12836,7 +12738,6 @@ namespace WpfApp1
                     cancellationToken: CancellationToken.None);
                 if (!flashSucceeded)
                 {
-                    allFlashesSucceeded = false;
                     LogToFastboot($"分区 {partition.PartitionName} 刷写失败，已跳过并继续下一个分区", "Red");
                 }
             }
