@@ -305,9 +305,9 @@ namespace WpfApp1
             container.Opacity = 0;
             var tt = new System.Windows.Media.TranslateTransform(0, 6);
             container.RenderTransform = tt;
-            var fade = new System.Windows.Media.Animation.DoubleAnimation(0, 1, TimeSpan.FromMilliseconds(200));
+            var fade = new System.Windows.Media.Animation.DoubleAnimation(0, 1, TimeSpan.FromMilliseconds(AiFadeMs));
             fade.EasingFunction = new System.Windows.Media.Animation.CubicEase { EasingMode = System.Windows.Media.Animation.EasingMode.EaseOut };
-            var slide = new System.Windows.Media.Animation.DoubleAnimation(6, 0, TimeSpan.FromMilliseconds(200));
+            var slide = new System.Windows.Media.Animation.DoubleAnimation(6, 0, TimeSpan.FromMilliseconds(AiFadeMs));
             slide.EasingFunction = new System.Windows.Media.Animation.CubicEase { EasingMode = System.Windows.Media.Animation.EasingMode.EaseOut };
             container.BeginAnimation(System.Windows.UIElement.OpacityProperty, fade);
             tt.BeginAnimation(System.Windows.Media.TranslateTransform.YProperty, slide);
@@ -319,12 +319,19 @@ namespace WpfApp1
 
         private static readonly string[] TypingDotNames = { "AiDot1", "AiDot2", "AiDot3" };
 
+        /// AI 界面动画时长常量（毫秒，统一节奏）
+        private const int AiFadeMs = 200;          // 消息淡入淡出
+        private const int AiTypingStepMs = 560;    // 打字光标步进
+        private const int AiConfigOpenMs = 160;    // 配置浮层淡入
+        private const int AiConfigCloseMs = 140;   // 配置浮层淡出
+        private const int AiMsgAppearMs = 180;     // 消息入场
+
         private static System.Windows.Media.Animation.DoubleAnimation[] BuildAiDotPulseAnims()
         {
             var arr = new System.Windows.Media.Animation.DoubleAnimation[3];
             for (var i = 0; i < 3; i++)
             {
-                arr[i] = new System.Windows.Media.Animation.DoubleAnimation(0.25, 1.0, TimeSpan.FromMilliseconds(560))
+                arr[i] = new System.Windows.Media.Animation.DoubleAnimation(0.25, 1.0, TimeSpan.FromMilliseconds(AiTypingStepMs))
                 {
                     AutoReverse = true,
                     RepeatBehavior = System.Windows.Media.Animation.RepeatBehavior.Forever,
@@ -604,7 +611,7 @@ namespace WpfApp1
                     overlay.Visibility = Visibility.Visible;
                     overlay.BeginAnimation(UIElement.OpacityProperty, null);
                     overlay.Opacity = 0.0;
-                    var anim = new System.Windows.Media.Animation.DoubleAnimation(0.0, 1.0, TimeSpan.FromMilliseconds(160));
+                    var anim = new System.Windows.Media.Animation.DoubleAnimation(0.0, 1.0, TimeSpan.FromMilliseconds(AiConfigOpenMs));
                     overlay.BeginAnimation(UIElement.OpacityProperty, anim);
                 }
             });
@@ -622,7 +629,7 @@ namespace WpfApp1
         /// 配置浮层淡出后隐藏（与打开时的 160ms 淡入呼应）
         private static void HideAiConfigOverlay(System.Windows.FrameworkElement overlay)
         {
-            var anim = new System.Windows.Media.Animation.DoubleAnimation(1.0, 0.0, TimeSpan.FromMilliseconds(140));
+            var anim = new System.Windows.Media.Animation.DoubleAnimation(1.0, 0.0, TimeSpan.FromMilliseconds(AiConfigCloseMs));
             anim.Completed += (s, e) =>
             {
                 if (overlay != null) overlay.Visibility = Visibility.Collapsed;
@@ -1248,21 +1255,21 @@ namespace WpfApp1
                         panel.BeginAnimation(UIElement.OpacityProperty, null);
                         panel.Opacity = 0.0;
                         var sb = new System.Windows.Media.Animation.Storyboard();
-                        var oa = new System.Windows.Media.Animation.DoubleAnimation(0.0, 1.0, TimeSpan.FromMilliseconds(160))
+                        var oa = new System.Windows.Media.Animation.DoubleAnimation(0.0, 1.0, TimeSpan.FromMilliseconds(AiConfigOpenMs))
                         {
                             EasingFunction = new System.Windows.Media.Animation.CubicEase { EasingMode = System.Windows.Media.Animation.EasingMode.EaseOut }
                         };
                         System.Windows.Media.Animation.Storyboard.SetTarget(oa, panel);
                         System.Windows.Media.Animation.Storyboard.SetTargetProperty(oa, new System.Windows.PropertyPath(UIElement.OpacityProperty));
                         sb.Children.Add(oa);
-                        var sa = new System.Windows.Media.Animation.DoubleAnimation(0.96, 1.0, TimeSpan.FromMilliseconds(180))
+                        var sa = new System.Windows.Media.Animation.DoubleAnimation(0.96, 1.0, TimeSpan.FromMilliseconds(AiMsgAppearMs))
                         {
                             EasingFunction = new System.Windows.Media.Animation.CubicEase { EasingMode = System.Windows.Media.Animation.EasingMode.EaseOut }
                         };
                         System.Windows.Media.Animation.Storyboard.SetTarget(sa, panel);
                         System.Windows.Media.Animation.Storyboard.SetTargetProperty(sa, new System.Windows.PropertyPath("(UIElement.RenderTransform).(ScaleTransform.ScaleX)"));
                         sb.Children.Add(sa);
-                        var sa2 = new System.Windows.Media.Animation.DoubleAnimation(0.96, 1.0, TimeSpan.FromMilliseconds(180))
+                        var sa2 = new System.Windows.Media.Animation.DoubleAnimation(0.96, 1.0, TimeSpan.FromMilliseconds(AiMsgAppearMs))
                         {
                             EasingFunction = new System.Windows.Media.Animation.CubicEase { EasingMode = System.Windows.Media.Animation.EasingMode.EaseOut }
                         };

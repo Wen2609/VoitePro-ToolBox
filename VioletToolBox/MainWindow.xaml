@@ -28,6 +28,33 @@ Background="{StaticResource SurfaceTintBrush}"
                 <Setter Property="CornerRadius" Value="12"/>
                 <Setter Property="Background" Value="{StaticResource BrandPrimaryBrush}"/>
             </Style>
+            <!-- 28×28 浅蓝图标容器（页内小图标统一容器） -->
+            <Style x:Key="IconBadgeStyle" TargetType="Border">
+                <Setter Property="Width" Value="28"/>
+                <Setter Property="Height" Value="28"/>
+                <Setter Property="CornerRadius" Value="8"/>
+                <Setter Property="Background" Value="{StaticResource BrandTintBrush}"/>
+            </Style>
+            <!-- 12px 次要说明文字（统一灰色） -->
+            <Style x:Key="MutedText12Style" TargetType="TextBlock">
+                <Setter Property="FontSize" Value="12"/>
+                <Setter Property="Foreground" Value="{StaticResource TextMutedBrush}"/>
+            </Style>
+            <!-- 11px 弱化辅助文字 -->
+            <Style x:Key="TertiaryText11Style" TargetType="TextBlock">
+                <Setter Property="FontSize" Value="11"/>
+                <Setter Property="Foreground" Value="{StaticResource TextTertiaryBrush}"/>
+            </Style>
+            <!-- 15px 半粗卡片标题 -->
+            <Style x:Key="CardTitle15Style" TargetType="TextBlock">
+                <Setter Property="FontSize" Value="15"/>
+                <Setter Property="FontWeight" Value="SemiBold"/>
+            </Style>
+            <!-- 13px 半粗小节标题 -->
+            <Style x:Key="SubTitle13Style" TargetType="TextBlock">
+                <Setter Property="FontSize" Value="13"/>
+                <Setter Property="FontWeight" Value="SemiBold"/>
+            </Style>
             <!-- 深色操作按钮（墨底白字，hover/press 过渡 + 禁用半透明） -->
             <Style x:Key="DarkActionButtonStyle" TargetType="Button">
                 <Setter Property="Height" Value="36"/>
@@ -893,7 +920,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                                         <DropShadowEffect Color="{StaticResource Gray900}" Opacity="0.8" BlurRadius="6" ShadowDepth="0"/>
                                                     </Ellipse.Effect>
                                                 </Ellipse>
-                                                <TextBlock Text="快速开始" Foreground="White" FontSize="13" FontWeight="SemiBold" VerticalAlignment="Center"/>
+                                                <TextBlock Text="快速开始" Foreground="White" Style="{StaticResource SubTitle13Style}" VerticalAlignment="Center"/>
                                                 <TextBlock Text="连接设备后即可开始投屏" Foreground="White" Opacity="0.7" FontSize="12" VerticalAlignment="Center" Margin="10,0,0,0"/>
                                             </StackPanel>
                                             <!-- 操作按钮 -->
@@ -947,8 +974,8 @@ Background="{StaticResource SurfaceTintBrush}"
                                                             <svg:SvgViewbox Source="images/hengpingzhuanshuping.svg" Width="16" Height="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                                         </Border>
                                                         <StackPanel VerticalAlignment="Center">
-                                                            <TextBlock Text="屏幕操作" FontSize="15" FontWeight="SemiBold"/>
-                                                            <TextBlock Text="旋转方向与截屏" FontSize="11" Foreground="{StaticResource TextTertiaryBrush}"/>
+                                                            <TextBlock Text="屏幕操作" Style="{StaticResource CardTitle15Style}"/>
+                                                            <TextBlock Text="旋转方向与截屏" Style="{StaticResource TertiaryText11Style}"/>
                                                         </StackPanel>
                                                     </StackPanel>
                                                     <WrapPanel>
@@ -996,8 +1023,8 @@ Background="{StaticResource SurfaceTintBrush}"
                                                             <svg:SvgViewbox Source="images/yuanquan.svg" Width="16" Height="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                                         </Border>
                                                         <StackPanel VerticalAlignment="Center">
-                                                            <TextBlock Text="按键模拟" FontSize="15" FontWeight="SemiBold"/>
-                                                            <TextBlock Text="虚拟导航键操作" FontSize="11" Foreground="{StaticResource TextTertiaryBrush}"/>
+                                                            <TextBlock Text="按键模拟" Style="{StaticResource CardTitle15Style}"/>
+                                                            <TextBlock Text="虚拟导航键操作" Style="{StaticResource TertiaryText11Style}"/>
                                                         </StackPanel>
                                                     </StackPanel>
                                                     <WrapPanel>
@@ -1045,8 +1072,8 @@ Background="{StaticResource SurfaceTintBrush}"
                                                             <svg:SvgViewbox Source="images/yinliang.svg" Width="16" Height="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                                         </Border>
                                                         <StackPanel VerticalAlignment="Center">
-                                                            <TextBlock Text="音量调节" FontSize="15" FontWeight="SemiBold"/>
-                                                            <TextBlock Text="媒体音量控制" FontSize="11" Foreground="{StaticResource TextTertiaryBrush}"/>
+                                                            <TextBlock Text="音量调节" Style="{StaticResource CardTitle15Style}"/>
+                                                            <TextBlock Text="媒体音量控制" Style="{StaticResource TertiaryText11Style}"/>
                                                         </StackPanel>
                                                     </StackPanel>
                                                     <WrapPanel>
@@ -1088,8 +1115,8 @@ Background="{StaticResource SurfaceTintBrush}"
                                                             <svg:SvgViewbox Source="images/banshou.svg" Width="16" Height="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                                         </Border>
                                                         <StackPanel VerticalAlignment="Center">
-                                                            <TextBlock Text="扩展选项" FontSize="15" FontWeight="SemiBold"/>
-                                                            <TextBlock Text="高级功能设置" FontSize="11" Foreground="{StaticResource TextTertiaryBrush}"/>
+                                                            <TextBlock Text="扩展选项" Style="{StaticResource CardTitle15Style}"/>
+                                                            <TextBlock Text="高级功能设置" Style="{StaticResource TertiaryText11Style}"/>
                                                         </StackPanel>
                                                     </StackPanel>
 
@@ -1114,14 +1141,14 @@ Background="{StaticResource SurfaceTintBrush}"
                                                     <!-- 分隔线 -->
                                                     <Border Height="1" Background="{StaticResource SurfaceTintBrush}" Margin="0,0,0,18"/>
 
-                                                    <TextBlock Text="投屏方向" FontSize="13" FontWeight="SemiBold" Foreground="{StaticResource TextSecondaryBrush}" Margin="0,0,0,10"/>
+                                                    <TextBlock Text="投屏方向" Style="{StaticResource SubTitle13Style}" Foreground="{StaticResource TextSecondaryBrush}" Margin="0,0,0,10"/>
                                                     <StackPanel Orientation="Horizontal" Margin="0,0,0,18">
                                                         <RadioButton x:Name="MirrorOrientationOriginalRadioButton" Content="原始角度" GroupName="MirrorOrientation" IsChecked="True" Margin="0,0,18,0"/>
                                                         <RadioButton x:Name="MirrorOrientation90RadioButton" Content="90°" GroupName="MirrorOrientation" Margin="0,0,18,0"/>
                                                         <RadioButton x:Name="MirrorOrientation180RadioButton" Content="180°" GroupName="MirrorOrientation"/>
                                                     </StackPanel>
 
-                                                    <TextBlock Text="投屏窗口大小" FontSize="13" FontWeight="SemiBold" Foreground="{StaticResource TextSecondaryBrush}" Margin="0,0,0,10"/>
+                                                    <TextBlock Text="投屏窗口大小" Style="{StaticResource SubTitle13Style}" Foreground="{StaticResource TextSecondaryBrush}" Margin="0,0,0,10"/>
                                                     <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
                                                         <RadioButton x:Name="RadioSize90" Content="90%" GroupName="WindowSize" IsChecked="True" Tag="90" Margin="0,0,16,0"/>
                                                         <RadioButton x:Name="RadioSize80" Content="80%" GroupName="WindowSize" Tag="80" Margin="0,0,16,0"/>
@@ -1147,8 +1174,8 @@ Background="{StaticResource SurfaceTintBrush}"
                                                     <svg:SvgViewbox Source="images/qiehuan.svg" Width="16" Height="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                                 </Border>
                                                 <StackPanel VerticalAlignment="Center">
-                                                    <TextBlock Text="投屏参数" FontSize="15" FontWeight="SemiBold"/>
-                                                    <TextBlock Text="画质与流畅度" FontSize="11" Foreground="{StaticResource TextTertiaryBrush}"/>
+                                                    <TextBlock Text="投屏参数" Style="{StaticResource CardTitle15Style}"/>
+                                                    <TextBlock Text="画质与流畅度" Style="{StaticResource TertiaryText11Style}"/>
                                                 </StackPanel>
                                             </StackPanel>
                                             <Grid Margin="0,0,0,16">
@@ -1160,7 +1187,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                                 <TextBlock Text="屏幕清晰度" VerticalAlignment="Center" Foreground="{StaticResource TextSecondaryBrush}" FontSize="13"/>
                                                 <Slider x:Name="BitrateSlider" Grid.Column="1" Minimum="1" Maximum="20" Value="8" TickFrequency="1" IsSnapToTickEnabled="True" ValueChanged="BitrateSlider_ValueChanged"/>
                                                 <Border Grid.Column="2" Background="{StaticResource BrandTintBrush}" CornerRadius="8" Height="28" VerticalAlignment="Center">
-                                                    <TextBlock x:Name="BitrateValueText" Text="8" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="13" FontWeight="SemiBold"/>
+                                                    <TextBlock x:Name="BitrateValueText" Text="8" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource SubTitle13Style}"/>
                                                 </Border>
                                             </Grid>
                                             <Grid>
@@ -1172,7 +1199,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                                 <TextBlock Text="投屏帧率" VerticalAlignment="Center" Foreground="{StaticResource TextSecondaryBrush}" FontSize="13"/>
                                                 <Slider x:Name="MaxFpsSlider" Grid.Column="1" Minimum="10" Maximum="120" Value="60" TickFrequency="10" IsSnapToTickEnabled="True" ValueChanged="MaxFpsSlider_ValueChanged"/>
                                                 <Border Grid.Column="2" Background="{StaticResource BrandTintBrush}" CornerRadius="8" Height="28" VerticalAlignment="Center">
-                                                    <TextBlock x:Name="MaxFpsValueText" Text="60" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="13" FontWeight="SemiBold"/>
+                                                    <TextBlock x:Name="MaxFpsValueText" Text="60" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource SubTitle13Style}"/>
                                                 </Border>
                                             </Grid>
                                         </StackPanel>
@@ -1193,8 +1220,8 @@ Background="{StaticResource SurfaceTintBrush}"
                                                         <svg:SvgViewbox Source="images/wendang.svg" Width="16" Height="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                                     </Border>
                                                     <StackPanel VerticalAlignment="Center">
-                                                        <TextBlock Text="投屏标题" FontSize="15" FontWeight="SemiBold"/>
-                                                        <TextBlock Text="自定义窗口标题信息" FontSize="11" Foreground="{StaticResource TextTertiaryBrush}"/>
+                                                        <TextBlock Text="投屏标题" Style="{StaticResource CardTitle15Style}"/>
+                                                        <TextBlock Text="自定义窗口标题信息" Style="{StaticResource TertiaryText11Style}"/>
                                                     </StackPanel>
                                                 </StackPanel>
                                                 <WrapPanel>
@@ -1224,8 +1251,8 @@ Background="{StaticResource SurfaceTintBrush}"
                                                         <svg:SvgViewbox Source="images/jiazai.svg" Width="16" Height="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                                     </Border>
                                                     <StackPanel VerticalAlignment="Center">
-                                                        <TextBlock Text="投屏日志" FontSize="15" FontWeight="SemiBold"/>
-                                                        <TextBlock Text="实时输出信息" FontSize="11" Foreground="{StaticResource TextTertiaryBrush}"/>
+                                                        <TextBlock Text="投屏日志" Style="{StaticResource CardTitle15Style}"/>
+                                                        <TextBlock Text="实时输出信息" Style="{StaticResource TertiaryText11Style}"/>
                                                     </StackPanel>
                                                 </StackPanel>
                                                 <TextBox Grid.Row="1" Name="ScreenMirrorLogTextBox" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" FontSize="12" IsReadOnly="True" Text="投屏实时输出..." TextChanged="ScreenMirrorLogTextBox_TextChanged" Height="220" Background="{StaticResource SurfaceTintBrush}"/>
@@ -3031,7 +3058,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                     </ListBox>
                                     <TextBlock HorizontalAlignment="Left" Margin="0,6,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="319" FontFamily="pack://siteoforigin:,,,/fonts/OPPO_Sans_4.0.ttf#OPPO Sans 4.0" FontSize="12" Foreground="{StaticResource TextPrimaryBrush}"><Run Text="拖动一个或多个模块到窗口，自动识别"/><Run Language="zh-cn" Text="ROOT"/><Run Text="管理器并安装"/></TextBlock>
                                     <Button x:Name="ClearModuleListButton" Content="清空列表" HorizontalAlignment="Left" Margin="374,292,0,0" VerticalAlignment="Top" Width="81" Click="ClearModuleListButton_Click" Style="{StaticResource PageSecondaryButton}"/>
-                                    <TextBlock HorizontalAlignment="Left" Margin="0,300,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="pack://siteoforigin:,,,/fonts/OPPO_Sans_4.0.ttf#OPPO Sans 4.0" FontSize="12" Foreground="{StaticResource TextMutedBrush}" RenderTransformOrigin="0.497,0.824" Width="231"><Run Text="支持自动过滤模块文件，"/><Run Language="zh-cn" Text="排除无关多余"/><Run Text="文件"/></TextBlock>
+                                    <TextBlock HorizontalAlignment="Left" Margin="0,300,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="pack://siteoforigin:,,,/fonts/OPPO_Sans_4.0.ttf#OPPO Sans 4.0" Style="{StaticResource MutedText12Style}" RenderTransformOrigin="0.497,0.824" Width="231"><Run Text="支持自动过滤模块文件，"/><Run Language="zh-cn" Text="排除无关多余"/><Run Text="文件"/></TextBlock>
                                     <Button HorizontalAlignment="Left" Margin="281,291,0,0" VerticalAlignment="Top" Width="84" BorderBrush="{StaticResource BorderSubtleBrush}" Background="{StaticResource BrandPrimaryBrush}" Click="SelectModuleButton_Click" Style="{StaticResource PagePrimaryButton}" ToolTip="手动选择模块文件">
                                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                                             <svg:SvgViewbox Source="images/wenjianjia.svg" Width="16" Height="16" Margin="0,0,5,0"/>
@@ -3220,7 +3247,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                             </Grid.ColumnDefinitions>
 
                                             <!-- 收款码区域 -->
-                                            <TextBlock Grid.Row="0" Grid.Column="0" Text="支持开发者" FontSize="15" FontWeight="SemiBold" Foreground="{StaticResource TextPrimaryBrush}"/>
+                                            <TextBlock Grid.Row="0" Grid.Column="0" Text="支持开发者" Style="{StaticResource CardTitle15Style}" Foreground="{StaticResource TextPrimaryBrush}"/>
                                             <StackPanel Grid.Row="1" Grid.Column="0" Margin="0,12,0,0" HorizontalAlignment="Left" VerticalAlignment="Center">
                                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                                                     <StackPanel Margin="0,0,12,0">
@@ -3243,10 +3270,10 @@ Background="{StaticResource SurfaceTintBrush}"
 
                                             <!-- 社交媒体区域 -->
                                             <StackPanel Grid.Row="0" Grid.RowSpan="2" Grid.Column="4" VerticalAlignment="Center">
-                                                <TextBlock Text="感谢支持" FontSize="15" FontWeight="SemiBold" Foreground="{StaticResource TextPrimaryBrush}" Margin="0,0,0,8"/>
+                                                <TextBlock Text="感谢支持" Style="{StaticResource CardTitle15Style}" Foreground="{StaticResource TextPrimaryBrush}" Margin="0,0,0,8"/>
                                                 <TextBlock Style="{StaticResource AboutBodyTextStyle}" Margin="0,0,0,16"><Run Text="如果您觉得我们的作品还"/><Run Text="不错"/><Run Text="，您可以对本程序进行赞赏，1块2"/><Run Language="zh-cn" Text="块"/><Run Text="不嫌少，您的支持是对本程序持续免费维护的最大动力，我们会在您的支持下优化得越来越好！"/></TextBlock>
 
-                                                <TextBlock Text="社交媒体" FontSize="13" FontWeight="SemiBold" Foreground="{StaticResource TextMutedBrush}" Margin="0,0,0,7"/>
+                                                <TextBlock Text="社交媒体" Style="{StaticResource SubTitle13Style}" Foreground="{StaticResource TextMutedBrush}" Margin="0,0,0,7"/>
 
                                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                                                     <!-- 哔哩哔哩 -->
@@ -3560,7 +3587,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                                     <TextBlock Text="月饼" Style="{StaticResource AboutTagTextStyle}"/>
                                                 </Border>
                                             </WrapPanel>
-                                            <TextBlock Text="以及众多未留名的爱心网友，致以最诚挚的感谢！" FontSize="12" Foreground="{StaticResource TextMutedBrush}" HorizontalAlignment="Center" Margin="0,6,0,0"/>
+                                            <TextBlock Text="以及众多未留名的爱心网友，致以最诚挚的感谢！" Style="{StaticResource MutedText12Style}" HorizontalAlignment="Center" Margin="0,6,0,0"/>
                                         </StackPanel>
                                     </Border>
                                 </StackPanel>
@@ -3652,7 +3679,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                             <TextBlock x:Name="AiDot1" Text="●" FontSize="8" Foreground="{StaticResource BrandPrimaryBrush}" VerticalAlignment="Center" Margin="0,0,4,0"/>
                                             <TextBlock x:Name="AiDot2" Text="●" FontSize="8" Foreground="{StaticResource BrandPrimaryBrush}" VerticalAlignment="Center" Margin="0,0,4,0"/>
                                             <TextBlock x:Name="AiDot3" Text="●" FontSize="8" Foreground="{StaticResource BrandPrimaryBrush}" VerticalAlignment="Center" Margin="0,0,0,0"/>
-                                            <TextBlock x:Name="AIAgentStatusText" Text="正在思考…" FontSize="12" Foreground="{StaticResource TextMutedBrush}" Margin="8,0,0,0" VerticalAlignment="Center"/>
+                                            <TextBlock x:Name="AIAgentStatusText" Text="正在思考…" Style="{StaticResource MutedText12Style}" Margin="8,0,0,0" VerticalAlignment="Center"/>
                                         </StackPanel>
                                     </Border>
                                     <!-- 命令确认条 -->
@@ -3665,7 +3692,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                         <StackPanel>
                                             <StackPanel Orientation="Horizontal">
                                                 <TextBlock Text="⚠" FontSize="15" Foreground="#FFFF9500" VerticalAlignment="Center" Margin="0,0,6,0"/>
-                                                <TextBlock Text="AI 请求执行命令，请确认" FontSize="13" FontWeight="SemiBold" Foreground="{StaticResource TextPrimaryBrush}" VerticalAlignment="Center"/>
+                                                <TextBlock Text="AI 请求执行命令，请确认" Style="{StaticResource SubTitle13Style}" Foreground="{StaticResource TextPrimaryBrush}" VerticalAlignment="Center"/>
                                             </StackPanel>
                                             <TextBlock x:Name="AIAgentConfirmText" FontFamily="Consolas" FontSize="12.5" Foreground="{StaticResource TextStrongBrush}"
                                                        TextWrapping="Wrap" Margin="0,8,0,0"/>
@@ -3679,7 +3706,7 @@ Background="{StaticResource SurfaceTintBrush}"
                             </Border>
                             <!-- 快捷提问 -->
                             <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="12,10,12,0">
-                                <TextBlock Text="快捷提问:" FontSize="12" Foreground="{StaticResource TextMutedBrush}" VerticalAlignment="Center" Margin="0,0,8,0"/>
+                                <TextBlock Text="快捷提问:" Style="{StaticResource MutedText12Style}" VerticalAlignment="Center" Margin="0,0,8,0"/>
                                 <Button x:Name="AIAgentQuickDeviceButton" Content="查看设备状态" Style="{StaticResource PageLightButton}" Click="AIAgentQuickDeviceButton_Click" Margin="0,0,8,0"/>
                                 <Button x:Name="AIAgentQuickCommandButton" Content="生成刷机命令" Style="{StaticResource PageLightButton}" Click="AIAgentQuickCommandButton_Click" Margin="0,0,8,0"/>
                                 <Button x:Name="AIAgentQuickDiagnoseButton" Content="诊断日志" Style="{StaticResource PageLightButton}" Click="AIAgentQuickDiagnoseButton_Click" Margin="0,0,8,0"/>
@@ -4618,7 +4645,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                                     HorizontalAlignment="Center" FontSize="24" FontWeight="Bold" 
                                                     Foreground="{StaticResource TextPrimaryBrush}"/>
                                             <TextBlock Text="{Binding FlashProgressDetailText}" HorizontalAlignment="Center" 
-                                                    FontSize="12" Foreground="{StaticResource TextMutedBrush}" Margin="0,5,0,0"/>
+                                                    Style="{StaticResource MutedText12Style}" Margin="0,5,0,0"/>
                                         </StackPanel>
 
                                         <!-- 圆环外侧耗时 -->
@@ -7784,7 +7811,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                     <StackPanel Margin="14,0,0,0" VerticalAlignment="Center">
                                         <TextBlock Style="{StaticResource PageTitle}" Text="EDL 刷写" FontSize="22"/>
                                         <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
-                                            <TextBlock Text="9008 端口：" FontSize="12" Foreground="{StaticResource TextMutedBrush}" VerticalAlignment="Center"/>
+                                            <TextBlock Text="9008 端口：" Style="{StaticResource MutedText12Style}" VerticalAlignment="Center"/>
                                             <TextBlock x:Name="EdlPortStatusText" Text="未检测到" FontSize="12" Foreground="#FFD63333" VerticalAlignment="Center" FontWeight="SemiBold"/>
                                         </StackPanel>
                                     </StackPanel>
@@ -7803,19 +7830,19 @@ Background="{StaticResource SurfaceTintBrush}"
                                         <Border Style="{StaticResource PageCard}" Margin="0,0,0,14">
                                             <StackPanel>
                                                 <StackPanel Orientation="Horizontal" Margin="0,0,0,12"><svg:SvgViewbox Source="images/gaotongxiaolong.svg" Width="16" Height="16" Margin="0,1,8,0" VerticalAlignment="Center"/><TextBlock Style="{StaticResource PageTitle}" Text="Firehose 模式"/></StackPanel>
-                                                <TextBlock Text="设备编程器 (devprg*.mbn)" FontSize="12" Foreground="{StaticResource TextMutedBrush}"/>
+                                                <TextBlock Text="设备编程器 (devprg*.mbn)" Style="{StaticResource MutedText12Style}"/>
                                                 <Grid Margin="0,6,0,0">
                                                     <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="8"/><ColumnDefinition Width="68"/></Grid.ColumnDefinitions>
                                                     <TextBox x:Name="EdlDevPrgTextBox" Grid.Column="0" Height="34" Style="{StaticResource PageTextBox}" VerticalContentAlignment="Center"/>
                                                     <Button x:Name="EdlDevPrgBrowse" Grid.Column="2" Content="浏览" Style="{StaticResource PageSecondaryButton}" Height="34" Click="EdlDevPrgBrowse_Click"/>
                                                 </Grid>
-                                                <TextBlock Text="摘要文件 (*.bin)" FontSize="12" Foreground="{StaticResource TextMutedBrush}" Margin="0,12,0,0"/>
+                                                <TextBlock Text="摘要文件 (*.bin)" Style="{StaticResource MutedText12Style}" Margin="0,12,0,0"/>
                                                 <Grid Margin="0,6,0,0">
                                                     <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="8"/><ColumnDefinition Width="68"/></Grid.ColumnDefinitions>
                                                     <TextBox x:Name="EdlDigestTextBox" Grid.Column="0" Height="34" Style="{StaticResource PageTextBox}" VerticalContentAlignment="Center"/>
                                                     <Button x:Name="EdlDigestBrowse" Grid.Column="2" Content="浏览" Style="{StaticResource PageSecondaryButton}" Height="34" Click="EdlDigestBrowse_Click"/>
                                                 </Grid>
-                                                <TextBlock Text="签名文件 (*.bin)" FontSize="12" Foreground="{StaticResource TextMutedBrush}" Margin="0,12,0,0"/>
+                                                <TextBlock Text="签名文件 (*.bin)" Style="{StaticResource MutedText12Style}" Margin="0,12,0,0"/>
                                                 <Grid Margin="0,6,0,0">
                                                     <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="8"/><ColumnDefinition Width="68"/></Grid.ColumnDefinitions>
                                                     <TextBox x:Name="EdlSigTextBox" Grid.Column="0" Height="34" Style="{StaticResource PageTextBox}" VerticalContentAlignment="Center"/>
@@ -7829,13 +7856,13 @@ Background="{StaticResource SurfaceTintBrush}"
                                         <Border Style="{StaticResource PageCard}" Margin="0,0,0,14">
                                             <StackPanel>
                                                 <StackPanel Orientation="Horizontal" Margin="0,0,0,12"><svg:SvgViewbox Source="images/yasuobao.svg" Width="16" Height="16" Margin="0,1,8,0" VerticalAlignment="Center"/><TextBlock Style="{StaticResource PageTitle}" Text="ROM 包"/></StackPanel>
-                                                <TextBlock Text="选择解压后的 ROM 文件夹，或 OFP/OPS 加密包" FontSize="12" Foreground="{StaticResource TextMutedBrush}"/>
+                                                <TextBlock Text="选择解压后的 ROM 文件夹，或 OFP/OPS 加密包" Style="{StaticResource MutedText12Style}"/>
                                                 <Grid Margin="0,6,0,0">
                                                     <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="8"/><ColumnDefinition Width="68"/></Grid.ColumnDefinitions>
                                                     <TextBox x:Name="EdlRomPathTextBox" Grid.Column="0" Height="34" Style="{StaticResource PageTextBox}" VerticalContentAlignment="Center" IsReadOnly="True"/>
                                                     <Button x:Name="EdlRomBrowse" Grid.Column="2" Content="选择" Style="{StaticResource PageSecondaryButton}" Height="34" Click="EdlRomBrowse_Click"/>
                                                 </Grid>
-                                                <TextBlock Text="rawprogram XML 文件：" FontSize="12" Foreground="{StaticResource TextMutedBrush}" Margin="0,12,0,0"/>
+                                                <TextBlock Text="rawprogram XML 文件：" Style="{StaticResource MutedText12Style}" Margin="0,12,0,0"/>
                                                 <ListBox x:Name="EdlXmlList" Height="92" Margin="0,6,0,0" Background="{StaticResource SurfaceTintBrush}" BorderBrush="{StaticResource BorderSubtleBrush}" BorderThickness="1" ScrollViewer.VerticalScrollBarVisibility="Auto"/>
                                                 <Grid Margin="0,8,0,0">
                                                     <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="8"/><ColumnDefinition Width="*"/><ColumnDefinition Width="8"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
@@ -7843,7 +7870,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                                     <Button x:Name="EdlXmlAllButton" Grid.Column="2" Content="全选" Style="{StaticResource PageSecondaryButton}" Height="34" Click="EdlXmlAll_Click"/>
                                                     <Button x:Name="EdlXmlNoneButton" Grid.Column="4" Content="反选" Style="{StaticResource PageSecondaryButton}" Height="34" Click="EdlXmlNone_Click"/>
                                                 </Grid>
-                                                <TextBlock x:Name="EdlRomInfoText" FontSize="12" Foreground="{StaticResource TextMutedBrush}" Margin="0,10,0,0" TextWrapping="Wrap"/>
+                                                <TextBlock x:Name="EdlRomInfoText" Style="{StaticResource MutedText12Style}" Margin="0,10,0,0" TextWrapping="Wrap"/>
                                             </StackPanel>
                                         </Border>
 
@@ -7901,6 +7928,24 @@ Background="{StaticResource SurfaceTintBrush}"
                                                         <DataGridTextColumn Header="文件" Binding="{Binding FilePath}" Width="2*"/>
                                                     </DataGrid.Columns>
                                                 </DataGrid>
+                                                <!-- 空态占位：未读取到分区时提示 -->
+                                                <TextBlock Text="未读取到分区 · 连接设备后加载分区表"
+                                                           HorizontalAlignment="Center"
+                                                           Margin="0,12,0,0"
+                                                           FontSize="12"
+                                                           Foreground="{StaticResource TextTertiaryBrush}"
+                                                           IsHitTestVisible="False">
+                                                    <TextBlock.Style>
+                                                        <Style TargetType="TextBlock">
+                                                            <Setter Property="Visibility" Value="Collapsed"/>
+                                                            <Style.Triggers>
+                                                                <DataTrigger Binding="{Binding Items.Count, ElementName=EdlPartitionGrid}" Value="0">
+                                                                    <Setter Property="Visibility" Value="Visible"/>
+                                                                </DataTrigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </TextBlock.Style>
+                                                </TextBlock>
                                             </StackPanel>
                                         </Border>
 
@@ -8413,6 +8458,25 @@ Background="{StaticResource SurfaceTintBrush}"
                                                     </DataGridTemplateColumn>
                                                 </DataGrid.Columns>
                                             </DataGrid>
+                                            <!-- 空态占位：未获取到可用版本时居中提示 -->
+                                            <TextBlock Grid.Row="4"
+                                                       Text="未获取到可用版本 · 请检查网络或稍后重试"
+                                                       HorizontalAlignment="Center"
+                                                       VerticalAlignment="Center"
+                                                       FontSize="12"
+                                                       Foreground="{StaticResource TextTertiaryBrush}"
+                                                       IsHitTestVisible="False">
+                                                <TextBlock.Style>
+                                                    <Style TargetType="TextBlock">
+                                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding Items.Count, ElementName=PackagesGrid}" Value="0">
+                                                                <Setter Property="Visibility" Value="Visible"/>
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </TextBlock.Style>
+                                            </TextBlock>
                                         </Grid>
                                     </Border>
 
@@ -9166,7 +9230,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                                             CornerRadius="10"
                                                             Padding="12,8" Margin="0,4,0,0">
                                                         <StackPanel>
-                                                            <TextBlock FontSize="13" FontWeight="SemiBold" Foreground="{StaticResource TextMutedBrush}" Text="使用建议"/>
+                                                            <TextBlock Style="{StaticResource SubTitle13Style}" Foreground="{StaticResource TextMutedBrush}" Text="使用建议"/>
                                                             <TextBlock Margin="0,3,0,0"
                                                                        Foreground="{StaticResource TextMutedBrush}"
                                                                        FontSize="12"
@@ -10236,7 +10300,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                         <Border Grid.Column="0" Style="{StaticResource HomeCardStyle}">
                                             <StackPanel>
                                                 <StackPanel Orientation="Horizontal" Margin="0,0,0,14">
-                                                    <Border Width="28" Height="28" CornerRadius="8" Background="{StaticResource BrandTintBrush}">
+                                                    <Border Style="{StaticResource IconBadgeStyle}">
                                                         <svg:SvgViewbox Source="images/android.svg" Width="17" Height="17"/>
                                                     </Border>
                                                     <TextBlock Text="设备信息" Style="{StaticResource HomePanelTitleStyle}" VerticalAlignment="Center" Margin="10,0,0,0"/>
@@ -10324,7 +10388,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                             <Border Grid.Row="0" Style="{StaticResource HomeCardStyle}">
                                                 <StackPanel>
                                                     <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
-                                                        <Border Width="28" Height="28" CornerRadius="8" Background="{StaticResource BrandTintBrush}">
+                                                        <Border Style="{StaticResource IconBadgeStyle}">
                                                             <svg:SvgViewbox Source="images/shandian.svg" Width="16" Height="16"/>
                                                         </Border>
                                                         <TextBlock Style="{StaticResource HomePanelTitleStyle}" Text="电池状态" VerticalAlignment="Center" Margin="10,0,0,0"/>
@@ -10345,7 +10409,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                             <Border x:Name="StorageMemoryBorder" Grid.Row="2" Style="{StaticResource HomeCardStyle}">
                                                 <StackPanel>
                                                     <StackPanel Orientation="Horizontal" Margin="0,0,0,6">
-                                                        <Border Width="28" Height="28" CornerRadius="8" Background="{StaticResource BrandTintBrush}">
+                                                        <Border Style="{StaticResource IconBadgeStyle}">
                                                             <svg:SvgViewbox Source="images/shancun.svg" Width="16" Height="16"/>
                                                         </Border>
                                                         <TextBlock Style="{StaticResource HomePanelTitleStyle}" Text="存储与内存" VerticalAlignment="Center" Margin="10,0,0,0"/>
@@ -10369,7 +10433,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                                                         <TextBlock Text="{Binding StorageText}" HorizontalAlignment="Center" FontSize="11" Foreground="{StaticResource TextMutedBrush}" Margin="0,4,0,0"/>
                                                                     </StackPanel>
                                                                 </Grid>
-                                                                <TextBlock Text="内部存储" HorizontalAlignment="Center" FontSize="15" FontWeight="SemiBold" Margin="0,12,0,0" Foreground="{StaticResource TextStrongBrush}"/>
+                                                                <TextBlock Text="内部存储" HorizontalAlignment="Center" Style="{StaticResource CardTitle15Style}" Margin="0,12,0,0" Foreground="{StaticResource TextStrongBrush}"/>
                                                             </StackPanel>
                                                             <StackPanel Grid.Column="1" HorizontalAlignment="Center">
                                                                 <Grid Width="138" Height="138">
@@ -10384,7 +10448,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                                                         <TextBlock Text="{Binding MemoryText}" HorizontalAlignment="Center" FontSize="11" Foreground="{StaticResource TextMutedBrush}" Margin="0,4,0,0"/>
                                                                     </StackPanel>
                                                                 </Grid>
-                                                                <TextBlock Text="运行内存" HorizontalAlignment="Center" FontSize="15" FontWeight="SemiBold" Margin="0,12,0,0" Foreground="{StaticResource TextStrongBrush}"/>
+                                                                <TextBlock Text="运行内存" HorizontalAlignment="Center" Style="{StaticResource CardTitle15Style}" Margin="0,12,0,0" Foreground="{StaticResource TextStrongBrush}"/>
                                                             </StackPanel>
                                                         </Grid>
                                                     </Viewbox>
@@ -10506,7 +10570,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                                             <RowDefinition Height="Auto" />
                                                         </Grid.RowDefinitions>
 
-                                                        <TextBlock Grid.Row="0" Grid.Column="0" Text="设备检测" FontSize="13" FontWeight="SemiBold" Foreground="{StaticResource TextStrongBrush}" VerticalAlignment="Center" Margin="0,4,0,4"/>
+                                                        <TextBlock Grid.Row="0" Grid.Column="0" Text="设备检测" Style="{StaticResource SubTitle13Style}" Foreground="{StaticResource TextStrongBrush}" VerticalAlignment="Center" Margin="0,4,0,4"/>
                                                         <ToggleButton x:Name="DeviceDetectionToggle"
                                                                       Grid.Row="0"
                                                                       Grid.Column="1"
@@ -10516,10 +10580,10 @@ Background="{StaticResource SurfaceTintBrush}"
                                                                       Margin="12,4,0,4"
                                                                       ToolTip="开启后持续检测 ADB 与 Fastboot 设备"/>
 
-                                                        <TextBlock Grid.Row="1" Grid.Column="0" Text="工具自检" FontSize="13" FontWeight="SemiBold" Foreground="{StaticResource TextStrongBrush}" VerticalAlignment="Center" Margin="0,6,0,4"/>
+                                                        <TextBlock Grid.Row="1" Grid.Column="0" Text="工具自检" Style="{StaticResource SubTitle13Style}" Foreground="{StaticResource TextStrongBrush}" VerticalAlignment="Center" Margin="0,6,0,4"/>
                                                         <ToggleButton x:Name="ToolSelfCheckToggle" Grid.Row="1" Grid.Column="1" Style="{StaticResource HomeSwitchStyle}" Click="ToolSelfCheckToggle_Click" Checked="ToolSelfCheckToggle_Checked" Margin="12,6,0,4"/>
 
-                                                        <TextBlock Grid.Row="2" Grid.Column="0" Text="多设备" FontSize="13" FontWeight="SemiBold" Foreground="{StaticResource TextStrongBrush}" VerticalAlignment="Center" Margin="0,6,0,4"/>
+                                                        <TextBlock Grid.Row="2" Grid.Column="0" Text="多设备" Style="{StaticResource SubTitle13Style}" Foreground="{StaticResource TextStrongBrush}" VerticalAlignment="Center" Margin="0,6,0,4"/>
                                                         <ToggleButton x:Name="MultiDeviceDetectionToggle" Grid.Row="2" Grid.Column="1" Style="{StaticResource HomeSwitchStyle}" IsChecked="True" Margin="12,6,0,4"/>
 
                                                         <StackPanel Grid.Row="3" Grid.ColumnSpan="2" Orientation="Horizontal" Margin="0,10,0,0" VerticalAlignment="Center">
