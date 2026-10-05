@@ -1150,7 +1150,7 @@ namespace WpfApp1
             UpdateAvbModeFileInputs();
             InitializeVioletDownload();
             
-            this.Width = Math.Min(1000, System.Windows.SystemParameters.WorkArea.Width - 40);
+            this.Width = Math.Min(1010, System.Windows.SystemParameters.WorkArea.Width - 40);
             this.Height = Math.Min(850, System.Windows.SystemParameters.WorkArea.Height - 24);
             this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             RestoreWindowState();

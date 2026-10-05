@@ -10,7 +10,7 @@
 	xmlns:test1="clr-namespace:test1"
 	Title="紫罗兰工具箱"
 	WindowStyle="None"
-	Width="1000" Height="850" MinWidth="1010" MinHeight="760"
+	Width="1010" Height="850" MinWidth="1010" MinHeight="760"
 	FontFamily="pack://siteoforigin:,,,/fonts/OPPO_Sans_4.0.ttf#OPPO Sans 4.0"
 Background="#FFFAFAFC"
 	UseLayoutRounding="True"
@@ -8807,18 +8807,14 @@ Background="#FFFAFAFC"
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
-                        <!-- 左侧：应用图标 + 标题 -->
+                        <!-- 左侧：应用标题 -->
                         <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center" Margin="14,0,0,0">
-                            <Border Width="26" Height="26" CornerRadius="8" Background="#FF007AFF" VerticalAlignment="Center">
-                                <TextBlock Text="紫" FontSize="13" FontWeight="Bold" Foreground="White"
-                                           HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                            </Border>
                             <TextBlock Text="紫罗兰工具箱"
                                        Foreground="#FF1D1D1F"
                                        FontWeight="SemiBold"
                                        FontSize="13"
                                        VerticalAlignment="Center"
-                                       Margin="10,0,0,0"/>
+                                       Margin="14,0,0,0"/>
                         </StackPanel>
                         <!-- 中间为窗口拖动区 -->
                         <Grid Grid.Column="1"/>
