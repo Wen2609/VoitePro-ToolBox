@@ -615,8 +615,19 @@ namespace WpfApp1
             RunOnUi(() =>
             {
                 var overlay = AiCtl<Grid>("AIAgentConfigOverlay");
-                if (overlay != null) overlay.Visibility = Visibility.Collapsed;
+                if (overlay != null) HideAiConfigOverlay(overlay);
             });
+        }
+
+        /// 配置浮层淡出后隐藏（与打开时的 160ms 淡入呼应）
+        private static void HideAiConfigOverlay(System.Windows.FrameworkElement overlay)
+        {
+            var anim = new System.Windows.Media.Animation.DoubleAnimation(1.0, 0.0, TimeSpan.FromMilliseconds(140));
+            anim.Completed += (s, e) =>
+            {
+                if (overlay != null) overlay.Visibility = Visibility.Collapsed;
+            };
+            overlay.BeginAnimation(UIElement.OpacityProperty, anim);
         }
 
         private void AIAgentConfigSaveButton_Click(object sender, RoutedEventArgs e)
@@ -631,7 +642,7 @@ namespace WpfApp1
                     var status = AiCtl<TextBlock>("AIAgentConfigStatusText");
                     if (status != null) status.Text = "已保存 ✓（配置保存在本机，不会上传）";
                     var overlay = AiCtl<Grid>("AIAgentConfigOverlay");
-                    if (overlay != null) overlay.Visibility = Visibility.Collapsed;
+                    if (overlay != null) HideAiConfigOverlay(overlay);
                 });
                 RefreshAiFooter();
                 RefreshAiDeviceBadge();

@@ -2121,7 +2121,7 @@ namespace WpfApp1
 
             try
             {
-                string adbPath = GetToolPath("adb.exe");
+                string adbPath = GetToolPath(AdbToolName);
                 if (string.IsNullOrEmpty(adbPath))
                 {
                     if (!silent) ShowMessage("未找到adb.exe");
@@ -6509,7 +6509,7 @@ namespace WpfApp1
                 
                 // 获取当前应用程序目录
                 string appDirectory = AppDomain.CurrentDomain.BaseDirectory;
-                string scrcpyPath = Path.Combine(appDirectory, "platform-tools", "scrcpy.exe");
+                string scrcpyPath = Path.Combine(appDirectory, PlatformToolsDirName, "scrcpy.exe");
                 
                 // 检查scrcpy.exe是否存在
                 if (File.Exists(scrcpyPath))
@@ -7115,7 +7115,7 @@ namespace WpfApp1
         {
             try
             {
-                string platformToolsPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "platform-tools");
+                string platformToolsPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, PlatformToolsDirName);
                 string cmdBatPath = Path.Combine(platformToolsPath, "CMD.bat");
                 
                 if (File.Exists(cmdBatPath))
@@ -7988,7 +7988,7 @@ namespace WpfApp1
         {
             await Task.Run(() =>
             {
-                string adbPath = GetToolPath("adb.exe");
+                string adbPath = GetToolPath(AdbToolName);
                 string selectedSerial = GetSelectedDeviceSerial();
                 
                 // 如果有选中的设备序列号，添加 -s 参数
@@ -8020,7 +8020,7 @@ namespace WpfApp1
             try
             {
                 string programDirectory = AppDomain.CurrentDomain.BaseDirectory;
-                string fastbootPath = Path.Combine(programDirectory, "platform-tools", "fastboot.exe");
+                string fastbootPath = Path.Combine(programDirectory, PlatformToolsDirName, FastbootToolName);
                 string selectedSerial = GetSelectedDeviceSerial();
                 
                 // 如果有选中的设备序列号，添加 -s 参数
@@ -8095,8 +8095,8 @@ namespace WpfApp1
             
             try
             {
-                string adbPath = GetToolPath("adb.exe");
-                string fastbootPath = GetToolPath("fastboot.exe");
+                string adbPath = GetToolPath(AdbToolName);
+                string fastbootPath = GetToolPath(FastbootToolName);
 
                 // 检查工具是否存在
                 if (!File.Exists(adbPath) && !File.Exists(fastbootPath))
@@ -8677,7 +8677,7 @@ namespace WpfApp1
                     command = "shell getprop ro.build.version.incremental";
                 }
                 
-                string adbPath = GetToolPath("adb.exe");
+                string adbPath = GetToolPath(AdbToolName);
                 if (string.IsNullOrEmpty(adbPath))
                 {
                     Dispatcher.Invoke(() =>
@@ -8730,6 +8730,11 @@ namespace WpfApp1
         private const string DeviceStatusConnected = "已连接";
         private const string DeviceStatusDisconnected = "未连接";
         private const string DeviceStatusNotFound = "未检测到设备";
+
+        /// 工具目录与可执行文件名常量
+        private const string AdbToolName = "adb.exe";
+        private const string FastbootToolName = "fastboot.exe";
+        private const string PlatformToolsDirName = "platform-tools";
 
         /// 日志/状态语义色缓存（避免每次构造 SolidColorBrush 的分配，统一 macOS 色系）
         private static readonly System.Windows.Media.Brush LogGreenBrush = new SolidColorBrush(System.Windows.Media.Color.FromRgb(52, 199, 89));
@@ -8888,25 +8893,25 @@ namespace WpfApp1
             var possiblePaths = new List<string>
             {
                 // 1. 应用程序同目录下的platform-tools（最高优先级）
-                Path.Combine(Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) ?? "", "platform-tools", toolName),
+                Path.Combine(Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) ?? "", PlatformToolsDirName, toolName),
                 
                 // 2. 应用程序目录下的platform-tools
-                Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "platform-tools", toolName),
+                Path.Combine(AppDomain.CurrentDomain.BaseDirectory, PlatformToolsDirName, toolName),
                 
                 // 3. 应用程序上级目录的platform-tools
-                Path.Combine(Directory.GetParent(AppDomain.CurrentDomain.BaseDirectory)?.FullName ?? "", "platform-tools", toolName),
+                Path.Combine(Directory.GetParent(AppDomain.CurrentDomain.BaseDirectory)?.FullName ?? "", PlatformToolsDirName, toolName),
                 
                 // 4. 解决方案根目录的platform-tools
-                Path.Combine(Directory.GetParent(Directory.GetParent(AppDomain.CurrentDomain.BaseDirectory)?.FullName ?? "")?.FullName ?? "", "platform-tools", toolName),
+                Path.Combine(Directory.GetParent(Directory.GetParent(AppDomain.CurrentDomain.BaseDirectory)?.FullName ?? "")?.FullName ?? "", PlatformToolsDirName, toolName),
                 
                 // 5. 系统PATH中的工具
                 toolName,
                 
                 // 6. Android SDK默认路径
-                Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Android", "Sdk", "platform-tools", toolName),
+                Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Android", "Sdk", PlatformToolsDirName, toolName),
                 
                 // 7. 用户目录下的Android SDK
-                Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "AppData", "Local", "Android", "Sdk", "platform-tools", toolName)
+                Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "AppData", "Local", "Android", "Sdk", PlatformToolsDirName, toolName)
             };
 
             // 检查每个可能的路径
@@ -10134,7 +10139,7 @@ namespace WpfApp1
                 string selectedCommand = selectedItem.Content.ToString()!;
                  
                 // 先检测设备连接
-                string fastbootPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "platform-tools", "fastboot.exe");
+                string fastbootPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, PlatformToolsDirName, FastbootToolName);
                 string deviceCheckResult = await ExecuteFastbootCommand(fastbootPath, "devices");
                 
                 if (string.IsNullOrWhiteSpace(deviceCheckResult) || !deviceCheckResult.Contains("\t"))
@@ -10234,7 +10239,7 @@ namespace WpfApp1
 
                 // 检查Fastboot设备连接
                 // 使用程序同目录中的flash文件夹中的fastboot.exe
-                string fastbootPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "platform-tools", "fastboot.exe");
+                string fastbootPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, PlatformToolsDirName, FastbootToolName);
                 
                 // 检查fastboot.exe是否存在
                 if (!File.Exists(fastbootPath))
@@ -11319,7 +11324,7 @@ namespace WpfApp1
             try
             {
                 string appDirectory = AppDomain.CurrentDomain.BaseDirectory;
-                string scrcpyPath = Path.Combine(appDirectory, "platform-tools", "scrcpy.exe");
+                string scrcpyPath = Path.Combine(appDirectory, PlatformToolsDirName, "scrcpy.exe");
                 if (File.Exists(scrcpyPath))
                 {
                     var maxFpsSlider = this.FindControlInPages("MaxFpsSlider") as Slider;
@@ -12016,7 +12021,7 @@ namespace WpfApp1
                 
                 try
                 {
-                    string adbPath = GetToolPath("adb.exe");
+                    string adbPath = GetToolPath(AdbToolName);
                     if (string.IsNullOrEmpty(adbPath))
                     {
                         LogToFastboot("未找到adb工具", "Red");
@@ -12467,7 +12472,7 @@ namespace WpfApp1
                 return (false, "BAT 脚本中未找到 set_active a，无法确认脚本面向 A/B 设备。");
             }
 
-            string fastbootPath = GetToolPath("fastboot.exe");
+            string fastbootPath = GetToolPath(FastbootToolName);
             if (string.IsNullOrWhiteSpace(fastbootPath))
             {
                 return (false, "未找到 fastboot.exe，无法确认设备槽位类型。");
@@ -12659,7 +12664,7 @@ namespace WpfApp1
             CancellationToken cancellationToken)
         {
             cancellationToken.ThrowIfCancellationRequested();
-            string adbPath = GetToolPath("adb.exe");
+            string adbPath = GetToolPath(AdbToolName);
             if (string.IsNullOrEmpty(adbPath))
             {
                 LogToFastboot("未找到adb工具", "Red");
@@ -13290,7 +13295,7 @@ namespace WpfApp1
             {
                 string appDirectory = AppDomain.CurrentDomain.BaseDirectory;
                 // 优先使用flash文件夹中的fastboot.exe
-                string fastbootPath = Path.Combine(appDirectory, "platform-tools", "fastboot.exe");
+                string fastbootPath = Path.Combine(appDirectory, PlatformToolsDirName, FastbootToolName);
                 
                 if (File.Exists(fastbootPath))
                 {
@@ -13299,9 +13304,9 @@ namespace WpfApp1
                 
                 // 尝试其他可能的路径
                 string[] possiblePaths = {
-                    Path.Combine(appDirectory, "platform-tools", "fastboot.exe"),
-                    Path.Combine(appDirectory, "fastboot.exe"),
-                    "fastboot.exe" // 系统PATH中的fastboot
+                    Path.Combine(appDirectory, PlatformToolsDirName, FastbootToolName),
+                    Path.Combine(appDirectory, FastbootToolName),
+                    FastbootToolName // 系统PATH中的fastboot
                 };
                 
                 foreach (string path in possiblePaths)
@@ -13325,7 +13330,7 @@ namespace WpfApp1
             try
             {
                 string appDirectory = AppDomain.CurrentDomain.BaseDirectory;
-                string adbPath = Path.Combine(appDirectory, "platform-tools", "adb.exe");
+                string adbPath = Path.Combine(appDirectory, PlatformToolsDirName, AdbToolName);
                 
                 if (File.Exists(adbPath))
                 {
@@ -13334,9 +13339,9 @@ namespace WpfApp1
                 
                 // 尝试其他可能的路径
                 string[] possiblePaths = {
-                    Path.Combine(appDirectory, "adb.exe"),
-                    Path.Combine(appDirectory, "tools", "adb.exe"),
-                    "adb.exe" // 系统PATH中的adb
+                    Path.Combine(appDirectory, AdbToolName),
+                    Path.Combine(appDirectory, "tools", AdbToolName),
+                    AdbToolName // 系统PATH中的adb
                 };
                 
                 foreach (string path in possiblePaths)
@@ -13348,13 +13353,13 @@ namespace WpfApp1
                 }
                 
                 // 如果都找不到，仍然使用程序目录中的adb.exe路径
-                return Path.Combine(appDirectory, "platform-tools", "adb.exe");
+                return Path.Combine(appDirectory, PlatformToolsDirName, AdbToolName);
             }
             catch
             {
                 // 异常情况下也返回程序目录中的adb.exe路径
                 string appDirectory = AppDomain.CurrentDomain.BaseDirectory;
-                return Path.Combine(appDirectory, "platform-tools", "adb.exe");
+                return Path.Combine(appDirectory, PlatformToolsDirName, AdbToolName);
             }
         }
         
@@ -13548,7 +13553,7 @@ if (startXiaomiFlashButton != null)
 
                 // 获取程序根目录的flash文件夹
                 string appDirectory = AppDomain.CurrentDomain.BaseDirectory;
-                string flashDirectory = Path.Combine(appDirectory, "platform-tools");
+                string flashDirectory = Path.Combine(appDirectory, PlatformToolsDirName);
 
                 // 如果flash文件夹不存在则创建
                 if (!Directory.Exists(flashDirectory))
@@ -15163,7 +15168,7 @@ public partial class MainWindow : Window
 
         private async Task EnsureAdbServerRunningAsync(CancellationToken cancellationToken = default)
         {
-            string adbPath = GetToolPath("adb.exe");
+            string adbPath = GetToolPath(AdbToolName);
             if (string.IsNullOrWhiteSpace(adbPath))
             {
                 throw new FileNotFoundException("未找到 adb.exe");
@@ -16904,7 +16909,7 @@ public partial class MainWindow : Window
                      return;
                  }
  
-                string adbPath = GetToolPath("adb.exe");
+                string adbPath = GetToolPath(AdbToolName);
  
                  // 创建进程启动信息
                  ProcessStartInfo startInfo = new ProcessStartInfo
@@ -17074,7 +17079,7 @@ public partial class MainWindow : Window
                  Process? process = null;
                  try
                  {
-                     string adbPath = GetToolPath("adb.exe");
+                     string adbPath = GetToolPath(AdbToolName);
                      var startInfo = new ProcessStartInfo
                      {
                          FileName = adbPath,
@@ -17198,7 +17203,7 @@ public partial class MainWindow : Window
          private async Task<(int ExitCode, string StdOut, string StdErr)> RunSystemZoneAdbCommandAsync(
              string command)
          {
-             string adbPath = GetToolPath("adb.exe");
+             string adbPath = GetToolPath(AdbToolName);
              var startInfo = new ProcessStartInfo
              {
                  FileName = adbPath,
@@ -17562,7 +17567,7 @@ public partial class MainWindow : Window
                             $"[{DateTime.Now:yyyy-MM-dd HH:mm:ss}] 已忽略 {ignoredFileCount} 个无法识别的文件\n";
                     }
 
-                    string adbPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "platform-tools", "adb.exe");
+                    string adbPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, PlatformToolsDirName, AdbToolName);
                     string selectedSerial = GetSelectedDeviceSerial();
 
                     if (!File.Exists(adbPath))
@@ -18541,7 +18546,7 @@ public partial class MainWindow : Window
         {
             try
             {
-                string adbPath = GetToolPath("adb.exe");
+                string adbPath = GetToolPath(AdbToolName);
                 string serial = GetSelectedDeviceSerial();
                 string args = string.IsNullOrWhiteSpace(serial)
                     ? "shell ls -l /dev/block/by-name/"
@@ -18648,7 +18653,7 @@ public partial class MainWindow : Window
                     return;
                 }
                 string outPath = sfd.FileName;
-                string adbPath = GetToolPath("adb.exe");
+                string adbPath = GetToolPath(AdbToolName);
                 string serial = GetSelectedDeviceSerial();
                 string args = string.IsNullOrWhiteSpace(serial)
                     ? $"exec-out dd if=/dev/block/by-name/{name}"
@@ -18781,7 +18786,7 @@ public partial class MainWindow : Window
                     return;
                 }
                 string outPath = sfd.FileName;
-                string adbPath = GetToolPath("adb.exe");
+                string adbPath = GetToolPath(AdbToolName);
                 string serial = GetSelectedDeviceSerial();
                 string devicePath = $"/sdcard/{name}_original.img";
                 string baseCmd = $"dd if=/dev/block/by-name/{name} of={devicePath} bs=4096 && sync";
@@ -18980,7 +18985,7 @@ public partial class MainWindow : Window
                 string localPath = ofd.FileName;
                 string fileName = System.IO.Path.GetFileName(localPath);
                 string remotePath = $"/tmp/{fileName}";
-                string adbPath = GetToolPath("adb.exe");
+                string adbPath = GetToolPath(AdbToolName);
                 string serial = GetSelectedDeviceSerial();
                 string pushArgs = string.IsNullOrWhiteSpace(serial)
                     ? $"push \"{localPath}\" \"/tmp/\""
@@ -19078,7 +19083,7 @@ public partial class MainWindow : Window
                     return;
                 }
                 string localZip = ofd.FileName;
-                string adbPath = GetToolPath("adb.exe");
+                string adbPath = GetToolPath(AdbToolName);
                 string devicesOut = await GetCommandOutput(adbPath, "devices");
                 bool hasRecovery = !string.IsNullOrWhiteSpace(devicesOut) && devicesOut.IndexOf("recovery", StringComparison.OrdinalIgnoreCase) >= 0;
                 if (!hasRecovery)
@@ -19931,7 +19936,7 @@ public partial class MainWindow : Window
             CancellationToken cancellationToken)
         {
             cancellationToken.ThrowIfCancellationRequested();
-            string fastbootPath = GetToolPath("fastboot.exe");
+            string fastbootPath = GetToolPath(FastbootToolName);
             if (string.IsNullOrEmpty(fastbootPath))
             {
                 LogToFastboot("缺少 fastboot.exe，无法执行刷写", "Red");
@@ -22011,7 +22016,7 @@ public partial class MainWindow : Window
             try
             {
                 // 先检测设备连接
-                string fastbootPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "platform-tools", "fastboot.exe");
+                string fastbootPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, PlatformToolsDirName, FastbootToolName);
                 string deviceCheckResult = await ExecuteFastbootCommand(
                     fastbootPath, "devices", parseStatusOutput: false);
                 var deviceMatch = Regex.Match(
@@ -22080,7 +22085,7 @@ public partial class MainWindow : Window
             try
             {
                 // 先检测设备连接
-                string fastbootPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "platform-tools", "fastboot.exe");
+                string fastbootPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, PlatformToolsDirName, FastbootToolName);
                 string deviceCheckResult = await ExecuteFastbootCommand(
                     fastbootPath, "devices", parseStatusOutput: false);
                 var deviceMatch = Regex.Match(

@@ -45,6 +45,7 @@
     <!-- Brushes -->
     <SolidColorBrush x:Key="BrandPrimaryBrush" Color="{StaticResource Violet500}"/>
     <SolidColorBrush x:Key="BrandPrimaryHoverBrush" Color="{StaticResource Violet600}"/>
+    <Color x:Key="BrandPressedColor">#FF004C9E</Color>
     <SolidColorBrush x:Key="BrandPrimaryPressedBrush" Color="{StaticResource Violet700}"/>
     <SolidColorBrush x:Key="BrandSecondaryBrush" Color="{StaticResource Violet100}"/>
     <SolidColorBrush x:Key="BrandTintBrush" Color="{StaticResource Violet50}"/>

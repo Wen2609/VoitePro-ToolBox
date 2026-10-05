@@ -28,6 +28,61 @@ Background="{StaticResource SurfaceTintBrush}"
                 <Setter Property="CornerRadius" Value="12"/>
                 <Setter Property="Background" Value="{StaticResource BrandPrimaryBrush}"/>
             </Style>
+            <!-- 深色操作按钮（墨底白字，hover/press 过渡 + 禁用半透明） -->
+            <Style x:Key="DarkActionButtonStyle" TargetType="Button">
+                <Setter Property="Height" Value="36"/>
+                <Setter Property="Padding" Value="12,0"/>
+                <Setter Property="Background" Value="{StaticResource TextPrimaryBrush}"/>
+                <Setter Property="Foreground" Value="White"/>
+                <Setter Property="BorderThickness" Value="0"/>
+                <Setter Property="FontSize" Value="13"/>
+                <Setter Property="FontWeight" Value="Medium"/>
+                <Setter Property="Cursor" Value="Hand"/>
+                <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <Border x:Name="b" Background="{TemplateBinding Background}" CornerRadius="6">
+                                <ContentPresenter TextElement.Foreground="{TemplateBinding Foreground}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Trigger.EnterActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <ColorAnimation Storyboard.TargetName="b" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="{StaticResource Gray800}" Duration="0:0:0.12">
+                                                    <ColorAnimation.EasingFunction><CubicEase EasingMode="EaseOut"/></ColorAnimation.EasingFunction>
+                                                </ColorAnimation>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </Trigger.EnterActions>
+                                    <Trigger.ExitActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <ColorAnimation Storyboard.TargetName="b" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" Duration="0:0:0.15">
+                                                    <ColorAnimation.EasingFunction><CubicEase EasingMode="EaseOut"/></ColorAnimation.EasingFunction>
+                                                </ColorAnimation>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </Trigger.ExitActions>
+                                </Trigger>
+                                <Trigger Property="IsPressed" Value="True">
+                                    <Trigger.EnterActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <ColorAnimation Storyboard.TargetName="b" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="{StaticResource Gray800}" Duration="0:0:0.08"/>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </Trigger.EnterActions>
+                                </Trigger>
+                                <Trigger Property="IsEnabled" Value="False">
+                                    <Setter Property="Opacity" Value="0.45"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
             <DropShadowEffect
                 Color="Black"
                 Direction="315"
@@ -652,7 +707,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                                         </ColorAnimation.EasingFunction>
                                                     </ColorAnimation>
                                                     <ColorAnimation Storyboard.TargetProperty="(Control.Foreground).(SolidColorBrush.Color)"
-                                                                    To="#FF004C9E" Duration="0:0:0.15">
+                                                                    To="{StaticResource BrandPressedColor}" Duration="0:0:0.15">
                                                         <ColorAnimation.EasingFunction>
                                                             <CubicEase EasingMode="EaseOut"/>
                                                         </ColorAnimation.EasingFunction>
@@ -3771,7 +3826,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                                     </StackPanel>
                                                 </Button.Content>
                                             </Button>
-                                            <Button VerticalAlignment="Top" Width="94" Height="36" Background="{StaticResource TextPrimaryBrush}" Foreground="White" Margin="10,0,0,0" Click="DeleteSelectedFilesButton_Click">
+                                            <Button VerticalAlignment="Top" Width="94" Height="36" Style="{StaticResource DarkActionButtonStyle}" Margin="10,0,0,0" Click="DeleteSelectedFilesButton_Click">
                                                 <Button.Content>
                                                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                                                         <svg:SvgViewbox Source="images/xiezai.svg" Width="16" Height="16" Margin="0,0,6,0" />
@@ -6130,7 +6185,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                                             Margin="0,0,8,0"
                                                             ToolTip="不知道自己当前版本使用新旧方案的先分析一下"
                                                             Click="AvbAnalyzeVbmetaButton_Click"
-                                                            Style="{StaticResource PageSecondaryButton}" Background="{StaticResource TextPrimaryBrush}" Foreground="White" BorderBrush="{StaticResource TextPrimaryBrush}">
+                                                            Style="{StaticResource DarkActionButtonStyle}" BorderBrush="{StaticResource TextPrimaryBrush}">
                                                         <TextBlock Text="分析 vbmeta"/>
                                                     </Button>
                                                     <Button x:Name="AvbStartSignButton"
@@ -7035,7 +7090,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                     <TextBox Grid.Row="0" Grid.Column="1" Height="30" VerticalContentAlignment="Center" Name="InputPathTextBox"
                                          Text="支持本地/云端全量包_欧加散包_无需解压直接提取" Margin="0,0,45,0" TextChanged="InputPathTextBox_TextChanged"
                                          GotFocus="InputPathTextBox_GotFocus" LostFocus="InputPathTextBox_LostFocus"/>
-                                    <Button Height="30" Name="BrowseInputButton" Click="BrowseInputButton_Click" Grid.Column="1" Grid.ColumnSpan="2" Width="87" HorizontalAlignment="Left" Margin="351,0,0,0" Background="{StaticResource BrandPrimaryBrush}" Foreground="White" BorderBrush="#FFCFD1D1">
+                                    <Button Height="30" Name="BrowseInputButton" Click="BrowseInputButton_Click" Grid.Column="1" Grid.ColumnSpan="2" Width="87" HorizontalAlignment="Left" Margin="351,0,0,0" Background="{StaticResource BrandPrimaryBrush}" Foreground="White" BorderBrush="{StaticResource BorderBrush}">
                                         <Button.Content>
                                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
                                                 <svg:SvgViewbox Source="images/wenjianjia.svg" Width="14" Height="14" Margin="0,0,6,0"/>
@@ -7048,7 +7103,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                     <TextBox Grid.Row="1" Grid.Column="1" Height="30" Margin="0,11,45,1" VerticalContentAlignment="Center" Name="OutputDirTextBox"
                                          Text="请选择解包后文件的保存路径文件夹..." TextChanged="OutputDirTextBox_TextChanged"
                                          GotFocus="OutputDirTextBox_GotFocus"/>
-                                    <Button Grid.Row="1" Grid.Column="1" Height="30" Margin="351,10,0,0" Name="BrowseOutputButton" Click="BrowseOutputButton_Click" Grid.ColumnSpan="2" VerticalAlignment="Top" Width="87" HorizontalAlignment="Left" BorderBrush="#FFCFD1D1" Background="{StaticResource BrandPrimaryBrush}" Foreground="White">
+                                    <Button Grid.Row="1" Grid.Column="1" Height="30" Margin="351,10,0,0" Name="BrowseOutputButton" Click="BrowseOutputButton_Click" Grid.ColumnSpan="2" VerticalAlignment="Top" Width="87" HorizontalAlignment="Left" BorderBrush="{StaticResource BorderBrush}" Background="{StaticResource BrandPrimaryBrush}" Foreground="White">
                                         <Button.Content>
                                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
                                                 <svg:SvgViewbox Source="images/wenjianjia.svg" Width="14" Height="14" Margin="0,0,6,0"/>
@@ -7213,8 +7268,8 @@ Background="{StaticResource SurfaceTintBrush}"
 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Row="2" Grid.Column="2" VerticalAlignment="Center">
 
                                     <Button Name="ReadInfoButton" Width="90" Height="32" Margin="0,0,10,0" Content="读取信息" Click="ReadInfoButton_Click" Background="{StaticResource BorderBrush}" Foreground="White"/>
-                                    <Button Name="ExportButton" Width="89" Height="32" Margin="0,0,10,0" Content="提取镜像" Click="ExportButton_Click" Background="{StaticResource TextPrimaryBrush}" Foreground="White"/>
-                                    <Button Name="StopOperationButton" Width="75" Height="32" Content="停止操作" Click="PayloadStopOperationButton_Click" Background="{StaticResource TextPrimaryBrush}" Foreground="White"/>
+                                    <Button Name="ExportButton" Width="89" Height="32" Margin="0,0,10,0" Content="提取镜像" Click="ExportButton_Click" Style="{StaticResource DarkActionButtonStyle}"/>
+                                    <Button Name="StopOperationButton" Width="75" Height="32" Content="停止操作" Click="PayloadStopOperationButton_Click" Style="{StaticResource DarkActionButtonStyle}"/>
                                 
                             </StackPanel>
                         </Grid>
@@ -8791,7 +8846,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                     <Setter Property="FontSize" Value="13"/>
                                     <Setter Property="VerticalContentAlignment" Value="Center"/>
                                     <Setter Property="CaretBrush" Value="#1D1D1F"/>
-                                    <Setter Property="SelectionBrush" Value="#E8E8ED"/>
+                                    <Setter Property="SelectionBrush" Value="{StaticResource BorderSubtleBrush}"/>
                                     <Setter Property="Template">
                                         <Setter.Value>
                                             <ControlTemplate TargetType="{x:Type TextBox}">
@@ -10010,7 +10065,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                                                 <Storyboard>
                                                                     <ColorAnimation Storyboard.TargetName="b"
                                                                                     Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
-                                                                                    To="#FF004C9E" Duration="0:0:0.08"/>
+                                                                                    To="{StaticResource BrandPressedColor}" Duration="0:0:0.08"/>
                                                                 </Storyboard>
                                                             </BeginStoryboard>
                                                         </Trigger.EnterActions>
