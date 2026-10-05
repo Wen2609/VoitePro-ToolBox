@@ -37,7 +37,7 @@ Background="#FFFAFAFC"
                 x:Key="DropShadowEffect" />
             <LinearGradientBrush x:Key="StorageGradient" StartPoint="0,0" EndPoint="1,0">
                 <GradientStop Color="#48484A" Offset="0"/>
-                <GradientStop Color="#1D1D1F" Offset="1"/>
+                <GradientStop Color="{StaticResource Gray900}" Offset="1"/>
             </LinearGradientBrush>
             <LinearGradientBrush x:Key="MemoryGradient" StartPoint="0,0" EndPoint="1,0">
                 <GradientStop Color="#AEAEB2" Offset="0"/>
@@ -91,7 +91,7 @@ Background="#FFFAFAFC"
                             <BeginStoryboard>
                                 <Storyboard>
                                     <ColorAnimation Storyboard.TargetProperty="Background.Color"
-                                                    To="#FFE8F0FF" Duration="0:0:0.14">
+                                                    To="{StaticResource Violet50}" Duration="0:0:0.14">
                                         <ColorAnimation.EasingFunction>
                                             <CubicEase EasingMode="EaseOut"/>
                                         </ColorAnimation.EasingFunction>
@@ -281,7 +281,7 @@ Background="#FFFAFAFC"
                                                 <!-- 背景色平滑过渡到蓝色 -->
                                                 <ColorAnimation Storyboard.TargetName="border"
                                                                 Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
-                                                                To="#1D1D1F" Duration="0:0:0.25"/>
+                                                                To="{StaticResource Gray900}" Duration="0:0:0.25"/>
                                                 <!-- 内容轻微缩放增强交互感 -->
                                                 <DoubleAnimation Storyboard.TargetName="contentScale"
                                                                 Storyboard.TargetProperty="ScaleX"
@@ -646,7 +646,7 @@ Background="#FFFAFAFC"
                                                 <Storyboard>
                                                     <ColorAnimation Storyboard.TargetName="bd"
                                                                     Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
-                                                                    To="#FFE8F0FF" Duration="0:0:0.15">
+                                                                    To="{StaticResource Violet50}" Duration="0:0:0.15">
                                                         <ColorAnimation.EasingFunction>
                                                             <CubicEase EasingMode="EaseOut"/>
                                                         </ColorAnimation.EasingFunction>
@@ -715,7 +715,7 @@ Background="#FFFAFAFC"
                                                 <Storyboard>
                                                     <ColorAnimation Storyboard.TargetName="bd"
                                                                     Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
-                                                                    To="#FF007AFF" Duration="0:0:0.18">
+                                                                    To="{StaticResource Violet500}" Duration="0:0:0.18">
                                                         <ColorAnimation.EasingFunction>
                                                             <CubicEase EasingMode="EaseOut"/>
                                                         </ColorAnimation.EasingFunction>
@@ -759,7 +759,7 @@ Background="#FFFAFAFC"
                                                 <Storyboard>
                                                     <ColorAnimation Storyboard.TargetName="bd"
                                                                     Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
-                                                                    To="#FF0066D6" Duration="0:0:0.12">
+                                                                    To="{StaticResource Violet600}" Duration="0:0:0.12">
                                                         <ColorAnimation.EasingFunction>
                                                             <CubicEase EasingMode="EaseOut"/>
                                                         </ColorAnimation.EasingFunction>
@@ -772,7 +772,7 @@ Background="#FFFAFAFC"
                                                 <Storyboard>
                                                     <ColorAnimation Storyboard.TargetName="bd"
                                                                     Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
-                                                                    To="#FF007AFF" Duration="0:0:0.15">
+                                                                    To="{StaticResource Violet500}" Duration="0:0:0.15">
                                                         <ColorAnimation.EasingFunction>
                                                             <CubicEase EasingMode="EaseOut"/>
                                                         </ColorAnimation.EasingFunction>
@@ -835,7 +835,7 @@ Background="#FFFAFAFC"
                                             <StackPanel Orientation="Horizontal" Margin="0,0,0,18">
                                                 <Ellipse Width="8" Height="8" Fill="#1D1D1F" Margin="0,0,9,0" VerticalAlignment="Center">
                                                     <Ellipse.Effect>
-                                                        <DropShadowEffect Color="#1D1D1F" Opacity="0.8" BlurRadius="6" ShadowDepth="0"/>
+                                                        <DropShadowEffect Color="{StaticResource Gray900}" Opacity="0.8" BlurRadius="6" ShadowDepth="0"/>
                                                     </Ellipse.Effect>
                                                 </Ellipse>
                                                 <TextBlock Text="快速开始" Foreground="White" FontSize="13" FontWeight="SemiBold" VerticalAlignment="Center"/>
@@ -972,7 +972,7 @@ Background="#FFFAFAFC"
                                                         </Button>
                                                         <Button Name="LockScreenButton" Style="{StaticResource ActionCardButton}" Width="118" Margin="0,0,10,10" Click="LockScreenButton_Click">
                                                             <StackPanel>
-                                                                <Border Width="38" Height="38" CornerRadius="12" Background="#FFF5F5F5" HorizontalAlignment="Center">
+                                                                <Border Width="38" Height="38" CornerRadius="12" Background="{StaticResource SurfaceTintBrush}" HorizontalAlignment="Center">
                                                                     <svg:SvgViewbox Source="images/suoping.svg" Width="20" Height="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                                                 </Border>
                                                                 <TextBlock Text="锁屏" HorizontalAlignment="Center" Margin="0,8,0,0" FontSize="12"/>
@@ -1013,7 +1013,7 @@ Background="#FFFAFAFC"
                                                         </Button>
                                                         <Button Name="VolumeMuteButton" Style="{StaticResource ActionCardButton}" Width="118" Margin="0,0,10,10" Click="VolumeMuteButton_Click">
                                                             <StackPanel>
-                                                                <Border Width="38" Height="38" CornerRadius="12" Background="#FFF0F0F3" HorizontalAlignment="Center">
+                                                                <Border Width="38" Height="38" CornerRadius="12" Background="{StaticResource SurfaceTintBrush}" HorizontalAlignment="Center">
                                                                     <svg:SvgViewbox Source="images/jingyin.svg" Width="20" Height="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                                                 </Border>
                                                                 <TextBlock Text="静音" HorizontalAlignment="Center" Margin="0,8,0,0" FontSize="12"/>
@@ -1057,7 +1057,7 @@ Background="#FFFAFAFC"
                                                     </StackPanel>
 
                                                     <!-- 分隔线 -->
-                                                    <Border Height="1" Background="#FFF0F0F3" Margin="0,0,0,18"/>
+                                                    <Border Height="1" Background="{StaticResource SurfaceTintBrush}" Margin="0,0,0,18"/>
 
                                                     <TextBlock Text="投屏方向" FontSize="13" FontWeight="SemiBold" Foreground="{StaticResource TextSecondaryBrush}" Margin="0,0,0,10"/>
                                                     <StackPanel Orientation="Horizontal" Margin="0,0,0,18">
@@ -1173,7 +1173,7 @@ Background="#FFFAFAFC"
                                                         <TextBlock Text="实时输出信息" FontSize="11" Foreground="{StaticResource TextTertiaryBrush}"/>
                                                     </StackPanel>
                                                 </StackPanel>
-                                                <TextBox Grid.Row="1" Name="ScreenMirrorLogTextBox" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" FontSize="12" IsReadOnly="True" Text="投屏实时输出..." TextChanged="ScreenMirrorLogTextBox_TextChanged" Height="220" Background="#FFFAFAFA"/>
+                                                <TextBox Grid.Row="1" Name="ScreenMirrorLogTextBox" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" FontSize="12" IsReadOnly="True" Text="投屏实时输出..." TextChanged="ScreenMirrorLogTextBox_TextChanged" Height="220" Background="{StaticResource SurfaceTintBrush}"/>
                                             </Grid>
                                         </Border>
                                     </Grid>
@@ -1185,7 +1185,7 @@ Background="#FFFAFAFC"
                         <Grid
 				Name="BasicFlashView"
 				Visibility="Collapsed"
-                            Background="#FFFAFAFA">
+                            Background="{StaticResource SurfaceTintBrush}">
                             <Grid.Resources>
                                 <Style x:Key="BasicFlashCardStyle" TargetType="Border">
                                     <Setter Property="Background" Value="#FFFFFFFF"/>
@@ -1262,13 +1262,13 @@ Background="#FFFAFAFC"
                                                                                           HorizontalAlignment="Left"
                                                                                           Content="{TemplateBinding Content}"/>
                                                                         <Border Grid.Column="1"
-                                                                                Background="#FFF5F5F7"
-                                                                                BorderBrush="#FFEBEBEB"
+                                                                                Background="{StaticResource SurfaceTintBrush}"
+                                                                                BorderBrush="{StaticResource BorderSubtleBrush}"
                                                                                 BorderThickness="1,0,0,0"
                                                                                 CornerRadius="0,10,10,0">
                                                                             <Path HorizontalAlignment="Center"
                                                                                   VerticalAlignment="Center"
-                                                                                  Fill="#8E8E93"
+                                                                                  Fill="{StaticResource TextMutedBrush}"
                                                                                   Data="M 0 0 L 4 4 L 8 0 Z"/>
                                                                         </Border>
                                                                     </Grid>
@@ -1280,7 +1280,7 @@ Background="#FFFAFAFC"
                                                                                 <Storyboard>
                                                                                     <ColorAnimation Storyboard.TargetName="Border"
                                                                                                     Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)"
-                                                                                                    To="#FF1D1D1F" Duration="0:0:0.12">
+                                                                                                    To="{StaticResource Gray900}" Duration="0:0:0.12">
                                                                                         <ColorAnimation.EasingFunction>
                                                                                             <CubicEase EasingMode="EaseOut"/>
                                                                                         </ColorAnimation.EasingFunction>
@@ -1325,7 +1325,7 @@ Background="#FFFAFAFC"
                                                            PopupAnimation="Slide">
                                                         <Grid MinWidth="{TemplateBinding ActualWidth}" MaxHeight="{TemplateBinding MaxDropDownHeight}">
                                                             <Border Background="White"
-                                                                    BorderBrush="#E8E8ED"
+                                                                    BorderBrush="{StaticResource BorderSubtleBrush}"
                                                                     BorderThickness="1"
                                                                     CornerRadius="10"
                                                                     Margin="0,6,0,0">
@@ -1392,7 +1392,7 @@ Background="#FFFAFAFC"
                                                             <BeginStoryboard>
                                                                 <Storyboard>
                                                                     <ColorAnimation Storyboard.TargetProperty="Background.Color"
-                                                                                    To="#FF2C2C2E" Duration="0:0:0.12">
+                                                                                    To="{StaticResource Gray800}" Duration="0:0:0.12">
                                                                         <ColorAnimation.EasingFunction>
                                                                             <CubicEase EasingMode="EaseOut"/>
                                                                         </ColorAnimation.EasingFunction>
@@ -1418,7 +1418,7 @@ Background="#FFFAFAFC"
                                                             <BeginStoryboard>
                                                                 <Storyboard>
                                                                     <ColorAnimation Storyboard.TargetProperty="Background.Color"
-                                                                                    To="#FF3A3A3C" Duration="0:0:0.08"/>
+                                                                                    To="{StaticResource Gray800}" Duration="0:0:0.08"/>
                                                                 </Storyboard>
                                                             </BeginStoryboard>
                                                         </Trigger.EnterActions>
@@ -1586,7 +1586,7 @@ Background="#FFFAFAFC"
                                                         Click="SelectBootFileButton_Click"
                                                         Style="{StaticResource PagePrimaryButton}"
                                                         Width="84"
-                                                        BorderBrush="#FFE6E6E6"
+                                                        BorderBrush="{StaticResource BorderSubtleBrush}"
                                                         Background="{StaticResource BrandPrimaryBrush}" Height="36">
                                                         <StackPanel Orientation="Horizontal"
                                                                     HorizontalAlignment="Center"
@@ -1689,7 +1689,7 @@ Background="#FFFAFAFC"
                                                         Click="SelectXiaomiFlashScriptButton_Click"
                                                         Style="{StaticResource PagePrimaryButton}"
                                                         Width="84"
-                                                        BorderBrush="#FFE6E6E6"
+                                                        BorderBrush="{StaticResource BorderSubtleBrush}"
                                                         Background="{StaticResource BrandPrimaryBrush}" Height="36">
                                                         <StackPanel Orientation="Horizontal"
                                                                     HorizontalAlignment="Center"
@@ -1811,9 +1811,9 @@ Background="#FFFAFAFC"
                                                      MinHeight="0"
                                                      IsReadOnly="True"
                                                      IsDocumentEnabled="False"
-                                                     Background="#FFFBFCFE"
+                                                     Background="{StaticResource SurfaceTintBrush}"
                                                      Foreground="{StaticResource TextPrimaryBrush}"
-                                                     BorderBrush="#FFE8E8E8"
+                                                     BorderBrush="{StaticResource BorderSubtleBrush}"
                                                      BorderThickness="1"
                                                      Padding="10"
                                                      FontFamily="Consolas"
@@ -1844,7 +1844,7 @@ Background="#FFFAFAFC"
                                                                                 <Border.Background>
                                                                                     <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
                                                                                         <GradientStop Offset="0" Color="{StaticResource Gray900}" />
-                                                                                        <GradientStop Offset="1" Color="#1D1D1F" />
+                                                                                        <GradientStop Offset="1" Color="{StaticResource Gray900}" />
                                                                                     </LinearGradientBrush>
                                                                                 </Border.Background>
                                                                             </Border>
@@ -1878,7 +1878,7 @@ Background="#FFFAFAFC"
                 </DataTemplate>
                 <DataTemplate x:Key="Page_FastbootVisualizationView">
                         <Grid Name="FastbootVisualizationView" 
-                              Visibility="Collapsed" Background="#FFF5F5F7">
+                              Visibility="Collapsed" Background="{StaticResource SurfaceTintBrush}">
 <!-- MONO_PAGE_MARKER_FastbootVisualizationView -->
     <Grid.Resources>
                                 <Style x:Key="FastbootCardGroupBoxStyle"
@@ -1989,7 +1989,7 @@ Background="#FFFAFAFC"
                                                 <BeginStoryboard>
                                                     <Storyboard>
                                                         <ColorAnimation Storyboard.TargetProperty="Background.Color"
-                                                                        To="#FFE8F0FF" Duration="0:0:0.14">
+                                                                        To="{StaticResource Violet50}" Duration="0:0:0.14">
                                                             <ColorAnimation.EasingFunction>
                                                                 <CubicEase EasingMode="EaseOut"/>
                                                             </ColorAnimation.EasingFunction>
@@ -2130,7 +2130,7 @@ Background="#FFFAFAFC"
                             Width="190"
                             Padding="8,0"
                             Background="#FFFFFFFF"
-                            BorderBrush="#FFE1E1E1"
+                            BorderBrush="{StaticResource BorderSubtleBrush}"
                             BorderThickness="1"
                             CornerRadius="5">
                         <Grid>
@@ -2142,7 +2142,7 @@ Background="#FFFAFAFC"
                                        Text="&#xE721;"
                                        FontFamily="Segoe MDL2 Assets"
                                        FontSize="13"
-                                       Foreground="#AEAEB2"
+                                       Foreground="{StaticResource TextTertiaryBrush}"
                                        VerticalAlignment="Center"/>
                             <TextBox x:Name="PartitionSearchTextBox"
                                      Grid.Column="1"
@@ -2159,7 +2159,7 @@ Background="#FFFAFAFC"
                                        Margin="4,0,0,0"
                                        Text="请输入分区名称..."
                                        FontSize="12"
-                                       Foreground="#AEAEB2"
+                                       Foreground="{StaticResource TextTertiaryBrush}"
                                        VerticalAlignment="Center"
                                        IsHitTestVisible="False">
                                 <TextBlock.Style>
@@ -2224,7 +2224,7 @@ Background="#FFFAFAFC"
                           AlternationCount="2"
                           SelectionChanged="PartitionTableDataGrid_SelectionChanged"
                           MouseDoubleClick="PartitionTableDataGrid_MouseDoubleClick"
-                          BorderBrush="#FFE9E9E9"
+                          BorderBrush="{StaticResource BorderSubtleBrush}"
                           BorderThickness="1"
                           GridLinesVisibility="None"
                           HorizontalGridLinesBrush="Transparent"
@@ -2232,7 +2232,7 @@ Background="#FFFAFAFC"
                           HorizontalScrollBarVisibility="Hidden"
                           VerticalScrollBarVisibility="Auto" VirtualizingStackPanel.IsVirtualizing="True" VirtualizingStackPanel.VirtualizationMode="Recycling" ScrollViewer.CanContentScroll="True">
                     <DataGrid.Resources>
-                        <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#FF007AFF"/>
+                        <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="{StaticResource Violet500}"/>
                         <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="#FFFFFFFF"/>
                         <Style x:Key="FastbootPartitionTextCellStyle" TargetType="{x:Type TextBlock}">
                             <Setter Property="HorizontalAlignment" Value="Stretch"/>
@@ -2407,10 +2407,10 @@ Background="#FFFAFAFC"
                     <TextBlock Text="执行日志" VerticalAlignment="Center"/>
                 </StackPanel>
             </GroupBox.Header>
-            <Grid Background="#FFFAFBFD">
+            <Grid Background="{StaticResource SurfaceTintBrush}">
                 <RichTextBox x:Name="FastbootLogTextBox"
                              IsReadOnly="True"
-                             Background="#FFFAFBFD"
+                             Background="{StaticResource SurfaceTintBrush}"
                              BorderThickness="0"
                              Padding="7,7"
                              HorizontalContentAlignment="Stretch"
@@ -2452,7 +2452,7 @@ Background="#FFFAFAFC"
                      FontFamily="pack://siteoforigin:,,,/fonts/OPPO_Sans_4.0.ttf#OPPO Sans 4.0"
                      FontSize="12"
                      Padding="9,0"
-                     BorderBrush="#FFE1E1E1"
+                     BorderBrush="{StaticResource BorderSubtleBrush}"
                      BorderThickness="1"
                      Background="#FFFFFFFF"
                      Foreground="{StaticResource TextMutedBrush}"
@@ -2464,7 +2464,7 @@ Background="#FFFAFAFC"
                     Grid.Column="2"
                     Click="SelectFlashBatButton_Click"
                     Style="{StaticResource PagePrimaryButton}"
-                    Width="84" BorderBrush="#FFE6E6E6" Background="{StaticResource BrandPrimaryBrush}">
+                    Width="84" BorderBrush="{StaticResource BorderSubtleBrush}" Background="{StaticResource BrandPrimaryBrush}">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                     <svg:SvgViewbox Source="images/wenjianjia.svg" Width="16" Height="16" Margin="0,0,5,0"/>
                     <TextBlock Text="选择" VerticalAlignment="Center" Foreground="White"/>
@@ -2647,8 +2647,8 @@ Background="#FFFAFAFC"
                  Maximum="100"
                  Value="0"
                  Tag="0MB/s  |  Time:0s"
-                 Background="#FFF3F3F3"
-                 BorderBrush="#FFE0E0E0"
+                 Background="{StaticResource SurfaceTintBrush}"
+                 BorderBrush="{StaticResource BorderSubtleBrush}"
                  BorderThickness="1"
                  Margin="0,0,0,0">
         <ProgressBar.Style>
@@ -2663,8 +2663,8 @@ Background="#FFFAFAFC"
                                     <Border x:Name="PART_Indicator" HorizontalAlignment="Left" CornerRadius="4">
                                         <Border.Background>
                                             <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
-                                                <GradientStop Offset="0" Color="#FF007AFF" />
-                                                <GradientStop Offset="1" Color="#FF007AFF" />
+                                                <GradientStop Offset="0" Color="{StaticResource Violet500}" />
+                                                <GradientStop Offset="1" Color="{StaticResource Violet500}" />
                                             </LinearGradientBrush>
                                         </Border.Background>
                                     </Border>
@@ -2697,7 +2697,7 @@ Background="#FFFAFAFC"
                         <Grid
                             Name="HiddenEnvironmentView"
                             Visibility="Collapsed"
-                            Background="#FFF5F5F7"
+                            Background="{StaticResource SurfaceTintBrush}"
                             Cursor="">
 <!-- MONO_PAGE_MARKER_HiddenEnvironmentView -->
     <Grid.Resources>
@@ -2765,7 +2765,7 @@ Background="#FFFAFAFC"
                                       Margin="485,0,0,0">
                                 <RichTextBox x:Name="HiddenEnvironmentLogTextBox"
                                              IsReadOnly="True"
-                                             Background="#FFFAFBFD"
+                                             Background="{StaticResource SurfaceTintBrush}"
                                              BorderThickness="0"
                                              Padding="7,7"
                                              HorizontalContentAlignment="Stretch"
@@ -2791,8 +2791,8 @@ Background="#FFFAFAFC"
 <GroupBox.Header><StackPanel Orientation="Horizontal" Background="Transparent"><svg:SvgViewbox Source="images/dunpai.svg" Width="15" Height="15" Margin="0,0,7,0" VerticalAlignment="Center"/><TextBlock Text="隐藏ROOT" VerticalAlignment="Center"/></StackPanel></GroupBox.Header>
                                 <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="资料目录：" VerticalAlignment="Top" FontSize="12" Margin="0,7,0,0"/>
                             </GroupBox>
-                            <TextBox x:Name="HiddenRootZipPathTextBox" HorizontalAlignment="Left" Margin="76,12,0,0" TextWrapping="NoWrap" Text="请选择隐藏环境资源包7z文件" VerticalAlignment="Top" VerticalContentAlignment="Center" Padding="9,0" Width="292" Height="32" FontFamily="pack://siteoforigin:,,,/fonts/OPPO_Sans_4.0.ttf#OPPO Sans 4.0" FontSize="12" Background="White" BorderBrush="#FFE1E1E1" BorderThickness="1" Foreground="{StaticResource TextMutedBrush}" ToolTip="{Binding Text, RelativeSource={RelativeSource Self}}"/>
-                            <Button x:Name="SelectHiddenRootZipButton" HorizontalAlignment="Left" Margin="375,13,0,0" VerticalAlignment="Top" Width="84" Click="SelectHiddenRootZipButton_Click" Style="{StaticResource PagePrimaryButton}" BorderBrush="#FFE6E6E6" Background="{StaticResource BrandPrimaryBrush}">
+                            <TextBox x:Name="HiddenRootZipPathTextBox" HorizontalAlignment="Left" Margin="76,12,0,0" TextWrapping="NoWrap" Text="请选择隐藏环境资源包7z文件" VerticalAlignment="Top" VerticalContentAlignment="Center" Padding="9,0" Width="292" Height="32" FontFamily="pack://siteoforigin:,,,/fonts/OPPO_Sans_4.0.ttf#OPPO Sans 4.0" FontSize="12" Background="White" BorderBrush="{StaticResource BorderSubtleBrush}" BorderThickness="1" Foreground="{StaticResource TextMutedBrush}" ToolTip="{Binding Text, RelativeSource={RelativeSource Self}}"/>
+                            <Button x:Name="SelectHiddenRootZipButton" HorizontalAlignment="Left" Margin="375,13,0,0" VerticalAlignment="Top" Width="84" Click="SelectHiddenRootZipButton_Click" Style="{StaticResource PagePrimaryButton}" BorderBrush="{StaticResource BorderSubtleBrush}" Background="{StaticResource BrandPrimaryBrush}">
                                 <Button.Content>
                                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
                                         <svg:SvgViewbox Source="images/wenjianjia.svg" Width="16" Height="16" Margin="0,0,5,0"/>
@@ -2822,8 +2822,8 @@ Background="#FFFAFAFC"
                                          Maximum="100"
                                          Value="0"
                                          Tag="等待开始"
-                                         Background="#FFF3F3F3"
-                                         BorderBrush="#FFE0E0E0"
+                                         Background="{StaticResource SurfaceTintBrush}"
+                                         BorderBrush="{StaticResource BorderSubtleBrush}"
                                          BorderThickness="1"
                                          Margin="10,223,0,0">
                                 <ProgressBar.Style>
@@ -2846,7 +2846,7 @@ Background="#FFFAFAFC"
                                                                 <Border.Background>
                                                                     <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
                                                                         <GradientStop Offset="0" Color="{StaticResource Gray900}" />
-                                                                        <GradientStop Offset="1" Color="#1D1D1F" />
+                                                                        <GradientStop Offset="1" Color="{StaticResource Gray900}" />
                                                                     </LinearGradientBrush>
                                                                 </Border.Background>
                                                             </Border>
@@ -2933,8 +2933,8 @@ Background="#FFFAFAFC"
                                              Drop="ModuleListBox_Drop"
                                              DragEnter="ModuleListBox_DragEnter"
                                              DragOver="ModuleListBox_DragOver"
-                                             Background="#FFFAFBFD"
-                                             BorderBrush="#FFE6E6E6"
+                                             Background="{StaticResource SurfaceTintBrush}"
+                                             BorderBrush="{StaticResource BorderSubtleBrush}"
                                              BorderThickness="1"
                                              HorizontalContentAlignment="Stretch" VirtualizingStackPanel.IsVirtualizing="True" VirtualizingStackPanel.VirtualizationMode="Recycling" ScrollViewer.CanContentScroll="True">
                                         <ListBox.Template>
@@ -2977,7 +2977,7 @@ Background="#FFFAFAFC"
                                     <TextBlock HorizontalAlignment="Left" Margin="0,6,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="319" FontFamily="pack://siteoforigin:,,,/fonts/OPPO_Sans_4.0.ttf#OPPO Sans 4.0" FontSize="12" Foreground="{StaticResource TextPrimaryBrush}"><Run Text="拖动一个或多个模块到窗口，自动识别"/><Run Language="zh-cn" Text="ROOT"/><Run Text="管理器并安装"/></TextBlock>
                                     <Button x:Name="ClearModuleListButton" Content="清空列表" HorizontalAlignment="Left" Margin="374,292,0,0" VerticalAlignment="Top" Width="81" Click="ClearModuleListButton_Click" Style="{StaticResource PageSecondaryButton}"/>
                                     <TextBlock HorizontalAlignment="Left" Margin="0,300,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="pack://siteoforigin:,,,/fonts/OPPO_Sans_4.0.ttf#OPPO Sans 4.0" FontSize="12" Foreground="{StaticResource TextMutedBrush}" RenderTransformOrigin="0.497,0.824" Width="231"><Run Text="支持自动过滤模块文件，"/><Run Language="zh-cn" Text="排除无关多余"/><Run Text="文件"/></TextBlock>
-                                    <Button HorizontalAlignment="Left" Margin="281,291,0,0" VerticalAlignment="Top" Width="84" BorderBrush="#FFE6E6E6" Background="{StaticResource BrandPrimaryBrush}" Click="SelectModuleButton_Click" Style="{StaticResource PagePrimaryButton}" ToolTip="手动选择模块文件">
+                                    <Button HorizontalAlignment="Left" Margin="281,291,0,0" VerticalAlignment="Top" Width="84" BorderBrush="{StaticResource BorderSubtleBrush}" Background="{StaticResource BrandPrimaryBrush}" Click="SelectModuleButton_Click" Style="{StaticResource PagePrimaryButton}" ToolTip="手动选择模块文件">
                                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                                             <svg:SvgViewbox Source="images/wenjianjia.svg" Width="16" Height="16" Margin="0,0,5,0"/>
                                             <TextBlock Text="选择" VerticalAlignment="Center" Foreground="White"/>
@@ -3723,7 +3723,7 @@ Background="#FFFAFAFC"
                                         </Grid.RowDefinitions>
                                         <StackPanel Margin="0,0,0,0" Grid.RowSpan="2">
                                             <StackPanel Orientation="Horizontal">
-                                            <Button VerticalAlignment="Top" Width="105" Click="LoadSystemZoneLocationButton_Click" Height="36" Background="#FFE5E5EA" Foreground="{StaticResource TextPrimaryBrush}">
+                                            <Button VerticalAlignment="Top" Width="105" Click="LoadSystemZoneLocationButton_Click" Height="36" Background="{StaticResource BorderSubtleBrush}" Foreground="{StaticResource TextPrimaryBrush}">
                                                 <Button.Content>
                                                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                                                         <svg:SvgViewbox Source="images/jiazai.svg" Width="16" Height="16" Margin="0,0,6,0" />
@@ -3731,7 +3731,7 @@ Background="#FFFAFAFC"
                                                     </StackPanel>
                                                 </Button.Content>
                                             </Button>
-                                            <Button VerticalAlignment="Top" Width="130" Height="36" Background="#FFE5E5EA" Foreground="{StaticResource TextPrimaryBrush}" Margin="10,0,0,0" Click="Button_Click_1" Tag="传入文件到手机">
+                                            <Button VerticalAlignment="Top" Width="130" Height="36" Background="{StaticResource BorderSubtleBrush}" Foreground="{StaticResource TextPrimaryBrush}" Margin="10,0,0,0" Click="Button_Click_1" Tag="传入文件到手机">
                                                 <Button.Content>
                                                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                                                         <svg:SvgViewbox Source="images/xiangxia.svg" Width="16" Height="16" Margin="0,0,6,0" />
@@ -3739,7 +3739,7 @@ Background="#FFFAFAFC"
                                                     </StackPanel>
                                                 </Button.Content>
                                             </Button>
-                                            <Button VerticalAlignment="Top" Width="130" Height="36" Background="#FFE5E5EA" Foreground="{StaticResource TextPrimaryBrush}" Margin="10,0,0,0" Click="Button_Click_2">
+                                            <Button VerticalAlignment="Top" Width="130" Height="36" Background="{StaticResource BorderSubtleBrush}" Foreground="{StaticResource TextPrimaryBrush}" Margin="10,0,0,0" Click="Button_Click_2">
                                                 <Button.Content>
                                                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                                                         <svg:SvgViewbox Source="images/xiangshang.svg" Width="16" Height="16" Margin="0,0,6,0" />
@@ -3980,7 +3980,7 @@ Background="#FFFAFAFC"
                                                                        TextAlignment="Center"
                                                                        TextWrapping="NoWrap"
                                                                        FontSize="10"
-                                                                       Foreground="#FF555555"
+                                                                       Foreground="{StaticResource TextStrongBrush}"
                                                                        Width="108"
                                                                        Height="15"
                                                                        Margin="0,2,0,0"/>
@@ -4008,7 +4008,7 @@ Background="#FFFAFAFC"
                                                                   Height="84"
                                                                   DotSpeed="2.6"
                                                                   DotDiameter="7"
-                                                                  Foreground="#FF2C2C2E"
+                                                                  Foreground="{StaticResource TextStrongBrush}"
                                                                   Margin="0,0,0,12"/>
                                                 <TextBlock Text="正在读取目录..."
                                                            HorizontalAlignment="Center"
@@ -4022,7 +4022,7 @@ Background="#FFFAFAFC"
                                                 <local:SystemZoneLogTextBox x:Name="FileTransferLogTextBox"
                                                                             Text="无需打开文件传输模式，仅充电模式下可进行正常文件传输，支持直接从电脑端批量拖动文件到窗口传输文件，加载根目录文件需要提前在设备上授予SHELL ROOT权限。"
                                                                             IsReadOnly="True"
-                                                                            Background="#FFFAFBFD"
+                                                                            Background="{StaticResource SurfaceTintBrush}"
                                                                             BorderBrush="#FFE8F0FF"
                                                                             BorderThickness="1"
                                                                             Padding="7,7"
@@ -4060,7 +4060,7 @@ Background="#FFFAFAFC"
                                                                                     <Border.Background>
                                                                                         <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
                                                                                             <GradientStop Offset="0" Color="{StaticResource Gray900}" />
-                                                                                            <GradientStop Offset="1" Color="#1D1D1F" />
+                                                                                            <GradientStop Offset="1" Color="{StaticResource Gray900}" />
                                                                                         </LinearGradientBrush>
                                                                                     </Border.Background>
                                                                                 </Border>
@@ -4098,7 +4098,7 @@ Background="#FFFAFAFC"
                         <Grid
                         Name="OujiaFlashView"
                         Visibility="Collapsed"          
-                        Background="#FFF5F5F7"
+                        Background="{StaticResource SurfaceTintBrush}"
                         TextElement.FontFamily="pack://siteoforigin:,,,/fonts/OPPO_Sans_4.0.ttf#OPPO Sans 4.0"
                         Cursor="">
 <!-- MONO_PAGE_MARKER_OujiaFlashView -->
@@ -4228,7 +4228,7 @@ Background="#FFFAFAFC"
                                                 <BeginStoryboard>
                                                     <Storyboard>
                                                         <ColorAnimation Storyboard.TargetProperty="Background.Color"
-                                                                        To="#FFE8F0FF" Duration="0:0:0.14">
+                                                                        To="{StaticResource Violet50}" Duration="0:0:0.14">
                                                             <ColorAnimation.EasingFunction>
                                                                 <CubicEase EasingMode="EaseOut"/>
                                                             </ColorAnimation.EasingFunction>
@@ -4292,7 +4292,7 @@ Background="#FFFAFAFC"
                                                             <Border.Background>
                                                                 <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
                                                                     <GradientStop Offset="0" Color="{StaticResource Gray900}"/>
-                                                                    <GradientStop Offset="1" Color="#1D1D1F"/>
+                                                                    <GradientStop Offset="1" Color="{StaticResource Gray900}"/>
                                                                 </LinearGradientBrush>
                                                             </Border.Background>
                                                         </Border>
@@ -4357,7 +4357,7 @@ Background="#FFFAFAFC"
                                                 Padding="8,0"
                                                 HorizontalAlignment="Left"
                                                 Background="#FFFFFFFF"
-                                                BorderBrush="#FFE1E1E1"
+                                                BorderBrush="{StaticResource BorderSubtleBrush}"
                                                 BorderThickness="1"
                                                 CornerRadius="5">
                                             <Grid>
@@ -4369,7 +4369,7 @@ Background="#FFFAFAFC"
                                                            Text="&#xE721;"
                                                            FontFamily="Segoe MDL2 Assets"
                                                            FontSize="13"
-                                                           Foreground="#AEAEB2"
+                                                           Foreground="{StaticResource TextTertiaryBrush}"
                                                            VerticalAlignment="Center"/>
                                                 <TextBox x:Name="OugaPartitionSearchTextBox"
                                                          Grid.Column="1"
@@ -4386,7 +4386,7 @@ Background="#FFFAFAFC"
                                                            Margin="4,0,0,0"
                                                            Text="请输入分区名称..."
                                                            FontSize="12"
-                                                           Foreground="#AEAEB2"
+                                                           Foreground="{StaticResource TextTertiaryBrush}"
                                                            VerticalAlignment="Center"
                                                            IsHitTestVisible="False">
                                                     <TextBlock.Style>
@@ -4439,7 +4439,7 @@ Background="#FFFAFAFC"
                                 FontFamily="pack://siteoforigin:,,,/fonts/OPPO_Sans_4.0.ttf#OPPO Sans 4.0"
                                 Foreground="{StaticResource TextPrimaryBrush}"
                                 Background="#FFFFFFFF"
-                                BorderBrush="#FFE9E9E9"
+                                BorderBrush="{StaticResource BorderSubtleBrush}"
                                 BorderThickness="1"
                                 GridLinesVisibility="None"
                                 AlternationCount="2"
@@ -4534,7 +4534,7 @@ Background="#FFFAFAFC"
                                     <Grid.Resources>
                                         <LinearGradientBrush x:Key="FlashProgressGradient" StartPoint="0,0" EndPoint="1,1">
                                             <GradientStop Color="#D1D1D6" Offset="0.0" />
-                                            <GradientStop Color="#1D1D1F" Offset="1.0" />
+                                            <GradientStop Color="{StaticResource Gray900}" Offset="1.0" />
                                         </LinearGradientBrush>
                                     </Grid.Resources>
                                     <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
@@ -4544,7 +4544,7 @@ Background="#FFFAFAFC"
                                         </Grid.RowDefinitions>
 
                                         <Ellipse x:Name="FlashProgressRing" Grid.Row="0"
-                                        Stroke="#E8E8E8" 
+                                        Stroke="{StaticResource BorderSubtleBrush}" 
                                         StrokeThickness="12" Stretch="Uniform" 
                                         Width="150" Height="150"/>
                                         <Ellipse Grid.Row="0"
@@ -4563,7 +4563,7 @@ Background="#FFFAFAFC"
                                                     HorizontalAlignment="Center" FontSize="24" FontWeight="Bold" 
                                                     Foreground="{StaticResource TextPrimaryBrush}"/>
                                             <TextBlock Text="{Binding FlashProgressDetailText}" HorizontalAlignment="Center" 
-                                                    FontSize="12" Foreground="#8E8E93" Margin="0,5,0,0"/>
+                                                    FontSize="12" Foreground="{StaticResource TextMutedBrush}" Margin="0,5,0,0"/>
                                         </StackPanel>
 
                                         <!-- 圆环外侧耗时 -->
@@ -4585,11 +4585,11 @@ Background="#FFFAFAFC"
                                       Height="559"
                                       Panel.ZIndex="100">
 <GroupBox.Header><StackPanel Orientation="Horizontal" Background="Transparent"><svg:SvgViewbox Source="images/wendang.svg" Width="15" Height="15" Margin="0,0,7,0" VerticalAlignment="Center"/><TextBlock Text="执行日志" VerticalAlignment="Center"/></StackPanel></GroupBox.Header>
-                                <Grid Background="#FFFAFBFD">
+                                <Grid Background="{StaticResource SurfaceTintBrush}">
                                     <RichTextBox x:Name="OugaFlashLogTextBox"
                                                  IsReadOnly="True"
                                                  IsDocumentEnabled="False"
-                                                 Background="#FFFAFBFD"
+                                                 Background="{StaticResource SurfaceTintBrush}"
                                                  BorderThickness="0"
                                                  Padding="7"
                                                  HorizontalContentAlignment="Stretch"
@@ -4781,7 +4781,7 @@ Background="#FFFAFAFC"
                                                 Click="SelectPayloadFileButton_Click"
                                                 Style="{StaticResource PagePrimaryButton}"
                                                 Width="84"
-                                                BorderBrush="#FFE6E6E6"
+                                                BorderBrush="{StaticResource BorderSubtleBrush}"
                                                 Background="{StaticResource BrandPrimaryBrush}">
                                             <StackPanel Orientation="Horizontal"
                                                         HorizontalAlignment="Center"
@@ -4804,7 +4804,7 @@ Background="#FFFAFAFC"
                                                 Click="SelectFolderButton_Click"
                                                 Style="{StaticResource PagePrimaryButton}"
                                                 Width="84"
-                                                BorderBrush="#FFE6E6E6"
+                                                BorderBrush="{StaticResource BorderSubtleBrush}"
                                                 Background="{StaticResource BrandPrimaryBrush}">
                                             <StackPanel Orientation="Horizontal"
                                                         HorizontalAlignment="Center"
@@ -4845,7 +4845,7 @@ Background="#FFFAFAFC"
                                                     Width="130"
                                                     Height="26"
                                                     HorizontalAlignment="Left"
-                                                    Click="FixFastbootDButton_Click" Margin="352,0,0,0" BorderBrush="#FFE6E6E6" Background="{StaticResource BrandTintBrush}"/>
+                                                    Click="FixFastbootDButton_Click" Margin="352,0,0,0" BorderBrush="{StaticResource BorderSubtleBrush}" Background="{StaticResource BrandTintBrush}"/>
                                         </Grid>
 
                                         <!-- Bottom Row -->
@@ -4871,11 +4871,11 @@ Background="#FFFAFAFC"
                                                     Style="{StaticResource PageSecondaryButton}"
                                                     Margin="0,0,8,0"
                                                     Width="120"
-                                                    Click="Button_Click_1" Background="{StaticResource BrandPrimaryBrush}" Foreground="White" BorderBrush="#FFE6E6E6"/>
+                                                    Click="Button_Click_1" Background="{StaticResource BrandPrimaryBrush}" Foreground="White" BorderBrush="{StaticResource BorderSubtleBrush}"/>
                                             <Button Content="开始线刷"
                                                     Style="{StaticResource PagePrimaryButton}"
                                                     Width="120"
-                                                    Click="StartFlashButton_Click" Background="{StaticResource BrandPrimaryBrush}" BorderBrush="#FFE6E6E6"/>
+                                                    Click="StartFlashButton_Click" Background="{StaticResource BrandPrimaryBrush}" BorderBrush="{StaticResource BorderSubtleBrush}"/>
                                         </StackPanel>
                                     </Grid>
                                 </GroupBox>
@@ -4991,7 +4991,7 @@ Background="#FFFAFAFC"
                                                 Click="AfterSalesSelectFolderButton_Click"
                                                 Style="{StaticResource PagePrimaryButton}"
                                                 Width="105"
-                                                BorderBrush="#FFE6E6E6"
+                                                BorderBrush="{StaticResource BorderSubtleBrush}"
                                                 Background="{StaticResource BrandPrimaryBrush}" Grid.ColumnSpan="3" HorizontalAlignment="Left" Margin="370,0,0,0" Height="74">
                                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                                                 <svg:SvgViewbox Source="images/wenjianjia.svg" Width="22" Height="22" Margin="0,0,6,0"/>
@@ -5098,7 +5098,7 @@ Background="#FFFAFAFC"
                                                     Width="130"
                                                     Height="26"
                                                     Click="FixFastbootDButton_Click"
-                                                    BorderBrush="#FFE6E6E6"
+                                                    BorderBrush="{StaticResource BorderSubtleBrush}"
                                                     Background="{StaticResource BrandTintBrush}"/>
                                         </Grid>
                                         <StackPanel Grid.Row="2"
@@ -5129,14 +5129,14 @@ Background="#FFFAFAFC"
                                                     ToolTip="解包Payload仅在全量包模式下可用"
                                                     Background="{StaticResource BrandPrimaryBrush}"
                                                     Foreground="White"
-                                                    BorderBrush="#FFE6E6E6"/>
+                                                    BorderBrush="{StaticResource BorderSubtleBrush}"/>
                                             <Button x:Name="AfterSalesStartFlashButton"
                                                     Content="开始线刷"
                                                     Width="153"
                                                     Style="{StaticResource PagePrimaryButton}"
                                                     Click="AfterSalesStartFlashButton_Click"
                                                     Background="{StaticResource BrandPrimaryBrush}"
-                                                    BorderBrush="#FFE6E6E6"/>
+                                                    BorderBrush="{StaticResource BorderSubtleBrush}"/>
                                         </StackPanel>
                                     </Grid>
                                 </GroupBox>
@@ -5168,7 +5168,7 @@ Background="#FFFAFAFC"
                                     Width="80"
                                     Height="32"
                                     Background="#1D1D1F"
-                                    BorderBrush="#FFE6E6E6"
+                                    BorderBrush="{StaticResource BorderSubtleBrush}"
                                     BorderThickness="1"
                                     CornerRadius="6">
                                 <StackPanel Orientation="Horizontal"
@@ -5198,7 +5198,7 @@ Background="#FFFAFAFC"
                         <Grid
                         Name="AutorootView"
                         Visibility="Collapsed"  
-                        Background="#FFFAFAFA">
+                        Background="{StaticResource SurfaceTintBrush}">
                             <Grid.Resources>
                                 <Style x:Key="AutorootCardStyle" TargetType="Border">
                                     <Setter Property="Background" Value="#FFFFFFFF"/>
@@ -5636,7 +5636,7 @@ Background="#FFFAFAFC"
                                                                 Width="118"
                                                                 Click="BtnAutoRoot_Click"
                                                                 Style="{StaticResource PagePrimaryButton}"
-                                                                Background="#FFD1D1D6">
+                                                                Background="{StaticResource BorderBrush}">
                                                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                                                                 <svg:SvgViewbox Source="images/kaishi1.svg" Width="16" Height="16" Margin="0,0,5,0"/>
                                                                 <TextBlock Text="开始" VerticalAlignment="Center" Foreground="White"/>
@@ -5751,7 +5751,7 @@ Background="#FFFAFAFC"
                                                                                         <Border.Background>
                                                                                             <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
                                                                                                 <GradientStop Offset="0" Color="{StaticResource Gray900}"/>
-                                                                                                <GradientStop Offset="1" Color="#1D1D1F"/>
+                                                                                                <GradientStop Offset="1" Color="{StaticResource Gray900}"/>
                                                                                             </LinearGradientBrush>
                                                                                         </Border.Background>
                                                                                     </Border>
@@ -5880,17 +5880,17 @@ Background="#FFFAFAFC"
                                                         Grid.Column="2"
                                                         Width="92"
                                                         Click="BtnClearLog_Click"
-                                                        Style="{StaticResource PageSecondaryButton}" Background="#D1D1D6" Height="34">
+                                                        Style="{StaticResource PageSecondaryButton}" Background="{StaticResource BorderBrush}" Height="34">
                                                     <TextBlock Text="清空日志" Foreground="White"/>
                                                 </Button>
                                                 <RichTextBox x:Name="txtLog"
                                                              Grid.Row="1"
                                                              Grid.ColumnSpan="3"
                                                              Margin="0,10,0,0"
-                                                             Background="#FFFBFCFE"
+                                                             Background="{StaticResource SurfaceTintBrush}"
                                                              Foreground="{StaticResource TextPrimaryBrush}"
                                                              BorderThickness="1"
-                                                             BorderBrush="#FFE8E8E8"
+                                                             BorderBrush="{StaticResource BorderSubtleBrush}"
                                                              IsReadOnly="True"
                                                              VerticalScrollBarVisibility="Auto"
                                                              HorizontalScrollBarVisibility="Auto"
@@ -6175,7 +6175,7 @@ Background="#FFFAFAFC"
 <GroupBox Grid.Column="0"
                                       Style="{StaticResource PayloadGroupBoxStyle}"
                                       FontSize="12"
-                                      BorderBrush="#FFE0E0E0" Margin="0,0,0,10">
+                                      BorderBrush="{StaticResource BorderSubtleBrush}" Margin="0,0,0,10">
 <GroupBox.Header><StackPanel Orientation="Horizontal" Background="Transparent"><svg:SvgViewbox Source="images/yingyong.svg" Width="15" Height="15" Margin="0,0,7,0" VerticalAlignment="Center"/><TextBlock Text="应用列表" VerticalAlignment="Center"/></StackPanel></GroupBox.Header>
                                 <Grid>
                                     <Grid.RowDefinitions>
@@ -6187,8 +6187,8 @@ Background="#FFFAFAFC"
                                     <Border Grid.Row="0"
                                             Padding="12"
                                             Margin="0,0,0,10"
-                                            Background="#FFF9F9F9"
-                                            BorderBrush="#E8E8ED"
+                                            Background="{StaticResource SurfaceTintBrush}"
+                                            BorderBrush="{StaticResource BorderSubtleBrush}"
                                             BorderThickness="1"
                                             CornerRadius="8">
                                         <Grid>
@@ -6257,7 +6257,7 @@ Background="#FFFAFAFC"
                                               BorderThickness="0"
                                               RowHeight="30"
                                               GridLinesVisibility="Horizontal"
-                                              AlternatingRowBackground="#FFFCFAFE" VirtualizingStackPanel.IsVirtualizing="True" VirtualizingStackPanel.VirtualizationMode="Recycling" ScrollViewer.CanContentScroll="True">
+                                              AlternatingRowBackground="{StaticResource SurfaceTintBrush}" VirtualizingStackPanel.IsVirtualizing="True" VirtualizingStackPanel.VirtualizationMode="Recycling" ScrollViewer.CanContentScroll="True">
                                         <DataGrid.Resources>
                                             <Style TargetType="{x:Type DataGridColumnHeader}">
                                                 <Setter Property="Background" Value="#FFE8E8E8"/>
@@ -6350,7 +6350,7 @@ Background="#FFFAFAFC"
                                 <GroupBox Grid.Row="0"
                                           Style="{StaticResource PayloadGroupBoxStyle}"
                                           FontSize="12"
-                                          BorderBrush="#FFE0E0E0">
+                                          BorderBrush="{StaticResource BorderSubtleBrush}">
 <GroupBox.Header><StackPanel Orientation="Horizontal" Background="Transparent"><svg:SvgViewbox Source="images/shandian.svg" Width="15" Height="15" Margin="0,0,7,0" VerticalAlignment="Center"/><TextBlock Text="快捷操作" VerticalAlignment="Center"/></StackPanel></GroupBox.Header>
                                     <StackPanel>
                                         <Button x:Name="ReadAppListButton"
@@ -6437,7 +6437,7 @@ Background="#FFFAFAFC"
                                           Margin="0,12,0,10"
                                           Style="{StaticResource PayloadGroupBoxStyle}"
                                           FontSize="12"
-                                          BorderBrush="#FFE0E0E0">
+                                          BorderBrush="{StaticResource BorderSubtleBrush}">
 <GroupBox.Header><StackPanel Orientation="Horizontal" Background="Transparent"><svg:SvgViewbox Source="images/wendang.svg" Width="15" Height="15" Margin="0,0,7,0" VerticalAlignment="Center"/><TextBlock Text="运行日志" VerticalAlignment="Center"/></StackPanel></GroupBox.Header>
                                     <Grid>
                                         <Grid.RowDefinitions>
@@ -6445,8 +6445,8 @@ Background="#FFFAFAFC"
                                             <RowDefinition Height="*"/>
                                         </Grid.RowDefinitions>
                                         <Border Grid.Row="1"
-                                                Background="#FFF9F9F9"
-                                                BorderBrush="#E8E8ED"
+                                                Background="{StaticResource SurfaceTintBrush}"
+                                                BorderBrush="{StaticResource BorderSubtleBrush}"
                                                 BorderThickness="1"
                                                 CornerRadius="6">
                                             <TextBox x:Name="AppManagementLogTextBox"
@@ -6489,7 +6489,7 @@ Background="#FFFAFAFC"
                             Background="#FFFFFF"
                             Padding="15"
                             BorderThickness="1"
-                            BorderBrush="#FFE0E0E0"
+                            BorderBrush="{StaticResource BorderSubtleBrush}"
                             FontSize="13"
                             FontWeight="Bold"
                             Foreground="#333"
@@ -6532,8 +6532,8 @@ Background="#FFFAFAFC"
                                 </GroupBox.Style>
                                 <Grid>
                                     <TextBlock Text="散包路径：" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="-8,0,0,0"/>
-                                    <TextBox x:Name="SuperScatterPathTextBox" HorizontalAlignment="Left" Margin="51,-4,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="193" BorderBrush="#FFE0E0E0"/>
-                                    <Button x:Name="SelectSuperScatterButton" HorizontalAlignment="Left" Margin="253,-4,0,0" VerticalAlignment="Top" Width="85" Click="SelectSuperScatterButton_Click" Background="#FFE5E5EA" BorderBrush="{StaticResource BorderSubtleBrush}" Foreground="White">
+                                    <TextBox x:Name="SuperScatterPathTextBox" HorizontalAlignment="Left" Margin="51,-4,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="193" BorderBrush="{StaticResource BorderSubtleBrush}"/>
+                                    <Button x:Name="SelectSuperScatterButton" HorizontalAlignment="Left" Margin="253,-4,0,0" VerticalAlignment="Top" Width="85" Click="SelectSuperScatterButton_Click" Background="{StaticResource BorderSubtleBrush}" BorderBrush="{StaticResource BorderSubtleBrush}" Foreground="White">
                                         <Button.Content>
                                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                                                 <svg:SvgViewbox Source="images/wenjianjia.svg" Width="16" Height="16" Margin="0,0,6,0"/>
@@ -6543,7 +6543,7 @@ Background="#FFFAFAFC"
                                     </Button>
                                     <CheckBox x:Name="CleanupMyPartitionsCheckBox" Content="清理残留文件" HorizontalAlignment="Left" Margin="-8,40,0,0" VerticalAlignment="Top" Checked="CleanupMyPartitionsCheckBox_Checked"/>
                                     <CheckBox x:Name="FilterXmlCheckBox" Content="过滤多余xml" HorizontalAlignment="Left" Margin="94,40,0,0" VerticalAlignment="Top"/>
-                                    <Button x:Name="StartSuperPackButton" Content="开始打包" HorizontalAlignment="Left" Margin="250,34,0,0" VerticalAlignment="Top" Width="88" Height="28" Click="StartSuperPackButton_Click" Background="#FFE5E5EA" BorderBrush="{StaticResource BorderSubtleBrush}" Foreground="White"/>
+                                    <Button x:Name="StartSuperPackButton" Content="开始打包" HorizontalAlignment="Left" Margin="250,34,0,0" VerticalAlignment="Top" Width="88" Height="28" Click="StartSuperPackButton_Click" Background="{StaticResource BorderSubtleBrush}" BorderBrush="{StaticResource BorderSubtleBrush}" Foreground="White"/>
                                 </Grid>
                             </GroupBox>
                             <GroupBox
@@ -6551,7 +6551,7 @@ Background="#FFFAFAFC"
                             Margin="390,-6,0,0"
                             Padding="15"
                             BorderThickness="1"
-                            BorderBrush="#FFE0E0E0"
+                            BorderBrush="{StaticResource BorderSubtleBrush}"
                             FontSize="13"
                             FontWeight="Bold"
                             Foreground="#333"
@@ -6592,10 +6592,10 @@ Background="#FFFAFAFC"
                                 </GroupBox.Style>
                                 <Grid>
                                     <TextBlock Text="OFP文件：" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="-8,0,0,0"/>
-                                    <TextBox x:Name="OfpFilePathTextBox" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="51,-4,0,0" BorderBrush="#FFE0E0E0" Width="273"/>
-                                    <Button x:Name="SelectOfpFileButton" Content="选择" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,-4,0,0" Width="85" Click="SelectOfpFileButton_Click" Background="#FFE5E5EA" BorderBrush="{StaticResource BorderSubtleBrush}" Foreground="White"/>
+                                    <TextBox x:Name="OfpFilePathTextBox" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="51,-4,0,0" BorderBrush="{StaticResource BorderSubtleBrush}" Width="273"/>
+                                    <Button x:Name="SelectOfpFileButton" Content="选择" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,-4,0,0" Width="85" Click="SelectOfpFileButton_Click" Background="{StaticResource BorderSubtleBrush}" BorderBrush="{StaticResource BorderSubtleBrush}" Foreground="White"/>
                                     <ProgressBar x:Name="OfpExtractProgressBar" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="-8,32,0,0" Height="18" Minimum="0" Maximum="100" Value="0" Width="332"/>
-                                    <Button x:Name="StartOfpExtractButton" Content="开始解包" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,27,0,0" Width="85" Height="28" Click="StartOfpExtractButton_Click" Background="#FFE5E5EA" BorderBrush="{StaticResource BorderSubtleBrush}" Foreground="White"/>
+                                    <Button x:Name="StartOfpExtractButton" Content="开始解包" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,27,0,0" Width="85" Height="28" Click="StartOfpExtractButton_Click" Background="{StaticResource BorderSubtleBrush}" BorderBrush="{StaticResource BorderSubtleBrush}" Foreground="White"/>
                                 </Grid>
                             </GroupBox>
                             <GroupBox
@@ -6603,7 +6603,7 @@ Background="#FFFAFAFC"
                             Margin="0,101,0,0"
                             Padding="15"
                             BorderThickness="1"
-                            BorderBrush="#FFE0E0E0"
+                            BorderBrush="{StaticResource BorderSubtleBrush}"
                             FontSize="13"
                             FontWeight="Bold"
                             Foreground="#333"
@@ -6648,8 +6648,8 @@ Background="#FFFAFAFC"
                                     <TextBlock HorizontalAlignment="Left" Margin="-8,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="0.477,0.596">
                                     <Run Language="zh-cn" Text="镜像目录："/>
                                     </TextBlock>
-                                    <TextBox x:Name="ImageDirTextBox" HorizontalAlignment="Left" Margin="51,-4,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="193" BorderBrush="#FFE0E0E0"/>
-                                    <Button x:Name="SelectImageDirButton" HorizontalAlignment="Left" Margin="253,-4,0,0" VerticalAlignment="Top" Width="85" Click="SelectImageDirButton_Click" BorderBrush="{StaticResource BorderSubtleBrush}" Background="#FFE5E5EA" Foreground="White">
+                                    <TextBox x:Name="ImageDirTextBox" HorizontalAlignment="Left" Margin="51,-4,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="193" BorderBrush="{StaticResource BorderSubtleBrush}"/>
+                                    <Button x:Name="SelectImageDirButton" HorizontalAlignment="Left" Margin="253,-4,0,0" VerticalAlignment="Top" Width="85" Click="SelectImageDirButton_Click" BorderBrush="{StaticResource BorderSubtleBrush}" Background="{StaticResource BorderSubtleBrush}" Foreground="White">
                                         <Button.Content>
                                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                                                 <svg:SvgViewbox Source="images/wenjianjia.svg" Width="16" Height="16" Margin="0,0,6,0"/>
@@ -6657,7 +6657,7 @@ Background="#FFFAFAFC"
                                             </StackPanel>
                                         </Button.Content>
                                     </Button>
-                                    <Button x:Name="GenerateFlashScriptButton" Content="开始生成" HorizontalAlignment="Left" Margin="253,36,0,0" VerticalAlignment="Top" Width="85" Click="GenerateFlashScriptButton_Click" Background="#FFE5E5EA" BorderBrush="{StaticResource BorderSubtleBrush}" Foreground="White"/>
+                                    <Button x:Name="GenerateFlashScriptButton" Content="开始生成" HorizontalAlignment="Left" Margin="253,36,0,0" VerticalAlignment="Top" Width="85" Click="GenerateFlashScriptButton_Click" Background="{StaticResource BorderSubtleBrush}" BorderBrush="{StaticResource BorderSubtleBrush}" Foreground="White"/>
                                     <CheckBox Content="排除敏感文件" HorizontalAlignment="Left" Margin="-8,42,0,0" VerticalAlignment="Top" Checked="CheckBox_Checked_3" IsChecked="True" ToolTip="排除绑定指纹和基带的关键分区"/>
                                 </Grid>
                             </GroupBox>
@@ -6666,7 +6666,7 @@ Background="#FFFAFAFC"
                             Margin="390,101,0,0"
                             Padding="15"
                             BorderThickness="1"
-                            BorderBrush="#FFE0E0E0"
+                            BorderBrush="{StaticResource BorderSubtleBrush}"
                             FontSize="13"
                             FontWeight="Bold"
                             Foreground="#333"
@@ -6707,10 +6707,10 @@ Background="#FFFAFAFC"
                                 </GroupBox.Style>
                                 <Grid>
                                     <TextBlock Text="OPS文件：" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="-8,0,0,0"/>
-                                    <TextBox x:Name="OpsFilePathTextBox" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="51,-4,0,0" BorderBrush="#FFE0E0E0" Width="273"/>
-                                    <Button x:Name="SelectOpsFileButton" Content="选择" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,-4,0,0" Width="85" Click="SelectOpsFileButton_Click" Background="#FFE5E5EA" BorderBrush="{StaticResource BorderSubtleBrush}" Foreground="White"/>
+                                    <TextBox x:Name="OpsFilePathTextBox" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="51,-4,0,0" BorderBrush="{StaticResource BorderSubtleBrush}" Width="273"/>
+                                    <Button x:Name="SelectOpsFileButton" Content="选择" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,-4,0,0" Width="85" Click="SelectOpsFileButton_Click" Background="{StaticResource BorderSubtleBrush}" BorderBrush="{StaticResource BorderSubtleBrush}" Foreground="White"/>
                                     <ProgressBar x:Name="OpsExtractProgressBar" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="-8,32,0,0" Height="18" Minimum="0" Maximum="100" Value="0" Width="332"/>
-                                    <Button x:Name="StartOpsExtractButton" Content="开始解包" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,27,0,0" Width="85" Height="28" Click="StartOpsExtractButton_Click" Background="#FFE5E5EA" BorderBrush="{StaticResource BorderSubtleBrush}" Foreground="White"/>
+                                    <Button x:Name="StartOpsExtractButton" Content="开始解包" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,27,0,0" Width="85" Height="28" Click="StartOpsExtractButton_Click" Background="{StaticResource BorderSubtleBrush}" BorderBrush="{StaticResource BorderSubtleBrush}" Foreground="White"/>
                                 </Grid>
                             </GroupBox>
                             <GroupBox
@@ -6718,7 +6718,7 @@ Background="#FFFAFAFC"
                             Margin="0,214,0,0"
                             Padding="15"
                             BorderThickness="1"
-                            BorderBrush="#FFE0E0E0"
+                            BorderBrush="{StaticResource BorderSubtleBrush}"
                             FontSize="13"
                             FontWeight="Bold"
                             Foreground="#333"
@@ -6761,8 +6761,8 @@ Background="#FFFAFAFC"
                                 </GroupBox.Style>
                                 <Grid>
                                     <TextBlock HorizontalAlignment="Left" Margin="-8,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run Text="解包后的文件夹"/><Run Language="zh-cn" Text="："/></TextBlock>
-                                    <TextBox x:Name="UnpackedFolderTextBox" HorizontalAlignment="Left" Margin="90,-4,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="154" BorderBrush="#FFE0E0E0"/>
-                                    <Button x:Name="SelectUnpackedFolderButton" HorizontalAlignment="Left" Margin="253,-4,0,0" VerticalAlignment="Top" Width="85" Click="SelectUnpackedFolderButton_Click" BorderBrush="{StaticResource BorderSubtleBrush}" Background="#FFE5E5EA" Foreground="White">
+                                    <TextBox x:Name="UnpackedFolderTextBox" HorizontalAlignment="Left" Margin="90,-4,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="154" BorderBrush="{StaticResource BorderSubtleBrush}"/>
+                                    <Button x:Name="SelectUnpackedFolderButton" HorizontalAlignment="Left" Margin="253,-4,0,0" VerticalAlignment="Top" Width="85" Click="SelectUnpackedFolderButton_Click" BorderBrush="{StaticResource BorderSubtleBrush}" Background="{StaticResource BorderSubtleBrush}" Foreground="White">
                                         <Button.Content>
                                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                                                 <svg:SvgViewbox Source="images/wenjianjia.svg" Width="16" Height="16" Margin="0,0,6,0"/>
@@ -6770,7 +6770,7 @@ Background="#FFFAFAFC"
                                             </StackPanel>
                                         </Button.Content>
                                     </Button>
-                                    <Button x:Name="StartConvertFlashButton" Content="开始线刷" HorizontalAlignment="Left" Margin="253,41,0,0" VerticalAlignment="Top" Width="85" Click="StartConvertFlashButton_Click" BorderBrush="{StaticResource BorderSubtleBrush}" Background="#FFE5E5EA" Foreground="White"/>
+                                    <Button x:Name="StartConvertFlashButton" Content="开始线刷" HorizontalAlignment="Left" Margin="253,41,0,0" VerticalAlignment="Top" Width="85" Click="StartConvertFlashButton_Click" BorderBrush="{StaticResource BorderSubtleBrush}" Background="{StaticResource BorderSubtleBrush}" Foreground="White"/>
                                     <TextBlock HorizontalAlignment="Left" Margin="0,57,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="Gray" FontSize="10" RenderTransformOrigin="1.65,1.333" Width="174"><Run Text="未"/><Run Text="解包请"/><Run Text="先"/><Run Text="切换"/><Run Text="到欧加"/><Run Text="线刷"/><Run Text="区域"/><Run Language="zh-cn" Text="解包"/></TextBlock>
                                     <CheckBox Content="清除数据" HorizontalAlignment="Left" Margin="-5,38,0,0" Checked="CheckBox_Checked_4" VerticalAlignment="Top"/>
                                     <CheckBox Content="自动重启" HorizontalAlignment="Left" Margin="79,39,0,0" VerticalAlignment="Top"/>
@@ -6781,7 +6781,7 @@ Background="#FFFAFAFC"
                             Margin="390,214,0,0"
                             Padding="15"
                             BorderThickness="1"
-                            BorderBrush="#FFE0E0E0"
+                            BorderBrush="{StaticResource BorderSubtleBrush}"
                             FontSize="13"
                             FontWeight="Bold"
                             Foreground="#333"
@@ -6837,7 +6837,7 @@ Background="#FFFAFAFC"
                                     x:Name="OfpSuperSegmentsTextBox"
                                     Height="28"
                                     IsReadOnly="True"
-                                    BorderBrush="#FFE0E0E0"
+                                    BorderBrush="{StaticResource BorderSubtleBrush}"
                                     VerticalContentAlignment="Center"
                                     ToolTip="{Binding Text, RelativeSource={RelativeSource Self}}" Grid.ColumnSpan="2" Margin="59,21,0,21"/>
                                     <Button
@@ -6845,7 +6845,7 @@ Background="#FFFAFAFC"
                                     Grid.Column="3"
                                     Content="选择"
                                     Click="SelectOfpSuperPartsFolderButton_Click"
-                                    Background="#FFE5E5EA"
+                                    Background="{StaticResource BorderSubtleBrush}"
                                     BorderBrush="{StaticResource BorderSubtleBrush}"
                                     Foreground="White" Width="85"/>
                                     <Button
@@ -6853,7 +6853,7 @@ Background="#FFFAFAFC"
                                     Grid.Column="5"
                                     Content="开始合并"
                                     Click="StartMergeOfpSuperButton_Click"
-                                    Background="#FFE5E5EA"
+                                    Background="{StaticResource BorderSubtleBrush}"
                                     BorderBrush="{StaticResource BorderSubtleBrush}"
                                     Foreground="White" Width="85"/>
                                 </Grid>
@@ -6863,7 +6863,7 @@ Background="#FFFAFAFC"
                             Margin="1,327,0,0"
                             Padding="15"
                             BorderThickness="1"
-                            BorderBrush="#FFE0E0E0"
+                            BorderBrush="{StaticResource BorderSubtleBrush}"
                             FontSize="13"
                             FontWeight="Bold"
                             Foreground="#333"
@@ -6903,9 +6903,9 @@ Background="#FFFAFAFC"
                                         </Setter>
                                     </Style>
                                 </GroupBox.Style>
-                                <Button Content="读分区表" HorizontalAlignment="Left" Margin="86,36,0,0" VerticalAlignment="Top" Click="Button_Click_1" Width="85" Foreground="White" BorderBrush="{StaticResource BorderSubtleBrush}" Background="#FFE5E5EA"/>
+                                <Button Content="读分区表" HorizontalAlignment="Left" Margin="86,36,0,0" VerticalAlignment="Top" Click="Button_Click_1" Width="85" Foreground="White" BorderBrush="{StaticResource BorderSubtleBrush}" Background="{StaticResource BorderSubtleBrush}"/>
                             </GroupBox>
-                            <RichTextBox x:Name="SuperPackLogRichTextBox" Margin="390,327,0,10" TextChanged="RichTextBox_TextChanged" CaretBrush="White" BorderBrush="#FFE0E0E0">
+                            <RichTextBox x:Name="SuperPackLogRichTextBox" Margin="390,327,0,10" TextChanged="RichTextBox_TextChanged" CaretBrush="White" BorderBrush="{StaticResource BorderSubtleBrush}">
                                 <FlowDocument>
                                     <Paragraph>
 
@@ -6913,16 +6913,16 @@ Background="#FFFAFAFC"
                                 </FlowDocument>
                             </RichTextBox>
                             <TextBlock HorizontalAlignment="Left" Margin="8,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center"><Run Language="zh-cn" Text="提取或写入"/><Run Text="的分区："/></TextBlock>
-                            <ComboBox x:Name="ReadPartitionComboBox" HorizontalAlignment="Left" Margin="113,0,0,0" VerticalAlignment="Center" Width="239" IsEditable="True" IsReadOnly="True" Text="等待用户读取分区表..." BorderBrush="#FFE0E0E0"/>
-                            <Button Content="回读分区" HorizontalAlignment="Left" Margin="282,378,0,0" VerticalAlignment="Top" Width="85" Click="ReadOutPartitionButton_Click_New" BorderBrush="{StaticResource BorderSubtleBrush}" Background="#FFE5E5EA" Foreground="White"/>
-                            <Button Content="推送卡刷包" HorizontalAlignment="Left" Margin="10,378,0,0" VerticalAlignment="Top" Width="85" Click="PushZipToSdcardButton_Click" BorderBrush="{StaticResource BorderSubtleBrush}" Background="#FFE5E5EA" Foreground="White"/>
-                            <Button Content="写入分区" HorizontalAlignment="Left" Margin="192,378,0,0" VerticalAlignment="Top" Width="85" Click="WriteSelectedPartitionButton_Click" Background="#FFE5E5EA" BorderBrush="{StaticResource BorderSubtleBrush}" Foreground="White"/>
+                            <ComboBox x:Name="ReadPartitionComboBox" HorizontalAlignment="Left" Margin="113,0,0,0" VerticalAlignment="Center" Width="239" IsEditable="True" IsReadOnly="True" Text="等待用户读取分区表..." BorderBrush="{StaticResource BorderSubtleBrush}"/>
+                            <Button Content="回读分区" HorizontalAlignment="Left" Margin="282,378,0,0" VerticalAlignment="Top" Width="85" Click="ReadOutPartitionButton_Click_New" BorderBrush="{StaticResource BorderSubtleBrush}" Background="{StaticResource BorderSubtleBrush}" Foreground="White"/>
+                            <Button Content="推送卡刷包" HorizontalAlignment="Left" Margin="10,378,0,0" VerticalAlignment="Top" Width="85" Click="PushZipToSdcardButton_Click" BorderBrush="{StaticResource BorderSubtleBrush}" Background="{StaticResource BorderSubtleBrush}" Foreground="White"/>
+                            <Button Content="写入分区" HorizontalAlignment="Left" Margin="192,378,0,0" VerticalAlignment="Top" Width="85" Click="WriteSelectedPartitionButton_Click" Background="{StaticResource BorderSubtleBrush}" BorderBrush="{StaticResource BorderSubtleBrush}" Foreground="White"/>
                             <GroupBox
                             Background="#FFFFFF"
                             Margin="0,432,0,0"
                             Padding="15"
                             BorderThickness="1"
-                            BorderBrush="#FFE0E0E0"
+                            BorderBrush="{StaticResource BorderSubtleBrush}"
                             FontSize="13"
                             FontWeight="Bold"
                             Foreground="#333"
@@ -6964,7 +6964,7 @@ Background="#FFFAFAFC"
                                 </GroupBox.Style>
                                 <Grid>
                                     <TextBlock HorizontalAlignment="Left" Margin="0,5,0,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run Language="zh-cn" Text="项目号"/><Run Text=":"/></TextBlock>
-                                    <TextBox x:Name="OcdtProjIdTextBox" HorizontalAlignment="Left" Margin="48,0,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="290" BorderBrush="#FFE0E0E0" ToolTip="例如：23803"/>
+                                    <TextBox x:Name="OcdtProjIdTextBox" HorizontalAlignment="Left" Margin="48,0,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="290" BorderBrush="{StaticResource BorderSubtleBrush}" ToolTip="例如：23803"/>
 
                                     <TextBlock HorizontalAlignment="Left" Margin="13,39,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="平台:"/>
                                     <ComboBox x:Name="OcdtSizeComboBox" HorizontalAlignment="Left" Margin="48,34,0,0" VerticalAlignment="Top" Width="126" SelectedIndex="1">
@@ -6979,7 +6979,7 @@ Background="#FFFAFAFC"
                                         <ComboBoxItem Content="geyixue_fill"/>
                                     </ComboBox>
 
-                                    <Button x:Name="GenerateOcdtButton" Content="生成 OCDT" HorizontalAlignment="Left" Margin="0,73,0,0" VerticalAlignment="Top" Width="338" Height="30" Click="GenerateOcdtButton_Click" Background="#FFE5E5EA" BorderBrush="{StaticResource BorderSubtleBrush}" Foreground="White"/>
+                                    <Button x:Name="GenerateOcdtButton" Content="生成 OCDT" HorizontalAlignment="Left" Margin="0,73,0,0" VerticalAlignment="Top" Width="338" Height="30" Click="GenerateOcdtButton_Click" Background="{StaticResource BorderSubtleBrush}" BorderBrush="{StaticResource BorderSubtleBrush}" Foreground="White"/>
 
                                     <TextBlock HorizontalAlignment="Left" Margin="0,113,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="338" FontSize="11" Foreground="#FF666666" LineHeight="16"><Run Text="只需要选择你对应的处理器和项目和然后点击生成即可"/><Run Text="！"/><LineBreak/><Run/><Run Text="项目号如何获取？只需下载一个线刷包（售后包）并解压，然后找到线刷包中的version_info.txt文件，然后打开找到project=‘项目号’"/><Run Text="，将"/><Run Language="zh-cn" Text="项目号填入到此处点击生成."/></TextBlock>
                                 </Grid>
@@ -7016,7 +7016,7 @@ Background="#FFFAFAFC"
                                 <RowDefinition Height="*"/>
                                 <RowDefinition Height="Auto"/>
                             </Grid.RowDefinitions>
-<GroupBox Style="{StaticResource PayloadGroupBoxStyle}" FontSize="12" BorderBrush="#FFE0E0E0" Grid.Row="0" Grid.Column="0" Margin="0,0,10,10">
+<GroupBox Style="{StaticResource PayloadGroupBoxStyle}" FontSize="12" BorderBrush="{StaticResource BorderSubtleBrush}" Grid.Row="0" Grid.Column="0" Margin="0,0,10,10">
 <GroupBox.Header><StackPanel Orientation="Horizontal" Background="Transparent"><svg:SvgViewbox Source="images/wenjianjia.svg" Width="15" Height="15" Margin="0,0,7,0" VerticalAlignment="Center"/><TextBlock Text="选择" VerticalAlignment="Center"/></StackPanel></GroupBox.Header>
 
                                 <Grid Margin="0,0,-15,0">
@@ -7059,7 +7059,7 @@ Background="#FFFAFAFC"
                                 </Grid>
                             
                             </GroupBox>
-<GroupBox Style="{StaticResource PayloadGroupBoxStyle}" FontSize="12" BorderBrush="#FFE0E0E0" Grid.Row="0" Grid.RowSpan="2" Grid.Column="2" Margin="0,0,0,10">
+<GroupBox Style="{StaticResource PayloadGroupBoxStyle}" FontSize="12" BorderBrush="{StaticResource BorderSubtleBrush}" Grid.Row="0" Grid.RowSpan="2" Grid.Column="2" Margin="0,0,0,10">
 <GroupBox.Header><StackPanel Orientation="Horizontal" Background="Transparent"><svg:SvgViewbox Source="images/wendang.svg" Width="15" Height="15" Margin="0,0,7,0" VerticalAlignment="Center"/><TextBlock Text="日志" VerticalAlignment="Center"/></StackPanel></GroupBox.Header>
 
                                     <RichTextBox Name="LogTextBox" IsReadOnly="True" VerticalScrollBarVisibility="Auto"
@@ -7067,7 +7067,7 @@ Background="#FFFAFAFC"
                                              Background="White" BorderThickness="0" FontSize="12" Foreground="{StaticResource TextStrongBrush}"/>
                                 
                             </GroupBox>
-<GroupBox Style="{StaticResource PayloadGroupBoxStyle}" FontSize="12" BorderBrush="#FFE0E0E0" Grid.Row="1" Grid.Column="0" Margin="0,0,10,10">
+<GroupBox Style="{StaticResource PayloadGroupBoxStyle}" FontSize="12" BorderBrush="{StaticResource BorderSubtleBrush}" Grid.Row="1" Grid.Column="0" Margin="0,0,10,10">
 <GroupBox.Header><StackPanel Orientation="Horizontal" Background="Transparent"><svg:SvgViewbox Source="images/xinpianshuju.svg" Width="15" Height="15" Margin="0,0,7,0" VerticalAlignment="Center"/><TextBlock Text="分区表" VerticalAlignment="Center"/></StackPanel></GroupBox.Header>
 
                                     <Grid>
@@ -7077,7 +7077,7 @@ Background="#FFFAFAFC"
                                         </Grid.RowDefinitions>
 
                                         <TextBox Grid.Row="0" Height="30" VerticalContentAlignment="Center" Name="SearchTextBox"
-                                             TextChanged="SearchTextBox_TextChanged" BorderBrush="#FFE0E0E0" />
+                                             TextChanged="SearchTextBox_TextChanged" BorderBrush="{StaticResource BorderSubtleBrush}" />
 
                                         <DataGrid Grid.Row="1" Margin="0,10,0,0" Name="PartitionsDataGrid"
                                               AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="False"
@@ -7176,7 +7176,7 @@ Background="#FFFAFAFC"
                                                                         <Border.Background>
                                                                             <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
                                                                                 <GradientStop Offset="0" Color="{StaticResource Gray900}"/>
-                                                                                <GradientStop Offset="1" Color="#1D1D1F"/>
+                                                                                <GradientStop Offset="1" Color="{StaticResource Gray900}"/>
                                                                             </LinearGradientBrush>
                                                                         </Border.Background>
                                                                     </Border>
@@ -7212,7 +7212,7 @@ Background="#FFFAFAFC"
                             </Grid>
 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Row="2" Grid.Column="2" VerticalAlignment="Center">
 
-                                    <Button Name="ReadInfoButton" Width="90" Height="32" Margin="0,0,10,0" Content="读取信息" Click="ReadInfoButton_Click" Background="#D1D1D6" Foreground="White"/>
+                                    <Button Name="ReadInfoButton" Width="90" Height="32" Margin="0,0,10,0" Content="读取信息" Click="ReadInfoButton_Click" Background="{StaticResource BorderBrush}" Foreground="White"/>
                                     <Button Name="ExportButton" Width="89" Height="32" Margin="0,0,10,0" Content="提取镜像" Click="ExportButton_Click" Background="#1D1D1F" Foreground="White"/>
                                     <Button Name="StopOperationButton" Width="75" Height="32" Content="停止操作" Click="PayloadStopOperationButton_Click" Background="#1D1D1F" Foreground="White"/>
                                 
@@ -7443,7 +7443,7 @@ Background="#FFFAFAFC"
                                                 Style="{StaticResource PagePrimaryButton}"
                                                 MinWidth="156"
                                                 Content="开始下载"
-                                                Click="RomDownloadStartButton_Click" Background="{StaticResource BrandPrimaryBrush}" BorderBrush="#FFE6E6E6"/>
+                                                Click="RomDownloadStartButton_Click" Background="{StaticResource BrandPrimaryBrush}" BorderBrush="{StaticResource BorderSubtleBrush}"/>
                                     </Grid>
 
                                     <Grid Grid.Row="3"
@@ -7456,8 +7456,8 @@ Background="#FFFAFAFC"
                                                      Maximum="100"
                                                      Value="0"
                                                      Tag="镜像下载进度"
-                                                     Background="#FFF3F3F3"
-                                                     BorderBrush="#FFE0E0E0"
+                                                     Background="{StaticResource SurfaceTintBrush}"
+                                                     BorderBrush="{StaticResource BorderSubtleBrush}"
                                                      BorderThickness="1">
                                             <ProgressBar.Style>
                                                 <Style TargetType="{x:Type ProgressBar}">
@@ -7479,7 +7479,7 @@ Background="#FFFAFAFC"
                                                                             <Border.Background>
                                                                                 <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
                                                                                     <GradientStop Offset="0" Color="{StaticResource Gray900}"/>
-                                                                                    <GradientStop Offset="1" Color="#1D1D1F"/>
+                                                                                    <GradientStop Offset="1" Color="{StaticResource Gray900}"/>
                                                                                 </LinearGradientBrush>
                                                                             </Border.Background>
                                                                         </Border>
@@ -7700,8 +7700,8 @@ Background="#FFFAFAFC"
                                              IsDocumentEnabled="True"
                                              VerticalScrollBarVisibility="Auto"
                                              HorizontalScrollBarVisibility="Disabled"
-                                             Background="#FFFAFBFC"
-                                             BorderBrush="#FFE8E8E8"
+                                             Background="{StaticResource SurfaceTintBrush}"
+                                             BorderBrush="{StaticResource BorderSubtleBrush}"
                                              BorderThickness="1"
                                              FontSize="12"
                                              Padding="12"
@@ -7718,7 +7718,7 @@ Background="#FFFAFAFC"
                         <Grid
                         Name="EdlFlashView"
                         Visibility="Collapsed"
-                        Background="#FFF5F5F7">
+                        Background="{StaticResource SurfaceTintBrush}">
                         <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
                             <StackPanel Margin="24,20,24,18">
                                 <!-- 标题 -->
@@ -7781,7 +7781,7 @@ Background="#FFFAFAFC"
                                                     <Button x:Name="EdlRomBrowse" Grid.Column="2" Content="选择" Style="{StaticResource PageSecondaryButton}" Height="34" Click="EdlRomBrowse_Click"/>
                                                 </Grid>
                                                 <TextBlock Text="rawprogram XML 文件：" FontSize="12" Foreground="{StaticResource TextMutedBrush}" Margin="0,12,0,0"/>
-                                                <ListBox x:Name="EdlXmlList" Height="92" Margin="0,6,0,0" Background="#FFFBFCFE" BorderBrush="#FFE8E8E8" BorderThickness="1" ScrollViewer.VerticalScrollBarVisibility="Auto"/>
+                                                <ListBox x:Name="EdlXmlList" Height="92" Margin="0,6,0,0" Background="{StaticResource SurfaceTintBrush}" BorderBrush="{StaticResource BorderSubtleBrush}" BorderThickness="1" ScrollViewer.VerticalScrollBarVisibility="Auto"/>
                                                 <Grid Margin="0,8,0,0">
                                                     <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="8"/><ColumnDefinition Width="*"/><ColumnDefinition Width="8"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
                                                     <Button x:Name="EdlLoadButton" Grid.Column="0" Content="加载" Style="{StaticResource PagePrimaryButton}" Height="34" Click="EdlLoad_Click"/>
@@ -7826,8 +7826,8 @@ Background="#FFFAFAFC"
                                                           RowStyle="{StaticResource EdlDgRowStyle}"
                                                           CellStyle="{StaticResource EdlDgCellStyle}"
                                                           Background="#FFFFFFFF"
-                                                          AlternatingRowBackground="#FFFAFBFD"
-                                                          BorderBrush="#FFE8E8E8"
+                                                          AlternatingRowBackground="{StaticResource SurfaceTintBrush}"
+                                                          BorderBrush="{StaticResource BorderSubtleBrush}"
                                                           BorderThickness="1"
                                                           MouseDoubleClick="EdlPartitionGrid_MouseDoubleClick"
                                                           SelectionChanged="EdlPartitionGrid_SelectionChanged">
@@ -7877,7 +7877,7 @@ Background="#FFFAFAFC"
                                             <TextBlock Style="{StaticResource PageTitle}" Text="日志"/>
                                             <Button x:Name="EdlClearLogButton" Content="清空" Style="{StaticResource PageSecondaryButton}" Height="28" Margin="14,0,0,0" Click="EdlClearLog_Click"/>
                                         </StackPanel>
-                                        <TextBox x:Name="EdlLogTextBox" Height="130" IsReadOnly="True" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" FontFamily="Consolas" FontSize="12" Background="#FFFBFCFE" BorderBrush="#FFE8E8E8" BorderThickness="1" Padding="8"/>
+                                        <TextBox x:Name="EdlLogTextBox" Height="130" IsReadOnly="True" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" FontFamily="Consolas" FontSize="12" Background="{StaticResource SurfaceTintBrush}" BorderBrush="{StaticResource BorderSubtleBrush}" BorderThickness="1" Padding="8"/>
                                     </StackPanel>
                                 </Border>
 
@@ -7893,7 +7893,7 @@ Background="#FFFAFAFC"
                         <Grid
                         Name="ColorOSAssistantView"
                         Visibility="Collapsed"
-                        Background="#FFF5F5F7">
+                        Background="{StaticResource SurfaceTintBrush}">
 <!-- MONO_PAGE_MARKER_ColorOSAssistantView -->
     <Grid.Resources>
                                 <Style x:Key="ColorOSCardStyle" TargetType="Border">
@@ -8042,7 +8042,7 @@ Background="#FFFAFAFC"
                                                             <Border.Background>
                                                                 <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
                                                                     <GradientStop Offset="0" Color="{StaticResource Gray900}"/>
-                                                                    <GradientStop Offset="1" Color="#1D1D1F"/>
+                                                                    <GradientStop Offset="1" Color="{StaticResource Gray900}"/>
                                                                 </LinearGradientBrush>
                                                             </Border.Background>
                                                         </Border>
@@ -8102,7 +8102,7 @@ Background="#FFFAFAFC"
                                                 <TextBlock Style="{StaticResource PageLabel}">
                                                     <Run Text="降级包保存目录"/>
                                                     <Run FontWeight="Normal"
-                                                         Foreground="#AEAEB2"
+                                                         Foreground="{StaticResource TextTertiaryBrush}"
                                                          Text="（默认当前用户桌面）"/>
                                                 </TextBlock>
                                                 <Grid>
@@ -8120,7 +8120,7 @@ Background="#FFFAFAFC"
                                                             Style="{StaticResource PagePrimaryButton}"
                                                             Width="84"
                                                             Click="BtnBrowseDir_Click"
-                                                            BorderBrush="#FFE6E6E6"
+                                                            BorderBrush="{StaticResource BorderSubtleBrush}"
                                                             Background="{StaticResource BrandPrimaryBrush}"
                                                             VerticalAlignment="Center">
                                                         <StackPanel Orientation="Horizontal"
@@ -8137,7 +8137,7 @@ Background="#FFFAFAFC"
                                                 <TextBlock Style="{StaticResource PageLabel}">
                                                     <Run Text="本地降级包"/>
                                                     <Run FontWeight="Normal"
-                                                         Foreground="#AEAEB2"
+                                                         Foreground="{StaticResource TextTertiaryBrush}"
                                                          Text="（可选）"/>
                                                 </TextBlock>
                                                 <Grid>
@@ -8155,7 +8155,7 @@ Background="#FFFAFAFC"
                                                             Style="{StaticResource PagePrimaryButton}"
                                                             Width="84"
                                                             Click="BtnBrowseFile_Click"
-                                                            BorderBrush="#FFE6E6E6"
+                                                            BorderBrush="{StaticResource BorderSubtleBrush}"
                                                             Background="{StaticResource BrandPrimaryBrush}"
                                                             VerticalAlignment="Center">
                                                         <StackPanel Orientation="Horizontal"
@@ -8172,7 +8172,7 @@ Background="#FFFAFAFC"
                                                 <TextBlock Style="{StaticResource PageLabel}">
                                                     <Run Text="降级助手 APK"/>
                                                     <Run FontWeight="Normal"
-                                                         Foreground="#AEAEB2"
+                                                         Foreground="{StaticResource TextTertiaryBrush}"
                                                          Text="（可选，查询前自动安装）"/>
                                                 </TextBlock>
                                                 <Grid>
@@ -8190,7 +8190,7 @@ Background="#FFFAFAFC"
                                                             Click="BtnBrowseAssistantApk_Click"
                                                             Style="{StaticResource PagePrimaryButton}"
                                                             Width="84"
-                                                            BorderBrush="#FFE6E6E6"
+                                                            BorderBrush="{StaticResource BorderSubtleBrush}"
                                                             Background="{StaticResource BrandPrimaryBrush}"
                                                             VerticalAlignment="Center">
                                                         <StackPanel Orientation="Horizontal"
@@ -8276,10 +8276,10 @@ Background="#FFFAFAFC"
                                                       HeadersVisibility="Column"
                                                       GridLinesVisibility="Horizontal"
                                                       ColumnHeaderStyle="{StaticResource ColorOSColumnHeaderStyle}"
-                                                      AlternatingRowBackground="#FFFAFBFD"
+                                                      AlternatingRowBackground="{StaticResource SurfaceTintBrush}"
                                                       Background="#FFFFFFFF"
                                                       BorderThickness="1"
-                                                      BorderBrush="#FFE6E6E6"
+                                                      BorderBrush="{StaticResource BorderSubtleBrush}"
                                                       RowHeight="32"
                                                       ColumnHeaderHeight="32" VirtualizingStackPanel.IsVirtualizing="True" VirtualizingStackPanel.VirtualizationMode="Recycling" ScrollViewer.CanContentScroll="True">
                                                 <DataGrid.Resources>
@@ -8365,10 +8365,10 @@ Background="#FFFAFAFC"
                                               Style="{StaticResource ColorOSLogGroupBoxStyle}"
                                               Margin="0">
 <GroupBox.Header><StackPanel Orientation="Horizontal" Background="Transparent"><svg:SvgViewbox Source="images/wendang.svg" Width="15" Height="15" Margin="0,0,7,0" VerticalAlignment="Center"/><TextBlock Text="执行日志" VerticalAlignment="Center"/></StackPanel></GroupBox.Header>
-                                        <Grid Background="#FFFAFBFD">
+                                        <Grid Background="{StaticResource SurfaceTintBrush}">
                                             <RichTextBox x:Name="LogBox"
                                                          IsReadOnly="True"
-                                                         Background="#FFFAFBFD"
+                                                         Background="{StaticResource SurfaceTintBrush}"
                                                          BorderThickness="0"
                                                          Padding="7,7"
                                                          HorizontalContentAlignment="Stretch"
@@ -8499,7 +8499,7 @@ Background="#FFFAFAFC"
                         <Grid
                         Name="VioletDownloadView"
                         Visibility="Collapsed"
-                        Background="#FFFAFAFA">
+                        Background="{StaticResource SurfaceTintBrush}">
                             <Grid.Resources>
                                 <Style x:Key="VioletCardStyle" TargetType="Border">
                                     <Setter Property="Background" Value="#FFFFFFFF"/>
@@ -8693,7 +8693,7 @@ Background="#FFFAFAFC"
                                                                         </ColorAnimation.EasingFunction>
                                                                     </ColorAnimation>
                                                                     <ColorAnimation Storyboard.TargetProperty="BorderBrush.Color"
-                                                                                    To="#FF1D1D1F" Duration="0:0:0.12">
+                                                                                    To="{StaticResource Gray900}" Duration="0:0:0.12">
                                                                         <ColorAnimation.EasingFunction>
                                                                             <CubicEase EasingMode="EaseOut"/>
                                                                         </ColorAnimation.EasingFunction>
@@ -8884,13 +8884,13 @@ Background="#FFFAFAFC"
                                                                                           HorizontalAlignment="Left"
                                                                                           Content="{TemplateBinding Content}"/>
                                                                         <Border Grid.Column="1"
-                                                                                Background="#FFF5F5F7"
-                                                                                BorderBrush="#FFEBEBEB"
+                                                                                Background="{StaticResource SurfaceTintBrush}"
+                                                                                BorderBrush="{StaticResource BorderSubtleBrush}"
                                                                                 BorderThickness="1,0,0,0"
                                                                                 CornerRadius="0,10,10,0">
                                                                             <Path HorizontalAlignment="Center"
                                                                                   VerticalAlignment="Center"
-                                                                                  Fill="#8E8E93"
+                                                                                  Fill="{StaticResource TextMutedBrush}"
                                                                                   Data="M 0 0 L 4 4 L 8 0 Z"/>
                                                                         </Border>
                                                                     </Grid>
@@ -8902,7 +8902,7 @@ Background="#FFFAFAFC"
                                                                                 <Storyboard>
                                                                                     <ColorAnimation Storyboard.TargetName="Border"
                                                                                                     Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)"
-                                                                                                    To="#FF1D1D1F" Duration="0:0:0.12">
+                                                                                                    To="{StaticResource Gray900}" Duration="0:0:0.12">
                                                                                         <ColorAnimation.EasingFunction>
                                                                                             <CubicEase EasingMode="EaseOut"/>
                                                                                         </ColorAnimation.EasingFunction>
@@ -8947,7 +8947,7 @@ Background="#FFFAFAFC"
                                                            PopupAnimation="Slide">
                                                         <Grid MinWidth="{TemplateBinding ActualWidth}" MaxHeight="{TemplateBinding MaxDropDownHeight}">
                                                             <Border Background="White"
-                                                                    BorderBrush="#E8E8ED"
+                                                                    BorderBrush="{StaticResource BorderSubtleBrush}"
                                                                     BorderThickness="1"
                                                                     CornerRadius="10"
                                                                     Margin="0,6,0,0">
@@ -9105,15 +9105,15 @@ Background="#FFFAFAFC"
                                                         </ComboBox>
                                                     </StackPanel>
                                                     <Border Grid.Column="2"
-                                                            Background="#FFFAFAFA"
-                                                            BorderBrush="#FFEBEBEB"
+                                                            Background="{StaticResource SurfaceTintBrush}"
+                                                            BorderBrush="{StaticResource BorderSubtleBrush}"
                                                             BorderThickness="1"
                                                             CornerRadius="10"
                                                             Padding="12,8" Margin="0,4,0,0">
                                                         <StackPanel>
                                                             <TextBlock FontSize="13" FontWeight="SemiBold" Foreground="{StaticResource TextMutedBrush}" Text="使用建议"/>
                                                             <TextBlock Margin="0,3,0,0"
-                                                                       Foreground="#8E8E93"
+                                                                       Foreground="{StaticResource TextMutedBrush}"
                                                                        FontSize="12"
                                                                        TextWrapping="Wrap"
                                                                        Text="普通下载建议先用 8 或 16 线程；如果链接不稳定，可先降低线程数后再尝试继续下载。"/>
@@ -9184,7 +9184,7 @@ Background="#FFFAFAFC"
                                                     <Button x:Name="VioletDownloadResumeButton"
                                                             Click="VioletDownloadResumeButton_Click"
                                                             Style="{StaticResource PagePrimaryButton}"
-                                                            Margin="8,0,0,0" Foreground="White" Background="#E8E8ED" BorderBrush="#E8E8ED">
+                                                            Margin="8,0,0,0" Foreground="White" Background="{StaticResource BorderSubtleBrush}" BorderBrush="{StaticResource BorderSubtleBrush}">
                                                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                                                             <Grid Width="14" Height="14" Margin="0,0,5,0">
                                                                 <svg:SvgViewbox Source="images/kaishi1.svg" Width="14" Height="14">
@@ -9296,7 +9296,7 @@ Background="#FFFAFAFC"
                                                                                 <Border.Background>
                                                                                     <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
                                                                                         <GradientStop Offset="0" Color="{StaticResource Gray900}" />
-                                                                                        <GradientStop Offset="1" Color="#1D1D1F" />
+                                                                                        <GradientStop Offset="1" Color="{StaticResource Gray900}" />
                                                                                     </LinearGradientBrush>
                                                                                 </Border.Background>
                                                                             </Border>
@@ -9368,7 +9368,7 @@ Background="#FFFAFAFC"
                         <SolidColorBrush Color="#FFFFFFFF"/>
                     </Border.Background>
                     <Border.BorderBrush>
-                        <SolidColorBrush Color="#FFE5E5EA"/>
+                        <SolidColorBrush Color="{StaticResource Gray100}"/>
                     </Border.BorderBrush>
                     <Border.BorderThickness>0,0,0,1</Border.BorderThickness>
                     <Grid>
@@ -9421,7 +9421,7 @@ Background="#FFFAFAFC"
                                                                     <Storyboard>
                                                                         <ColorAnimation Storyboard.TargetName="bd"
                                                                                         Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
-                                                                                        To="#FFE8F0FF" Duration="0:0:0.12">
+                                                                                        To="{StaticResource Violet50}" Duration="0:0:0.12">
                                                                             <ColorAnimation.EasingFunction><CubicEase EasingMode="EaseOut"/></ColorAnimation.EasingFunction>
                                                                         </ColorAnimation>
                                                                     </Storyboard>
@@ -9445,7 +9445,7 @@ Background="#FFFAFAFC"
                                                                     <Storyboard>
                                                                         <ColorAnimation Storyboard.TargetName="bd"
                                                                                         Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
-                                                                                        To="#FFE5E5EA" Duration="0:0:0.08"/>
+                                                                                        To="{StaticResource Gray100}" Duration="0:0:0.08"/>
                                                                     </Storyboard>
                                                                 </BeginStoryboard>
                                                             </Trigger.EnterActions>
@@ -9499,7 +9499,7 @@ Background="#FFFAFAFC"
                                                                     <Storyboard>
                                                                         <ColorAnimation Storyboard.TargetName="bd"
                                                                                         Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
-                                                                                        To="#FFE8F0FF" Duration="0:0:0.12">
+                                                                                        To="{StaticResource Violet50}" Duration="0:0:0.12">
                                                                             <ColorAnimation.EasingFunction><CubicEase EasingMode="EaseOut"/></ColorAnimation.EasingFunction>
                                                                         </ColorAnimation>
                                                                     </Storyboard>
@@ -9523,7 +9523,7 @@ Background="#FFFAFAFC"
                                                                     <Storyboard>
                                                                         <ColorAnimation Storyboard.TargetName="bd"
                                                                                         Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
-                                                                                        To="#FFD1E2FF" Duration="0:0:0.08"/>
+                                                                                        To="{StaticResource Violet100}" Duration="0:0:0.08"/>
                                                                     </Storyboard>
                                                                 </BeginStoryboard>
                                                             </Trigger.EnterActions>
@@ -9577,7 +9577,7 @@ Background="#FFFAFAFC"
                                                                     <Storyboard>
                                                                         <ColorAnimation Storyboard.TargetName="bd"
                                                                                         Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
-                                                                                        To="#FFE8F0FF" Duration="0:0:0.12">
+                                                                                        To="{StaticResource Violet50}" Duration="0:0:0.12">
                                                                             <ColorAnimation.EasingFunction><CubicEase EasingMode="EaseOut"/></ColorAnimation.EasingFunction>
                                                                         </ColorAnimation>
                                                                     </Storyboard>
@@ -9601,7 +9601,7 @@ Background="#FFFAFAFC"
                                                                     <Storyboard>
                                                                         <ColorAnimation Storyboard.TargetName="bd"
                                                                                         Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
-                                                                                        To="#FFE5E5EA" Duration="0:0:0.08"/>
+                                                                                        To="{StaticResource Gray100}" Duration="0:0:0.08"/>
                                                                     </Storyboard>
                                                                 </BeginStoryboard>
                                                             </Trigger.EnterActions>
@@ -9635,7 +9635,7 @@ Background="#FFFAFAFC"
                     </Grid.ColumnDefinitions>
                     <Border
 					Margin="8,12,8,12"
-					Background="#FFF5F5F7"
+					Background="{StaticResource SurfaceTintBrush}"
 					CornerRadius="12"
 					CacheMode="BitmapCache"
 					BorderThickness="0">
@@ -9986,7 +9986,7 @@ Background="#FFFAFAFC"
                                                                 <Storyboard>
                                                                     <ColorAnimation Storyboard.TargetName="b"
                                                                                     Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
-                                                                                    To="#FF0066D6" Duration="0:0:0.15">
+                                                                                    To="{StaticResource Violet600}" Duration="0:0:0.15">
                                                                         <ColorAnimation.EasingFunction><CubicEase EasingMode="EaseOut"/></ColorAnimation.EasingFunction>
                                                                     </ColorAnimation>
                                                                 </Storyboard>
@@ -10019,7 +10019,7 @@ Background="#FFFAFAFC"
                                                                 <Storyboard>
                                                                     <ColorAnimation Storyboard.TargetName="b"
                                                                                     Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
-                                                                                    To="#FF0066D6" Duration="0:0:0.14">
+                                                                                    To="{StaticResource Violet600}" Duration="0:0:0.14">
                                                                         <ColorAnimation.EasingFunction><CubicEase EasingMode="EaseOut"/></ColorAnimation.EasingFunction>
                                                                     </ColorAnimation>
                                                                 </Storyboard>
@@ -10056,7 +10056,7 @@ Background="#FFFAFAFC"
                                                                 <Storyboard>
                                                                     <ColorAnimation Storyboard.TargetName="b"
                                                                                     Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
-                                                                                    To="#FFE8F0FF" Duration="0:0:0.15">
+                                                                                    To="{StaticResource Violet50}" Duration="0:0:0.15">
                                                                         <ColorAnimation.EasingFunction><CubicEase EasingMode="EaseOut"/></ColorAnimation.EasingFunction>
                                                                     </ColorAnimation>
                                                                 </Storyboard>
@@ -10080,7 +10080,7 @@ Background="#FFFAFAFC"
                                                                 <Storyboard>
                                                                     <ColorAnimation Storyboard.TargetName="b"
                                                                                     Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
-                                                                                    To="#FFE5E5EA" Duration="0:0:0.08"/>
+                                                                                    To="{StaticResource Gray100}" Duration="0:0:0.08"/>
                                                                 </Storyboard>
                                                             </BeginStoryboard>
                                                         </Trigger.EnterActions>
@@ -10089,7 +10089,7 @@ Background="#FFFAFAFC"
                                                                 <Storyboard>
                                                                     <ColorAnimation Storyboard.TargetName="b"
                                                                                     Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
-                                                                                    To="#FFE8F0FF" Duration="0:0:0.14">
+                                                                                    To="{StaticResource Violet50}" Duration="0:0:0.14">
                                                                         <ColorAnimation.EasingFunction><CubicEase EasingMode="EaseOut"/></ColorAnimation.EasingFunction>
                                                                     </ColorAnimation>
                                                                 </Storyboard>
@@ -10110,7 +10110,7 @@ Background="#FFFAFAFC"
                                                 <Border x:Name="PART_Border"
                                                         Width="44"
                                                         Height="24"
-                                                        Background="#FFD1D1D6"
+                                                        Background="{StaticResource BorderBrush}"
                                                         CornerRadius="12">
                                                     <VisualStateManager.VisualStateGroups>
                                                         <VisualStateGroup x:Name="CheckStates">
@@ -10815,7 +10815,7 @@ Background="#FFFAFAFC"
                                                         Visibility="Collapsed"
                                                         Background="Transparent" VerticalAlignment="Top">
                                                             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                                                                <TextBlock Text="解析中..." FontSize="16" Foreground="#333333" HorizontalAlignment="Center"/>
+                                                                <TextBlock Text="解析中..." FontSize="16" Foreground="{StaticResource TextStrongBrush}" HorizontalAlignment="Center"/>
                                                                 <ProgressBar
                                                                 IsIndeterminate="True"
                                                                 Width="260"
@@ -10831,7 +10831,7 @@ Background="#FFFAFAFC"
                                             </Grid>
                                         </Grid>
                                     </Border>
-                                    <Button HorizontalAlignment="Left" Margin="740,0,0,0" VerticalAlignment="Top" Width="108" Height="35" Background="#FFD1D1D6" BorderBrush="{StaticResource BorderBrush}" Foreground="White" FontSize="14" Click="BackToDriverTileButton_Click">
+                                    <Button HorizontalAlignment="Left" Margin="740,0,0,0" VerticalAlignment="Top" Width="108" Height="35" Background="{StaticResource BorderBrush}" BorderBrush="{StaticResource BorderBrush}" Foreground="White" FontSize="14" Click="BackToDriverTileButton_Click">
                                         <Button.Content>
                                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                                                 <svg:SvgViewbox Source="images/back.svg" Width="16" Height="16" Margin="0,0,6,0"/>

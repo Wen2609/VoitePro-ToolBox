@@ -8091,7 +8091,7 @@ namespace WpfApp1
             string status;
             string connectionType;
             
-            // 不显示"正在检测中"状态，保持界面静默直到检测完成
+            // 不显示DeviceStatusDetecting状态，保持界面静默直到检测完成
             
             try
             {
@@ -8101,7 +8101,7 @@ namespace WpfApp1
                 // 检查工具是否存在
                 if (!File.Exists(adbPath) && !File.Exists(fastbootPath))
                 {
-                    status = "未连接";
+                    status = DeviceStatusDisconnected;
                     connectionType = "--";
                     
                     string windowsVersion = await GetWindowsVersionAsync();
@@ -8136,7 +8136,7 @@ namespace WpfApp1
                 // 如果两种设备都没有连接
                 if (!hasAdbDevice && !hasFastbootDevice)
                 {
-                    status = "未连接";
+                    status = DeviceStatusDisconnected;
                     connectionType = "等待设备连接...";
                     
                     // 清空设备序列号列表
@@ -8371,7 +8371,7 @@ namespace WpfApp1
                                      slotSuffix.Trim() == "_b" ? "B槽位" : "--";
                     string selinuxText = NormalizeSelinuxStatus(selinuxStatus);
                     
-                    status = "已连接";
+                    status = DeviceStatusConnected;
                     connectionType = "系统";
                     
                     string trimmedModel = deviceModel.Trim();
@@ -8462,7 +8462,7 @@ namespace WpfApp1
                     string slotText = currentSlot == "a" ? "A槽位" :
                                      currentSlot == "b" ? "B槽位" : "--";
                     
-                    status = "已连接";
+                    status = DeviceStatusConnected;
                     connectionType = "Fastboot";
                     
                     string windowsVersion = await GetWindowsVersionAsync();
@@ -8567,7 +8567,7 @@ namespace WpfApp1
         private void UpdateDeviceInfoUI(string status, string connectionType, string serial, string model, string code, string androidVersion, string unlockStatus, string abPartition, string selinuxStatus, string kernelVersion, string cpuManufacturer, string cpuCodeName, string windowsVersion)
         {
             // 记录设备在线状态，用于轮询自适应降频
-            _lastDeviceConnected = status != "未连接";
+            _lastDeviceConnected = status != DeviceStatusDisconnected;
             SetLocalizedText((this.FindControlInPages("DeviceStatusText") as System.Windows.Controls.TextBlock), status);
             SetLocalizedText((this.FindControlInPages("ConnectionTypeText") as System.Windows.Controls.TextBlock), connectionType);
             SetTextSafely("DeviceSerialText", serial);
@@ -8586,7 +8586,7 @@ namespace WpfApp1
             // 根据CPU代号更新CPU名称 CpuNameText.Text = GetCpuNameByCode(cpuCodeName);
             
             // 更新版本信息
-            if (status == "已连接" && connectionType == "系统" && !string.IsNullOrEmpty(code) && code != "--")
+            if (status == DeviceStatusConnected && connectionType == "系统" && !string.IsNullOrEmpty(code) && code != "--")
             {
                 _ = UpdateVersionInfoAsync(code, _deviceDetectionVersion);
             }
@@ -8725,6 +8725,19 @@ namespace WpfApp1
             }
         }
         
+        /// 设备连接状态文案（集中定义，避免散落魔法字符串）
+        private const string DeviceStatusDetecting = "正在检测中";
+        private const string DeviceStatusConnected = "已连接";
+        private const string DeviceStatusDisconnected = "未连接";
+        private const string DeviceStatusNotFound = "未检测到设备";
+
+        /// 日志/状态语义色缓存（避免每次构造 SolidColorBrush 的分配，统一 macOS 色系）
+        private static readonly System.Windows.Media.Brush LogGreenBrush = new SolidColorBrush(System.Windows.Media.Color.FromRgb(52, 199, 89));
+        private static readonly System.Windows.Media.Brush LogRedBrush = new SolidColorBrush(System.Windows.Media.Color.FromRgb(255, 59, 48));
+        private static readonly System.Windows.Media.Brush LogOrangeBrush = new SolidColorBrush(System.Windows.Media.Color.FromRgb(255, 149, 0));
+        private static readonly System.Windows.Media.Brush LogInfoBrush = new SolidColorBrush(System.Windows.Media.Color.FromRgb(10, 132, 255));
+        private static readonly System.Windows.Media.Brush LogDefaultBrush = new SolidColorBrush(System.Windows.Media.Color.FromRgb(29, 29, 31));
+
         /// 设置/重置页面文本控件（判空 + 本地化，免去重复查找样板）
         private void ResetTextControl(string name, string text)
         {
@@ -8738,11 +8751,11 @@ namespace WpfApp1
             var tb = this.FindControlInPages("DeviceStatusText") as System.Windows.Controls.TextBlock;
             if (tb == null) return;
             // macOS 语义色：检测中橙 / 已连接绿 / 未连接红
-            System.Windows.Media.Brush brush = status == "正在检测中"
-                ? new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromRgb(255, 149, 0))
-                : status == "已连接"
-                    ? new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromRgb(52, 199, 89))
-                    : new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromRgb(255, 59, 48));
+            System.Windows.Media.Brush brush = status == DeviceStatusDetecting
+                ? LogOrangeBrush
+                : status == DeviceStatusConnected
+                    ? LogGreenBrush
+                    : LogRedBrush;
             tb.Foreground = brush;
         }
 
@@ -8751,7 +8764,7 @@ namespace WpfApp1
             var dot = this.FindControlInPages("BottomConnectionStatusIndicator") as System.Windows.Shapes.Ellipse;
             if (dot == null) return;
 
-            bool isOnline = status == "已连接" &&
+            bool isOnline = status == DeviceStatusConnected &&
                             !string.IsNullOrWhiteSpace(connectionType) &&
                             connectionType != "--";
 
@@ -11018,7 +11031,7 @@ namespace WpfApp1
                 brush = FlashLogRebootBrush;
                 bold = true;
             }
-            else if (message.StartsWith("已连接", StringComparison.OrdinalIgnoreCase))
+            else if (message.StartsWith(DeviceStatusConnected, StringComparison.OrdinalIgnoreCase))
             {
                 brush = FlashLogInfoBrush;
                 bold = true;
@@ -11669,7 +11682,7 @@ namespace WpfApp1
                     {
                         LogToFastbootStyled(
                             ("连接设备...", "Black", false),
-                            ("未检测到设备", "Red", true));
+                            (DeviceStatusNotFound, "Red", true));
                         return;
                     }
 
@@ -14222,36 +14235,26 @@ if (startXiaomiFlashButton != null)
                     // 创建新的Run元素用于添加带颜色的文本
                     var run = new Run($"[{timestamp}] {message}\n");
                     
-                    // 根据消息内容设置颜色
-                    if (message.Contains("安装成功") || message.Contains("安装完成"))
+                    // 根据消息内容设置颜色（macOS 语义色，静态缓存避免重复分配）
+                    if (message.Contains("安装成功") || message.Contains("安装完成") || level == "成功")
                     {
-                        // 绿色显示安装成功和安装完成
-                        run.Foreground = new SolidColorBrush(System.Windows.Media.Color.FromRgb(40, 167, 69)); // #28A745
-                    }
-                    else if (level == "成功")
-                    {
-                        // 绿色显示成功消息
-                        run.Foreground = new SolidColorBrush(System.Windows.Media.Color.FromRgb(40, 167, 69)); // #28A745
+                        run.Foreground = LogGreenBrush;
                     }
                     else if (level == "错误")
                     {
-                        // 红色显示错误消息
-                        run.Foreground = new SolidColorBrush(System.Windows.Media.Color.FromRgb(220, 53, 69)); // #DC3545
+                        run.Foreground = LogRedBrush;
                     }
                     else if (level == "警告")
                     {
-                        // 橙色显示警告消息
-                        run.Foreground = new SolidColorBrush(System.Windows.Media.Color.FromRgb(255, 165, 0)); // #FFA500
+                        run.Foreground = LogOrangeBrush;
                     }
                     else if (level == "信息")
                     {
-                        // 蓝色显示信息消息
-                        run.Foreground = new SolidColorBrush(System.Windows.Media.Color.FromRgb(23, 162, 184)); // #17A2B8
+                        run.Foreground = LogInfoBrush;
                     }
                     else
                     {
-                        // 默认颜色
-                        run.Foreground = new SolidColorBrush(System.Windows.Media.Color.FromRgb(51, 51, 51)); // #333
+                        run.Foreground = LogDefaultBrush;
                     }
                     
                     // 将Run添加到TextBlock的Inlines集合中
@@ -14383,12 +14386,6 @@ if (startXiaomiFlashButton != null)
         {
 
         }
-
-        private void LogBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
 
     }
 
@@ -21924,8 +21921,8 @@ public partial class MainWindow : Window
                     var stText = this.FindControlInPages("DeviceStatusText") as System.Windows.Controls.TextBlock;
                     if (stText != null)
                     {
-                        SetLocalizedText(stText, "未检测到设备");
-                        stText.Foreground = new SolidColorBrush(System.Windows.Media.Color.FromRgb(255, 59, 48)); // macOS 红
+                        SetLocalizedText(stText, DeviceStatusNotFound);
+                        stText.Foreground = LogRedBrush; // macOS 红
                     }
 
                     // 清空设备选择下拉框
@@ -21939,7 +21936,7 @@ public partial class MainWindow : Window
                     ResetTextControl("DeviceCodeText", "--");
                     ResetTextControl("UnlockStatusText", "--");
                     ResetTextControl("BottomConnectionTypeText", "--");
-                    UpdateBottomConnectionStatusIndicator("未连接", "--");
+                    UpdateBottomConnectionStatusIndicator(DeviceStatusDisconnected, "--");
                     
                     // 清空A/B分区信息
                     if ((this.FindControlInPages("ABPartitionText") as System.Windows.Controls.TextBlock) != null)
