@@ -99,6 +99,12 @@ namespace WpfApp1
             "\"description\":\"切换到工具箱的指定功能页面。可用值：主页、投屏、基本刷入、可视刷写、欧加线刷、EDL刷写、降级助手、模块专区、文件传输、脱机修补、应用管理、安卓通用、Payload、Rom专区、备份助手、断点续传、下载专区、关于。\"," +
             "\"parameters\":{\"type\":\"object\",\"properties\":{\"page\":{\"type\":\"string\",\"description\":\"目标页面名称\"}},\"required\":[\"page\"]}}}]";
 
+        // 对话与结果截断上限（集中管理，避免魔法数散落）
+        private const int AiMessageMaxCount = 300;
+        private const int AiToolResultMaxChars = 2000;
+        private const int AiErrorBodyMaxChars = 300;
+        private const int AiTestResultMaxChars = 200;
+
         private const string AiWelcomeText =
             "我是紫罗兰 AI 助手 —— 可执行操作的刷机 Agent。\n\n" +
             "我能帮你：\n" +
@@ -264,7 +270,7 @@ namespace WpfApp1
             {
                 if (_aiMessages == null) return;
                 // 限制消息条数，防止超长对话导致内存与渲染膨胀（虚拟化之外的硬上限）
-                while (_aiMessages.Count >= 300) _aiMessages.RemoveAt(0);
+                while (_aiMessages.Count >= AiMessageMaxCount) _aiMessages.RemoveAt(0);
                 _aiMessages.Add(message);
                 try
                 {
@@ -724,7 +730,7 @@ namespace WpfApp1
                 try
                 {
                     var result = await GetDeviceStatusAsync(ct);
-                    AddAiMessage(new AgentChatMessage { Role = "tool", Text = $"⚙ get_device_status\n{Truncate(result, 2000)}" });
+                    AddAiMessage(new AgentChatMessage { Role = "tool", Text = $"⚙ get_device_status\n{Truncate(result, AiToolResultMaxChars)}" });
                 }
                 catch (Exception ex)
                 {
@@ -855,7 +861,7 @@ namespace WpfApp1
                             {
                                 result = $"Error: {ex.Message}";
                             }
-                            AddAiMessage(new AgentChatMessage { Role = "tool", Text = $"⚙ {tc.Name}\n{Truncate(result, 2000)}" });
+                            AddAiMessage(new AgentChatMessage { Role = "tool", Text = $"⚙ {tc.Name}\n{Truncate(result, AiToolResultMaxChars)}" });
                             apiMsgs.Add(new Dictionary<string, object?>
                             {
                                 ["role"] = "tool",
@@ -978,7 +984,7 @@ namespace WpfApp1
             if (!resp.IsSuccessStatusCode)
             {
                 string errBody = await resp.Content.ReadAsStringAsync(ct);
-                throw new Exception($"API 错误 HTTP {(int)resp.StatusCode}: {Truncate(errBody, 300)}");
+                throw new Exception($"API 错误 HTTP {(int)resp.StatusCode}: {Truncate(errBody, AiErrorBodyMaxChars)}");
             }
             using var stream = await resp.Content.ReadAsStreamAsync(ct);
             using var reader = new StreamReader(stream, Encoding.UTF8);
@@ -1086,7 +1092,7 @@ namespace WpfApp1
             string body = await resp.Content.ReadAsStringAsync(ct);
             if (!resp.IsSuccessStatusCode)
             {
-                throw new Exception($"API 错误 HTTP {(int)resp.StatusCode}: {Truncate(body, 300)}");
+                throw new Exception($"API 错误 HTTP {(int)resp.StatusCode}: {Truncate(body, AiErrorBodyMaxChars)}");
             }
             using var doc = JsonDocument.Parse(body);
             var root = doc.RootElement;
@@ -1432,7 +1438,7 @@ namespace WpfApp1
                 string body = await resp.Content.ReadAsStringAsync();
                 if (!resp.IsSuccessStatusCode)
                 {
-                    return $"连接失败: HTTP {(int)resp.StatusCode} {Truncate(body, 200)}";
+                    return $"连接失败: HTTP {(int)resp.StatusCode} {Truncate(body, AiTestResultMaxChars)}";
                 }
                 using var doc = JsonDocument.Parse(body);
                 if (doc.RootElement.TryGetProperty("error", out var er))

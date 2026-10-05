@@ -45,11 +45,11 @@ Background="#FFFAFAFC"
             </LinearGradientBrush>
             <Style x:Key="EdlDgHeaderStyle" TargetType="{x:Type DataGridColumnHeader}">
                 <Setter Property="Height" Value="32"/>
-                <Setter Property="Background" Value="#FFF4F4F4"/>
+                <Setter Property="Background" Value="{StaticResource SurfaceTintBrush}"/>
                 <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
                 <Setter Property="FontWeight" Value="SemiBold"/>
                 <Setter Property="BorderThickness" Value="0,0,0,1"/>
-                <Setter Property="BorderBrush" Value="#FFE9E9E9"/>
+                <Setter Property="BorderBrush" Value="{StaticResource BorderSubtleBrush}"/>
                 <Setter Property="HorizontalContentAlignment" Value="Center"/>
             </Style>
             <Style x:Key="EdlDgRowStyle" TargetType="{x:Type DataGridRow}">
@@ -256,9 +256,9 @@ Background="#FFFAFAFC"
             <Style x:Key="FastbootPrimaryButtonStyle"
                    TargetType="{x:Type Button}"
                    BasedOn="{StaticResource FastbootButtonBaseStyle}">
-                <Setter Property="Background" Value="#FF2C2C2E"/>
+                <Setter Property="Background" Value="{StaticResource TextStrongBrush}"/>
                 <Setter Property="Foreground" Value="#FFFFFFFF"/>
-                <Setter Property="BorderBrush" Value="#FF2C2C2E"/>
+                <Setter Property="BorderBrush" Value="{StaticResource TextStrongBrush}"/>
                 <Setter Property="BorderThickness" Value="1"/>
             </Style>
             <Style x:Key="AnimatedHoverButtonStyle" TargetType="Button">
@@ -334,7 +334,7 @@ Background="#FFFAFAFC"
             <local:ProgressBarIndicatorWidthConverter x:Key="ProgressBarIndicatorWidthConverter" />
             <Style x:Key="NavButtonStyle" TargetType="Button">
                 <!-- 导航按钮默认颜色 -->
-                <Setter Property="Background" Value="#FFF5F5F5" />
+                <Setter Property="Background" Value="{StaticResource SurfaceTintBrush}" />
                 <Setter Property="Foreground" Value="#FFFFFFFF" />
                 <Setter Property="BorderThickness" Value="0" />
                 <Setter Property="FontSize" Value="14" />
@@ -571,8 +571,8 @@ Background="#FFFAFAFC"
             <Style x:Key="AppDangerActionButtonStyle"
                    TargetType="{x:Type Button}"
                    BasedOn="{StaticResource PageLightButton}">
-                <Setter Property="Background" Value="#1D1D1F"/>
-                <Setter Property="BorderBrush" Value="#1D1D1F"/>
+                <Setter Property="Background" Value="{StaticResource TextPrimaryBrush}"/>
+                <Setter Property="BorderBrush" Value="{StaticResource TextPrimaryBrush}"/>
             </Style>
             <Style x:Key="AppFilterTextBoxStyle" TargetType="{x:Type TextBox}">
                 <Setter Property="Padding" Value="10,0"/>
@@ -612,7 +612,7 @@ Background="#FFFAFAFC"
             <Style x:Key="VioletSideMenuItemStyle" TargetType="hc:SideMenuItem" BasedOn="{StaticResource SideMenuItemBaseStyle}">
                 <Setter Property="Margin" Value="6,2"/>
                 <Setter Property="Padding" Value="10,8"/>
-                <Setter Property="Foreground" Value="#FF6E6E73"/>
+                <Setter Property="Foreground" Value="{StaticResource TextMutedBrush}"/>
                 <Setter Property="Background" Value="#00FFFFFF"/>
                 <Setter Property="Template">
                     <Setter.Value>
@@ -792,9 +792,9 @@ Background="#FFFAFAFC"
                                        TargetType="{x:Type GroupBox}"
                                        BasedOn="{StaticResource PayloadGroupBoxStyle}">
                                     <Setter Property="Background" Value="#FFFFFFFF"/>
-                                    <Setter Property="BorderBrush" Value="#FFE6E6E6"/>
+                                    <Setter Property="BorderBrush" Value="{StaticResource BorderSubtleBrush}"/>
                                     <Setter Property="BorderThickness" Value="1"/>
-                                    <Setter Property="Foreground" Value="#1D1D1F"/>
+                                    <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
                                     <Setter Property="FontFamily" Value="pack://siteoforigin:,,,/fonts/OPPO_Sans_4.0.ttf#OPPO Sans 4.0"/>
                                     <Setter Property="FontSize" Value="12"/>
                                     <Setter Property="FontWeight" Value="SemiBold"/>
@@ -823,8 +823,8 @@ Background="#FFFAFAFC"
                                             <svg:SvgViewbox Source="images/white/touping.svg" Width="21" Height="21"/>
                                         </Border>
                                         <StackPanel Grid.Column="1" VerticalAlignment="Center" Margin="12,0,0,0">
-                                            <TextBlock Text="投屏" FontSize="20" FontWeight="Bold" Foreground="{StaticResource TextPrimaryBrush}"/>
-                                            <TextBlock Text="实时投屏与设备远程控制" FontSize="12" Foreground="{StaticResource TextMutedBrush}" Margin="0,2,0,0"/>
+                                            <TextBlock Text="投屏" Style="{StaticResource PageHeaderTitle}"/>
+                                            <TextBlock Text="实时投屏与设备远程控制" Style="{StaticResource PageHeaderSubtitle}"/>
                                         </StackPanel>
                                     </Grid>
 
@@ -1189,7 +1189,7 @@ Background="#FFFAFAFC"
                             <Grid.Resources>
                                 <Style x:Key="BasicFlashCardStyle" TargetType="Border">
                                     <Setter Property="Background" Value="#FFFFFFFF"/>
-                                    <Setter Property="BorderBrush" Value="#FFEBEBEB"/>
+                                    <Setter Property="BorderBrush" Value="{StaticResource BorderSubtleBrush}"/>
                                     <Setter Property="BorderThickness" Value="1"/>
                                     <Setter Property="CornerRadius" Value="14"/>
                                     <Setter Property="Padding" Value="12"/>
@@ -1197,26 +1197,26 @@ Background="#FFFAFAFC"
                                 <Style x:Key="BasicFlashTitleStyle" TargetType="TextBlock">
                                     <Setter Property="FontSize" Value="16"/>
                                     <Setter Property="FontWeight" Value="Bold"/>
-                                    <Setter Property="Foreground" Value="#1D1D1F"/>
+                                    <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
                                 </Style>
                                 <Style x:Key="BasicFlashSubtitleStyle" TargetType="TextBlock">
                                     <Setter Property="FontSize" Value="12"/>
-                                    <Setter Property="Foreground" Value="#8E8E93"/>
+                                    <Setter Property="Foreground" Value="{StaticResource TextMutedBrush}"/>
                                     <Setter Property="TextWrapping" Value="Wrap"/>
                                     <Setter Property="Margin" Value="0,4,0,0"/>
                                 </Style>
                                 <Style x:Key="BasicFlashLabelStyle" TargetType="TextBlock">
                                     <Setter Property="FontSize" Value="13"/>
                                     <Setter Property="FontWeight" Value="SemiBold"/>
-                                    <Setter Property="Foreground" Value="#6E6E73"/>
+                                    <Setter Property="Foreground" Value="{StaticResource TextMutedBrush}"/>
                                     <Setter Property="Margin" Value="0,0,0,6"/>
                                 </Style>
                                 <Style x:Key="BasicFlashTextBoxStyle" TargetType="TextBox">
                                     <Setter Property="MinHeight" Value="36"/>
                                     <Setter Property="Padding" Value="10,8"/>
                                     <Setter Property="Background" Value="White"/>
-                                    <Setter Property="Foreground" Value="#FF1A1A1A"/>
-                                    <Setter Property="BorderBrush" Value="#E8E8ED"/>
+                                    <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
+                                    <Setter Property="BorderBrush" Value="{StaticResource BorderSubtleBrush}"/>
                                     <Setter Property="BorderThickness" Value="1"/>
                                     <Setter Property="VerticalContentAlignment" Value="Center"/>
                                 </Style>
@@ -1231,8 +1231,8 @@ Background="#FFFAFAFC"
                                 <Style x:Key="BasicFlashComboBoxStyle" TargetType="ComboBox">
                                     <Setter Property="Height" Value="36"/>
                                     <Setter Property="Background" Value="White"/>
-                                    <Setter Property="Foreground" Value="#FF1A1A1A"/>
-                                    <Setter Property="BorderBrush" Value="#E8E8ED"/>
+                                    <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
+                                    <Setter Property="BorderBrush" Value="{StaticResource BorderSubtleBrush}"/>
                                     <Setter Property="BorderThickness" Value="1"/>
                                     <Setter Property="Padding" Value="8,0"/>
                                     <Setter Property="FontSize" Value="13"/>
@@ -1344,7 +1344,7 @@ Background="#FFFAFAFC"
                                 </Style>
                                 <Style x:Key="BasicFlashComboBoxItemStyle" TargetType="ComboBoxItem">
                                     <Setter Property="Padding" Value="10,8"/>
-                                    <Setter Property="Foreground" Value="#1D1D1F"/>
+                                    <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
                                     <Setter Property="FontSize" Value="13"/>
                                     <Setter Property="HorizontalContentAlignment" Value="Left"/>
                                     <Setter Property="Template">
@@ -1360,11 +1360,11 @@ Background="#FFFAFAFC"
                                                 </Border>
                                                 <ControlTemplate.Triggers>
                                                     <Trigger Property="IsHighlighted" Value="True">
-                                                        <Setter TargetName="ItemBorder" Property="Background" Value="#FFF6F6F6"/>
+                                                        <Setter TargetName="ItemBorder" Property="Background" Value="{StaticResource SurfaceTintBrush}"/>
                                                     </Trigger>
                                                     <Trigger Property="IsSelected" Value="True">
-                                                        <Setter TargetName="ItemBorder" Property="Background" Value="#F5F5F7"/>
-                                                        <Setter Property="Foreground" Value="#1D1D1F"/>
+                                                        <Setter TargetName="ItemBorder" Property="Background" Value="{StaticResource SurfaceTintBrush}"/>
+                                                        <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
                                                     </Trigger>
                                                 </ControlTemplate.Triggers>
                                             </ControlTemplate>
@@ -1444,14 +1444,14 @@ Background="#FFFAFAFC"
                                     </Setter>
                                 </Style>
                                 <Style x:Key="BasicFlashAccentButtonStyle" TargetType="Button" BasedOn="{StaticResource PagePrimaryButton}">
-                                    <Setter Property="Background" Value="#FFD1D1D6"/>
+                                    <Setter Property="Background" Value="{StaticResource BorderBrush}"/>
                                 </Style>
                                 <Style x:Key="BasicFlashLightButtonStyle" TargetType="Button">
                                     <Setter Property="Height" Value="34"/>
                                     <Setter Property="Padding" Value="12,0"/>
-                                    <Setter Property="Background" Value="#FFFAFAFA"/>
-                                    <Setter Property="Foreground" Value="#FF1A1A1A"/>
-                                    <Setter Property="BorderBrush" Value="#FFE5E5E5"/>
+                                    <Setter Property="Background" Value="{StaticResource SurfaceTintBrush}"/>
+                                    <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
+                                    <Setter Property="BorderBrush" Value="{StaticResource BorderSubtleBrush}"/>
                                     <Setter Property="BorderThickness" Value="1"/>
                                     <Setter Property="FontSize" Value="13"/>
                                     <Setter Property="Cursor" Value="Hand"/>
@@ -1526,8 +1526,8 @@ Background="#FFFAFAFC"
                                                     <svg:SvgViewbox Source="images/white/shandian2.svg" Width="21" Height="21"/>
                                                 </Border>
                                                 <StackPanel VerticalAlignment="Center" Margin="12,0,0,0">
-                                                    <TextBlock Text="基本刷入" FontSize="20" FontWeight="Bold" Foreground="{StaticResource TextPrimaryBrush}"/>
-                                                    <TextBlock Text="分区镜像刷入与 Bootloader 操作" FontSize="12" Foreground="{StaticResource TextMutedBrush}" Margin="0,2,0,0"/>
+                                                    <TextBlock Text="基本刷入" Style="{StaticResource PageHeaderTitle}"/>
+                                                    <TextBlock Text="分区镜像刷入与 Bootloader 操作" Style="{StaticResource PageHeaderSubtitle}"/>
                                                 </StackPanel>
                                             </StackPanel>
                                         </Grid>
@@ -1885,9 +1885,9 @@ Background="#FFFAFAFC"
                                        TargetType="{x:Type GroupBox}"
                                        BasedOn="{StaticResource PayloadGroupBoxStyle}">
                                     <Setter Property="Background" Value="#FFFFFFFF"/>
-                                    <Setter Property="BorderBrush" Value="#FFE6E6E6"/>
+                                    <Setter Property="BorderBrush" Value="{StaticResource BorderSubtleBrush}"/>
                                     <Setter Property="BorderThickness" Value="1"/>
-                                    <Setter Property="Foreground" Value="#1D1D1F"/>
+                                    <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
                                     <Setter Property="FontFamily" Value="pack://siteoforigin:,,,/fonts/OPPO_Sans_4.0.ttf#OPPO Sans 4.0"/>
                                     <Setter Property="FontSize" Value="12"/>
                                     <Setter Property="FontWeight" Value="SemiBold"/>
@@ -1903,7 +1903,7 @@ Background="#FFFAFAFC"
                                        TargetType="{x:Type Button}"
                                        BasedOn="{StaticResource FastbootButtonBaseStyle}">
                                     <Setter Property="Background" Value="#FFFFFFFF"/>
-                                    <Setter Property="Foreground" Value="#1D1D1F"/>
+                                    <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
                                     <Setter Property="BorderBrush" Value="#FFD1D1D1"/>
                                     <Setter Property="BorderThickness" Value="1"/>
                                 </Style>
@@ -1914,9 +1914,9 @@ Background="#FFFAFAFC"
                                     <Setter Property="ToolTipService.ShowOnDisabled" Value="True"/>
                                     <Style.Triggers>
                                         <Trigger Property="IsEnabled" Value="False">
-                                            <Setter Property="Background" Value="#FFECECEC"/>
+                                            <Setter Property="Background" Value="{StaticResource BorderSubtleBrush}"/>
                                             <Setter Property="Foreground" Value="#AEAEB2"/>
-                                            <Setter Property="BorderBrush" Value="#FFDDDDDD"/>
+                                            <Setter Property="BorderBrush" Value="{StaticResource BorderSubtleBrush}"/>
                                             <Setter Property="Cursor" Value="Arrow"/>
                                         </Trigger>
                                     </Style.Triggers>
@@ -1936,23 +1936,23 @@ Background="#FFFAFAFC"
                                        BasedOn="{StaticResource {x:Type CheckBox}}">
                                     <Setter Property="FontFamily" Value="pack://siteoforigin:,,,/fonts/OPPO_Sans_4.0.ttf#OPPO Sans 4.0"/>
                                     <Setter Property="FontSize" Value="11.5"/>
-                                    <Setter Property="Foreground" Value="#1D1D1F"/>
+                                    <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
                                     <Setter Property="VerticalAlignment" Value="Center"/>
                                     <Setter Property="Margin" Value="0,0,9,0"/>
                                 </Style>
 
                                 <Style TargetType="{x:Type DataGridColumnHeader}">
                                     <Setter Property="Height" Value="32"/>
-                                    <Setter Property="Background" Value="#FFF4F4F4"/>
-                                    <Setter Property="Foreground" Value="#1D1D1F"/>
+                                    <Setter Property="Background" Value="{StaticResource SurfaceTintBrush}"/>
+                                    <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
                                     <Setter Property="FontWeight" Value="SemiBold"/>
                                     <Setter Property="BorderThickness" Value="0,0,0,1"/>
-                                    <Setter Property="BorderBrush" Value="#FFE9E9E9"/>
+                                    <Setter Property="BorderBrush" Value="{StaticResource BorderSubtleBrush}"/>
                                     <Setter Property="HorizontalContentAlignment" Value="Center"/>
                                 </Style>
                                 <Style TargetType="{x:Type DataGridRow}">
                                     <Setter Property="Background" Value="#FFFFFFFF"/>
-                                    <Setter Property="BorderBrush" Value="#FFF1F1F1"/>
+                                    <Setter Property="BorderBrush" Value="{StaticResource SurfaceTintBrush}"/>
                                     <Setter Property="BorderThickness" Value="0,0,0,1"/>
                                     <Style.Triggers>
                                         <Trigger Property="AlternationIndex" Value="1">
@@ -2009,7 +2009,7 @@ Background="#FFFAFAFC"
                                                     </Storyboard>
                                                 </BeginStoryboard>
                                             </Trigger.ExitActions>
-                                            <Setter Property="Foreground" Value="#1D1D1F"/>
+                                            <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
                                             <Setter Property="BorderBrush" Value="{StaticResource BrandTintBrush}"/>
                                         </Trigger>
                                         <MultiDataTrigger>
@@ -2017,8 +2017,8 @@ Background="#FFFAFAFC"
                                                 <Condition Binding="{Binding ElementName=ProtectPartitionCheckBox, Path=IsChecked}" Value="True"/>
                                                 <Condition Binding="{Binding IsBasebandFingerprintProtected}" Value="True"/>
                                             </MultiDataTrigger.Conditions>
-                                            <Setter Property="Background" Value="#E8E8ED"/>
-                                            <Setter Property="Foreground" Value="#1D1D1F"/>
+                                            <Setter Property="Background" Value="{StaticResource BorderSubtleBrush}"/>
+                                            <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
                                             <Setter Property="BorderBrush" Value="#D1D1D6"/>
                                             <Setter Property="Cursor" Value="No"/>
                                             <Setter Property="IsEnabled" Value="False"/>
@@ -2030,8 +2030,8 @@ Background="#FFFAFAFC"
                                                 <Condition Binding="{Binding IsAdbDataProtected}" Value="True"/>
                                                 <Condition Binding="{Binding ElementName=BottomConnectionTypeText, Path=Tag.RawText}" Value="系统"/>
                                             </MultiDataTrigger.Conditions>
-                                            <Setter Property="Background" Value="#E8E8ED"/>
-                                            <Setter Property="Foreground" Value="#1D1D1F"/>
+                                            <Setter Property="Background" Value="{StaticResource BorderSubtleBrush}"/>
+                                            <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
                                             <Setter Property="BorderBrush" Value="#D1D1D6"/>
                                             <Setter Property="Cursor" Value="No"/>
                                             <Setter Property="IsEnabled" Value="False"/>
@@ -2049,15 +2049,15 @@ Background="#FFFAFAFC"
                                     <Style.Triggers>
                                         <Trigger Property="IsSelected" Value="True">
                                             <Setter Property="Background" Value="{StaticResource BrandTintBrush}"/>
-                                            <Setter Property="Foreground" Value="#1D1D1F"/>
+                                            <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
                                         </Trigger>
                                         <MultiDataTrigger>
                                             <MultiDataTrigger.Conditions>
                                                 <Condition Binding="{Binding ElementName=ProtectPartitionCheckBox, Path=IsChecked}" Value="True"/>
                                                 <Condition Binding="{Binding IsBasebandFingerprintProtected}" Value="True"/>
                                             </MultiDataTrigger.Conditions>
-                                            <Setter Property="Background" Value="#E8E8ED"/>
-                                            <Setter Property="Foreground" Value="#1D1D1F"/>
+                                            <Setter Property="Background" Value="{StaticResource BorderSubtleBrush}"/>
+                                            <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
                                         </MultiDataTrigger>
                                         <MultiDataTrigger>
                                             <MultiDataTrigger.Conditions>
@@ -2065,8 +2065,8 @@ Background="#FFFAFAFC"
                                                 <Condition Binding="{Binding IsAdbDataProtected}" Value="True"/>
                                                 <Condition Binding="{Binding ElementName=BottomConnectionTypeText, Path=Tag.RawText}" Value="系统"/>
                                             </MultiDataTrigger.Conditions>
-                                            <Setter Property="Background" Value="#E8E8ED"/>
-                                            <Setter Property="Foreground" Value="#1D1D1F"/>
+                                            <Setter Property="Background" Value="{StaticResource BorderSubtleBrush}"/>
+                                            <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
                                         </MultiDataTrigger>
                                     </Style.Triggers>
                                 </Style>
@@ -2086,8 +2086,8 @@ Background="#FFFAFAFC"
                 <svg:SvgViewbox Source="images/white/adb.svg" Width="21" Height="21"/>
             </Border>
             <StackPanel VerticalAlignment="Center" Margin="12,0,0,0">
-                <TextBlock Text="可视刷写" FontSize="20" FontWeight="Bold" Foreground="{StaticResource TextPrimaryBrush}"/>
-                <TextBlock Text="Fastboot 分区可视化读写" FontSize="12" Foreground="{StaticResource TextMutedBrush}" Margin="0,2,0,0"/>
+                <TextBlock Text="可视刷写" Style="{StaticResource PageHeaderTitle}"/>
+                <TextBlock Text="Fastboot 分区可视化读写" Style="{StaticResource PageHeaderSubtitle}"/>
             </StackPanel>
         </StackPanel>
     </Grid>
@@ -2353,7 +2353,7 @@ Background="#FFFAFAFC"
                                                             <Condition Binding="{Binding ElementName=ProtectPartitionCheckBox, Path=IsChecked}" Value="True"/>
                                                             <Condition Binding="{Binding IsBasebandFingerprintProtected}" Value="True"/>
                                                         </MultiDataTrigger.Conditions>
-                                                        <Setter Property="Foreground" Value="#1D1D1F"/>
+                                                        <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
                                                     </MultiDataTrigger>
                                                     <MultiDataTrigger>
                                                         <MultiDataTrigger.Conditions>
@@ -2361,7 +2361,7 @@ Background="#FFFAFAFC"
                                                             <Condition Binding="{Binding IsAdbDataProtected}" Value="True"/>
                                                             <Condition Binding="{Binding ElementName=BottomConnectionTypeText, Path=Tag.RawText}" Value="系统"/>
                                                         </MultiDataTrigger.Conditions>
-                                                        <Setter Property="Foreground" Value="#1D1D1F"/>
+                                                        <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
                                                     </MultiDataTrigger>
                                                 </Style.Triggers>
                                             </Style>
@@ -2705,7 +2705,7 @@ Background="#FFFAFAFC"
                                        TargetType="{x:Type Button}"
                                        BasedOn="{StaticResource FastbootButtonBaseStyle}">
                                     <Setter Property="Background" Value="#FFFFFFFF"/>
-                                    <Setter Property="Foreground" Value="#1D1D1F"/>
+                                    <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
                                     <Setter Property="BorderBrush" Value="#FFD1D1D1"/>
                                     <Setter Property="BorderThickness" Value="1"/>
                                 </Style>
@@ -2713,9 +2713,9 @@ Background="#FFFAFAFC"
                                        TargetType="{x:Type GroupBox}"
                                        BasedOn="{StaticResource PayloadGroupBoxStyle}">
                                     <Setter Property="Background" Value="#FFFFFFFF"/>
-                                    <Setter Property="BorderBrush" Value="#FFE6E6E6"/>
+                                    <Setter Property="BorderBrush" Value="{StaticResource BorderSubtleBrush}"/>
                                     <Setter Property="BorderThickness" Value="1"/>
-                                    <Setter Property="Foreground" Value="#1D1D1F"/>
+                                    <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
                                     <Setter Property="FontFamily" Value="pack://siteoforigin:,,,/fonts/OPPO_Sans_4.0.ttf#OPPO Sans 4.0"/>
                                     <Setter Property="FontSize" Value="12"/>
                                     <Setter Property="FontWeight" Value="SemiBold"/>
@@ -2732,7 +2732,7 @@ Background="#FFFAFAFC"
                                     <Setter Property="FontFamily" Value="pack://siteoforigin:,,,/fonts/OPPO_Sans_4.0.ttf#OPPO Sans 4.0"/>
                                     <Setter Property="FontSize" Value="11.5"/>
                                     <Setter Property="FontWeight" Value="Normal"/>
-                                    <Setter Property="Foreground" Value="#1D1D1F"/>
+                                    <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
                                     <Setter Property="Cursor" Value="Hand"/>
                                 </Style>
                                 <Style x:Key="HiddenEnvironmentSchemeCheckBoxStyle"
@@ -2749,8 +2749,8 @@ Background="#FFFAFAFC"
                 <svg:SvgViewbox Source="images/white/pintu.svg" Width="21" Height="21"/>
             </Border>
             <StackPanel VerticalAlignment="Center" Margin="12,0,0,0">
-                <TextBlock Text="模块专区" FontSize="20" FontWeight="Bold" Foreground="{StaticResource TextPrimaryBrush}"/>
-                <TextBlock Text="Magisk 与隐藏环境" FontSize="12" Foreground="{StaticResource TextMutedBrush}" Margin="0,2,0,0"/>
+                <TextBlock Text="模块专区" Style="{StaticResource PageHeaderTitle}"/>
+                <TextBlock Text="Magisk 与隐藏环境" Style="{StaticResource PageHeaderSubtitle}"/>
             </StackPanel>
         </StackPanel>
     </Grid>
@@ -3001,12 +3001,12 @@ Background="#FFFAFAFC"
                                 <Style x:Key="AboutSectionTitleStyle" TargetType="TextBlock">
                                     <Setter Property="FontSize" Value="15"/>
                                     <Setter Property="FontWeight" Value="SemiBold"/>
-                                    <Setter Property="Foreground" Value="#1D1D1F"/>
+                                    <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
                                     <Setter Property="Margin" Value="0,0,0,8"/>
                                 </Style>
                                 <Style x:Key="AboutBodyTextStyle" TargetType="TextBlock">
                                     <Setter Property="FontSize" Value="13"/>
-                                    <Setter Property="Foreground" Value="#6E6E73"/>
+                                    <Setter Property="Foreground" Value="{StaticResource TextMutedBrush}"/>
                                     <Setter Property="TextWrapping" Value="Wrap"/>
                                     <Setter Property="LineHeight" Value="20"/>
                                 </Style>
@@ -3021,7 +3021,7 @@ Background="#FFFAFAFC"
                                 <Style x:Key="AboutTagTextStyle" TargetType="TextBlock">
                                     <Setter Property="FontSize" Value="12"/>
                                     <Setter Property="FontWeight" Value="SemiBold"/>
-                                    <Setter Property="Foreground" Value="#1D1D1F"/>
+                                    <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
                                 </Style>
                                 <Style TargetType="Ellipse">
                                     <Setter Property="Stroke" Value="#FFD1D1D1"/>
@@ -3115,8 +3115,8 @@ Background="#FFFAFAFC"
                                                     <svg:SvgViewbox Source="images/white/guanyu.svg" Width="21" Height="21"/>
                                                 </Border>
                                                 <StackPanel VerticalAlignment="Center" Margin="12,0,0,0">
-                                                    <TextBlock Text="关于" FontSize="20" FontWeight="Bold" Foreground="{StaticResource TextPrimaryBrush}"/>
-                                                    <TextBlock Text="版本信息与开发者" FontSize="12" Foreground="{StaticResource TextMutedBrush}" Margin="0,2,0,0"/>
+                                                    <TextBlock Text="关于" Style="{StaticResource PageHeaderTitle}"/>
+                                                    <TextBlock Text="版本信息与开发者" Style="{StaticResource PageHeaderSubtitle}"/>
                                                 </StackPanel>
                                             </StackPanel>
                                         </Grid>
@@ -3528,8 +3528,8 @@ Background="#FFFAFAFC"
                                         <svg:SvgViewbox Source="images/white/ai.svg" Width="21" Height="21"/>
                                     </Border>
                                     <StackPanel VerticalAlignment="Center" Margin="12,0,0,0">
-                                        <TextBlock Text="AI助手" FontSize="20" FontWeight="Bold" Foreground="{StaticResource TextPrimaryBrush}"/>
-                                        <TextBlock Text="可执行操作的智能刷机 Agent · 对话即可读设备、跑命令、查教程" FontSize="12" Foreground="{StaticResource TextMutedBrush}" Margin="0,2,0,0"/>
+                                        <TextBlock Text="AI助手" Style="{StaticResource PageHeaderTitle}"/>
+                                        <TextBlock Text="可执行操作的智能刷机 Agent · 对话即可读设备、跑命令、查教程" Style="{StaticResource PageHeaderSubtitle}"/>
                                     </StackPanel>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
@@ -3575,7 +3575,7 @@ Background="#FFFAFAFC"
                                                             <Setter TargetName="AIMsgBubble" Property="CornerRadius" Value="8"/>
                                                             <Setter TargetName="AIMsgText" Property="FontFamily" Value="Consolas"/>
                                                             <Setter TargetName="AIMsgText" Property="FontSize" Value="12"/>
-                                                            <Setter TargetName="AIMsgText" Property="Foreground" Value="#FF3A3A3C"/>
+                                                            <Setter TargetName="AIMsgText" Property="Foreground" Value="{StaticResource TextStrongBrush}"/>
                                                         </DataTrigger>
                                                         <DataTrigger Binding="{Binding Role}" Value="system">
                                                             <Setter TargetName="AIMsgBubble" Property="HorizontalAlignment" Value="Center"/>
@@ -3698,8 +3698,8 @@ Background="#FFFAFAFC"
                 <svg:SvgViewbox Source="images/white/wenjianchuanshu.svg" Width="21" Height="21"/>
             </Border>
             <StackPanel VerticalAlignment="Center" Margin="12,0,0,0">
-                <TextBlock Text="文件传输" FontSize="20" FontWeight="Bold" Foreground="{StaticResource TextPrimaryBrush}"/>
-                <TextBlock Text="设备文件管理" FontSize="12" Foreground="{StaticResource TextMutedBrush}" Margin="0,2,0,0"/>
+                <TextBlock Text="文件传输" Style="{StaticResource PageHeaderTitle}"/>
+                <TextBlock Text="设备文件管理" Style="{StaticResource PageHeaderSubtitle}"/>
             </StackPanel>
         </StackPanel>
     </Grid>
@@ -4107,9 +4107,9 @@ Background="#FFFAFAFC"
                                        TargetType="{x:Type GroupBox}"
                                        BasedOn="{StaticResource PayloadGroupBoxStyle}">
                                     <Setter Property="Background" Value="#FFFFFFFF"/>
-                                    <Setter Property="BorderBrush" Value="#FFE6E6E6"/>
+                                    <Setter Property="BorderBrush" Value="{StaticResource BorderSubtleBrush}"/>
                                     <Setter Property="BorderThickness" Value="1"/>
-                                    <Setter Property="Foreground" Value="#1D1D1F"/>
+                                    <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
                                     <Setter Property="FontFamily" Value="pack://siteoforigin:,,,/fonts/OPPO_Sans_4.0.ttf#OPPO Sans 4.0"/>
                                     <Setter Property="FontSize" Value="12"/>
                                     <Setter Property="FontWeight" Value="SemiBold"/>
@@ -4125,7 +4125,7 @@ Background="#FFFAFAFC"
                                        TargetType="{x:Type Button}"
                                        BasedOn="{StaticResource FastbootButtonBaseStyle}">
                                     <Setter Property="Background" Value="#FFFFFFFF"/>
-                                    <Setter Property="Foreground" Value="#1D1D1F"/>
+                                    <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
                                     <Setter Property="BorderBrush" Value="#FFD1D1D1"/>
                                     <Setter Property="BorderThickness" Value="1"/>
                                 </Style>
@@ -4133,9 +4133,9 @@ Background="#FFFAFAFC"
                                 <Style x:Key="OugaFlashPrimaryButtonStyle"
                                        TargetType="{x:Type Button}"
                                        BasedOn="{StaticResource FastbootButtonBaseStyle}">
-                                    <Setter Property="Background" Value="#FF2C2C2E"/>
+                                    <Setter Property="Background" Value="{StaticResource TextStrongBrush}"/>
                                     <Setter Property="Foreground" Value="#FFFFFFFF"/>
-                                    <Setter Property="BorderBrush" Value="#FF2C2C2E"/>
+                                    <Setter Property="BorderBrush" Value="{StaticResource TextStrongBrush}"/>
                                     <Setter Property="BorderThickness" Value="1"/>
                                 </Style>
 
@@ -4145,7 +4145,7 @@ Background="#FFFAFAFC"
                                     <Setter Property="FontFamily" Value="pack://siteoforigin:,,,/fonts/OPPO_Sans_4.0.ttf#OPPO Sans 4.0"/>
                                     <Setter Property="FontSize" Value="11.5"/>
                                     <Setter Property="FontWeight" Value="Normal"/>
-                                    <Setter Property="Foreground" Value="#1D1D1F"/>
+                                    <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
                                     <Setter Property="VerticalAlignment" Value="Center"/>
                                     <Setter Property="Margin" Value="0,0,9,0"/>
                                 </Style>
@@ -4159,9 +4159,9 @@ Background="#FFFAFAFC"
                                     <Setter Property="FontFamily" Value="pack://siteoforigin:,,,/fonts/OPPO_Sans_4.0.ttf#OPPO Sans 4.0"/>
                                     <Setter Property="FontSize" Value="12"/>
                                     <Setter Property="FontWeight" Value="Normal"/>
-                                    <Setter Property="Foreground" Value="#6E6E73"/>
+                                    <Setter Property="Foreground" Value="{StaticResource TextMutedBrush}"/>
                                     <Setter Property="Background" Value="#FFFFFFFF"/>
-                                    <Setter Property="BorderBrush" Value="#FFE1E1E1"/>
+                                    <Setter Property="BorderBrush" Value="{StaticResource BorderSubtleBrush}"/>
                                     <Setter Property="BorderThickness" Value="1"/>
                                 </Style>
 
@@ -4173,25 +4173,25 @@ Background="#FFFAFAFC"
                                     <Setter Property="FontFamily" Value="pack://siteoforigin:,,,/fonts/OPPO_Sans_4.0.ttf#OPPO Sans 4.0"/>
                                     <Setter Property="FontSize" Value="12"/>
                                     <Setter Property="FontWeight" Value="Normal"/>
-                                    <Setter Property="Foreground" Value="#1D1D1F"/>
+                                    <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
                                     <Setter Property="Background" Value="#FFFFFFFF"/>
-                                    <Setter Property="BorderBrush" Value="#FFE1E1E1"/>
+                                    <Setter Property="BorderBrush" Value="{StaticResource BorderSubtleBrush}"/>
                                     <Setter Property="BorderThickness" Value="1"/>
                                 </Style>
 
                                 <Style x:Key="OugaFlashDataGridHeaderStyle" TargetType="{x:Type DataGridColumnHeader}">
                                     <Setter Property="Height" Value="32"/>
-                                    <Setter Property="Background" Value="#FFF4F4F4"/>
-                                    <Setter Property="Foreground" Value="#1D1D1F"/>
+                                    <Setter Property="Background" Value="{StaticResource SurfaceTintBrush}"/>
+                                    <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
                                     <Setter Property="FontWeight" Value="SemiBold"/>
                                     <Setter Property="BorderThickness" Value="0,0,0,1"/>
-                                    <Setter Property="BorderBrush" Value="#FFE9E9E9"/>
+                                    <Setter Property="BorderBrush" Value="{StaticResource BorderSubtleBrush}"/>
                                     <Setter Property="HorizontalContentAlignment" Value="Center"/>
                                 </Style>
 
                                 <Style x:Key="OugaFlashDataGridRowStyle" TargetType="{x:Type DataGridRow}">
                                     <Setter Property="Background" Value="#FFFFFFFF"/>
-                                    <Setter Property="BorderBrush" Value="#FFF1F1F1"/>
+                                    <Setter Property="BorderBrush" Value="{StaticResource SurfaceTintBrush}"/>
                                     <Setter Property="BorderThickness" Value="0,0,0,1"/>
                                     <Style.Triggers>
                                         <Trigger Property="AlternationIndex" Value="1">
@@ -4248,7 +4248,7 @@ Background="#FFFAFAFC"
                                                     </Storyboard>
                                                 </BeginStoryboard>
                                             </Trigger.ExitActions>
-                                            <Setter Property="Foreground" Value="#1D1D1F"/>
+                                            <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
                                             <Setter Property="BorderBrush" Value="{StaticResource BrandTintBrush}"/>
                                         </Trigger>
                                     </Style.Triggers>
@@ -4264,15 +4264,15 @@ Background="#FFFAFAFC"
                                     <Style.Triggers>
                                         <Trigger Property="IsSelected" Value="True">
                                             <Setter Property="Background" Value="{StaticResource BrandTintBrush}"/>
-                                            <Setter Property="Foreground" Value="#1D1D1F"/>
+                                            <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
                                         </Trigger>
                                     </Style.Triggers>
                                 </Style>
 
                                 <Style x:Key="OugaFlashProgressBarStyle" TargetType="{x:Type ProgressBar}">
                                     <Setter Property="Height" Value="24"/>
-                                    <Setter Property="Background" Value="#FFF3F3F3"/>
-                                    <Setter Property="BorderBrush" Value="#FFE0E0E0"/>
+                                    <Setter Property="Background" Value="{StaticResource SurfaceTintBrush}"/>
+                                    <Setter Property="BorderBrush" Value="{StaticResource BorderSubtleBrush}"/>
                                     <Setter Property="BorderThickness" Value="1"/>
                                     <Setter Property="SnapsToDevicePixels" Value="True"/>
                                     <Setter Property="Template">
@@ -4324,8 +4324,8 @@ Background="#FFFAFAFC"
                 <svg:SvgViewbox Source="images/white/banshou.svg" Width="21" Height="21"/>
             </Border>
             <StackPanel VerticalAlignment="Center" Margin="12,0,0,0">
-                <TextBlock Text="欧加线刷" FontSize="20" FontWeight="Bold" Foreground="{StaticResource TextPrimaryBrush}"/>
-                <TextBlock Text="一加 / 真我 / OPPO 线刷" FontSize="12" Foreground="{StaticResource TextMutedBrush}" Margin="0,2,0,0"/>
+                <TextBlock Text="欧加线刷" Style="{StaticResource PageHeaderTitle}"/>
+                <TextBlock Text="一加 / 真我 / OPPO 线刷" Style="{StaticResource PageHeaderSubtitle}"/>
             </StackPanel>
         </StackPanel>
     </Grid>
@@ -5202,7 +5202,7 @@ Background="#FFFAFAFC"
                             <Grid.Resources>
                                 <Style x:Key="AutorootCardStyle" TargetType="Border">
                                     <Setter Property="Background" Value="#FFFFFFFF"/>
-                                    <Setter Property="BorderBrush" Value="#FFEBEBEB"/>
+                                    <Setter Property="BorderBrush" Value="{StaticResource BorderSubtleBrush}"/>
                                     <Setter Property="BorderThickness" Value="1"/>
                                     <Setter Property="CornerRadius" Value="14"/>
                                     <Setter Property="Padding" Value="12"/>
@@ -5210,25 +5210,25 @@ Background="#FFFAFAFC"
                                 <Style x:Key="AutorootPanelTitleStyle" TargetType="TextBlock">
                                     <Setter Property="FontSize" Value="16"/>
                                     <Setter Property="FontWeight" Value="Bold"/>
-                                    <Setter Property="Foreground" Value="#1D1D1F"/>
+                                    <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
                                 </Style>
                                 <Style x:Key="AutorootPanelSubtitleStyle" TargetType="TextBlock">
                                     <Setter Property="FontSize" Value="12"/>
-                                    <Setter Property="Foreground" Value="#8E8E93"/>
+                                    <Setter Property="Foreground" Value="{StaticResource TextMutedBrush}"/>
                                     <Setter Property="Margin" Value="0,2,0,0"/>
                                 </Style>
                                 <Style x:Key="AutorootFieldLabelStyle" TargetType="TextBlock">
                                     <Setter Property="FontSize" Value="13"/>
                                     <Setter Property="FontWeight" Value="SemiBold"/>
-                                    <Setter Property="Foreground" Value="#6E6E73"/>
+                                    <Setter Property="Foreground" Value="{StaticResource TextMutedBrush}"/>
                                     <Setter Property="VerticalAlignment" Value="Center"/>
                                 </Style>
                                 <Style x:Key="AutorootComboBoxStyle" TargetType="ComboBox">
                                     <Setter Property="Height" Value="32"/>
                                     <Setter Property="FontSize" Value="14"/>
                                     <Setter Property="Background" Value="White"/>
-                                    <Setter Property="Foreground" Value="#FF1A1A1A"/>
-                                    <Setter Property="BorderBrush" Value="#E8E8ED"/>
+                                    <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
+                                    <Setter Property="BorderBrush" Value="{StaticResource BorderSubtleBrush}"/>
                                     <Setter Property="BorderThickness" Value="1"/>
                                 </Style>
                                 <Style x:Key="AutorootPrimaryButtonStyle" TargetType="Button">
@@ -5248,10 +5248,10 @@ Background="#FFFAFAFC"
                                                 </Border>
                                                 <ControlTemplate.Triggers>
                                                     <Trigger Property="IsMouseOver" Value="True">
-                                                        <Setter Property="Background" Value="#FF2C2C2E"/>
+                                                        <Setter Property="Background" Value="{StaticResource TextStrongBrush}"/>
                                                     </Trigger>
                                                     <Trigger Property="IsPressed" Value="True">
-                                                        <Setter Property="Background" Value="#FF3A3A3C"/>
+                                                        <Setter Property="Background" Value="{StaticResource TextStrongBrush}"/>
                                                     </Trigger>
                                                 </ControlTemplate.Triggers>
                                             </ControlTemplate>
@@ -5259,14 +5259,14 @@ Background="#FFFAFAFC"
                                     </Setter>
                                 </Style>
                                 <Style x:Key="AutorootAccentButtonStyle" TargetType="Button" BasedOn="{StaticResource PagePrimaryButton}">
-                                    <Setter Property="Background" Value="#FFD1D1D6"/>
+                                    <Setter Property="Background" Value="{StaticResource BorderBrush}"/>
                                 </Style>
                                 <Style x:Key="AutorootLightButtonStyle" TargetType="Button">
                                     <Setter Property="Height" Value="30"/>
                                     <Setter Property="Padding" Value="12,0"/>
-                                    <Setter Property="Background" Value="#FFFAFAFA"/>
-                                    <Setter Property="Foreground" Value="#FF1A1A1A"/>
-                                    <Setter Property="BorderBrush" Value="#FFE5E5E5"/>
+                                    <Setter Property="Background" Value="{StaticResource SurfaceTintBrush}"/>
+                                    <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
+                                    <Setter Property="BorderBrush" Value="{StaticResource BorderSubtleBrush}"/>
                                     <Setter Property="BorderThickness" Value="1"/>
                                     <Setter Property="FontSize" Value="13"/>
                                     <Setter Property="Cursor" Value="Hand"/>
@@ -5339,11 +5339,11 @@ Background="#FFFAFAFC"
                                                 </Border>
                                                 <ControlTemplate.Triggers>
                                                     <Trigger Property="IsMouseOver" Value="True">
-                                                        <Setter Property="Background" Value="#FF2C2C2E"/>
+                                                        <Setter Property="Background" Value="{StaticResource TextStrongBrush}"/>
                                                     </Trigger>
                                                     <Trigger Property="IsEnabled" Value="False">
-                                                        <Setter Property="Background" Value="#FFDCDCDC"/>
-                                                        <Setter Property="Foreground" Value="#8E8E93"/>
+                                                        <Setter Property="Background" Value="{StaticResource BorderSubtleBrush}"/>
+                                                        <Setter Property="Foreground" Value="{StaticResource TextMutedBrush}"/>
                                                         <Setter Property="Cursor" Value="Arrow"/>
                                                         <Setter Property="Opacity" Value="0.72"/>
                                                     </Trigger>
@@ -5369,8 +5369,8 @@ Background="#FFFAFAFC"
                                                     <svg:SvgViewbox Source="images/white/Auto.svg" Width="21" Height="21"/>
                                                 </Border>
                                                 <StackPanel VerticalAlignment="Center" Margin="12,0,0,0">
-                                                    <TextBlock Text="脱机修补" FontSize="20" FontWeight="Bold" Foreground="{StaticResource TextPrimaryBrush}"/>
-                                                    <TextBlock Text="boot 镜像离线修补" FontSize="12" Foreground="{StaticResource TextMutedBrush}" Margin="0,2,0,0"/>
+                                                    <TextBlock Text="脱机修补" Style="{StaticResource PageHeaderTitle}"/>
+                                                    <TextBlock Text="boot 镜像离线修补" Style="{StaticResource PageHeaderSubtitle}"/>
                                                 </StackPanel>
                                             </StackPanel>
                                         </Grid>
@@ -6161,8 +6161,8 @@ Background="#FFFAFAFC"
                 <svg:SvgViewbox Source="images/white/yingyong.svg" Width="21" Height="21"/>
             </Border>
             <StackPanel VerticalAlignment="Center" Margin="12,0,0,0">
-                <TextBlock Text="应用管理" FontSize="20" FontWeight="Bold" Foreground="{StaticResource TextPrimaryBrush}"/>
-                <TextBlock Text="应用批量安装与卸载" FontSize="12" Foreground="{StaticResource TextMutedBrush}" Margin="0,2,0,0"/>
+                <TextBlock Text="应用管理" Style="{StaticResource PageHeaderTitle}"/>
+                <TextBlock Text="应用批量安装与卸载" Style="{StaticResource PageHeaderSubtitle}"/>
             </StackPanel>
         </StackPanel>
     </Grid>
@@ -6260,7 +6260,7 @@ Background="#FFFAFAFC"
                                               AlternatingRowBackground="{StaticResource SurfaceTintBrush}" VirtualizingStackPanel.IsVirtualizing="True" VirtualizingStackPanel.VirtualizationMode="Recycling" ScrollViewer.CanContentScroll="True">
                                         <DataGrid.Resources>
                                             <Style TargetType="{x:Type DataGridColumnHeader}">
-                                                <Setter Property="Background" Value="#FFE8E8E8"/>
+                                                <Setter Property="Background" Value="{StaticResource BorderSubtleBrush}"/>
                                                 <Setter Property="Foreground" Value="#48484A"/>
                                                 <Setter Property="FontWeight" Value="SemiBold"/>
                                                 <Setter Property="Padding" Value="10,0"/>
@@ -6308,7 +6308,7 @@ Background="#FFFAFAFC"
                                                         <Setter Property="Padding" Value="0"/>
                                                         <Setter Property="HorizontalContentAlignment" Value="Center"/>
                                                         <Setter Property="VerticalContentAlignment" Value="Center"/>
-                                                        <Setter Property="Background" Value="#FFE8E8E8"/>
+                                                        <Setter Property="Background" Value="{StaticResource BorderSubtleBrush}"/>
                                                     </Style>
                                                 </DataGridCheckBoxColumn.HeaderStyle>
                                                 <DataGridCheckBoxColumn.Header>
@@ -6479,8 +6479,8 @@ Background="#FFFAFAFC"
                 <svg:SvgViewbox Source="images/white/android.svg" Width="21" Height="21"/>
             </Border>
             <StackPanel VerticalAlignment="Center" Margin="12,0,0,0">
-                <TextBlock Text="安卓通用" FontSize="20" FontWeight="Bold" Foreground="{StaticResource TextPrimaryBrush}"/>
-                <TextBlock Text="散包转换与线刷脚本" FontSize="12" Foreground="{StaticResource TextMutedBrush}" Margin="0,2,0,0"/>
+                <TextBlock Text="安卓通用" Style="{StaticResource PageHeaderTitle}"/>
+                <TextBlock Text="散包转换与线刷脚本" Style="{StaticResource PageHeaderSubtitle}"/>
             </StackPanel>
         </StackPanel>
     </Grid>
@@ -7000,8 +7000,8 @@ Background="#FFFAFAFC"
                 <svg:SvgViewbox Source="images/white/jingxiangwenjian.svg" Width="21" Height="21"/>
             </Border>
             <StackPanel VerticalAlignment="Center" Margin="12,0,0,0">
-                <TextBlock Text="Payload" FontSize="20" FontWeight="Bold" Foreground="{StaticResource TextPrimaryBrush}"/>
-                <TextBlock Text="payload.bin 分区提取" FontSize="12" Foreground="{StaticResource TextMutedBrush}" Margin="0,2,0,0"/>
+                <TextBlock Text="Payload" Style="{StaticResource PageHeaderTitle}"/>
+                <TextBlock Text="payload.bin 分区提取" Style="{StaticResource PageHeaderSubtitle}"/>
             </StackPanel>
         </StackPanel>
     </Grid>
@@ -7231,7 +7231,7 @@ Background="#FFFAFAFC"
                                        BasedOn="{StaticResource PayloadGroupBoxStyle}">
                                     <Setter Property="Padding" Value="16,14,16,16"/>
                                     <Setter Property="FontSize" Value="13"/>
-                                    <Setter Property="BorderBrush" Value="#FFE5E5E5"/>
+                                    <Setter Property="BorderBrush" Value="{StaticResource BorderSubtleBrush}"/>
                                 </Style>
                                 <Style x:Key="RomFieldLabelStyle"
                                        TargetType="{x:Type Label}"
@@ -7268,22 +7268,22 @@ Background="#FFFAFAFC"
                                     <Setter Property="Padding" Value="18,0"/>
                                     <Setter Property="Foreground" Value="#FFFFFFFF"/>
                                     <Setter Property="Background" Value="{StaticResource TextPrimaryBrush}"/>
-                                    <Setter Property="BorderBrush" Value="#FFE6E6E6"/>
+                                    <Setter Property="BorderBrush" Value="{StaticResource BorderSubtleBrush}"/>
                                     <Setter Property="BorderThickness" Value="1"/>
                                 </Style>
                                 <Style x:Key="RomSecondaryButtonStyle"
                                        TargetType="{x:Type Button}"
                                        BasedOn="{StaticResource PagePrimaryButton}">
                                     <Setter Property="Foreground" Value="#FFFFFFFF"/>
-                                    <Setter Property="Background" Value="#1D1D1F"/>
-                                    <Setter Property="BorderBrush" Value="#FFE6E6E6"/>
+                                    <Setter Property="Background" Value="{StaticResource TextPrimaryBrush}"/>
+                                    <Setter Property="BorderBrush" Value="{StaticResource BorderSubtleBrush}"/>
                                 </Style>
                                 <Style x:Key="RomDangerButtonStyle"
                                        TargetType="{x:Type Button}"
                                        BasedOn="{StaticResource PagePrimaryButton}">
                                     <Setter Property="Foreground" Value="#FFFFFFFF"/>
-                                    <Setter Property="Background" Value="#1D1D1F"/>
-                                    <Setter Property="BorderBrush" Value="#FFE6E6E6"/>
+                                    <Setter Property="Background" Value="{StaticResource TextPrimaryBrush}"/>
+                                    <Setter Property="BorderBrush" Value="{StaticResource BorderSubtleBrush}"/>
                                 </Style>
                                 <Style x:Key="RomVersionDropDownItemStyle" TargetType="ComboBoxItem">
                                     <Setter Property="MinWidth" Value="720"/>
@@ -7292,7 +7292,7 @@ Background="#FFFAFAFC"
                                     <Setter Property="FontSize" Value="12.5"/>
                                     <Setter Property="FontWeight" Value="Medium"/>
                                     <Setter Property="TextOptions.TextFormattingMode" Value="Display"/>
-                                    <Setter Property="Foreground" Value="#1D1D1F"/>
+                                    <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
                                     <Setter Property="HorizontalContentAlignment" Value="Left"/>
                                     <Setter Property="SnapsToDevicePixels" Value="True"/>
                                     <Setter Property="ToolTip" Value="{Binding Content, RelativeSource={RelativeSource Self}}"/>
@@ -7311,12 +7311,12 @@ Background="#FFFAFAFC"
                                                 </Border>
                                                 <ControlTemplate.Triggers>
                                                     <Trigger Property="IsHighlighted" Value="True">
-                                                        <Setter TargetName="ItemBorder" Property="Background" Value="#FFF6F6F6"/>
-                                                        <Setter Property="Foreground" Value="#1D1D1F"/>
+                                                        <Setter TargetName="ItemBorder" Property="Background" Value="{StaticResource SurfaceTintBrush}"/>
+                                                        <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
                                                     </Trigger>
                                                     <Trigger Property="IsSelected" Value="True">
-                                                        <Setter TargetName="ItemBorder" Property="Background" Value="#F5F5F7"/>
-                                                        <Setter Property="Foreground" Value="#1D1D1F"/>
+                                                        <Setter TargetName="ItemBorder" Property="Background" Value="{StaticResource SurfaceTintBrush}"/>
+                                                        <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
                                                     </Trigger>
                                                     <Trigger Property="IsEnabled" Value="False">
                                                         <Setter Property="Foreground" Value="#AEAEB2"/>
@@ -7334,8 +7334,8 @@ Background="#FFFAFAFC"
                 <svg:SvgViewbox Source="images/white/yunduanxiazai.svg" Width="21" Height="21"/>
             </Border>
             <StackPanel VerticalAlignment="Center" Margin="12,0,0,0">
-                <TextBlock Text="Rom 专区" FontSize="20" FontWeight="Bold" Foreground="{StaticResource TextPrimaryBrush}"/>
-                <TextBlock Text="官方固件下载" FontSize="12" Foreground="{StaticResource TextMutedBrush}" Margin="0,2,0,0"/>
+                <TextBlock Text="Rom 专区" Style="{StaticResource PageHeaderTitle}"/>
+                <TextBlock Text="官方固件下载" Style="{StaticResource PageHeaderSubtitle}"/>
             </StackPanel>
         </StackPanel>
     </Grid>
@@ -7900,24 +7900,24 @@ Background="#FFFAFAFC"
                                     <Setter Property="Background" Value="#FFFFFFFF"/>
                                     <Setter Property="CornerRadius" Value="8"/>
                                     <Setter Property="Padding" Value="12"/>
-                                    <Setter Property="BorderBrush" Value="#FFE6E6E6"/>
+                                    <Setter Property="BorderBrush" Value="{StaticResource BorderSubtleBrush}"/>
                                     <Setter Property="BorderThickness" Value="1"/>
                                 </Style>
                                 <Style x:Key="ColorOSTitleStyle" TargetType="TextBlock">
                                     <Setter Property="FontSize" Value="14"/>
                                     <Setter Property="FontWeight" Value="SemiBold"/>
-                                    <Setter Property="Foreground" Value="#1D1D1F"/>
+                                    <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
                                 </Style>
                                 <Style x:Key="ColorOSSubtitleStyle" TargetType="TextBlock">
                                     <Setter Property="FontSize" Value="11.5"/>
-                                    <Setter Property="Foreground" Value="#6E6E73"/>
+                                    <Setter Property="Foreground" Value="{StaticResource TextMutedBrush}"/>
                                     <Setter Property="TextWrapping" Value="Wrap"/>
                                     <Setter Property="LineHeight" Value="18"/>
                                 </Style>
                                 <Style x:Key="ColorOSFieldLabelStyle" TargetType="TextBlock">
                                     <Setter Property="FontSize" Value="12"/>
                                     <Setter Property="FontWeight" Value="SemiBold"/>
-                                    <Setter Property="Foreground" Value="#1D1D1F"/>
+                                    <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
                                     <Setter Property="Margin" Value="0,0,0,5"/>
                                 </Style>
                                 <Style x:Key="ColorOSCenteredDataTextStyle" TargetType="{x:Type TextBlock}">
@@ -7938,9 +7938,9 @@ Background="#FFFAFAFC"
                                     <Setter Property="FontFamily" Value="pack://siteoforigin:,,,/fonts/OPPO_Sans_4.0.ttf#OPPO Sans 4.0"/>
                                     <Setter Property="FontSize" Value="11.5"/>
                                     <Setter Property="FontWeight" Value="SemiBold"/>
-                                    <Setter Property="Foreground" Value="#1D1D1F"/>
-                                    <Setter Property="Background" Value="#FFF8FAFC"/>
-                                    <Setter Property="BorderBrush" Value="#FFE6E6E6"/>
+                                    <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
+                                    <Setter Property="Background" Value="{StaticResource SurfaceTintBrush}"/>
+                                    <Setter Property="BorderBrush" Value="{StaticResource BorderSubtleBrush}"/>
                                 </Style>
                                 <Style x:Key="ColorOSLeftColumnHeaderStyle"
                                        TargetType="{x:Type DataGridColumnHeader}"
@@ -7964,21 +7964,21 @@ Background="#FFFAFAFC"
                                        BasedOn="{StaticResource FastbootButtonBaseStyle}">
                                     <Setter Property="Height" Value="36"/>
                                     <Setter Property="Foreground" Value="White"/>
-                                    <Setter Property="Background" Value="#1D1D1F"/>
-                                    <Setter Property="BorderBrush" Value="#1D1D1F"/>
+                                    <Setter Property="Background" Value="{StaticResource TextPrimaryBrush}"/>
+                                    <Setter Property="BorderBrush" Value="{StaticResource TextPrimaryBrush}"/>
                                     <Setter Property="FontSize" Value="13"/>
                                     <Setter Property="FontWeight" Value="SemiBold"/>
                                     <Setter Property="Padding" Value="12,0"/>
                                 </Style>
                                 <Style x:Key="ColorOSSecondaryButtonStyle" TargetType="Button" BasedOn="{StaticResource PagePrimaryButton}">
-                                    <Setter Property="Background" Value="#FFF6F6F6"/>
-                                    <Setter Property="BorderBrush" Value="#E8E8ED"/>
-                                    <Setter Property="Foreground" Value="#1D1D1F"/>
+                                    <Setter Property="Background" Value="{StaticResource SurfaceTintBrush}"/>
+                                    <Setter Property="BorderBrush" Value="{StaticResource BorderSubtleBrush}"/>
+                                    <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
                                 </Style>
                                 <Style x:Key="ColorOSTertiaryButtonStyle" TargetType="Button" BasedOn="{StaticResource PagePrimaryButton}">
-                                    <Setter Property="Background" Value="#FFF8FAFC"/>
-                                    <Setter Property="BorderBrush" Value="#FFE8E8E8"/>
-                                    <Setter Property="Foreground" Value="#1D1D1F"/>
+                                    <Setter Property="Background" Value="{StaticResource SurfaceTintBrush}"/>
+                                    <Setter Property="BorderBrush" Value="{StaticResource BorderSubtleBrush}"/>
+                                    <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
                                 </Style>
                                 <Style x:Key="ColorOSGridActionButtonStyle"
                                        TargetType="{x:Type Button}"
@@ -7988,7 +7988,7 @@ Background="#FFFAFAFC"
                                     <Setter Property="Padding" Value="9,0"/>
                                     <Setter Property="HorizontalAlignment" Value="Center"/>
                                     <Setter Property="Background" Value="#FFFFFFFF"/>
-                                    <Setter Property="Foreground" Value="#1D1D1F"/>
+                                    <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
                                     <Setter Property="BorderBrush" Value="#FFD1D1D1"/>
                                     <Setter Property="BorderThickness" Value="1"/>
                                     <Setter Property="FontSize" Value="11.5"/>
@@ -8005,9 +8005,9 @@ Background="#FFFAFAFC"
                                        TargetType="{x:Type GroupBox}"
                                        BasedOn="{StaticResource PayloadGroupBoxStyle}">
                                     <Setter Property="Background" Value="#FFFFFFFF"/>
-                                    <Setter Property="BorderBrush" Value="#FFE6E6E6"/>
+                                    <Setter Property="BorderBrush" Value="{StaticResource BorderSubtleBrush}"/>
                                     <Setter Property="BorderThickness" Value="1"/>
-                                    <Setter Property="Foreground" Value="#1D1D1F"/>
+                                    <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
                                     <Setter Property="FontFamily" Value="pack://siteoforigin:,,,/fonts/OPPO_Sans_4.0.ttf#OPPO Sans 4.0"/>
                                     <Setter Property="FontSize" Value="12"/>
                                     <Setter Property="FontWeight" Value="SemiBold"/>
@@ -8074,8 +8074,8 @@ Background="#FFFAFAFC"
                 <svg:SvgViewbox Source="images/white/coloros.svg" Width="21" Height="21"/>
             </Border>
             <StackPanel VerticalAlignment="Center" Margin="12,0,0,0">
-                <TextBlock Text="降级助手" FontSize="20" FontWeight="Bold" Foreground="{StaticResource TextPrimaryBrush}"/>
-                <TextBlock Text="ColorOS 固件下载与降级" FontSize="12" Foreground="{StaticResource TextMutedBrush}" Margin="0,2,0,0"/>
+                <TextBlock Text="降级助手" Style="{StaticResource PageHeaderTitle}"/>
+                <TextBlock Text="ColorOS 固件下载与降级" Style="{StaticResource PageHeaderSubtitle}"/>
             </StackPanel>
         </StackPanel>
     </Grid>
@@ -8285,15 +8285,15 @@ Background="#FFFAFAFC"
                                                 <DataGrid.Resources>
                                                     <Style TargetType="{x:Type DataGridRow}"
                                                            BasedOn="{StaticResource {x:Type DataGridRow}}">
-                                                        <Setter Property="Foreground" Value="#1D1D1F"/>
+                                                        <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
                                                         <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
                                                         <Style.Triggers>
                                                             <Trigger Property="IsMouseOver" Value="True">
-                                                                <Setter Property="Background" Value="#FFF6F6F6"/>
+                                                                <Setter Property="Background" Value="{StaticResource SurfaceTintBrush}"/>
                                                             </Trigger>
                                                             <Trigger Property="IsSelected" Value="True">
                                                                 <Setter Property="Background" Value="{StaticResource TextPrimaryBrush}"/>
-                                                                <Setter Property="Foreground" Value="#1D1D1F"/>
+                                                                <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
                                                             </Trigger>
                                                         </Style.Triggers>
                                                     </Style>
@@ -8306,7 +8306,7 @@ Background="#FFFAFAFC"
                                                         <Style.Triggers>
                                                             <Trigger Property="IsSelected" Value="True">
                                                                 <Setter Property="Background" Value="{StaticResource TextPrimaryBrush}"/>
-                                                                <Setter Property="Foreground" Value="#1D1D1F"/>
+                                                                <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
                                                             </Trigger>
                                                         </Style.Triggers>
                                                     </Style>
@@ -8435,8 +8435,8 @@ Background="#FFFAFAFC"
                 <svg:SvgViewbox Source="images/white/beifen.svg" Width="21" Height="21"/>
             </Border>
             <StackPanel VerticalAlignment="Center" Margin="12,0,0,0">
-                <TextBlock Text="备份助手" FontSize="20" FontWeight="Bold" Foreground="{StaticResource TextPrimaryBrush}"/>
-                <TextBlock Text="应用数据备份" FontSize="12" Foreground="{StaticResource TextMutedBrush}" Margin="0,2,0,0"/>
+                <TextBlock Text="备份助手" Style="{StaticResource PageHeaderTitle}"/>
+                <TextBlock Text="应用数据备份" Style="{StaticResource PageHeaderSubtitle}"/>
             </StackPanel>
         </StackPanel>
     </Grid>
@@ -8503,7 +8503,7 @@ Background="#FFFAFAFC"
                             <Grid.Resources>
                                 <Style x:Key="VioletCardStyle" TargetType="Border">
                                     <Setter Property="Background" Value="#FFFFFFFF"/>
-                                    <Setter Property="BorderBrush" Value="#FFEBEBEB"/>
+                                    <Setter Property="BorderBrush" Value="{StaticResource BorderSubtleBrush}"/>
                                     <Setter Property="BorderThickness" Value="1"/>
                                     <Setter Property="CornerRadius" Value="14"/>
                                     <Setter Property="Padding" Value="14"/>
@@ -8511,11 +8511,11 @@ Background="#FFFAFAFC"
                                 <Style x:Key="VioletPanelTitleStyle" TargetType="TextBlock">
                                     <Setter Property="FontSize" Value="16"/>
                                     <Setter Property="FontWeight" Value="Bold"/>
-                                    <Setter Property="Foreground" Value="#1D1D1F"/>
+                                    <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
                                 </Style>
                                 <Style x:Key="VioletPanelSubtitleStyle" TargetType="TextBlock">
                                     <Setter Property="FontSize" Value="12"/>
-                                    <Setter Property="Foreground" Value="#8E8E93"/>
+                                    <Setter Property="Foreground" Value="{StaticResource TextMutedBrush}"/>
                                     <Setter Property="Margin" Value="0,4,0,0"/>
                                     <Setter Property="TextWrapping" Value="Wrap"/>
                                 </Style>
@@ -8536,10 +8536,10 @@ Background="#FFFAFAFC"
                                                 </Border>
                                                 <ControlTemplate.Triggers>
                                                     <Trigger Property="IsMouseOver" Value="True">
-                                                        <Setter Property="Background" Value="#FF2C2C2E"/>
+                                                        <Setter Property="Background" Value="{StaticResource TextStrongBrush}"/>
                                                     </Trigger>
                                                     <Trigger Property="IsPressed" Value="True">
-                                                        <Setter Property="Background" Value="#FF3A3A3C"/>
+                                                        <Setter Property="Background" Value="{StaticResource TextStrongBrush}"/>
                                                     </Trigger>
                                                 </ControlTemplate.Triggers>
                                             </ControlTemplate>
@@ -8549,9 +8549,9 @@ Background="#FFFAFAFC"
                                 <Style x:Key="VioletSecondaryButtonStyle" TargetType="Button">
                                     <Setter Property="Height" Value="34"/>
                                     <Setter Property="Padding" Value="10,0"/>
-                                    <Setter Property="Background" Value="#FFFAFAFA"/>
-                                    <Setter Property="Foreground" Value="#1D1D1F"/>
-                                    <Setter Property="BorderBrush" Value="#FFE5E5E5"/>
+                                    <Setter Property="Background" Value="{StaticResource SurfaceTintBrush}"/>
+                                    <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
+                                    <Setter Property="BorderBrush" Value="{StaticResource BorderSubtleBrush}"/>
                                     <Setter Property="BorderThickness" Value="1"/>
                                     <Setter Property="FontSize" Value="13"/>
                                     <Setter Property="FontWeight" Value="SemiBold"/>
@@ -8567,17 +8567,17 @@ Background="#FFFAFAFC"
                                                 </Border>
                                                 <ControlTemplate.Triggers>
                                                     <Trigger Property="IsMouseOver" Value="True">
-                                                        <Setter Property="Background" Value="#FFF6F6F6"/>
-                                                        <Setter Property="BorderBrush" Value="#E8E8ED"/>
+                                                        <Setter Property="Background" Value="{StaticResource SurfaceTintBrush}"/>
+                                                        <Setter Property="BorderBrush" Value="{StaticResource BorderSubtleBrush}"/>
                                                     </Trigger>
                                                     <Trigger Property="IsPressed" Value="True">
-                                                        <Setter Property="Background" Value="#FFF5F5F5"/>
+                                                        <Setter Property="Background" Value="{StaticResource SurfaceTintBrush}"/>
                                                     </Trigger>
                                                     <Trigger Property="IsEnabled" Value="False">
                                                         <Setter Property="Opacity" Value="1"/>
-                                                        <Setter Property="Background" Value="#FFE8E8E8"/>
+                                                        <Setter Property="Background" Value="{StaticResource BorderSubtleBrush}"/>
                                                         <Setter Property="BorderBrush" Value="#D1D1D6"/>
-                                                        <Setter Property="Foreground" Value="#8E8E93"/>
+                                                        <Setter Property="Foreground" Value="{StaticResource TextMutedBrush}"/>
                                                     </Trigger>
                                                 </ControlTemplate.Triggers>
                                             </ControlTemplate>
@@ -8585,9 +8585,9 @@ Background="#FFFAFAFC"
                                     </Setter>
                                 </Style>
                                 <Style x:Key="VioletPauseButtonStyle" TargetType="Button" BasedOn="{StaticResource PageSecondaryButton}">
-                                    <Setter Property="Background" Value="#FFF5F5F5"/>
-                                    <Setter Property="Foreground" Value="#1D1D1F"/>
-                                    <Setter Property="BorderBrush" Value="#E8E8ED"/>
+                                    <Setter Property="Background" Value="{StaticResource SurfaceTintBrush}"/>
+                                    <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
+                                    <Setter Property="BorderBrush" Value="{StaticResource BorderSubtleBrush}"/>
                                     <Setter Property="Template">
                                         <Setter.Value>
                                             <ControlTemplate TargetType="{x:Type Button}">
@@ -8659,9 +8659,9 @@ Background="#FFFAFAFC"
                                                         </Trigger.ExitActions>
                                                     </Trigger>
                                                     <Trigger Property="IsEnabled" Value="False">
-                                                        <Setter Property="Background" Value="#FFF1F3F5"/>
-                                                        <Setter Property="BorderBrush" Value="#FFE2E2E2"/>
-                                                        <Setter Property="Foreground" Value="#8E8E93"/>
+                                                        <Setter Property="Background" Value="{StaticResource SurfaceTintBrush}"/>
+                                                        <Setter Property="BorderBrush" Value="{StaticResource BorderSubtleBrush}"/>
+                                                        <Setter Property="Foreground" Value="{StaticResource TextMutedBrush}"/>
                                                     </Trigger>
                                                 </ControlTemplate.Triggers>
                                             </ControlTemplate>
@@ -8669,9 +8669,9 @@ Background="#FFFAFAFC"
                                     </Setter>
                                 </Style>
                                 <Style x:Key="VioletResumeButtonStyle" TargetType="Button" BasedOn="{StaticResource PageSecondaryButton}">
-                                    <Setter Property="Background" Value="#F5F5F7"/>
-                                    <Setter Property="Foreground" Value="#1D1D1F"/>
-                                    <Setter Property="BorderBrush" Value="#E8E8ED"/>
+                                    <Setter Property="Background" Value="{StaticResource SurfaceTintBrush}"/>
+                                    <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
+                                    <Setter Property="BorderBrush" Value="{StaticResource BorderSubtleBrush}"/>
                                     <Setter Property="Template">
                                         <Setter.Value>
                                             <ControlTemplate TargetType="{x:Type Button}">
@@ -8743,9 +8743,9 @@ Background="#FFFAFAFC"
                                                         </Trigger.ExitActions>
                                                     </Trigger>
                                                     <Trigger Property="IsEnabled" Value="False">
-                                                        <Setter Property="Background" Value="#FFF1F3F5"/>
-                                                        <Setter Property="BorderBrush" Value="#FFE2E2E2"/>
-                                                        <Setter Property="Foreground" Value="#8E8E93"/>
+                                                        <Setter Property="Background" Value="{StaticResource SurfaceTintBrush}"/>
+                                                        <Setter Property="BorderBrush" Value="{StaticResource BorderSubtleBrush}"/>
+                                                        <Setter Property="Foreground" Value="{StaticResource TextMutedBrush}"/>
                                                     </Trigger>
                                                 </ControlTemplate.Triggers>
                                             </ControlTemplate>
@@ -8753,7 +8753,7 @@ Background="#FFFAFAFC"
                                     </Setter>
                                 </Style>
                                 <Style x:Key="VioletAccentButtonStyle" TargetType="Button" BasedOn="{StaticResource PageLightButton}">
-                                    <Setter Property="Background" Value="#FFD1D1D6"/>
+                                    <Setter Property="Background" Value="{StaticResource BorderBrush}"/>
                                     <Setter Property="Template">
                                         <Setter.Value>
                                             <ControlTemplate TargetType="{x:Type Button}">
@@ -8762,10 +8762,10 @@ Background="#FFFAFAFC"
                                                 </Border>
                                                 <ControlTemplate.Triggers>
                                                     <Trigger Property="IsMouseOver" Value="True">
-                                                        <Setter Property="Background" Value="#1D1D1F"/>
+                                                        <Setter Property="Background" Value="{StaticResource TextPrimaryBrush}"/>
                                                     </Trigger>
                                                     <Trigger Property="IsPressed" Value="True">
-                                                        <Setter Property="Background" Value="#1D1D1F"/>
+                                                        <Setter Property="Background" Value="{StaticResource TextPrimaryBrush}"/>
                                                     </Trigger>
                                                     <Trigger Property="IsEnabled" Value="False">
                                                         <Setter Property="Opacity" Value="0.55"/>
@@ -8778,15 +8778,15 @@ Background="#FFFAFAFC"
                                 <Style x:Key="VioletLabelStyle" TargetType="TextBlock">
                                     <Setter Property="FontSize" Value="13"/>
                                     <Setter Property="FontWeight" Value="SemiBold"/>
-                                    <Setter Property="Foreground" Value="#6E6E73"/>
+                                    <Setter Property="Foreground" Value="{StaticResource TextMutedBrush}"/>
                                     <Setter Property="Margin" Value="0,0,0,6"/>
                                 </Style>
                                 <Style x:Key="VioletTextBoxStyle" TargetType="TextBox">
                                     <Setter Property="MinHeight" Value="36"/>
                                     <Setter Property="Padding" Value="11,7"/>
                                     <Setter Property="Background" Value="#FFFFFFFF"/>
-                                    <Setter Property="Foreground" Value="#1D1D1F"/>
-                                    <Setter Property="BorderBrush" Value="#FFE8E8E8"/>
+                                    <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
+                                    <Setter Property="BorderBrush" Value="{StaticResource BorderSubtleBrush}"/>
                                     <Setter Property="BorderThickness" Value="1"/>
                                     <Setter Property="FontSize" Value="13"/>
                                     <Setter Property="VerticalContentAlignment" Value="Center"/>
@@ -8834,15 +8834,15 @@ Background="#FFFAFAFC"
                                                         </Trigger.ExitActions>
                                                     </Trigger>
                                                     <Trigger Property="IsKeyboardFocused" Value="True">
-                                                        <Setter TargetName="VioletTextBoxBorder" Property="BorderBrush" Value="#1D1D1F"/>
+                                                        <Setter TargetName="VioletTextBoxBorder" Property="BorderBrush" Value="{StaticResource TextPrimaryBrush}"/>
                                                         <Setter TargetName="VioletTextBoxBorder" Property="BorderThickness" Value="1.5"/>
                                                     </Trigger>
                                                     <Trigger Property="IsReadOnly" Value="True">
-                                                        <Setter TargetName="VioletTextBoxBorder" Property="Background" Value="#FFFAFAFA"/>
+                                                        <Setter TargetName="VioletTextBoxBorder" Property="Background" Value="{StaticResource SurfaceTintBrush}"/>
                                                     </Trigger>
                                                     <Trigger Property="IsEnabled" Value="False">
-                                                        <Setter TargetName="VioletTextBoxBorder" Property="Background" Value="#FFF5F5F5"/>
-                                                        <Setter TargetName="VioletTextBoxBorder" Property="BorderBrush" Value="#FFE7E7E7"/>
+                                                        <Setter TargetName="VioletTextBoxBorder" Property="Background" Value="{StaticResource SurfaceTintBrush}"/>
+                                                        <Setter TargetName="VioletTextBoxBorder" Property="BorderBrush" Value="{StaticResource BorderSubtleBrush}"/>
                                                         <Setter Property="Foreground" Value="#AEAEB2"/>
                                                     </Trigger>
                                                 </ControlTemplate.Triggers>
@@ -8853,8 +8853,8 @@ Background="#FFFAFAFC"
                                 <Style x:Key="VioletComboBoxStyle" TargetType="ComboBox">
                                     <Setter Property="Height" Value="36"/>
                                     <Setter Property="Background" Value="White"/>
-                                    <Setter Property="Foreground" Value="#FF1A1A1A"/>
-                                    <Setter Property="BorderBrush" Value="#E8E8ED"/>
+                                    <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
+                                    <Setter Property="BorderBrush" Value="{StaticResource BorderSubtleBrush}"/>
                                     <Setter Property="BorderThickness" Value="1"/>
                                     <Setter Property="Padding" Value="8,0"/>
                                     <Setter Property="FontSize" Value="13"/>
@@ -8966,7 +8966,7 @@ Background="#FFFAFAFC"
                                 </Style>
                                 <Style x:Key="VioletComboBoxItemStyle" TargetType="ComboBoxItem">
                                     <Setter Property="Padding" Value="10,8"/>
-                                    <Setter Property="Foreground" Value="#1D1D1F"/>
+                                    <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
                                     <Setter Property="HorizontalContentAlignment" Value="Left"/>
                                     <Setter Property="Template">
                                         <Setter.Value>
@@ -8981,11 +8981,11 @@ Background="#FFFAFAFC"
                                                 </Border>
                                                 <ControlTemplate.Triggers>
                                                     <Trigger Property="IsHighlighted" Value="True">
-                                                        <Setter TargetName="ItemBorder" Property="Background" Value="#FFF6F6F6"/>
+                                                        <Setter TargetName="ItemBorder" Property="Background" Value="{StaticResource SurfaceTintBrush}"/>
                                                     </Trigger>
                                                     <Trigger Property="IsSelected" Value="True">
-                                                        <Setter TargetName="ItemBorder" Property="Background" Value="#F5F5F7"/>
-                                                        <Setter Property="Foreground" Value="#1D1D1F"/>
+                                                        <Setter TargetName="ItemBorder" Property="Background" Value="{StaticResource SurfaceTintBrush}"/>
+                                                        <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
                                                     </Trigger>
                                                 </ControlTemplate.Triggers>
                                             </ControlTemplate>
@@ -9000,8 +9000,8 @@ Background="#FFFAFAFC"
                                                     <svg:SvgViewbox Source="images/white/xiazai.svg" Width="21" Height="21"/>
                                                 </Border>
                                                 <StackPanel VerticalAlignment="Center" Margin="12,0,0,0">
-                                                    <TextBlock Text="断点续传" FontSize="20" FontWeight="Bold" Foreground="{StaticResource TextPrimaryBrush}"/>
-                                                    <TextBlock Text="多线程下载工具" FontSize="12" Foreground="{StaticResource TextMutedBrush}" Margin="0,2,0,0"/>
+                                                    <TextBlock Text="断点续传" Style="{StaticResource PageHeaderTitle}"/>
+                                                    <TextBlock Text="多线程下载工具" Style="{StaticResource PageHeaderSubtitle}"/>
                                                 </StackPanel>
                                             </StackPanel>
                                         </Grid>
@@ -10164,8 +10164,8 @@ Background="#FFFAFAFC"
                                                 <svg:SvgViewbox Source="images/white/zhuye.svg" Width="21" Height="21"/>
                                             </Border>
                                             <StackPanel VerticalAlignment="Center" Margin="12,0,0,0">
-                                                <TextBlock Text="主页" FontSize="20" FontWeight="Bold" Foreground="{StaticResource TextPrimaryBrush}"/>
-                                                <TextBlock Text="设备状态与快捷操作" FontSize="12" Foreground="{StaticResource TextMutedBrush}" Margin="0,2,0,0"/>
+                                                <TextBlock Text="主页" Style="{StaticResource PageHeaderTitle}"/>
+                                                <TextBlock Text="设备状态与快捷操作" Style="{StaticResource PageHeaderSubtitle}"/>
                                             </StackPanel>
                                         </StackPanel>
                                     </Grid>
@@ -10541,8 +10541,8 @@ Background="#FFFAFAFC"
                                                     <svg:SvgViewbox Source="images/white/xiazai.svg" Width="21" Height="21"/>
                                                 </Border>
                                                 <StackPanel VerticalAlignment="Center" Margin="12,0,0,0">
-                                                    <TextBlock Text="下载专区" FontSize="20" FontWeight="Bold" Foreground="{StaticResource TextPrimaryBrush}"/>
-                                                    <TextBlock Text="工具与资源下载" FontSize="12" Foreground="{StaticResource TextMutedBrush}" Margin="0,2,0,0"/>
+                                                    <TextBlock Text="下载专区" Style="{StaticResource PageHeaderTitle}"/>
+                                                    <TextBlock Text="工具与资源下载" Style="{StaticResource PageHeaderSubtitle}"/>
                                                 </StackPanel>
                                             </StackPanel>
                                         </Grid>

@@ -44,7 +44,7 @@
                                     <Storyboard>
                                         <ColorAnimation Storyboard.TargetName="bdr"
                                                         Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
-                                                        To="#FFE5E5EA" Duration="0:0:0.15">
+                                                        To="{StaticResource Gray100}" Duration="0:0:0.15">
                                             <ColorAnimation.EasingFunction>
                                                 <CubicEase EasingMode="EaseOut"/>
                                             </ColorAnimation.EasingFunction>
@@ -72,7 +72,7 @@
                                     <Storyboard>
                                         <ColorAnimation Storyboard.TargetName="bdr"
                                                         Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
-                                                        To="#FFD1D1D6" Duration="0:0:0.08"/>
+                                                        To="{StaticResource Gray200}" Duration="0:0:0.08"/>
                                     </Storyboard>
                                 </BeginStoryboard>
                             </Trigger.EnterActions>
@@ -132,7 +132,7 @@
                                     <Storyboard>
                                         <ColorAnimation Storyboard.TargetName="bdr"
                                                         Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
-                                                        To="#FF0066D6" Duration="0:0:0.12">
+                                                        To="{StaticResource Violet600}" Duration="0:0:0.12">
                                             <ColorAnimation.EasingFunction>
                                                 <CubicEase EasingMode="EaseOut"/>
                                             </ColorAnimation.EasingFunction>
@@ -201,14 +201,14 @@
                                     <Storyboard>
                                         <ColorAnimation Storyboard.TargetName="bdr"
                                                         Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
-                                                        To="#FFE5E5EA" Duration="0:0:0.12">
+                                                        To="{StaticResource Gray100}" Duration="0:0:0.12">
                                             <ColorAnimation.EasingFunction>
                                                 <CubicEase EasingMode="EaseOut"/>
                                             </ColorAnimation.EasingFunction>
                                         </ColorAnimation>
                                         <ColorAnimation Storyboard.TargetName="bdr"
                                                         Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)"
-                                                        To="#FFC7C7CC" Duration="0:0:0.12">
+                                                        To="{StaticResource Gray300}" Duration="0:0:0.12">
                                             <ColorAnimation.EasingFunction>
                                                 <CubicEase EasingMode="EaseOut"/>
                                             </ColorAnimation.EasingFunction>
@@ -320,7 +320,7 @@
                             CornerRadius="6"
                             SnapsToDevicePixels="True">
                         <Border.Effect>
-                            <DropShadowEffect Color="#FF1D1D1D" Opacity="0.25" BlurRadius="12" ShadowDepth="2" Direction="270"/>
+                            <DropShadowEffect Color="{StaticResource Gray900}" Opacity="0.25" BlurRadius="12" ShadowDepth="2" Direction="270"/>
                         </Border.Effect>
                         <ContentPresenter TextElement.Foreground="{TemplateBinding Foreground}" HorizontalAlignment="Center"
                                           VerticalAlignment="Center"
@@ -333,7 +333,7 @@
                                     <Storyboard>
                                         <ColorAnimation Storyboard.TargetName="bdr"
                                                         Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
-                                                        To="#FF1D1D1D" Duration="0:0:0.12">
+                                                        To="{StaticResource Gray900}" Duration="0:0:0.12">
                                             <ColorAnimation.EasingFunction>
                                                 <CubicEase EasingMode="EaseOut"/>
                                             </ColorAnimation.EasingFunction>
@@ -356,7 +356,7 @@
                             </Trigger.ExitActions>
                         </Trigger>
                         <Trigger Property="IsPressed" Value="True">
-                            <Setter TargetName="bdr" Property="Background" Value="#FF1D1D1D"/>
+                            <Setter TargetName="bdr" Property="Background" Value="{StaticResource TextPrimaryBrush}"/>
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="False">
                             <Setter TargetName="bdr" Property="Background" Value="{StaticResource BorderBrush}"/>
@@ -404,7 +404,7 @@
                                     <Storyboard>
                                         <ColorAnimation Storyboard.TargetName="bdr"
                                                         Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)"
-                                                        To="#FFC7C7CC" Duration="0:0:0.12">
+                                                        To="{StaticResource Gray300}" Duration="0:0:0.12">
                                             <ColorAnimation.EasingFunction>
                                                 <CubicEase EasingMode="EaseOut"/>
                                             </ColorAnimation.EasingFunction>
@@ -474,7 +474,7 @@
                                     <Storyboard>
                                         <ColorAnimation Storyboard.TargetName="bdr"
                                                         Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)"
-                                                        To="#FFC7C7CC" Duration="0:0:0.12">
+                                                        To="{StaticResource Gray300}" Duration="0:0:0.12">
                                             <ColorAnimation.EasingFunction>
                                                 <CubicEase EasingMode="EaseOut"/>
                                             </ColorAnimation.EasingFunction>
@@ -560,7 +560,7 @@
                                     <Storyboard>
                                         <ColorAnimation Storyboard.TargetName="box"
                                                         Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)"
-                                                        To="#FF007AFF" Duration="0:0:0.12">
+                                                        To="{StaticResource Violet500}" Duration="0:0:0.12">
                                             <ColorAnimation.EasingFunction>
                                                 <CubicEase EasingMode="EaseOut"/>
                                             </ColorAnimation.EasingFunction>
@@ -588,14 +588,14 @@
                                     <Storyboard>
                                         <ColorAnimation Storyboard.TargetName="box"
                                                         Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
-                                                        To="#FF007AFF" Duration="0:0:0.14">
+                                                        To="{StaticResource Violet500}" Duration="0:0:0.14">
                                             <ColorAnimation.EasingFunction>
                                                 <CubicEase EasingMode="EaseOut"/>
                                             </ColorAnimation.EasingFunction>
                                         </ColorAnimation>
                                         <ColorAnimation Storyboard.TargetName="box"
                                                         Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)"
-                                                        To="#FF007AFF" Duration="0:0:0.14">
+                                                        To="{StaticResource Violet500}" Duration="0:0:0.14">
                                             <ColorAnimation.EasingFunction>
                                                 <CubicEase EasingMode="EaseOut"/>
                                             </ColorAnimation.EasingFunction>
@@ -679,7 +679,7 @@
                                     <Storyboard>
                                         <ColorAnimation Storyboard.TargetName="track"
                                                         Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
-                                                        To="#FF007AFF" Duration="0:0:0.14">
+                                                        To="{StaticResource Violet500}" Duration="0:0:0.14">
                                             <ColorAnimation.EasingFunction>
                                                 <CubicEase EasingMode="EaseOut"/>
                                             </ColorAnimation.EasingFunction>
@@ -770,7 +770,7 @@
                                     <Storyboard>
                                         <ColorAnimation Storyboard.TargetName="ring"
                                                         Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)"
-                                                        To="#FF007AFF" Duration="0:0:0.12">
+                                                        To="{StaticResource Violet500}" Duration="0:0:0.12">
                                             <ColorAnimation.EasingFunction>
                                                 <CubicEase EasingMode="EaseOut"/>
                                             </ColorAnimation.EasingFunction>
@@ -798,7 +798,7 @@
                                     <Storyboard>
                                         <ColorAnimation Storyboard.TargetName="ring"
                                                         Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)"
-                                                        To="#FF007AFF" Duration="0:0:0.12">
+                                                        To="{StaticResource Violet500}" Duration="0:0:0.12">
                                             <ColorAnimation.EasingFunction>
                                                 <CubicEase EasingMode="EaseOut"/>
                                             </ColorAnimation.EasingFunction>
@@ -923,7 +923,7 @@
                                     <Storyboard>
                                         <ColorAnimation Storyboard.TargetName="bdr"
                                                         Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)"
-                                                        To="#FFC7C7CC" Duration="0:0:0.12">
+                                                        To="{StaticResource Gray300}" Duration="0:0:0.12">
                                             <ColorAnimation.EasingFunction>
                                                 <CubicEase EasingMode="EaseOut"/>
                                             </ColorAnimation.EasingFunction>
@@ -982,7 +982,7 @@
                                     <Storyboard>
                                         <ColorAnimation Storyboard.TargetName="bdr"
                                                         Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
-                                                        To="#FFE8F0FF" Duration="0:0:0.14">
+                                                        To="{StaticResource Violet50}" Duration="0:0:0.14">
                                             <ColorAnimation.EasingFunction>
                                                 <CubicEase EasingMode="EaseOut"/>
                                             </ColorAnimation.EasingFunction>
@@ -1010,7 +1010,7 @@
                                     <Storyboard>
                                         <ColorAnimation Storyboard.TargetName="bdr"
                                                         Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
-                                                        To="#FFD1E2FF" Duration="0:0:0.14">
+                                                        To="{StaticResource Violet100}" Duration="0:0:0.14">
                                             <ColorAnimation.EasingFunction>
                                                 <CubicEase EasingMode="EaseOut"/>
                                             </ColorAnimation.EasingFunction>
@@ -1176,7 +1176,7 @@
                     <BeginStoryboard>
                         <Storyboard>
                             <ColorAnimation Storyboard.TargetProperty="Background.Color"
-                                            To="#FFE5E5EA" Duration="0:0:0.14">
+                                            To="{StaticResource Gray100}" Duration="0:0:0.14">
                                 <ColorAnimation.EasingFunction>
                                     <CubicEase EasingMode="EaseOut"/>
                                 </ColorAnimation.EasingFunction>
@@ -1406,7 +1406,7 @@
                                     <Storyboard>
                                         <ColorAnimation Storyboard.TargetName="bdr"
                                                         Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
-                                                        To="#FFE5E5EA" Duration="0:0:0.14">
+                                                        To="{StaticResource Gray100}" Duration="0:0:0.14">
                                             <ColorAnimation.EasingFunction>
                                                 <CubicEase EasingMode="EaseOut"/>
                                             </ColorAnimation.EasingFunction>
@@ -1434,7 +1434,7 @@
                                     <Storyboard>
                                         <ColorAnimation Storyboard.TargetName="bdr"
                                                         Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
-                                                        To="#FFE8F0FF" Duration="0:0:0.14">
+                                                        To="{StaticResource Violet50}" Duration="0:0:0.14">
                                             <ColorAnimation.EasingFunction>
                                                 <CubicEase EasingMode="EaseOut"/>
                                             </ColorAnimation.EasingFunction>
@@ -1514,7 +1514,7 @@
                                     <Storyboard>
                                         <ColorAnimation Storyboard.TargetName="bdr"
                                                         Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
-                                                        To="#FFE5E5EA" Duration="0:0:0.14">
+                                                        To="{StaticResource Gray100}" Duration="0:0:0.14">
                                             <ColorAnimation.EasingFunction>
                                                 <CubicEase EasingMode="EaseOut"/>
                                             </ColorAnimation.EasingFunction>
@@ -1585,7 +1585,7 @@
                                     <Storyboard>
                                         <ColorAnimation Storyboard.TargetName="bdr"
                                                         Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
-                                                        To="#FFE5E5EA" Duration="0:0:0.12">
+                                                        To="{StaticResource Gray100}" Duration="0:0:0.12">
                                             <ColorAnimation.EasingFunction>
                                                 <CubicEase EasingMode="EaseOut"/>
                                             </ColorAnimation.EasingFunction>
@@ -1625,7 +1625,7 @@
                     <BeginStoryboard>
                         <Storyboard>
                             <ColorAnimation Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
-                                            To="#FFE5E5EA" Duration="0:0:0.14">
+                                            To="{StaticResource Gray100}" Duration="0:0:0.14">
                                 <ColorAnimation.EasingFunction>
                                     <CubicEase EasingMode="EaseOut"/>
                                 </ColorAnimation.EasingFunction>
@@ -1651,7 +1651,7 @@
                     <BeginStoryboard>
                         <Storyboard>
                             <ColorAnimation Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
-                                            To="#FFE8F0FF" Duration="0:0:0.14">
+                                            To="{StaticResource Violet50}" Duration="0:0:0.14">
                                 <ColorAnimation.EasingFunction>
                                     <CubicEase EasingMode="EaseOut"/>
                                 </ColorAnimation.EasingFunction>
@@ -1736,14 +1736,14 @@
             <Setter.Value>
                 <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
                     <GradientStop Color="#FF2C2C2E" Offset="0"/>
-                    <GradientStop Color="#FF1D1D1F" Offset="0.55"/>
+                    <GradientStop Color="{StaticResource Gray900}" Offset="0.55"/>
                     <GradientStop Color="#FF000000" Offset="1"/>
                 </LinearGradientBrush>
             </Setter.Value>
         </Setter>
         <Setter Property="Effect">
             <Setter.Value>
-                <DropShadowEffect Color="#1D1D1F" Opacity="0.18" BlurRadius="24" ShadowDepth="6" Direction="270"/>
+                <DropShadowEffect Color="{StaticResource Gray900}" Opacity="0.18" BlurRadius="24" ShadowDepth="6" Direction="270"/>
             </Setter.Value>
         </Setter>
     </Style>
@@ -1774,7 +1774,7 @@
                             <Setter TargetName="border" Property="Background" Value="#FFF0F0F5"/>
                         </Trigger>
                         <Trigger Property="IsPressed" Value="True">
-                            <Setter TargetName="border" Property="Background" Value="#FFE4E4EA"/>
+                            <Setter TargetName="border" Property="Background" Value="{StaticResource BorderSubtleBrush}"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -1789,7 +1789,7 @@
     <Style x:Key="ActionCardButton" TargetType="Button">
         <Setter Property="Background" Value="#FFFAFAFC"/>
         <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
-        <Setter Property="BorderBrush" Value="#FFF0F0F3"/>
+        <Setter Property="BorderBrush" Value="{StaticResource SurfaceTintBrush}"/>
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="FontSize" Value="12"/>
         <Setter Property="FontWeight" Value="SemiBold"/>
@@ -1816,7 +1816,7 @@
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter TargetName="bdr" Property="Background" Value="#FFE8F0FF"/>
+                            <Setter TargetName="bdr" Property="Background" Value="{StaticResource BrandTintBrush}"/>
                             <Setter TargetName="bdr" Property="BorderBrush" Value="#FFC7C7CC"/>
                             <Setter TargetName="bdr" Property="RenderTransform">
                                 <Setter.Value>
@@ -1825,7 +1825,7 @@
                             </Setter>
                         </Trigger>
                         <Trigger Property="IsPressed" Value="True">
-                            <Setter TargetName="bdr" Property="Background" Value="#FFE8E8E8"/>
+                            <Setter TargetName="bdr" Property="Background" Value="{StaticResource BorderSubtleBrush}"/>
                             <Setter TargetName="bdr" Property="RenderTransform">
                                 <Setter.Value>
                                     <TranslateTransform Y="0"/>
@@ -1842,20 +1842,20 @@
     <!-- SLIDER                                       -->
     <!-- ══════════════════════════════════════════ -->
     <Style TargetType="Slider">
-        <Setter Property="Foreground" Value="#FF1D1D1F"/>
-        <Setter Property="Background" Value="#FFD1D1D6"/>
+        <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
+        <Setter Property="Background" Value="{StaticResource BorderBrush}"/>
         <Setter Property="Height" Value="20"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Slider">
                     <Grid VerticalAlignment="Center">
-                        <Border Height="4" VerticalAlignment="Center" CornerRadius="2" Background="#FFD1D1D6"/>
+                        <Border Height="4" VerticalAlignment="Center" CornerRadius="2" Background="{StaticResource BorderBrush}"/>
                         <Track x:Name="PART_Track">
                             <Track.DecreaseRepeatButton>
                                 <RepeatButton Command="Slider.DecreaseLarge">
                                     <RepeatButton.Template>
                                         <ControlTemplate TargetType="RepeatButton">
-                                            <Border Height="4" CornerRadius="2" Background="#FF1D1D1F"/>
+                                            <Border Height="4" CornerRadius="2" Background="{StaticResource TextPrimaryBrush}"/>
                                         </ControlTemplate>
                                     </RepeatButton.Template>
                                 </RepeatButton>
@@ -1874,15 +1874,15 @@
                                     <Thumb.Template>
                                         <ControlTemplate TargetType="Thumb">
                                             <Grid Width="18" Height="18">
-                                                <Ellipse x:Name="thumbCircle" Width="16" Height="16" Fill="White" Stroke="#FF1D1D1F" StrokeThickness="2"/>
+                                                <Ellipse x:Name="thumbCircle" Width="16" Height="16" Fill="White" Stroke="{StaticResource TextPrimaryBrush}" StrokeThickness="2"/>
                                             </Grid>
                                             <ControlTemplate.Triggers>
                                                 <Trigger Property="IsMouseOver" Value="True">
-                                                    <Setter TargetName="thumbCircle" Property="Stroke" Value="#FF007AFF"/>
+                                                    <Setter TargetName="thumbCircle" Property="Stroke" Value="{StaticResource BrandPrimaryBrush}"/>
                                                 </Trigger>
                                                 <Trigger Property="IsDragging" Value="True">
-                                                    <Setter TargetName="thumbCircle" Property="Stroke" Value="#FF007AFF"/>
-                                                    <Setter TargetName="thumbCircle" Property="Fill" Value="#FFE8F0FF"/>
+                                                    <Setter TargetName="thumbCircle" Property="Stroke" Value="{StaticResource BrandPrimaryBrush}"/>
+                                                    <Setter TargetName="thumbCircle" Property="Fill" Value="{StaticResource BrandTintBrush}"/>
                                                 </Trigger>
                                             </ControlTemplate.Triggers>
                                         </ControlTemplate>
