@@ -3,44 +3,44 @@
                     xmlns:System="clr-namespace:System;assembly=mscorlib">
 
     <!-- ============================================ -->
-    <!-- VioletToolBox - iOS Blue Theme                -->
+    <!-- VioletToolBox - macOS Apple Design Theme      -->
     <!-- ============================================ -->
 
-    <!-- Blue Scale -->
-    <Color x:Key="Violet50">#FFF0F7FF</Color>
-    <Color x:Key="Violet100">#FFE0EFFF</Color>
-    <Color x:Key="Violet200">#FFB8D9FF</Color>
-    <Color x:Key="Violet300">#FF7FB8FF</Color>
-    <Color x:Key="Violet400">#FF3B9EFF</Color>
-    <Color x:Key="Violet500">#FF0A84FF</Color>
-    <Color x:Key="Violet600">#FF0070E0</Color>
-    <Color x:Key="Violet700">#FF09488A</Color>
-    <Color x:Key="Violet800">#FF0B3A6E</Color>
-    <Color x:Key="Violet900">#FF0D2D52</Color>
+    <!-- System Blue (macOS accent) -->
+    <Color x:Key="Violet50">#FFE8F0FF</Color>
+    <Color x:Key="Violet100">#FFD1E2FF</Color>
+    <Color x:Key="Violet200">#FF99C2FF</Color>
+    <Color x:Key="Violet300">#FF4D9DFF</Color>
+    <Color x:Key="Violet400">#FF1A85FF</Color>
+    <Color x:Key="Violet500">#FF007AFF</Color>
+    <Color x:Key="Violet600">#FF0066D6</Color>
+    <Color x:Key="Violet700">#FF004C9E</Color>
+    <Color x:Key="Violet800">#FF003A78</Color>
+    <Color x:Key="Violet900">#FF002A57</Color>
 
-    <!-- Neutrals -->
+    <!-- Neutrals (macOS grays) -->
     <Color x:Key="Gray25">#FFFFFFFF</Color>
-    <Color x:Key="Gray50">#FFF7F8FA</Color>
-    <Color x:Key="Gray75">#FFF0F1F5</Color>
-    <Color x:Key="Gray100">#FFE8E9EE</Color>
-    <Color x:Key="Gray200">#FFD1D3DA</Color>
-    <Color x:Key="Gray300">#FFAEB1BA</Color>
-    <Color x:Key="Gray400">#FF8E9099</Color>
-    <Color x:Key="Gray500">#FF6E7078</Color>
-    <Color x:Key="Gray600">#FF484A52</Color>
-    <Color x:Key="Gray700">#FF3A3C44</Color>
-    <Color x:Key="Gray800">#FF2C2E34</Color>
-    <Color x:Key="Gray900">#FF1D1F24</Color>
+    <Color x:Key="Gray50">#FFF5F5F7</Color>
+    <Color x:Key="Gray75">#FFEFEFF4</Color>
+    <Color x:Key="Gray100">#FFE5E5EA</Color>
+    <Color x:Key="Gray200">#FFD1D1D6</Color>
+    <Color x:Key="Gray300">#FFC7C7CC</Color>
+    <Color x:Key="Gray400">#FFAEAEB2</Color>
+    <Color x:Key="Gray500">#FF8E8E93</Color>
+    <Color x:Key="Gray600">#FF636366</Color>
+    <Color x:Key="Gray700">#FF48484A</Color>
+    <Color x:Key="Gray800">#FF3A3A3C</Color>
+    <Color x:Key="Gray900">#FF1D1D1F</Color>
 
-    <!-- Semantic -->
+    <!-- Semantic (macOS system colors) -->
     <Color x:Key="Success500">#FF34C759</Color>
-    <Color x:Key="Warning500">#FFFF9F0A</Color>
+    <Color x:Key="Warning500">#FFFF9500</Color>
     <Color x:Key="Error500">#FFFF3B30</Color>
-    <Color x:Key="Info500">#FF0A84FF</Color>
+    <Color x:Key="Info500">#FF007AFF</Color>
     <Color x:Key="Success100">#FFE8F9ED</Color>
     <Color x:Key="Warning100">#FFFFF4E0</Color>
     <Color x:Key="Error100">#FFFEE8E6</Color>
-    <Color x:Key="Info100">#FFE0EFFF</Color>
+    <Color x:Key="Info100">#FFD1E2FF</Color>
 
     <!-- Brushes -->
     <SolidColorBrush x:Key="BrandPrimaryBrush" Color="{StaticResource Violet500}"/>
@@ -55,19 +55,19 @@
     <SolidColorBrush x:Key="SurfaceSecondaryBrush" Color="{StaticResource Gray75}"/>
     <SolidColorBrush x:Key="SurfaceHoverBrush" Color="{StaticResource Gray100}"/>
     <SolidColorBrush x:Key="SurfacePressedBrush" Color="{StaticResource Gray200}"/>
-    <SolidColorBrush x:Key="SidebarBackgroundBrush" Color="#FFFFFFFF"/>
-    <SolidColorBrush x:Key="SidebarHoverBrush" Color="{StaticResource Violet50}"/>
-    <SolidColorBrush x:Key="SidebarSelectedBrush" Color="{StaticResource Violet100}"/>
+    <SolidColorBrush x:Key="SidebarBackgroundBrush" Color="#FFF5F5F7"/>
+    <SolidColorBrush x:Key="SidebarHoverBrush" Color="#FFE5E5EA"/>
+    <SolidColorBrush x:Key="SidebarSelectedBrush" Color="{StaticResource Violet500}"/>
 
     <SolidColorBrush x:Key="TextPrimaryBrush" Color="{StaticResource Gray900}"/>
-    <SolidColorBrush x:Key="TextSecondaryBrush" Color="{StaticResource Gray500}"/>
-    <SolidColorBrush x:Key="TextTertiaryBrush" Color="{StaticResource Gray300}"/>
-    <SolidColorBrush x:Key="TextDisabledBrush" Color="{StaticResource Gray200}"/>
+    <SolidColorBrush x:Key="TextSecondaryBrush" Color="{StaticResource Gray600}"/>
+    <SolidColorBrush x:Key="TextTertiaryBrush" Color="{StaticResource Gray400}"/>
+    <SolidColorBrush x:Key="TextDisabledBrush" Color="{StaticResource Gray300}"/>
     <SolidColorBrush x:Key="TextOnPrimaryBrush" Color="White"/>
     <SolidColorBrush x:Key="TextOnBrandBrush" Color="White"/>
 
-    <SolidColorBrush x:Key="BorderBrush" Color="{StaticResource Gray100}"/>
-    <SolidColorBrush x:Key="BorderStrongBrush" Color="{StaticResource Gray200}"/>
+    <SolidColorBrush x:Key="BorderBrush" Color="{StaticResource Gray200}"/>
+    <SolidColorBrush x:Key="BorderStrongBrush" Color="{StaticResource Gray300}"/>
     <SolidColorBrush x:Key="SeparatorBrush" Color="{StaticResource Gray100}"/>
 
     <SolidColorBrush x:Key="SuccessBrush" Color="{StaticResource Success500}"/>
@@ -79,40 +79,41 @@
     <SolidColorBrush x:Key="InfoBrush" Color="{StaticResource Info500}"/>
     <SolidColorBrush x:Key="InfoTintBrush" Color="{StaticResource Info100}"/>
 
-    <SolidColorBrush x:Key="IconPrimaryBrush" Color="{StaticResource Gray500}"/>
+    <SolidColorBrush x:Key="IconPrimaryBrush" Color="{StaticResource Gray600}"/>
     <SolidColorBrush x:Key="IconOnBrandBrush" Color="White"/>
 
-    <FontFamily x:Key="DefaultFontFamily">OPPO Sans 4.0, Segoe UI Variable Display, Segoe UI, Microsoft YaHei UI, PingFang SC, sans-serif</FontFamily>
-    <FontFamily x:Key="MonoFontFamily">Cascadia Mono, Consolas, Microsoft YaHei UI</FontFamily>
+    <FontFamily x:Key="DefaultFontFamily">OPPO Sans 4.0, SF Pro Display, SF Pro Text, PingFang SC, Segoe UI Variable Display, Segoe UI, Microsoft YaHei UI, sans-serif</FontFamily>
+    <FontFamily x:Key="MonoFontFamily">SF Mono, Cascadia Mono, Consolas, Menlo, Microsoft YaHei UI</FontFamily>
 
     <System:Double x:Key="FontSizeCaption">11</System:Double>
     <System:Double x:Key="FontSizeSmall">12</System:Double>
     <System:Double x:Key="FontSizeNormal">13</System:Double>
-    <System:Double x:Key="FontSizeBody">14</System:Double>
-    <System:Double x:Key="FontSizeLarge">16</System:Double>
-    <System:Double x:Key="FontSizeTitle">18</System:Double>
-    <System:Double x:Key="FontSizeHeadline">22</System:Double>
-    <System:Double x:Key="FontSizeDisplay">28</System:Double>
+    <System:Double x:Key="FontSizeBody">13</System:Double>
+    <System:Double x:Key="FontSizeLarge">15</System:Double>
+    <System:Double x:Key="FontSizeTitle">17</System:Double>
+    <System:Double x:Key="FontSizeHeadline">20</System:Double>
+    <System:Double x:Key="FontSizeDisplay">26</System:Double>
 
     <Thickness x:Key="SpacingXS">4</Thickness>
     <Thickness x:Key="SpacingSM">8</Thickness>
     <Thickness x:Key="SpacingMD">12</Thickness>
     <Thickness x:Key="SpacingLG">16</Thickness>
-    <Thickness x:Key="SpacingXL">24</Thickness>
-    <Thickness x:Key="SpacingXXL">32</Thickness>
+    <Thickness x:Key="SpacingXL">20</Thickness>
+    <Thickness x:Key="SpacingXXL">28</Thickness>
 
-    <CornerRadius x:Key="RadiusSM">6</CornerRadius>
-    <CornerRadius x:Key="RadiusMD">8</CornerRadius>
-    <CornerRadius x:Key="RadiusLG">12</CornerRadius>
-    <CornerRadius x:Key="RadiusXL">16</CornerRadius>
-    <CornerRadius x:Key="RadiusXXL">20</CornerRadius>
+    <CornerRadius x:Key="RadiusSM">5</CornerRadius>
+    <CornerRadius x:Key="RadiusMD">6</CornerRadius>
+    <CornerRadius x:Key="RadiusLG">10</CornerRadius>
+    <CornerRadius x:Key="RadiusXL">12</CornerRadius>
+    <CornerRadius x:Key="RadiusXXL">16</CornerRadius>
 
-    <DropShadowEffect x:Key="ShadowCard" Color="#FF0A84FF" Opacity="0.05" BlurRadius="16" ShadowDepth="0" Direction="270"/>
-    <DropShadowEffect x:Key="ShadowCardHover" Color="#FF0A84FF" Opacity="0.09" BlurRadius="20" ShadowDepth="2" Direction="270"/>
-    <DropShadowEffect x:Key="ShadowButton" Color="#FF0A84FF" Opacity="0.12" BlurRadius="6" ShadowDepth="1" Direction="270"/>
-    <DropShadowEffect x:Key="ShadowBrand" Color="#FF0A84FF" Opacity="0.25" BlurRadius="14" ShadowDepth="2" Direction="270"/>
-    <DropShadowEffect x:Key="ShadowPopup" Color="#FF0A84FF" Opacity="0.12" BlurRadius="24" ShadowDepth="6" Direction="270"/>
-    <DropShadowEffect x:Key="ShadowSidebar" Color="#FF0A84FF" Opacity="0.07" BlurRadius="18" ShadowDepth="4" Direction="270"/>
+    <!-- Neutral gray shadows (macOS style, no blue tint) -->
+    <DropShadowEffect x:Key="ShadowCard" Color="#FF000000" Opacity="0.04" BlurRadius="12" ShadowDepth="0" Direction="270"/>
+    <DropShadowEffect x:Key="ShadowCardHover" Color="#FF000000" Opacity="0.08" BlurRadius="16" ShadowDepth="2" Direction="270"/>
+    <DropShadowEffect x:Key="ShadowButton" Color="#FF000000" Opacity="0.10" BlurRadius="4" ShadowDepth="1" Direction="270"/>
+    <DropShadowEffect x:Key="ShadowBrand" Color="{StaticResource Violet500}" Opacity="0.20" BlurRadius="12" ShadowDepth="2" Direction="270"/>
+    <DropShadowEffect x:Key="ShadowPopup" Color="#FF000000" Opacity="0.15" BlurRadius="20" ShadowDepth="4" Direction="270"/>
+    <DropShadowEffect x:Key="ShadowSidebar" Color="#FF000000" Opacity="0.05" BlurRadius="12" ShadowDepth="2" Direction="270"/>
 
     <!-- HC Theme Override -->
     <SolidColorBrush x:Key="PrimaryBrush" Color="{StaticResource Violet500}"/>

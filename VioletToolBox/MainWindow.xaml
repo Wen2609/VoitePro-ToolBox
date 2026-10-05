@@ -199,7 +199,7 @@ Background="#FFFAFAFC"
                                     <ColumnDefinition Width="4" />
                                     <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
-                                <Border x:Name="Accent" Grid.Column="0" Width="4" Background="#FF0A84FF" Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Tag, Converter={StaticResource BoolToVisibilityConverter}}" />
+                                <Border x:Name="Accent" Grid.Column="0" Width="4" Background="#FF007AFF" Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Tag, Converter={StaticResource BoolToVisibilityConverter}}" />
                                 <Border x:Name="MainBd" Grid.Column="1" Background="{TemplateBinding Background}" CornerRadius="5" Padding="{TemplateBinding Padding}">
                                     <ContentPresenter TextElement.Foreground="{TemplateBinding Foreground}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
                                 </Border>
@@ -221,7 +221,7 @@ Background="#FFFAFAFC"
                 <Setter Property="Background" Value="#FFFFFF"/>
                 <Setter Property="Padding" Value="15"/>
                 <Setter Property="BorderThickness" Value="1"/>
-                <Setter Property="BorderBrush" Value="#FFE8E8ED"/>
+                <Setter Property="BorderBrush" Value="#FFE5E5EA"/>
                 <Setter Property="FontSize" Value="16"/>
                 <Setter Property="FontWeight" Value="Bold"/>
                 <Setter Property="Foreground" Value="#333"/>
@@ -417,21 +417,21 @@ Background="#FFFAFAFC"
                 </Setter>
                 <Style.Triggers>
                     <Trigger Property="IsSelected" Value="True">
-                        <Setter Property="Background" Value="#FFE0EFFF"/>
-                        <Setter Property="Foreground" Value="#FF09488A"/>
+                        <Setter Property="Background" Value="#FF007AFF"/>
+                        <Setter Property="Foreground" Value="White"/>
                         <Setter Property="FontWeight" Value="SemiBold"/>
                     </Trigger>
                     <Trigger Property="IsMouseOver" Value="True">
-                        <Setter Property="Background" Value="#FFF0F7FF"/>
-                        <Setter Property="Foreground" Value="#FF09488A"/>
+                        <Setter Property="Background" Value="#FFE8F0FF"/>
+                        <Setter Property="Foreground" Value="#FF004C9E"/>
                     </Trigger>
                     <MultiTrigger>
                         <MultiTrigger.Conditions>
                             <Condition Property="IsSelected" Value="True"/>
                             <Condition Property="IsMouseOver" Value="True"/>
                         </MultiTrigger.Conditions>
-                        <Setter Property="Background" Value="#FFE0EFFF"/>
-                        <Setter Property="Foreground" Value="#FF09488A"/>
+                        <Setter Property="Background" Value="#FF0066D6"/>
+                        <Setter Property="Foreground" Value="White"/>
                     </MultiTrigger>
                 </Style.Triggers>
             </Style>
@@ -463,7 +463,7 @@ Background="#FFFAFAFC"
                                             <ColumnDefinition Width="Auto"/>
                                             <ColumnDefinition Width="*"/>
                                         </Grid.ColumnDefinitions>
-                                        <Border Width="40" Height="40" CornerRadius="12" Background="#FF0A84FF">
+                                        <Border Width="40" Height="40" CornerRadius="12" Background="#FF007AFF">
                                             <svg:SvgViewbox Source="images/white/touping.svg" Width="21" Height="21"/>
                                         </Border>
                                         <StackPanel Grid.Column="1" VerticalAlignment="Center" Margin="12,0,0,0">
@@ -532,7 +532,7 @@ Background="#FFFAFAFC"
                                             <Border Style="{StaticResource CardContainer}" Margin="0,0,0,16">
                                                 <StackPanel>
                                                     <StackPanel Orientation="Horizontal" Margin="0,0,0,16">
-                                                        <Border Width="30" Height="30" CornerRadius="9" Background="#FFF0F7FF" Margin="0,0,10,0">
+                                                        <Border Width="30" Height="30" CornerRadius="9" Background="#FFE8F0FF" Margin="0,0,10,0">
                                                             <svg:SvgViewbox Source="images/hengpingzhuanshuping.svg" Width="16" Height="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                                         </Border>
                                                         <StackPanel VerticalAlignment="Center">
@@ -551,7 +551,7 @@ Background="#FFFAFAFC"
                                                         </Button>
                                                         <Button Name="ForceLandscapeButton" Style="{StaticResource ActionCardButton}" Width="118" Margin="0,0,10,10" Click="ForceLandscapeButton_Click">
                                                             <StackPanel>
-                                                                <Border Width="38" Height="38" CornerRadius="12" Background="#FFF0F7FF" HorizontalAlignment="Center">
+                                                                <Border Width="38" Height="38" CornerRadius="12" Background="#FFE8F0FF" HorizontalAlignment="Center">
                                                                     <svg:SvgViewbox Source="images/shupingzhuanhengping.svg" Width="20" Height="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                                                 </Border>
                                                                 <TextBlock Text="强制横屏" HorizontalAlignment="Center" Margin="0,8,0,0" FontSize="12"/>
@@ -559,7 +559,7 @@ Background="#FFFAFAFC"
                                                         </Button>
                                                         <Button Name="AutoRotateButton" Style="{StaticResource ActionCardButton}" Width="118" Margin="0,0,10,10" Click="AutoRotateButton_Click">
                                                             <StackPanel>
-                                                                <Border Width="38" Height="38" CornerRadius="12" Background="#FFF0F7FF" HorizontalAlignment="Center">
+                                                                <Border Width="38" Height="38" CornerRadius="12" Background="#FFE8F0FF" HorizontalAlignment="Center">
                                                                     <svg:SvgViewbox Source="images/zidongxuanzhuan.svg" Width="20" Height="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                                                 </Border>
                                                                 <TextBlock Text="自动旋转" HorizontalAlignment="Center" Margin="0,8,0,0" FontSize="12"/>
@@ -600,7 +600,7 @@ Background="#FFFAFAFC"
                                                         </Button>
                                                         <Button Name="HomeKeyButton" Style="{StaticResource ActionCardButton}" Width="118" Margin="0,0,10,10" Click="HomeKeyButton_Click">
                                                             <StackPanel>
-                                                                <Border Width="38" Height="38" CornerRadius="12" Background="#FFF0F7FF" HorizontalAlignment="Center">
+                                                                <Border Width="38" Height="38" CornerRadius="12" Background="#FFE8F0FF" HorizontalAlignment="Center">
                                                                     <svg:SvgViewbox Source="images/yuanquan.svg" Width="20" Height="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                                                 </Border>
                                                                 <TextBlock Text="主页键" HorizontalAlignment="Center" Margin="0,8,0,0" FontSize="12"/>
@@ -630,7 +630,7 @@ Background="#FFFAFAFC"
                                             <Border Style="{StaticResource CardContainer}" Margin="0,0,0,16">
                                                 <StackPanel>
                                                     <StackPanel Orientation="Horizontal" Margin="0,0,0,16">
-                                                        <Border Width="30" Height="30" CornerRadius="9" Background="#FFF0F7FF" Margin="0,0,10,0">
+                                                        <Border Width="30" Height="30" CornerRadius="9" Background="#FFE8F0FF" Margin="0,0,10,0">
                                                             <svg:SvgViewbox Source="images/yinliang.svg" Width="16" Height="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                                         </Border>
                                                         <StackPanel VerticalAlignment="Center">
@@ -641,7 +641,7 @@ Background="#FFFAFAFC"
                                                     <WrapPanel>
                                                         <Button Name="VolumeUpButton" Style="{StaticResource ActionCardButton}" Width="118" Margin="0,0,10,10" Click="VolumeUpButton_Click">
                                                             <StackPanel>
-                                                                <Border Width="38" Height="38" CornerRadius="12" Background="#FFF0F7FF" HorizontalAlignment="Center">
+                                                                <Border Width="38" Height="38" CornerRadius="12" Background="#FFE8F0FF" HorizontalAlignment="Center">
                                                                     <svg:SvgViewbox Source="images/yinliang.svg" Width="20" Height="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                                                 </Border>
                                                                 <TextBlock Text="音量+" HorizontalAlignment="Center" Margin="0,8,0,0" FontSize="12"/>
@@ -732,7 +732,7 @@ Background="#FFFAFAFC"
                                     <Border Style="{StaticResource CardContainer}" Margin="0,16,0,16">
                                         <StackPanel>
                                             <StackPanel Orientation="Horizontal" Margin="0,0,0,16">
-                                                <Border Width="30" Height="30" CornerRadius="9" Background="#FFF0F7FF" Margin="0,0,10,0">
+                                                <Border Width="30" Height="30" CornerRadius="9" Background="#FFE8F0FF" Margin="0,0,10,0">
                                                     <svg:SvgViewbox Source="images/qiehuan.svg" Width="16" Height="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                                 </Border>
                                                 <StackPanel VerticalAlignment="Center">
@@ -748,7 +748,7 @@ Background="#FFFAFAFC"
                                                 </Grid.ColumnDefinitions>
                                                 <TextBlock Text="屏幕清晰度" VerticalAlignment="Center" Foreground="{StaticResource TextSecondaryBrush}" FontSize="13"/>
                                                 <Slider x:Name="BitrateSlider" Grid.Column="1" Minimum="1" Maximum="20" Value="8" TickFrequency="1" IsSnapToTickEnabled="True" ValueChanged="BitrateSlider_ValueChanged"/>
-                                                <Border Grid.Column="2" Background="#FFF0F7FF" CornerRadius="8" Height="28" VerticalAlignment="Center">
+                                                <Border Grid.Column="2" Background="#FFE8F0FF" CornerRadius="8" Height="28" VerticalAlignment="Center">
                                                     <TextBlock x:Name="BitrateValueText" Text="8" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="13" FontWeight="SemiBold"/>
                                                 </Border>
                                             </Grid>
@@ -760,7 +760,7 @@ Background="#FFFAFAFC"
                                                 </Grid.ColumnDefinitions>
                                                 <TextBlock Text="投屏帧率" VerticalAlignment="Center" Foreground="{StaticResource TextSecondaryBrush}" FontSize="13"/>
                                                 <Slider x:Name="MaxFpsSlider" Grid.Column="1" Minimum="10" Maximum="120" Value="60" TickFrequency="10" IsSnapToTickEnabled="True" ValueChanged="MaxFpsSlider_ValueChanged"/>
-                                                <Border Grid.Column="2" Background="#FFF0F7FF" CornerRadius="8" Height="28" VerticalAlignment="Center">
+                                                <Border Grid.Column="2" Background="#FFE8F0FF" CornerRadius="8" Height="28" VerticalAlignment="Center">
                                                     <TextBlock x:Name="MaxFpsValueText" Text="60" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="13" FontWeight="SemiBold"/>
                                                 </Border>
                                             </Grid>
@@ -809,7 +809,7 @@ Background="#FFFAFAFC"
                                                     <RowDefinition Height="*"/>
                                                 </Grid.RowDefinitions>
                                                 <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
-                                                    <Border Width="30" Height="30" CornerRadius="9" Background="#FFF0F7FF" Margin="0,0,10,0">
+                                                    <Border Width="30" Height="30" CornerRadius="9" Background="#FFE8F0FF" Margin="0,0,10,0">
                                                         <svg:SvgViewbox Source="images/jiazai.svg" Width="16" Height="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                                     </Border>
                                                     <StackPanel VerticalAlignment="Center">
@@ -906,7 +906,7 @@ Background="#FFFAFAFC"
                                                                                           HorizontalAlignment="Left"
                                                                                           Content="{TemplateBinding Content}"/>
                                                                         <Border Grid.Column="1"
-                                                                                Background="#FFF8F8F8"
+                                                                                Background="#FFF5F5F7"
                                                                                 BorderBrush="#FFEBEBEB"
                                                                                 BorderThickness="1,0,0,0"
                                                                                 CornerRadius="0,10,10,0">
@@ -1065,7 +1065,7 @@ Background="#FFFAFAFC"
                                           HorizontalScrollBarVisibility="Disabled"><!-- MONO_PAGE_MARKER_BasicFlashView --><StackPanel>
                                         <Grid Margin="2,0,0,16">
                                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                                                <Border Width="40" Height="40" CornerRadius="12" Background="#FF0A84FF">
+                                                <Border Width="40" Height="40" CornerRadius="12" Background="#FF007AFF">
                                                     <svg:SvgViewbox Source="images/white/shandian2.svg" Width="21" Height="21"/>
                                                 </Border>
                                                 <StackPanel VerticalAlignment="Center" Margin="12,0,0,0">
@@ -1130,7 +1130,7 @@ Background="#FFFAFAFC"
                                                         Style="{StaticResource PagePrimaryButton}"
                                                         Width="84"
                                                         BorderBrush="#FFE6E6E6"
-                                                        Background="#FF0A84FF" Height="36">
+                                                        Background="#FF007AFF" Height="36">
                                                         <StackPanel Orientation="Horizontal"
                                                                     HorizontalAlignment="Center"
                                                                     VerticalAlignment="Center">
@@ -1233,7 +1233,7 @@ Background="#FFFAFAFC"
                                                         Style="{StaticResource PagePrimaryButton}"
                                                         Width="84"
                                                         BorderBrush="#FFE6E6E6"
-                                                        Background="#FF0A84FF" Height="36">
+                                                        Background="#FF007AFF" Height="36">
                                                         <StackPanel Orientation="Horizontal"
                                                                     HorizontalAlignment="Center"
                                                                     VerticalAlignment="Center">
@@ -1421,7 +1421,7 @@ Background="#FFFAFAFC"
                 </DataTemplate>
                 <DataTemplate x:Key="Page_FastbootVisualizationView">
                         <Grid Name="FastbootVisualizationView" 
-                              Visibility="Collapsed" Background="#FFF8F8F8">
+                              Visibility="Collapsed" Background="#FFF5F5F7">
 <!-- MONO_PAGE_MARKER_FastbootVisualizationView -->
     <Grid.Resources>
                                 <Style x:Key="FastbootCardGroupBoxStyle"
@@ -1566,7 +1566,7 @@ Background="#FFFAFAFC"
 <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="*"/></Grid.RowDefinitions>
 <Grid Grid.Row="0" Grid.ColumnSpan="4" Margin="6,12,6,10">
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-            <Border Width="40" Height="40" CornerRadius="12" Background="#FF0A84FF">
+            <Border Width="40" Height="40" CornerRadius="12" Background="#FF007AFF">
                 <svg:SvgViewbox Source="images/white/adb.svg" Width="21" Height="21"/>
             </Border>
             <StackPanel VerticalAlignment="Center" Margin="12,0,0,0">
@@ -1622,7 +1622,7 @@ Background="#FFFAFAFC"
                                                 Grid.Column="2"
                                                 Click="SelectFlashBatButton_Click"
                                                 Style="{StaticResource PagePrimaryButton}"
-                                                Width="84" BorderBrush="#FFE6E6E6" Background="#FF0A84FF">
+                                                Width="84" BorderBrush="#FFE6E6E6" Background="#FF007AFF">
                                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                                                 <svg:SvgViewbox Source="images/wenjianjia.svg" Width="16" Height="16" Margin="0,0,5,0"/>
                                                 <TextBlock Text="选择" VerticalAlignment="Center" Foreground="White"/>
@@ -2097,7 +2097,7 @@ Background="#FFFAFAFC"
                         <Grid
                             Name="HiddenEnvironmentView"
                             Visibility="Collapsed"
-                            Background="#FFF8F8F8"
+                            Background="#FFF5F5F7"
                             Cursor="">
 <!-- MONO_PAGE_MARKER_HiddenEnvironmentView -->
     <Grid.Resources>
@@ -2140,7 +2140,7 @@ Background="#FFFAFAFC"
 <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="*"/></Grid.RowDefinitions>
 <Grid Grid.Row="0" Grid.ColumnSpan="1" Margin="6,12,6,10">
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-            <Border Width="40" Height="40" CornerRadius="12" Background="#FF0A84FF">
+            <Border Width="40" Height="40" CornerRadius="12" Background="#FF007AFF">
                 <svg:SvgViewbox Source="images/white/pintu.svg" Width="21" Height="21"/>
             </Border>
             <StackPanel VerticalAlignment="Center" Margin="12,0,0,0">
@@ -2187,7 +2187,7 @@ Background="#FFFAFAFC"
                                 <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="资料目录：" VerticalAlignment="Top" FontSize="12" Margin="0,7,0,0"/>
                             </GroupBox>
                             <TextBox x:Name="HiddenRootZipPathTextBox" HorizontalAlignment="Left" Margin="76,12,0,0" TextWrapping="NoWrap" Text="请选择隐藏环境资源包7z文件" VerticalAlignment="Top" VerticalContentAlignment="Center" Padding="9,0" Width="292" Height="32" FontFamily="pack://siteoforigin:,,,/fonts/OPPO_Sans_4.0.ttf#OPPO Sans 4.0" FontSize="12" Background="White" BorderBrush="#FFE1E1E1" BorderThickness="1" Foreground="#6E6E73" ToolTip="{Binding Text, RelativeSource={RelativeSource Self}}"/>
-                            <Button x:Name="SelectHiddenRootZipButton" HorizontalAlignment="Left" Margin="375,13,0,0" VerticalAlignment="Top" Width="84" Click="SelectHiddenRootZipButton_Click" Style="{StaticResource PagePrimaryButton}" BorderBrush="#FFE6E6E6" Background="#FF0A84FF">
+                            <Button x:Name="SelectHiddenRootZipButton" HorizontalAlignment="Left" Margin="375,13,0,0" VerticalAlignment="Top" Width="84" Click="SelectHiddenRootZipButton_Click" Style="{StaticResource PagePrimaryButton}" BorderBrush="#FFE6E6E6" Background="#FF007AFF">
                                 <Button.Content>
                                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
                                         <svg:SvgViewbox Source="images/wenjianjia.svg" Width="16" Height="16" Margin="0,0,5,0"/>
@@ -2200,7 +2200,7 @@ Background="#FFFAFAFC"
                             <CheckBox x:Name="MagiskAlpha29000CheckBox" Content="Magisk Alpha方案  支持版本：29000~最新" HorizontalAlignment="Left" Margin="76,83,0,0" VerticalAlignment="Top" Width="327" Style="{StaticResource PageCheckBox}" Checked="HiddenRootScheme_Checked"/>
                             <CheckBox x:Name="SUkiSULKMCheckBox" Content="SUkiSU LKM方案  支持版本：≥4.0 （KernelSU适用≥3.0）" HorizontalAlignment="Left" Margin="76,112,0,0" VerticalAlignment="Top" Width="398" Style="{StaticResource PageCheckBox}" Checked="HiddenRootScheme_Checked"/>
                             <CheckBox x:Name="SUkiSUGKICheckBox" Content="SUkiSU GKI/Built-in方案  支持版本：≥3.18" HorizontalAlignment="Left" Margin="76,138,0,0" VerticalAlignment="Top" Width="362" Style="{StaticResource PageCheckBox}" Checked="HiddenRootScheme_Checked"/>
-                            <Button x:Name="StartHiddenRootButton" HorizontalAlignment="Left" Margin="15,166,0,0" VerticalAlignment="Top" Width="154" Click="StartHiddenRootButton_Click" Style="{StaticResource PagePrimaryButton}" Background="#FF0A84FF" BorderBrush="#FF1D1D1F">
+                            <Button x:Name="StartHiddenRootButton" HorizontalAlignment="Left" Margin="15,166,0,0" VerticalAlignment="Top" Width="154" Click="StartHiddenRootButton_Click" Style="{StaticResource PagePrimaryButton}" Background="#FF007AFF" BorderBrush="#FF1D1D1F">
                                 <Button.Content>
                                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
                                         <TextBlock Text="开始隐藏" VerticalAlignment="Center"/>
@@ -2372,7 +2372,7 @@ Background="#FFFAFAFC"
                                     <TextBlock HorizontalAlignment="Left" Margin="0,6,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="319" FontFamily="pack://siteoforigin:,,,/fonts/OPPO_Sans_4.0.ttf#OPPO Sans 4.0" FontSize="12" Foreground="#1D1D1F"><Run Text="拖动一个或多个模块到窗口，自动识别"/><Run Language="zh-cn" Text="ROOT"/><Run Text="管理器并安装"/></TextBlock>
                                     <Button x:Name="ClearModuleListButton" Content="清空列表" HorizontalAlignment="Left" Margin="374,292,0,0" VerticalAlignment="Top" Width="81" Click="ClearModuleListButton_Click" Style="{StaticResource PageSecondaryButton}"/>
                                     <TextBlock HorizontalAlignment="Left" Margin="0,300,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="pack://siteoforigin:,,,/fonts/OPPO_Sans_4.0.ttf#OPPO Sans 4.0" FontSize="12" Foreground="#6E6E73" RenderTransformOrigin="0.497,0.824" Width="231"><Run Text="支持自动过滤模块文件，"/><Run Language="zh-cn" Text="排除无关多余"/><Run Text="文件"/></TextBlock>
-                                    <Button HorizontalAlignment="Left" Margin="281,291,0,0" VerticalAlignment="Top" Width="84" BorderBrush="#FFE6E6E6" Background="#FF0A84FF" Click="SelectModuleButton_Click" Style="{StaticResource PagePrimaryButton}" ToolTip="手动选择模块文件">
+                                    <Button HorizontalAlignment="Left" Margin="281,291,0,0" VerticalAlignment="Top" Width="84" BorderBrush="#FFE6E6E6" Background="#FF007AFF" Click="SelectModuleButton_Click" Style="{StaticResource PagePrimaryButton}" ToolTip="手动选择模块文件">
                                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                                             <svg:SvgViewbox Source="images/wenjianjia.svg" Width="16" Height="16" Margin="0,0,5,0"/>
                                             <TextBlock Text="选择" VerticalAlignment="Center" Foreground="White"/>
@@ -2460,7 +2460,7 @@ Background="#FFFAFAFC"
                                            HorizontalScrollBarVisibility="Disabled"><!-- MONO_PAGE_MARKER_AboutToolView --><StackPanel>
                                         <Grid Margin="2,0,0,16">
                                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                                                <Border Width="40" Height="40" CornerRadius="12" Background="#FF0A84FF">
+                                                <Border Width="40" Height="40" CornerRadius="12" Background="#FF007AFF">
                                                     <svg:SvgViewbox Source="images/white/guanyu.svg" Width="21" Height="21"/>
                                                 </Border>
                                                 <StackPanel VerticalAlignment="Center" Margin="12,0,0,0">
@@ -2869,7 +2869,7 @@ Background="#FFFAFAFC"
 <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="*"/></Grid.RowDefinitions>
 <Grid Grid.Row="0" Grid.ColumnSpan="1" Margin="6,12,6,10">
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-            <Border Width="40" Height="40" CornerRadius="12" Background="#FF0A84FF">
+            <Border Width="40" Height="40" CornerRadius="12" Background="#FF007AFF">
                 <svg:SvgViewbox Source="images/white/wenjianchuanshu.svg" Width="21" Height="21"/>
             </Border>
             <StackPanel VerticalAlignment="Center" Margin="12,0,0,0">
@@ -2992,7 +2992,7 @@ Background="#FFFAFAFC"
                                                            MouseLeftButtonUp="CopyTextBlockContent"/>
                                             </Grid>
                                         </StackPanel>
-                                        <ListBox Name="FileListTextBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="807" Height="456" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Disabled" FontFamily="Consolas" FontSize="12" SelectionChanged="FileListTextBox_SelectionChanged" MouseDoubleClick="FileListTextBox_MouseDoubleClick" PreviewMouseLeftButtonDown="FileListTextBox_PreviewMouseLeftButtonDown" ContextMenuOpening="FileListTextBox_ContextMenuOpening" SelectionMode="Multiple" Margin="0,70,0,0" BorderBrush="#FFF0F7FF" HorizontalContentAlignment="Center" AllowDrop="True" Drop="FileListTextBox_Drop" DragOver="FileListTextBox_DragOver" VirtualizingStackPanel.IsVirtualizing="True" VirtualizingStackPanel.VirtualizationMode="Recycling" ScrollViewer.CanContentScroll="True">
+                                        <ListBox Name="FileListTextBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="807" Height="456" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Disabled" FontFamily="Consolas" FontSize="12" SelectionChanged="FileListTextBox_SelectionChanged" MouseDoubleClick="FileListTextBox_MouseDoubleClick" PreviewMouseLeftButtonDown="FileListTextBox_PreviewMouseLeftButtonDown" ContextMenuOpening="FileListTextBox_ContextMenuOpening" SelectionMode="Multiple" Margin="0,70,0,0" BorderBrush="#FFE8F0FF" HorizontalContentAlignment="Center" AllowDrop="True" Drop="FileListTextBox_Drop" DragOver="FileListTextBox_DragOver" VirtualizingStackPanel.IsVirtualizing="True" VirtualizingStackPanel.VirtualizationMode="Recycling" ScrollViewer.CanContentScroll="True">
                                             <ListBox.ContextMenu>
                                                 <ContextMenu>
                                                     <MenuItem x:Name="SystemZoneNewFolderMenuItem" Header="新建文件夹" Click="CreateSystemZoneFolderMenuItem_Click"/>
@@ -3198,7 +3198,7 @@ Background="#FFFAFAFC"
                                                                             Text="无需打开文件传输模式，仅充电模式下可进行正常文件传输，支持直接从电脑端批量拖动文件到窗口传输文件，加载根目录文件需要提前在设备上授予SHELL ROOT权限。"
                                                                             IsReadOnly="True"
                                                                             Background="#FFFAFBFD"
-                                                                            BorderBrush="#FFF0F7FF"
+                                                                            BorderBrush="#FFE8F0FF"
                                                                             BorderThickness="1"
                                                                             Padding="7,7"
                                                                             HorizontalContentAlignment="Stretch"
@@ -3273,7 +3273,7 @@ Background="#FFFAFAFC"
                         <Grid
                         Name="OujiaFlashView"
                         Visibility="Collapsed"          
-                        Background="#FFF8F8F8"
+                        Background="#FFF5F5F7"
                         TextElement.FontFamily="pack://siteoforigin:,,,/fonts/OPPO_Sans_4.0.ttf#OPPO Sans 4.0"
                         Cursor="">
 <!-- MONO_PAGE_MARKER_OujiaFlashView -->
@@ -3444,7 +3444,7 @@ Background="#FFFAFAFC"
 <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="*"/></Grid.RowDefinitions>
 <Grid Grid.Row="0" Grid.ColumnSpan="1" Margin="6,12,6,10">
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-            <Border Width="40" Height="40" CornerRadius="12" Background="#FF0A84FF">
+            <Border Width="40" Height="40" CornerRadius="12" Background="#FF007AFF">
                 <svg:SvgViewbox Source="images/white/banshou.svg" Width="21" Height="21"/>
             </Border>
             <StackPanel VerticalAlignment="Center" Margin="12,0,0,0">
@@ -3906,7 +3906,7 @@ Background="#FFFAFAFC"
                                                 Style="{StaticResource PagePrimaryButton}"
                                                 Width="84"
                                                 BorderBrush="#FFE6E6E6"
-                                                Background="#FF0A84FF">
+                                                Background="#FF007AFF">
                                             <StackPanel Orientation="Horizontal"
                                                         HorizontalAlignment="Center"
                                                         VerticalAlignment="Center">
@@ -3929,7 +3929,7 @@ Background="#FFFAFAFC"
                                                 Style="{StaticResource PagePrimaryButton}"
                                                 Width="84"
                                                 BorderBrush="#FFE6E6E6"
-                                                Background="#FF0A84FF">
+                                                Background="#FF007AFF">
                                             <StackPanel Orientation="Horizontal"
                                                         HorizontalAlignment="Center"
                                                         VerticalAlignment="Center">
@@ -3969,7 +3969,7 @@ Background="#FFFAFAFC"
                                                     Width="130"
                                                     Height="26"
                                                     HorizontalAlignment="Left"
-                                                    Click="FixFastbootDButton_Click" Margin="352,0,0,0" BorderBrush="#FFE6E6E6" Background="#FFF0F7FF"/>
+                                                    Click="FixFastbootDButton_Click" Margin="352,0,0,0" BorderBrush="#FFE6E6E6" Background="#FFE8F0FF"/>
                                         </Grid>
 
                                         <!-- Bottom Row -->
@@ -3995,11 +3995,11 @@ Background="#FFFAFAFC"
                                                     Style="{StaticResource PageSecondaryButton}"
                                                     Margin="0,0,8,0"
                                                     Width="120"
-                                                    Click="Button_Click_1" Background="#FF0A84FF" Foreground="White" BorderBrush="#FFE6E6E6"/>
+                                                    Click="Button_Click_1" Background="#FF007AFF" Foreground="White" BorderBrush="#FFE6E6E6"/>
                                             <Button Content="开始线刷"
                                                     Style="{StaticResource PagePrimaryButton}"
                                                     Width="120"
-                                                    Click="StartFlashButton_Click" Background="#FF0A84FF" BorderBrush="#FFE6E6E6"/>
+                                                    Click="StartFlashButton_Click" Background="#FF007AFF" BorderBrush="#FFE6E6E6"/>
                                         </StackPanel>
                                     </Grid>
                                 </GroupBox>
@@ -4116,7 +4116,7 @@ Background="#FFFAFAFC"
                                                 Style="{StaticResource PagePrimaryButton}"
                                                 Width="105"
                                                 BorderBrush="#FFE6E6E6"
-                                                Background="#FF0A84FF" Grid.ColumnSpan="3" HorizontalAlignment="Left" Margin="370,0,0,0" Height="74">
+                                                Background="#FF007AFF" Grid.ColumnSpan="3" HorizontalAlignment="Left" Margin="370,0,0,0" Height="74">
                                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                                                 <svg:SvgViewbox Source="images/wenjianjia.svg" Width="22" Height="22" Margin="0,0,6,0"/>
                                                 <TextBlock Text="选择" Foreground="White" VerticalAlignment="Center"/>
@@ -4223,7 +4223,7 @@ Background="#FFFAFAFC"
                                                     Height="26"
                                                     Click="FixFastbootDButton_Click"
                                                     BorderBrush="#FFE6E6E6"
-                                                    Background="#FFF0F7FF"/>
+                                                    Background="#FFE8F0FF"/>
                                         </Grid>
                                         <StackPanel Grid.Row="2"
                                                     Orientation="Horizontal"
@@ -4251,7 +4251,7 @@ Background="#FFFAFAFC"
                                                     Width="153"
                                                     IsEnabled="False"
                                                     ToolTip="解包Payload仅在全量包模式下可用"
-                                                    Background="#FF0A84FF"
+                                                    Background="#FF007AFF"
                                                     Foreground="White"
                                                     BorderBrush="#FFE6E6E6"/>
                                             <Button x:Name="AfterSalesStartFlashButton"
@@ -4259,7 +4259,7 @@ Background="#FFFAFAFC"
                                                     Width="153"
                                                     Style="{StaticResource PagePrimaryButton}"
                                                     Click="AfterSalesStartFlashButton_Click"
-                                                    Background="#FF0A84FF"
+                                                    Background="#FF007AFF"
                                                     BorderBrush="#FFE6E6E6"/>
                                         </StackPanel>
                                     </Grid>
@@ -4455,7 +4455,7 @@ Background="#FFFAFAFC"
                             <ScrollViewer VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Disabled"><!-- MONO_PAGE_MARKER_AutorootView --><StackPanel>
                                         <Grid Margin="2,0,0,16">
                                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                                                <Border Width="40" Height="40" CornerRadius="12" Background="#FF0A84FF">
+                                                <Border Width="40" Height="40" CornerRadius="12" Background="#FF007AFF">
                                                     <svg:SvgViewbox Source="images/white/Auto.svg" Width="21" Height="21"/>
                                                 </Border>
                                                 <StackPanel VerticalAlignment="Center" Margin="12,0,0,0">
@@ -5247,7 +5247,7 @@ Background="#FFFAFAFC"
 <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="*"/></Grid.RowDefinitions>
 <Grid Grid.Row="0" Grid.ColumnSpan="5" Margin="6,12,6,10">
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-            <Border Width="40" Height="40" CornerRadius="12" Background="#FF0A84FF">
+            <Border Width="40" Height="40" CornerRadius="12" Background="#FF007AFF">
                 <svg:SvgViewbox Source="images/white/yingyong.svg" Width="21" Height="21"/>
             </Border>
             <StackPanel VerticalAlignment="Center" Margin="12,0,0,0">
@@ -5343,7 +5343,7 @@ Background="#FFFAFAFC"
                                               SelectionMode="Extended"
                                               SelectionUnit="FullRow"
                                               FontSize="12"
-                                              Background="#FFF0F7FF"
+                                              Background="#FFE8F0FF"
                                               BorderThickness="0"
                                               RowHeight="30"
                                               GridLinesVisibility="Horizontal"
@@ -5565,7 +5565,7 @@ Background="#FFFAFAFC"
 <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="*"/></Grid.RowDefinitions>
 <Grid Grid.Row="0" Grid.ColumnSpan="1" Margin="6,12,6,10">
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-            <Border Width="40" Height="40" CornerRadius="12" Background="#FF0A84FF">
+            <Border Width="40" Height="40" CornerRadius="12" Background="#FF007AFF">
                 <svg:SvgViewbox Source="images/white/android.svg" Width="21" Height="21"/>
             </Border>
             <StackPanel VerticalAlignment="Center" Margin="12,0,0,0">
@@ -5623,7 +5623,7 @@ Background="#FFFAFAFC"
                                 <Grid>
                                     <TextBlock Text="散包路径：" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="-8,0,0,0"/>
                                     <TextBox x:Name="SuperScatterPathTextBox" HorizontalAlignment="Left" Margin="51,-4,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="193" BorderBrush="#FFE0E0E0"/>
-                                    <Button x:Name="SelectSuperScatterButton" HorizontalAlignment="Left" Margin="253,-4,0,0" VerticalAlignment="Top" Width="85" Click="SelectSuperScatterButton_Click" Background="#FFE8E8ED" BorderBrush="#FFE8E8ED" Foreground="White">
+                                    <Button x:Name="SelectSuperScatterButton" HorizontalAlignment="Left" Margin="253,-4,0,0" VerticalAlignment="Top" Width="85" Click="SelectSuperScatterButton_Click" Background="#FFE5E5EA" BorderBrush="#FFE5E5EA" Foreground="White">
                                         <Button.Content>
                                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                                                 <svg:SvgViewbox Source="images/wenjianjia.svg" Width="16" Height="16" Margin="0,0,6,0"/>
@@ -5633,7 +5633,7 @@ Background="#FFFAFAFC"
                                     </Button>
                                     <CheckBox x:Name="CleanupMyPartitionsCheckBox" Content="清理残留文件" HorizontalAlignment="Left" Margin="-8,40,0,0" VerticalAlignment="Top" Checked="CleanupMyPartitionsCheckBox_Checked"/>
                                     <CheckBox x:Name="FilterXmlCheckBox" Content="过滤多余xml" HorizontalAlignment="Left" Margin="94,40,0,0" VerticalAlignment="Top"/>
-                                    <Button x:Name="StartSuperPackButton" Content="开始打包" HorizontalAlignment="Left" Margin="250,34,0,0" VerticalAlignment="Top" Width="88" Height="28" Click="StartSuperPackButton_Click" Background="#FFE8E8ED" BorderBrush="#FFE8E8ED" Foreground="White"/>
+                                    <Button x:Name="StartSuperPackButton" Content="开始打包" HorizontalAlignment="Left" Margin="250,34,0,0" VerticalAlignment="Top" Width="88" Height="28" Click="StartSuperPackButton_Click" Background="#FFE5E5EA" BorderBrush="#FFE5E5EA" Foreground="White"/>
                                 </Grid>
                             </GroupBox>
                             <GroupBox
@@ -5683,9 +5683,9 @@ Background="#FFFAFAFC"
                                 <Grid>
                                     <TextBlock Text="OFP文件：" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="-8,0,0,0"/>
                                     <TextBox x:Name="OfpFilePathTextBox" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="51,-4,0,0" BorderBrush="#FFE0E0E0" Width="273"/>
-                                    <Button x:Name="SelectOfpFileButton" Content="选择" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,-4,0,0" Width="85" Click="SelectOfpFileButton_Click" Background="#FFE8E8ED" BorderBrush="#FFE8E8ED" Foreground="White"/>
+                                    <Button x:Name="SelectOfpFileButton" Content="选择" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,-4,0,0" Width="85" Click="SelectOfpFileButton_Click" Background="#FFE5E5EA" BorderBrush="#FFE5E5EA" Foreground="White"/>
                                     <ProgressBar x:Name="OfpExtractProgressBar" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="-8,32,0,0" Height="18" Minimum="0" Maximum="100" Value="0" Width="332"/>
-                                    <Button x:Name="StartOfpExtractButton" Content="开始解包" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,27,0,0" Width="85" Height="28" Click="StartOfpExtractButton_Click" Background="#FFE8E8ED" BorderBrush="#FFE8E8ED" Foreground="White"/>
+                                    <Button x:Name="StartOfpExtractButton" Content="开始解包" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,27,0,0" Width="85" Height="28" Click="StartOfpExtractButton_Click" Background="#FFE5E5EA" BorderBrush="#FFE5E5EA" Foreground="White"/>
                                 </Grid>
                             </GroupBox>
                             <GroupBox
@@ -5739,7 +5739,7 @@ Background="#FFFAFAFC"
                                     <Run Language="zh-cn" Text="镜像目录："/>
                                     </TextBlock>
                                     <TextBox x:Name="ImageDirTextBox" HorizontalAlignment="Left" Margin="51,-4,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="193" BorderBrush="#FFE0E0E0"/>
-                                    <Button x:Name="SelectImageDirButton" HorizontalAlignment="Left" Margin="253,-4,0,0" VerticalAlignment="Top" Width="85" Click="SelectImageDirButton_Click" BorderBrush="#FFE8E8ED" Background="#FFE8E8ED" Foreground="White">
+                                    <Button x:Name="SelectImageDirButton" HorizontalAlignment="Left" Margin="253,-4,0,0" VerticalAlignment="Top" Width="85" Click="SelectImageDirButton_Click" BorderBrush="#FFE5E5EA" Background="#FFE5E5EA" Foreground="White">
                                         <Button.Content>
                                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                                                 <svg:SvgViewbox Source="images/wenjianjia.svg" Width="16" Height="16" Margin="0,0,6,0"/>
@@ -5747,7 +5747,7 @@ Background="#FFFAFAFC"
                                             </StackPanel>
                                         </Button.Content>
                                     </Button>
-                                    <Button x:Name="GenerateFlashScriptButton" Content="开始生成" HorizontalAlignment="Left" Margin="253,36,0,0" VerticalAlignment="Top" Width="85" Click="GenerateFlashScriptButton_Click" Background="#FFE8E8ED" BorderBrush="#FFE8E8ED" Foreground="White"/>
+                                    <Button x:Name="GenerateFlashScriptButton" Content="开始生成" HorizontalAlignment="Left" Margin="253,36,0,0" VerticalAlignment="Top" Width="85" Click="GenerateFlashScriptButton_Click" Background="#FFE5E5EA" BorderBrush="#FFE5E5EA" Foreground="White"/>
                                     <CheckBox Content="排除敏感文件" HorizontalAlignment="Left" Margin="-8,42,0,0" VerticalAlignment="Top" Checked="CheckBox_Checked_3" IsChecked="True" ToolTip="排除绑定指纹和基带的关键分区"/>
                                 </Grid>
                             </GroupBox>
@@ -5798,9 +5798,9 @@ Background="#FFFAFAFC"
                                 <Grid>
                                     <TextBlock Text="OPS文件：" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="-8,0,0,0"/>
                                     <TextBox x:Name="OpsFilePathTextBox" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="51,-4,0,0" BorderBrush="#FFE0E0E0" Width="273"/>
-                                    <Button x:Name="SelectOpsFileButton" Content="选择" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,-4,0,0" Width="85" Click="SelectOpsFileButton_Click" Background="#FFE8E8ED" BorderBrush="#FFE8E8ED" Foreground="White"/>
+                                    <Button x:Name="SelectOpsFileButton" Content="选择" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,-4,0,0" Width="85" Click="SelectOpsFileButton_Click" Background="#FFE5E5EA" BorderBrush="#FFE5E5EA" Foreground="White"/>
                                     <ProgressBar x:Name="OpsExtractProgressBar" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="-8,32,0,0" Height="18" Minimum="0" Maximum="100" Value="0" Width="332"/>
-                                    <Button x:Name="StartOpsExtractButton" Content="开始解包" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,27,0,0" Width="85" Height="28" Click="StartOpsExtractButton_Click" Background="#FFE8E8ED" BorderBrush="#FFE8E8ED" Foreground="White"/>
+                                    <Button x:Name="StartOpsExtractButton" Content="开始解包" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,27,0,0" Width="85" Height="28" Click="StartOpsExtractButton_Click" Background="#FFE5E5EA" BorderBrush="#FFE5E5EA" Foreground="White"/>
                                 </Grid>
                             </GroupBox>
                             <GroupBox
@@ -5852,7 +5852,7 @@ Background="#FFFAFAFC"
                                 <Grid>
                                     <TextBlock HorizontalAlignment="Left" Margin="-8,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run Text="解包后的文件夹"/><Run Language="zh-cn" Text="："/></TextBlock>
                                     <TextBox x:Name="UnpackedFolderTextBox" HorizontalAlignment="Left" Margin="90,-4,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="154" BorderBrush="#FFE0E0E0"/>
-                                    <Button x:Name="SelectUnpackedFolderButton" HorizontalAlignment="Left" Margin="253,-4,0,0" VerticalAlignment="Top" Width="85" Click="SelectUnpackedFolderButton_Click" BorderBrush="#FFE8E8ED" Background="#FFE8E8ED" Foreground="White">
+                                    <Button x:Name="SelectUnpackedFolderButton" HorizontalAlignment="Left" Margin="253,-4,0,0" VerticalAlignment="Top" Width="85" Click="SelectUnpackedFolderButton_Click" BorderBrush="#FFE5E5EA" Background="#FFE5E5EA" Foreground="White">
                                         <Button.Content>
                                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                                                 <svg:SvgViewbox Source="images/wenjianjia.svg" Width="16" Height="16" Margin="0,0,6,0"/>
@@ -5860,7 +5860,7 @@ Background="#FFFAFAFC"
                                             </StackPanel>
                                         </Button.Content>
                                     </Button>
-                                    <Button x:Name="StartConvertFlashButton" Content="开始线刷" HorizontalAlignment="Left" Margin="253,41,0,0" VerticalAlignment="Top" Width="85" Click="StartConvertFlashButton_Click" BorderBrush="#FFE8E8ED" Background="#FFE8E8ED" Foreground="White"/>
+                                    <Button x:Name="StartConvertFlashButton" Content="开始线刷" HorizontalAlignment="Left" Margin="253,41,0,0" VerticalAlignment="Top" Width="85" Click="StartConvertFlashButton_Click" BorderBrush="#FFE5E5EA" Background="#FFE5E5EA" Foreground="White"/>
                                     <TextBlock HorizontalAlignment="Left" Margin="0,57,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="Gray" FontSize="10" RenderTransformOrigin="1.65,1.333" Width="174"><Run Text="未"/><Run Text="解包请"/><Run Text="先"/><Run Text="切换"/><Run Text="到欧加"/><Run Text="线刷"/><Run Text="区域"/><Run Language="zh-cn" Text="解包"/></TextBlock>
                                     <CheckBox Content="清除数据" HorizontalAlignment="Left" Margin="-5,38,0,0" Checked="CheckBox_Checked_4" VerticalAlignment="Top"/>
                                     <CheckBox Content="自动重启" HorizontalAlignment="Left" Margin="79,39,0,0" VerticalAlignment="Top"/>
@@ -5935,16 +5935,16 @@ Background="#FFFAFAFC"
                                     Grid.Column="3"
                                     Content="选择"
                                     Click="SelectOfpSuperPartsFolderButton_Click"
-                                    Background="#FFE8E8ED"
-                                    BorderBrush="#FFE8E8ED"
+                                    Background="#FFE5E5EA"
+                                    BorderBrush="#FFE5E5EA"
                                     Foreground="White" Width="85"/>
                                     <Button
                                     x:Name="StartMergeOfpSuperButton"
                                     Grid.Column="5"
                                     Content="开始合并"
                                     Click="StartMergeOfpSuperButton_Click"
-                                    Background="#FFE8E8ED"
-                                    BorderBrush="#FFE8E8ED"
+                                    Background="#FFE5E5EA"
+                                    BorderBrush="#FFE5E5EA"
                                     Foreground="White" Width="85"/>
                                 </Grid>
                             </GroupBox>
@@ -5993,7 +5993,7 @@ Background="#FFFAFAFC"
                                         </Setter>
                                     </Style>
                                 </GroupBox.Style>
-                                <Button Content="读分区表" HorizontalAlignment="Left" Margin="86,36,0,0" VerticalAlignment="Top" Click="Button_Click_1" Width="85" Foreground="White" BorderBrush="#FFE8E8ED" Background="#FFE8E8ED"/>
+                                <Button Content="读分区表" HorizontalAlignment="Left" Margin="86,36,0,0" VerticalAlignment="Top" Click="Button_Click_1" Width="85" Foreground="White" BorderBrush="#FFE5E5EA" Background="#FFE5E5EA"/>
                             </GroupBox>
                             <RichTextBox x:Name="SuperPackLogRichTextBox" Margin="390,327,0,10" TextChanged="RichTextBox_TextChanged" CaretBrush="White" BorderBrush="#FFE0E0E0">
                                 <FlowDocument>
@@ -6004,9 +6004,9 @@ Background="#FFFAFAFC"
                             </RichTextBox>
                             <TextBlock HorizontalAlignment="Left" Margin="8,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center"><Run Language="zh-cn" Text="提取或写入"/><Run Text="的分区："/></TextBlock>
                             <ComboBox x:Name="ReadPartitionComboBox" HorizontalAlignment="Left" Margin="113,0,0,0" VerticalAlignment="Center" Width="239" IsEditable="True" IsReadOnly="True" Text="等待用户读取分区表..." BorderBrush="#FFE0E0E0"/>
-                            <Button Content="回读分区" HorizontalAlignment="Left" Margin="282,378,0,0" VerticalAlignment="Top" Width="85" Click="ReadOutPartitionButton_Click_New" BorderBrush="#FFE8E8ED" Background="#FFE8E8ED" Foreground="White"/>
-                            <Button Content="推送卡刷包" HorizontalAlignment="Left" Margin="10,378,0,0" VerticalAlignment="Top" Width="85" Click="PushZipToSdcardButton_Click" BorderBrush="#FFE8E8ED" Background="#FFE8E8ED" Foreground="White"/>
-                            <Button Content="写入分区" HorizontalAlignment="Left" Margin="192,378,0,0" VerticalAlignment="Top" Width="85" Click="WriteSelectedPartitionButton_Click" Background="#FFE8E8ED" BorderBrush="#FFE8E8ED" Foreground="White"/>
+                            <Button Content="回读分区" HorizontalAlignment="Left" Margin="282,378,0,0" VerticalAlignment="Top" Width="85" Click="ReadOutPartitionButton_Click_New" BorderBrush="#FFE5E5EA" Background="#FFE5E5EA" Foreground="White"/>
+                            <Button Content="推送卡刷包" HorizontalAlignment="Left" Margin="10,378,0,0" VerticalAlignment="Top" Width="85" Click="PushZipToSdcardButton_Click" BorderBrush="#FFE5E5EA" Background="#FFE5E5EA" Foreground="White"/>
+                            <Button Content="写入分区" HorizontalAlignment="Left" Margin="192,378,0,0" VerticalAlignment="Top" Width="85" Click="WriteSelectedPartitionButton_Click" Background="#FFE5E5EA" BorderBrush="#FFE5E5EA" Foreground="White"/>
                             <GroupBox
                             Background="#FFFFFF"
                             Margin="0,432,0,0"
@@ -6069,7 +6069,7 @@ Background="#FFFAFAFC"
                                         <ComboBoxItem Content="geyixue_fill"/>
                                     </ComboBox>
 
-                                    <Button x:Name="GenerateOcdtButton" Content="生成 OCDT" HorizontalAlignment="Left" Margin="0,73,0,0" VerticalAlignment="Top" Width="338" Height="30" Click="GenerateOcdtButton_Click" Background="#FFE8E8ED" BorderBrush="#FFE8E8ED" Foreground="White"/>
+                                    <Button x:Name="GenerateOcdtButton" Content="生成 OCDT" HorizontalAlignment="Left" Margin="0,73,0,0" VerticalAlignment="Top" Width="338" Height="30" Click="GenerateOcdtButton_Click" Background="#FFE5E5EA" BorderBrush="#FFE5E5EA" Foreground="White"/>
 
                                     <TextBlock HorizontalAlignment="Left" Margin="0,113,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="338" FontSize="11" Foreground="#FF666666" LineHeight="16"><Run Text="只需要选择你对应的处理器和项目和然后点击生成即可"/><Run Text="！"/><LineBreak/><Run/><Run Text="项目号如何获取？只需下载一个线刷包（售后包）并解压，然后找到线刷包中的version_info.txt文件，然后打开找到project=‘项目号’"/><Run Text="，将"/><Run Language="zh-cn" Text="项目号填入到此处点击生成."/></TextBlock>
                                 </Grid>
@@ -6086,7 +6086,7 @@ Background="#FFFAFAFC"
 <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="*"/></Grid.RowDefinitions>
 <Grid Grid.Row="0" Grid.ColumnSpan="1" Margin="18,12,18,10">
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-            <Border Width="40" Height="40" CornerRadius="12" Background="#FF0A84FF">
+            <Border Width="40" Height="40" CornerRadius="12" Background="#FF007AFF">
                 <svg:SvgViewbox Source="images/white/jingxiangwenjian.svg" Width="21" Height="21"/>
             </Border>
             <StackPanel VerticalAlignment="Center" Margin="12,0,0,0">
@@ -6125,7 +6125,7 @@ Background="#FFFAFAFC"
                                     <TextBox Grid.Row="0" Grid.Column="1" Height="30" VerticalContentAlignment="Center" Name="InputPathTextBox"
                                          Text="支持本地/云端全量包_欧加散包_无需解压直接提取" Margin="0,0,45,0" TextChanged="InputPathTextBox_TextChanged"
                                          GotFocus="InputPathTextBox_GotFocus" LostFocus="InputPathTextBox_LostFocus"/>
-                                    <Button Height="30" Name="BrowseInputButton" Click="BrowseInputButton_Click" Grid.Column="1" Grid.ColumnSpan="2" Width="87" HorizontalAlignment="Left" Margin="351,0,0,0" Background="#FF0A84FF" Foreground="White" BorderBrush="#FFCFD1D1">
+                                    <Button Height="30" Name="BrowseInputButton" Click="BrowseInputButton_Click" Grid.Column="1" Grid.ColumnSpan="2" Width="87" HorizontalAlignment="Left" Margin="351,0,0,0" Background="#FF007AFF" Foreground="White" BorderBrush="#FFCFD1D1">
                                         <Button.Content>
                                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
                                                 <svg:SvgViewbox Source="images/wenjianjia.svg" Width="14" Height="14" Margin="0,0,6,0"/>
@@ -6138,7 +6138,7 @@ Background="#FFFAFAFC"
                                     <TextBox Grid.Row="1" Grid.Column="1" Height="30" Margin="0,11,45,1" VerticalContentAlignment="Center" Name="OutputDirTextBox"
                                          Text="请选择解包后文件的保存路径文件夹..." TextChanged="OutputDirTextBox_TextChanged"
                                          GotFocus="OutputDirTextBox_GotFocus"/>
-                                    <Button Grid.Row="1" Grid.Column="1" Height="30" Margin="351,10,0,0" Name="BrowseOutputButton" Click="BrowseOutputButton_Click" Grid.ColumnSpan="2" VerticalAlignment="Top" Width="87" HorizontalAlignment="Left" BorderBrush="#FFCFD1D1" Background="#FF0A84FF" Foreground="White">
+                                    <Button Grid.Row="1" Grid.Column="1" Height="30" Margin="351,10,0,0" Name="BrowseOutputButton" Click="BrowseOutputButton_Click" Grid.ColumnSpan="2" VerticalAlignment="Top" Width="87" HorizontalAlignment="Left" BorderBrush="#FFCFD1D1" Background="#FF007AFF" Foreground="White">
                                         <Button.Content>
                                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
                                                 <svg:SvgViewbox Source="images/wenjianjia.svg" Width="14" Height="14" Margin="0,0,6,0"/>
@@ -6171,7 +6171,7 @@ Background="#FFFAFAFC"
 
                                         <DataGrid Grid.Row="1" Margin="0,10,0,0" Name="PartitionsDataGrid"
                                               AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="False"
-                                              HeadersVisibility="Column" SelectionMode="Extended" SelectionChanged="PartitionsDataGrid_SelectionChanged" FontSize="12" Background="#FFF0F7FF" Cursor="" RowHeight="26" VirtualizingStackPanel.IsVirtualizing="True" VirtualizingStackPanel.VirtualizationMode="Recycling" ScrollViewer.CanContentScroll="True">
+                                              HeadersVisibility="Column" SelectionMode="Extended" SelectionChanged="PartitionsDataGrid_SelectionChanged" FontSize="12" Background="#FFE8F0FF" Cursor="" RowHeight="26" VirtualizingStackPanel.IsVirtualizing="True" VirtualizingStackPanel.VirtualizationMode="Recycling" ScrollViewer.CanContentScroll="True">
                                             <DataGrid.Columns>
                                                 <DataGridCheckBoxColumn Width="35" Binding="{Binding IsSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                                                     <DataGridCheckBoxColumn.CellStyle>
@@ -6206,7 +6206,7 @@ Background="#FFFAFAFC"
                                                             <Setter Property="Padding" Value="0"/>
                                                             <Setter Property="HorizontalContentAlignment" Value="Center"/>
                                                             <Setter Property="VerticalContentAlignment" Value="Center"/>
-                                                            <Setter Property="Background" Value="#FFF0F7FF"/>
+                                                            <Setter Property="Background" Value="#FFE8F0FF"/>
                                                         </Style>
                                                     </DataGridCheckBoxColumn.HeaderStyle>
                                                     <DataGridCheckBoxColumn.Header>
@@ -6420,7 +6420,7 @@ Background="#FFFAFAFC"
 <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="*"/></Grid.RowDefinitions>
 <Grid Grid.Row="0" Grid.ColumnSpan="1" Margin="18,12,18,10">
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-            <Border Width="40" Height="40" CornerRadius="12" Background="#FF0A84FF">
+            <Border Width="40" Height="40" CornerRadius="12" Background="#FF007AFF">
                 <svg:SvgViewbox Source="images/white/yunduanxiazai.svg" Width="21" Height="21"/>
             </Border>
             <StackPanel VerticalAlignment="Center" Margin="12,0,0,0">
@@ -6533,7 +6533,7 @@ Background="#FFFAFAFC"
                                                 Style="{StaticResource PagePrimaryButton}"
                                                 MinWidth="156"
                                                 Content="开始下载"
-                                                Click="RomDownloadStartButton_Click" Background="#FF0A84FF" BorderBrush="#FFE6E6E6"/>
+                                                Click="RomDownloadStartButton_Click" Background="#FF007AFF" BorderBrush="#FFE6E6E6"/>
                                     </Grid>
 
                                     <Grid Grid.Row="3"
@@ -6808,13 +6808,13 @@ Background="#FFFAFAFC"
                         <Grid
                         Name="EdlFlashView"
                         Visibility="Collapsed"
-                        Background="#FFF8F8F8">
+                        Background="#FFF5F5F7">
                         <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
                             <StackPanel Margin="24,20,24,18">
                                 <!-- 标题 -->
                                 <StackPanel Orientation="Horizontal" Margin="0,0,0,16">
-                                    <Border Width="46" Height="46" CornerRadius="23" Background="#FFE0EFFF" VerticalAlignment="Center">
-                                        <TextBlock Text="EDL" FontSize="18" FontWeight="Bold" Foreground="#FF0A84FF" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    <Border Width="46" Height="46" CornerRadius="23" Background="#FFD1E2FF" VerticalAlignment="Center">
+                                        <TextBlock Text="EDL" FontSize="18" FontWeight="Bold" Foreground="#FF007AFF" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                     </Border>
                                     <StackPanel Margin="14,0,0,0" VerticalAlignment="Center">
                                         <TextBlock Style="{StaticResource PageTitle}" Text="EDL 刷写" FontSize="22"/>
@@ -6983,7 +6983,7 @@ Background="#FFFAFAFC"
                         <Grid
                         Name="ColorOSAssistantView"
                         Visibility="Collapsed"
-                        Background="#FFF8F8F8">
+                        Background="#FFF5F5F7">
 <!-- MONO_PAGE_MARKER_ColorOSAssistantView -->
     <Grid.Resources>
                                 <Style x:Key="ColorOSCardStyle" TargetType="Border">
@@ -7155,7 +7155,7 @@ Background="#FFFAFAFC"
 <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="*"/></Grid.RowDefinitions>
 <Grid Grid.Row="0" Grid.ColumnSpan="1" Margin="18,12,18,10">
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-            <Border Width="40" Height="40" CornerRadius="12" Background="#FF0A84FF">
+            <Border Width="40" Height="40" CornerRadius="12" Background="#FF007AFF">
                 <svg:SvgViewbox Source="images/white/coloros.svg" Width="21" Height="21"/>
             </Border>
             <StackPanel VerticalAlignment="Center" Margin="12,0,0,0">
@@ -7206,7 +7206,7 @@ Background="#FFFAFAFC"
                                                             Width="84"
                                                             Click="BtnBrowseDir_Click"
                                                             BorderBrush="#FFE6E6E6"
-                                                            Background="#FF0A84FF"
+                                                            Background="#FF007AFF"
                                                             VerticalAlignment="Center">
                                                         <StackPanel Orientation="Horizontal"
                                                                     HorizontalAlignment="Center"
@@ -7241,7 +7241,7 @@ Background="#FFFAFAFC"
                                                             Width="84"
                                                             Click="BtnBrowseFile_Click"
                                                             BorderBrush="#FFE6E6E6"
-                                                            Background="#FF0A84FF"
+                                                            Background="#FF007AFF"
                                                             VerticalAlignment="Center">
                                                         <StackPanel Orientation="Horizontal"
                                                                     HorizontalAlignment="Center"
@@ -7276,7 +7276,7 @@ Background="#FFFAFAFC"
                                                             Style="{StaticResource PagePrimaryButton}"
                                                             Width="84"
                                                             BorderBrush="#FFE6E6E6"
-                                                            Background="#FF0A84FF"
+                                                            Background="#FF007AFF"
                                                             VerticalAlignment="Center">
                                                         <StackPanel Orientation="Horizontal"
                                                                     HorizontalAlignment="Center"
@@ -7516,7 +7516,7 @@ Background="#FFFAFAFC"
 <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="*"/></Grid.RowDefinitions>
 <Grid Grid.Row="0" Grid.ColumnSpan="5" Margin="18,12,18,10">
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-            <Border Width="40" Height="40" CornerRadius="12" Background="#FF0A84FF">
+            <Border Width="40" Height="40" CornerRadius="12" Background="#FF007AFF">
                 <svg:SvgViewbox Source="images/white/beifen.svg" Width="21" Height="21"/>
             </Border>
             <StackPanel VerticalAlignment="Center" Margin="12,0,0,0">
@@ -7570,9 +7570,9 @@ Background="#FFFAFAFC"
                             </Grid>
 
                             <!-- 右侧导航栏 -->
-                            <Border Grid.Column="2" BorderBrush="#FFE8E8ED" BorderThickness="1" Background="WhiteSmoke">
+                            <Border Grid.Column="2" BorderBrush="#FFE5E5EA" BorderThickness="1" Background="WhiteSmoke">
                                 <StackPanel>
-                                    <Button x:Name="btnNavPhotos" Content=" 📷&#x0a;图片" Width="78" Height="80" Click="BtnNavPhotos_Click" FontSize="14" Background="#FF0A84FF" Foreground="White" BorderThickness="0"/>
+                                    <Button x:Name="btnNavPhotos" Content=" 📷&#x0a;图片" Width="78" Height="80" Click="BtnNavPhotos_Click" FontSize="14" Background="#FF007AFF" Foreground="White" BorderThickness="0"/>
                                     <Button x:Name="btnNavVideos" Content=" 🎬&#x0a;视频" Width="78" Height="80" Click="BtnNavVideos_Click" FontSize="14" Margin="0,1,0,0" Background="White" Foreground="Black" BorderThickness="0"/>
                                     <Button x:Name="btnNavContacts" Content="  📞&#x0a;通讯录" Width="78" Height="80" Click="BtnNavContacts_Click" FontSize="14" Margin="0,1,0,0" Background="White" Foreground="Black" BorderThickness="0"/>
                                 </StackPanel>
@@ -7838,7 +7838,7 @@ Background="#FFFAFAFC"
                                                                                           HorizontalAlignment="Left"
                                                                                           Content="{TemplateBinding Content}"/>
                                                                         <Border Grid.Column="1"
-                                                                                Background="#FFF8F8F8"
+                                                                                Background="#FFF5F5F7"
                                                                                 BorderBrush="#FFEBEBEB"
                                                                                 BorderThickness="1,0,0,0"
                                                                                 CornerRadius="0,10,10,0">
@@ -7925,7 +7925,7 @@ Background="#FFFAFAFC"
                             <ScrollViewer VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Disabled" Margin="0,0,0,8"><!-- MONO_PAGE_MARKER_VioletDownloadView --><StackPanel>
                                         <Grid Margin="2,0,0,16">
                                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                                                <Border Width="40" Height="40" CornerRadius="12" Background="#FF0A84FF">
+                                                <Border Width="40" Height="40" CornerRadius="12" Background="#FF007AFF">
                                                     <svg:SvgViewbox Source="images/white/xiazai.svg" Width="21" Height="21"/>
                                                 </Border>
                                                 <StackPanel VerticalAlignment="Center" Margin="12,0,0,0">
@@ -8270,7 +8270,7 @@ Background="#FFFAFAFC"
 </ResourceDictionary>
 </FrameworkElement.Resources>
     <Border
-            Background="#FFF0F7FF"
+            Background="#FFF5F5F7"
             CornerRadius="0"
             BorderThickness="0"
             x:Name="MainContentBorder">
@@ -8292,7 +8292,7 @@ Background="#FFFAFAFC"
                         <SolidColorBrush Color="#FFFFFFFF"/>
                     </Border.Background>
                     <Border.BorderBrush>
-                        <SolidColorBrush Color="#FFE8E8ED"/>
+                        <SolidColorBrush Color="#FFE5E5EA"/>
                     </Border.BorderBrush>
                     <Border.BorderThickness>0,0,0,1</Border.BorderThickness>
                     <Grid>
@@ -8340,10 +8340,10 @@ Background="#FFFAFAFC"
                                                     </Border>
                                                     <ControlTemplate.Triggers>
                                                         <Trigger Property="IsMouseOver" Value="True">
-                                                            <Setter TargetName="bd" Property="Background" Value="#FFF0F7FF"/>
+                                                            <Setter TargetName="bd" Property="Background" Value="#FFE8F0FF"/>
                                                         </Trigger>
                                                         <Trigger Property="IsPressed" Value="True">
-                                                            <Setter TargetName="bd" Property="Background" Value="#FFE8E8ED"/>
+                                                            <Setter TargetName="bd" Property="Background" Value="#FFE5E5EA"/>
                                                         </Trigger>
                                                     </ControlTemplate.Triggers>
                                                 </ControlTemplate>
@@ -8378,10 +8378,10 @@ Background="#FFFAFAFC"
                                                     </Border>
                                                     <ControlTemplate.Triggers>
                                                         <Trigger Property="IsMouseOver" Value="True">
-                                                            <Setter TargetName="bd" Property="Background" Value="#FFF0F7FF"/>
+                                                            <Setter TargetName="bd" Property="Background" Value="#FFE8F0FF"/>
                                                         </Trigger>
                                                         <Trigger Property="IsPressed" Value="True">
-                                                            <Setter TargetName="bd" Property="Background" Value="#FFE0EFFF"/>
+                                                            <Setter TargetName="bd" Property="Background" Value="#FFD1E2FF"/>
                                                         </Trigger>
                                                     </ControlTemplate.Triggers>
                                                 </ControlTemplate>
@@ -8416,10 +8416,10 @@ Background="#FFFAFAFC"
                                                     </Border>
                                                     <ControlTemplate.Triggers>
                                                         <Trigger Property="IsMouseOver" Value="True">
-                                                            <Setter TargetName="bd" Property="Background" Value="#FFF0F7FF"/>
+                                                            <Setter TargetName="bd" Property="Background" Value="#FFE8F0FF"/>
                                                         </Trigger>
                                                         <Trigger Property="IsPressed" Value="True">
-                                                            <Setter TargetName="bd" Property="Background" Value="#FFE8E8ED"/>
+                                                            <Setter TargetName="bd" Property="Background" Value="#FFE5E5EA"/>
                                                         </Trigger>
                                                     </ControlTemplate.Triggers>
                                                 </ControlTemplate>
@@ -8439,7 +8439,7 @@ Background="#FFFAFAFC"
                     </Grid.ColumnDefinitions>
                     <Border
 					Margin="8,12,8,12"
-					Background="#FFFFFFFF"
+					Background="#FFF5F5F7"
 					CornerRadius="12"
 					CacheMode="BitmapCache"
 					BorderThickness="0">
@@ -8474,8 +8474,8 @@ Background="#FFFAFAFC"
                                     <hc:SideMenuItem x:Name="FlashFeatureGroup" FontSize="13" PreviewMouseLeftButtonDown="GroupHeader_Click">
                                     <hc:SideMenuItem.Header>
                                         <DockPanel>
-                                            <Border DockPanel.Dock="Left" Width="20" Height="20" CornerRadius="10" Background="#FFE0EFFF" VerticalAlignment="Center" Margin="0,0,8,0">
-                                                <Path Width="10" Height="6" Stretch="Uniform" Stroke="#FF0A84FF" StrokeThickness="1.8" Fill="Transparent"
+                                            <Border DockPanel.Dock="Left" Width="20" Height="20" CornerRadius="10" Background="#FFD1E2FF" VerticalAlignment="Center" Margin="0,0,8,0">
+                                                <Path Width="10" Height="6" Stretch="Uniform" Stroke="#FF007AFF" StrokeThickness="1.8" Fill="Transparent"
                                                       HorizontalAlignment="Center" VerticalAlignment="Center"
                                                       RenderTransformOrigin="0.5,0.5" Data="M0,0 L5,5 L10,0">
                                                     <Path.RenderTransform>
@@ -8549,8 +8549,8 @@ Background="#FFFAFAFC"
                                     <hc:SideMenuItem x:Name="UtilityGroup" FontSize="13" PreviewMouseLeftButtonDown="GroupHeader_Click">
                                     <hc:SideMenuItem.Header>
                                         <DockPanel>
-                                            <Border DockPanel.Dock="Left" Width="20" Height="20" CornerRadius="10" Background="#FFE0EFFF" VerticalAlignment="Center" Margin="0,0,8,0">
-                                                <Path Width="10" Height="6" Stretch="Uniform" Stroke="#FF0A84FF" StrokeThickness="1.8" Fill="Transparent"
+                                            <Border DockPanel.Dock="Left" Width="20" Height="20" CornerRadius="10" Background="#FFD1E2FF" VerticalAlignment="Center" Margin="0,0,8,0">
+                                                <Path Width="10" Height="6" Stretch="Uniform" Stroke="#FF007AFF" StrokeThickness="1.8" Fill="Transparent"
                                                       HorizontalAlignment="Center" VerticalAlignment="Center"
                                                       RenderTransformOrigin="0.5,0.5" Data="M0,0 L5,5 L10,0">
                                                     <Path.RenderTransform>
@@ -8645,8 +8645,8 @@ Background="#FFFAFAFC"
                                     <hc:SideMenuItem x:Name="ResourceGroup" FontSize="13" PreviewMouseLeftButtonDown="GroupHeader_Click">
                                     <hc:SideMenuItem.Header>
                                         <DockPanel>
-                                            <Border DockPanel.Dock="Left" Width="20" Height="20" CornerRadius="10" Background="#FFE0EFFF" VerticalAlignment="Center" Margin="0,0,8,0">
-                                                <Path Width="10" Height="6" Stretch="Uniform" Stroke="#FF0A84FF" StrokeThickness="1.8" Fill="Transparent"
+                                            <Border DockPanel.Dock="Left" Width="20" Height="20" CornerRadius="10" Background="#FFD1E2FF" VerticalAlignment="Center" Margin="0,0,8,0">
+                                                <Path Width="10" Height="6" Stretch="Uniform" Stroke="#FF007AFF" StrokeThickness="1.8" Fill="Transparent"
                                                       HorizontalAlignment="Center" VerticalAlignment="Center"
                                                       RenderTransformOrigin="0.5,0.5" Data="M0,0 L5,5 L10,0">
                                                     <Path.RenderTransform>
@@ -8705,12 +8705,9 @@ Background="#FFFAFAFC"
                             </hc:SideMenu>
                         </ScrollViewer>
                     </Border>
-                    <ScrollViewer
+                    <Grid
 					Grid.Column="1"
-					Margin="5,20,20,12"
-					VerticalScrollBarVisibility="Visible"
-					HorizontalScrollBarVisibility="Disabled"
-					Padding="0,0,4,0">
+					Margin="5,12,20,8">
                     <Grid>
                         <Grid
 				Name="HomeView"
@@ -8719,9 +8716,9 @@ Background="#FFFAFAFC"
 <Grid.Resources>
                                 <Style x:Key="HomeCardStyle" TargetType="Border">
                                     <Setter Property="Background" Value="#FFFFFFFF"/>
-                                    <Setter Property="BorderBrush" Value="#FFE8E8ED"/>
+                                    <Setter Property="BorderBrush" Value="#FFE5E5EA"/>
                                     <Setter Property="BorderThickness" Value="1"/>
-                                    <Setter Property="CornerRadius" Value="16"/>
+                                    <Setter Property="CornerRadius" Value="12"/>
                                     <Setter Property="Padding" Value="14"/>
                                 </Style>
                                 <Style x:Key="HomePanelTitleStyle" TargetType="TextBlock">
@@ -8738,7 +8735,7 @@ Background="#FFFAFAFC"
                                     <Setter Property="Height" Value="36"/>
                                     <Setter Property="Margin" Value="0"/>
                                     <Setter Property="Padding" Value="10,0"/>
-                                    <Setter Property="Background" Value="#FF1D1D1F"/>
+                                    <Setter Property="Background" Value="#FF007AFF"/>
                                     <Setter Property="Foreground" Value="White"/>
                                     <Setter Property="BorderThickness" Value="0"/>
                                     <Setter Property="FontSize" Value="13"/>
@@ -8747,15 +8744,15 @@ Background="#FFFAFAFC"
                                     <Setter Property="Template">
                                         <Setter.Value>
                                             <ControlTemplate TargetType="{x:Type Button}">
-                                                <Border Background="{TemplateBinding Background}" CornerRadius="10">
+                                                <Border Background="{TemplateBinding Background}" CornerRadius="6">
                                                     <ContentPresenter TextElement.Foreground="{TemplateBinding Foreground}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                                 </Border>
                                                 <ControlTemplate.Triggers>
                                                     <Trigger Property="IsMouseOver" Value="True">
-                                                        <Setter Property="Background" Value="#FF000000"/>
+                                                        <Setter Property="Background" Value="#FF0066D6"/>
                                                     </Trigger>
                                                     <Trigger Property="IsPressed" Value="True">
-                                                        <Setter Property="Background" Value="#FF2C2C2E"/>
+                                                        <Setter Property="Background" Value="#FF004C9E"/>
                                                     </Trigger>
                                                 </ControlTemplate.Triggers>
                                             </ControlTemplate>
@@ -8768,7 +8765,7 @@ Background="#FFFAFAFC"
                                     <Setter Property="Padding" Value="10,0"/>
                                     <Setter Property="Background" Value="#FFFFFFFF"/>
                                     <Setter Property="Foreground" Value="#FF1D1D1F"/>
-                                    <Setter Property="BorderBrush" Value="#FF1D1D1F"/>
+                                    <Setter Property="BorderBrush" Value="#FFC7C7CC"/>
                                     <Setter Property="BorderThickness" Value="1"/>
                                     <Setter Property="FontSize" Value="13"/>
                                     <Setter Property="FontWeight" Value="Medium"/>
@@ -8776,15 +8773,15 @@ Background="#FFFAFAFC"
                                     <Setter Property="Template">
                                         <Setter.Value>
                                             <ControlTemplate TargetType="{x:Type Button}">
-                                                <Border x:Name="b" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="10">
+                                                <Border x:Name="b" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="6">
                                                     <ContentPresenter TextElement.Foreground="{TemplateBinding Foreground}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                                 </Border>
                                                 <ControlTemplate.Triggers>
                                                     <Trigger Property="IsMouseOver" Value="True">
-                                                        <Setter TargetName="b" Property="Background" Value="#FFF0F7FF"/>
+                                                        <Setter TargetName="b" Property="Background" Value="#FFE8F0FF"/>
                                                     </Trigger>
                                                     <Trigger Property="IsPressed" Value="True">
-                                                        <Setter TargetName="b" Property="Background" Value="#FFE8E8ED"/>
+                                                        <Setter TargetName="b" Property="Background" Value="#FFE5E5EA"/>
                                                     </Trigger>
                                                 </ControlTemplate.Triggers>
                                             </ControlTemplate>
@@ -8850,7 +8847,7 @@ Background="#FFFAFAFC"
                                     <!-- 页面标题 -->
                                     <Grid Margin="2,0,0,10">
                                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                                            <Border Width="40" Height="40" CornerRadius="12" Background="#FF0A84FF">
+                                            <Border Width="40" Height="40" CornerRadius="12" Background="#FF007AFF">
                                                 <svg:SvgViewbox Source="images/white/zhuye.svg" Width="21" Height="21"/>
                                             </Border>
                                             <StackPanel VerticalAlignment="Center" Margin="12,0,0,0">
@@ -8871,7 +8868,7 @@ Background="#FFFAFAFC"
                                         <Border Grid.Column="0" Style="{StaticResource HomeCardStyle}">
                                             <StackPanel>
                                                 <StackPanel Orientation="Horizontal" Margin="0,0,0,14">
-                                                    <Border Width="28" Height="28" CornerRadius="8" Background="#FFF0F7FF">
+                                                    <Border Width="28" Height="28" CornerRadius="8" Background="#FFE8F0FF">
                                                         <svg:SvgViewbox Source="images/android.svg" Width="17" Height="17"/>
                                                     </Border>
                                                     <TextBlock Text="设备信息" Style="{StaticResource HomePanelTitleStyle}" VerticalAlignment="Center" Margin="10,0,0,0"/>
@@ -8959,7 +8956,7 @@ Background="#FFFAFAFC"
                                             <Border Grid.Row="0" Style="{StaticResource HomeCardStyle}">
                                                 <StackPanel>
                                                     <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
-                                                        <Border Width="28" Height="28" CornerRadius="8" Background="#FFF0F7FF">
+                                                        <Border Width="28" Height="28" CornerRadius="8" Background="#FFE8F0FF">
                                                             <svg:SvgViewbox Source="images/shandian.svg" Width="16" Height="16"/>
                                                         </Border>
                                                         <TextBlock Style="{StaticResource HomePanelTitleStyle}" Text="电池状态" VerticalAlignment="Center" Margin="10,0,0,0"/>
@@ -8980,7 +8977,7 @@ Background="#FFFAFAFC"
                                             <Border x:Name="StorageMemoryBorder" Grid.Row="2" Style="{StaticResource HomeCardStyle}">
                                                 <StackPanel>
                                                     <StackPanel Orientation="Horizontal" Margin="0,0,0,6">
-                                                        <Border Width="28" Height="28" CornerRadius="8" Background="#FFF0F7FF">
+                                                        <Border Width="28" Height="28" CornerRadius="8" Background="#FFE8F0FF">
                                                             <svg:SvgViewbox Source="images/shancun.svg" Width="16" Height="16"/>
                                                         </Border>
                                                         <TextBlock Style="{StaticResource HomePanelTitleStyle}" Text="存储与内存" VerticalAlignment="Center" Margin="10,0,0,0"/>
@@ -8993,7 +8990,7 @@ Background="#FFFAFAFC"
                                                             </Grid.ColumnDefinitions>
                                                             <StackPanel Grid.Column="0" HorizontalAlignment="Center">
                                                                 <Grid Width="138" Height="138">
-                                                                    <Ellipse Stroke="#FFE8E8ED" StrokeThickness="12" Stretch="Uniform"/>
+                                                                    <Ellipse Stroke="#FFE5E5EA" StrokeThickness="12" Stretch="Uniform"/>
                                                                     <Ellipse Stroke="{StaticResource StorageGradient}" StrokeThickness="{Binding StrokeThickness}" Stretch="Uniform" StrokeDashArray="{Binding StorageDashArray}" StrokeDashCap="Round" StrokeDashOffset="0">
                                                                         <Ellipse.RenderTransform>
                                                                             <RotateTransform Angle="-90" CenterX="69" CenterY="69"/>
@@ -9008,7 +9005,7 @@ Background="#FFFAFAFC"
                                                             </StackPanel>
                                                             <StackPanel Grid.Column="1" HorizontalAlignment="Center">
                                                                 <Grid Width="138" Height="138">
-                                                                    <Ellipse Stroke="#FFE8E8ED" StrokeThickness="12" Stretch="Uniform"/>
+                                                                    <Ellipse Stroke="#FFE5E5EA" StrokeThickness="12" Stretch="Uniform"/>
                                                                     <Ellipse Stroke="{StaticResource MemoryGradient}" StrokeThickness="{Binding StrokeThickness}" Stretch="Uniform" StrokeDashArray="{Binding MemoryDashArray}" StrokeDashCap="Round" StrokeDashOffset="0">
                                                                         <Ellipse.RenderTransform>
                                                                             <RotateTransform Angle="-90" CenterX="69" CenterY="69"/>
@@ -9039,7 +9036,7 @@ Background="#FFFAFAFC"
 
                                             <StackPanel Grid.Column="0">
                                                 <StackPanel Orientation="Horizontal" Margin="0,0,0,14">
-                                                    <Border Width="28" Height="28" CornerRadius="8" Background="#FF0A84FF">
+                                                    <Border Width="28" Height="28" CornerRadius="8" Background="#FF007AFF">
                                                         <svg:SvgViewbox Source="images/white/zhongqi.svg" Width="16" Height="16"/>
                                                     </Border>
                                                     <TextBlock Style="{StaticResource HomePanelTitleStyle}" Text="快捷重启" VerticalAlignment="Center" Margin="10,0,0,0"/>
@@ -9102,7 +9099,7 @@ Background="#FFFAFAFC"
 
                                             <StackPanel Grid.Column="2">
                                                 <StackPanel Orientation="Horizontal" Margin="0,0,0,14">
-                                                    <Border Width="28" Height="28" CornerRadius="8" Background="#FF0A84FF">
+                                                    <Border Width="28" Height="28" CornerRadius="8" Background="#FF007AFF">
                                                         <svg:SvgViewbox Source="images/white/banshou.svg" Width="15" Height="15"/>
                                                     </Border>
                                                     <TextBlock Style="{StaticResource HomePanelTitleStyle}" Text="快捷工具" VerticalAlignment="Center" Margin="10,0,0,0"/>
@@ -9128,7 +9125,7 @@ Background="#FFFAFAFC"
                                                     </Button>
                                                 </UniformGrid>
 
-                                                <Border Background="#FFF0F7FF" BorderBrush="#FFE8E8ED" BorderThickness="1" CornerRadius="12" Padding="14" Margin="0,2,0,0">
+                                                <Border Background="#FFE8F0FF" BorderBrush="#FFE5E5EA" BorderThickness="1" CornerRadius="12" Padding="14" Margin="0,2,0,0">
                                                     <Grid>
                                                         <Grid.ColumnDefinitions>
                                                             <ColumnDefinition Width="*" />
@@ -9250,7 +9247,7 @@ Background="#FFFAFAFC"
                             PanningMode="None"><!-- MONO_PAGE_MARKER_DownloadView --><StackPanel>
                                         <Grid Margin="2,0,0,16">
                                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                                                <Border Width="40" Height="40" CornerRadius="12" Background="#FF0A84FF">
+                                                <Border Width="40" Height="40" CornerRadius="12" Background="#FF007AFF">
                                                     <svg:SvgViewbox Source="images/white/xiazai.svg" Width="21" Height="21"/>
                                                 </Border>
                                                 <StackPanel VerticalAlignment="Center" Margin="12,0,0,0">
@@ -9572,7 +9569,7 @@ Background="#FFFAFAFC"
                             </StackPanel></ScrollViewer>
                         </Grid>
                     </Grid>
-</ScrollViewer>
+</Grid>
 
 
 

@@ -13,9 +13,9 @@
     <!-- ============ 卡片 ============ -->
     <Style x:Key="PageCard" TargetType="Border">
         <Setter Property="Background" Value="#FFFFFFFF"/>
-        <Setter Property="BorderBrush" Value="#FFE8E8ED"/>
+        <Setter Property="BorderBrush" Value="#FFE5E5EA"/>
         <Setter Property="BorderThickness" Value="1"/>
-        <Setter Property="CornerRadius" Value="16"/>
+        <Setter Property="CornerRadius" Value="10"/>
         <Setter Property="Padding" Value="18"/>
     </Style>
 
@@ -65,12 +65,12 @@
         </Setter>
     </Style>
 
-    <!-- ============ 主按钮：黑底白字 ============ -->
+    <!-- ============ 主按钮：macOS 系统蓝 ============ -->
     <Style x:Key="PagePrimaryButton" TargetType="Button">
-        <Setter Property="Height" Value="38"/>
+        <Setter Property="Height" Value="36"/>
         <Setter Property="Margin" Value="0"/>
-        <Setter Property="Padding" Value="14,0"/>
-        <Setter Property="Background" Value="#FF0A84FF"/>
+        <Setter Property="Padding" Value="16,0"/>
+        <Setter Property="Background" Value="#FF007AFF"/>
         <Setter Property="Foreground" Value="White"/>
         <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="FontSize" Value="13"/>
@@ -81,7 +81,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
-                    <Border x:Name="b" Background="{TemplateBinding Background}" CornerRadius="10">
+                    <Border x:Name="b" Background="{TemplateBinding Background}" CornerRadius="6">
                         <ContentPresenter TextElement.Foreground="{TemplateBinding Foreground}"
                                           HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                           VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
@@ -89,13 +89,13 @@
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter TargetName="b" Property="Background" Value="#FF0070E0"/>
+                            <Setter TargetName="b" Property="Background" Value="#FF0066D6"/>
                         </Trigger>
                         <Trigger Property="IsPressed" Value="True">
-                            <Setter TargetName="b" Property="Background" Value="#FF09488A"/>
+                            <Setter TargetName="b" Property="Background" Value="#FF004C9E"/>
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="False">
-                            <Setter TargetName="b" Property="Background" Value="#FFB8D9FF"/>
+                            <Setter TargetName="b" Property="Background" Value="#FFD1E2FF"/>
                             <Setter Property="Foreground" Value="#FFFFFFFF"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
@@ -123,7 +123,7 @@
                 <ControlTemplate TargetType="{x:Type Button}">
                     <Border x:Name="b" Background="{TemplateBinding Background}"
                             BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="10">
+                            BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="6">
                         <ContentPresenter TextElement.Foreground="{TemplateBinding Foreground}"
                                           HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                           VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
@@ -134,7 +134,7 @@
                             <Setter TargetName="b" Property="Background" Value="#FFF5F5F7"/>
                         </Trigger>
                         <Trigger Property="IsPressed" Value="True">
-                            <Setter TargetName="b" Property="Background" Value="#FFE8E8ED"/>
+                            <Setter TargetName="b" Property="Background" Value="#FFE5E5EA"/>
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="False">
                             <Setter Property="Foreground" Value="#FFAEAEB2"/>
@@ -153,7 +153,7 @@
         <Setter Property="Padding" Value="12,0"/>
         <Setter Property="Background" Value="#FFF5F5F7"/>
         <Setter Property="Foreground" Value="#FF1D1D1F"/>
-        <Setter Property="BorderBrush" Value="#FFE8E8ED"/>
+        <Setter Property="BorderBrush" Value="#FFE5E5EA"/>
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="FontSize" Value="13"/>
         <Setter Property="FontWeight" Value="Normal"/>
@@ -165,7 +165,7 @@
                 <ControlTemplate TargetType="{x:Type Button}">
                     <Border x:Name="b" Background="{TemplateBinding Background}"
                             BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="10">
+                            BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="6">
                         <ContentPresenter TextElement.Foreground="{TemplateBinding Foreground}"
                                           HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                           VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
@@ -201,13 +201,13 @@
                 <ControlTemplate TargetType="{x:Type TextBox}">
                     <Border x:Name="b" Background="{TemplateBinding Background}"
                             BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="10">
+                            BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="6">
                         <ScrollViewer x:Name="PART_ContentHost" Margin="{TemplateBinding Padding}"
                                       VerticalAlignment="Center"/>
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsKeyboardFocused" Value="True">
-                            <Setter TargetName="b" Property="BorderBrush" Value="#FF0A84FF"/>
+                            <Setter TargetName="b" Property="BorderBrush" Value="#FF007AFF"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -236,14 +236,14 @@
                                     <Border x:Name="Bd" Background="{Binding Background, RelativeSource={RelativeSource AncestorType=ComboBox}}"
                                             BorderBrush="{Binding BorderBrush, RelativeSource={RelativeSource AncestorType=ComboBox}}"
                                             BorderThickness="{Binding BorderThickness, RelativeSource={RelativeSource AncestorType=ComboBox}}"
-                                            CornerRadius="10">
+                                            CornerRadius="6">
                                         <Grid>
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="*"/>
                                                 <ColumnDefinition Width="34"/>
                                             </Grid.ColumnDefinitions>
                                             <Path Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"
-                                                  Fill="#FF0A84FF" Data="M0,0 L5,5 L10,0 Z"/>
+                                                  Fill="#FF007AFF" Data="M0,0 L5,5 L10,0 Z"/>
                                         </Grid>
                                     </Border>
                                     <ControlTemplate.Triggers>
@@ -263,8 +263,8 @@
                         <Popup x:Name="Popup" Placement="Bottom" AllowsTransparency="True" Focusable="False"
                                IsOpen="{TemplateBinding IsDropDownOpen}" PopupAnimation="Slide">
                             <Grid MinWidth="{TemplateBinding ActualWidth}" MaxHeight="{TemplateBinding MaxDropDownHeight}">
-                                <Border Background="White" BorderBrush="#FFE8E8ED" BorderThickness="1"
-                                        CornerRadius="10" Margin="0,4,0,0">
+                                <Border Background="White" BorderBrush="#FFE5E5EA" BorderThickness="1"
+                                        CornerRadius="6" Margin="0,4,0,0">
                                     <ScrollViewer Margin="4">
                                         <StackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Contained"/>
                                     </ScrollViewer>
@@ -294,7 +294,7 @@
                             <Setter TargetName="ib" Property="Background" Value="#FFF5F5F7"/>
                         </Trigger>
                         <Trigger Property="IsSelected" Value="True">
-                            <Setter TargetName="ib" Property="Background" Value="#FFE8E8ED"/>
+                            <Setter TargetName="ib" Property="Background" Value="#FFE5E5EA"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -411,7 +411,7 @@
     <!-- ============ 进度条 ============ -->
     <Style x:Key="PageProgress" TargetType="ProgressBar">
         <Setter Property="Height" Value="22"/>
-        <Setter Property="Background" Value="#FFE8E8ED"/>
+        <Setter Property="Background" Value="#FFE5E5EA"/>
         <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="Template">
             <Setter.Value>
