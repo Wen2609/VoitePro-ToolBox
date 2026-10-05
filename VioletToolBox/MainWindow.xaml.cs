@@ -1137,6 +1137,8 @@ namespace WpfApp1
                 FreezeAllFreezables(System.Windows.Application.Current?.Resources);
             }
             catch { }
+            // Windows 11：窗口系统圆角（与 macOS 卡片语言一致）
+            SourceInitialized += (_, _) => ApplyRoundedCorners();
             // 初始化所有分区集合
             allPartitions = new ObservableCollection<PartitionInfo>();
             InitializeComponent();
@@ -1724,6 +1726,23 @@ namespace WpfApp1
                 if (d.TryGetValue(name, out var v)) return v;
             }
             return null;
+        }
+
+        // Windows 11 窗口圆角：通过 DWM 系统级圆角替代 WPF 方形无边框窗口
+        [System.Runtime.InteropServices.DllImport("dwmapi.dll", PreserveSig = true)]
+        private static extern int DwmSetWindowAttribute(IntPtr hwnd, int attr, ref int attrValue, int attrSize);
+
+        private void ApplyRoundedCorners()
+        {
+            try
+            {
+                IntPtr hwnd = new System.Windows.Interop.WindowInteropHelper(this).Handle;
+                if (hwnd == IntPtr.Zero) return;
+                // DWMWA_WINDOW_CORNER_PREFERENCE = 33, DWMWCP_ROUND = 2
+                int preference = 2;
+                DwmSetWindowAttribute(hwnd, 33, ref preference, sizeof(int));
+            }
+            catch { }
         }
 
         private void ShowPage(string viewName)
