@@ -19,10 +19,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="83bd092c1ca3ae795e2690adec399722.jpg" />
-    <None Remove="8b5b2e84f270b49fd4c61f0c6c5a3a79.png" />
-    <None Remove="b_117d80db99aac4929bd4d71bbc9b50e5.jpg" />
-    <None Remove="b_acb46219cb4a7c5616f816e7b67787f0.jpg" />
     <None Remove="images\about_haohao.jpg" />
     <None Remove="images\about_renji.jpg" />
     <None Remove="images\about_wangting.jpg" />
@@ -67,7 +63,6 @@
     <None Remove="images\APK.svg" />
     <None Remove="images\yasuobao.svg" />
     <None Remove="images\jingxiangwenjian.svg" />
-    <None Remove="single-line.runtimeconfig.json" />
     <None Remove="zs.png" />
     <None Remove="zs.jpg" />
   </ItemGroup>
@@ -137,10 +132,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="single-line.runtimeconfig.json" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="HandyControl" Version="3.5.1" />
     <PackageReference Include="Google.Protobuf" Version="3.33.2" />
     <PackageReference Include="SharpVectors" Version="1.8.5" />
@@ -155,11 +146,7 @@
 
 
   <ItemGroup>
-    <Resource Include="83bd092c1ca3ae795e2690adec399722.jpg" />
-    <Resource Include="8b5b2e84f270b49fd4c61f0c6c5a3a79.png" />
     <Resource Include="zs.png" />
-    <Resource Include="b_117d80db99aac4929bd4d71bbc9b50e5.jpg" />
-    <Resource Include="b_acb46219cb4a7c5616f816e7b67787f0.jpg" />
     <Resource Include="images\about_haohao.jpg" />
     <Resource Include="images\about_renji.jpg" />
     <Resource Include="images\about_wangting.jpg" />
