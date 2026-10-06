@@ -15,12 +15,12 @@
                 <ResourceDictionary Source="Themes/PageStyles.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
-                <!-- 字体兜底：隐式样式保证所有 TextBlock/Control 使用 OPPO Sans -->
+                <!-- 字体兜底：隐式样式保证所有 TextBlock/Control 使用 Noto Sans SC -->
                 <Style TargetType="TextBlock">
-                    <Setter Property="FontFamily" Value="pack://siteoforigin:,,,/fonts/OPPO_Sans_4.0.ttf#OPPO Sans 4.0"/>
+                    <Setter Property="FontFamily" Value="pack://siteoforigin:,,,/fonts/NotoSansSC-Sub.otf#Noto Sans SC"/>
                 </Style>
                 <Style TargetType="Control">
-                    <Setter Property="FontFamily" Value="pack://siteoforigin:,,,/fonts/OPPO_Sans_4.0.ttf#OPPO Sans 4.0"/>
+                    <Setter Property="FontFamily" Value="pack://siteoforigin:,,,/fonts/NotoSansSC-Sub.otf#Noto Sans SC"/>
                 </Style>
                 </ResourceDictionary>
     </Application.Resources>

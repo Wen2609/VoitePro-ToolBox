@@ -60,7 +60,7 @@
                         Foreground="#FFFFFFFF"
                         FontWeight="Bold"
                         FontSize="18"
-                        Height="22" Margin="188,0,0,0" FontFamily="pack://siteoforigin:,,,/fonts/OPPO_Sans_4.0.ttf#OPPO Sans 4.0" Text="紫罗兰工具箱-无线调试" Width="204"/>
+                        Height="22" Margin="188,0,0,0" FontFamily="pack://siteoforigin:,,,/fonts/NotoSansSC-Sub.otf#Noto Sans SC" Text="紫罗兰工具箱-无线调试" Width="204"/>
                     <Button
                         x:Name="CloseButton"
                         Grid.Column="1"

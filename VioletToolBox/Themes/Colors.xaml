@@ -87,7 +87,7 @@
     <SolidColorBrush x:Key="IconPrimaryBrush" Color="{StaticResource Gray600}"/>
     <SolidColorBrush x:Key="IconOnBrandBrush" Color="White"/>
 
-    <FontFamily x:Key="DefaultFontFamily">OPPO Sans 4.0, SF Pro Display, SF Pro Text, PingFang SC, Segoe UI Variable Display, Segoe UI, Microsoft YaHei UI, sans-serif</FontFamily>
+    <FontFamily x:Key="DefaultFontFamily">Noto Sans SC, SF Pro Display, SF Pro Text, PingFang SC, Segoe UI Variable Display, Segoe UI, Microsoft YaHei UI, sans-serif</FontFamily>
     <FontFamily x:Key="MonoFontFamily">SF Mono, Cascadia Mono, Consolas, Menlo, Microsoft YaHei UI</FontFamily>
 
     <System:Double x:Key="FontSizeCaption">11</System:Double>

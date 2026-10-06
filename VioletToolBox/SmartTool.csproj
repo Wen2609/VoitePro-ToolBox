@@ -249,7 +249,8 @@
     <Resource Include="images\gaotongxiaolong.svg" />
     <Resource Include="images\mono\**\*.svg" />
     <Resource Include="images\white\**\*.svg" />
-    <Content Include="fonts\OPPO_Sans_4.0.ttf">
+    <!-- 字体：Noto Sans SC（OFL 开源商用）子集化版 0.8MB，替代 OPPO Sans 21.7MB -->
+    <Content Include="fonts\NotoSansSC-Sub.otf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
