@@ -1262,8 +1262,8 @@ namespace WpfApp1
                 }
             }
             catch { }
-            // 自动启动更新程序
-            StartUpdateProgram();
+            // 自动启动更新程序已禁用：update.exe 弹窗会阻塞主窗口首次显示，改为不自动拉起
+            // StartUpdateProgram();
             
             
             _storageViewModel = new StorageViewModel();
