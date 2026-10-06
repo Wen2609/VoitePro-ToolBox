@@ -1651,7 +1651,8 @@ Background="{StaticResource SurfaceTintBrush}"
                                                     <ComboBox x:Name="PartitionComboBox"
                                                           Width="160"
                                                           Height="36"
-                                                          SelectedIndex="0" FontSize="14">
+                                                          SelectedIndex="0"
+                                                          Style="{StaticResource PageComboBox}">
                                                         <ComboBoxItem Content="boot" />
                                                         <ComboBoxItem Content="init_boot" />
                                                         <ComboBoxItem Content="vendor_boot" />
@@ -1663,10 +1664,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                                          HorizontalAlignment="Left"
                                                          TextWrapping="NoWrap"
                                                          Text="请选择需要刷入的文件..."
-                                                         Height="36"
-                                                         Background="{StaticResource SurfaceBrush}"
-                                                         FontSize="12"
-                                                         FontWeight="Normal"
+                                                         Style="{StaticResource PageTextBox}"
                                                          TextChanged="BootFilePathTextBox_TextChanged" Width="154" />
                                                 </StackPanel>
                                                 <StackPanel Grid.Column="4" VerticalAlignment="Bottom">
@@ -1727,7 +1725,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                             <StackPanel Orientation="Horizontal" Margin="0,0,0,12"><svg:SvgViewbox Source="images/jiedong.svg" Width="16" Height="16" Margin="0,1,8,0" VerticalAlignment="Center"/><TextBlock Style="{StaticResource PageTitle}" Text="Bootloader 操作"></TextBlock></StackPanel>
                                             <TextBlock Style="{StaticResource PageLabel}" Margin="0,12,0,6" Text="解锁/回锁指令"/>
                                             <ComboBox x:Name="UnlockBLComboBox"
-                                                  Height="32" FontSize="14">
+                                                  Height="32" Style="{StaticResource PageComboBox}">
                                                 <ComboBoxItem Content="fastboot flashing unlock" IsSelected="True"/>
                                                 <ComboBoxItem Content="fastboot oem unlock"/>
                                                 <ComboBoxItem Content="fastboot flashing lock"/>
@@ -1767,10 +1765,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                                          VerticalAlignment="Center"
                                                          TextWrapping="NoWrap"
                                                          Text="请选择一个解压好的刷机包文件..."
-                                                         Height="36"
-                                                         Background="{StaticResource SurfaceBrush}"
-                                                         FontSize="12"
-                                                         FontWeight="Normal"
+                                                         Style="{StaticResource PageTextBox}"
                                                          TextChanged="XiaomiFlashScriptPathTextBox_TextChanged" Width="327" />
                                                     <Button x:Name="SelectXiaomiFlashScriptButton"
                                                         Grid.Column="2"
@@ -1920,46 +1915,8 @@ Background="{StaticResource SurfaceTintBrush}"
                                                      BorderBrush="{StaticResource BorderBrush}"
                                                      BorderThickness="1"
                                                      Value="0"
-                                                     Maximum="100">
-                                                <ProgressBar.Style>
-                                                    <Style TargetType="{x:Type ProgressBar}">
-                                                        <Setter Property="SnapsToDevicePixels" Value="True" />
-                                                        <Setter Property="Template">
-                                                            <Setter.Value>
-                                                                <ControlTemplate TargetType="{x:Type ProgressBar}">
-                                                                    <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="4">
-                                                                        <Grid ClipToBounds="True">
-                                                                            <Border x:Name="PART_Track" Background="{TemplateBinding Background}" CornerRadius="4" />
-                                                                            <Border x:Name="PART_Indicator" HorizontalAlignment="Left" CornerRadius="4">
-                                                                                <Border.Background>
-                                                                                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
-                                                                                        <GradientStop Offset="0" Color="{StaticResource Gray900}" />
-                                                                                        <GradientStop Offset="1" Color="{StaticResource Gray900}" />
-                                                                                    </LinearGradientBrush>
-                                                                                </Border.Background>
-                                                                            </Border>
-                                                                            <TextBlock Text="{Binding Tag, RelativeSource={RelativeSource TemplatedParent}}"
-                                                                                   HorizontalAlignment="Left"
-                                                                                   VerticalAlignment="Center"
-                                                                                   Margin="8,0,0,0"
-                                                                                   FontSize="12"
-                                                                                   Foreground="{StaticResource TextStrongBrush}"
-                                                                                   FontWeight="Medium"/>
-                                                                            <TextBlock Text="{Binding Value, RelativeSource={RelativeSource TemplatedParent}, StringFormat={}{0:0}%}"
-                                                                                   HorizontalAlignment="Right"
-                                                                                   VerticalAlignment="Center"
-                                                                                   Margin="0,0,8,0"
-                                                                                   FontSize="12"
-                                                                                   Foreground="{StaticResource TextStrongBrush}"
-                                                                                   FontWeight="Medium"/>
-                                                                        </Grid>
-                                                                    </Border>
-                                                                </ControlTemplate>
-                                                            </Setter.Value>
-                                                        </Setter>
-                                                    </Style>
-                                                </ProgressBar.Style>
-                                            </ProgressBar>
+                                                     Maximum="100"
+                                                     Style="{StaticResource PageProgressLabeled}"/>
                                         </Grid>
                                     </Border>
                                 </Grid>
@@ -2703,46 +2660,8 @@ Background="{StaticResource SurfaceTintBrush}"
                  Background="{StaticResource SurfaceTintBrush}"
                  BorderBrush="{StaticResource BorderSubtleBrush}"
                  BorderThickness="1"
-                 Margin="0,0,0,0">
-        <ProgressBar.Style>
-            <Style TargetType="{x:Type ProgressBar}">
-                <Setter Property="SnapsToDevicePixels" Value="True" />
-                <Setter Property="Template">
-                    <Setter.Value>
-                        <ControlTemplate TargetType="{x:Type ProgressBar}">
-                            <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="4">
-                                <Grid ClipToBounds="True">
-                                    <Border x:Name="PART_Track" Background="{TemplateBinding Background}" CornerRadius="4" />
-                                    <Border x:Name="PART_Indicator" HorizontalAlignment="Left" CornerRadius="4">
-                                        <Border.Background>
-                                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
-                                                <GradientStop Offset="0" Color="{StaticResource Violet500}" />
-                                                <GradientStop Offset="1" Color="{StaticResource Violet500}" />
-                                            </LinearGradientBrush>
-                                        </Border.Background>
-                                    </Border>
-                                    <TextBlock Text="{Binding Tag, RelativeSource={RelativeSource TemplatedParent}}"
-                                               HorizontalAlignment="Left"
-                                               VerticalAlignment="Center"
-                                               Margin="8,0,0,0"
-                                               FontSize="12"
-                                               Foreground="{StaticResource TextStrongBrush}"
-                                               FontWeight="Medium"/>
-                                    <TextBlock x:Name="ProgressText"
-                                               Text="{Binding Value, RelativeSource={RelativeSource TemplatedParent}, StringFormat={}{0:0}%}"
-                                               HorizontalAlignment="Right"
-                                               VerticalAlignment="Center"
-                                               Margin="0,0,8,0"
-                                               FontSize="12"
-                                               Foreground="{StaticResource TextStrongBrush}"
-                                               FontWeight="Medium"/>
-                                </Grid>
-                            </Border>
-                        </ControlTemplate>
-                    </Setter.Value>
-                </Setter>
-            </Style>
-        </ProgressBar.Style>
+                 Margin="0,0,0,0"
+                 Style="{StaticResource PageProgressLabeled}">
     </ProgressBar>
 </Grid>
                 </DataTemplate>
@@ -2838,53 +2757,8 @@ Background="{StaticResource SurfaceTintBrush}"
                                          Background="{StaticResource SurfaceTintBrush}"
                                          BorderBrush="{StaticResource BorderSubtleBrush}"
                                          BorderThickness="1"
-                                         Margin="10,223,0,0">
-                                <ProgressBar.Style>
-                                    <Style TargetType="{x:Type ProgressBar}">
-                                        <Setter Property="SnapsToDevicePixels" Value="True" />
-                                        <Setter Property="Template">
-                                            <Setter.Value>
-                                                <ControlTemplate TargetType="{x:Type ProgressBar}">
-                                                    <Border Background="{TemplateBinding Background}"
-                                                            BorderBrush="{TemplateBinding BorderBrush}"
-                                                            BorderThickness="{TemplateBinding BorderThickness}"
-                                                            CornerRadius="4">
-                                                        <Grid ClipToBounds="True">
-                                                            <Border x:Name="PART_Track"
-                                                                    Background="{TemplateBinding Background}"
-                                                                    CornerRadius="4" />
-                                                            <Border x:Name="PART_Indicator"
-                                                                    HorizontalAlignment="Left"
-                                                                    CornerRadius="4">
-                                                                <Border.Background>
-                                                                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
-                                                                        <GradientStop Offset="0" Color="{StaticResource Gray900}" />
-                                                                        <GradientStop Offset="1" Color="{StaticResource Gray900}" />
-                                                                    </LinearGradientBrush>
-                                                                </Border.Background>
-                                                            </Border>
-                                                            <TextBlock Text="{Binding Tag, RelativeSource={RelativeSource TemplatedParent}}"
-                                                                       HorizontalAlignment="Left"
-                                                                       VerticalAlignment="Center"
-                                                                       Margin="8,0,0,0"
-                                                                       FontSize="12"
-                                                                       Foreground="{StaticResource TextStrongBrush}"
-                                                                       FontWeight="Medium" />
-                                                            <TextBlock x:Name="ProgressText"
-                                                                       Text="{Binding Value, RelativeSource={RelativeSource TemplatedParent}, StringFormat={}{0:0}%}"
-                                                                       HorizontalAlignment="Right"
-                                                                       VerticalAlignment="Center"
-                                                                       Margin="0,0,8,0"
-                                                                       FontSize="12"
-                                                                       Foreground="{StaticResource TextStrongBrush}"
-                                                                       FontWeight="Medium" />
-                                                        </Grid>
-                                                    </Border>
-                                                </ControlTemplate>
-                                            </Setter.Value>
-                                        </Setter>
-                                    </Style>
-                                </ProgressBar.Style>
+                                         Margin="10,223,0,0"
+                                         Style="{StaticResource PageProgressLabeled}">
                             </ProgressBar>
                             <TextBlock HorizontalAlignment="Left" Margin="44,204,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="415" FontFamily="pack://siteoforigin:,,,/fonts/NotoSansSC-Sub.otf#Noto Sans SC" FontSize="12" Foreground="{StaticResource TextPrimaryBrush}"><Run Text="本功能"/><Run Text="建议线刷后"/><Run Text="搭配KernelSU"/><Run Text="使用"/><Run Text="，"/><Run Text="本界面"/><Run Text="特别"/><Run Language="zh-cn" Text="鸣谢"/><Run Text="@王听"/><Run Text=" "/><Run Text="@月饼"/><Run Text=" 开发"/></TextBlock>
                             <CheckBox x:Name="InstallZip6CheckBox" Content="额外安装LSP" HorizontalAlignment="Left" Margin="176,166,0,0" VerticalAlignment="Top" Width="104" Style="{StaticResource PageCheckBox}"/>
@@ -4002,55 +3876,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                                                             HorizontalScrollBarVisibility="Disabled"/>
                                             </Grid>
                                             <Grid Height="24" Margin="0,8,0,0">
-                                                <ProgressBar x:Name="SystemZoneProgressBar" Height="24" Minimum="0" Maximum="100" Value="0" Tag="0/0    0.00 B/s" Visibility="Visible" Background="{StaticResource SurfaceSecondaryBrush}" BorderBrush="{StaticResource BorderBrush}" BorderThickness="1" Margin="0,7,0,-7">
-                                                    <ProgressBar.Style>
-                                                        <Style TargetType="{x:Type ProgressBar}">
-                                                            <Setter Property="SnapsToDevicePixels" Value="True" />
-                                                            <Setter Property="Template">
-                                                                <Setter.Value>
-                                                                    <ControlTemplate TargetType="{x:Type ProgressBar}">
-                                                                        <Border
-                                                                        CornerRadius="4"
-                                                                        Background="{TemplateBinding Background}"
-                                                                        BorderBrush="{TemplateBinding BorderBrush}"
-                                                                        BorderThickness="{TemplateBinding BorderThickness}">
-                                                                            <Grid ClipToBounds="True">
-                                                                                <Border
-                                                                                x:Name="PART_Track"
-                                                                                Background="{TemplateBinding Background}"
-                                                                                CornerRadius="4" />
-                                                                                <Border
-                                                                                x:Name="PART_Indicator"
-                                                                                HorizontalAlignment="Left"
-                                                                                CornerRadius="4">
-                                                                                    <Border.Background>
-                                                                                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
-                                                                                            <GradientStop Offset="0" Color="{StaticResource Gray900}" />
-                                                                                            <GradientStop Offset="1" Color="{StaticResource Gray900}" />
-                                                                                        </LinearGradientBrush>
-                                                                                    </Border.Background>
-                                                                                </Border>
-                                                                                <TextBlock Text="{Binding Tag, RelativeSource={RelativeSource TemplatedParent}}"
-                                                                                           HorizontalAlignment="Left"
-                                                                                           VerticalAlignment="Center"
-                                                                                           Margin="8,0,0,0"
-                                                                                           FontSize="12"
-                                                                                           Foreground="{StaticResource TextStrongBrush}"
-                                                                                           FontWeight="Medium"/>
-                                                                                <TextBlock Text="{Binding Value, RelativeSource={RelativeSource TemplatedParent}, StringFormat={}{0:0}%}"
-                                                                                           HorizontalAlignment="Right"
-                                                                                           VerticalAlignment="Center"
-                                                                                           Margin="0,0,8,0"
-                                                                                           FontSize="12"
-                                                                                           Foreground="{StaticResource TextStrongBrush}"
-                                                                                           FontWeight="Medium"/>
-                                                                            </Grid>
-                                                                        </Border>
-                                                                    </ControlTemplate>
-                                                                </Setter.Value>
-                                                            </Setter>
-                                                        </Style>
-                                                    </ProgressBar.Style>
+                                                <ProgressBar x:Name="SystemZoneProgressBar" Height="24" Minimum="0" Maximum="100" Value="0" Tag="0/0    0.00 B/s" Visibility="Visible" Background="{StaticResource SurfaceSecondaryBrush}" BorderBrush="{StaticResource BorderBrush}" BorderThickness="1" Margin="0,7,0,-7" Style="{StaticResource PageProgressLabeled}">
                                                 </ProgressBar>
                                             </Grid>
                                         </StackPanel>
@@ -4698,7 +4524,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                                  Maximum="100"
                                                  Value="0"
                                                  Tag="{Binding Text, ElementName=TransferRateTextBlock}"
-                                                 Style="{StaticResource PageProgress}" Margin="-74,-2,0,4"/>
+                                                 Style="{StaticResource PageProgressLabeled}" Margin="-74,-2,0,4"/>
                                     <TextBlock x:Name="TransferRateTextBlock"
                                                Text="0MB/s"
                                                Visibility="Collapsed"/>
@@ -4959,7 +4785,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                                  Maximum="100"
                                                  Value="0"
                                                  Tag="{Binding Text, ElementName=AfterSalesTransferRateTextBlock}"
-                                                 Style="{StaticResource PageProgress}"
+                                                 Style="{StaticResource PageProgressLabeled}"
                                                  Margin="-74,-2,0,4"/>
                                     <TextBlock x:Name="AfterSalesTransferRateTextBlock"
                                                Text="0MB/s"
@@ -5373,52 +5199,8 @@ Background="{StaticResource SurfaceTintBrush}"
                                                                  Tag="0MB/s"
                                                                  Background="{StaticResource SurfaceSecondaryBrush}"
                                                                  BorderBrush="{StaticResource BorderBrush}"
-                                                                 BorderThickness="1">
-                                                        <ProgressBar.Style>
-                                                            <Style TargetType="{x:Type ProgressBar}">
-                                                                <Setter Property="SnapsToDevicePixels" Value="True"/>
-                                                                <Setter Property="Template">
-                                                                    <Setter.Value>
-                                                                        <ControlTemplate TargetType="{x:Type ProgressBar}">
-                                                                            <Border Background="{TemplateBinding Background}"
-                                                                                    BorderBrush="{TemplateBinding BorderBrush}"
-                                                                                    BorderThickness="{TemplateBinding BorderThickness}"
-                                                                                    CornerRadius="4">
-                                                                                <Grid ClipToBounds="True">
-                                                                                    <Border x:Name="PART_Track"
-                                                                                            Background="{TemplateBinding Background}"
-                                                                                            CornerRadius="4"/>
-                                                                                    <Border x:Name="PART_Indicator"
-                                                                                            HorizontalAlignment="Left"
-                                                                                            CornerRadius="4">
-                                                                                        <Border.Background>
-                                                                                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
-                                                                                                <GradientStop Offset="0" Color="{StaticResource Gray900}"/>
-                                                                                                <GradientStop Offset="1" Color="{StaticResource Gray900}"/>
-                                                                                            </LinearGradientBrush>
-                                                                                        </Border.Background>
-                                                                                    </Border>
-                                                                                    <TextBlock Text="{Binding Tag, RelativeSource={RelativeSource TemplatedParent}}"
-                                                                                               HorizontalAlignment="Left"
-                                                                                               VerticalAlignment="Center"
-                                                                                               Margin="8,0,0,0"
-                                                                                               FontSize="12"
-                                                                                               Foreground="{StaticResource TextStrongBrush}"
-                                                                                               FontWeight="Medium"/>
-                                                                                    <TextBlock Text="{Binding Value, RelativeSource={RelativeSource TemplatedParent}, StringFormat={}{0:0}%}"
-                                                                                               HorizontalAlignment="Right"
-                                                                                               VerticalAlignment="Center"
-                                                                                               Margin="0,0,8,0"
-                                                                                               FontSize="12"
-                                                                                               Foreground="{StaticResource TextStrongBrush}"
-                                                                                               FontWeight="Medium"/>
-                                                                                </Grid>
-                                                                            </Border>
-                                                                        </ControlTemplate>
-                                                                    </Setter.Value>
-                                                                </Setter>
-                                                            </Style>
-                                                        </ProgressBar.Style>
+                                                                 BorderThickness="1"
+                                                                 Style="{StaticResource PageProgressLabeled}">
                                                     </ProgressBar>
                                                 </Grid>
                                             </Grid>
@@ -6261,7 +6043,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                     <Run Language="zh-cn" Text="镜像目录："/>
                                     </TextBlock>
                                     <TextBox x:Name="ImageDirTextBox" HorizontalAlignment="Left" Margin="51,-4,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="193" BorderBrush="{StaticResource BorderSubtleBrush}"/>
-                                    <Button x:Name="SelectImageDirButton" HorizontalAlignment="Left" Margin="253,-4,0,0" VerticalAlignment="Top" Width="85" Click="SelectImageDirButton_Click" BorderBrush="{StaticResource BorderSubtleBrush}" Background="{StaticResource BorderSubtleBrush}" Foreground="White">
+                                    <Button x:Name="SelectImageDirButton" HorizontalAlignment="Left" Margin="253,-4,0,0" VerticalAlignment="Top" Width="85" Click="SelectImageDirButton_Click" Style="{StaticResource PageSecondaryButton}">
                                         <Button.Content>
                                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                                                 <svg:SvgViewbox Source="images/wenjianjia.svg" Width="16" Height="16" Margin="0,0,6,0"/>
@@ -6312,7 +6094,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                 <Grid>
                                     <TextBlock HorizontalAlignment="Left" Margin="-8,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run Text="解包后的文件夹"/><Run Language="zh-cn" Text="："/></TextBlock>
                                     <TextBox x:Name="UnpackedFolderTextBox" HorizontalAlignment="Left" Margin="90,-4,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="154" BorderBrush="{StaticResource BorderSubtleBrush}"/>
-                                    <Button x:Name="SelectUnpackedFolderButton" HorizontalAlignment="Left" Margin="253,-4,0,0" VerticalAlignment="Top" Width="85" Click="SelectUnpackedFolderButton_Click" BorderBrush="{StaticResource BorderSubtleBrush}" Background="{StaticResource BorderSubtleBrush}" Foreground="White">
+                                    <Button x:Name="SelectUnpackedFolderButton" HorizontalAlignment="Left" Margin="253,-4,0,0" VerticalAlignment="Top" Width="85" Click="SelectUnpackedFolderButton_Click" Style="{StaticResource PageSecondaryButton}">
                                         <Button.Content>
                                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                                                 <svg:SvgViewbox Source="images/wenjianjia.svg" Width="16" Height="16" Margin="0,0,6,0"/>
@@ -6320,8 +6102,8 @@ Background="{StaticResource SurfaceTintBrush}"
                                             </StackPanel>
                                         </Button.Content>
                                     </Button>
-                                    <Button x:Name="StartConvertFlashButton" Content="开始线刷" HorizontalAlignment="Left" Margin="253,41,0,0" VerticalAlignment="Top" Width="85" Click="StartConvertFlashButton_Click" BorderBrush="{StaticResource BorderSubtleBrush}" Background="{StaticResource BorderSubtleBrush}" Foreground="White"/>
-                                    <TextBlock HorizontalAlignment="Left" Margin="0,57,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="Gray" FontSize="10" RenderTransformOrigin="1.65,1.333" Width="174"><Run Text="未"/><Run Text="解包请"/><Run Text="先"/><Run Text="切换"/><Run Text="到欧加"/><Run Text="线刷"/><Run Text="区域"/><Run Language="zh-cn" Text="解包"/></TextBlock>
+                                    <Button x:Name="StartConvertFlashButton" Content="开始线刷" HorizontalAlignment="Left" Margin="253,41,0,0" VerticalAlignment="Top" Width="85" Click="StartConvertFlashButton_Click" Style="{StaticResource PageSecondaryButton}"/>
+                                    <TextBlock HorizontalAlignment="Left" Margin="0,57,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="{StaticResource TextMutedBrush}" FontSize="12" RenderTransformOrigin="1.65,1.333" Width="174"><Run Text="未解包请先切换到欧加线刷区域解包"/></TextBlock>
                                     <CheckBox Content="清除数据" HorizontalAlignment="Left" Margin="-5,38,0,0" Checked="CheckBox_Checked_4" VerticalAlignment="Top"/>
                                     <CheckBox Content="自动重启" HorizontalAlignment="Left" Margin="79,39,0,0" VerticalAlignment="Top"/>
                                 </Grid>
@@ -6391,7 +6173,7 @@ Background="{StaticResource SurfaceTintBrush}"
                             HorizontalAlignment="Left"
                             VerticalAlignment="Top">
 <GroupBox.Header><StackPanel Orientation="Horizontal" Background="Transparent"><svg:SvgViewbox Source="images/zhongqi.svg" Width="15" Height="15" Margin="0,0,7,0" VerticalAlignment="Center"/><TextBlock Text="Twrp_Recovery" VerticalAlignment="Center"/></StackPanel></GroupBox.Header>
-                                <Button Content="读分区表" HorizontalAlignment="Left" Margin="86,36,0,0" VerticalAlignment="Top" Click="Button_Click_1" Width="85" Foreground="White" BorderBrush="{StaticResource BorderSubtleBrush}" Background="{StaticResource BorderSubtleBrush}"/>
+                                <Button Content="读分区表" HorizontalAlignment="Left" Margin="86,36,0,0" VerticalAlignment="Top" Click="Button_Click_1" Width="85" Style="{StaticResource PageSecondaryButton}"/>
                             </GroupBox>
                             <RichTextBox x:Name="SuperPackLogRichTextBox" Margin="390,327,0,10" TextChanged="RichTextBox_TextChanged" CaretBrush="White" BorderBrush="{StaticResource BorderSubtleBrush}">
                                 <FlowDocument>
@@ -6402,8 +6184,8 @@ Background="{StaticResource SurfaceTintBrush}"
                             </RichTextBox>
                             <TextBlock HorizontalAlignment="Left" Margin="8,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center"><Run Language="zh-cn" Text="提取或写入"/><Run Text="的分区："/></TextBlock>
                             <ComboBox x:Name="ReadPartitionComboBox" HorizontalAlignment="Left" Margin="113,0,0,0" VerticalAlignment="Center" Width="239" IsEditable="True" IsReadOnly="True" Text="等待用户读取分区表..." BorderBrush="{StaticResource BorderSubtleBrush}"/>
-                            <Button Content="回读分区" HorizontalAlignment="Left" Margin="282,378,0,0" VerticalAlignment="Top" Width="85" Click="ReadOutPartitionButton_Click_New" BorderBrush="{StaticResource BorderSubtleBrush}" Background="{StaticResource BorderSubtleBrush}" Foreground="White"/>
-                            <Button Content="推送卡刷包" HorizontalAlignment="Left" Margin="10,378,0,0" VerticalAlignment="Top" Width="85" Click="PushZipToSdcardButton_Click" BorderBrush="{StaticResource BorderSubtleBrush}" Background="{StaticResource BorderSubtleBrush}" Foreground="White"/>
+                            <Button Content="回读分区" HorizontalAlignment="Left" Margin="282,378,0,0" VerticalAlignment="Top" Width="85" Click="ReadOutPartitionButton_Click_New" Style="{StaticResource PageSecondaryButton}"/>
+                            <Button Content="推送卡刷包" HorizontalAlignment="Left" Margin="10,378,0,0" VerticalAlignment="Top" Width="85" Click="PushZipToSdcardButton_Click" Style="{StaticResource PageSecondaryButton}"/>
                             <Button Content="写入分区" HorizontalAlignment="Left" Margin="192,378,0,0" VerticalAlignment="Top" Width="85" Click="WriteSelectedPartitionButton_Click" Style="{StaticResource PageSecondaryButton}"/>
                             <GroupBox Style="{StaticResource AndroidGenGroupBoxStyle}"
                             Background="{StaticResource SurfaceBrush}"
@@ -6613,37 +6395,6 @@ Background="{StaticResource SurfaceTintBrush}"
                                                  Background="{StaticResource SurfaceSecondaryBrush}"
                                                  BorderBrush="{StaticResource BorderBrush}"
                                                  BorderThickness="1">
-                                        <ProgressBar.Style>
-                                            <Style TargetType="{x:Type ProgressBar}">
-                                                <Setter Property="SnapsToDevicePixels" Value="True"/>
-                                                <Setter Property="Template">
-                                                    <Setter.Value>
-                                                        <ControlTemplate TargetType="{x:Type ProgressBar}">
-                                                            <Border Background="{TemplateBinding Background}"
-                                                                    BorderBrush="{TemplateBinding BorderBrush}"
-                                                                    BorderThickness="{TemplateBinding BorderThickness}"
-                                                                    CornerRadius="4">
-                                                                <Grid ClipToBounds="True">
-                                                                    <Border x:Name="PART_Track"
-                                                                            Background="{TemplateBinding Background}"
-                                                                            CornerRadius="4"/>
-                                                                    <Border x:Name="PART_Indicator"
-                                                                            HorizontalAlignment="Left"
-                                                                            CornerRadius="4">
-                                                                        <Border.Background>
-                                                                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
-                                                                                <GradientStop Offset="0" Color="{StaticResource Gray900}"/>
-                                                                                <GradientStop Offset="1" Color="{StaticResource Gray900}"/>
-                                                                            </LinearGradientBrush>
-                                                                        </Border.Background>
-                                                                    </Border>
-                                                                </Grid>
-                                                            </Border>
-                                                        </ControlTemplate>
-                                                    </Setter.Value>
-                                                </Setter>
-                                            </Style>
-                                        </ProgressBar.Style>
                                     </ProgressBar>
                                     <TextBlock Text="{Binding Tag, ElementName=OverallProgressBar}"
                                                HorizontalAlignment="Left"
@@ -6863,57 +6614,9 @@ Background="{StaticResource SurfaceTintBrush}"
                                                      Tag="镜像下载进度"
                                                      Background="{StaticResource SurfaceTintBrush}"
                                                      BorderBrush="{StaticResource BorderSubtleBrush}"
-                                                     BorderThickness="1">
-                                            <ProgressBar.Style>
-                                                <Style TargetType="{x:Type ProgressBar}">
-                                                    <Setter Property="SnapsToDevicePixels" Value="True"/>
-                                                    <Setter Property="Template">
-                                                        <Setter.Value>
-                                                            <ControlTemplate TargetType="{x:Type ProgressBar}">
-                                                                <Border Background="{TemplateBinding Background}"
-                                                                        BorderBrush="{TemplateBinding BorderBrush}"
-                                                                        BorderThickness="{TemplateBinding BorderThickness}"
-                                                                        CornerRadius="4">
-                                                                    <Grid ClipToBounds="True">
-                                                                        <Border x:Name="PART_Track"
-                                                                                Background="{TemplateBinding Background}"
-                                                                                CornerRadius="4"/>
-                                                                        <Border x:Name="PART_Indicator"
-                                                                                HorizontalAlignment="Left"
-                                                                                CornerRadius="4">
-                                                                            <Border.Background>
-                                                                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
-                                                                                    <GradientStop Offset="0" Color="{StaticResource Gray900}"/>
-                                                                                    <GradientStop Offset="1" Color="{StaticResource Gray900}"/>
-                                                                                </LinearGradientBrush>
-                                                                            </Border.Background>
-                                                                        </Border>
-                                                                    </Grid>
-                                                                </Border>
-                                                            </ControlTemplate>
-                                                        </Setter.Value>
-                                                    </Setter>
-                                                </Style>
-                                            </ProgressBar.Style>
+                                                     BorderThickness="1"
+                                                     Style="{StaticResource PageProgressLabeled}">
                                         </ProgressBar>
-                                        <TextBlock Text="{Binding Tag, ElementName=RomDownloadProgressBar}"
-                                                   HorizontalAlignment="Left"
-                                                   VerticalAlignment="Center"
-                                                   Margin="8,0,0,0"
-                                                   Panel.ZIndex="1"
-                                                   IsHitTestVisible="False"
-                                                   FontSize="12"
-                                                   FontWeight="Medium"
-                                                   Foreground="{StaticResource TextStrongBrush}"/>
-                                        <TextBlock Text="{Binding Value, ElementName=RomDownloadProgressBar, StringFormat={}{0:0}%}"
-                                                   HorizontalAlignment="Right"
-                                                   VerticalAlignment="Center"
-                                                   Margin="0,0,8,0"
-                                                   Panel.ZIndex="1"
-                                                   IsHitTestVisible="False"
-                                                   FontSize="12"
-                                                   FontWeight="Medium"
-                                                   Foreground="{StaticResource TextStrongBrush}"/>
                                     </Grid>
                                 </Grid>
                             </GroupBox>
@@ -7733,7 +7436,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                              Background="{StaticResource SurfaceSecondaryBrush}"
                                              BorderBrush="{StaticResource BorderBrush}"
                                              BorderThickness="1"
-                                             Style="{StaticResource PageProgress}"/>
+                                             Style="{StaticResource PageProgressLabeled}"/>
                                 <TextBlock x:Name="TxtProgressInfo"
                                            Visibility="Collapsed"
                                            Text="准备就绪"/>
@@ -8010,7 +7713,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                                     <Button x:Name="VioletDownloadResumeButton"
                                                             Click="VioletDownloadResumeButton_Click"
                                                             Style="{StaticResource PagePrimaryButton}"
-                                                            Margin="8,0,0,0" Foreground="White" Background="{StaticResource BorderSubtleBrush}" BorderBrush="{StaticResource BorderSubtleBrush}">
+                                                            Margin="8,0,0,0">
                                                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                                                             <Grid Width="14" Height="14" Margin="0,0,5,0">
                                                                 <svg:SvgViewbox Source="images/kaishi1.svg" Width="14" Height="14">
@@ -8108,45 +7811,8 @@ Background="{StaticResource SurfaceTintBrush}"
                                                          Background="{StaticResource SurfaceSecondaryBrush}"
                                                          BorderBrush="{StaticResource BorderBrush}"
                                                          BorderThickness="1"
+                                                         Style="{StaticResource PageProgressLabeled}"
                                                          ValueChanged="VioletDownloadProgressBar_ValueChanged" Grid.ColumnSpan="2">
-                                                <ProgressBar.Style>
-                                                    <Style TargetType="{x:Type ProgressBar}">
-                                                        <Setter Property="SnapsToDevicePixels" Value="True" />
-                                                        <Setter Property="Template">
-                                                            <Setter.Value>
-                                                                <ControlTemplate TargetType="{x:Type ProgressBar}">
-                                                                    <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="4">
-                                                                        <Grid ClipToBounds="True">
-                                                                            <Border x:Name="PART_Track" Background="{TemplateBinding Background}" CornerRadius="4" />
-                                                                            <Border x:Name="PART_Indicator" HorizontalAlignment="Left" CornerRadius="4">
-                                                                                <Border.Background>
-                                                                                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
-                                                                                        <GradientStop Offset="0" Color="{StaticResource Gray900}" />
-                                                                                        <GradientStop Offset="1" Color="{StaticResource Gray900}" />
-                                                                                    </LinearGradientBrush>
-                                                                                </Border.Background>
-                                                                            </Border>
-                                                                            <TextBlock Text="{Binding Tag, RelativeSource={RelativeSource TemplatedParent}}"
-                                                                                       HorizontalAlignment="Left"
-                                                                                       VerticalAlignment="Center"
-                                                                                       Margin="8,0,0,0"
-                                                                                       FontSize="12"
-                                                                                       Foreground="{StaticResource TextStrongBrush}"
-                                                                                       FontWeight="Medium"/>
-                                                                            <TextBlock Text="{Binding Value, RelativeSource={RelativeSource TemplatedParent}, StringFormat={}{0:0}%}"
-                                                                                       HorizontalAlignment="Right"
-                                                                                       VerticalAlignment="Center"
-                                                                                       Margin="0,0,8,0"
-                                                                                       FontSize="12"
-                                                                                       Foreground="{StaticResource TextStrongBrush}"
-                                                                                       FontWeight="Medium"/>
-                                                                        </Grid>
-                                                                    </Border>
-                                                                </ControlTemplate>
-                                                            </Setter.Value>
-                                                        </Setter>
-                                                    </Style>
-                                                </ProgressBar.Style>
                                             </ProgressBar>
 
                                             <TextBlock x:Name="VioletDownloadProgressTextBlock"
