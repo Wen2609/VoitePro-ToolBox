@@ -4252,121 +4252,6 @@ Background="{StaticResource SurfaceTintBrush}"
                                     <Setter Property="BorderThickness" Value="1"/>
                                 </Style>
 
-                                <Style x:Key="OugaFlashOptionCheckBoxStyle"
-                                       TargetType="{x:Type CheckBox}"
-                                       BasedOn="{StaticResource {x:Type CheckBox}}">
-                                    <Setter Property="FontFamily" Value="pack://siteoforigin:,,,/fonts/NotoSansSC-Sub.otf#Noto Sans SC"/>
-                                    <Setter Property="FontSize" Value="11.5"/>
-                                    <Setter Property="FontWeight" Value="Normal"/>
-                                    <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
-                                    <Setter Property="VerticalAlignment" Value="Center"/>
-                                    <Setter Property="Margin" Value="0,0,9,0"/>
-                                </Style>
-
-                                <Style x:Key="OugaFlashTextBoxStyle"
-                                       TargetType="{x:Type TextBox}"
-                                       BasedOn="{StaticResource {x:Type TextBox}}">
-                                    <Setter Property="Height" Value="32"/>
-                                    <Setter Property="VerticalContentAlignment" Value="Center"/>
-                                    <Setter Property="Padding" Value="9,0"/>
-                                    <Setter Property="FontFamily" Value="pack://siteoforigin:,,,/fonts/NotoSansSC-Sub.otf#Noto Sans SC"/>
-                                    <Setter Property="FontSize" Value="12"/>
-                                    <Setter Property="FontWeight" Value="Normal"/>
-                                    <Setter Property="Foreground" Value="{StaticResource TextMutedBrush}"/>
-                                    <Setter Property="Background" Value="#FFFFFFFF"/>
-                                    <Setter Property="BorderBrush" Value="{StaticResource BorderSubtleBrush}"/>
-                                    <Setter Property="BorderThickness" Value="1"/>
-                                </Style>
-
-                                <Style x:Key="OugaFlashComboBoxStyle"
-                                       TargetType="{x:Type ComboBox}"
-                                       BasedOn="{StaticResource {x:Type ComboBox}}">
-                                    <Setter Property="Height" Value="32"/>
-                                    <Setter Property="Padding" Value="8,0"/>
-                                    <Setter Property="FontFamily" Value="pack://siteoforigin:,,,/fonts/NotoSansSC-Sub.otf#Noto Sans SC"/>
-                                    <Setter Property="FontSize" Value="12"/>
-                                    <Setter Property="FontWeight" Value="Normal"/>
-                                    <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
-                                    <Setter Property="Background" Value="#FFFFFFFF"/>
-                                    <Setter Property="BorderBrush" Value="{StaticResource BorderSubtleBrush}"/>
-                                    <Setter Property="BorderThickness" Value="1"/>
-                                </Style>
-
-                                <Style x:Key="OugaFlashDataGridHeaderStyle" TargetType="{x:Type DataGridColumnHeader}">
-                                    <Setter Property="Height" Value="32"/>
-                                    <Setter Property="Background" Value="{StaticResource SurfaceTintBrush}"/>
-                                    <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
-                                    <Setter Property="FontWeight" Value="SemiBold"/>
-                                    <Setter Property="BorderThickness" Value="0,0,0,1"/>
-                                    <Setter Property="BorderBrush" Value="{StaticResource BorderSubtleBrush}"/>
-                                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
-                                </Style>
-
-                                <Style x:Key="OugaFlashDataGridRowStyle" TargetType="{x:Type DataGridRow}">
-                                    <Setter Property="Background" Value="#FFFFFFFF"/>
-                                    <Setter Property="BorderBrush" Value="{StaticResource SurfaceTintBrush}"/>
-                                    <Setter Property="BorderThickness" Value="0,0,0,1"/>
-                                    <Style.Triggers>
-                                        <Trigger Property="AlternationIndex" Value="1">
-                                            <Setter Property="Background" Value="{StaticResource SurfaceTintBrush}"/>
-                                        </Trigger>
-                                        <Trigger Property="IsMouseOver" Value="True">
-                                            <Trigger.EnterActions>
-                                                <BeginStoryboard>
-                                                    <Storyboard>
-                                                        <ColorAnimation Storyboard.TargetProperty="Background.Color"
-                                                                        To="#FFF5F5F5" Duration="0:0:0.12">
-                                                            <ColorAnimation.EasingFunction>
-                                                                <CubicEase EasingMode="EaseOut"/>
-                                                            </ColorAnimation.EasingFunction>
-                                                        </ColorAnimation>
-                                                    </Storyboard>
-                                                </BeginStoryboard>
-                                            </Trigger.EnterActions>
-                                            <Trigger.ExitActions>
-                                                <BeginStoryboard>
-                                                    <Storyboard>
-                                                        <ColorAnimation Storyboard.TargetProperty="Background.Color"
-                                                                        Duration="0:0:0.15" FillBehavior="Stop">
-                                                            <ColorAnimation.EasingFunction>
-                                                                <CubicEase EasingMode="EaseOut"/>
-                                                            </ColorAnimation.EasingFunction>
-                                                        </ColorAnimation>
-                                                    </Storyboard>
-                                                </BeginStoryboard>
-                                            </Trigger.ExitActions>
-                                        </Trigger>
-                                        <Trigger Property="IsSelected" Value="True">
-                                            <Trigger.EnterActions>
-                                                <BeginStoryboard>
-                                                    <Storyboard>
-                                                        <ColorAnimation Storyboard.TargetProperty="Background.Color"
-                                                                        To="{StaticResource Violet50}" Duration="0:0:0.14">
-                                                            <ColorAnimation.EasingFunction>
-                                                                <CubicEase EasingMode="EaseOut"/>
-                                                            </ColorAnimation.EasingFunction>
-                                                        </ColorAnimation>
-                                                    </Storyboard>
-                                                </BeginStoryboard>
-                                            </Trigger.EnterActions>
-                                            <Trigger.ExitActions>
-                                                <BeginStoryboard>
-                                                    <Storyboard>
-                                                        <ColorAnimation Storyboard.TargetProperty="Background.Color"
-                                                                        Duration="0:0:0.18" FillBehavior="Stop">
-                                                            <ColorAnimation.EasingFunction>
-                                                                <CubicEase EasingMode="EaseOut"/>
-                                                            </ColorAnimation.EasingFunction>
-                                                        </ColorAnimation>
-                                                    </Storyboard>
-                                                </BeginStoryboard>
-                                            </Trigger.ExitActions>
-                                            <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
-                                            <Setter Property="BorderBrush" Value="{StaticResource BrandTintBrush}"/>
-                                        </Trigger>
-                                    </Style.Triggers>
-                                </Style>
-
                                 <Style x:Key="OugaFlashDataGridCellStyle" TargetType="{x:Type DataGridCell}">
                                     <Setter Property="Background" Value="Transparent"/>
                                     <Setter Property="BorderThickness" Value="0"/>
@@ -4382,53 +4267,6 @@ Background="{StaticResource SurfaceTintBrush}"
                                     </Style.Triggers>
                                 </Style>
 
-                                <Style x:Key="OugaFlashProgressBarStyle" TargetType="{x:Type ProgressBar}">
-                                    <Setter Property="Height" Value="24"/>
-                                    <Setter Property="Background" Value="{StaticResource SurfaceTintBrush}"/>
-                                    <Setter Property="BorderBrush" Value="{StaticResource BorderSubtleBrush}"/>
-                                    <Setter Property="BorderThickness" Value="1"/>
-                                    <Setter Property="SnapsToDevicePixels" Value="True"/>
-                                    <Setter Property="Template">
-                                        <Setter.Value>
-                                            <ControlTemplate TargetType="{x:Type ProgressBar}">
-                                                <Border Background="{TemplateBinding Background}"
-                                                        BorderBrush="{TemplateBinding BorderBrush}"
-                                                        BorderThickness="{TemplateBinding BorderThickness}"
-                                                        CornerRadius="4">
-                                                    <Grid ClipToBounds="True">
-                                                        <Border x:Name="PART_Track"
-                                                                Background="{TemplateBinding Background}"
-                                                                CornerRadius="4"/>
-                                                        <Border x:Name="PART_Indicator"
-                                                                HorizontalAlignment="Left"
-                                                                CornerRadius="4">
-                                                            <Border.Background>
-                                                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
-                                                                    <GradientStop Offset="0" Color="{StaticResource Gray900}"/>
-                                                                    <GradientStop Offset="1" Color="{StaticResource Gray900}"/>
-                                                                </LinearGradientBrush>
-                                                            </Border.Background>
-                                                        </Border>
-                                                        <TextBlock Text="{Binding Tag, RelativeSource={RelativeSource TemplatedParent}}"
-                                                                   HorizontalAlignment="Left"
-                                                                   VerticalAlignment="Center"
-                                                                   Margin="8,0,0,0"
-                                                                   FontSize="12"
-                                                                   Foreground="{StaticResource TextStrongBrush}"
-                                                                   FontWeight="Medium"/>
-                                                        <TextBlock Text="{Binding Value, RelativeSource={RelativeSource TemplatedParent}, StringFormat={}{0:0}%}"
-                                                                   HorizontalAlignment="Right"
-                                                                   VerticalAlignment="Center"
-                                                                   Margin="0,0,8,0"
-                                                                   FontSize="12"
-                                                                   Foreground="{StaticResource TextStrongBrush}"
-                                                                   FontWeight="Medium"/>
-                                                    </Grid>
-                                                </Border>
-                                            </ControlTemplate>
-                                        </Setter.Value>
-                                    </Setter>
-                                </Style>
                             </Grid.Resources>
 <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="*"/></Grid.RowDefinitions>
 <Grid Grid.Row="0" Grid.ColumnSpan="1" Margin="6,12,6,10">
@@ -4449,7 +4287,7 @@ Background="{StaticResource SurfaceTintBrush}"
                             </Grid.RowDefinitions>
 <Grid HorizontalAlignment="Left"
                                   VerticalAlignment="Top"
-                                  Margin="0,211,0,0"
+                                  Margin="0,308,0,0"
                                   Width="497"
                                   Height="388">
                                 <GroupBox
@@ -4593,7 +4431,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                                     </DataGridCheckBoxColumn.EditingElementStyle>
                                                     <DataGridCheckBoxColumn.HeaderStyle>
                                                         <Style TargetType="{x:Type DataGridColumnHeader}"
-                                                           BasedOn="{StaticResource OugaFlashDataGridHeaderStyle}">
+                                                           BasedOn="{StaticResource EdlDgHeaderStyle}">
                                                             <Setter Property="Padding" Value="0"/>
                                                             <Setter Property="HorizontalContentAlignment" Value="Center"/>
                                                             <Setter Property="VerticalContentAlignment" Value="Center"/>
