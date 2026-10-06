@@ -416,6 +416,7 @@ namespace WpfApp1
             var allItems = new HandyControl.Controls.SideMenuItem[]
             {
                 (this.FindControlInPages("HomeButton") as HandyControl.Controls.SideMenuItem), (this.FindControlInPages("ScreenMirrorButton") as HandyControl.Controls.SideMenuItem), (this.FindControlInPages("AboutToolButton") as HandyControl.Controls.SideMenuItem),
+                (this.FindControlInPages("AIAgentButton") as HandyControl.Controls.SideMenuItem),
                 (this.FindControlInPages("BasicFlashButton") as HandyControl.Controls.SideMenuItem), (this.FindControlInPages("FastbootVisualizationButton") as HandyControl.Controls.SideMenuItem), (this.FindControlInPages("OugaFlashButton") as HandyControl.Controls.SideMenuItem),
                 (this.FindControlInPages("EdlFlashButton") as HandyControl.Controls.SideMenuItem), (this.FindControlInPages("ColorOSAssistantButton") as HandyControl.Controls.SideMenuItem), (this.FindControlInPages("HiddenEnvironmentButton") as HandyControl.Controls.SideMenuItem),
                 (this.FindControlInPages("SystemZoneButton") as HandyControl.Controls.SideMenuItem), (this.FindControlInPages("AutorootButton") as HandyControl.Controls.SideMenuItem), (this.FindControlInPages("AppManagementButton") as HandyControl.Controls.SideMenuItem),
@@ -430,6 +431,52 @@ namespace WpfApp1
                     item.IsSelected = false;
                 }
             }
+        }
+
+        // 页面名 -> 侧边栏菜单项名（用于 ShowPage 时同步选中态，防止内部跳转/代码切换后旧选项卡残留高亮）
+        private static readonly System.Collections.Generic.Dictionary<string, string> _viewToMenuMap = new System.Collections.Generic.Dictionary<string, string>(System.StringComparer.OrdinalIgnoreCase)
+        {
+            { "HomeView", "HomeButton" },
+            { "ScreenMirrorView", "ScreenMirrorButton" },
+            { "AIAgentView", "AIAgentButton" },
+            { "BasicFlashView", "BasicFlashButton" },
+            { "FastbootVisualizationView", "FastbootVisualizationButton" },
+            { "OujiaFlashView", "OugaFlashButton" },
+            { "EdlFlashView", "EdlFlashButton" },
+            { "ColorOSAssistantView", "ColorOSAssistantButton" },
+            { "HiddenEnvironmentView", "HiddenEnvironmentButton" },
+            { "SystemZoneView", "SystemZoneButton" },
+            { "AutorootView", "AutorootButton" },
+            { "AppManagementView", "AppManagementButton" },
+            { "AndroidGeneralView", "AndroidGeneralButton" },
+            { "PayloadView", "PayloadButton" },
+            { "BackupAssistantView", "BackupAssistantButton" },
+            { "DownloadZoneView", "DownloadZoneButton" },
+            { "RomDownloadview", "RomDownload" },
+            { "VioletDownloadView", "VioletDownload" },
+            { "AboutToolView", "AboutToolButton" }
+        };
+
+        /// <summary>页面切换后同步侧边栏选中项，确保高亮始终跟随当前页面（防抖由 ShowPage 的 _currentPage 判断承担）</summary>
+        private void SyncSideMenuSelection(string viewName)
+        {
+            try
+            {
+                var sideMenu = this.FindControlInPages("SideMenuControl") as HandyControl.Controls.SideMenu;
+                if (sideMenu == null) return;
+                if (!_viewToMenuMap.TryGetValue(viewName, out var menuName)) return;
+                var target = sideMenu.Items.OfType<HandyControl.Controls.SideMenuItem>().FirstOrDefault(i => i.Name == menuName);
+                if (target == null) return;
+                bool changed = false;
+                foreach (var item in sideMenu.Items.OfType<HandyControl.Controls.SideMenuItem>())
+                {
+                    if (item == target) continue;
+                    if (item.Role == HandyControl.Data.SideMenuItemRole.Header) continue;
+                    if (item.IsSelected) { item.IsSelected = false; changed = true; }
+                }
+                if (!target.IsSelected) { target.IsSelected = true; changed = true; }
+            }
+            catch { }
         }
 
         // 分组展开/折叠
@@ -1787,6 +1834,7 @@ namespace WpfApp1
                     AnimatePageIn(home, true);
                 }
                 _currentPage = viewName;
+                SyncSideMenuSelection(viewName);
                 return;
             }
             else if (!_pageInstances.TryGetValue(viewName, out page))
@@ -1798,6 +1846,7 @@ namespace WpfApp1
             var hv = this.FindControlInPages("HomeView") as FrameworkElement;
             if (hv != null) hv.Visibility = System.Windows.Visibility.Collapsed;
             _currentPage = viewName;
+            SyncSideMenuSelection(viewName);
             _pageHost.Content = page;
             page.Visibility = System.Windows.Visibility.Visible;
             AnimatePageIn(page, true);
