@@ -887,6 +887,14 @@ Background="{StaticResource SurfaceTintBrush}"
                                         </Setter.Value>
                                     </Setter>
                                 </Style>
+                <Style x:Key="FastbootSecondaryButtonStyle"
+                                       TargetType="{x:Type Button}"
+                                       BasedOn="{StaticResource FastbootButtonBaseStyle}">
+                                    <Setter Property="Background" Value="#FFFFFFFF"/>
+                                    <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
+                                    <Setter Property="BorderBrush" Value="{StaticResource BorderBrush}"/>
+                                    <Setter Property="BorderThickness" Value="1"/>
+                                </Style>
                 <!-- 懒加载页面模板：首次实例化才构建视觉树（加速启动） -->
                 <DataTemplate x:Key="Page_ScreenMirrorView">
                         <Grid
@@ -1898,7 +1906,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                                      BorderBrush="{StaticResource BorderSubtleBrush}"
                                                      BorderThickness="1"
                                                      Padding="10"
-                                                     FontFamily="Consolas"
+                                                     FontFamily="Cascadia Mono,Noto Sans SC,Consolas"
                                                      FontSize="12"
                                                      VerticalScrollBarVisibility="Auto"
                                                      HorizontalScrollBarVisibility="Disabled"
@@ -1963,33 +1971,6 @@ Background="{StaticResource SurfaceTintBrush}"
                               Visibility="Collapsed" Background="{StaticResource SurfaceTintBrush}">
 <!-- MONO_PAGE_MARKER_FastbootVisualizationView -->
     <Grid.Resources>
-                                <Style x:Key="FastbootCardGroupBoxStyle"
-                                       TargetType="{x:Type GroupBox}"
-                                       BasedOn="{StaticResource PayloadGroupBoxStyle}">
-                                    <Setter Property="Background" Value="#FFFFFFFF"/>
-                                    <Setter Property="BorderBrush" Value="{StaticResource BorderSubtleBrush}"/>
-                                    <Setter Property="BorderThickness" Value="1"/>
-                                    <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
-                                    <Setter Property="FontFamily" Value="pack://siteoforigin:,,,/fonts/NotoSansSC-Sub.otf#Noto Sans SC"/>
-                                    <Setter Property="FontSize" Value="12"/>
-                                    <Setter Property="FontWeight" Value="SemiBold"/>
-                                    <Setter Property="Padding" Value="10"/>
-                                    <Setter Property="Effect">
-                                        <Setter.Value>
-                                            <DropShadowEffect BlurRadius="12" ShadowDepth="1.5" Opacity="0.08" Color="#FF000000" Direction="270"/>
-                                        </Setter.Value>
-                                    </Setter>
-                                </Style>
-
-                                <Style x:Key="FastbootSecondaryButtonStyle"
-                                       TargetType="{x:Type Button}"
-                                       BasedOn="{StaticResource FastbootButtonBaseStyle}">
-                                    <Setter Property="Background" Value="#FFFFFFFF"/>
-                                    <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
-                                    <Setter Property="BorderBrush" Value="{StaticResource BorderBrush}"/>
-                                    <Setter Property="BorderThickness" Value="1"/>
-                                </Style>
-
                                 <Style x:Key="FastbootAdbOnlyButtonStyle"
                                        TargetType="{x:Type Button}"
                                        BasedOn="{StaticResource PageSecondaryButton}">
@@ -2011,16 +1992,6 @@ Background="{StaticResource SurfaceTintBrush}"
                                     <Setter Property="Foreground" Value="{StaticResource TextOnBrandBrush}"/>
                                     <Setter Property="BorderBrush" Value="{StaticResource DangerBrush}"/>
                                     <Setter Property="BorderThickness" Value="1"/>
-                                </Style>
-
-                                <Style x:Key="FastbootOptionCheckBoxStyle"
-                                       TargetType="{x:Type CheckBox}"
-                                       BasedOn="{StaticResource {x:Type CheckBox}}">
-                                    <Setter Property="FontFamily" Value="pack://siteoforigin:,,,/fonts/NotoSansSC-Sub.otf#Noto Sans SC"/>
-                                    <Setter Property="FontSize" Value="11.5"/>
-                                    <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
-                                    <Setter Property="VerticalAlignment" Value="Center"/>
-                                    <Setter Property="Margin" Value="0,0,9,0"/>
                                 </Style>
 
                                 <Style TargetType="{x:Type DataGridColumnHeader}">
@@ -2783,46 +2754,6 @@ Background="{StaticResource SurfaceTintBrush}"
                             Cursor="">
 <!-- MONO_PAGE_MARKER_HiddenEnvironmentView -->
     <Grid.Resources>
-                                <Style x:Key="FastbootSecondaryButtonStyle"
-                                       TargetType="{x:Type Button}"
-                                       BasedOn="{StaticResource FastbootButtonBaseStyle}">
-                                    <Setter Property="Background" Value="#FFFFFFFF"/>
-                                    <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
-                                    <Setter Property="BorderBrush" Value="{StaticResource BorderBrush}"/>
-                                    <Setter Property="BorderThickness" Value="1"/>
-                                </Style>
-                                <Style x:Key="FastbootCardGroupBoxStyle"
-                                       TargetType="{x:Type GroupBox}"
-                                       BasedOn="{StaticResource PayloadGroupBoxStyle}">
-                                    <Setter Property="Background" Value="#FFFFFFFF"/>
-                                    <Setter Property="BorderBrush" Value="{StaticResource BorderSubtleBrush}"/>
-                                    <Setter Property="BorderThickness" Value="1"/>
-                                    <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
-                                    <Setter Property="FontFamily" Value="pack://siteoforigin:,,,/fonts/NotoSansSC-Sub.otf#Noto Sans SC"/>
-                                    <Setter Property="FontSize" Value="12"/>
-                                    <Setter Property="FontWeight" Value="SemiBold"/>
-                                    <Setter Property="Padding" Value="10"/>
-                                    <Setter Property="Effect">
-                                        <Setter.Value>
-                                            <DropShadowEffect BlurRadius="12" ShadowDepth="1.5" Opacity="0.08" Color="#FF000000" Direction="270"/>
-                                        </Setter.Value>
-                                    </Setter>
-                                </Style>
-                                <Style x:Key="HiddenEnvironmentCheckBoxStyle"
-                                       TargetType="{x:Type CheckBox}"
-                                       BasedOn="{StaticResource {x:Type CheckBox}}">
-                                    <Setter Property="FontFamily" Value="pack://siteoforigin:,,,/fonts/NotoSansSC-Sub.otf#Noto Sans SC"/>
-                                    <Setter Property="FontSize" Value="11.5"/>
-                                    <Setter Property="FontWeight" Value="Normal"/>
-                                    <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
-                                    <Setter Property="Cursor" Value="Hand"/>
-                                </Style>
-                                <Style x:Key="HiddenEnvironmentSchemeCheckBoxStyle"
-                                       TargetType="{x:Type CheckBox}"
-                                       BasedOn="{StaticResource PageCheckBox}">
-                                    <Setter Property="FontSize" Value="12.5"/>
-                                    <Setter Property="FontWeight" Value="SemiBold"/>
-                                </Style>
                             </Grid.Resources>
 <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="*"/></Grid.RowDefinitions>
 <Grid Grid.Row="0" Grid.ColumnSpan="1" Margin="6,12,6,10">
@@ -3109,84 +3040,6 @@ Background="{StaticResource SurfaceTintBrush}"
                                     <Setter Property="Stroke" Value="{StaticResource BorderBrush}"/>
                                     <Setter Property="StrokeThickness" Value="1"/>
                                     <Setter Property="SnapsToDevicePixels" Value="True"/>
-                                </Style>
-                                <Style x:Key="AboutSocialButtonStyle"
-                                        TargetType="Button"
-                                        BasedOn="{StaticResource {x:Type Button}}">
-                                    <Setter Property="Width" Value="36"/>
-                                    <Setter Property="Height" Value="36"/>
-                                    <Setter Property="Background" Value="#FFFFFFFF"/>
-                                    <Setter Property="BorderBrush" Value="{StaticResource BorderBrush}"/>
-                                    <Setter Property="BorderThickness" Value="1"/>
-                                    <Setter Property="Cursor" Value="Hand"/>
-                                    <Setter Property="Padding" Value="0"/>
-                                    <Setter Property="Template">
-                                        <Setter.Value>
-                                            <ControlTemplate TargetType="{x:Type Button}">
-                                                <Border x:Name="AboutSocialButtonBorder"
-                                                         Background="{TemplateBinding Background}"
-                                                         BorderBrush="{TemplateBinding BorderBrush}"
-                                                         BorderThickness="{TemplateBinding BorderThickness}"
-                                                         CornerRadius="6">
-                                                    <ContentPresenter TextElement.Foreground="{TemplateBinding Foreground}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                                </Border>
-                                                <ControlTemplate.Triggers>
-                                                    <Trigger Property="IsMouseOver" Value="True">
-                                                        <Trigger.EnterActions>
-                                                            <BeginStoryboard>
-                                                                <Storyboard>
-                                                                    <ColorAnimation Storyboard.TargetName="AboutSocialButtonBorder"
-                                                                                    Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
-                                                                                    To="#FFF3F4F6" Duration="0:0:0.12">
-                                                                        <ColorAnimation.EasingFunction>
-                                                                            <CubicEase EasingMode="EaseOut"/>
-                                                                        </ColorAnimation.EasingFunction>
-                                                                    </ColorAnimation>
-                                                                </Storyboard>
-                                                            </BeginStoryboard>
-                                                        </Trigger.EnterActions>
-                                                        <Trigger.ExitActions>
-                                                            <BeginStoryboard>
-                                                                <Storyboard>
-                                                                    <ColorAnimation Storyboard.TargetName="AboutSocialButtonBorder"
-                                                                                    Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
-                                                                                    Duration="0:0:0.15" FillBehavior="Stop">
-                                                                        <ColorAnimation.EasingFunction>
-                                                                            <CubicEase EasingMode="EaseOut"/>
-                                                                        </ColorAnimation.EasingFunction>
-                                                                    </ColorAnimation>
-                                                                </Storyboard>
-                                                            </BeginStoryboard>
-                                                        </Trigger.ExitActions>
-                                                    </Trigger>
-                                                    <Trigger Property="IsPressed" Value="True">
-                                                        <Trigger.EnterActions>
-                                                            <BeginStoryboard>
-                                                                <Storyboard>
-                                                                    <ColorAnimation Storyboard.TargetName="AboutSocialButtonBorder"
-                                                                                    Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
-                                                                                    To="#FFEDEDED" Duration="0:0:0.08"/>
-                                                                </Storyboard>
-                                                            </BeginStoryboard>
-                                                        </Trigger.EnterActions>
-                                                        <Trigger.ExitActions>
-                                                            <BeginStoryboard>
-                                                                <Storyboard>
-                                                                    <ColorAnimation Storyboard.TargetName="AboutSocialButtonBorder"
-                                                                                    Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
-                                                                                    Duration="0:0:0.12" FillBehavior="Stop">
-                                                                        <ColorAnimation.EasingFunction>
-                                                                            <CubicEase EasingMode="EaseOut"/>
-                                                                        </ColorAnimation.EasingFunction>
-                                                                    </ColorAnimation>
-                                                                </Storyboard>
-                                                            </BeginStoryboard>
-                                                        </Trigger.ExitActions>
-                                                    </Trigger>
-                                                </ControlTemplate.Triggers>
-                                            </ControlTemplate>
-                                        </Setter.Value>
-                                    </Setter>
                                 </Style>
                             </Grid.Resources>
                             <ScrollViewer VerticalScrollBarVisibility="Auto"
@@ -3641,7 +3494,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                                     <Border x:Name="AIMsgBubble" MaxWidth="560" Padding="12,9" CornerRadius="12" Margin="2,5"
                                                             Background="{StaticResource SurfaceBrush}" BorderBrush="{StaticResource BorderSubtleBrush}" BorderThickness="1" HorizontalAlignment="Left">
                                                         <TextBlock x:Name="AIMsgText" Text="{Binding Text}" TextWrapping="Wrap" FontSize="13"
-                                                                   Foreground="{StaticResource TextPrimaryBrush}" FontFamily="Microsoft YaHei UI" LineHeight="20"/>
+                                                                   Foreground="{StaticResource TextPrimaryBrush}" LineHeight="20"/>
                                                     </Border>
                                                     <DataTemplate.Triggers>
                                                         <DataTrigger Binding="{Binding Role}" Value="user">
@@ -3694,7 +3547,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                                 <TextBlock Text="⚠" FontSize="15" Foreground="#FFFF9500" VerticalAlignment="Center" Margin="0,0,6,0"/>
                                                 <TextBlock Text="AI 请求执行命令，请确认" Style="{StaticResource SubTitle13Style}" Foreground="{StaticResource TextPrimaryBrush}" VerticalAlignment="Center"/>
                                             </StackPanel>
-                                            <TextBlock x:Name="AIAgentConfirmText" FontFamily="Consolas" FontSize="12.5" Foreground="{StaticResource TextStrongBrush}"
+                                            <TextBlock x:Name="AIAgentConfirmText" FontFamily="Cascadia Mono,Noto Sans SC,Consolas" FontSize="12.5" Foreground="{StaticResource TextStrongBrush}"
                                                        TextWrapping="Wrap" Margin="0,8,0,0"/>
                                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,10,0,0">
                                                 <Button x:Name="AIAgentConfirmDenyButton" Content="拒绝" Style="{StaticResource PageSecondaryButton}" Click="AIAgentConfirmDenyButton_Click" MinWidth="64" Margin="0,0,8,0"/>
@@ -3899,7 +3752,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                                            MouseLeftButtonUp="CopyTextBlockContent"/>
                                             </Grid>
                                         </StackPanel>
-                                        <ListBox Name="FileListTextBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="807" Height="456" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Disabled" FontFamily="Consolas" FontSize="12" SelectionChanged="FileListTextBox_SelectionChanged" MouseDoubleClick="FileListTextBox_MouseDoubleClick" PreviewMouseLeftButtonDown="FileListTextBox_PreviewMouseLeftButtonDown" ContextMenuOpening="FileListTextBox_ContextMenuOpening" SelectionMode="Multiple" Margin="0,70,0,0" BorderBrush="{StaticResource BrandTintBrush}" HorizontalContentAlignment="Center" AllowDrop="True" Drop="FileListTextBox_Drop" DragOver="FileListTextBox_DragOver" VirtualizingStackPanel.IsVirtualizing="True" VirtualizingStackPanel.VirtualizationMode="Recycling" ScrollViewer.CanContentScroll="True">
+                                        <ListBox Name="FileListTextBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="807" Height="456" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Disabled" FontFamily="Cascadia Mono,Noto Sans SC,Consolas" FontSize="12" SelectionChanged="FileListTextBox_SelectionChanged" MouseDoubleClick="FileListTextBox_MouseDoubleClick" PreviewMouseLeftButtonDown="FileListTextBox_PreviewMouseLeftButtonDown" ContextMenuOpening="FileListTextBox_ContextMenuOpening" SelectionMode="Multiple" Margin="0,70,0,0" BorderBrush="{StaticResource BrandTintBrush}" HorizontalContentAlignment="Center" AllowDrop="True" Drop="FileListTextBox_Drop" DragOver="FileListTextBox_DragOver" VirtualizingStackPanel.IsVirtualizing="True" VirtualizingStackPanel.VirtualizationMode="Recycling" ScrollViewer.CanContentScroll="True">
                                             <ListBox.ContextMenu>
                                                 <ContextMenu>
                                                     <MenuItem x:Name="SystemZoneNewFolderMenuItem" Header="新建文件夹" Click="CreateSystemZoneFolderMenuItem_Click"/>
@@ -5151,167 +5004,6 @@ Background="{StaticResource SurfaceTintBrush}"
                         Visibility="Collapsed"  
                         Background="{StaticResource SurfaceTintBrush}">
                             <Grid.Resources>
-                                <Style x:Key="AutorootCardStyle" TargetType="Border">
-                                    <Setter Property="Background" Value="#FFFFFFFF"/>
-                                    <Setter Property="BorderBrush" Value="{StaticResource BorderSubtleBrush}"/>
-                                    <Setter Property="BorderThickness" Value="1"/>
-                                    <Setter Property="CornerRadius" Value="14"/>
-                                    <Setter Property="Padding" Value="12"/>
-                                </Style>
-                                <Style x:Key="AutorootPanelTitleStyle" TargetType="TextBlock">
-                                    <Setter Property="FontSize" Value="16"/>
-                                    <Setter Property="FontWeight" Value="Bold"/>
-                                    <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
-                                </Style>
-                                <Style x:Key="AutorootPanelSubtitleStyle" TargetType="TextBlock">
-                                    <Setter Property="FontSize" Value="12"/>
-                                    <Setter Property="Foreground" Value="{StaticResource TextMutedBrush}"/>
-                                    <Setter Property="Margin" Value="0,2,0,0"/>
-                                </Style>
-                                <Style x:Key="AutorootFieldLabelStyle" TargetType="TextBlock">
-                                    <Setter Property="FontSize" Value="13"/>
-                                    <Setter Property="FontWeight" Value="SemiBold"/>
-                                    <Setter Property="Foreground" Value="{StaticResource TextMutedBrush}"/>
-                                    <Setter Property="VerticalAlignment" Value="Center"/>
-                                </Style>
-                                <Style x:Key="AutorootComboBoxStyle" TargetType="ComboBox">
-                                    <Setter Property="Height" Value="32"/>
-                                    <Setter Property="FontSize" Value="14"/>
-                                    <Setter Property="Background" Value="White"/>
-                                    <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
-                                    <Setter Property="BorderBrush" Value="{StaticResource BorderSubtleBrush}"/>
-                                    <Setter Property="BorderThickness" Value="1"/>
-                                </Style>
-                                <Style x:Key="AutorootPrimaryButtonStyle" TargetType="Button">
-                                    <Setter Property="Height" Value="34"/>
-                                    <Setter Property="Padding" Value="12,0"/>
-                                    <Setter Property="Background" Value="#FF000000"/>
-                                    <Setter Property="Foreground" Value="White"/>
-                                    <Setter Property="BorderThickness" Value="0"/>
-                                    <Setter Property="FontSize" Value="13"/>
-                                    <Setter Property="FontWeight" Value="SemiBold"/>
-                                    <Setter Property="Cursor" Value="Hand"/>
-                                    <Setter Property="Template">
-                                        <Setter.Value>
-                                            <ControlTemplate TargetType="{x:Type Button}">
-                                                <Border Background="{TemplateBinding Background}" CornerRadius="8">
-                                                    <ContentPresenter TextElement.Foreground="{TemplateBinding Foreground}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                                </Border>
-                                                <ControlTemplate.Triggers>
-                                                    <Trigger Property="IsMouseOver" Value="True">
-                                                        <Setter Property="Background" Value="{StaticResource TextStrongBrush}"/>
-                                                    </Trigger>
-                                                    <Trigger Property="IsPressed" Value="True">
-                                                        <Setter Property="Background" Value="{StaticResource TextStrongBrush}"/>
-                                                    </Trigger>
-                                                </ControlTemplate.Triggers>
-                                            </ControlTemplate>
-                                        </Setter.Value>
-                                    </Setter>
-                                </Style>
-                                <Style x:Key="AutorootAccentButtonStyle" TargetType="Button" BasedOn="{StaticResource PagePrimaryButton}">
-                                    <Setter Property="Background" Value="{StaticResource BorderBrush}"/>
-                                </Style>
-                                <Style x:Key="AutorootLightButtonStyle" TargetType="Button">
-                                    <Setter Property="Height" Value="30"/>
-                                    <Setter Property="Padding" Value="12,0"/>
-                                    <Setter Property="Background" Value="{StaticResource SurfaceTintBrush}"/>
-                                    <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
-                                    <Setter Property="BorderBrush" Value="{StaticResource BorderSubtleBrush}"/>
-                                    <Setter Property="BorderThickness" Value="1"/>
-                                    <Setter Property="FontSize" Value="13"/>
-                                    <Setter Property="Cursor" Value="Hand"/>
-                                    <Setter Property="Template">
-                                        <Setter.Value>
-                                            <ControlTemplate TargetType="{x:Type Button}">
-                                                <Border Background="{TemplateBinding Background}"
-                                                        BorderBrush="{TemplateBinding BorderBrush}"
-                                                        BorderThickness="{TemplateBinding BorderThickness}"
-                                                        CornerRadius="8">
-                                                    <ContentPresenter TextElement.Foreground="{TemplateBinding Foreground}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                                </Border>
-                                                <ControlTemplate.Triggers>
-                                                    <Trigger Property="IsMouseOver" Value="True">
-                                                        <Trigger.EnterActions>
-                                                            <BeginStoryboard>
-                                                                <Storyboard>
-                                                                    <ColorAnimation Storyboard.TargetProperty="Background.Color"
-                                                                                    To="#FFF6F6F6" Duration="0:0:0.12">
-                                                                        <ColorAnimation.EasingFunction>
-                                                                            <CubicEase EasingMode="EaseOut"/>
-                                                                        </ColorAnimation.EasingFunction>
-                                                                    </ColorAnimation>
-                                                                    <ColorAnimation Storyboard.TargetProperty="BorderBrush.Color"
-                                                                                    To="#FFE8E8ED" Duration="0:0:0.12">
-                                                                        <ColorAnimation.EasingFunction>
-                                                                            <CubicEase EasingMode="EaseOut"/>
-                                                                        </ColorAnimation.EasingFunction>
-                                                                    </ColorAnimation>
-                                                                </Storyboard>
-                                                            </BeginStoryboard>
-                                                        </Trigger.EnterActions>
-                                                        <Trigger.ExitActions>
-                                                            <BeginStoryboard>
-                                                                <Storyboard>
-                                                                    <ColorAnimation Storyboard.TargetProperty="Background.Color"
-                                                                                    Duration="0:0:0.15" FillBehavior="Stop">
-                                                                        <ColorAnimation.EasingFunction>
-                                                                            <CubicEase EasingMode="EaseOut"/>
-                                                                        </ColorAnimation.EasingFunction>
-                                                                    </ColorAnimation>
-                                                                    <ColorAnimation Storyboard.TargetProperty="BorderBrush.Color"
-                                                                                    Duration="0:0:0.15" FillBehavior="Stop">
-                                                                        <ColorAnimation.EasingFunction>
-                                                                            <CubicEase EasingMode="EaseOut"/>
-                                                                        </ColorAnimation.EasingFunction>
-                                                                    </ColorAnimation>
-                                                                </Storyboard>
-                                                            </BeginStoryboard>
-                                                        </Trigger.ExitActions>
-                                                    </Trigger>
-                                                </ControlTemplate.Triggers>
-                                            </ControlTemplate>
-                                        </Setter.Value>
-                                    </Setter>
-                                </Style>
-                                <Style x:Key="AutorootSelectButtonStyle" TargetType="Button">
-                                    <Setter Property="Width" Value="84"/>
-                                    <Setter Property="Height" Value="27"/>
-                                    <Setter Property="Foreground" Value="White"/>
-                                    <Setter Property="Background" Value="{StaticResource TextPrimaryBrush}"/>
-                                    <Setter Property="BorderThickness" Value="0"/>
-                                    <Setter Property="FontSize" Value="12"/>
-                                    <Setter Property="Cursor" Value="Hand"/>
-                                    <Setter Property="Template">
-                                        <Setter.Value>
-                                            <ControlTemplate TargetType="{x:Type Button}">
-                                                <Border Background="{TemplateBinding Background}" CornerRadius="6">
-                                                    <ContentPresenter TextElement.Foreground="{TemplateBinding Foreground}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                                </Border>
-                                                <ControlTemplate.Triggers>
-                                                    <Trigger Property="IsMouseOver" Value="True">
-                                                        <Setter Property="Background" Value="{StaticResource TextStrongBrush}"/>
-                                                    </Trigger>
-                                                    <Trigger Property="IsEnabled" Value="False">
-                                                        <Setter Property="Background" Value="{StaticResource BorderSubtleBrush}"/>
-                                                        <Setter Property="Foreground" Value="{StaticResource TextMutedBrush}"/>
-                                                        <Setter Property="Cursor" Value="Arrow"/>
-                                                        <Setter Property="Opacity" Value="0.72"/>
-                                                    </Trigger>
-                                                </ControlTemplate.Triggers>
-                                            </ControlTemplate>
-                                        </Setter.Value>
-                                    </Setter>
-                                </Style>
-                                <Style x:Key="AutorootOptionCheckBoxStyle"
-                                       TargetType="CheckBox"
-                                       BasedOn="{StaticResource {x:Type CheckBox}}">
-                                    <Setter Property="FontSize" Value="13"/>
-                                    <Setter Property="Foreground" Value="{StaticResource TextSecondaryBrush}"/>
-                                    <Setter Property="Margin" Value="0,0,0,6"/>
-                                    <Setter Property="Cursor" Value="Hand"/>
-                                    <Setter Property="VerticalAlignment" Value="Center"/>
-                                </Style>
                             </Grid.Resources>
                             <ScrollViewer VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Disabled"><!-- MONO_PAGE_MARKER_AutorootView --><StackPanel>
                                         <Grid Margin="2,0,0,16">
@@ -6160,7 +5852,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                                 <TextBlock Text="仅看系统应用"
                                                            VerticalAlignment="Center"
                                                            Foreground="{StaticResource TextStrongBrush}"/>
-                                                <ToggleButton x:Name="AppListSwitchToggle复制__C_"
+                                                <ToggleButton x:Name="AppListSystemToggle"
                                                               Style="{StaticResource PageSwitch}"
                                                               Checked="AppListSystemToggle_Checked"
                                                               Margin="8,0,0,0"/>
@@ -6175,10 +5867,10 @@ Background="{StaticResource SurfaceTintBrush}"
                                                            VerticalAlignment="Center"
                                                            Margin="0,0,12,0"
                                                            Foreground="{StaticResource TextStrongBrush}"/>
-                                                <TextBox x:Name="AppPackageSearchComboBox"
+                                                <TextBox x:Name="AppPackageSearchBox"
                                                          Grid.Column="1"
                                                          Style="{StaticResource PageTextBox}"
-                                                         KeyUp="AppPackageSearchComboBox_KeyUp"/>
+                                                         KeyUp="AppPackageSearchBox_KeyUp"/>
                                                 <Button x:Name="CopySelectedPackagesButton"
                                                         Grid.Column="2"
                                                         Width="98"
@@ -6450,6 +6142,41 @@ Background="{StaticResource SurfaceTintBrush}"
                         Visibility="Visible"    
                         Background="{StaticResource SurfaceBrush}">
 <!-- MONO_PAGE_MARKER_AndroidGeneralView -->
+    <Grid.Resources>
+        <Style x:Key="AndroidGenGroupBoxStyle" TargetType="{x:Type GroupBox}">
+            <Setter Property="Background" Value="{StaticResource SurfaceBrush}"/>
+            <Setter Property="Padding" Value="15"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="BorderBrush" Value="{StaticResource BorderSubtleBrush}"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="GroupBox">
+                        <Grid>
+                            <Border Background="{TemplateBinding Background}"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                    CornerRadius="8">
+                                <ContentPresenter TextElement.Foreground="{TemplateBinding Foreground}" Margin="{TemplateBinding Padding}"/>
+                            </Border>
+                            <Border Background="{TemplateBinding Background}"
+                                    Margin="10,-8,0,0"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Top">
+                                <ContentPresenter ContentSource="Header"
+                                                  TextElement.Foreground="{TemplateBinding Foreground}"
+                                                  TextElement.FontSize="{TemplateBinding FontSize}"
+                                                  TextElement.FontWeight="{TemplateBinding FontWeight}"
+                                                  Margin="5,0"/>
+                            </Border>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Grid.Resources>
 <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="*"/></Grid.RowDefinitions>
 <Grid Grid.Row="0" Grid.ColumnSpan="1" Margin="6,12,6,10">
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
@@ -6463,7 +6190,7 @@ Background="{StaticResource SurfaceTintBrush}"
         </StackPanel>
     </Grid>
 <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Margin="0" Background="Transparent" Padding="0" VerticalAlignment="Stretch"><Grid Grid.Row="1" Margin="6,20,6,12" MinHeight="720">
-<GroupBox
+<GroupBox Style="{StaticResource AndroidGenGroupBoxStyle}"
                             Background="{StaticResource SurfaceBrush}"
                             Padding="15"
                             BorderThickness="1"
@@ -6477,41 +6204,10 @@ Background="{StaticResource SurfaceTintBrush}"
                             VerticalAlignment="Top"
                             Panel.ZIndex="1" Margin="0,-6,0,0">
 <GroupBox.Header><StackPanel Orientation="Horizontal" Background="Transparent"><svg:SvgViewbox Source="images/geshihuasdka.svg" Width="15" Height="15" Margin="0,0,7,0" VerticalAlignment="Center"/><TextBlock Text="合并散包super" VerticalAlignment="Center"/></StackPanel></GroupBox.Header>
-                                <GroupBox.Style>
-                                    <Style TargetType="GroupBox">
-                                        <Setter Property="Template">
-                                            <Setter.Value>
-                                                <ControlTemplate TargetType="GroupBox">
-                                                    <Grid>
-                                                        <Border
-                                                        Background="{TemplateBinding Background}"
-                                                        BorderBrush="{TemplateBinding BorderBrush}"
-                                                        BorderThickness="{TemplateBinding BorderThickness}"
-                                                        CornerRadius="8">
-                                                            <ContentPresenter TextElement.Foreground="{TemplateBinding Foreground}" Margin="{TemplateBinding Padding}" />
-                                                        </Border>
-                                                        <Border
-                                                        Background="{TemplateBinding Background}"
-                                                        Margin="10,-8,0,0"
-                                                        HorizontalAlignment="Left"
-                                                        VerticalAlignment="Top">
-                                                            <ContentPresenter
-                                                            ContentSource="Header"
-                                                            TextElement.Foreground="{TemplateBinding Foreground}"
-                                                            TextElement.FontSize="{TemplateBinding FontSize}"
-                                                            TextElement.FontWeight="{TemplateBinding FontWeight}"
-                                                            Margin="5,0" />
-                                                        </Border>
-                                                    </Grid>
-                                                </ControlTemplate>
-                                            </Setter.Value>
-                                        </Setter>
-                                    </Style>
-                                </GroupBox.Style>
                                 <Grid>
                                     <TextBlock Text="散包路径：" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="-8,0,0,0"/>
                                     <TextBox x:Name="SuperScatterPathTextBox" HorizontalAlignment="Left" Margin="51,-4,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="193" BorderBrush="{StaticResource BorderSubtleBrush}"/>
-                                    <Button x:Name="SelectSuperScatterButton" HorizontalAlignment="Left" Margin="253,-4,0,0" VerticalAlignment="Top" Width="85" Click="SelectSuperScatterButton_Click" Background="{StaticResource BorderSubtleBrush}" BorderBrush="{StaticResource BorderSubtleBrush}" Foreground="White">
+                                    <Button x:Name="SelectSuperScatterButton" HorizontalAlignment="Left" Margin="253,-4,0,0" VerticalAlignment="Top" Width="85" Click="SelectSuperScatterButton_Click" Style="{StaticResource PageSecondaryButton}">
                                         <Button.Content>
                                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                                                 <svg:SvgViewbox Source="images/wenjianjia.svg" Width="16" Height="16" Margin="0,0,6,0"/>
@@ -6521,10 +6217,10 @@ Background="{StaticResource SurfaceTintBrush}"
                                     </Button>
                                     <CheckBox x:Name="CleanupMyPartitionsCheckBox" Content="清理残留文件" HorizontalAlignment="Left" Margin="-8,40,0,0" VerticalAlignment="Top" Checked="CleanupMyPartitionsCheckBox_Checked"/>
                                     <CheckBox x:Name="FilterXmlCheckBox" Content="过滤多余xml" HorizontalAlignment="Left" Margin="94,40,0,0" VerticalAlignment="Top"/>
-                                    <Button x:Name="StartSuperPackButton" Content="开始打包" HorizontalAlignment="Left" Margin="250,34,0,0" VerticalAlignment="Top" Width="88" Height="28" Click="StartSuperPackButton_Click" Background="{StaticResource BorderSubtleBrush}" BorderBrush="{StaticResource BorderSubtleBrush}" Foreground="White"/>
+                                    <Button x:Name="StartSuperPackButton" Content="开始打包" HorizontalAlignment="Left" Margin="250,34,0,0" VerticalAlignment="Top" Width="88" Height="28" Click="StartSuperPackButton_Click" Style="{StaticResource PageSecondaryButton}"/>
                                 </Grid>
                             </GroupBox>
-                            <GroupBox
+                            <GroupBox Style="{StaticResource AndroidGenGroupBoxStyle}"
                             Background="{StaticResource SurfaceBrush}"
                             Margin="390,-6,0,0"
                             Padding="15"
@@ -6537,46 +6233,15 @@ Background="{StaticResource SurfaceTintBrush}"
                             VerticalAlignment="Top"
                             Panel.ZIndex="1">
 <GroupBox.Header><StackPanel Orientation="Horizontal" Background="Transparent"><svg:SvgViewbox Source="images/yasuobao.svg" Width="15" Height="15" Margin="0,0,7,0" VerticalAlignment="Center"/><TextBlock Text="解包OFP" VerticalAlignment="Center"/></StackPanel></GroupBox.Header>
-                                <GroupBox.Style>
-                                    <Style TargetType="GroupBox">
-                                        <Setter Property="Template">
-                                            <Setter.Value>
-                                                <ControlTemplate TargetType="GroupBox">
-                                                    <Grid>
-                                                        <Border
-                                                        Background="{TemplateBinding Background}"
-                                                        BorderBrush="{TemplateBinding BorderBrush}"
-                                                        BorderThickness="{TemplateBinding BorderThickness}"
-                                                        CornerRadius="8">
-                                                            <ContentPresenter TextElement.Foreground="{TemplateBinding Foreground}" Margin="{TemplateBinding Padding}" />
-                                                        </Border>
-                                                        <Border
-                                                        Background="{TemplateBinding Background}"
-                                                        Margin="10,-8,0,0"
-                                                        HorizontalAlignment="Left"
-                                                        VerticalAlignment="Top">
-                                                            <ContentPresenter
-                                                            ContentSource="Header"
-                                                            TextElement.Foreground="{TemplateBinding Foreground}"
-                                                            TextElement.FontSize="{TemplateBinding FontSize}"
-                                                            TextElement.FontWeight="{TemplateBinding FontWeight}"
-                                                            Margin="5,0" />
-                                                        </Border>
-                                                    </Grid>
-                                                </ControlTemplate>
-                                            </Setter.Value>
-                                        </Setter>
-                                    </Style>
-                                </GroupBox.Style>
                                 <Grid>
                                     <TextBlock Text="OFP文件：" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="-8,0,0,0"/>
                                     <TextBox x:Name="OfpFilePathTextBox" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="51,-4,0,0" BorderBrush="{StaticResource BorderSubtleBrush}" Width="273"/>
-                                    <Button x:Name="SelectOfpFileButton" Content="选择" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,-4,0,0" Width="85" Click="SelectOfpFileButton_Click" Background="{StaticResource BorderSubtleBrush}" BorderBrush="{StaticResource BorderSubtleBrush}" Foreground="White"/>
-                                    <ProgressBar x:Name="OfpExtractProgressBar" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="-8,32,0,0" Height="18" Minimum="0" Maximum="100" Value="0" Width="332"/>
-                                    <Button x:Name="StartOfpExtractButton" Content="开始解包" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,27,0,0" Width="85" Height="28" Click="StartOfpExtractButton_Click" Background="{StaticResource BorderSubtleBrush}" BorderBrush="{StaticResource BorderSubtleBrush}" Foreground="White"/>
+                                    <Button x:Name="SelectOfpFileButton" Content="选择" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,-4,0,0" Width="85" Click="SelectOfpFileButton_Click" Style="{StaticResource PageSecondaryButton}"/>
+                                    <ProgressBar x:Name="OfpExtractProgressBar" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="-8,32,0,0" Height="18" Minimum="0" Maximum="100" Value="0" Width="332" Style="{StaticResource PageProgress}"/>
+                                    <Button x:Name="StartOfpExtractButton" Content="开始解包" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,27,0,0" Width="85" Height="28" Click="StartOfpExtractButton_Click" Style="{StaticResource PageSecondaryButton}"/>
                                 </Grid>
                             </GroupBox>
-                            <GroupBox
+                            <GroupBox Style="{StaticResource AndroidGenGroupBoxStyle}"
                             Background="{StaticResource SurfaceBrush}"
                             Margin="0,101,0,0"
                             Padding="15"
@@ -6591,37 +6256,6 @@ Background="{StaticResource SurfaceTintBrush}"
                             VerticalAlignment="Top"
                             Panel.ZIndex="2">
 <GroupBox.Header><StackPanel Orientation="Horizontal" Background="Transparent"><svg:SvgViewbox Source="images/wendang.svg" Width="15" Height="15" Margin="0,0,7,0" VerticalAlignment="Center"/><TextBlock Text="生成TXT线刷脚本" VerticalAlignment="Center"/></StackPanel></GroupBox.Header>
-                                <GroupBox.Style>
-                                    <Style TargetType="GroupBox">
-                                        <Setter Property="Template">
-                                            <Setter.Value>
-                                                <ControlTemplate TargetType="GroupBox">
-                                                    <Grid>
-                                                        <Border
-                                                        Background="{TemplateBinding Background}"
-                                                        BorderBrush="{TemplateBinding BorderBrush}"
-                                                        BorderThickness="{TemplateBinding BorderThickness}"
-                                                        CornerRadius="8">
-                                                            <ContentPresenter TextElement.Foreground="{TemplateBinding Foreground}" Margin="{TemplateBinding Padding}" />
-                                                        </Border>
-                                                        <Border
-                                                        Background="{TemplateBinding Background}"
-                                                        Margin="10,-8,0,0"
-                                                        HorizontalAlignment="Left"
-                                                        VerticalAlignment="Top">
-                                                            <ContentPresenter
-                                                            ContentSource="Header"
-                                                            TextElement.Foreground="{TemplateBinding Foreground}"
-                                                            TextElement.FontSize="{TemplateBinding FontSize}"
-                                                            TextElement.FontWeight="{TemplateBinding FontWeight}"
-                                                            Margin="5,0" />
-                                                        </Border>
-                                                    </Grid>
-                                                </ControlTemplate>
-                                            </Setter.Value>
-                                        </Setter>
-                                    </Style>
-                                </GroupBox.Style>
                                 <Grid>
                                     <TextBlock HorizontalAlignment="Left" Margin="-8,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="0.477,0.596">
                                     <Run Language="zh-cn" Text="镜像目录："/>
@@ -6635,11 +6269,11 @@ Background="{StaticResource SurfaceTintBrush}"
                                             </StackPanel>
                                         </Button.Content>
                                     </Button>
-                                    <Button x:Name="GenerateFlashScriptButton" Content="开始生成" HorizontalAlignment="Left" Margin="253,36,0,0" VerticalAlignment="Top" Width="85" Click="GenerateFlashScriptButton_Click" Background="{StaticResource BorderSubtleBrush}" BorderBrush="{StaticResource BorderSubtleBrush}" Foreground="White"/>
+                                    <Button x:Name="GenerateFlashScriptButton" Content="开始生成" HorizontalAlignment="Left" Margin="253,36,0,0" VerticalAlignment="Top" Width="85" Click="GenerateFlashScriptButton_Click" Style="{StaticResource PageSecondaryButton}"/>
                                     <CheckBox Content="排除敏感文件" HorizontalAlignment="Left" Margin="-8,42,0,0" VerticalAlignment="Top" Checked="CheckBox_Checked_3" IsChecked="True" ToolTip="排除绑定指纹和基带的关键分区"/>
                                 </Grid>
                             </GroupBox>
-                            <GroupBox
+                            <GroupBox Style="{StaticResource AndroidGenGroupBoxStyle}"
                             Background="{StaticResource SurfaceBrush}"
                             Margin="390,101,0,0"
                             Padding="15"
@@ -6652,46 +6286,15 @@ Background="{StaticResource SurfaceTintBrush}"
                             VerticalAlignment="Top"
                             Panel.ZIndex="2">
 <GroupBox.Header><StackPanel Orientation="Horizontal" Background="Transparent"><svg:SvgViewbox Source="images/yasuobao.svg" Width="15" Height="15" Margin="0,0,7,0" VerticalAlignment="Center"/><TextBlock Text="解包OPS" VerticalAlignment="Center"/></StackPanel></GroupBox.Header>
-                                <GroupBox.Style>
-                                    <Style TargetType="GroupBox">
-                                        <Setter Property="Template">
-                                            <Setter.Value>
-                                                <ControlTemplate TargetType="GroupBox">
-                                                    <Grid>
-                                                        <Border
-                                                        Background="{TemplateBinding Background}"
-                                                        BorderBrush="{TemplateBinding BorderBrush}"
-                                                        BorderThickness="{TemplateBinding BorderThickness}"
-                                                        CornerRadius="8">
-                                                            <ContentPresenter TextElement.Foreground="{TemplateBinding Foreground}" Margin="{TemplateBinding Padding}" />
-                                                        </Border>
-                                                        <Border
-                                                        Background="{TemplateBinding Background}"
-                                                        Margin="10,-8,0,0"
-                                                        HorizontalAlignment="Left"
-                                                        VerticalAlignment="Top">
-                                                            <ContentPresenter
-                                                            ContentSource="Header"
-                                                            TextElement.Foreground="{TemplateBinding Foreground}"
-                                                            TextElement.FontSize="{TemplateBinding FontSize}"
-                                                            TextElement.FontWeight="{TemplateBinding FontWeight}"
-                                                            Margin="5,0" />
-                                                        </Border>
-                                                    </Grid>
-                                                </ControlTemplate>
-                                            </Setter.Value>
-                                        </Setter>
-                                    </Style>
-                                </GroupBox.Style>
                                 <Grid>
                                     <TextBlock Text="OPS文件：" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="-8,0,0,0"/>
                                     <TextBox x:Name="OpsFilePathTextBox" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="51,-4,0,0" BorderBrush="{StaticResource BorderSubtleBrush}" Width="273"/>
-                                    <Button x:Name="SelectOpsFileButton" Content="选择" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,-4,0,0" Width="85" Click="SelectOpsFileButton_Click" Background="{StaticResource BorderSubtleBrush}" BorderBrush="{StaticResource BorderSubtleBrush}" Foreground="White"/>
-                                    <ProgressBar x:Name="OpsExtractProgressBar" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="-8,32,0,0" Height="18" Minimum="0" Maximum="100" Value="0" Width="332"/>
-                                    <Button x:Name="StartOpsExtractButton" Content="开始解包" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,27,0,0" Width="85" Height="28" Click="StartOpsExtractButton_Click" Background="{StaticResource BorderSubtleBrush}" BorderBrush="{StaticResource BorderSubtleBrush}" Foreground="White"/>
+                                    <Button x:Name="SelectOpsFileButton" Content="选择" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,-4,0,0" Width="85" Click="SelectOpsFileButton_Click" Style="{StaticResource PageSecondaryButton}"/>
+                                    <ProgressBar x:Name="OpsExtractProgressBar" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="-8,32,0,0" Height="18" Minimum="0" Maximum="100" Value="0" Width="332" Style="{StaticResource PageProgress}"/>
+                                    <Button x:Name="StartOpsExtractButton" Content="开始解包" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,27,0,0" Width="85" Height="28" Click="StartOpsExtractButton_Click" Style="{StaticResource PageSecondaryButton}"/>
                                 </Grid>
                             </GroupBox>
-                            <GroupBox
+                            <GroupBox Style="{StaticResource AndroidGenGroupBoxStyle}"
                             Background="{StaticResource SurfaceBrush}"
                             Margin="0,214,0,0"
                             Padding="15"
@@ -6706,37 +6309,6 @@ Background="{StaticResource SurfaceTintBrush}"
                             VerticalAlignment="Top"
                             Panel.ZIndex="2">
 <GroupBox.Header><StackPanel Orientation="Horizontal" Background="Transparent"><svg:SvgViewbox Source="images/shandian.svg" Width="15" Height="15" Margin="0,0,7,0" VerticalAlignment="Center"/><TextBlock Text="安卓通用卡刷转线刷" VerticalAlignment="Center"/></StackPanel></GroupBox.Header>
-                                <GroupBox.Style>
-                                    <Style TargetType="GroupBox">
-                                        <Setter Property="Template">
-                                            <Setter.Value>
-                                                <ControlTemplate TargetType="GroupBox">
-                                                    <Grid>
-                                                        <Border
-                                                        Background="{TemplateBinding Background}"
-                                                        BorderBrush="{TemplateBinding BorderBrush}"
-                                                        BorderThickness="{TemplateBinding BorderThickness}"
-                                                        CornerRadius="8">
-                                                            <ContentPresenter TextElement.Foreground="{TemplateBinding Foreground}" Margin="{TemplateBinding Padding}" />
-                                                        </Border>
-                                                        <Border
-                                                        Background="{TemplateBinding Background}"
-                                                        Margin="10,-8,0,0"
-                                                        HorizontalAlignment="Left"
-                                                        VerticalAlignment="Top">
-                                                            <ContentPresenter
-                                                            ContentSource="Header"
-                                                            TextElement.Foreground="{TemplateBinding Foreground}"
-                                                            TextElement.FontSize="{TemplateBinding FontSize}"
-                                                            TextElement.FontWeight="{TemplateBinding FontWeight}"
-                                                            Margin="5,0" />
-                                                        </Border>
-                                                    </Grid>
-                                                </ControlTemplate>
-                                            </Setter.Value>
-                                        </Setter>
-                                    </Style>
-                                </GroupBox.Style>
                                 <Grid>
                                     <TextBlock HorizontalAlignment="Left" Margin="-8,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run Text="解包后的文件夹"/><Run Language="zh-cn" Text="："/></TextBlock>
                                     <TextBox x:Name="UnpackedFolderTextBox" HorizontalAlignment="Left" Margin="90,-4,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="154" BorderBrush="{StaticResource BorderSubtleBrush}"/>
@@ -6754,7 +6326,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                     <CheckBox Content="自动重启" HorizontalAlignment="Left" Margin="79,39,0,0" VerticalAlignment="Top"/>
                                 </Grid>
                             </GroupBox>
-                            <GroupBox
+                            <GroupBox Style="{StaticResource AndroidGenGroupBoxStyle}"
                             Background="{StaticResource SurfaceBrush}"
                             Margin="390,214,0,0"
                             Padding="15"
@@ -6767,37 +6339,6 @@ Background="{StaticResource SurfaceTintBrush}"
                             VerticalAlignment="Top"
                             Panel.ZIndex="2">
 <GroupBox.Header><StackPanel Orientation="Horizontal" Background="Transparent"><svg:SvgViewbox Source="images/geshihuasdka.svg" Width="15" Height="15" Margin="0,0,7,0" VerticalAlignment="Center"/><TextBlock Text="合并OFP分段Super" VerticalAlignment="Center"/></StackPanel></GroupBox.Header>
-                                <GroupBox.Style>
-                                    <Style TargetType="GroupBox">
-                                        <Setter Property="Template">
-                                            <Setter.Value>
-                                                <ControlTemplate TargetType="GroupBox">
-                                                    <Grid>
-                                                        <Border
-                                                        Background="{TemplateBinding Background}"
-                                                        BorderBrush="{TemplateBinding BorderBrush}"
-                                                        BorderThickness="{TemplateBinding BorderThickness}"
-                                                        CornerRadius="8">
-                                                            <ContentPresenter TextElement.Foreground="{TemplateBinding Foreground}" Margin="{TemplateBinding Padding}" />
-                                                        </Border>
-                                                        <Border
-                                                        Background="{TemplateBinding Background}"
-                                                        Margin="10,-8,0,0"
-                                                        HorizontalAlignment="Left"
-                                                        VerticalAlignment="Top">
-                                                            <ContentPresenter
-                                                            ContentSource="Header"
-                                                            TextElement.Foreground="{TemplateBinding Foreground}"
-                                                            TextElement.FontSize="{TemplateBinding FontSize}"
-                                                            TextElement.FontWeight="{TemplateBinding FontWeight}"
-                                                            Margin="5,0" />
-                                                        </Border>
-                                                    </Grid>
-                                                </ControlTemplate>
-                                            </Setter.Value>
-                                        </Setter>
-                                    </Style>
-                                </GroupBox.Style>
                                 <Grid>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="64"/>
@@ -6836,7 +6377,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                     Foreground="White" Width="85"/>
                                 </Grid>
                             </GroupBox>
-                            <GroupBox
+                            <GroupBox Style="{StaticResource AndroidGenGroupBoxStyle}"
                             Background="{StaticResource SurfaceBrush}"
                             Margin="1,327,0,0"
                             Padding="15"
@@ -6850,37 +6391,6 @@ Background="{StaticResource SurfaceTintBrush}"
                             HorizontalAlignment="Left"
                             VerticalAlignment="Top">
 <GroupBox.Header><StackPanel Orientation="Horizontal" Background="Transparent"><svg:SvgViewbox Source="images/zhongqi.svg" Width="15" Height="15" Margin="0,0,7,0" VerticalAlignment="Center"/><TextBlock Text="Twrp_Recovery" VerticalAlignment="Center"/></StackPanel></GroupBox.Header>
-                                <GroupBox.Style>
-                                    <Style TargetType="GroupBox">
-                                        <Setter Property="Template">
-                                            <Setter.Value>
-                                                <ControlTemplate TargetType="GroupBox">
-                                                    <Grid>
-                                                        <Border
-                                                        Background="{TemplateBinding Background}"
-                                                        BorderBrush="{TemplateBinding BorderBrush}"
-                                                        BorderThickness="{TemplateBinding BorderThickness}"
-                                                        CornerRadius="8">
-                                                            <ContentPresenter TextElement.Foreground="{TemplateBinding Foreground}" Margin="{TemplateBinding Padding}" />
-                                                        </Border>
-                                                        <Border
-                                                        Background="{TemplateBinding Background}"
-                                                        Margin="10,-8,0,0"
-                                                        HorizontalAlignment="Left"
-                                                        VerticalAlignment="Top">
-                                                            <ContentPresenter
-                                                            ContentSource="Header"
-                                                            TextElement.Foreground="{TemplateBinding Foreground}"
-                                                            TextElement.FontSize="{TemplateBinding FontSize}"
-                                                            TextElement.FontWeight="{TemplateBinding FontWeight}"
-                                                            Margin="5,0" />
-                                                        </Border>
-                                                    </Grid>
-                                                </ControlTemplate>
-                                            </Setter.Value>
-                                        </Setter>
-                                    </Style>
-                                </GroupBox.Style>
                                 <Button Content="读分区表" HorizontalAlignment="Left" Margin="86,36,0,0" VerticalAlignment="Top" Click="Button_Click_1" Width="85" Foreground="White" BorderBrush="{StaticResource BorderSubtleBrush}" Background="{StaticResource BorderSubtleBrush}"/>
                             </GroupBox>
                             <RichTextBox x:Name="SuperPackLogRichTextBox" Margin="390,327,0,10" TextChanged="RichTextBox_TextChanged" CaretBrush="White" BorderBrush="{StaticResource BorderSubtleBrush}">
@@ -6894,8 +6404,8 @@ Background="{StaticResource SurfaceTintBrush}"
                             <ComboBox x:Name="ReadPartitionComboBox" HorizontalAlignment="Left" Margin="113,0,0,0" VerticalAlignment="Center" Width="239" IsEditable="True" IsReadOnly="True" Text="等待用户读取分区表..." BorderBrush="{StaticResource BorderSubtleBrush}"/>
                             <Button Content="回读分区" HorizontalAlignment="Left" Margin="282,378,0,0" VerticalAlignment="Top" Width="85" Click="ReadOutPartitionButton_Click_New" BorderBrush="{StaticResource BorderSubtleBrush}" Background="{StaticResource BorderSubtleBrush}" Foreground="White"/>
                             <Button Content="推送卡刷包" HorizontalAlignment="Left" Margin="10,378,0,0" VerticalAlignment="Top" Width="85" Click="PushZipToSdcardButton_Click" BorderBrush="{StaticResource BorderSubtleBrush}" Background="{StaticResource BorderSubtleBrush}" Foreground="White"/>
-                            <Button Content="写入分区" HorizontalAlignment="Left" Margin="192,378,0,0" VerticalAlignment="Top" Width="85" Click="WriteSelectedPartitionButton_Click" Background="{StaticResource BorderSubtleBrush}" BorderBrush="{StaticResource BorderSubtleBrush}" Foreground="White"/>
-                            <GroupBox
+                            <Button Content="写入分区" HorizontalAlignment="Left" Margin="192,378,0,0" VerticalAlignment="Top" Width="85" Click="WriteSelectedPartitionButton_Click" Style="{StaticResource PageSecondaryButton}"/>
+                            <GroupBox Style="{StaticResource AndroidGenGroupBoxStyle}"
                             Background="{StaticResource SurfaceBrush}"
                             Margin="0,432,0,0"
                             Padding="15"
@@ -6909,37 +6419,6 @@ Background="{StaticResource SurfaceTintBrush}"
                             HorizontalAlignment="Left"
                             VerticalAlignment="Top">
 <GroupBox.Header><StackPanel Orientation="Horizontal" Background="Transparent"><svg:SvgViewbox Source="images/xiufu.svg" Width="15" Height="15" Margin="0,0,7,0" VerticalAlignment="Center"/><TextBlock Text="OCDT生成" VerticalAlignment="Center"/></StackPanel></GroupBox.Header>
-                                <GroupBox.Style>
-                                    <Style TargetType="GroupBox">
-                                        <Setter Property="Template">
-                                            <Setter.Value>
-                                                <ControlTemplate TargetType="GroupBox">
-                                                    <Grid>
-                                                        <Border
-                                                        Background="{TemplateBinding Background}"
-                                                        BorderBrush="{TemplateBinding BorderBrush}"
-                                                        BorderThickness="{TemplateBinding BorderThickness}"
-                                                        CornerRadius="8">
-                                                            <ContentPresenter TextElement.Foreground="{TemplateBinding Foreground}" Margin="{TemplateBinding Padding}" />
-                                                        </Border>
-                                                        <Border
-                                                        Background="{TemplateBinding Background}"
-                                                        Margin="10,-8,0,0"
-                                                        HorizontalAlignment="Left"
-                                                        VerticalAlignment="Top">
-                                                            <ContentPresenter
-                                                            ContentSource="Header"
-                                                            TextElement.Foreground="{TemplateBinding Foreground}"
-                                                            TextElement.FontSize="{TemplateBinding FontSize}"
-                                                            TextElement.FontWeight="{TemplateBinding FontWeight}"
-                                                            Margin="5,0" />
-                                                        </Border>
-                                                    </Grid>
-                                                </ControlTemplate>
-                                            </Setter.Value>
-                                        </Setter>
-                                    </Style>
-                                </GroupBox.Style>
                                 <Grid>
                                     <TextBlock HorizontalAlignment="Left" Margin="0,5,0,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run Language="zh-cn" Text="项目号"/><Run Text=":"/></TextBlock>
                                     <TextBox x:Name="OcdtProjIdTextBox" HorizontalAlignment="Left" Margin="48,0,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="290" BorderBrush="{StaticResource BorderSubtleBrush}" ToolTip="例如：23803"/>
@@ -6957,7 +6436,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                         <ComboBoxItem Content="geyixue_fill"/>
                                     </ComboBox>
 
-                                    <Button x:Name="GenerateOcdtButton" Content="生成 OCDT" HorizontalAlignment="Left" Margin="0,73,0,0" VerticalAlignment="Top" Width="338" Height="30" Click="GenerateOcdtButton_Click" Background="{StaticResource BorderSubtleBrush}" BorderBrush="{StaticResource BorderSubtleBrush}" Foreground="White"/>
+                                    <Button x:Name="GenerateOcdtButton" Content="生成 OCDT" HorizontalAlignment="Left" Margin="0,73,0,0" VerticalAlignment="Top" Width="338" Height="30" Click="GenerateOcdtButton_Click" Style="{StaticResource PageSecondaryButton}"/>
 
                                     <TextBlock HorizontalAlignment="Left" Margin="0,113,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="338" FontSize="11" Foreground="{StaticResource TextMutedBrush}" LineHeight="16"><Run Text="只需要选择你对应的处理器和项目和然后点击生成即可"/><Run Text="！"/><LineBreak/><Run/><Run Text="项目号如何获取？只需下载一个线刷包（售后包）并解压，然后找到线刷包中的version_info.txt文件，然后打开找到project=‘项目号’"/><Run Text="，将"/><Run Language="zh-cn" Text="项目号填入到此处点击生成."/></TextBlock>
                                 </Grid>
@@ -7190,7 +6669,7 @@ Background="{StaticResource SurfaceTintBrush}"
                             </Grid>
 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Row="2" Grid.Column="2" VerticalAlignment="Center">
 
-                                    <Button Name="ReadInfoButton" Width="90" Height="32" Margin="0,0,10,0" Content="读取信息" Click="ReadInfoButton_Click" Background="{StaticResource BorderBrush}" Foreground="White"/>
+                                    <Button Name="ReadInfoButton" Width="90" Height="32" Margin="0,0,10,0" Content="读取信息" Click="ReadInfoButton_Click" Style="{StaticResource DarkActionButtonStyle}"/>
                                     <Button Name="ExportButton" Width="89" Height="32" Margin="0,0,10,0" Content="提取镜像" Click="ExportButton_Click" Style="{StaticResource DarkActionButtonStyle}"/>
                                     <Button Name="StopOperationButton" Width="75" Height="32" Content="停止操作" Click="PayloadStopOperationButton_Click" Style="{StaticResource DarkActionButtonStyle}"/>
                                 
@@ -7209,58 +6688,6 @@ Background="{StaticResource SurfaceTintBrush}"
                                        BasedOn="{StaticResource PayloadGroupBoxStyle}">
                                     <Setter Property="Padding" Value="16,14,16,16"/>
                                     <Setter Property="FontSize" Value="13"/>
-                                    <Setter Property="BorderBrush" Value="{StaticResource BorderSubtleBrush}"/>
-                                </Style>
-                                <Style x:Key="RomFieldLabelStyle"
-                                       TargetType="{x:Type Label}"
-                                       BasedOn="{StaticResource {x:Type Label}}">
-                                    <Setter Property="Padding" Value="0"/>
-                                    <Setter Property="Margin" Value="0,0,10,0"/>
-                                    <Setter Property="VerticalAlignment" Value="Center"/>
-                                    <Setter Property="FontSize" Value="12"/>
-                                    <Setter Property="FontWeight" Value="SemiBold"/>
-                                    <Setter Property="Foreground" Value="{StaticResource TextSecondaryBrush}"/>
-                                </Style>
-                                <Style x:Key="RomComboBoxStyle"
-                                       TargetType="{x:Type ComboBox}"
-                                       BasedOn="{StaticResource {x:Type ComboBox}}">
-                                    <Setter Property="Height" Value="34"/>
-                                    <Setter Property="MinWidth" Value="110"/>
-                                    <Setter Property="FontSize" Value="12.5"/>
-                                    <Setter Property="FontWeight" Value="Medium"/>
-                                    <Setter Property="TextOptions.TextFormattingMode" Value="Display"/>
-                                </Style>
-                                <Style x:Key="RomTextBoxStyle"
-                                       TargetType="{x:Type TextBox}"
-                                       BasedOn="{StaticResource {x:Type TextBox}}">
-                                    <Setter Property="Height" Value="34"/>
-                                    <Setter Property="FontSize" Value="12"/>
-                                    <Setter Property="FontWeight" Value="Normal"/>
-                                    <Setter Property="Background" Value="#FFFFFFFF"/>
-                                </Style>
-                                <Style x:Key="RomPrimaryButtonStyle"
-                                       TargetType="{x:Type Button}"
-                                       BasedOn="{StaticResource PagePrimaryButton}">
-                                    <Setter Property="Height" Value="34"/>
-                                    <Setter Property="MinWidth" Value="124"/>
-                                    <Setter Property="Padding" Value="18,0"/>
-                                    <Setter Property="Foreground" Value="#FFFFFFFF"/>
-                                    <Setter Property="Background" Value="{StaticResource TextPrimaryBrush}"/>
-                                    <Setter Property="BorderBrush" Value="{StaticResource BorderSubtleBrush}"/>
-                                    <Setter Property="BorderThickness" Value="1"/>
-                                </Style>
-                                <Style x:Key="RomSecondaryButtonStyle"
-                                       TargetType="{x:Type Button}"
-                                       BasedOn="{StaticResource PagePrimaryButton}">
-                                    <Setter Property="Foreground" Value="#FFFFFFFF"/>
-                                    <Setter Property="Background" Value="{StaticResource TextPrimaryBrush}"/>
-                                    <Setter Property="BorderBrush" Value="{StaticResource BorderSubtleBrush}"/>
-                                </Style>
-                                <Style x:Key="RomDangerButtonStyle"
-                                       TargetType="{x:Type Button}"
-                                       BasedOn="{StaticResource PagePrimaryButton}">
-                                    <Setter Property="Foreground" Value="#FFFFFFFF"/>
-                                    <Setter Property="Background" Value="{StaticResource TextPrimaryBrush}"/>
                                     <Setter Property="BorderBrush" Value="{StaticResource BorderSubtleBrush}"/>
                                 </Style>
                                 <Style x:Key="RomVersionDropDownItemStyle" TargetType="ComboBoxItem">
@@ -7346,7 +6773,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                         <ColumnDefinition Width="1.35*"/>
                                     </Grid.ColumnDefinitions>
 
-                                    <Label Grid.Row="0" Grid.Column="0" Content="品牌：" Style="{StaticResource PageLabelCtl}" BorderBrush="White"/>
+                                    <Label Grid.Row="0" Grid.Column="0" Content="品牌：" Style="{StaticResource PageLabelCtl}"/>
                                     <ComboBox x:Name="RomBrandComboBox"
                                               Grid.Row="0"
                                               Grid.Column="1"
@@ -7361,14 +6788,14 @@ Background="{StaticResource SurfaceTintBrush}"
                                         <ComboBoxItem Content="魅族"/>
                                     </ComboBox>
 
-                                    <Label Grid.Row="0" Grid.Column="3" Content="系列：" Style="{StaticResource PageLabelCtl}" BorderBrush="White"/>
+                                    <Label Grid.Row="0" Grid.Column="3" Content="系列：" Style="{StaticResource PageLabelCtl}"/>
                                     <ComboBox x:Name="RomSeriesComboBox"
                                               Grid.Row="0"
                                               Grid.Column="4"
                                               Style="{StaticResource PageComboBox}"
                                               SelectionChanged="RomSeriesComboBox_SelectionChanged"/>
 
-                                    <Label Grid.Row="0" Grid.Column="6" Content="机型：" Style="{StaticResource PageLabelCtl}" BorderBrush="White"/>
+                                    <Label Grid.Row="0" Grid.Column="6" Content="机型：" Style="{StaticResource PageLabelCtl}"/>
                                     <ComboBox x:Name="RomDeviceComboBox"
                                               Grid.Row="0"
                                               Grid.Column="7"
@@ -7376,7 +6803,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                               MinWidth="146"
                                               SelectionChanged="RomDeviceComboBox_SelectionChanged"/>
 
-                                    <Label Grid.Row="1" Grid.Column="0" Margin="0,14,10,0" Content="版本：" Style="{StaticResource PageLabelCtl}" BorderBrush="White"/>
+                                    <Label Grid.Row="1" Grid.Column="0" Margin="0,14,10,0" Content="版本：" Style="{StaticResource PageLabelCtl}"/>
                                     <ComboBox x:Name="RomVersionComboBox"
                                               Grid.Row="1"
                                               Grid.Column="1"
@@ -7389,7 +6816,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                               ItemContainerStyle="{StaticResource RomVersionDropDownItemStyle}"
                                               SelectionChanged="RomVersionComboBox_SelectionChanged"/>
 
-                                    <Label Grid.Row="1" Grid.Column="6" Margin="0,14,10,0" Content="分区：" Style="{StaticResource PageLabelCtl}" BorderBrush="White"/>
+                                    <Label Grid.Row="1" Grid.Column="6" Margin="0,14,10,0" Content="分区：" Style="{StaticResource PageLabelCtl}"/>
                                     <ComboBox x:Name="RomPartitionComboBox"
                                               Grid.Row="1"
                                               Grid.Column="7"
@@ -7403,7 +6830,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                         <ComboBoxItem Content="vendor_boot"/>
                                     </ComboBox>
 
-                                    <Label Grid.Row="2" Grid.Column="0" Margin="0,14,10,0" Content="路径：" Style="{StaticResource PageLabelCtl}" BorderBrush="White"/>
+                                    <Label Grid.Row="2" Grid.Column="0" Margin="0,14,10,0" Content="路径：" Style="{StaticResource PageLabelCtl}"/>
                                     <Grid Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="7" Margin="0,14,0,0">
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*"/>
@@ -7512,7 +6939,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                         <ColumnDefinition Width="1.35*"/>
                                     </Grid.ColumnDefinitions>
 
-                                    <Label Grid.Row="0" Grid.Column="0" Content="品牌：" Style="{StaticResource PageLabelCtl}" BorderBrush="White"/>
+                                    <Label Grid.Row="0" Grid.Column="0" Content="品牌：" Style="{StaticResource PageLabelCtl}"/>
                                     <ComboBox x:Name="RomSelectBrandComboBox"
                                               Grid.Row="0"
                                               Grid.Column="1"
@@ -7527,14 +6954,14 @@ Background="{StaticResource SurfaceTintBrush}"
                                         <ComboBoxItem Content="魅族"/>
                                     </ComboBox>
 
-                                    <Label Grid.Row="0" Grid.Column="3" Content="系列：" Style="{StaticResource PageLabelCtl}" BorderBrush="White"/>
+                                    <Label Grid.Row="0" Grid.Column="3" Content="系列：" Style="{StaticResource PageLabelCtl}"/>
                                     <ComboBox x:Name="RomSelectSeriesComboBox"
                                               Grid.Row="0"
                                               Grid.Column="4"
                                               Style="{StaticResource PageComboBox}"
                                               SelectionChanged="RomSelectSeriesComboBox_SelectionChanged"/>
 
-                                    <Label Grid.Row="0" Grid.Column="6" Content="机型：" Style="{StaticResource PageLabelCtl}" BorderBrush="White"/>
+                                    <Label Grid.Row="0" Grid.Column="6" Content="机型：" Style="{StaticResource PageLabelCtl}"/>
                                     <ComboBox x:Name="RomSelectDeviceComboBox"
                                               Grid.Row="0"
                                               Grid.Column="7"
@@ -7542,7 +6969,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                               MinWidth="146"
                                               SelectionChanged="RomSelectDeviceComboBox_SelectionChanged"/>
 
-                                    <Label Grid.Row="1" Grid.Column="0" Margin="0,14,10,0" Content="版本：" Style="{StaticResource PageLabelCtl}" BorderBrush="White"/>
+                                    <Label Grid.Row="1" Grid.Column="0" Margin="0,14,10,0" Content="版本：" Style="{StaticResource PageLabelCtl}"/>
                                     <ComboBox x:Name="RomSelectVersionComboBox"
                                               Grid.Row="1"
                                               Grid.Column="1"
@@ -7555,7 +6982,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                               ItemContainerStyle="{StaticResource RomVersionDropDownItemStyle}"
                                               SelectionChanged="RomSelectVersionComboBox_SelectionChanged"/>
 
-                                    <Label Grid.Row="1" Grid.Column="6" Margin="0,14,10,0" Content="类型：" Style="{StaticResource PageLabelCtl}" BorderBrush="White"/>
+                                    <Label Grid.Row="1" Grid.Column="6" Margin="0,14,10,0" Content="类型：" Style="{StaticResource PageLabelCtl}"/>
                                     <ComboBox x:Name="RomSelectPackageTypeComboBox"
                                               Grid.Row="1"
                                               Grid.Column="7"
@@ -7625,7 +7052,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                         <ColumnDefinition Width="Auto"/>
                                     </Grid.ColumnDefinitions>
 
-                                    <Label Grid.Row="0" Grid.Column="0" Content="预设机型：" Style="{StaticResource PageLabelCtl}" BorderBrush="White"/>
+                                    <Label Grid.Row="0" Grid.Column="0" Content="预设机型：" Style="{StaticResource PageLabelCtl}"/>
                                     <ComboBox x:Name="LenovoPresetModelComboBox"
                                               Grid.Row="0"
                                               Grid.Column="1"
@@ -7638,7 +7065,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                         <ComboBoxItem Content="Y700五代" Tag="ZAH20097CN"/>
                                     </ComboBox>
 
-                                    <Label Grid.Row="0" Grid.Column="3" Content="SN/MTM：" Style="{StaticResource PageLabelCtl}" BorderBrush="White"/>
+                                    <Label Grid.Row="0" Grid.Column="3" Content="SN/MTM：" Style="{StaticResource PageLabelCtl}"/>
                                     <TextBox x:Name="LenovoQueryInputTextBox"
                                              Grid.Row="0"
                                              Grid.Column="4"
@@ -7708,7 +7135,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                         <TextBlock Style="{StaticResource PageTitle}" Text="EDL 刷写" FontSize="22"/>
                                         <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
                                             <TextBlock Text="9008 端口：" Style="{StaticResource MutedText12Style}" VerticalAlignment="Center"/>
-                                            <TextBlock x:Name="EdlPortStatusText" Text="未检测到" FontSize="12" Foreground="#FFD63333" VerticalAlignment="Center" FontWeight="SemiBold"/>
+                                            <TextBlock x:Name="EdlPortStatusText" Text="未检测到" FontSize="12" Foreground="{StaticResource DangerBrush}" VerticalAlignment="Center" FontWeight="SemiBold"/>
                                         </StackPanel>
                                     </StackPanel>
                                 </StackPanel>
@@ -7873,7 +7300,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                             <TextBlock Style="{StaticResource PageTitle}" Text="日志"/>
                                             <Button x:Name="EdlClearLogButton" Content="清空" Style="{StaticResource PageSecondaryButton}" Height="28" Margin="14,0,0,0" Click="EdlClearLog_Click"/>
                                         </StackPanel>
-                                        <TextBox x:Name="EdlLogTextBox" Height="130" IsReadOnly="True" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" FontFamily="Consolas" FontSize="12" Background="{StaticResource SurfaceTintBrush}" BorderBrush="{StaticResource BorderSubtleBrush}" BorderThickness="1" Padding="8"/>
+                                        <TextBox x:Name="EdlLogTextBox" Height="130" IsReadOnly="True" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" FontFamily="Cascadia Mono,Noto Sans SC,Consolas" FontSize="12" Background="{StaticResource SurfaceTintBrush}" BorderBrush="{StaticResource BorderSubtleBrush}" BorderThickness="1" Padding="8"/>
                                     </StackPanel>
                                 </Border>
 
@@ -7892,30 +7319,6 @@ Background="{StaticResource SurfaceTintBrush}"
                         Background="{StaticResource SurfaceTintBrush}">
 <!-- MONO_PAGE_MARKER_ColorOSAssistantView -->
     <Grid.Resources>
-                                <Style x:Key="ColorOSCardStyle" TargetType="Border">
-                                    <Setter Property="Background" Value="#FFFFFFFF"/>
-                                    <Setter Property="CornerRadius" Value="8"/>
-                                    <Setter Property="Padding" Value="12"/>
-                                    <Setter Property="BorderBrush" Value="{StaticResource BorderSubtleBrush}"/>
-                                    <Setter Property="BorderThickness" Value="1"/>
-                                </Style>
-                                <Style x:Key="ColorOSTitleStyle" TargetType="TextBlock">
-                                    <Setter Property="FontSize" Value="14"/>
-                                    <Setter Property="FontWeight" Value="SemiBold"/>
-                                    <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
-                                </Style>
-                                <Style x:Key="ColorOSSubtitleStyle" TargetType="TextBlock">
-                                    <Setter Property="FontSize" Value="11.5"/>
-                                    <Setter Property="Foreground" Value="{StaticResource TextMutedBrush}"/>
-                                    <Setter Property="TextWrapping" Value="Wrap"/>
-                                    <Setter Property="LineHeight" Value="18"/>
-                                </Style>
-                                <Style x:Key="ColorOSFieldLabelStyle" TargetType="TextBlock">
-                                    <Setter Property="FontSize" Value="12"/>
-                                    <Setter Property="FontWeight" Value="SemiBold"/>
-                                    <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
-                                    <Setter Property="Margin" Value="0,0,0,5"/>
-                                </Style>
                                 <Style x:Key="ColorOSCenteredDataTextStyle" TargetType="{x:Type TextBlock}">
                                     <Setter Property="HorizontalAlignment" Value="Stretch"/>
                                     <Setter Property="VerticalAlignment" Value="Center"/>
@@ -7944,59 +7347,6 @@ Background="{StaticResource SurfaceTintBrush}"
                                     <Setter Property="HorizontalContentAlignment" Value="Left"/>
                                     <Setter Property="Padding" Value="7,0,0,0"/>
                                 </Style>
-                                <Style x:Key="ColorOSPathTextBoxStyle"
-                                       TargetType="{x:Type TextBox}"
-                                       BasedOn="{StaticResource {x:Type TextBox}}">
-                                    <Setter Property="Height" Value="32"/>
-                                    <Setter Property="Background" Value="White"/>
-                                    <Setter Property="FontSize" Value="12"/>
-                                    <Setter Property="FontWeight" Value="Normal"/>
-                                    <Setter Property="Padding" Value="8,0"/>
-                                    <Setter Property="TextWrapping" Value="NoWrap"/>
-                                    <Setter Property="VerticalContentAlignment" Value="Center"/>
-                                </Style>
-                                <Style x:Key="ColorOSPrimaryButtonStyle"
-                                       TargetType="{x:Type Button}"
-                                       BasedOn="{StaticResource FastbootButtonBaseStyle}">
-                                    <Setter Property="Height" Value="36"/>
-                                    <Setter Property="Foreground" Value="White"/>
-                                    <Setter Property="Background" Value="{StaticResource TextPrimaryBrush}"/>
-                                    <Setter Property="BorderBrush" Value="{StaticResource TextPrimaryBrush}"/>
-                                    <Setter Property="FontSize" Value="13"/>
-                                    <Setter Property="FontWeight" Value="SemiBold"/>
-                                    <Setter Property="Padding" Value="12,0"/>
-                                </Style>
-                                <Style x:Key="ColorOSSecondaryButtonStyle" TargetType="Button" BasedOn="{StaticResource PagePrimaryButton}">
-                                    <Setter Property="Background" Value="{StaticResource SurfaceTintBrush}"/>
-                                    <Setter Property="BorderBrush" Value="{StaticResource BorderSubtleBrush}"/>
-                                    <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
-                                </Style>
-                                <Style x:Key="ColorOSTertiaryButtonStyle" TargetType="Button" BasedOn="{StaticResource PagePrimaryButton}">
-                                    <Setter Property="Background" Value="{StaticResource SurfaceTintBrush}"/>
-                                    <Setter Property="BorderBrush" Value="{StaticResource BorderSubtleBrush}"/>
-                                    <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
-                                </Style>
-                                <Style x:Key="ColorOSGridActionButtonStyle"
-                                       TargetType="{x:Type Button}"
-                                       BasedOn="{StaticResource FastbootButtonBaseStyle}">
-                                    <Setter Property="Height" Value="24"/>
-                                    <Setter Property="MinWidth" Value="76"/>
-                                    <Setter Property="Padding" Value="9,0"/>
-                                    <Setter Property="HorizontalAlignment" Value="Center"/>
-                                    <Setter Property="Background" Value="#FFFFFFFF"/>
-                                    <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
-                                    <Setter Property="BorderBrush" Value="{StaticResource BorderBrush}"/>
-                                    <Setter Property="BorderThickness" Value="1"/>
-                                    <Setter Property="FontSize" Value="11.5"/>
-                                    <Setter Property="FontWeight" Value="Medium"/>
-                                </Style>
-                                <Style x:Key="ColorOSPackageCheckBoxStyle"
-                                       TargetType="{x:Type CheckBox}"
-                                       BasedOn="{StaticResource {x:Type CheckBox}}">
-                                    <Setter Property="HorizontalAlignment" Value="Center"/>
-                                    <Setter Property="VerticalAlignment" Value="Center"/>
-                                    <Setter Property="Cursor" Value="Hand"/>
-                                </Style>
                                 <Style x:Key="ColorOSLogGroupBoxStyle"
                                        TargetType="{x:Type GroupBox}"
                                        BasedOn="{StaticResource PayloadGroupBoxStyle}">
@@ -8011,54 +7361,6 @@ Background="{StaticResource SurfaceTintBrush}"
                                     <Setter Property="Effect">
                                         <Setter.Value>
                                             <DropShadowEffect BlurRadius="12" ShadowDepth="1.5" Opacity="0.08" Color="#FF000000" Direction="270"/>
-                                        </Setter.Value>
-                                    </Setter>
-                                </Style>
-                                <Style x:Key="ColorOSProgressBarStyle" TargetType="{x:Type ProgressBar}">
-                                    <Setter Property="SnapsToDevicePixels" Value="True"/>
-                                    <Setter Property="Template">
-                                        <Setter.Value>
-                                            <ControlTemplate TargetType="{x:Type ProgressBar}">
-                                                <Border Background="{TemplateBinding Background}"
-                                                        BorderBrush="{TemplateBinding BorderBrush}"
-                                                        BorderThickness="{TemplateBinding BorderThickness}"
-                                                        CornerRadius="4">
-                                                    <Grid ClipToBounds="True">
-                                                        <Border Background="{TemplateBinding Background}" CornerRadius="4"/>
-                                                        <Border x:Name="PART_Indicator"
-                                                                HorizontalAlignment="Left"
-                                                                CornerRadius="4">
-                                                            <Border.Width>
-                                                                <MultiBinding Converter="{StaticResource ProgressBarIndicatorWidthConverter}">
-                                                                    <Binding Path="Value" RelativeSource="{RelativeSource TemplatedParent}"/>
-                                                                    <Binding Path="Maximum" RelativeSource="{RelativeSource TemplatedParent}"/>
-                                                                    <Binding Path="ActualWidth" RelativeSource="{RelativeSource TemplatedParent}"/>
-                                                                </MultiBinding>
-                                                            </Border.Width>
-                                                            <Border.Background>
-                                                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
-                                                                    <GradientStop Offset="0" Color="{StaticResource Gray900}"/>
-                                                                    <GradientStop Offset="1" Color="{StaticResource Gray900}"/>
-                                                                </LinearGradientBrush>
-                                                            </Border.Background>
-                                                        </Border>
-                                                        <TextBlock Text="{Binding Tag, RelativeSource={RelativeSource TemplatedParent}}"
-                                                                   HorizontalAlignment="Left"
-                                                                   VerticalAlignment="Center"
-                                                                   Margin="8,0,0,0"
-                                                                   FontSize="12"
-                                                                   Foreground="{StaticResource TextStrongBrush}"
-                                                                   FontWeight="Medium"/>
-                                                        <TextBlock Text="{Binding Value, RelativeSource={RelativeSource TemplatedParent}, StringFormat={}{0:0.0}%}"
-                                                                   HorizontalAlignment="Right"
-                                                                   VerticalAlignment="Center"
-                                                                   Margin="0,0,8,0"
-                                                                   FontSize="12"
-                                                                   Foreground="{StaticResource TextStrongBrush}"
-                                                                   FontWeight="Medium"/>
-                                                    </Grid>
-                                                </Border>
-                                            </ControlTemplate>
                                         </Setter.Value>
                                     </Setter>
                                 </Style>
@@ -8470,9 +7772,9 @@ Background="{StaticResource SurfaceTintBrush}"
 
                                 <!-- 顶部工具栏 -->
                                 <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,15">
-                                    <Button x:Name="btnLoadImages" Content="🔄 加载图片" Width="100" Height="32" Click="BtnLoadImages_Click" IsEnabled="False"/>
+                                    <Button x:Name="btnLoadImages" Content="加载图片" Width="100" Height="32" Style="{StaticResource PageSecondaryButton}" Click="BtnLoadImages_Click" IsEnabled="False"/>
                                     <TextBlock Text="并发数:" VerticalAlignment="Center" Margin="10,0,5,0"/>
-                                    <ComboBox x:Name="cbThreadCount" Width="70" Height="32" SelectedIndex="4">
+                                    <ComboBox x:Name="cbThreadCount" Width="70" Height="32" Style="{StaticResource PageComboBox}" SelectedIndex="4">
                                         <ComboBoxItem Content="2"/>
                                         <ComboBoxItem Content="4"/>
                                         <ComboBoxItem Content="8"/>
@@ -8482,9 +7784,9 @@ Background="{StaticResource SurfaceTintBrush}"
                                         <ComboBoxItem Content="128"/>
                                         <ComboBoxItem Content="256"/>
                                     </ComboBox>
-                                    <Button x:Name="btnToggleSelectAll" Content="✓ 全选" Width="90" Height="32" Margin="20,0,0,0" Click="BtnToggleSelectAll_Click" IsEnabled="False"/>
-                                    <Button x:Name="btnBackup" Content="💾 备份选中图片" Width="130" Height="32" Margin="20,0,0,0" IsEnabled="False" Click="BtnBackup_Click"/>
-                                    <Button x:Name="btnRestoreContacts" Content="📥 恢复通讯录" Width="110" Height="32" Margin="20,0,0,0" IsEnabled="False" Visibility="Collapsed" Click="BtnRestoreContacts_Click"/>
+                                    <Button x:Name="btnToggleSelectAll" Content="全选" Width="90" Height="32" Margin="20,0,0,0" Style="{StaticResource PageSecondaryButton}" Click="BtnToggleSelectAll_Click" IsEnabled="False"/>
+                                    <Button x:Name="btnBackup" Content="备份选中图片" Width="130" Height="32" Margin="20,0,0,0" Style="{StaticResource PagePrimaryButton}" IsEnabled="False" Click="BtnBackup_Click"/>
+                                    <Button x:Name="btnRestoreContacts" Content="恢复通讯录" Width="110" Height="32" Margin="20,0,0,0" Style="{StaticResource PageSecondaryButton}" IsEnabled="False" Visibility="Collapsed" Click="BtnRestoreContacts_Click"/>
                                 </StackPanel>
 
                                 <!-- 相册网格视图 -->
@@ -8495,16 +7797,16 @@ Background="{StaticResource SurfaceTintBrush}"
                                 <!-- 底部状态栏 -->
                                 <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="0,15,0,0">
                                     <TextBlock x:Name="lblStatus" Text="正在检测设备..." Width="400" VerticalAlignment="Center"/>
-                                    <ProgressBar x:Name="progressBar" Width="350" Height="20" Margin="10,0,0,0" Visibility="Collapsed"/>
+                                    <ProgressBar x:Name="progressBar" Width="350" Height="20" Margin="10,0,0,0" Style="{StaticResource PageProgress}" Visibility="Collapsed"/>
                                 </StackPanel>
                             </Grid>
 
                             <!-- 右侧导航栏 -->
-                            <Border Grid.Column="2" BorderBrush="{StaticResource BorderSubtleBrush}" BorderThickness="1" Background="WhiteSmoke">
+                            <Border Grid.Column="2" BorderBrush="{StaticResource BorderSubtleBrush}" BorderThickness="1" Background="{StaticResource SurfaceBrush}">
                                 <StackPanel>
-                                    <Button x:Name="btnNavPhotos" Content=" 📷&#x0a;图片" Width="78" Height="80" Click="BtnNavPhotos_Click" FontSize="14" Background="{StaticResource BrandPrimaryBrush}" Foreground="White" BorderThickness="0"/>
-                                    <Button x:Name="btnNavVideos" Content=" 🎬&#x0a;视频" Width="78" Height="80" Click="BtnNavVideos_Click" FontSize="14" Margin="0,1,0,0" Background="{StaticResource SurfaceBrush}" Foreground="Black" BorderThickness="0"/>
-                                    <Button x:Name="btnNavContacts" Content="  📞&#x0a;通讯录" Width="78" Height="80" Click="BtnNavContacts_Click" FontSize="14" Margin="0,1,0,0" Background="{StaticResource SurfaceBrush}" Foreground="Black" BorderThickness="0"/>
+                                    <Button x:Name="btnNavPhotos" Content="图片" Width="78" Height="80" Click="BtnNavPhotos_Click" FontSize="14" Background="{StaticResource BrandPrimaryBrush}" Foreground="White" BorderThickness="0" FontWeight="SemiBold"/>
+                                    <Button x:Name="btnNavVideos" Content="视频" Width="78" Height="80" Click="BtnNavVideos_Click" FontSize="14" Margin="0,1,0,0" Background="{StaticResource SurfaceBrush}" Foreground="{StaticResource TextPrimaryBrush}" BorderThickness="0" BorderBrush="{StaticResource BorderSubtleBrush}"/>
+                                    <Button x:Name="btnNavContacts" Content="通讯录" Width="78" Height="80" Click="BtnNavContacts_Click" FontSize="14" Margin="0,1,0,0" Background="{StaticResource SurfaceBrush}" Foreground="{StaticResource TextPrimaryBrush}" BorderThickness="0" BorderBrush="{StaticResource BorderSubtleBrush}"/>
                                 </StackPanel>
                             </Border>
 </Grid>
@@ -8516,497 +7818,6 @@ Background="{StaticResource SurfaceTintBrush}"
                         Visibility="Collapsed"
                         Background="{StaticResource SurfaceTintBrush}">
                             <Grid.Resources>
-                                <Style x:Key="VioletCardStyle" TargetType="Border">
-                                    <Setter Property="Background" Value="#FFFFFFFF"/>
-                                    <Setter Property="BorderBrush" Value="{StaticResource BorderSubtleBrush}"/>
-                                    <Setter Property="BorderThickness" Value="1"/>
-                                    <Setter Property="CornerRadius" Value="14"/>
-                                    <Setter Property="Padding" Value="14"/>
-                                </Style>
-                                <Style x:Key="VioletPanelTitleStyle" TargetType="TextBlock">
-                                    <Setter Property="FontSize" Value="16"/>
-                                    <Setter Property="FontWeight" Value="Bold"/>
-                                    <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
-                                </Style>
-                                <Style x:Key="VioletPanelSubtitleStyle" TargetType="TextBlock">
-                                    <Setter Property="FontSize" Value="12"/>
-                                    <Setter Property="Foreground" Value="{StaticResource TextMutedBrush}"/>
-                                    <Setter Property="Margin" Value="0,4,0,0"/>
-                                    <Setter Property="TextWrapping" Value="Wrap"/>
-                                </Style>
-                                <Style x:Key="VioletActionButtonStyle" TargetType="Button">
-                                    <Setter Property="Height" Value="34"/>
-                                    <Setter Property="Padding" Value="10,0"/>
-                                    <Setter Property="Background" Value="#FF000000"/>
-                                    <Setter Property="Foreground" Value="White"/>
-                                    <Setter Property="BorderThickness" Value="0"/>
-                                    <Setter Property="FontSize" Value="13"/>
-                                    <Setter Property="FontWeight" Value="SemiBold"/>
-                                    <Setter Property="Cursor" Value="Hand"/>
-                                    <Setter Property="Template">
-                                        <Setter.Value>
-                                            <ControlTemplate TargetType="{x:Type Button}">
-                                                <Border Background="{TemplateBinding Background}" CornerRadius="8">
-                                                    <ContentPresenter TextElement.Foreground="{TemplateBinding Foreground}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                                </Border>
-                                                <ControlTemplate.Triggers>
-                                                    <Trigger Property="IsMouseOver" Value="True">
-                                                        <Setter Property="Background" Value="{StaticResource TextStrongBrush}"/>
-                                                    </Trigger>
-                                                    <Trigger Property="IsPressed" Value="True">
-                                                        <Setter Property="Background" Value="{StaticResource TextStrongBrush}"/>
-                                                    </Trigger>
-                                                </ControlTemplate.Triggers>
-                                            </ControlTemplate>
-                                        </Setter.Value>
-                                    </Setter>
-                                </Style>
-                                <Style x:Key="VioletSecondaryButtonStyle" TargetType="Button">
-                                    <Setter Property="Height" Value="34"/>
-                                    <Setter Property="Padding" Value="10,0"/>
-                                    <Setter Property="Background" Value="{StaticResource SurfaceTintBrush}"/>
-                                    <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
-                                    <Setter Property="BorderBrush" Value="{StaticResource BorderSubtleBrush}"/>
-                                    <Setter Property="BorderThickness" Value="1"/>
-                                    <Setter Property="FontSize" Value="13"/>
-                                    <Setter Property="FontWeight" Value="SemiBold"/>
-                                    <Setter Property="Cursor" Value="Hand"/>
-                                    <Setter Property="Template">
-                                        <Setter.Value>
-                                            <ControlTemplate TargetType="{x:Type Button}">
-                                                <Border Background="{TemplateBinding Background}"
-                                                        BorderBrush="{TemplateBinding BorderBrush}"
-                                                        BorderThickness="{TemplateBinding BorderThickness}"
-                                                        CornerRadius="8">
-                                                    <ContentPresenter TextElement.Foreground="{TemplateBinding Foreground}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                                </Border>
-                                                <ControlTemplate.Triggers>
-                                                    <Trigger Property="IsMouseOver" Value="True">
-                                                        <Setter Property="Background" Value="{StaticResource SurfaceTintBrush}"/>
-                                                        <Setter Property="BorderBrush" Value="{StaticResource BorderSubtleBrush}"/>
-                                                    </Trigger>
-                                                    <Trigger Property="IsPressed" Value="True">
-                                                        <Setter Property="Background" Value="{StaticResource SurfaceTintBrush}"/>
-                                                    </Trigger>
-                                                    <Trigger Property="IsEnabled" Value="False">
-                                                        <Setter Property="Opacity" Value="1"/>
-                                                        <Setter Property="Background" Value="{StaticResource BorderSubtleBrush}"/>
-                                                        <Setter Property="BorderBrush" Value="{StaticResource BorderBrush}"/>
-                                                        <Setter Property="Foreground" Value="{StaticResource TextMutedBrush}"/>
-                                                    </Trigger>
-                                                </ControlTemplate.Triggers>
-                                            </ControlTemplate>
-                                        </Setter.Value>
-                                    </Setter>
-                                </Style>
-                                <Style x:Key="VioletPauseButtonStyle" TargetType="Button" BasedOn="{StaticResource PageSecondaryButton}">
-                                    <Setter Property="Background" Value="{StaticResource SurfaceTintBrush}"/>
-                                    <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
-                                    <Setter Property="BorderBrush" Value="{StaticResource BorderSubtleBrush}"/>
-                                    <Setter Property="Template">
-                                        <Setter.Value>
-                                            <ControlTemplate TargetType="{x:Type Button}">
-                                                <Border Background="{TemplateBinding Background}"
-                                                        BorderBrush="{TemplateBinding BorderBrush}"
-                                                        BorderThickness="{TemplateBinding BorderThickness}"
-                                                        CornerRadius="8">
-                                                    <ContentPresenter TextElement.Foreground="{TemplateBinding Foreground}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                                </Border>
-                                                <ControlTemplate.Triggers>
-                                                    <Trigger Property="IsMouseOver" Value="True">
-                                                        <Trigger.EnterActions>
-                                                            <BeginStoryboard>
-                                                                <Storyboard>
-                                                                    <ColorAnimation Storyboard.TargetProperty="Background.Color"
-                                                                                    To="{StaticResource Gray50}" Duration="0:0:0.12">
-                                                                        <ColorAnimation.EasingFunction>
-                                                                            <CubicEase EasingMode="EaseOut"/>
-                                                                        </ColorAnimation.EasingFunction>
-                                                                    </ColorAnimation>
-                                                                    <ColorAnimation Storyboard.TargetProperty="BorderBrush.Color"
-                                                                                    To="{StaticResource Gray200}" Duration="0:0:0.12">
-                                                                        <ColorAnimation.EasingFunction>
-                                                                            <CubicEase EasingMode="EaseOut"/>
-                                                                        </ColorAnimation.EasingFunction>
-                                                                    </ColorAnimation>
-                                                                </Storyboard>
-                                                            </BeginStoryboard>
-                                                        </Trigger.EnterActions>
-                                                        <Trigger.ExitActions>
-                                                            <BeginStoryboard>
-                                                                <Storyboard>
-                                                                    <ColorAnimation Storyboard.TargetProperty="Background.Color"
-                                                                                    Duration="0:0:0.15" FillBehavior="Stop">
-                                                                        <ColorAnimation.EasingFunction>
-                                                                            <CubicEase EasingMode="EaseOut"/>
-                                                                        </ColorAnimation.EasingFunction>
-                                                                    </ColorAnimation>
-                                                                    <ColorAnimation Storyboard.TargetProperty="BorderBrush.Color"
-                                                                                    Duration="0:0:0.15" FillBehavior="Stop">
-                                                                        <ColorAnimation.EasingFunction>
-                                                                            <CubicEase EasingMode="EaseOut"/>
-                                                                        </ColorAnimation.EasingFunction>
-                                                                    </ColorAnimation>
-                                                                </Storyboard>
-                                                            </BeginStoryboard>
-                                                        </Trigger.ExitActions>
-                                                    </Trigger>
-                                                    <Trigger Property="IsPressed" Value="True">
-                                                        <Trigger.EnterActions>
-                                                            <BeginStoryboard>
-                                                                <Storyboard>
-                                                                    <ColorAnimation Storyboard.TargetProperty="Background.Color"
-                                                                                    To="#E8E8ED" Duration="0:0:0.08"/>
-                                                                </Storyboard>
-                                                            </BeginStoryboard>
-                                                        </Trigger.EnterActions>
-                                                        <Trigger.ExitActions>
-                                                            <BeginStoryboard>
-                                                                <Storyboard>
-                                                                    <ColorAnimation Storyboard.TargetProperty="Background.Color"
-                                                                                    Duration="0:0:0.12" FillBehavior="Stop">
-                                                                        <ColorAnimation.EasingFunction>
-                                                                            <CubicEase EasingMode="EaseOut"/>
-                                                                        </ColorAnimation.EasingFunction>
-                                                                    </ColorAnimation>
-                                                                </Storyboard>
-                                                            </BeginStoryboard>
-                                                        </Trigger.ExitActions>
-                                                    </Trigger>
-                                                    <Trigger Property="IsEnabled" Value="False">
-                                                        <Setter Property="Background" Value="{StaticResource SurfaceTintBrush}"/>
-                                                        <Setter Property="BorderBrush" Value="{StaticResource BorderSubtleBrush}"/>
-                                                        <Setter Property="Foreground" Value="{StaticResource TextMutedBrush}"/>
-                                                    </Trigger>
-                                                </ControlTemplate.Triggers>
-                                            </ControlTemplate>
-                                        </Setter.Value>
-                                    </Setter>
-                                </Style>
-                                <Style x:Key="VioletResumeButtonStyle" TargetType="Button" BasedOn="{StaticResource PageSecondaryButton}">
-                                    <Setter Property="Background" Value="{StaticResource SurfaceTintBrush}"/>
-                                    <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
-                                    <Setter Property="BorderBrush" Value="{StaticResource BorderSubtleBrush}"/>
-                                    <Setter Property="Template">
-                                        <Setter.Value>
-                                            <ControlTemplate TargetType="{x:Type Button}">
-                                                <Border Background="{TemplateBinding Background}"
-                                                        BorderBrush="{TemplateBinding BorderBrush}"
-                                                        BorderThickness="{TemplateBinding BorderThickness}"
-                                                        CornerRadius="8">
-                                                    <ContentPresenter TextElement.Foreground="{TemplateBinding Foreground}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                                </Border>
-                                                <ControlTemplate.Triggers>
-                                                    <Trigger Property="IsMouseOver" Value="True">
-                                                        <Trigger.EnterActions>
-                                                            <BeginStoryboard>
-                                                                <Storyboard>
-                                                                    <ColorAnimation Storyboard.TargetProperty="Background.Color"
-                                                                                    To="{StaticResource Gray50}" Duration="0:0:0.12">
-                                                                        <ColorAnimation.EasingFunction>
-                                                                            <CubicEase EasingMode="EaseOut"/>
-                                                                        </ColorAnimation.EasingFunction>
-                                                                    </ColorAnimation>
-                                                                    <ColorAnimation Storyboard.TargetProperty="BorderBrush.Color"
-                                                                                    To="{StaticResource Gray900}" Duration="0:0:0.12">
-                                                                        <ColorAnimation.EasingFunction>
-                                                                            <CubicEase EasingMode="EaseOut"/>
-                                                                        </ColorAnimation.EasingFunction>
-                                                                    </ColorAnimation>
-                                                                </Storyboard>
-                                                            </BeginStoryboard>
-                                                        </Trigger.EnterActions>
-                                                        <Trigger.ExitActions>
-                                                            <BeginStoryboard>
-                                                                <Storyboard>
-                                                                    <ColorAnimation Storyboard.TargetProperty="Background.Color"
-                                                                                    Duration="0:0:0.15" FillBehavior="Stop">
-                                                                        <ColorAnimation.EasingFunction>
-                                                                            <CubicEase EasingMode="EaseOut"/>
-                                                                        </ColorAnimation.EasingFunction>
-                                                                    </ColorAnimation>
-                                                                    <ColorAnimation Storyboard.TargetProperty="BorderBrush.Color"
-                                                                                    Duration="0:0:0.15" FillBehavior="Stop">
-                                                                        <ColorAnimation.EasingFunction>
-                                                                            <CubicEase EasingMode="EaseOut"/>
-                                                                        </ColorAnimation.EasingFunction>
-                                                                    </ColorAnimation>
-                                                                </Storyboard>
-                                                            </BeginStoryboard>
-                                                        </Trigger.ExitActions>
-                                                    </Trigger>
-                                                    <Trigger Property="IsPressed" Value="True">
-                                                        <Trigger.EnterActions>
-                                                            <BeginStoryboard>
-                                                                <Storyboard>
-                                                                    <ColorAnimation Storyboard.TargetProperty="Background.Color"
-                                                                                    To="#E8E8ED" Duration="0:0:0.08"/>
-                                                                </Storyboard>
-                                                            </BeginStoryboard>
-                                                        </Trigger.EnterActions>
-                                                        <Trigger.ExitActions>
-                                                            <BeginStoryboard>
-                                                                <Storyboard>
-                                                                    <ColorAnimation Storyboard.TargetProperty="Background.Color"
-                                                                                    Duration="0:0:0.12" FillBehavior="Stop">
-                                                                        <ColorAnimation.EasingFunction>
-                                                                            <CubicEase EasingMode="EaseOut"/>
-                                                                        </ColorAnimation.EasingFunction>
-                                                                    </ColorAnimation>
-                                                                </Storyboard>
-                                                            </BeginStoryboard>
-                                                        </Trigger.ExitActions>
-                                                    </Trigger>
-                                                    <Trigger Property="IsEnabled" Value="False">
-                                                        <Setter Property="Background" Value="{StaticResource SurfaceTintBrush}"/>
-                                                        <Setter Property="BorderBrush" Value="{StaticResource BorderSubtleBrush}"/>
-                                                        <Setter Property="Foreground" Value="{StaticResource TextMutedBrush}"/>
-                                                    </Trigger>
-                                                </ControlTemplate.Triggers>
-                                            </ControlTemplate>
-                                        </Setter.Value>
-                                    </Setter>
-                                </Style>
-                                <Style x:Key="VioletAccentButtonStyle" TargetType="Button" BasedOn="{StaticResource PageLightButton}">
-                                    <Setter Property="Background" Value="{StaticResource BorderBrush}"/>
-                                    <Setter Property="Template">
-                                        <Setter.Value>
-                                            <ControlTemplate TargetType="{x:Type Button}">
-                                                <Border Background="{TemplateBinding Background}" CornerRadius="8">
-                                                    <ContentPresenter TextElement.Foreground="{TemplateBinding Foreground}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                                </Border>
-                                                <ControlTemplate.Triggers>
-                                                    <Trigger Property="IsMouseOver" Value="True">
-                                                        <Setter Property="Background" Value="{StaticResource TextPrimaryBrush}"/>
-                                                    </Trigger>
-                                                    <Trigger Property="IsPressed" Value="True">
-                                                        <Setter Property="Background" Value="{StaticResource TextPrimaryBrush}"/>
-                                                    </Trigger>
-                                                    <Trigger Property="IsEnabled" Value="False">
-                                                        <Setter Property="Opacity" Value="0.55"/>
-                                                    </Trigger>
-                                                </ControlTemplate.Triggers>
-                                            </ControlTemplate>
-                                        </Setter.Value>
-                                    </Setter>
-                                </Style>
-                                <Style x:Key="VioletLabelStyle" TargetType="TextBlock">
-                                    <Setter Property="FontSize" Value="13"/>
-                                    <Setter Property="FontWeight" Value="SemiBold"/>
-                                    <Setter Property="Foreground" Value="{StaticResource TextMutedBrush}"/>
-                                    <Setter Property="Margin" Value="0,0,0,6"/>
-                                </Style>
-                                <Style x:Key="VioletTextBoxStyle" TargetType="TextBox">
-                                    <Setter Property="MinHeight" Value="36"/>
-                                    <Setter Property="Padding" Value="11,7"/>
-                                    <Setter Property="Background" Value="#FFFFFFFF"/>
-                                    <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
-                                    <Setter Property="BorderBrush" Value="{StaticResource BorderSubtleBrush}"/>
-                                    <Setter Property="BorderThickness" Value="1"/>
-                                    <Setter Property="FontSize" Value="13"/>
-                                    <Setter Property="VerticalContentAlignment" Value="Center"/>
-                                    <Setter Property="CaretBrush" Value="#1D1D1F"/>
-                                    <Setter Property="SelectionBrush" Value="{StaticResource BorderSubtleBrush}"/>
-                                    <Setter Property="Template">
-                                        <Setter.Value>
-                                            <ControlTemplate TargetType="{x:Type TextBox}">
-                                                <Border x:Name="VioletTextBoxBorder"
-                                                        Background="{TemplateBinding Background}"
-                                                        BorderBrush="{TemplateBinding BorderBrush}"
-                                                        BorderThickness="{TemplateBinding BorderThickness}"
-                                                        CornerRadius="8"
-                                                        SnapsToDevicePixels="True">
-                                                    <ScrollViewer x:Name="PART_ContentHost"
-                                                                  SnapsToDevicePixels="True"/>
-                                                </Border>
-                                                <ControlTemplate.Triggers>
-                                                    <Trigger Property="IsMouseOver" Value="True">
-                                                        <Trigger.EnterActions>
-                                                            <BeginStoryboard>
-                                                                <Storyboard>
-                                                                    <ColorAnimation Storyboard.TargetName="VioletTextBoxBorder"
-                                                                                    Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)"
-                                                                                    To="{StaticResource Gray200}" Duration="0:0:0.12">
-                                                                        <ColorAnimation.EasingFunction>
-                                                                            <CubicEase EasingMode="EaseOut"/>
-                                                                        </ColorAnimation.EasingFunction>
-                                                                    </ColorAnimation>
-                                                                </Storyboard>
-                                                            </BeginStoryboard>
-                                                        </Trigger.EnterActions>
-                                                        <Trigger.ExitActions>
-                                                            <BeginStoryboard>
-                                                                <Storyboard>
-                                                                    <ColorAnimation Storyboard.TargetName="VioletTextBoxBorder"
-                                                                                    Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)"
-                                                                                    Duration="0:0:0.15" FillBehavior="Stop">
-                                                                        <ColorAnimation.EasingFunction>
-                                                                            <CubicEase EasingMode="EaseOut"/>
-                                                                        </ColorAnimation.EasingFunction>
-                                                                    </ColorAnimation>
-                                                                </Storyboard>
-                                                            </BeginStoryboard>
-                                                        </Trigger.ExitActions>
-                                                    </Trigger>
-                                                    <Trigger Property="IsKeyboardFocused" Value="True">
-                                                        <Setter TargetName="VioletTextBoxBorder" Property="BorderBrush" Value="{StaticResource TextPrimaryBrush}"/>
-                                                        <Setter TargetName="VioletTextBoxBorder" Property="BorderThickness" Value="1.5"/>
-                                                    </Trigger>
-                                                    <Trigger Property="IsReadOnly" Value="True">
-                                                        <Setter TargetName="VioletTextBoxBorder" Property="Background" Value="{StaticResource SurfaceTintBrush}"/>
-                                                    </Trigger>
-                                                    <Trigger Property="IsEnabled" Value="False">
-                                                        <Setter TargetName="VioletTextBoxBorder" Property="Background" Value="{StaticResource SurfaceTintBrush}"/>
-                                                        <Setter TargetName="VioletTextBoxBorder" Property="BorderBrush" Value="{StaticResource BorderSubtleBrush}"/>
-                                                        <Setter Property="Foreground" Value="{StaticResource TextTertiaryBrush}"/>
-                                                    </Trigger>
-                                                </ControlTemplate.Triggers>
-                                            </ControlTemplate>
-                                        </Setter.Value>
-                                    </Setter>
-                                </Style>
-                                <Style x:Key="VioletComboBoxStyle" TargetType="ComboBox">
-                                    <Setter Property="Height" Value="36"/>
-                                    <Setter Property="Background" Value="White"/>
-                                    <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
-                                    <Setter Property="BorderBrush" Value="{StaticResource BorderSubtleBrush}"/>
-                                    <Setter Property="BorderThickness" Value="1"/>
-                                    <Setter Property="Padding" Value="8,0"/>
-                                    <Setter Property="FontSize" Value="13"/>
-                                    <Setter Property="Template">
-                                        <Setter.Value>
-                                            <ControlTemplate TargetType="{x:Type ComboBox}">
-                                                <Grid>
-                                                    <ToggleButton x:Name="ToggleButton"
-                                                                  Grid.Column="2"
-                                                                  Focusable="False"
-                                                                  IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
-                                                                  ClickMode="Press">
-                                                        <ToggleButton.Template>
-                                                            <ControlTemplate TargetType="{x:Type ToggleButton}">
-                                                                <Border x:Name="Border"
-                                                                        Background="{Binding Background, RelativeSource={RelativeSource AncestorType=ComboBox}}"
-                                                                        BorderBrush="{Binding BorderBrush, RelativeSource={RelativeSource AncestorType=ComboBox}}"
-                                                                        BorderThickness="{Binding BorderThickness, RelativeSource={RelativeSource AncestorType=ComboBox}}"
-                                                                        CornerRadius="10">
-                                                                    <Grid>
-                                                                        <Grid.ColumnDefinitions>
-                                                                            <ColumnDefinition Width="*" />
-                                                                            <ColumnDefinition Width="36" />
-                                                                        </Grid.ColumnDefinitions>
-                                                                        <ContentPresenter TextElement.Foreground="{TemplateBinding Foreground}" Margin="12,0,0,0"
-                                                                                          VerticalAlignment="Center"
-                                                                                          HorizontalAlignment="Left"
-                                                                                          Content="{TemplateBinding Content}"/>
-                                                                        <Border Grid.Column="1"
-                                                                                Background="{StaticResource SurfaceTintBrush}"
-                                                                                BorderBrush="{StaticResource BorderSubtleBrush}"
-                                                                                BorderThickness="1,0,0,0"
-                                                                                CornerRadius="0,10,10,0">
-                                                                            <Path HorizontalAlignment="Center"
-                                                                                  VerticalAlignment="Center"
-                                                                                  Fill="{StaticResource TextMutedBrush}"
-                                                                                  Data="M 0 0 L 4 4 L 8 0 Z"/>
-                                                                        </Border>
-                                                                    </Grid>
-                                                                </Border>
-                                                                <ControlTemplate.Triggers>
-                                                                    <Trigger Property="IsMouseOver" Value="True">
-                                                                        <Trigger.EnterActions>
-                                                                            <BeginStoryboard>
-                                                                                <Storyboard>
-                                                                                    <ColorAnimation Storyboard.TargetName="Border"
-                                                                                                    Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)"
-                                                                                                    To="{StaticResource Gray900}" Duration="0:0:0.12">
-                                                                                        <ColorAnimation.EasingFunction>
-                                                                                            <CubicEase EasingMode="EaseOut"/>
-                                                                                        </ColorAnimation.EasingFunction>
-                                                                                    </ColorAnimation>
-                                                                                </Storyboard>
-                                                                            </BeginStoryboard>
-                                                                        </Trigger.EnterActions>
-                                                                        <Trigger.ExitActions>
-                                                                            <BeginStoryboard>
-                                                                                <Storyboard>
-                                                                                    <ColorAnimation Storyboard.TargetName="Border"
-                                                                                                    Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)"
-                                                                                                    Duration="0:0:0.15" FillBehavior="Stop">
-                                                                                        <ColorAnimation.EasingFunction>
-                                                                                            <CubicEase EasingMode="EaseOut"/>
-                                                                                        </ColorAnimation.EasingFunction>
-                                                                                    </ColorAnimation>
-                                                                                </Storyboard>
-                                                                            </BeginStoryboard>
-                                                                        </Trigger.ExitActions>
-                                                                    </Trigger>
-                                                                    <Trigger Property="IsChecked" Value="True">
-                                                                        <Setter TargetName="Border" Property="BorderBrush" Value="#FF000000"/>
-                                                                    </Trigger>
-                                                                </ControlTemplate.Triggers>
-                                                            </ControlTemplate>
-                                                        </ToggleButton.Template>
-                                                    </ToggleButton>
-                                                    <ContentPresenter TextElement.Foreground="{TemplateBinding Foreground}" x:Name="ContentSite"
-                                                                      IsHitTestVisible="False"
-                                                                      Margin="12,0,40,0"
-                                                                      VerticalAlignment="Center"
-                                                                      HorizontalAlignment="Left"
-                                                                      Content="{TemplateBinding SelectionBoxItem}"
-                                                                      ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
-                                                                      ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"/>
-                                                    <Popup x:Name="Popup"
-                                                           Placement="Bottom"
-                                                           AllowsTransparency="True"
-                                                           Focusable="False"
-                                                           IsOpen="{TemplateBinding IsDropDownOpen}"
-                                                           PopupAnimation="Slide">
-                                                        <Grid MinWidth="{TemplateBinding ActualWidth}" MaxHeight="{TemplateBinding MaxDropDownHeight}">
-                                                            <Border Background="{StaticResource SurfaceBrush}"
-                                                                    BorderBrush="{StaticResource BorderSubtleBrush}"
-                                                                    BorderThickness="1"
-                                                                    CornerRadius="10"
-                                                                    Margin="0,6,0,0">
-                                                                <ScrollViewer Margin="4"
-                                                                              SnapsToDevicePixels="True">
-                                                                    <StackPanel IsItemsHost="True"
-                                                                                KeyboardNavigation.DirectionalNavigation="Contained"/>
-                                                                </ScrollViewer>
-                                                            </Border>
-                                                        </Grid>
-                                                    </Popup>
-                                                </Grid>
-                                            </ControlTemplate>
-                                        </Setter.Value>
-                                    </Setter>
-                                </Style>
-                                <Style x:Key="VioletComboBoxItemStyle" TargetType="ComboBoxItem">
-                                    <Setter Property="Padding" Value="10,8"/>
-                                    <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
-                                    <Setter Property="HorizontalContentAlignment" Value="Left"/>
-                                    <Setter Property="Template">
-                                        <Setter.Value>
-                                            <ControlTemplate TargetType="{x:Type ComboBoxItem}">
-                                                <Border x:Name="ItemBorder"
-                                                        Background="Transparent"
-                                                        CornerRadius="8"
-                                                        SnapsToDevicePixels="True">
-                                                    <ContentPresenter TextElement.Foreground="{TemplateBinding Foreground}" Margin="{TemplateBinding Padding}"
-                                                                      HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                                                      VerticalAlignment="Center"/>
-                                                </Border>
-                                                <ControlTemplate.Triggers>
-                                                    <Trigger Property="IsHighlighted" Value="True">
-                                                        <Setter TargetName="ItemBorder" Property="Background" Value="{StaticResource SurfaceTintBrush}"/>
-                                                    </Trigger>
-                                                    <Trigger Property="IsSelected" Value="True">
-                                                        <Setter TargetName="ItemBorder" Property="Background" Value="{StaticResource SurfaceTintBrush}"/>
-                                                        <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
-                                                    </Trigger>
-                                                </ControlTemplate.Triggers>
-                                            </ControlTemplate>
-                                        </Setter.Value>
-                                    </Setter>
-                                </Style>
                             </Grid.Resources>
                             <ScrollViewer VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Disabled" Margin="0,0,0,8"><!-- MONO_PAGE_MARKER_VioletDownloadView --><StackPanel>
                                         <Grid Margin="2,0,0,16">
@@ -9060,7 +7871,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                                          TextWrapping="Wrap"
                                                          VerticalContentAlignment="Top"
                                                          HorizontalScrollBarVisibility="Auto"
-                                                         VerticalScrollBarVisibility="Auto" Height="50"/>
+                                                         VerticalScrollBarVisibility="Auto"/>
 
                                                 <TextBlock Grid.Row="4" Style="{StaticResource PageLabel}" Margin="0,8,0,4" Text="保存目录"/>
                                                 <Grid Grid.Row="5">

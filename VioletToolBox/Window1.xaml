@@ -146,9 +146,9 @@
                         </TransformGroup>
                     </Button.RenderTransform>
                 </Button>
-                <Label Content="使用此功能之前请确保手机与电脑连接的为同一个WIFI，并且手机上已经打开无限调试功能，第一次使用本" Width="588" Height="31" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="2,188,0,0" BorderBrush="White"/>
-                <Label Content="功能需打开USB调试，并且确保工具可以正确识别到设备，网络调试端口默认5555即可，IP地址到WIFI详情" Width="592" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="-4,212,0,0" BorderBrush="White"/>
-                <Label Content="界面查看。" Width="592" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="-259,232,0,0" BorderBrush="White"/>
+                <Label Content="使用此功能之前请确保手机与电脑连接的为同一个WIFI，并且手机上已经打开无限调试功能，第一次使用本" Width="588" Height="31" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="2,188,0,0"/>
+                <Label Content="功能需打开USB调试，并且确保工具可以正确识别到设备，网络调试端口默认5555即可，IP地址到WIFI详情" Width="592" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="-4,212,0,0"/>
+                <Label Content="界面查看。" Width="592" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="-259,232,0,0"/>
             </Grid>
         </Grid>
     </Border>

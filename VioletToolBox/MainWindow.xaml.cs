@@ -1401,10 +1401,10 @@ namespace WpfApp1
             _nameViewMapStatic0["AndroidGeneralView"] = "AndroidGeneralView";
             _nameViewMapStatic0["AppListDataGrid"] = "AppManagementView";
             _nameViewMapStatic0["AppListSwitchToggle"] = "AppManagementView";
-            _nameViewMapStatic0["AppListSwitchToggle复制__C_"] = "AppManagementView";
+            _nameViewMapStatic0["AppListSystemToggle"] = "AppManagementView";
             _nameViewMapStatic0["AppManagementLogTextBox"] = "AppManagementView";
             _nameViewMapStatic0["AppManagementView"] = "AppManagementView";
-            _nameViewMapStatic0["AppPackageSearchComboBox"] = "AppManagementView";
+            _nameViewMapStatic0["AppPackageSearchBox"] = "AppManagementView";
             _nameViewMapStatic0["ArbFuseCheckButton"] = "OujiaFlashView";
             _nameViewMapStatic0["AutoDetectKmiCheckBox"] = "AutorootView";
             _nameViewMapStatic0["AutoFlashAndInstallCheckBox"] = "AutorootView";
@@ -4555,7 +4555,7 @@ namespace WpfApp1
 
                 // 根据两个开关状态决定筛选：系统应用(-s) 或 第三方(-3)
                 var thirdPartyToggle = this.FindControlInPages("AppListSwitchToggle") as System.Windows.Controls.Primitives.ToggleButton;
-                var systemToggle = this.FindControlInPages("AppListSwitchToggle复制__C_") as System.Windows.Controls.Primitives.ToggleButton;
+                var systemToggle = this.FindControlInPages("AppListSystemToggle") as System.Windows.Controls.Primitives.ToggleButton;
                 string cmd =
                     (systemToggle?.IsChecked == true) ? "shell pm list packages -s" :
                     (thirdPartyToggle?.IsChecked == true) ? "shell pm list packages -3" :
@@ -4585,7 +4585,7 @@ namespace WpfApp1
                 }
 
                 // 根据当前搜索关键词应用过滤（已改用 TextBox）
-                var searchTextBox = this.FindControlInPages("AppPackageSearchComboBox") as System.Windows.Controls.TextBox;
+                var searchTextBox = this.FindControlInPages("AppPackageSearchBox") as System.Windows.Controls.TextBox;
                 ApplyAppPackageFilter(searchTextBox?.Text ?? string.Empty);
 
                 var appListDataGrid = this.FindControlInPages("AppListDataGrid") as DataGrid;
@@ -4754,7 +4754,7 @@ namespace WpfApp1
         // 互斥：第三方开关被勾选时，关闭系统开关
         private void AppListThirdPartyToggle_Checked(object sender, RoutedEventArgs e)
         {
-            var systemToggle = this.FindControlInPages("AppListSwitchToggle复制__C_") as System.Windows.Controls.Primitives.ToggleButton;
+            var systemToggle = this.FindControlInPages("AppListSystemToggle") as System.Windows.Controls.Primitives.ToggleButton;
             if (systemToggle != null && systemToggle.IsChecked == true)
             {
                 systemToggle.IsChecked = false;
@@ -4772,7 +4772,7 @@ namespace WpfApp1
         }
 
         // 搜索框按键事件：根据关键字过滤包名
-        private void AppPackageSearchComboBox_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
+        private void AppPackageSearchBox_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
         {
             try
             {
@@ -5073,7 +5073,7 @@ namespace WpfApp1
                 }
 
                 // 应用当前搜索关键字过滤
-                var searchTextBox = this.FindControlInPages("AppPackageSearchComboBox") as System.Windows.Controls.TextBox;
+                var searchTextBox = this.FindControlInPages("AppPackageSearchBox") as System.Windows.Controls.TextBox;
                 ApplyAppPackageFilter(searchTextBox?.Text ?? string.Empty);
 
                 // 刷新DataGrid显示
