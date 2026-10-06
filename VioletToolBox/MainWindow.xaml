@@ -86,7 +86,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                     <Trigger.ExitActions>
                                         <BeginStoryboard>
                                             <Storyboard>
-                                                <ColorAnimation Storyboard.TargetName="b" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" Duration="0:0:0.15">
+                                                <ColorAnimation Storyboard.TargetName="b" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" Duration="0:0:0.15" FillBehavior="Stop">
                                                     <ColorAnimation.EasingFunction><CubicEase EasingMode="EaseOut"/></ColorAnimation.EasingFunction>
                                                 </ColorAnimation>
                                             </Storyboard>
@@ -159,7 +159,7 @@ Background="{StaticResource SurfaceTintBrush}"
                             <BeginStoryboard>
                                 <Storyboard>
                                     <ColorAnimation Storyboard.TargetProperty="Background.Color"
-                                                    Duration="0:0:0.15">
+                                                    Duration="0:0:0.15" FillBehavior="Stop">
                                         <ColorAnimation.EasingFunction>
                                             <CubicEase EasingMode="EaseOut"/>
                                         </ColorAnimation.EasingFunction>
@@ -185,7 +185,7 @@ Background="{StaticResource SurfaceTintBrush}"
                             <BeginStoryboard>
                                 <Storyboard>
                                     <ColorAnimation Storyboard.TargetProperty="Background.Color"
-                                                    Duration="0:0:0.18">
+                                                    Duration="0:0:0.18" FillBehavior="Stop">
                                         <ColorAnimation.EasingFunction>
                                             <CubicEase EasingMode="EaseOut"/>
                                         </ColorAnimation.EasingFunction>
@@ -266,21 +266,21 @@ Background="{StaticResource SurfaceTintBrush}"
                                             <Storyboard>
                                                 <DoubleAnimation Storyboard.TargetName="ButtonBorder"
                                                                  Storyboard.TargetProperty="Opacity"
-                                                                 Duration="0:0:0.2">
+                                                                 Duration="0:0:0.2" FillBehavior="Stop">
                                                     <DoubleAnimation.EasingFunction>
                                                         <CubicEase EasingMode="EaseOut"/>
                                                     </DoubleAnimation.EasingFunction>
                                                 </DoubleAnimation>
                                                 <DoubleAnimation Storyboard.TargetName="ButtonBorder"
                                                                  Storyboard.TargetProperty="(Border.RenderTransform).(ScaleTransform.ScaleX)"
-                                                                 Duration="0:0:0.2">
+                                                                 Duration="0:0:0.2" FillBehavior="Stop">
                                                     <DoubleAnimation.EasingFunction>
                                                         <CubicEase EasingMode="EaseOut"/>
                                                     </DoubleAnimation.EasingFunction>
                                                 </DoubleAnimation>
                                                 <DoubleAnimation Storyboard.TargetName="ButtonBorder"
                                                                  Storyboard.TargetProperty="(Border.RenderTransform).(ScaleTransform.ScaleY)"
-                                                                 Duration="0:0:0.2">
+                                                                 Duration="0:0:0.2" FillBehavior="Stop">
                                                     <DoubleAnimation.EasingFunction>
                                                         <CubicEase EasingMode="EaseOut"/>
                                                     </DoubleAnimation.EasingFunction>
@@ -457,7 +457,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                             <Storyboard>
                                                 <ColorAnimation Storyboard.TargetName="MainBd"
                                                                 Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
-                                                                Duration="0:0:0.18">
+                                                                Duration="0:0:0.18" FillBehavior="Stop">
                                                     <ColorAnimation.EasingFunction>
                                                         <CubicEase EasingMode="EaseOut"/>
                                                     </ColorAnimation.EasingFunction>
@@ -627,7 +627,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                             <Storyboard>
                                                 <DoubleAnimation Storyboard.TargetName="ButtonBorder"
                                                                  Storyboard.TargetProperty="Opacity"
-                                                                 Duration="0:0:0.15">
+                                                                 Duration="0:0:0.15" FillBehavior="Stop">
                                                     <DoubleAnimation.EasingFunction>
                                                         <CubicEase EasingMode="EaseOut"/>
                                                     </DoubleAnimation.EasingFunction>
@@ -761,27 +761,27 @@ Background="{StaticResource SurfaceTintBrush}"
                                                 <Storyboard>
                                                     <ColorAnimation Storyboard.TargetName="bd"
                                                                     Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
-                                                                    Duration="0:0:0.2">
+                                                                    Duration="0:0:0.2" FillBehavior="Stop">
                                                         <ColorAnimation.EasingFunction>
                                                             <CubicEase EasingMode="EaseOut"/>
                                                         </ColorAnimation.EasingFunction>
                                                     </ColorAnimation>
                                                     <ColorAnimation Storyboard.TargetProperty="(Control.Foreground).(SolidColorBrush.Color)"
-                                                                    Duration="0:0:0.2">
+                                                                    Duration="0:0:0.2" FillBehavior="Stop">
                                                         <ColorAnimation.EasingFunction>
                                                             <CubicEase EasingMode="EaseOut"/>
                                                         </ColorAnimation.EasingFunction>
                                                     </ColorAnimation>
                                                     <DoubleAnimation Storyboard.TargetName="bd"
                                                                      Storyboard.TargetProperty="(Border.RenderTransform).(ScaleTransform.ScaleX)"
-                                                                     Duration="0:0:0.2">
+                                                                     Duration="0:0:0.2" FillBehavior="Stop">
                                                         <DoubleAnimation.EasingFunction>
                                                             <CubicEase EasingMode="EaseOut"/>
                                                         </DoubleAnimation.EasingFunction>
                                                     </DoubleAnimation>
                                                     <DoubleAnimation Storyboard.TargetName="bd"
                                                                      Storyboard.TargetProperty="(Border.RenderTransform).(ScaleTransform.ScaleY)"
-                                                                     Duration="0:0:0.2">
+                                                                     Duration="0:0:0.2" FillBehavior="Stop">
                                                         <DoubleAnimation.EasingFunction>
                                                             <CubicEase EasingMode="EaseOut"/>
                                                         </DoubleAnimation.EasingFunction>
@@ -816,13 +816,13 @@ Background="{StaticResource SurfaceTintBrush}"
                                                 <Storyboard>
                                                     <ColorAnimation Storyboard.TargetName="bd"
                                                                     Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
-                                                                    Duration="0:0:0.2">
+                                                                    Duration="0:0:0.2" FillBehavior="Stop">
                                                         <ColorAnimation.EasingFunction>
                                                             <CubicEase EasingMode="EaseOut"/>
                                                         </ColorAnimation.EasingFunction>
                                                     </ColorAnimation>
                                                     <ColorAnimation Storyboard.TargetProperty="(Control.Foreground).(SolidColorBrush.Color)"
-                                                                    Duration="0:0:0.2">
+                                                                    Duration="0:0:0.2" FillBehavior="Stop">
                                                         <ColorAnimation.EasingFunction>
                                                             <CubicEase EasingMode="EaseOut"/>
                                                         </ColorAnimation.EasingFunction>
@@ -854,7 +854,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                                 <Storyboard>
                                                     <ColorAnimation Storyboard.TargetName="bd"
                                                                     Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
-                                                                    To="{StaticResource Violet500}" Duration="0:0:0.15">
+                                                                    To="{StaticResource Violet500}" Duration="0:0:0.15" FillBehavior="Stop">
                                                         <ColorAnimation.EasingFunction>
                                                             <CubicEase EasingMode="EaseOut"/>
                                                         </ColorAnimation.EasingFunction>
@@ -1375,7 +1375,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                                                                 <Storyboard>
                                                                                     <ColorAnimation Storyboard.TargetName="Border"
                                                                                                     Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)"
-                                                                                                    Duration="0:0:0.15">
+                                                                                                    Duration="0:0:0.15" FillBehavior="Stop">
                                                                                         <ColorAnimation.EasingFunction>
                                                                                             <CubicEase EasingMode="EaseOut"/>
                                                                                         </ColorAnimation.EasingFunction>
@@ -1486,7 +1486,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                                             <BeginStoryboard>
                                                                 <Storyboard>
                                                                     <ColorAnimation Storyboard.TargetProperty="Background.Color"
-                                                                                    Duration="0:0:0.15">
+                                                                                    Duration="0:0:0.15" FillBehavior="Stop">
                                                                         <ColorAnimation.EasingFunction>
                                                                             <CubicEase EasingMode="EaseOut"/>
                                                                         </ColorAnimation.EasingFunction>
@@ -1508,7 +1508,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                                             <BeginStoryboard>
                                                                 <Storyboard>
                                                                     <ColorAnimation Storyboard.TargetProperty="Background.Color"
-                                                                                    Duration="0:0:0.12">
+                                                                                    Duration="0:0:0.12" FillBehavior="Stop">
                                                                         <ColorAnimation.EasingFunction>
                                                                             <CubicEase EasingMode="EaseOut"/>
                                                                         </ColorAnimation.EasingFunction>
@@ -1570,13 +1570,13 @@ Background="{StaticResource SurfaceTintBrush}"
                                                             <BeginStoryboard>
                                                                 <Storyboard>
                                                                     <ColorAnimation Storyboard.TargetProperty="Background.Color"
-                                                                                    Duration="0:0:0.15">
+                                                                                    Duration="0:0:0.15" FillBehavior="Stop">
                                                                         <ColorAnimation.EasingFunction>
                                                                             <CubicEase EasingMode="EaseOut"/>
                                                                         </ColorAnimation.EasingFunction>
                                                                     </ColorAnimation>
                                                                     <ColorAnimation Storyboard.TargetProperty="BorderBrush.Color"
-                                                                                    Duration="0:0:0.15">
+                                                                                    Duration="0:0:0.15" FillBehavior="Stop">
                                                                         <ColorAnimation.EasingFunction>
                                                                             <CubicEase EasingMode="EaseOut"/>
                                                                         </ColorAnimation.EasingFunction>
@@ -2057,7 +2057,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                                 <BeginStoryboard>
                                                     <Storyboard>
                                                         <ColorAnimation Storyboard.TargetProperty="Background.Color"
-                                                                        Duration="0:0:0.15">
+                                                                        Duration="0:0:0.15" FillBehavior="Stop">
                                                             <ColorAnimation.EasingFunction>
                                                                 <CubicEase EasingMode="EaseOut"/>
                                                             </ColorAnimation.EasingFunction>
@@ -2083,7 +2083,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                                 <BeginStoryboard>
                                                     <Storyboard>
                                                         <ColorAnimation Storyboard.TargetProperty="Background.Color"
-                                                                        Duration="0:0:0.18">
+                                                                        Duration="0:0:0.18" FillBehavior="Stop">
                                                             <ColorAnimation.EasingFunction>
                                                                 <CubicEase EasingMode="EaseOut"/>
                                                             </ColorAnimation.EasingFunction>
@@ -3150,7 +3150,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                                                 <Storyboard>
                                                                     <ColorAnimation Storyboard.TargetName="AboutSocialButtonBorder"
                                                                                     Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
-                                                                                    Duration="0:0:0.15">
+                                                                                    Duration="0:0:0.15" FillBehavior="Stop">
                                                                         <ColorAnimation.EasingFunction>
                                                                             <CubicEase EasingMode="EaseOut"/>
                                                                         </ColorAnimation.EasingFunction>
@@ -3174,7 +3174,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                                                 <Storyboard>
                                                                     <ColorAnimation Storyboard.TargetName="AboutSocialButtonBorder"
                                                                                     Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
-                                                                                    Duration="0:0:0.12">
+                                                                                    Duration="0:0:0.12" FillBehavior="Stop">
                                                                         <ColorAnimation.EasingFunction>
                                                                             <CubicEase EasingMode="EaseOut"/>
                                                                         </ColorAnimation.EasingFunction>
@@ -4327,7 +4327,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                                 <BeginStoryboard>
                                                     <Storyboard>
                                                         <ColorAnimation Storyboard.TargetProperty="Background.Color"
-                                                                        Duration="0:0:0.15">
+                                                                        Duration="0:0:0.15" FillBehavior="Stop">
                                                             <ColorAnimation.EasingFunction>
                                                                 <CubicEase EasingMode="EaseOut"/>
                                                             </ColorAnimation.EasingFunction>
@@ -4353,7 +4353,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                                 <BeginStoryboard>
                                                     <Storyboard>
                                                         <ColorAnimation Storyboard.TargetProperty="Background.Color"
-                                                                        Duration="0:0:0.18">
+                                                                        Duration="0:0:0.18" FillBehavior="Stop">
                                                             <ColorAnimation.EasingFunction>
                                                                 <CubicEase EasingMode="EaseOut"/>
                                                             </ColorAnimation.EasingFunction>
@@ -5416,13 +5416,13 @@ Background="{StaticResource SurfaceTintBrush}"
                                                             <BeginStoryboard>
                                                                 <Storyboard>
                                                                     <ColorAnimation Storyboard.TargetProperty="Background.Color"
-                                                                                    Duration="0:0:0.15">
+                                                                                    Duration="0:0:0.15" FillBehavior="Stop">
                                                                         <ColorAnimation.EasingFunction>
                                                                             <CubicEase EasingMode="EaseOut"/>
                                                                         </ColorAnimation.EasingFunction>
                                                                     </ColorAnimation>
                                                                     <ColorAnimation Storyboard.TargetProperty="BorderBrush.Color"
-                                                                                    Duration="0:0:0.15">
+                                                                                    Duration="0:0:0.15" FillBehavior="Stop">
                                                                         <ColorAnimation.EasingFunction>
                                                                             <CubicEase EasingMode="EaseOut"/>
                                                                         </ColorAnimation.EasingFunction>
@@ -8798,13 +8798,13 @@ Background="{StaticResource SurfaceTintBrush}"
                                                             <BeginStoryboard>
                                                                 <Storyboard>
                                                                     <ColorAnimation Storyboard.TargetProperty="Background.Color"
-                                                                                    Duration="0:0:0.15">
+                                                                                    Duration="0:0:0.15" FillBehavior="Stop">
                                                                         <ColorAnimation.EasingFunction>
                                                                             <CubicEase EasingMode="EaseOut"/>
                                                                         </ColorAnimation.EasingFunction>
                                                                     </ColorAnimation>
                                                                     <ColorAnimation Storyboard.TargetProperty="BorderBrush.Color"
-                                                                                    Duration="0:0:0.15">
+                                                                                    Duration="0:0:0.15" FillBehavior="Stop">
                                                                         <ColorAnimation.EasingFunction>
                                                                             <CubicEase EasingMode="EaseOut"/>
                                                                         </ColorAnimation.EasingFunction>
@@ -8826,7 +8826,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                                             <BeginStoryboard>
                                                                 <Storyboard>
                                                                     <ColorAnimation Storyboard.TargetProperty="Background.Color"
-                                                                                    Duration="0:0:0.12">
+                                                                                    Duration="0:0:0.12" FillBehavior="Stop">
                                                                         <ColorAnimation.EasingFunction>
                                                                             <CubicEase EasingMode="EaseOut"/>
                                                                         </ColorAnimation.EasingFunction>
@@ -8882,13 +8882,13 @@ Background="{StaticResource SurfaceTintBrush}"
                                                             <BeginStoryboard>
                                                                 <Storyboard>
                                                                     <ColorAnimation Storyboard.TargetProperty="Background.Color"
-                                                                                    Duration="0:0:0.15">
+                                                                                    Duration="0:0:0.15" FillBehavior="Stop">
                                                                         <ColorAnimation.EasingFunction>
                                                                             <CubicEase EasingMode="EaseOut"/>
                                                                         </ColorAnimation.EasingFunction>
                                                                     </ColorAnimation>
                                                                     <ColorAnimation Storyboard.TargetProperty="BorderBrush.Color"
-                                                                                    Duration="0:0:0.15">
+                                                                                    Duration="0:0:0.15" FillBehavior="Stop">
                                                                         <ColorAnimation.EasingFunction>
                                                                             <CubicEase EasingMode="EaseOut"/>
                                                                         </ColorAnimation.EasingFunction>
@@ -8910,7 +8910,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                                             <BeginStoryboard>
                                                                 <Storyboard>
                                                                     <ColorAnimation Storyboard.TargetProperty="Background.Color"
-                                                                                    Duration="0:0:0.12">
+                                                                                    Duration="0:0:0.12" FillBehavior="Stop">
                                                                         <ColorAnimation.EasingFunction>
                                                                             <CubicEase EasingMode="EaseOut"/>
                                                                         </ColorAnimation.EasingFunction>
@@ -9001,7 +9001,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                                                 <Storyboard>
                                                                     <ColorAnimation Storyboard.TargetName="VioletTextBoxBorder"
                                                                                     Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)"
-                                                                                    Duration="0:0:0.15">
+                                                                                    Duration="0:0:0.15" FillBehavior="Stop">
                                                                         <ColorAnimation.EasingFunction>
                                                                             <CubicEase EasingMode="EaseOut"/>
                                                                         </ColorAnimation.EasingFunction>
@@ -9092,7 +9092,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                                                                 <Storyboard>
                                                                                     <ColorAnimation Storyboard.TargetName="Border"
                                                                                                     Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)"
-                                                                                                    Duration="0:0:0.15">
+                                                                                                    Duration="0:0:0.15" FillBehavior="Stop">
                                                                                         <ColorAnimation.EasingFunction>
                                                                                             <CubicEase EasingMode="EaseOut"/>
                                                                                         </ColorAnimation.EasingFunction>
@@ -9609,7 +9609,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                                                     <Storyboard>
                                                                         <ColorAnimation Storyboard.TargetName="bd"
                                                                                         Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
-                                                                                        Duration="0:0:0.15">
+                                                                                        Duration="0:0:0.15" FillBehavior="Stop">
                                                                             <ColorAnimation.EasingFunction><CubicEase EasingMode="EaseOut"/></ColorAnimation.EasingFunction>
                                                                         </ColorAnimation>
                                                                     </Storyboard>
@@ -9631,7 +9631,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                                                     <Storyboard>
                                                                         <ColorAnimation Storyboard.TargetName="bd"
                                                                                         Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
-                                                                                        Duration="0:0:0.12">
+                                                                                        Duration="0:0:0.12" FillBehavior="Stop">
                                                                             <ColorAnimation.EasingFunction><CubicEase EasingMode="EaseOut"/></ColorAnimation.EasingFunction>
                                                                         </ColorAnimation>
                                                                     </Storyboard>
@@ -9687,7 +9687,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                                                     <Storyboard>
                                                                         <ColorAnimation Storyboard.TargetName="bd"
                                                                                         Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
-                                                                                        Duration="0:0:0.15">
+                                                                                        Duration="0:0:0.15" FillBehavior="Stop">
                                                                             <ColorAnimation.EasingFunction><CubicEase EasingMode="EaseOut"/></ColorAnimation.EasingFunction>
                                                                         </ColorAnimation>
                                                                     </Storyboard>
@@ -9709,7 +9709,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                                                     <Storyboard>
                                                                         <ColorAnimation Storyboard.TargetName="bd"
                                                                                         Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
-                                                                                        Duration="0:0:0.12">
+                                                                                        Duration="0:0:0.12" FillBehavior="Stop">
                                                                             <ColorAnimation.EasingFunction><CubicEase EasingMode="EaseOut"/></ColorAnimation.EasingFunction>
                                                                         </ColorAnimation>
                                                                     </Storyboard>
@@ -9765,7 +9765,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                                                     <Storyboard>
                                                                         <ColorAnimation Storyboard.TargetName="bd"
                                                                                         Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
-                                                                                        Duration="0:0:0.15">
+                                                                                        Duration="0:0:0.15" FillBehavior="Stop">
                                                                             <ColorAnimation.EasingFunction><CubicEase EasingMode="EaseOut"/></ColorAnimation.EasingFunction>
                                                                         </ColorAnimation>
                                                                     </Storyboard>
@@ -9787,7 +9787,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                                                     <Storyboard>
                                                                         <ColorAnimation Storyboard.TargetName="bd"
                                                                                         Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
-                                                                                        Duration="0:0:0.12">
+                                                                                        Duration="0:0:0.12" FillBehavior="Stop">
                                                                             <ColorAnimation.EasingFunction><CubicEase EasingMode="EaseOut"/></ColorAnimation.EasingFunction>
                                                                         </ColorAnimation>
                                                                     </Storyboard>
@@ -10129,7 +10129,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                                 <BeginStoryboard>
                                                     <Storyboard>
                                                         <ColorAnimation Storyboard.TargetProperty="(TextBlock.Foreground).(SolidColorBrush.Color)"
-                                                                        Duration="0:0:0.15">
+                                                                        Duration="0:0:0.15" FillBehavior="Stop">
                                                             <ColorAnimation.EasingFunction><CubicEase EasingMode="EaseOut"/></ColorAnimation.EasingFunction>
                                                         </ColorAnimation>
                                                     </Storyboard>
@@ -10174,7 +10174,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                                                 <Storyboard>
                                                                     <ColorAnimation Storyboard.TargetName="b"
                                                                                     Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
-                                                                                    Duration="0:0:0.2">
+                                                                                    Duration="0:0:0.2" FillBehavior="Stop">
                                                                         <ColorAnimation.EasingFunction><CubicEase EasingMode="EaseOut"/></ColorAnimation.EasingFunction>
                                                                     </ColorAnimation>
                                                                 </Storyboard>
@@ -10244,7 +10244,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                                                 <Storyboard>
                                                                     <ColorAnimation Storyboard.TargetName="b"
                                                                                     Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
-                                                                                    Duration="0:0:0.2">
+                                                                                    Duration="0:0:0.2" FillBehavior="Stop">
                                                                         <ColorAnimation.EasingFunction><CubicEase EasingMode="EaseOut"/></ColorAnimation.EasingFunction>
                                                                     </ColorAnimation>
                                                                 </Storyboard>
