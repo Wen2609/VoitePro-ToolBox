@@ -282,7 +282,7 @@ namespace WpfApp1
 
             string binUrl = ((this.FindControlInPages("BinUrlTextBox") as System.Windows.Controls.TextBox).Text ?? string.Empty).Trim().Trim('`');
             if (!string.IsNullOrEmpty(binUrl) &&
-                !string.Equals(binUrl, "全量包链接 or Payload.bin路径...", StringComparison.Ordinal) &&
+                !string.Equals(binUrl, "全量包链接或Payload.bin路径...", StringComparison.Ordinal) &&
                 !string.Equals(binUrl, "bin_URL", StringComparison.OrdinalIgnoreCase))
             {
                 return binUrl;
@@ -474,7 +474,7 @@ namespace WpfApp1
             try
             {
                 string binUrl = ((this.FindControlInPages("BinUrlTextBox") as System.Windows.Controls.TextBox).Text ?? string.Empty).Trim().Trim('`');
-                if (string.IsNullOrEmpty(binUrl) || binUrl == "全量包链接 or Payload.bin路径...")
+                if (string.IsNullOrEmpty(binUrl) || binUrl == "全量包链接或Payload.bin路径...")
                 {
                     AppendOugaFlashParagraphLog("错误: 请输入有效的全量包链接或Payload.bin路径", "Red");
                     return;

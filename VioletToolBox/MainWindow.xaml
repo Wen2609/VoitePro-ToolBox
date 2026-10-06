@@ -496,7 +496,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                 </Border>
                                 <Border
                                     Background="{TemplateBinding Background}"
-                                    Margin="10,-8,0,0"
+                                    Margin="10,-9,0,0"
                                     HorizontalAlignment="Left"
                                     VerticalAlignment="Top">
                                     <ContentPresenter
@@ -504,7 +504,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                         TextElement.Foreground="{TemplateBinding Foreground}"
                                         TextElement.FontSize="{TemplateBinding FontSize}"
                                         TextElement.FontWeight="{TemplateBinding FontWeight}"
-                                        Margin="5,0" />
+                                        Margin="8,0,8,2" />
                                 </Border>
                             </Grid>
                         </ControlTemplate>
@@ -3006,7 +3006,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                             <!-- 收款码区域 -->
                                             <TextBlock Grid.Row="0" Grid.Column="0" Text="支持开发者" Style="{StaticResource CardTitle15Style}" Foreground="{StaticResource TextPrimaryBrush}"/>
                                             <StackPanel Grid.Row="1" Grid.Column="0" Margin="0,12,0,0" HorizontalAlignment="Left" VerticalAlignment="Center">
-                                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                                                     <StackPanel Margin="0,0,12,0">
                                                         <Border Width="132" Height="132" CornerRadius="6" BorderBrush="{StaticResource BorderBrush}" BorderThickness="1" Background="{StaticResource BackgroundBrush}" Padding="6">
                                                             <Image Source="zfb.png" Stretch="Uniform"/>
@@ -4065,7 +4065,7 @@ Background="{StaticResource SurfaceTintBrush}"
 
                                         <Button x:Name="RepairSuperHardBrickButton"
                                                 Grid.Row="0"
-                                                Width="168"
+                                                Width="160"
                                                 Height="32"
                                                 Margin="315,0,0,0"
                                                 HorizontalAlignment="Left"
@@ -4242,7 +4242,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                       VerticalAlignment="Top"
                                       Margin="504,98,0,0"
                                       Width="312"
-                                      Height="559"
+                                      Height="598"
                                       Panel.ZIndex="100">
 <GroupBox.Header><StackPanel Orientation="Horizontal" Background="Transparent"><svg:SvgViewbox Source="images/wendang.svg" Width="15" Height="15" Margin="0,0,7,0" VerticalAlignment="Center"/><TextBlock Text="执行日志" VerticalAlignment="Center"/></StackPanel></GroupBox.Header>
                                 <Grid Background="{StaticResource SurfaceTintBrush}">
@@ -4330,14 +4330,14 @@ Background="{StaticResource SurfaceTintBrush}"
                                                    FontWeight="SemiBold"
                                                    Margin="0,0,14,0"/>
                                         <CheckBox x:Name="PartitionTableValidationEnabledCheckBox"
-                                                  Content="开启"
+                                                  Content="开"
                                                   Style="{StaticResource PageCheckBox}"
                                                   Margin="0,0,10,0"
                                                   IsChecked="True"
                                                   Checked="PartitionTableValidationEnabledCheckBox_Checked"
                                                   Unchecked="PartitionTableValidationEnabledCheckBox_Unchecked"/>
                                         <CheckBox x:Name="PartitionTableValidationDisabledCheckBox"
-                                                  Content="关闭"
+                                                  Content="关"
                                                   Style="{StaticResource PageCheckBox}"
                                                   Margin="0"
                                                   Checked="PartitionTableValidationDisabledCheckBox_Checked"
@@ -4376,9 +4376,9 @@ Background="{StaticResource SurfaceTintBrush}"
 
                                         <TextBox x:Name="BinUrlTextBox"
                                                  Grid.Row="0"
-                                                 Grid.ColumnSpan="3"
-                                                 Text="全量包链接 or Payload.bin路径..."
-                                                 Tag="全量包链接 or Payload.bin路径..."
+                                                 Grid.Column="0"
+                                                 Text="全量包链接或Payload.bin路径..."
+                                                 Tag="全量包链接或Payload.bin路径..."
                                                  Style="{StaticResource PageTextBox}"
                                                  TextChanged="BinUrlTextBox_TextChanged"
                                                  GotFocus="BinUrlTextBox_GotFocus"
@@ -4388,9 +4388,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                                   Grid.Column="0"
                                                   x:Name="PayloadPartitionComboBox"
                                                   Style="{StaticResource PageComboBox}"
-                                                  IsEditable="True"
-                                                  SelectionChanged="PayloadPartitionComboBox_SelectionChanged"
-                                                  Text="请选择快捷提取方案 ↓">
+                                                  SelectionChanged="PayloadPartitionComboBox_SelectionChanged">
                                             <ComboBoxItem Content="请选择快捷提取方案 ↓" IsSelected="True"/>
                                             <ComboBoxItem Content="boot"/>
                                             <ComboBoxItem Content="init_boot"/>
@@ -4494,18 +4492,23 @@ Background="{StaticResource SurfaceTintBrush}"
 
                                         <!-- Top Row -->
                                         <Grid Grid.Row="0">
-                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Cursor="">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="8"/>
+                                                <ColumnDefinition Width="124"/>
+                                            </Grid.ColumnDefinitions>
+                                            <StackPanel Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Cursor="">
                                                 <CheckBox x:Name="ClearDataCheckBox" Content="清除数据" Style="{StaticResource PageCheckBox}" IsChecked="True"/>
                                                 <CheckBox x:Name="AutoRebootOugaCheckBox" Content="自动重启" Style="{StaticResource PageCheckBox}" IsChecked="True"/>
                                                 <CheckBox x:Name="FlashABCheckBox" Content="AB通刷" Style="{StaticResource PageCheckBox}" ToolTip="勾选此项将同时刷入A和B两个分区,并且可以安全的切换设备槽位" Checked="FlashABCheckBox_Checked"/>
                                                 <CheckBox x:Name="FixSuperCheckBox" Content="强力线刷" Style="{StaticResource PageCheckBox}" Checked="FixSuperCheckBox_Checked" ToolTip="部分大分区刷不进去时可选择此模式修复super，默认刷A槽位"/>
                                             </StackPanel>
-                                            <Button Content="修复FastbootD"
+                                            <Button Grid.Column="2" Content="修复FastbootD"
                                                     Style="{StaticResource PageSecondaryButton}"
-                                                    Width="130"
+                                                    Width="124"
                                                     Height="26"
-                                                    HorizontalAlignment="Left"
-                                                    Click="FixFastbootDButton_Click" Margin="352,0,0,0" BorderBrush="{StaticResource BorderSubtleBrush}" Background="{StaticResource BrandTintBrush}"/>
+                                                    HorizontalAlignment="Stretch"
+                                                    Click="FixFastbootDButton_Click" BorderBrush="{StaticResource BorderSubtleBrush}" Background="{StaticResource BrandTintBrush}"/>
                                         </Grid>
 
                                         <!-- Bottom Row -->
@@ -4547,6 +4550,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                       HorizontalAlignment="Left"
                                       VerticalAlignment="Top"
                                       Margin="579,675,0,0"
+                                      Panel.ZIndex="200"
                                       Visibility="Visible">
                                     <ProgressBar x:Name="FlashProgressBar"
                                                  Height="30"
@@ -4589,9 +4593,9 @@ Background="{StaticResource SurfaceTintBrush}"
 
                                         <TextBox x:Name="AfterSalesBinUrlTextBox"
                                                  Grid.Row="0"
-                                                 Grid.ColumnSpan="3"
-                                                 Text="全量包链接 or Payload.bin路径..."
-                                                 Tag="全量包链接 or Payload.bin路径..."
+                                                 Grid.Column="0"
+                                                 Text="全量包链接或Payload.bin路径..."
+                                                 Tag="全量包链接或Payload.bin路径..."
                                                  Style="{StaticResource PageTextBox}"
                                                  TextChanged="BinUrlTextBox_TextChanged"
                                                  GotFocus="BinUrlTextBox_GotFocus"
@@ -4601,9 +4605,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                                   Grid.Column="0"
                                                   x:Name="AfterSalesPayloadPartitionComboBox"
                                                   Style="{StaticResource PageComboBox}"
-                                                  IsEditable="True"
-                                                  SelectionChanged="PayloadPartitionComboBox_SelectionChanged"
-                                                  Text="请选择快捷提取方案 ↓">
+                                                  SelectionChanged="PayloadPartitionComboBox_SelectionChanged">
                                             <ComboBoxItem Content="请选择快捷提取方案 ↓" IsSelected="True"/>
                                             <ComboBoxItem Content="boot"/>
                                             <ComboBoxItem Content="init_boot"/>
@@ -4646,13 +4648,14 @@ Background="{StaticResource SurfaceTintBrush}"
                                                  Style="{StaticResource PageTextBox}"
                                                  AllowDrop="True"
                                                  PreviewDragOver="AfterSalesFlashPackTextBox_PreviewDragOver"
-                                                 Drop="AfterSalesFlashPackTextBox_Drop" Height="74" Margin="0,0,18,0"/>
+                                                 Drop="AfterSalesFlashPackTextBox_Drop" Height="74" Margin="0,0,10,0"/>
                                         <Button x:Name="AfterSalesSelectFolderButton"
+                                                Grid.Column="2"
                                                 Click="AfterSalesSelectFolderButton_Click"
                                                 Style="{StaticResource PagePrimaryButton}"
                                                 Width="105"
                                                 BorderBrush="{StaticResource BorderSubtleBrush}"
-                                                Background="{StaticResource BrandPrimaryBrush}" Grid.ColumnSpan="3" HorizontalAlignment="Left" Margin="370,0,0,0" Height="74">
+                                                Background="{StaticResource BrandPrimaryBrush}" Height="74">
                                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                                                 <svg:SvgViewbox Source="images/wenjianjia.svg" Width="22" Height="22" Margin="0,0,6,0"/>
                                                 <TextBlock Text="选择" Foreground="White" VerticalAlignment="Center"/>
@@ -4679,7 +4682,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="*"/>
                                                 <ColumnDefinition Width="8"/>
-                                                <ColumnDefinition Width="105"/>
+                                                <ColumnDefinition Width="130"/>
                                             </Grid.ColumnDefinitions>
                                             <StackPanel Grid.Column="0"
                                                         Orientation="Horizontal"
@@ -4808,6 +4811,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                       HorizontalAlignment="Left"
                                       VerticalAlignment="Top"
                                       Margin="579,675,0,0"
+                                      Panel.ZIndex="200"
                                       Visibility="Visible">
                                     <ProgressBar x:Name="AfterSalesFlashProgressBar"
                                                  Height="30"
@@ -4827,6 +4831,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                     Margin="766,671,0,0"
                                     Width="80"
                                     Height="32"
+                                    Panel.ZIndex="200"
                                     Background="{StaticResource TextPrimaryBrush}"
                                     BorderBrush="{StaticResource BorderSubtleBrush}"
                                     BorderThickness="1"
@@ -5838,7 +5843,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                         <Button x:Name="ReadAppListButton"
                                                 Style="{StaticResource PagePrimaryButton}"
                                                 Click="ReadAppListButton_Click">
-                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                                                 <svg:SvgViewbox Source="images/sousuo.svg" Width="16" Height="16" Margin="0,0,6,0"/>
                                                 <TextBlock Text="读取应用列表" VerticalAlignment="Center"/>
                                             </StackPanel>
@@ -5846,7 +5851,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                         <Button x:Name="ViewDisabledAppsButton"
                                                 Style="{StaticResource PageLightButton}"
                                                 Click="ViewDisabledAppsButton_Click">
-                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                                                 <svg:SvgViewbox Source="images/chakan.svg" Width="16" Height="16" Margin="0,0,6,0"/>
                                                 <TextBlock Text="查看冻结应用" VerticalAlignment="Center"/>
                                             </StackPanel>
@@ -5856,7 +5861,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                                     Margin="0,0,6,0"
                                                     Style="{StaticResource PageLightButton}"
                                                     Click="FreezeSelectedAppsButton_Click">
-                                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                                                     <svg:SvgViewbox Source="images/xuehua.svg" Width="16" Height="16" Margin="0,0,6,0"/>
                                                     <TextBlock Text="冻结" VerticalAlignment="Center"/>
                                                 </StackPanel>
@@ -5865,7 +5870,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                                     Margin="6,0,0,0"
                                                     Style="{StaticResource PageLightButton}"
                                                     Click="UnfreezeSelectedAppsButton_Click">
-                                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                                                     <svg:SvgViewbox Source="images/jiedong.svg" Width="16" Height="16" Margin="0,0,6,0"/>
                                                     <TextBlock Text="解冻" VerticalAlignment="Center"/>
                                                 </StackPanel>
@@ -5874,7 +5879,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                         <Button x:Name="ExtractApkButton"
                                                 Style="{StaticResource PageLightButton}"
                                                 Click="ExtractApkButton_Click">
-                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                                                 <svg:SvgViewbox Source="images/APK.svg" Width="16" Height="16" Margin="0,0,6,0"/>
                                                 <TextBlock Text="提取 APK 安装包" VerticalAlignment="Center"/>
                                             </StackPanel>
@@ -5885,7 +5890,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                                     Style="{StaticResource PageLightButton}"
                                                     Click="FreezeMiuiUpdaterButton_Click"
                                                     ToolTip="目前仅支持小米">
-                                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                                                     <svg:SvgViewbox Source="images/xuehua.svg" Width="16" Height="16" Margin="0,0,6,0"/>
                                                     <TextBlock Text="冻结更新" VerticalAlignment="Center"/>
                                                 </StackPanel>
@@ -5894,7 +5899,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                                     Margin="6,0,0,0"
                                                     Style="{StaticResource PageLightButton}"
                                                     Click="UnfreezeMiuiUpdaterButton_Click">
-                                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                                                     <svg:SvgViewbox Source="images/jiedong.svg" Width="13" Height="16" Margin="0,0,6,0"/>
                                                     <TextBlock Text="恢复更新" VerticalAlignment="Center"/>
                                                 </StackPanel>
@@ -5907,7 +5912,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                         <Button x:Name="UninstallSelectedAppsButton"
                                                 Style="{StaticResource PageSecondaryButton}"
                                                 Click="UninstallSelectedAppsButton_Click">
-                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                                                 <svg:SvgViewbox Source="images/xiezai.svg" Width="16" Height="16" Margin="0,0,6,0"/>
                                                 <TextBlock Text="卸载选中应用" VerticalAlignment="Center"/>
                                             </StackPanel>
@@ -5974,14 +5979,14 @@ Background="{StaticResource SurfaceTintBrush}"
                                 <ContentPresenter TextElement.Foreground="{TemplateBinding Foreground}" Margin="{TemplateBinding Padding}"/>
                             </Border>
                             <Border Background="{TemplateBinding Background}"
-                                    Margin="10,-8,0,0"
+                                    Margin="10,-9,0,0"
                                     HorizontalAlignment="Left"
                                     VerticalAlignment="Top">
                                 <ContentPresenter ContentSource="Header"
                                                   TextElement.Foreground="{TemplateBinding Foreground}"
                                                   TextElement.FontSize="{TemplateBinding FontSize}"
                                                   TextElement.FontWeight="{TemplateBinding FontWeight}"
-                                                  Margin="5,0"/>
+                                                  Margin="8,0,8,2"/>
                             </Border>
                         </Grid>
                     </ControlTemplate>
@@ -6016,7 +6021,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                     <TextBox x:Name="SuperScatterPathTextBox" HorizontalAlignment="Left" Margin="51,-4,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="193" BorderBrush="{StaticResource BorderSubtleBrush}"/>
                                     <Button x:Name="SelectSuperScatterButton" HorizontalAlignment="Left" Margin="253,-4,0,0" VerticalAlignment="Top" Width="85" Click="SelectSuperScatterButton_Click" Style="{StaticResource PageSecondaryButton}">
                                         <Button.Content>
-                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                                                 <svg:SvgViewbox Source="images/wenjianjia.svg" Width="16" Height="16" Margin="0,0,6,0"/>
                                                 <TextBlock Text="选择"/>
                                             </StackPanel>
@@ -6035,7 +6040,7 @@ Background="{StaticResource SurfaceTintBrush}"
 <GroupBox.Header><StackPanel Orientation="Horizontal" Background="Transparent"><svg:SvgViewbox Source="images/yasuobao.svg" Width="15" Height="15" Margin="0,0,7,0" VerticalAlignment="Center"/><TextBlock Text="解包OFP" VerticalAlignment="Center"/></StackPanel></GroupBox.Header>
                                 <Grid>
                                     <TextBlock Text="OFP文件：" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="-8,0,0,0"/>
-                                    <TextBox x:Name="OfpFilePathTextBox" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="51,-4,0,0" BorderBrush="{StaticResource BorderSubtleBrush}" Width="273"/>
+                                    <TextBox x:Name="OfpFilePathTextBox" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="51,-4,0,0" BorderBrush="{StaticResource BorderSubtleBrush}" Width="250"/>
                                     <Button x:Name="SelectOfpFileButton" Content="选择" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,-4,0,0" Width="85" Click="SelectOfpFileButton_Click" Style="{StaticResource PageSecondaryButton}"/>
                                     <ProgressBar x:Name="OfpExtractProgressBar" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="-8,32,0,0" Height="18" Minimum="0" Maximum="100" Value="0" Width="332" Style="{StaticResource PageProgress}"/>
                                     <Button x:Name="StartOfpExtractButton" Content="开始解包" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,27,0,0" Width="85" Height="28" Click="StartOfpExtractButton_Click" Style="{StaticResource PageSecondaryButton}"/>
@@ -6055,7 +6060,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                     <TextBox x:Name="ImageDirTextBox" HorizontalAlignment="Left" Margin="51,-4,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="193" BorderBrush="{StaticResource BorderSubtleBrush}"/>
                                     <Button x:Name="SelectImageDirButton" HorizontalAlignment="Left" Margin="253,-4,0,0" VerticalAlignment="Top" Width="85" Click="SelectImageDirButton_Click" Style="{StaticResource PageSecondaryButton}">
                                         <Button.Content>
-                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                                                 <svg:SvgViewbox Source="images/wenjianjia.svg" Width="16" Height="16" Margin="0,0,6,0"/>
                                                 <TextBlock Text="选择"/>
                                             </StackPanel>
@@ -6073,7 +6078,7 @@ Background="{StaticResource SurfaceTintBrush}"
 <GroupBox.Header><StackPanel Orientation="Horizontal" Background="Transparent"><svg:SvgViewbox Source="images/yasuobao.svg" Width="15" Height="15" Margin="0,0,7,0" VerticalAlignment="Center"/><TextBlock Text="解包OPS" VerticalAlignment="Center"/></StackPanel></GroupBox.Header>
                                 <Grid>
                                     <TextBlock Text="OPS文件：" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="-8,0,0,0"/>
-                                    <TextBox x:Name="OpsFilePathTextBox" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="51,-4,0,0" BorderBrush="{StaticResource BorderSubtleBrush}" Width="273"/>
+                                    <TextBox x:Name="OpsFilePathTextBox" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="51,-4,0,0" BorderBrush="{StaticResource BorderSubtleBrush}" Width="250"/>
                                     <Button x:Name="SelectOpsFileButton" Content="选择" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,-4,0,0" Width="85" Click="SelectOpsFileButton_Click" Style="{StaticResource PageSecondaryButton}"/>
                                     <ProgressBar x:Name="OpsExtractProgressBar" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="-8,32,0,0" Height="18" Minimum="0" Maximum="100" Value="0" Width="332" Style="{StaticResource PageProgress}"/>
                                     <Button x:Name="StartOpsExtractButton" Content="开始解包" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,27,0,0" Width="85" Height="28" Click="StartOpsExtractButton_Click" Style="{StaticResource PageSecondaryButton}"/>
@@ -6091,7 +6096,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                     <TextBox x:Name="UnpackedFolderTextBox" HorizontalAlignment="Left" Margin="90,-4,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="154" BorderBrush="{StaticResource BorderSubtleBrush}"/>
                                     <Button x:Name="SelectUnpackedFolderButton" HorizontalAlignment="Left" Margin="253,-4,0,0" VerticalAlignment="Top" Width="85" Click="SelectUnpackedFolderButton_Click" Style="{StaticResource PageSecondaryButton}">
                                         <Button.Content>
-                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                                                 <svg:SvgViewbox Source="images/wenjianjia.svg" Width="16" Height="16" Margin="0,0,6,0"/>
                                                 <TextBlock Text="选择"/>
                                             </StackPanel>
