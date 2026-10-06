@@ -457,6 +457,9 @@ namespace WpfApp1
             { "AboutToolView", "AboutToolButton" }
         };
 
+        // 是否存在命令行导航参数（--page=/ -page=）：存在时跳过默认主页选中，避免侧边栏残留高亮
+        private bool _hasPageArg;
+
         /// <summary>页面切换后同步侧边栏选中项，确保高亮始终跟随当前页面（防抖由 ShowPage 的 _currentPage 判断承担）</summary>
         private void SyncSideMenuSelection(string viewName)
         {
@@ -467,14 +470,33 @@ namespace WpfApp1
                 if (!_viewToMenuMap.TryGetValue(viewName, out var menuName)) return;
                 var target = sideMenu.Items.OfType<HandyControl.Controls.SideMenuItem>().FirstOrDefault(i => i.Name == menuName);
                 if (target == null) return;
+
+                // 当前页若属于折叠分组，先展开所在组，保证选中项可见
+                foreach (var kv in _groupItems)
+                {
+                    if (kv.Value.Contains(menuName) && _groupExpanded.TryGetValue(kv.Key, out var ex) && !ex)
+                        ToggleGroup(kv.Key, true);
+                }
+
                 bool changed = false;
                 foreach (var item in sideMenu.Items.OfType<HandyControl.Controls.SideMenuItem>())
                 {
                     if (item == target) continue;
                     if (item.Role == HandyControl.Data.SideMenuItemRole.Header) continue;
                     if (item.IsSelected) { item.IsSelected = false; changed = true; }
+                    // 同步释放模板内 bd 动画（IsSelected/IsMouseOver 的 Enter 动画若残留会冻结颜色）
+                    try
+                    {
+                        item.ApplyTemplate();
+                        if (item.Template != null && item.Template.FindName("bd", item) is System.Windows.Controls.Border bd)
+                        {
+                            bd.BeginAnimation(System.Windows.Controls.Border.BackgroundProperty, null);
+                            bd.BeginAnimation(System.Windows.UIElement.RenderTransformProperty, null);
+                        }
+                    }
+                    catch { }
                 }
-                if (!target.IsSelected) { target.IsSelected = true; changed = true; }
+                if (!target.IsSelected) target.IsSelected = true;
             }
             catch { }
         }
@@ -1284,10 +1306,14 @@ namespace WpfApp1
             InitializeAutorootPaths();
 
             // 初始化时显示首页视图，隐藏其他视图
-            
-
-            ShowPage("HomeView");
-            UpdateButtonStates("Home");
+            _hasPageArg = Environment.GetCommandLineArgs().Any(a =>
+                a.StartsWith("--page=", StringComparison.OrdinalIgnoreCase) ||
+                a.StartsWith("-page=", StringComparison.OrdinalIgnoreCase));
+            if (!_hasPageArg)
+            {
+                ShowPage("HomeView");
+                UpdateButtonStates("Home");
+            }
             // 命令行参数 --page=ViewName 直接打开指定页面（自动化截图/调试用）；延迟到窗口显示后执行
             try
             {
@@ -2132,14 +2158,28 @@ namespace WpfApp1
                                 smi.SetValue(roleDP, HandyControl.Data.SideMenuItemRole.Header);
                         }
                     }
-                    ToggleGroup("FlashFeatureGroup", false);
-                    ToggleGroup("UtilityGroup", false);
-                    ToggleGroup("ResourceGroup", false);
+                    // 默认折叠分组（若当前页属于该组则保持展开，保证选中项可见）
+                    foreach (var g in _groupItems)
+                    {
+                        bool inCurrentGroup = _currentPage != null &&
+                                              _viewToMenuMap.TryGetValue(_currentPage, out var curMenu) &&
+                                              g.Value.Contains(curMenu);
+                        if (!inCurrentGroup) ToggleGroup(g.Key, false);
+                    }
                     RestoreSidebarState();
+                    // 恢复侧边栏状态后，确保当前页所在组保持展开（选中项可见）
+                    if (_currentPage != null && _viewToMenuMap.TryGetValue(_currentPage, out var curMenu2))
+                    {
+                        foreach (var g in _groupItems)
+                        {
+                            if (g.Value.Contains(curMenu2) && _groupExpanded.TryGetValue(g.Key, out var ex) && !ex)
+                                ToggleGroup(g.Key, true);
+                        }
+                    }
 
                 }
-                // 选中主页
-                if (homeItem != null) homeItem.IsSelected = true;
+                // 选中主页（有 --page 导航参数时跳过，避免主页残留选中导致侧边栏多选异常）
+                if (!_hasPageArg && homeItem != null) homeItem.IsSelected = true;
                 
                 // 再等一小会儿确保主页渲染完成
                 await Task.Delay(80);
