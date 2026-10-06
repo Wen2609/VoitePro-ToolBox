@@ -2,7 +2,7 @@
 
 **紫罗兰工具箱（VioletToolBox）重构版** —— 面向安卓设备的刷机/线刷工具箱。
 
-基于 [Smart-Paocai/VioletToolBox](https://github.com/Smart-Paocai/VioletToolBox) 源码的深度 UI 重构与性能优化版本：全新的 iOS 风格蓝主题、OPPO Sans 4.0 字体、分组折叠侧边栏、按需懒加载页面，启动与运行时流畅度大幅提升。
+基于 [Smart-Paocai/VioletToolBox](https://github.com/Smart-Paocai/VioletToolBox) 源码的深度 UI 重构与性能优化版本：全新的 iOS 风格蓝主题、Noto Sans SC 子集字体（OFL 商用免费）、分组折叠侧边栏、按需懒加载页面，启动与运行时流畅度大幅提升。
 
 > 📌 **AI/开发者提示**：接手本项目的 AI 或开发者，请先阅读：
 > - **[AI_NOTES.md](AI_NOTES.md)** — 踩坑记录（字体/布局/滚动/分组机制/调试方法）
@@ -36,7 +36,7 @@
 
 - **框架**：WPF（.NET 8.0-windows）
 - **主题**：iOS 风格蓝主题（主色 `#0A84FF`、浅蓝底 `#E0EFFF`、悬停 `#F0F7FF`）
-- **字体**：OPPO Sans 4.0（内置 `fonts/OPPO_Sans_4.0.ttf`）
+- **字体**：Noto Sans SC（SIL OFL 开源商用，按程序字符集子集化后 0.8MB，内置 `fonts/NotoSansSC-Sub.otf`）
 - **图标**：SVG 图标（`SvgViewbox`）
 - **性能**：16 个页面按需懒加载（DataTemplate + ContentControl PageHost）、控件缓存、WMI 异步枚举、硬件加速（移除透明窗口）、启动约 2s
 
@@ -56,7 +56,7 @@ VioletToolBox/
 ├── VioletToolBox/          # 主工程（SmartTool.csproj）
 │   ├── MainWindow.xaml     # 主界面 + 16 个页面模板
 │   ├── MainWindow.xaml.cs  # 逻辑代码
-│   ├── fonts/              # OPPO Sans 4.0 字体
+│   ├── fonts/              # Noto Sans SC 子集字体
 │   └── images/             # SVG 图标
 ├── docs/                   # 架构/贡献文档
 ├── scripts/                # 开发辅助脚本
