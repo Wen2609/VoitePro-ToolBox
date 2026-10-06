@@ -2061,23 +2061,6 @@ Background="{StaticResource SurfaceTintBrush}"
                                             <Setter Property="Background" Value="{StaticResource BrandTintBrush}"/>
                                             <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
                                         </Trigger>
-                                        <MultiDataTrigger>
-                                            <MultiDataTrigger.Conditions>
-                                                <Condition Binding="{Binding ElementName=ProtectPartitionCheckBox, Path=IsChecked}" Value="True"/>
-                                                <Condition Binding="{Binding IsBasebandFingerprintProtected}" Value="True"/>
-                                            </MultiDataTrigger.Conditions>
-                                            <Setter Property="Background" Value="{StaticResource BorderSubtleBrush}"/>
-                                            <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
-                                        </MultiDataTrigger>
-                                        <MultiDataTrigger>
-                                            <MultiDataTrigger.Conditions>
-                                                <Condition Binding="{Binding ElementName=ProtectPartitionCheckBox, Path=IsChecked}" Value="True"/>
-                                                <Condition Binding="{Binding IsAdbDataProtected}" Value="True"/>
-                                                <Condition Binding="{Binding ElementName=BottomConnectionTypeText, Path=Tag.RawText}" Value="系统"/>
-                                            </MultiDataTrigger.Conditions>
-                                            <Setter Property="Background" Value="{StaticResource BorderSubtleBrush}"/>
-                                            <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
-                                        </MultiDataTrigger>
                                     </Style.Triggers>
                                 </Style>
                             </Grid.Resources>
@@ -2687,87 +2670,89 @@ Background="{StaticResource SurfaceTintBrush}"
         </StackPanel>
     </Grid>
 <Grid Grid.Row="1" Margin="0,0,0,0">
-<GroupBox Header=""
-                                      Style="{StaticResource FastbootCardGroupBoxStyle}"
-                                      Padding="0,10,0,0"
-                                      HorizontalAlignment="Left"
-                                      VerticalAlignment="Center"
-                                      Width="361"
-                                      Height="718"
-                                      Margin="485,0,0,0">
-                                <RichTextBox x:Name="HiddenEnvironmentLogTextBox"
-                                             IsReadOnly="True"
-                                             Background="{StaticResource SurfaceTintBrush}"
-                                             BorderThickness="0"
-                                             Padding="7,7"
-                                             HorizontalContentAlignment="Stretch"
-                                             VerticalContentAlignment="Stretch"
-                                             FontFamily="Cascadia Mono,Noto Sans SC,Consolas"
-                                             FontSize="12"
-                                             FontWeight="Normal"
-                                             Foreground="{StaticResource TextPrimaryBrush}"
-                                             VerticalScrollBarVisibility="Auto"
-                                             HorizontalScrollBarVisibility="Disabled"
-                                             IsDocumentEnabled="False"
-                                             Margin="0,0,8,6">
-                                    <FlowDocument PagePadding="0"
-                                                  ColumnWidth="10000"
-                                                  ColumnGap="0"
-                                                  TextAlignment="Left"
-                                                  LineHeight="19"/>
-                                </RichTextBox>
-                            </GroupBox>
+<Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="361"/></Grid.ColumnDefinitions>
+<StackPanel Grid.Column="0" Margin="0,0,12,0">
                             <GroupBox
                                       Style="{StaticResource FastbootCardGroupBoxStyle}"
-                                      Margin="0,0,368,465">
+                                      Margin="0,0,0,0">
 <GroupBox.Header><StackPanel Orientation="Horizontal" Background="Transparent"><svg:SvgViewbox Source="images/dunpai.svg" Width="15" Height="15" Margin="0,0,7,0" VerticalAlignment="Center"/><TextBlock Text="隐藏ROOT" VerticalAlignment="Center"/></StackPanel></GroupBox.Header>
-                                <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="资料目录：" VerticalAlignment="Top" FontSize="12" Margin="0,7,0,0"/>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid Grid.Row="0" Margin="0,10,0,0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Text="资料目录：" VerticalAlignment="Center" FontSize="12" Foreground="{StaticResource TextPrimaryBrush}"/>
+                                        <TextBox x:Name="HiddenRootZipPathTextBox" Grid.Column="1" Margin="8,0,8,0" TextWrapping="NoWrap" Text="请选择隐藏环境资源包7z文件" VerticalContentAlignment="Center" Padding="9,0" Height="32" FontFamily="pack://siteoforigin:,,,/fonts/NotoSansSC-Sub.otf#Noto Sans SC" FontSize="12" Background="{StaticResource SurfaceBrush}" BorderBrush="{StaticResource BorderSubtleBrush}" BorderThickness="1" Foreground="{StaticResource TextMutedBrush}" ToolTip="{Binding Text, RelativeSource={RelativeSource Self}}"/>
+                                        <Button x:Name="SelectHiddenRootZipButton" Grid.Column="2" Width="84" Click="SelectHiddenRootZipButton_Click" Style="{StaticResource PagePrimaryButton}" BorderBrush="{StaticResource BorderSubtleBrush}" Background="{StaticResource BrandPrimaryBrush}">
+                                            <Button.Content>
+                                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                                    <svg:SvgViewbox Source="images/wenjianjia.svg" Width="16" Height="16" Margin="0,0,5,0"/>
+                                                    <TextBlock Text="选择" VerticalAlignment="Center" Foreground="White"/>
+                                                </StackPanel>
+                                            </Button.Content>
+                                        </Button>
+                                    </Grid>
+                                    <StackPanel Grid.Row="1" Margin="0,14,0,0">
+                                        <TextBlock TextWrapping="Wrap" FontFamily="pack://siteoforigin:,,,/fonts/NotoSansSC-Sub.otf#Noto Sans SC" FontSize="12" FontWeight="SemiBold" Foreground="{StaticResource TextPrimaryBrush}"><Run Text="隐藏方案："/></TextBlock>
+                                        <CheckBox x:Name="MagiskAlpha28104CheckBox" Content="Magisk Alpha方案  支持版本：28101~28104" Margin="0,6,0,0" Style="{StaticResource PageCheckBox}" Checked="HiddenRootScheme_Checked"/>
+                                        <CheckBox x:Name="MagiskAlpha29000CheckBox" Content="Magisk Alpha方案  支持版本：29000~最新" Margin="0,8,0,0" Style="{StaticResource PageCheckBox}" Checked="HiddenRootScheme_Checked"/>
+                                        <CheckBox x:Name="SUkiSULKMCheckBox" Content="SUkiSU LKM方案  支持版本：≥4.0 （KernelSU适用≥3.0）" Margin="0,8,0,0" Style="{StaticResource PageCheckBox}" Checked="HiddenRootScheme_Checked"/>
+                                        <CheckBox x:Name="SUkiSUGKICheckBox" Content="SUkiSU GKI/Built-in方案  支持版本：≥3.18" Margin="0,8,0,0" Style="{StaticResource PageCheckBox}" Checked="HiddenRootScheme_Checked"/>
+                                    </StackPanel>
+                                    <Grid Grid.Row="2" Margin="0,14,0,0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="8"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Button x:Name="StartHiddenRootButton" Width="154" Click="StartHiddenRootButton_Click" Style="{StaticResource PagePrimaryButton}" Background="{StaticResource BrandPrimaryBrush}" BorderBrush="{StaticResource TextPrimaryBrush}">
+                                            <Button.Content>
+                                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                                    <TextBlock Text="开始隐藏" VerticalAlignment="Center"/>
+                                                </StackPanel>
+                                            </Button.Content>
+                                        </Button>
+                                        <Button x:Name="DownloadHiddenPackageButton" Grid.Column="1" Content="下载隐藏环境资源包V6.0" Width="177" Click="DownloadHiddenPackageButton_Click" Style="{StaticResource PageSecondaryButton}"/>
+                                        <CheckBox x:Name="InstallZip6CheckBox" Grid.Column="3" Content="额外安装LSP" Margin="0,0,0,0" Style="{StaticResource PageCheckBox}"/>
+                                    </Grid>
+                                    <Grid Grid.Row="3" Margin="0,12,0,0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <CheckBox x:Name="AddRescueModuleCheckBox" Content="添加救砖模块" Style="{StaticResource PageCheckBox}"/>
+                                        <ProgressBar x:Name="HiddenRootProgressBar"
+                                                     Grid.Column="2"
+                                                     Margin="14,0,10,0"
+                                                     Height="24"
+                                                     Minimum="0"
+                                                     Maximum="100"
+                                                     Value="0"
+                                                     Tag="等待开始"
+                                                     Background="{StaticResource SurfaceTintBrush}"
+                                                     BorderBrush="{StaticResource BorderSubtleBrush}"
+                                                     BorderThickness="1"
+                                                     Style="{StaticResource PageProgressLabeled}">
+                                        </ProgressBar>
+                                        <TextBlock Grid.Column="3" TextWrapping="Wrap" VerticalAlignment="Center" Width="196" FontFamily="pack://siteoforigin:,,,/fonts/NotoSansSC-Sub.otf#Noto Sans SC" FontSize="12" Foreground="{StaticResource TextPrimaryBrush}"><Run Text="本功能建议线刷后搭配KernelSU使用，本界面特别鸣谢@王听 @月饼 开发"/></TextBlock>
+                                    </Grid>
+                                </Grid>
                             </GroupBox>
-                            <TextBox x:Name="HiddenRootZipPathTextBox" HorizontalAlignment="Left" Margin="76,12,0,0" TextWrapping="NoWrap" Text="请选择隐藏环境资源包7z文件" VerticalAlignment="Top" VerticalContentAlignment="Center" Padding="9,0" Width="292" Height="32" FontFamily="pack://siteoforigin:,,,/fonts/NotoSansSC-Sub.otf#Noto Sans SC" FontSize="12" Background="{StaticResource SurfaceBrush}" BorderBrush="{StaticResource BorderSubtleBrush}" BorderThickness="1" Foreground="{StaticResource TextMutedBrush}" ToolTip="{Binding Text, RelativeSource={RelativeSource Self}}"/>
-                            <Button x:Name="SelectHiddenRootZipButton" HorizontalAlignment="Left" Margin="375,13,0,0" VerticalAlignment="Top" Width="84" Click="SelectHiddenRootZipButton_Click" Style="{StaticResource PagePrimaryButton}" BorderBrush="{StaticResource BorderSubtleBrush}" Background="{StaticResource BrandPrimaryBrush}">
-                                <Button.Content>
-                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
-                                        <svg:SvgViewbox Source="images/wenjianjia.svg" Width="16" Height="16" Margin="0,0,5,0"/>
-                                        <TextBlock Text="选择" VerticalAlignment="Center" Foreground="White"/>
-                                    </StackPanel>
-                                </Button.Content>
-                            </Button>
-                            <TextBlock Margin="17,56,0,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Left" Width="97" FontFamily="pack://siteoforigin:,,,/fonts/NotoSansSC-Sub.otf#Noto Sans SC" FontSize="12" FontWeight="SemiBold" Foreground="{StaticResource TextPrimaryBrush}"><Run Text="隐藏方案"/><Run Language="zh-cn" Text="："/></TextBlock>
-                            <CheckBox x:Name="MagiskAlpha28104CheckBox" Content="Magisk Alpha方案  支持版本：28101~28104" HorizontalAlignment="Left" Margin="76,55,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.304,0.51" Width="334" Style="{StaticResource PageCheckBox}" Checked="HiddenRootScheme_Checked"/>
-                            <CheckBox x:Name="MagiskAlpha29000CheckBox" Content="Magisk Alpha方案  支持版本：29000~最新" HorizontalAlignment="Left" Margin="76,83,0,0" VerticalAlignment="Top" Width="327" Style="{StaticResource PageCheckBox}" Checked="HiddenRootScheme_Checked"/>
-                            <CheckBox x:Name="SUkiSULKMCheckBox" Content="SUkiSU LKM方案  支持版本：≥4.0 （KernelSU适用≥3.0）" HorizontalAlignment="Left" Margin="76,112,0,0" VerticalAlignment="Top" Width="398" Style="{StaticResource PageCheckBox}" Checked="HiddenRootScheme_Checked"/>
-                            <CheckBox x:Name="SUkiSUGKICheckBox" Content="SUkiSU GKI/Built-in方案  支持版本：≥3.18" HorizontalAlignment="Left" Margin="76,138,0,0" VerticalAlignment="Top" Width="362" Style="{StaticResource PageCheckBox}" Checked="HiddenRootScheme_Checked"/>
-                            <Button x:Name="StartHiddenRootButton" HorizontalAlignment="Left" Margin="15,166,0,0" VerticalAlignment="Top" Width="154" Click="StartHiddenRootButton_Click" Style="{StaticResource PagePrimaryButton}" Background="{StaticResource BrandPrimaryBrush}" BorderBrush="{StaticResource TextPrimaryBrush}">
-                                <Button.Content>
-                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
-                                        <TextBlock Text="开始隐藏" VerticalAlignment="Center"/>
-                                    </StackPanel>
-                                </Button.Content>
-                            </Button>
-                            <Button x:Name="DownloadHiddenPackageButton" Content="下载隐藏环境资源包V6.0" HorizontalAlignment="Left" Margin="283,166,0,0" VerticalAlignment="Top" Width="177" Click="DownloadHiddenPackageButton_Click" Style="{StaticResource PageSecondaryButton}"/>
-                            <ProgressBar x:Name="HiddenRootProgressBar"
-                                         HorizontalAlignment="Left"
-                                         VerticalAlignment="Top"
-                                         Width="464"
-                                         Height="24"
-                                         Minimum="0"
-                                         Maximum="100"
-                                         Value="0"
-                                         Tag="等待开始"
-                                         Background="{StaticResource SurfaceTintBrush}"
-                                         BorderBrush="{StaticResource BorderSubtleBrush}"
-                                         BorderThickness="1"
-                                         Margin="10,223,0,0"
-                                         Style="{StaticResource PageProgressLabeled}">
-                            </ProgressBar>
-                            <TextBlock HorizontalAlignment="Left" Margin="44,204,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="415" FontFamily="pack://siteoforigin:,,,/fonts/NotoSansSC-Sub.otf#Noto Sans SC" FontSize="12" Foreground="{StaticResource TextPrimaryBrush}"><Run Text="本功能"/><Run Text="建议线刷后"/><Run Text="搭配KernelSU"/><Run Text="使用"/><Run Text="，"/><Run Text="本界面"/><Run Text="特别"/><Run Language="zh-cn" Text="鸣谢"/><Run Text="@王听"/><Run Text=" "/><Run Text="@月饼"/><Run Text=" 开发"/></TextBlock>
-                            <CheckBox x:Name="InstallZip6CheckBox" Content="额外安装LSP" HorizontalAlignment="Left" Margin="176,166,0,0" VerticalAlignment="Top" Width="104" Style="{StaticResource PageCheckBox}"/>
-                            <CheckBox x:Name="AddRescueModuleCheckBox" Content="添加救砖模块" HorizontalAlignment="Left" Margin="176,184,0,0" VerticalAlignment="Top" Width="104" Style="{StaticResource PageCheckBox}"/>
                             <GroupBox
                                       Style="{StaticResource FastbootCardGroupBoxStyle}"
                                       Padding="6"
-                                      Margin="0,261,368,0"
-                                      Height="110"
+                                      Margin="0,12,0,0"
                                       VerticalAlignment="Top">
 <GroupBox.Header><StackPanel Orientation="Horizontal" Background="Transparent"><svg:SvgViewbox Source="images/APK.svg" Width="15" Height="15" Margin="0,0,7,0" VerticalAlignment="Center"/><TextBlock Text="快捷安装" VerticalAlignment="Center"/></StackPanel></GroupBox.Header>
                                 <Grid>
@@ -2807,15 +2792,36 @@ Background="{StaticResource SurfaceTintBrush}"
                             </GroupBox>
                             <GroupBox
                                       Style="{StaticResource FastbootCardGroupBoxStyle}"
-                                      Margin="0,378,368,0"
-                                      Height="340"
+                                      Margin="0,12,0,0"
                                       VerticalAlignment="Top">
 <GroupBox.Header><TextBlock Text="模块安装"/></GroupBox.Header>
-                                <Grid Margin="0,0,0,-7">
-                                    <Button x:Name="StartModuleInstallButton" Content="开始安装" HorizontalAlignment="Right" VerticalAlignment="Top" Width="118" Click="StartModuleInstallButton_Click" Style="{StaticResource PageSecondaryButton}" Margin="0,-1,0,0"/>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid Grid.Row="0" Margin="0,4,0,0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="8"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Button x:Name="SelectModuleButton" Grid.Column="0" Width="84" BorderBrush="{StaticResource BorderSubtleBrush}" Background="{StaticResource BrandPrimaryBrush}" Click="SelectModuleButton_Click" Style="{StaticResource PagePrimaryButton}" ToolTip="手动选择模块文件">
+                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                                <svg:SvgViewbox Source="images/wenjianjia.svg" Width="16" Height="16" Margin="0,0,5,0"/>
+                                                <TextBlock Text="选择" VerticalAlignment="Center" Foreground="White"/>
+                                            </StackPanel>
+                                        </Button>
+                                        <Button x:Name="ClearModuleListButton" Grid.Column="2" Content="清空列表" Width="81" Click="ClearModuleListButton_Click" Style="{StaticResource PageSecondaryButton}"/>
+                                        <Button x:Name="StartModuleInstallButton" Grid.Column="4" Content="开始安装" Width="118" Click="StartModuleInstallButton_Click" Style="{StaticResource PageSecondaryButton}"/>
+                                    </Grid>
                                     <ListBox x:Name="ModuleListBox"
+                                             Grid.Row="1"
+                                             Margin="0,10,0,8"
                                              d:ItemsSource="{d:SampleData ItemCount=5}"
-                                             Margin="0,35,0,36"
                                              AllowDrop="True"
                                              Drop="ModuleListBox_Drop"
                                              DragEnter="ModuleListBox_DragEnter"
@@ -2861,16 +2867,40 @@ Background="{StaticResource SurfaceTintBrush}"
                                             </DataTemplate>
                                         </ListBox.ItemTemplate>
                                     </ListBox>
-                                    <TextBlock HorizontalAlignment="Left" Margin="0,6,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="319" FontFamily="pack://siteoforigin:,,,/fonts/NotoSansSC-Sub.otf#Noto Sans SC" FontSize="12" Foreground="{StaticResource TextPrimaryBrush}"><Run Text="拖动一个或多个模块到窗口，自动识别"/><Run Language="zh-cn" Text="ROOT"/><Run Text="管理器并安装"/></TextBlock>
-                                    <Button x:Name="ClearModuleListButton" Content="清空列表" HorizontalAlignment="Left" Margin="374,292,0,0" VerticalAlignment="Top" Width="81" Click="ClearModuleListButton_Click" Style="{StaticResource PageSecondaryButton}"/>
-                                    <TextBlock HorizontalAlignment="Left" Margin="0,300,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="pack://siteoforigin:,,,/fonts/NotoSansSC-Sub.otf#Noto Sans SC" Style="{StaticResource MutedText12Style}" RenderTransformOrigin="0.497,0.824" Width="231"><Run Text="支持自动过滤模块文件，"/><Run Language="zh-cn" Text="排除无关多余"/><Run Text="文件"/></TextBlock>
-                                    <Button HorizontalAlignment="Left" Margin="281,291,0,0" VerticalAlignment="Top" Width="84" BorderBrush="{StaticResource BorderSubtleBrush}" Background="{StaticResource BrandPrimaryBrush}" Click="SelectModuleButton_Click" Style="{StaticResource PagePrimaryButton}" ToolTip="手动选择模块文件">
-                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                                            <svg:SvgViewbox Source="images/wenjianjia.svg" Width="16" Height="16" Margin="0,0,5,0"/>
-                                            <TextBlock Text="选择" VerticalAlignment="Center" Foreground="White"/>
-                                        </StackPanel>
-                                    </Button>
+                                    <StackPanel Grid.Row="2" Margin="0,2,0,0">
+                                        <TextBlock TextWrapping="Wrap" FontFamily="pack://siteoforigin:,,,/fonts/NotoSansSC-Sub.otf#Noto Sans SC" FontSize="12" Foreground="{StaticResource TextPrimaryBrush}"><Run Text="拖动一个或多个模块到窗口，自动识别ROOT管理器并安装"/></TextBlock>
+                                        <TextBlock Margin="0,2,0,0" TextWrapping="Wrap" FontFamily="pack://siteoforigin:,,,/fonts/NotoSansSC-Sub.otf#Noto Sans SC" Style="{StaticResource MutedText12Style}"><Run Text="支持自动过滤模块文件，排除无关多余文件"/></TextBlock>
+                                    </StackPanel>
                                 </Grid>
+                            </GroupBox>
+</StackPanel>
+                            <GroupBox Grid.Column="1"
+                                      Style="{StaticResource FastbootCardGroupBoxStyle}"
+                                      Padding="0,10,0,0"
+                                      HorizontalAlignment="Stretch"
+                                      VerticalAlignment="Stretch">
+<GroupBox.Header><StackPanel Orientation="Horizontal" Background="Transparent"><svg:SvgViewbox Source="images/wendang.svg" Width="15" Height="15" Margin="0,0,7,0" VerticalAlignment="Center"/><TextBlock Text="执行日志" VerticalAlignment="Center"/></StackPanel></GroupBox.Header>
+                                <RichTextBox x:Name="HiddenEnvironmentLogTextBox"
+                                             IsReadOnly="True"
+                                             Background="{StaticResource SurfaceTintBrush}"
+                                             BorderThickness="0"
+                                             Padding="7,7"
+                                             HorizontalContentAlignment="Stretch"
+                                             VerticalContentAlignment="Stretch"
+                                             FontFamily="Cascadia Mono,Noto Sans SC,Consolas"
+                                             FontSize="12"
+                                             FontWeight="Normal"
+                                             Foreground="{StaticResource TextPrimaryBrush}"
+                                             VerticalScrollBarVisibility="Auto"
+                                             HorizontalScrollBarVisibility="Disabled"
+                                             IsDocumentEnabled="False"
+                                             Margin="0,0,8,6">
+                                    <FlowDocument PagePadding="0"
+                                                  ColumnWidth="10000"
+                                                  ColumnGap="0"
+                                                  TextAlignment="Left"
+                                                  LineHeight="19"/>
+                                </RichTextBox>
                             </GroupBox>
 </Grid>
 </Grid>
@@ -5972,19 +6002,14 @@ Background="{StaticResource SurfaceTintBrush}"
         </StackPanel>
     </Grid>
 <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Margin="0" Background="Transparent" Padding="0" VerticalAlignment="Stretch"><Grid Grid.Row="1" Margin="6,20,6,12" MinHeight="720">
+<Grid.ColumnDefinitions><ColumnDefinition Width="380"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+<Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition Height="*"/></Grid.RowDefinitions>
 <GroupBox Style="{StaticResource AndroidGenGroupBoxStyle}"
-                            Background="{StaticResource SurfaceBrush}"
-                            Padding="15"
-                            BorderThickness="1"
-                            BorderBrush="{StaticResource BorderSubtleBrush}"
-                            FontSize="13"
-                            FontWeight="Bold"
-                            Foreground="#333"
+                            Grid.Row="0" Grid.Column="0"
                             Width="380"
-                            Height="96"
                             HorizontalAlignment="Left"
                             VerticalAlignment="Top"
-                            Panel.ZIndex="1" Margin="0,-6,0,0">
+                            Panel.ZIndex="1" Margin="0,0,12,12">
 <GroupBox.Header><StackPanel Orientation="Horizontal" Background="Transparent"><svg:SvgViewbox Source="images/geshihuasdka.svg" Width="15" Height="15" Margin="0,0,7,0" VerticalAlignment="Center"/><TextBlock Text="合并散包super" VerticalAlignment="Center"/></StackPanel></GroupBox.Header>
                                 <Grid>
                                     <TextBlock Text="散包路径：" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="-8,0,0,0"/>
@@ -6003,15 +6028,8 @@ Background="{StaticResource SurfaceTintBrush}"
                                 </Grid>
                             </GroupBox>
                             <GroupBox Style="{StaticResource AndroidGenGroupBoxStyle}"
-                            Background="{StaticResource SurfaceBrush}"
-                            Margin="390,-6,0,0"
-                            Padding="15"
-                            BorderThickness="1"
-                            BorderBrush="{StaticResource BorderSubtleBrush}"
-                            FontSize="13"
-                            FontWeight="Bold"
-                            Foreground="#333"
-                            Height="96"
+                            Grid.Row="0" Grid.Column="1"
+                            Margin="0,0,0,12"
                             VerticalAlignment="Top"
                             Panel.ZIndex="1">
 <GroupBox.Header><StackPanel Orientation="Horizontal" Background="Transparent"><svg:SvgViewbox Source="images/yasuobao.svg" Width="15" Height="15" Margin="0,0,7,0" VerticalAlignment="Center"/><TextBlock Text="解包OFP" VerticalAlignment="Center"/></StackPanel></GroupBox.Header>
@@ -6024,16 +6042,8 @@ Background="{StaticResource SurfaceTintBrush}"
                                 </Grid>
                             </GroupBox>
                             <GroupBox Style="{StaticResource AndroidGenGroupBoxStyle}"
-                            Background="{StaticResource SurfaceBrush}"
-                            Margin="0,101,0,0"
-                            Padding="15"
-                            BorderThickness="1"
-                            BorderBrush="{StaticResource BorderSubtleBrush}"
-                            FontSize="13"
-                            FontWeight="Bold"
-                            Foreground="#333"
+                            Grid.Row="1" Grid.Column="0"
                             Width="380"
-                            Height="102"
                             HorizontalAlignment="Left"
                             VerticalAlignment="Top"
                             Panel.ZIndex="2">
@@ -6056,15 +6066,8 @@ Background="{StaticResource SurfaceTintBrush}"
                                 </Grid>
                             </GroupBox>
                             <GroupBox Style="{StaticResource AndroidGenGroupBoxStyle}"
-                            Background="{StaticResource SurfaceBrush}"
-                            Margin="390,101,0,0"
-                            Padding="15"
-                            BorderThickness="1"
-                            BorderBrush="{StaticResource BorderSubtleBrush}"
-                            FontSize="13"
-                            FontWeight="Bold"
-                            Foreground="#333"
-                            Height="102"
+                            Grid.Row="1" Grid.Column="1"
+                            Margin="0,0,0,12"
                             VerticalAlignment="Top"
                             Panel.ZIndex="2">
 <GroupBox.Header><StackPanel Orientation="Horizontal" Background="Transparent"><svg:SvgViewbox Source="images/yasuobao.svg" Width="15" Height="15" Margin="0,0,7,0" VerticalAlignment="Center"/><TextBlock Text="解包OPS" VerticalAlignment="Center"/></StackPanel></GroupBox.Header>
@@ -6077,16 +6080,8 @@ Background="{StaticResource SurfaceTintBrush}"
                                 </Grid>
                             </GroupBox>
                             <GroupBox Style="{StaticResource AndroidGenGroupBoxStyle}"
-                            Background="{StaticResource SurfaceBrush}"
-                            Margin="0,214,0,0"
-                            Padding="15"
-                            BorderThickness="1"
-                            BorderBrush="{StaticResource BorderSubtleBrush}"
-                            FontSize="13"
-                            FontWeight="Bold"
-                            Foreground="#333"
+                            Grid.Row="2" Grid.Column="0"
                             Width="380"
-                            Height="102"
                             HorizontalAlignment="Left"
                             VerticalAlignment="Top"
                             Panel.ZIndex="2">
@@ -6109,15 +6104,8 @@ Background="{StaticResource SurfaceTintBrush}"
                                 </Grid>
                             </GroupBox>
                             <GroupBox Style="{StaticResource AndroidGenGroupBoxStyle}"
-                            Background="{StaticResource SurfaceBrush}"
-                            Margin="390,214,0,0"
-                            Padding="15"
-                            BorderThickness="1"
-                            BorderBrush="{StaticResource BorderSubtleBrush}"
-                            FontSize="13"
-                            FontWeight="Bold"
-                            Foreground="#333"
-                            Height="102"
+                            Grid.Row="2" Grid.Column="1"
+                            Margin="0,0,0,12"
                             VerticalAlignment="Top"
                             Panel.ZIndex="2">
 <GroupBox.Header><StackPanel Orientation="Horizontal" Background="Transparent"><svg:SvgViewbox Source="images/geshihuasdka.svg" Width="15" Height="15" Margin="0,0,7,0" VerticalAlignment="Center"/><TextBlock Text="合并OFP分段Super" VerticalAlignment="Center"/></StackPanel></GroupBox.Header>
@@ -6146,58 +6134,63 @@ Background="{StaticResource SurfaceTintBrush}"
                                     Grid.Column="3"
                                     Content="选择"
                                     Click="SelectOfpSuperPartsFolderButton_Click"
-                                    Background="{StaticResource BorderSubtleBrush}"
-                                    BorderBrush="{StaticResource BorderSubtleBrush}"
-                                    Foreground="White" Width="85"/>
+                                    Style="{StaticResource PageSecondaryButton}" Width="85"/>
                                     <Button
                                     x:Name="StartMergeOfpSuperButton"
                                     Grid.Column="5"
                                     Content="开始合并"
                                     Click="StartMergeOfpSuperButton_Click"
-                                    Background="{StaticResource BorderSubtleBrush}"
-                                    BorderBrush="{StaticResource BorderSubtleBrush}"
-                                    Foreground="White" Width="85"/>
+                                    Style="{StaticResource PageSecondaryButton}" Width="85"/>
                                 </Grid>
                             </GroupBox>
                             <GroupBox Style="{StaticResource AndroidGenGroupBoxStyle}"
-                            Background="{StaticResource SurfaceBrush}"
-                            Margin="1,327,0,0"
-                            Padding="15"
-                            BorderThickness="1"
-                            BorderBrush="{StaticResource BorderSubtleBrush}"
-                            FontSize="13"
-                            FontWeight="Bold"
-                            Foreground="#333"
+                            Grid.Row="3" Grid.Column="0"
                             Width="380"
-                            Height="95"
                             HorizontalAlignment="Left"
-                            VerticalAlignment="Top">
+                            VerticalAlignment="Top"
+                            Margin="0,0,12,12">
 <GroupBox.Header><StackPanel Orientation="Horizontal" Background="Transparent"><svg:SvgViewbox Source="images/zhongqi.svg" Width="15" Height="15" Margin="0,0,7,0" VerticalAlignment="Center"/><TextBlock Text="Twrp_Recovery" VerticalAlignment="Center"/></StackPanel></GroupBox.Header>
                                 <Button Content="读分区表" HorizontalAlignment="Left" Margin="86,36,0,0" VerticalAlignment="Top" Click="Button_Click_1" Width="85" Style="{StaticResource PageSecondaryButton}"/>
                             </GroupBox>
-                            <RichTextBox x:Name="SuperPackLogRichTextBox" Margin="390,327,0,10" TextChanged="RichTextBox_TextChanged" CaretBrush="White" BorderBrush="{StaticResource BorderSubtleBrush}">
-                                <FlowDocument>
-                                    <Paragraph>
+                            <GroupBox Grid.Row="3" Grid.Column="1" Style="{StaticResource AndroidGenGroupBoxStyle}"
+                            Margin="0,0,0,12"
+                            VerticalAlignment="Top">
+<GroupBox.Header><StackPanel Orientation="Horizontal" Background="Transparent"><svg:SvgViewbox Source="images/wendang.svg" Width="15" Height="15" Margin="0,0,7,0" VerticalAlignment="Center"/><TextBlock Text="分区读写与日志" VerticalAlignment="Center"/></StackPanel></GroupBox.Header>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid Grid.Row="0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="8"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="8"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="8"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="8"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Grid.Column="0" VerticalAlignment="Center" TextWrapping="Wrap"><Run Language="zh-cn" Text="提取或写入的分区："/></TextBlock>
+                                        <ComboBox x:Name="ReadPartitionComboBox" Grid.Column="2" VerticalAlignment="Center" Width="200" IsEditable="True" IsReadOnly="True" Text="等待用户读取分区表..." BorderBrush="{StaticResource BorderSubtleBrush}"/>
+                                        <Button Grid.Column="4" Content="回读分区" Width="85" Click="ReadOutPartitionButton_Click_New" Style="{StaticResource PageSecondaryButton}"/>
+                                        <Button Grid.Column="6" Content="推送卡刷包" Width="85" Click="PushZipToSdcardButton_Click" Style="{StaticResource PageSecondaryButton}"/>
+                                        <Button Grid.Column="8" Content="写入分区" Width="85" Click="WriteSelectedPartitionButton_Click" Style="{StaticResource PageSecondaryButton}"/>
+                                    </Grid>
+                                    <RichTextBox x:Name="SuperPackLogRichTextBox" Grid.Row="1" Margin="0,10,0,0" Height="150" TextChanged="RichTextBox_TextChanged" CaretBrush="White" BorderBrush="{StaticResource BorderSubtleBrush}">
+                                        <FlowDocument>
+                                            <Paragraph>
 
-                                    </Paragraph>
-                                </FlowDocument>
-                            </RichTextBox>
-                            <TextBlock HorizontalAlignment="Left" Margin="8,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center"><Run Language="zh-cn" Text="提取或写入"/><Run Text="的分区："/></TextBlock>
-                            <ComboBox x:Name="ReadPartitionComboBox" HorizontalAlignment="Left" Margin="113,0,0,0" VerticalAlignment="Center" Width="239" IsEditable="True" IsReadOnly="True" Text="等待用户读取分区表..." BorderBrush="{StaticResource BorderSubtleBrush}"/>
-                            <Button Content="回读分区" HorizontalAlignment="Left" Margin="282,378,0,0" VerticalAlignment="Top" Width="85" Click="ReadOutPartitionButton_Click_New" Style="{StaticResource PageSecondaryButton}"/>
-                            <Button Content="推送卡刷包" HorizontalAlignment="Left" Margin="10,378,0,0" VerticalAlignment="Top" Width="85" Click="PushZipToSdcardButton_Click" Style="{StaticResource PageSecondaryButton}"/>
-                            <Button Content="写入分区" HorizontalAlignment="Left" Margin="192,378,0,0" VerticalAlignment="Top" Width="85" Click="WriteSelectedPartitionButton_Click" Style="{StaticResource PageSecondaryButton}"/>
+                                            </Paragraph>
+                                        </FlowDocument>
+                                    </RichTextBox>
+                                </Grid>
+                            </GroupBox>
                             <GroupBox Style="{StaticResource AndroidGenGroupBoxStyle}"
-                            Background="{StaticResource SurfaceBrush}"
-                            Margin="0,432,0,0"
-                            Padding="15"
-                            BorderThickness="1"
-                            BorderBrush="{StaticResource BorderSubtleBrush}"
-                            FontSize="13"
-                            FontWeight="Bold"
-                            Foreground="#333"
+                            Grid.Row="4" Grid.Column="0"
                             Width="380"
-                            Height="276"
                             HorizontalAlignment="Left"
                             VerticalAlignment="Top">
 <GroupBox.Header><StackPanel Orientation="Horizontal" Background="Transparent"><svg:SvgViewbox Source="images/xiufu.svg" Width="15" Height="15" Margin="0,0,7,0" VerticalAlignment="Center"/><TextBlock Text="OCDT生成" VerticalAlignment="Center"/></StackPanel></GroupBox.Header>
