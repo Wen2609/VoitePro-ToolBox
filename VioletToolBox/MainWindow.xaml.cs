@@ -4076,7 +4076,7 @@ namespace WpfApp1
             paragraph.Inlines.Add(new System.Windows.Documents.Run($"{DateTime.Now:HH:mm:ss}")
             {
                 Foreground = new System.Windows.Media.SolidColorBrush(
-                    System.Windows.Media.Color.FromRgb(148, 163, 184)),
+                    System.Windows.Media.Color.FromRgb(142, 142, 147)),
                 FontFamily = new System.Windows.Media.FontFamily("Consolas"),
                 FontSize = 11,
             });
@@ -5721,7 +5721,7 @@ namespace WpfApp1
                 ResizeMode = ResizeMode.NoResize,
                 ShowInTaskbar = false,
                 Background = System.Windows.Media.Brushes.White,
-                FontFamily = new System.Windows.Media.FontFamily("Microsoft YaHei UI")
+                FontFamily = new System.Windows.Media.FontFamily("pack://siteoforigin:,,,/fonts/NotoSansSC-Sub.otf#Noto Sans SC")
             };
 
             var root = new System.Windows.Controls.Grid
@@ -5738,14 +5738,14 @@ namespace WpfApp1
                 Text = "请确认本次槽位切换",
                 FontSize = 17,
                 FontWeight = FontWeights.SemiBold,
-                Foreground = new SolidColorBrush(MediaColor.FromRgb(38, 49, 66))
+                Foreground = new SolidColorBrush(MediaColor.FromRgb(29, 29, 31))
             });
             headingPanel.Children.Add(new TextBlock
             {
                 Text = "切换后，设备将在下次启动时使用目标槽位。",
                 Margin = new Thickness(0, 5, 0, 0),
                 FontSize = 12,
-                Foreground = new SolidColorBrush(MediaColor.FromRgb(100, 116, 139))
+                Foreground = new SolidColorBrush(MediaColor.FromRgb(142, 142, 147))
             });
             System.Windows.Controls.Grid.SetRow(headingPanel, 0);
             root.Children.Add(headingPanel);
@@ -5774,7 +5774,7 @@ namespace WpfApp1
                 Text = "当前槽位",
                 HorizontalAlignment = System.Windows.HorizontalAlignment.Center,
                 FontSize = 12,
-                Foreground = new SolidColorBrush(MediaColor.FromRgb(100, 116, 139))
+                Foreground = new SolidColorBrush(MediaColor.FromRgb(142, 142, 147))
             });
             currentPanel.Children.Add(new TextBlock
             {
@@ -5783,7 +5783,7 @@ namespace WpfApp1
                 Margin = new Thickness(0, 5, 0, 0),
                 FontSize = 16,
                 FontWeight = FontWeights.SemiBold,
-                Foreground = new SolidColorBrush(MediaColor.FromRgb(51, 65, 85))
+                Foreground = new SolidColorBrush(MediaColor.FromRgb(29, 29, 31))
             });
             System.Windows.Controls.Grid.SetColumn(currentPanel, 0);
             slotGrid.Children.Add(currentPanel);
@@ -5794,7 +5794,7 @@ namespace WpfApp1
                 HorizontalAlignment = System.Windows.HorizontalAlignment.Center,
                 VerticalAlignment = System.Windows.VerticalAlignment.Center,
                 FontSize = 20,
-                Foreground = new SolidColorBrush(MediaColor.FromRgb(148, 163, 184))
+                Foreground = new SolidColorBrush(MediaColor.FromRgb(142, 142, 147))
             };
             System.Windows.Controls.Grid.SetColumn(arrow, 1);
             slotGrid.Children.Add(arrow);
@@ -5809,7 +5809,7 @@ namespace WpfApp1
                 Text = "目标槽位",
                 HorizontalAlignment = System.Windows.HorizontalAlignment.Center,
                 FontSize = 12,
-                Foreground = new SolidColorBrush(MediaColor.FromRgb(100, 116, 139))
+                Foreground = new SolidColorBrush(MediaColor.FromRgb(142, 142, 147))
             });
             targetPanel.Children.Add(new TextBlock
             {
@@ -5840,8 +5840,8 @@ namespace WpfApp1
                 Padding = new Thickness(16, 15, 16, 14),
                 CornerRadius = new CornerRadius(8),
                 BorderThickness = new Thickness(1),
-                BorderBrush = new SolidColorBrush(MediaColor.FromRgb(226, 232, 240)),
-                Background = new SolidColorBrush(MediaColor.FromRgb(250, 251, 253)),
+                BorderBrush = new SolidColorBrush(MediaColor.FromRgb(229, 229, 234)),
+                Background = new SolidColorBrush(MediaColor.FromRgb(245, 245, 247)),
                 Child = contentPanel
             };
             System.Windows.Controls.Grid.SetRow(contentBorder, 1);
@@ -5859,8 +5859,8 @@ namespace WpfApp1
                 Height = 32,
                 Margin = new Thickness(0, 0, 10, 0),
                 Background = System.Windows.Media.Brushes.White,
-                Foreground = new SolidColorBrush(MediaColor.FromRgb(71, 85, 105)),
-                BorderBrush = new SolidColorBrush(MediaColor.FromRgb(203, 213, 225)),
+                Foreground = new SolidColorBrush(MediaColor.FromRgb(99, 99, 102)),
+                BorderBrush = new SolidColorBrush(MediaColor.FromRgb(209, 209, 214)),
                 IsCancel = true
             };
             var confirmButton = new System.Windows.Controls.Button
@@ -5903,7 +5903,7 @@ namespace WpfApp1
                 ResizeMode = ResizeMode.NoResize,
                 ShowInTaskbar = false,
                 Background = System.Windows.Media.Brushes.White,
-                FontFamily = new System.Windows.Media.FontFamily("Microsoft YaHei UI")
+                FontFamily = new System.Windows.Media.FontFamily("pack://siteoforigin:,,,/fonts/NotoSansSC-Sub.otf#Noto Sans SC")
             };
 
             var root = new System.Windows.Controls.StackPanel
@@ -5915,7 +5915,7 @@ namespace WpfApp1
                 Text = succeeded ? "槽位切换成功" : "槽位切换未完成",
                 FontSize = 17,
                 FontWeight = FontWeights.SemiBold,
-                Foreground = new SolidColorBrush(MediaColor.FromRgb(38, 49, 66))
+                Foreground = new SolidColorBrush(MediaColor.FromRgb(29, 29, 31))
             });
 
             var contentPanel = new System.Windows.Controls.StackPanel();
@@ -5929,11 +5929,11 @@ namespace WpfApp1
                 };
                 slotTransition.Inlines.Add(new System.Windows.Documents.Run(currentSlotText)
                 {
-                    Foreground = new SolidColorBrush(MediaColor.FromRgb(51, 65, 85))
+                    Foreground = new SolidColorBrush(MediaColor.FromRgb(29, 29, 31))
                 });
                 slotTransition.Inlines.Add(new System.Windows.Documents.Run("   →   ")
                 {
-                    Foreground = new SolidColorBrush(MediaColor.FromRgb(148, 163, 184))
+                    Foreground = new SolidColorBrush(MediaColor.FromRgb(142, 142, 147))
                 });
                 slotTransition.Inlines.Add(new System.Windows.Documents.Run(targetSlotText)
                 {
@@ -5946,7 +5946,7 @@ namespace WpfApp1
                     Margin = new Thickness(0, 12, 0, 0),
                     HorizontalAlignment = System.Windows.HorizontalAlignment.Center,
                     FontSize = 12,
-                    Foreground = new SolidColorBrush(MediaColor.FromRgb(100, 116, 139))
+                    Foreground = new SolidColorBrush(MediaColor.FromRgb(142, 142, 147))
                 });
             }
             else
@@ -5970,7 +5970,7 @@ namespace WpfApp1
                     TextWrapping = TextWrapping.Wrap,
                     TextTrimming = TextTrimming.CharacterEllipsis,
                     ToolTip = nativeOutput,
-                    FontFamily = new System.Windows.Media.FontFamily("Cascadia Mono,Microsoft YaHei UI,Consolas"),
+                    FontFamily = new System.Windows.Media.FontFamily("Cascadia Mono,Noto Sans SC,Consolas"),
                     FontSize = 11,
                     Foreground = new SolidColorBrush(MediaColor.FromRgb(220, 38, 38))
                 });
@@ -5982,8 +5982,8 @@ namespace WpfApp1
                 Padding = new Thickness(16, 17, 16, 16),
                 CornerRadius = new CornerRadius(8),
                 BorderThickness = new Thickness(1),
-                BorderBrush = new SolidColorBrush(MediaColor.FromRgb(226, 232, 240)),
-                Background = new SolidColorBrush(MediaColor.FromRgb(250, 251, 253)),
+                BorderBrush = new SolidColorBrush(MediaColor.FromRgb(229, 229, 234)),
+                Background = new SolidColorBrush(MediaColor.FromRgb(245, 245, 247)),
                 Child = contentPanel
             };
             root.Children.Add(contentBorder);
@@ -10946,9 +10946,9 @@ namespace WpfApp1
         }
 
         private static readonly System.Windows.Media.Brush FlashLogTimeBrush =
-            new SolidColorBrush(System.Windows.Media.Color.FromRgb(148, 163, 184));
+            new SolidColorBrush(System.Windows.Media.Color.FromRgb(142, 142, 147));
         private static readonly System.Windows.Media.Brush FlashLogDefaultBrush =
-            new SolidColorBrush(System.Windows.Media.Color.FromRgb(51, 65, 85));
+            new SolidColorBrush(System.Windows.Media.Color.FromRgb(29, 29, 31));
         private static readonly System.Windows.Media.Brush FlashLogInfoBrush =
             new SolidColorBrush(System.Windows.Media.Color.FromRgb(37, 99, 235));
         private static readonly System.Windows.Media.Brush FlashLogWaitingBrush =
@@ -12573,7 +12573,7 @@ namespace WpfApp1
                 ResizeMode = ResizeMode.NoResize,
                 WindowStartupLocation = WindowStartupLocation.CenterOwner,
                 ShowInTaskbar = false,
-                Background = new SolidColorBrush(MediaColor.FromRgb(250, 251, 253))
+                Background = new SolidColorBrush(MediaColor.FromRgb(245, 245, 247))
             };
 
             var root = new System.Windows.Controls.StackPanel
@@ -12585,14 +12585,14 @@ namespace WpfApp1
                 Text = "请选择本次刷写方式",
                 FontSize = 17,
                 FontWeight = FontWeights.SemiBold,
-                Foreground = new SolidColorBrush(MediaColor.FromRgb(38, 49, 66)),
+                Foreground = new SolidColorBrush(MediaColor.FromRgb(29, 29, 31)),
                 Margin = new Thickness(0, 0, 0, 5)
             });
             root.Children.Add(new TextBlock
             {
                 Text = "模式只影响 BAT 中以 _ab 结尾的分区目标。",
                 FontSize = 12,
-                Foreground = new SolidColorBrush(MediaColor.FromRgb(100, 116, 139)),
+                Foreground = new SolidColorBrush(MediaColor.FromRgb(142, 142, 147)),
                 Margin = new Thickness(0, 0, 0, 16)
             });
 
@@ -12603,7 +12603,7 @@ namespace WpfApp1
                 Content = "传统模式",
                 FontSize = 14,
                 FontWeight = FontWeights.SemiBold,
-                Foreground = new SolidColorBrush(MediaColor.FromRgb(51, 65, 85))
+                Foreground = new SolidColorBrush(MediaColor.FromRgb(29, 29, 31))
             };
             var traditionalCard = CreateXiaomiFlashModeCard(
                 traditionalRadio,
@@ -12690,7 +12690,7 @@ namespace WpfApp1
                 Text = description,
                 TextWrapping = TextWrapping.Wrap,
                 FontSize = 12,
-                Foreground = new SolidColorBrush(MediaColor.FromRgb(100, 116, 139)),
+                Foreground = new SolidColorBrush(MediaColor.FromRgb(142, 142, 147)),
                 Margin = new Thickness(25, 7, 0, 0)
             });
 
@@ -12699,7 +12699,7 @@ namespace WpfApp1
                 Padding = new Thickness(14, 12, 14, 12),
                 CornerRadius = new CornerRadius(8),
                 BorderThickness = new Thickness(1),
-                BorderBrush = new SolidColorBrush(MediaColor.FromRgb(226, 232, 240)),
+                BorderBrush = new SolidColorBrush(MediaColor.FromRgb(229, 229, 234)),
                 Background = new SolidColorBrush(isEnabled
                     ? MediaColor.FromRgb(255, 255, 255)
                     : MediaColor.FromRgb(245, 246, 248)),
@@ -20626,8 +20626,8 @@ public partial class MainWindow : Window
         {
             Dispatcher.Invoke(() =>
             {
-                var labelBrush = new SolidColorBrush(System.Windows.Media.Color.FromRgb(148, 163, 184));
-                var valueBrush = new SolidColorBrush(System.Windows.Media.Color.FromRgb(100, 116, 139));
+                var labelBrush = new SolidColorBrush(System.Windows.Media.Color.FromRgb(142, 142, 147));
+                var valueBrush = new SolidColorBrush(System.Windows.Media.Color.FromRgb(142, 142, 147));
 
                 void AddDeviceInfoLine(string label, string value)
                 {
@@ -20713,7 +20713,7 @@ public partial class MainWindow : Window
                 "green" => new SolidColorBrush(System.Windows.Media.Color.FromRgb(22, 163, 74)),
                 "blue" => new SolidColorBrush(System.Windows.Media.Color.FromRgb(37, 99, 235)),
                 "purple" => new SolidColorBrush(System.Windows.Media.Color.FromRgb(124, 58, 237)),
-                _ => new SolidColorBrush(System.Windows.Media.Color.FromRgb(100, 116, 139))
+                _ => new SolidColorBrush(System.Windows.Media.Color.FromRgb(142, 142, 147))
             };
         }
 
@@ -20721,7 +20721,7 @@ public partial class MainWindow : Window
         {
             paragraph.Inlines.Add(new Run($"[{DateTime.Now:HH:mm:ss} ] ")
             {
-                Foreground = new SolidColorBrush(System.Windows.Media.Color.FromRgb(148, 163, 184))
+                Foreground = new SolidColorBrush(System.Windows.Media.Color.FromRgb(142, 142, 147))
             });
         }
 
@@ -20785,10 +20785,10 @@ public partial class MainWindow : Window
                 Foreground = new SolidColorBrush(System.Windows.Media.Color.FromRgb(124, 58, 237)),
                 FontWeight = FontWeights.SemiBold
             });
-            paragraph.Inlines.Add(new Run(title) { Foreground = new SolidColorBrush(System.Windows.Media.Color.FromRgb(51, 65, 85)) });
+            paragraph.Inlines.Add(new Run(title) { Foreground = new SolidColorBrush(System.Windows.Media.Color.FromRgb(29, 29, 31)) });
             paragraph.Inlines.Add(new Run(" ...")
             {
-                Foreground = new SolidColorBrush(System.Windows.Media.Color.FromRgb(148, 163, 184))
+                Foreground = new SolidColorBrush(System.Windows.Media.Color.FromRgb(142, 142, 147))
             });
             (this.FindControlInPages("FastbootLogTextBox") as System.Windows.Controls.RichTextBox).Document.Blocks.Add(paragraph);
             (this.FindControlInPages("FastbootLogTextBox") as System.Windows.Controls.RichTextBox).ScrollToEnd();
@@ -20852,7 +20852,7 @@ public partial class MainWindow : Window
                 Foreground = new SolidColorBrush(System.Windows.Media.Color.FromRgb(124, 58, 237)),
                 FontWeight = FontWeights.SemiBold
             });
-            paragraph.Inlines.Add(new Run(title) { Foreground = new SolidColorBrush(System.Windows.Media.Color.FromRgb(51, 65, 85)) });
+            paragraph.Inlines.Add(new Run(title) { Foreground = new SolidColorBrush(System.Windows.Media.Color.FromRgb(29, 29, 31)) });
             paragraph.Inlines.Add(new Run(success ? " ...OK" : " ...Error")
             {
                 Foreground = new SolidColorBrush(success
@@ -21228,7 +21228,7 @@ public partial class MainWindow : Window
             };
             _autorootFastbootWaitParagraph.Inlines.Add(new System.Windows.Documents.Run($"{DateTime.Now:HH:mm:ss}")
             {
-                Foreground = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromRgb(148, 163, 184)),
+                Foreground = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromRgb(142, 142, 147)),
                 FontFamily = new System.Windows.Media.FontFamily("Consolas"),
                 FontSize = 11
             });
@@ -21294,7 +21294,7 @@ public partial class MainWindow : Window
                     };
                     paragraph.Inlines.Add(new System.Windows.Documents.Run($"{DateTime.Now:HH:mm:ss}")
                     {
-                        Foreground = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromRgb(148, 163, 184)),
+                        Foreground = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromRgb(142, 142, 147)),
                         FontFamily = new System.Windows.Media.FontFamily("Consolas"),
                         FontSize = 11
                     });
@@ -21428,14 +21428,14 @@ public partial class MainWindow : Window
             };
             paragraph.Inlines.Add(new System.Windows.Documents.Run(title)
             {
-                Foreground = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromRgb(71, 85, 105)),
+                Foreground = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromRgb(99, 99, 102)),
                 FontWeight = FontWeights.SemiBold
             });
             if (!string.IsNullOrWhiteSpace(detail))
             {
                 paragraph.Inlines.Add(new System.Windows.Documents.Run("    " + detail)
                 {
-                    Foreground = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromRgb(100, 116, 139)),
+                    Foreground = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromRgb(142, 142, 147)),
                     FontSize = 11
                 });
             }

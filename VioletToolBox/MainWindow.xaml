@@ -11,7 +11,7 @@
 	Title="紫罗兰工具箱"
 	WindowStyle="None"
 	Width="1010" Height="850" MinWidth="1010" MinHeight="760"
-	FontFamily="pack://siteoforigin:,,,/fonts/OPPO_Sans_4.0.ttf#OPPO Sans 4.0"
+	FontFamily="pack://siteoforigin:,,,/fonts/NotoSansSC-Sub.otf#Noto Sans SC"
 Background="{StaticResource SurfaceTintBrush}"
 	UseLayoutRounding="True"
 	SnapsToDevicePixels="True"
@@ -118,12 +118,12 @@ Background="{StaticResource SurfaceTintBrush}"
                 BlurRadius="10"
                 x:Key="DropShadowEffect" />
             <LinearGradientBrush x:Key="StorageGradient" StartPoint="0,0" EndPoint="1,0">
-                <GradientStop Color="#48484A" Offset="0"/>
+                <GradientStop Color="{StaticResource Gray700}" Offset="0"/>
                 <GradientStop Color="{StaticResource Gray900}" Offset="1"/>
             </LinearGradientBrush>
             <LinearGradientBrush x:Key="MemoryGradient" StartPoint="0,0" EndPoint="1,0">
                 <GradientStop Color="{StaticResource Gray400}" Offset="0"/>
-                <GradientStop Color="#48484A" Offset="1"/>
+                <GradientStop Color="{StaticResource Gray700}" Offset="1"/>
             </LinearGradientBrush>
             <Style x:Key="EdlDgHeaderStyle" TargetType="{x:Type DataGridColumnHeader}">
                 <Setter Property="Height" Value="32"/>
@@ -210,7 +210,7 @@ Background="{StaticResource SurfaceTintBrush}"
                    BasedOn="{StaticResource {x:Type Button}}">
                 <Setter Property="Height" Value="32"/>
                 <Setter Property="Padding" Value="10,0"/>
-                <Setter Property="FontFamily" Value="pack://siteoforigin:,,,/fonts/OPPO_Sans_4.0.ttf#OPPO Sans 4.0"/>
+                <Setter Property="FontFamily" Value="pack://siteoforigin:,,,/fonts/NotoSansSC-Sub.otf#Noto Sans SC"/>
                 <Setter Property="FontSize" Value="12"/>
                 <Setter Property="FontWeight" Value="Medium"/>
                 <Setter Property="Cursor" Value="Hand"/>
@@ -877,7 +877,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                     <Setter Property="BorderBrush" Value="{StaticResource BorderSubtleBrush}"/>
                                     <Setter Property="BorderThickness" Value="1"/>
                                     <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
-                                    <Setter Property="FontFamily" Value="pack://siteoforigin:,,,/fonts/OPPO_Sans_4.0.ttf#OPPO Sans 4.0"/>
+                                    <Setter Property="FontFamily" Value="pack://siteoforigin:,,,/fonts/NotoSansSC-Sub.otf#Noto Sans SC"/>
                                     <Setter Property="FontSize" Value="12"/>
                                     <Setter Property="FontWeight" Value="SemiBold"/>
                                     <Setter Property="Padding" Value="10"/>
@@ -1087,7 +1087,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                                         </Button>
                                                         <Button Name="VolumeDownButton" Style="{StaticResource ActionCardButton}" Width="118" Margin="0,0,10,10" Click="VolumeDownButton_Click">
                                                             <StackPanel>
-                                                                <Border Width="38" Height="38" CornerRadius="12" Background="#FFFFFF" HorizontalAlignment="Center">
+                                                                <Border Width="38" Height="38" CornerRadius="12" Background="{StaticResource SurfaceBrush}" HorizontalAlignment="Center">
                                                                     <svg:SvgViewbox Source="images/yinliang.svg" Width="20" Height="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                                                 </Border>
                                                                 <TextBlock Text="音量-" HorizontalAlignment="Center" Margin="0,8,0,0" FontSize="12"/>
@@ -1406,7 +1406,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                                            IsOpen="{TemplateBinding IsDropDownOpen}"
                                                            PopupAnimation="Slide">
                                                         <Grid MinWidth="{TemplateBinding ActualWidth}" MaxHeight="{TemplateBinding MaxDropDownHeight}">
-                                                            <Border Background="White"
+                                                            <Border Background="{StaticResource SurfaceBrush}"
                                                                     BorderBrush="{StaticResource BorderSubtleBrush}"
                                                                     BorderThickness="1"
                                                                     CornerRadius="10"
@@ -1594,7 +1594,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                        TargetType="CheckBox"
                                        BasedOn="{StaticResource {x:Type CheckBox}}">
                                     <Setter Property="FontSize" Value="13"/>
-                                    <Setter Property="Foreground" Value="#48484A"/>
+                                    <Setter Property="Foreground" Value="{StaticResource TextSecondaryBrush}"/>
                                     <Setter Property="VerticalAlignment" Value="Center"/>
                                     <Setter Property="Margin" Value="0,0,14,8"/>
                                     <Setter Property="Cursor" Value="Hand"/>
@@ -1656,7 +1656,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                                          TextWrapping="NoWrap"
                                                          Text="请选择需要刷入的文件..."
                                                          Height="36"
-                                                         Background="White"
+                                                         Background="{StaticResource SurfaceBrush}"
                                                          FontSize="12"
                                                          FontWeight="Normal"
                                                          TextChanged="BootFilePathTextBox_TextChanged" Width="154" />
@@ -1760,7 +1760,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                                          TextWrapping="NoWrap"
                                                          Text="请选择一个解压好的刷机包文件..."
                                                          Height="36"
-                                                         Background="White"
+                                                         Background="{StaticResource SurfaceBrush}"
                                                          FontSize="12"
                                                          FontWeight="Normal"
                                                          TextChanged="XiaomiFlashScriptPathTextBox_TextChanged" Width="327" />
@@ -1970,7 +1970,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                     <Setter Property="BorderBrush" Value="{StaticResource BorderSubtleBrush}"/>
                                     <Setter Property="BorderThickness" Value="1"/>
                                     <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
-                                    <Setter Property="FontFamily" Value="pack://siteoforigin:,,,/fonts/OPPO_Sans_4.0.ttf#OPPO Sans 4.0"/>
+                                    <Setter Property="FontFamily" Value="pack://siteoforigin:,,,/fonts/NotoSansSC-Sub.otf#Noto Sans SC"/>
                                     <Setter Property="FontSize" Value="12"/>
                                     <Setter Property="FontWeight" Value="SemiBold"/>
                                     <Setter Property="Padding" Value="10"/>
@@ -2007,16 +2007,16 @@ Background="{StaticResource SurfaceTintBrush}"
                                 <Style x:Key="FastbootStopButtonStyle"
                                        TargetType="{x:Type Button}"
                                        BasedOn="{StaticResource FastbootButtonBaseStyle}">
-                                    <Setter Property="Background" Value="#FF3B30"/>
-                                    <Setter Property="Foreground" Value="#FFFFFFFF"/>
-                                    <Setter Property="BorderBrush" Value="#FF3B30"/>
+                                    <Setter Property="Background" Value="{StaticResource DangerBrush}"/>
+                                    <Setter Property="Foreground" Value="{StaticResource TextOnBrandBrush}"/>
+                                    <Setter Property="BorderBrush" Value="{StaticResource DangerBrush}"/>
                                     <Setter Property="BorderThickness" Value="1"/>
                                 </Style>
 
                                 <Style x:Key="FastbootOptionCheckBoxStyle"
                                        TargetType="{x:Type CheckBox}"
                                        BasedOn="{StaticResource {x:Type CheckBox}}">
-                                    <Setter Property="FontFamily" Value="pack://siteoforigin:,,,/fonts/OPPO_Sans_4.0.ttf#OPPO Sans 4.0"/>
+                                    <Setter Property="FontFamily" Value="pack://siteoforigin:,,,/fonts/NotoSansSC-Sub.otf#Noto Sans SC"/>
                                     <Setter Property="FontSize" Value="11.5"/>
                                     <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
                                     <Setter Property="VerticalAlignment" Value="Center"/>
@@ -2211,7 +2211,7 @@ Background="{StaticResource SurfaceTintBrush}"
                             Height="28"
                             Width="190"
                             Padding="8,0"
-                            Background="#FFFFFFFF"
+                            Background="{StaticResource SurfaceBrush}"
                             BorderBrush="{StaticResource BorderSubtleBrush}"
                             BorderThickness="1"
                             CornerRadius="5">
@@ -2282,7 +2282,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                Margin="14,0,0,0"
                                HorizontalAlignment="Right"
                                VerticalAlignment="Center"
-                               FontFamily="pack://siteoforigin:,,,/fonts/OPPO_Sans_4.0.ttf#OPPO Sans 4.0"
+                               FontFamily="pack://siteoforigin:,,,/fonts/NotoSansSC-Sub.otf#Noto Sans SC"
                                FontSize="11"
                                FontWeight="Medium"
                                Foreground="{StaticResource TextMutedBrush}"
@@ -2298,8 +2298,8 @@ Background="{StaticResource SurfaceTintBrush}"
                           AutoGenerateColumns="False"
                           HeadersVisibility="Column"
                           Foreground="{StaticResource TextPrimaryBrush}"
-                          Background="#FFFFFFFF"
-                          FontFamily="pack://siteoforigin:,,,/fonts/OPPO_Sans_4.0.ttf#OPPO Sans 4.0"
+                          Background="{StaticResource SurfaceBrush}"
+                          FontFamily="pack://siteoforigin:,,,/fonts/NotoSansSC-Sub.otf#Noto Sans SC"
                           FontSize="12"
                           IsSynchronizedWithCurrentItem="True"
                           RowHeight="29"
@@ -2497,7 +2497,7 @@ Background="{StaticResource SurfaceTintBrush}"
                              Padding="7,7"
                              HorizontalContentAlignment="Stretch"
                              VerticalContentAlignment="Stretch"
-                             FontFamily="Cascadia Mono,pack://siteoforigin:,,,/fonts/OPPO_Sans_4.0.ttf#OPPO Sans 4.0,Consolas"
+                             FontFamily="Cascadia Mono,Noto Sans SC,Consolas"
                              FontSize="12"
                              FontWeight="Normal"
                              Foreground="{StaticResource TextPrimaryBrush}"
@@ -2531,12 +2531,12 @@ Background="{StaticResource SurfaceTintBrush}"
                      Grid.Column="0"
                      Text="flash_all*.bat 或 rawprogram*.xml"
                      VerticalContentAlignment="Center"
-                     FontFamily="pack://siteoforigin:,,,/fonts/OPPO_Sans_4.0.ttf#OPPO Sans 4.0"
+                     FontFamily="pack://siteoforigin:,,,/fonts/NotoSansSC-Sub.otf#Noto Sans SC"
                      FontSize="12"
                      Padding="9,0"
                      BorderBrush="{StaticResource BorderSubtleBrush}"
                      BorderThickness="1"
-                     Background="#FFFFFFFF"
+                     Background="{StaticResource SurfaceBrush}"
                      Foreground="{StaticResource TextMutedBrush}"
                      Height="32"
                      TextChanged="FlashBatTextBox_TextChanged"
@@ -2798,7 +2798,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                     <Setter Property="BorderBrush" Value="{StaticResource BorderSubtleBrush}"/>
                                     <Setter Property="BorderThickness" Value="1"/>
                                     <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
-                                    <Setter Property="FontFamily" Value="pack://siteoforigin:,,,/fonts/OPPO_Sans_4.0.ttf#OPPO Sans 4.0"/>
+                                    <Setter Property="FontFamily" Value="pack://siteoforigin:,,,/fonts/NotoSansSC-Sub.otf#Noto Sans SC"/>
                                     <Setter Property="FontSize" Value="12"/>
                                     <Setter Property="FontWeight" Value="SemiBold"/>
                                     <Setter Property="Padding" Value="10"/>
@@ -2811,7 +2811,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                 <Style x:Key="HiddenEnvironmentCheckBoxStyle"
                                        TargetType="{x:Type CheckBox}"
                                        BasedOn="{StaticResource {x:Type CheckBox}}">
-                                    <Setter Property="FontFamily" Value="pack://siteoforigin:,,,/fonts/OPPO_Sans_4.0.ttf#OPPO Sans 4.0"/>
+                                    <Setter Property="FontFamily" Value="pack://siteoforigin:,,,/fonts/NotoSansSC-Sub.otf#Noto Sans SC"/>
                                     <Setter Property="FontSize" Value="11.5"/>
                                     <Setter Property="FontWeight" Value="Normal"/>
                                     <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
@@ -2852,7 +2852,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                              Padding="7,7"
                                              HorizontalContentAlignment="Stretch"
                                              VerticalContentAlignment="Stretch"
-                                             FontFamily="Cascadia Mono,pack://siteoforigin:,,,/fonts/OPPO_Sans_4.0.ttf#OPPO Sans 4.0,Consolas"
+                                             FontFamily="Cascadia Mono,Noto Sans SC,Consolas"
                                              FontSize="12"
                                              FontWeight="Normal"
                                              Foreground="{StaticResource TextPrimaryBrush}"
@@ -2873,7 +2873,7 @@ Background="{StaticResource SurfaceTintBrush}"
 <GroupBox.Header><StackPanel Orientation="Horizontal" Background="Transparent"><svg:SvgViewbox Source="images/dunpai.svg" Width="15" Height="15" Margin="0,0,7,0" VerticalAlignment="Center"/><TextBlock Text="隐藏ROOT" VerticalAlignment="Center"/></StackPanel></GroupBox.Header>
                                 <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="资料目录：" VerticalAlignment="Top" FontSize="12" Margin="0,7,0,0"/>
                             </GroupBox>
-                            <TextBox x:Name="HiddenRootZipPathTextBox" HorizontalAlignment="Left" Margin="76,12,0,0" TextWrapping="NoWrap" Text="请选择隐藏环境资源包7z文件" VerticalAlignment="Top" VerticalContentAlignment="Center" Padding="9,0" Width="292" Height="32" FontFamily="pack://siteoforigin:,,,/fonts/OPPO_Sans_4.0.ttf#OPPO Sans 4.0" FontSize="12" Background="White" BorderBrush="{StaticResource BorderSubtleBrush}" BorderThickness="1" Foreground="{StaticResource TextMutedBrush}" ToolTip="{Binding Text, RelativeSource={RelativeSource Self}}"/>
+                            <TextBox x:Name="HiddenRootZipPathTextBox" HorizontalAlignment="Left" Margin="76,12,0,0" TextWrapping="NoWrap" Text="请选择隐藏环境资源包7z文件" VerticalAlignment="Top" VerticalContentAlignment="Center" Padding="9,0" Width="292" Height="32" FontFamily="pack://siteoforigin:,,,/fonts/NotoSansSC-Sub.otf#Noto Sans SC" FontSize="12" Background="{StaticResource SurfaceBrush}" BorderBrush="{StaticResource BorderSubtleBrush}" BorderThickness="1" Foreground="{StaticResource TextMutedBrush}" ToolTip="{Binding Text, RelativeSource={RelativeSource Self}}"/>
                             <Button x:Name="SelectHiddenRootZipButton" HorizontalAlignment="Left" Margin="375,13,0,0" VerticalAlignment="Top" Width="84" Click="SelectHiddenRootZipButton_Click" Style="{StaticResource PagePrimaryButton}" BorderBrush="{StaticResource BorderSubtleBrush}" Background="{StaticResource BrandPrimaryBrush}">
                                 <Button.Content>
                                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
@@ -2882,7 +2882,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                     </StackPanel>
                                 </Button.Content>
                             </Button>
-                            <TextBlock Margin="17,56,0,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Left" Width="97" FontFamily="pack://siteoforigin:,,,/fonts/OPPO_Sans_4.0.ttf#OPPO Sans 4.0" FontSize="12" FontWeight="SemiBold" Foreground="{StaticResource TextPrimaryBrush}"><Run Text="隐藏方案"/><Run Language="zh-cn" Text="："/></TextBlock>
+                            <TextBlock Margin="17,56,0,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Left" Width="97" FontFamily="pack://siteoforigin:,,,/fonts/NotoSansSC-Sub.otf#Noto Sans SC" FontSize="12" FontWeight="SemiBold" Foreground="{StaticResource TextPrimaryBrush}"><Run Text="隐藏方案"/><Run Language="zh-cn" Text="："/></TextBlock>
                             <CheckBox x:Name="MagiskAlpha28104CheckBox" Content="Magisk Alpha方案  支持版本：28101~28104" HorizontalAlignment="Left" Margin="76,55,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.304,0.51" Width="334" Style="{StaticResource PageCheckBox}" Checked="HiddenRootScheme_Checked"/>
                             <CheckBox x:Name="MagiskAlpha29000CheckBox" Content="Magisk Alpha方案  支持版本：29000~最新" HorizontalAlignment="Left" Margin="76,83,0,0" VerticalAlignment="Top" Width="327" Style="{StaticResource PageCheckBox}" Checked="HiddenRootScheme_Checked"/>
                             <CheckBox x:Name="SUkiSULKMCheckBox" Content="SUkiSU LKM方案  支持版本：≥4.0 （KernelSU适用≥3.0）" HorizontalAlignment="Left" Margin="76,112,0,0" VerticalAlignment="Top" Width="398" Style="{StaticResource PageCheckBox}" Checked="HiddenRootScheme_Checked"/>
@@ -2955,7 +2955,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                     </Style>
                                 </ProgressBar.Style>
                             </ProgressBar>
-                            <TextBlock HorizontalAlignment="Left" Margin="44,204,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="415" FontFamily="pack://siteoforigin:,,,/fonts/OPPO_Sans_4.0.ttf#OPPO Sans 4.0" FontSize="12" Foreground="{StaticResource TextPrimaryBrush}"><Run Text="本功能"/><Run Text="建议线刷后"/><Run Text="搭配KernelSU"/><Run Text="使用"/><Run Text="，"/><Run Text="本界面"/><Run Text="特别"/><Run Language="zh-cn" Text="鸣谢"/><Run Text="@王听"/><Run Text=" "/><Run Text="@月饼"/><Run Text=" 开发"/></TextBlock>
+                            <TextBlock HorizontalAlignment="Left" Margin="44,204,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="415" FontFamily="pack://siteoforigin:,,,/fonts/NotoSansSC-Sub.otf#Noto Sans SC" FontSize="12" Foreground="{StaticResource TextPrimaryBrush}"><Run Text="本功能"/><Run Text="建议线刷后"/><Run Text="搭配KernelSU"/><Run Text="使用"/><Run Text="，"/><Run Text="本界面"/><Run Text="特别"/><Run Language="zh-cn" Text="鸣谢"/><Run Text="@王听"/><Run Text=" "/><Run Text="@月饼"/><Run Text=" 开发"/></TextBlock>
                             <CheckBox x:Name="InstallZip6CheckBox" Content="额外安装LSP" HorizontalAlignment="Left" Margin="176,166,0,0" VerticalAlignment="Top" Width="104" Style="{StaticResource PageCheckBox}"/>
                             <CheckBox x:Name="AddRescueModuleCheckBox" Content="添加救砖模块" HorizontalAlignment="Left" Margin="176,184,0,0" VerticalAlignment="Top" Width="104" Style="{StaticResource PageCheckBox}"/>
                             <GroupBox
@@ -3045,7 +3045,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                                     </Grid.ColumnDefinitions>
                                                     <StackPanel Orientation="Horizontal" Margin="5" Grid.Column="0">
                                                         <svg:SvgViewbox Source="images/yasuobao.svg" Width="20" Height="20" Margin="0,0,8,0"/>
-                                                        <TextBlock Text="{Binding FileName}" VerticalAlignment="Center" FontFamily="pack://siteoforigin:,,,/fonts/OPPO_Sans_4.0.ttf#OPPO Sans 4.0" FontSize="12" Foreground="{StaticResource TextPrimaryBrush}"/>
+                                                        <TextBlock Text="{Binding FileName}" VerticalAlignment="Center" FontFamily="pack://siteoforigin:,,,/fonts/NotoSansSC-Sub.otf#Noto Sans SC" FontSize="12" Foreground="{StaticResource TextPrimaryBrush}"/>
                                                     </StackPanel>
                                                     <CheckBox Grid.Column="1"
                                                               IsChecked="{Binding IsSelected, Mode=TwoWay}"
@@ -3056,9 +3056,9 @@ Background="{StaticResource SurfaceTintBrush}"
                                             </DataTemplate>
                                         </ListBox.ItemTemplate>
                                     </ListBox>
-                                    <TextBlock HorizontalAlignment="Left" Margin="0,6,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="319" FontFamily="pack://siteoforigin:,,,/fonts/OPPO_Sans_4.0.ttf#OPPO Sans 4.0" FontSize="12" Foreground="{StaticResource TextPrimaryBrush}"><Run Text="拖动一个或多个模块到窗口，自动识别"/><Run Language="zh-cn" Text="ROOT"/><Run Text="管理器并安装"/></TextBlock>
+                                    <TextBlock HorizontalAlignment="Left" Margin="0,6,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="319" FontFamily="pack://siteoforigin:,,,/fonts/NotoSansSC-Sub.otf#Noto Sans SC" FontSize="12" Foreground="{StaticResource TextPrimaryBrush}"><Run Text="拖动一个或多个模块到窗口，自动识别"/><Run Language="zh-cn" Text="ROOT"/><Run Text="管理器并安装"/></TextBlock>
                                     <Button x:Name="ClearModuleListButton" Content="清空列表" HorizontalAlignment="Left" Margin="374,292,0,0" VerticalAlignment="Top" Width="81" Click="ClearModuleListButton_Click" Style="{StaticResource PageSecondaryButton}"/>
-                                    <TextBlock HorizontalAlignment="Left" Margin="0,300,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="pack://siteoforigin:,,,/fonts/OPPO_Sans_4.0.ttf#OPPO Sans 4.0" Style="{StaticResource MutedText12Style}" RenderTransformOrigin="0.497,0.824" Width="231"><Run Text="支持自动过滤模块文件，"/><Run Language="zh-cn" Text="排除无关多余"/><Run Text="文件"/></TextBlock>
+                                    <TextBlock HorizontalAlignment="Left" Margin="0,300,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="pack://siteoforigin:,,,/fonts/NotoSansSC-Sub.otf#Noto Sans SC" Style="{StaticResource MutedText12Style}" RenderTransformOrigin="0.497,0.824" Width="231"><Run Text="支持自动过滤模块文件，"/><Run Language="zh-cn" Text="排除无关多余"/><Run Text="文件"/></TextBlock>
                                     <Button HorizontalAlignment="Left" Margin="281,291,0,0" VerticalAlignment="Top" Width="84" BorderBrush="{StaticResource BorderSubtleBrush}" Background="{StaticResource BrandPrimaryBrush}" Click="SelectModuleButton_Click" Style="{StaticResource PagePrimaryButton}" ToolTip="手动选择模块文件">
                                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                                             <svg:SvgViewbox Source="images/wenjianjia.svg" Width="16" Height="16" Margin="0,0,5,0"/>
@@ -3071,7 +3071,7 @@ Background="{StaticResource SurfaceTintBrush}"
 </Grid>
                 </DataTemplate>
                 <DataTemplate x:Key="Page_AboutToolView">
-                        <Grid Name="AboutToolView" Visibility="Collapsed" Background="#FFF6F8FA">
+                        <Grid Name="AboutToolView" Visibility="Collapsed" Background="{StaticResource BackgroundBrush}">
                             <Grid.Resources>
                                 <Style x:Key="AboutCardStyle" TargetType="Border">
                                     <Setter Property="Background" Value="#FFFFFFFF"/>
@@ -3251,13 +3251,13 @@ Background="{StaticResource SurfaceTintBrush}"
                                             <StackPanel Grid.Row="1" Grid.Column="0" Margin="0,12,0,0" HorizontalAlignment="Left" VerticalAlignment="Center">
                                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                                                     <StackPanel Margin="0,0,12,0">
-                                                        <Border Width="132" Height="132" CornerRadius="6" BorderBrush="{StaticResource BorderBrush}" BorderThickness="1" Background="#FFF6F8FA" Padding="6">
+                                                        <Border Width="132" Height="132" CornerRadius="6" BorderBrush="{StaticResource BorderBrush}" BorderThickness="1" Background="{StaticResource BackgroundBrush}" Padding="6">
                                                             <Image Source="zfb.png" Stretch="Uniform"/>
                                                         </Border>
                                                         <TextBlock FontSize="12" Foreground="{StaticResource TextPrimaryBrush}" HorizontalAlignment="Center" Margin="0,7,0,0" FontWeight="SemiBold"><Run Text="支付宝"/><Run Text="A"/><Run Language="zh-cn" Text="l"/><Run Text="iPay"/></TextBlock>
                                                     </StackPanel>
                                                     <StackPanel>
-                                                        <Border Width="132" Height="132" CornerRadius="6" BorderBrush="{StaticResource BorderBrush}" BorderThickness="1" Background="#FFF6F8FA" Padding="6">
+                                                        <Border Width="132" Height="132" CornerRadius="6" BorderBrush="{StaticResource BorderBrush}" BorderThickness="1" Background="{StaticResource BackgroundBrush}" Padding="6">
                                                             <Image Source="wx.png" Stretch="Uniform"/>
                                                         </Border>
                                                         <TextBlock FontSize="12" Foreground="{StaticResource TextPrimaryBrush}" HorizontalAlignment="Center" Margin="0,7,0,0" FontWeight="SemiBold"><Run Text="微信"/><Run Language="zh-cn" Text="Wechat"/></TextBlock>
@@ -3416,7 +3416,7 @@ Background="{StaticResource SurfaceTintBrush}"
 
                                             <!-- 虚位以待 -->
                                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="4,6">
-                                                <Border Width="42" Height="42" CornerRadius="21" Background="#FFF6F8FA" BorderBrush="{StaticResource BorderBrush}" BorderThickness="1">
+                                                <Border Width="42" Height="42" CornerRadius="21" Background="{StaticResource BackgroundBrush}" BorderBrush="{StaticResource BorderBrush}" BorderThickness="1">
                                                     <TextBlock Text="?"
                                                                FontSize="18"
                                                                FontWeight="Bold"
@@ -3595,7 +3595,7 @@ Background="{StaticResource SurfaceTintBrush}"
                         </Grid>
                 </DataTemplate>
                 <DataTemplate x:Key="Page_AIAgentView">
-                        <Grid Name="AIAgentView" Visibility="Collapsed" Background="#FFF6F8FA">
+                        <Grid Name="AIAgentView" Visibility="Collapsed" Background="{StaticResource BackgroundBrush}">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="*"/>
@@ -3626,7 +3626,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                 </StackPanel>
                             </Grid>
                             <!-- 聊天区 -->
-                            <Border Grid.Row="1" Margin="6,0,6,0" Background="#FFFFFFFF" BorderBrush="{StaticResource BorderSubtleBrush}" BorderThickness="1" CornerRadius="12">
+                            <Border Grid.Row="1" Margin="6,0,6,0" Background="{StaticResource SurfaceBrush}" BorderBrush="{StaticResource BorderSubtleBrush}" BorderThickness="1" CornerRadius="12">
                                 <Grid>
                                     <ScrollViewer x:Name="AIAgentScrollViewer" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Padding="8">
                                         <ItemsControl x:Name="AIAgentMessagesBox" Margin="4,4,8,4">
@@ -3639,7 +3639,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                             <ItemsControl.ItemTemplate>
                                                 <DataTemplate>
                                                     <Border x:Name="AIMsgBubble" MaxWidth="560" Padding="12,9" CornerRadius="12" Margin="2,5"
-                                                            Background="#FFFFFFFF" BorderBrush="{StaticResource BorderSubtleBrush}" BorderThickness="1" HorizontalAlignment="Left">
+                                                            Background="{StaticResource SurfaceBrush}" BorderBrush="{StaticResource BorderSubtleBrush}" BorderThickness="1" HorizontalAlignment="Left">
                                                         <TextBlock x:Name="AIMsgText" Text="{Binding Text}" TextWrapping="Wrap" FontSize="13"
                                                                    Foreground="{StaticResource TextPrimaryBrush}" FontFamily="Microsoft YaHei UI" LineHeight="20"/>
                                                     </Border>
@@ -3674,7 +3674,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                     </ScrollViewer>
                                     <!-- 思考中指示 -->
                                     <Border x:Name="AIAgentTypingPanel" Visibility="Collapsed" HorizontalAlignment="Left" VerticalAlignment="Bottom"
-                                            Margin="12,6" Padding="12,9" CornerRadius="12" Background="#FFFFFFFF" BorderBrush="{StaticResource BorderSubtleBrush}" BorderThickness="1">
+                                            Margin="12,6" Padding="12,9" CornerRadius="12" Background="{StaticResource SurfaceBrush}" BorderBrush="{StaticResource BorderSubtleBrush}" BorderThickness="1">
                                         <StackPanel Orientation="Horizontal">
                                             <TextBlock x:Name="AiDot1" Text="●" FontSize="8" Foreground="{StaticResource BrandPrimaryBrush}" VerticalAlignment="Center" Margin="0,0,4,0"/>
                                             <TextBlock x:Name="AiDot2" Text="●" FontSize="8" Foreground="{StaticResource BrandPrimaryBrush}" VerticalAlignment="Center" Margin="0,0,4,0"/>
@@ -3684,7 +3684,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                     </Border>
                                     <!-- 命令确认条 -->
                                     <Border x:Name="AIAgentConfirmPanel" Visibility="Collapsed" HorizontalAlignment="Center" VerticalAlignment="Top"
-                                            Margin="12,20,12,0" MaxWidth="640" Padding="14,12" CornerRadius="12" Background="#FFFFFFFF"
+                                            Margin="12,20,12,0" MaxWidth="640" Padding="14,12" CornerRadius="12" Background="{StaticResource SurfaceBrush}"
                                             BorderBrush="#FFFFD60A" BorderThickness="1.5">
                                         <Border.Effect>
                                             <DropShadowEffect BlurRadius="12" ShadowDepth="1.5" Direction="270" Opacity="0.10"/>
@@ -3713,7 +3713,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                 <Button x:Name="AIAgentQuickTutorialButton" Content="刷机教程" Style="{StaticResource PageLightButton}" Click="AIAgentQuickTutorialButton_Click" Margin="0,0,8,0"/>
                             </StackPanel>
                             <!-- 输入区 -->
-                            <Border Grid.Row="3" Margin="12,10,12,0" Background="#FFFFFFFF" BorderBrush="{StaticResource BorderSubtleBrush}" BorderThickness="1" CornerRadius="12" Padding="6">
+                            <Border Grid.Row="3" Margin="12,10,12,0" Background="{StaticResource SurfaceBrush}" BorderBrush="{StaticResource BorderSubtleBrush}" BorderThickness="1" CornerRadius="12" Padding="6">
                                 <Grid>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="*"/>
@@ -3739,7 +3739,7 @@ Background="{StaticResource SurfaceTintBrush}"
                             <TextBlock x:Name="AIAgentFooterText" Grid.Row="4" FontSize="11.5" Foreground="{StaticResource TextMutedBrush}" Margin="14,6,14,8" TextWrapping="Wrap"/>
                             <!-- 配置浮层 -->
                             <Grid x:Name="AIAgentConfigOverlay" Grid.RowSpan="5" Visibility="Collapsed" Background="#59000000">
-                                <Border Width="440" HorizontalAlignment="Center" VerticalAlignment="Center" Background="#FFFFFFFF"
+                                <Border Width="440" HorizontalAlignment="Center" VerticalAlignment="Center" Background="{StaticResource SurfaceBrush}"
                                         CornerRadius="14" Padding="22,18" BorderBrush="{StaticResource BorderSubtleBrush}" BorderThickness="1">
                                     <Border.Effect>
                                         <DropShadowEffect BlurRadius="16" ShadowDepth="2" Direction="270" Opacity="0.14"/>
@@ -3792,7 +3792,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                     Padding="20"
                                     Margin="0,0,0,20" Cursor="">
                                 <Border
-                                            Background="#FFFFFF"
+                                            Background="{StaticResource SurfaceBrush}"
                                             CornerRadius="8"
                                             Padding="20"
                                             BorderThickness="1"
@@ -3829,7 +3829,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                                     </StackPanel>
                                                 </Button.Content>
                                             </Button>
-                                            <Button VerticalAlignment="Top" Width="94" Height="36" Background="#FF48484A" Foreground="White" Margin="10,0,0,0" Click="RefreshButton_Click">
+                                            <Button VerticalAlignment="Top" Width="94" Height="36" Style="{StaticResource DarkActionButtonStyle}" Margin="10,0,0,0" Click="RefreshButton_Click">
                                                 <Button.Content>
                                                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                                                         <svg:SvgViewbox Source="images/shuaxin.svg" Width="16" Height="16" Margin="0,0,6,0" />
@@ -3837,7 +3837,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                                     </StackPanel>
                                                 </Button.Content>
                                             </Button>
-                                            <Button VerticalAlignment="Top" Width="94" Height="36" Background="#FF48484A" Foreground="White" Margin="10,0,0,0" Click="BackButton_Click">
+                                            <Button VerticalAlignment="Top" Width="94" Height="36" Style="{StaticResource DarkActionButtonStyle}" Margin="10,0,0,0" Click="BackButton_Click">
                                                 <Button.Content>
                                                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                                                         <svg:SvgViewbox Source="images/xiangzuo.svg" Width="16" Height="16" Margin="0,0,6,0" />
@@ -3845,7 +3845,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                                     </StackPanel>
                                                 </Button.Content>
                                             </Button>
-                                            <Button VerticalAlignment="Top" Width="94" Height="36" Background="#FF48484A" Foreground="White" Margin="10,0,0,0" Click="InstallApkButton_Click">
+                                            <Button VerticalAlignment="Top" Width="94" Height="36" Style="{StaticResource DarkActionButtonStyle}" Margin="10,0,0,0" Click="InstallApkButton_Click">
                                                 <Button.Content>
                                                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                                                         <svg:SvgViewbox Source="images/APK.svg" Width="16" Height="16" Margin="0,0,6,0" />
@@ -3890,7 +3890,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                                            VerticalAlignment="Center"
                                                            TextAlignment="Right"
                                                            TextTrimming="CharacterEllipsis"
-                                                           FontFamily="Cascadia Mono,pack://siteoforigin:,,,/fonts/OPPO_Sans_4.0.ttf#OPPO Sans 4.0,Consolas"
+                                                           FontFamily="Cascadia Mono,Noto Sans SC,Consolas"
                                                            FontSize="12"
                                                            Foreground="{StaticResource TextMutedBrush}"
                                                            Cursor="Hand"
@@ -4071,6 +4071,37 @@ Background="{StaticResource SurfaceTintBrush}"
                                                 </DataTemplate>
                                             </ListBox.ItemTemplate>
                                         </ListBox>
+                                        <Border x:Name="SystemZoneEmptyHint"
+                                                HorizontalAlignment="Left"
+                                                VerticalAlignment="Top"
+                                                Width="807"
+                                                Height="456"
+                                                Margin="0,70,0,0"
+                                                Panel.ZIndex="10"
+                                                Background="Transparent">
+                                            <Border.Style>
+                                                <Style TargetType="Border">
+                                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding Items.Count, ElementName=FileListTextBox}" Value="0">
+                                                            <Setter Property="Visibility" Value="Visible"/>
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Border.Style>
+                                            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                                                <TextBlock Text="暂无文件"
+                                                           HorizontalAlignment="Center"
+                                                           FontSize="15"
+                                                           FontWeight="SemiBold"
+                                                           Foreground="{StaticResource TextMutedBrush}"
+                                                           Margin="0,0,0,8"/>
+                                                <TextBlock Text="点击「加载目录」或拖动文件到窗口开始传输"
+                                                           HorizontalAlignment="Center"
+                                                           FontSize="12"
+                                                           Foreground="{StaticResource TextMutedBrush}"/>
+                                            </StackPanel>
+                                        </Border>
                                         <Border x:Name="SystemZoneLoadingOverlay"
                                                 HorizontalAlignment="Left"
                                                 VerticalAlignment="Top"
@@ -4094,7 +4125,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                                                   Margin="0,0,0,12"/>
                                                 <TextBlock Text="正在读取目录..."
                                                            HorizontalAlignment="Center"
-                                                           FontFamily="pack://siteoforigin:,,,/fonts/OPPO_Sans_4.0.ttf#OPPO Sans 4.0"
+                                                           FontFamily="pack://siteoforigin:,,,/fonts/NotoSansSC-Sub.otf#Noto Sans SC"
                                                            FontSize="12"
                                                            Foreground="{StaticResource TextMutedBrush}"/>
                                             </StackPanel>
@@ -4110,7 +4141,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                                                             Padding="7,7"
                                                                             HorizontalContentAlignment="Stretch"
                                                                             VerticalContentAlignment="Stretch"
-                                                                            FontFamily="Cascadia Mono,pack://siteoforigin:,,,/fonts/OPPO_Sans_4.0.ttf#OPPO Sans 4.0,Consolas"
+                                                                            FontFamily="Cascadia Mono,Noto Sans SC,Consolas"
                                                                             FontSize="12"
                                                                             FontWeight="Normal"
                                                                             Foreground="{StaticResource TextPrimaryBrush}"
@@ -4181,7 +4212,7 @@ Background="{StaticResource SurfaceTintBrush}"
                         Name="OujiaFlashView"
                         Visibility="Collapsed"          
                         Background="{StaticResource SurfaceTintBrush}"
-                        TextElement.FontFamily="pack://siteoforigin:,,,/fonts/OPPO_Sans_4.0.ttf#OPPO Sans 4.0"
+                        TextElement.FontFamily="pack://siteoforigin:,,,/fonts/NotoSansSC-Sub.otf#Noto Sans SC"
                         Cursor="">
 <!-- MONO_PAGE_MARKER_OujiaFlashView -->
     <Grid.Resources>
@@ -4192,7 +4223,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                     <Setter Property="BorderBrush" Value="{StaticResource BorderSubtleBrush}"/>
                                     <Setter Property="BorderThickness" Value="1"/>
                                     <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
-                                    <Setter Property="FontFamily" Value="pack://siteoforigin:,,,/fonts/OPPO_Sans_4.0.ttf#OPPO Sans 4.0"/>
+                                    <Setter Property="FontFamily" Value="pack://siteoforigin:,,,/fonts/NotoSansSC-Sub.otf#Noto Sans SC"/>
                                     <Setter Property="FontSize" Value="12"/>
                                     <Setter Property="FontWeight" Value="SemiBold"/>
                                     <Setter Property="Padding" Value="10"/>
@@ -4224,7 +4255,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                 <Style x:Key="OugaFlashOptionCheckBoxStyle"
                                        TargetType="{x:Type CheckBox}"
                                        BasedOn="{StaticResource {x:Type CheckBox}}">
-                                    <Setter Property="FontFamily" Value="pack://siteoforigin:,,,/fonts/OPPO_Sans_4.0.ttf#OPPO Sans 4.0"/>
+                                    <Setter Property="FontFamily" Value="pack://siteoforigin:,,,/fonts/NotoSansSC-Sub.otf#Noto Sans SC"/>
                                     <Setter Property="FontSize" Value="11.5"/>
                                     <Setter Property="FontWeight" Value="Normal"/>
                                     <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
@@ -4238,7 +4269,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                     <Setter Property="Height" Value="32"/>
                                     <Setter Property="VerticalContentAlignment" Value="Center"/>
                                     <Setter Property="Padding" Value="9,0"/>
-                                    <Setter Property="FontFamily" Value="pack://siteoforigin:,,,/fonts/OPPO_Sans_4.0.ttf#OPPO Sans 4.0"/>
+                                    <Setter Property="FontFamily" Value="pack://siteoforigin:,,,/fonts/NotoSansSC-Sub.otf#Noto Sans SC"/>
                                     <Setter Property="FontSize" Value="12"/>
                                     <Setter Property="FontWeight" Value="Normal"/>
                                     <Setter Property="Foreground" Value="{StaticResource TextMutedBrush}"/>
@@ -4252,7 +4283,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                        BasedOn="{StaticResource {x:Type ComboBox}}">
                                     <Setter Property="Height" Value="32"/>
                                     <Setter Property="Padding" Value="8,0"/>
-                                    <Setter Property="FontFamily" Value="pack://siteoforigin:,,,/fonts/OPPO_Sans_4.0.ttf#OPPO Sans 4.0"/>
+                                    <Setter Property="FontFamily" Value="pack://siteoforigin:,,,/fonts/NotoSansSC-Sub.otf#Noto Sans SC"/>
                                     <Setter Property="FontSize" Value="12"/>
                                     <Setter Property="FontWeight" Value="Normal"/>
                                     <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
@@ -4438,7 +4469,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                                 Margin="0,0,0,8"
                                                 Padding="8,0"
                                                 HorizontalAlignment="Left"
-                                                Background="#FFFFFFFF"
+                                                Background="{StaticResource SurfaceBrush}"
                                                 BorderBrush="{StaticResource BorderSubtleBrush}"
                                                 BorderThickness="1"
                                                 CornerRadius="5">
@@ -4518,9 +4549,9 @@ Background="{StaticResource SurfaceTintBrush}"
                                 RowStyle="{StaticResource EdlDgRowStyle}"
                                 CellStyle="{StaticResource EdlDgCellStyle}"
                                 FontSize="12"
-                                FontFamily="pack://siteoforigin:,,,/fonts/OPPO_Sans_4.0.ttf#OPPO Sans 4.0"
+                                FontFamily="pack://siteoforigin:,,,/fonts/NotoSansSC-Sub.otf#Noto Sans SC"
                                 Foreground="{StaticResource TextPrimaryBrush}"
-                                Background="#FFFFFFFF"
+                                Background="{StaticResource SurfaceBrush}"
                                 BorderBrush="{StaticResource BorderSubtleBrush}"
                                 BorderThickness="1"
                                 GridLinesVisibility="None"
@@ -4676,7 +4707,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                                  Padding="7"
                                                  HorizontalContentAlignment="Stretch"
                                                  VerticalContentAlignment="Stretch"
-                                                 FontFamily="Cascadia Mono,pack://siteoforigin:,,,/fonts/OPPO_Sans_4.0.ttf#OPPO Sans 4.0,Consolas"
+                                                 FontFamily="Cascadia Mono,Noto Sans SC,Consolas"
                                                  FontSize="12"
                                                  FontWeight="Normal"
                                                  Foreground="{StaticResource TextPrimaryBrush}"
@@ -5438,7 +5469,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                        TargetType="CheckBox"
                                        BasedOn="{StaticResource {x:Type CheckBox}}">
                                     <Setter Property="FontSize" Value="13"/>
-                                    <Setter Property="Foreground" Value="#48484A"/>
+                                    <Setter Property="Foreground" Value="{StaticResource TextSecondaryBrush}"/>
                                     <Setter Property="Margin" Value="0,0,0,6"/>
                                     <Setter Property="Cursor" Value="Hand"/>
                                     <Setter Property="VerticalAlignment" Value="Center"/>
@@ -5649,7 +5680,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                                              Grid.Column="2"
                                                              TextWrapping="NoWrap"
                                                              Height="36"
-                                                             Background="White"
+                                                             Background="{StaticResource SurfaceBrush}"
                                                              FontSize="12"
                                                              FontWeight="Normal"
                                                              IsEnabled="{Binding IsChecked, ElementName=OfflinePatchModeRadioButton}"/>
@@ -5678,7 +5709,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                                              Grid.Column="2"
                                                              TextWrapping="NoWrap"
                                                              Height="36"
-                                                             Background="White"
+                                                             Background="{StaticResource SurfaceBrush}"
                                                              FontSize="12"
                                                              FontWeight="Normal"
                                                              IsReadOnly="True"
@@ -5882,7 +5913,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                                              Grid.Column="2"
                                                              TextWrapping="NoWrap"
                                                              Height="36"
-                                                             Background="White"
+                                                             Background="{StaticResource SurfaceBrush}"
                                                              FontSize="12"
                                                              FontWeight="Normal"/>
                                                     <Button Grid.Column="4"
@@ -5908,7 +5939,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                                              Grid.Column="2"
                                                              TextWrapping="NoWrap"
                                                              Height="36"
-                                                             Background="White"
+                                                             Background="{StaticResource SurfaceBrush}"
                                                              FontSize="12"
                                                              FontWeight="Normal"/>
                                                     <Button Grid.Column="4"
@@ -5976,7 +6007,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                                              IsReadOnly="True"
                                                              VerticalScrollBarVisibility="Auto"
                                                              HorizontalScrollBarVisibility="Auto"
-                                                             FontFamily="pack://siteoforigin:,,,/fonts/OPPO_Sans_4.0.ttf#OPPO Sans 4.0"
+                                                             FontFamily="pack://siteoforigin:,,,/fonts/NotoSansSC-Sub.otf#Noto Sans SC"
              FontSize="12"
              Padding="10" TextChanged="txtLog_TextChanged">
                                                     <RichTextBox.Document>
@@ -6029,7 +6060,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                                                  Grid.Column="2"
                                                                  Height="34"
                                                                  FontSize="12"
-                                                                 Background="White"
+                                                                 Background="{StaticResource SurfaceBrush}"
                                                                  IsReadOnly="True"
                                                                  Text="选择 boot 镜像"/>
                                                         <Button Grid.Column="4"
@@ -6057,7 +6088,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                                                  Grid.Column="2"
                                                                  Height="34"
                                                                  FontSize="12"
-                                                                 Background="White"
+                                                                 Background="{StaticResource SurfaceBrush}"
                                                                  IsReadOnly="True"
                                                                  Text="选择 boot/init_boot 镜像" TextChanged="AvbInitBootPathTextBox_TextChanged"/>
                                                         <Button Grid.Column="4"
@@ -6083,7 +6114,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                                                  Grid.Column="2"
                                                                  Height="34"
                                                                  FontSize="12"
-                                                                 Background="White"
+                                                                 Background="{StaticResource SurfaceBrush}"
                                                                  IsReadOnly="True"
                                                                  Text="选择 vbmeta 镜像"/>
                                                         <Button Grid.Column="4"
@@ -6111,7 +6142,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                                                  Grid.Column="2"
                                                                  Height="34"
                                                                  FontSize="12"
-                                                                 Background="White"
+                                                                 Background="{StaticResource SurfaceBrush}"
                                                                  IsReadOnly="True"
                                                                  Text="选择 vbmeta 镜像"/>
                                                         <Button Grid.Column="4"
@@ -6137,7 +6168,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                                                  Grid.Column="2"
                                                                  Height="34"
                                                                  FontSize="12"
-                                                                 Background="White"
+                                                                 Background="{StaticResource SurfaceBrush}"
                                                                  IsReadOnly="True"
                                                                  Text="选择 boot 镜像"/>
                                                         <Button Grid.Column="4"
@@ -6163,7 +6194,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                                                  Grid.Column="2"
                                                                  Height="34"
                                                                  FontSize="12"
-                                                                 Background="White"
+                                                                 Background="{StaticResource SurfaceBrush}"
                                                                  IsReadOnly="True"
                                                                  Text="选择 recovery 镜像"/>
                                                         <Button Grid.Column="4"
@@ -6189,7 +6220,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                                                  Grid.Column="2"
                                                                  Height="34"
                                                                  FontSize="12"
-                                                                 Background="White"
+                                                                 Background="{StaticResource SurfaceBrush}"
                                                                  IsReadOnly="True"
                                                                  Text="选择 vbmeta_system 镜像"/>
                                                         <Button Grid.Column="4"
@@ -6234,7 +6265,7 @@ Background="{StaticResource SurfaceTintBrush}"
                         <Grid
                         Name="AppManagementView"
                         Visibility="Collapsed"
-                        Background="White">
+                        Background="{StaticResource BackgroundBrush}">
 <!-- MONO_PAGE_MARKER_AppManagementView -->
 <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="*"/></Grid.RowDefinitions>
 <Grid Grid.Row="0" Grid.ColumnSpan="5" Margin="6,12,6,10">
@@ -6281,7 +6312,8 @@ Background="{StaticResource SurfaceTintBrush}"
                                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                                                 <TextBlock
                                                            VerticalAlignment="Center"
-                                                           Foreground="{StaticResource TextStrongBrush}"><Run Text="仅"/><Run Language="zh-cn" Text="显示"/><Run Text="用户应用"/></TextBlock>
+                                                           Foreground="{StaticResource TextStrongBrush}"
+                                                           Text="仅显示用户应用"/>
                                                 <ToggleButton x:Name="AppListSwitchToggle"
                                                               Style="{StaticResource PageSwitch}"
                                                               Checked="AppListThirdPartyToggle_Checked"
@@ -6343,7 +6375,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                         <DataGrid.Resources>
                                             <Style TargetType="{x:Type DataGridColumnHeader}">
                                                 <Setter Property="Background" Value="{StaticResource BorderSubtleBrush}"/>
-                                                <Setter Property="Foreground" Value="#48484A"/>
+                                                <Setter Property="Foreground" Value="{StaticResource TextSecondaryBrush}"/>
                                                 <Setter Property="FontWeight" Value="SemiBold"/>
                                                 <Setter Property="Padding" Value="10,0"/>
                                                 <Setter Property="BorderThickness" Value="0"/>
@@ -6420,6 +6452,32 @@ Background="{StaticResource SurfaceTintBrush}"
                                                                 Width="2*"/>
                                         </DataGrid.Columns>
                                     </DataGrid>
+                                    <Border Grid.Row="2"
+                                            x:Name="AppListEmptyHint"
+                                            Background="Transparent">
+                                        <Border.Style>
+                                            <Style TargetType="Border">
+                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding Items.Count, ElementName=AppListDataGrid}" Value="0">
+                                                        <Setter Property="Visibility" Value="Visible"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Border.Style>
+                                        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                                            <TextBlock Text="暂无应用"
+                                                       HorizontalAlignment="Center"
+                                                       FontSize="15"
+                                                       FontWeight="SemiBold"
+                                                       Foreground="{StaticResource TextMutedBrush}"
+                                                       Margin="0,0,0,8"/>
+                                            <TextBlock Text="连接设备后点击「读取应用列表」刷新"
+                                                       HorizontalAlignment="Center"
+                                                       FontSize="12"
+                                                       Foreground="{StaticResource TextMutedBrush}"/>
+                                        </StackPanel>
+                                    </Border>
                                 </Grid>
                             </GroupBox>
 
@@ -6537,10 +6595,10 @@ Background="{StaticResource SurfaceTintBrush}"
                                                      TextWrapping="Wrap"
                                                      VerticalScrollBarVisibility="Auto"
                                                      Background="Transparent"
-                                                     Foreground="#48484A"
+                                                     Foreground="{StaticResource TextSecondaryBrush}"
                                                      BorderThickness="0"
                                                      Padding="10"
-                                                     FontFamily="pack://siteoforigin:,,,/fonts/OPPO_Sans_4.0.ttf#OPPO Sans 4.0"/>
+                                                     FontFamily="pack://siteoforigin:,,,/fonts/NotoSansSC-Sub.otf#Noto Sans SC"/>
                                         </Border>
                                     </Grid>
                                 </GroupBox>
@@ -6552,7 +6610,7 @@ Background="{StaticResource SurfaceTintBrush}"
                         <Grid
                         Name="AndroidGeneralView"
                         Visibility="Visible"    
-                        Background="White">
+                        Background="{StaticResource SurfaceBrush}">
 <!-- MONO_PAGE_MARKER_AndroidGeneralView -->
 <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="*"/></Grid.RowDefinitions>
 <Grid Grid.Row="0" Grid.ColumnSpan="1" Margin="6,12,6,10">
@@ -6568,7 +6626,7 @@ Background="{StaticResource SurfaceTintBrush}"
     </Grid>
 <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Margin="0" Background="Transparent" Padding="0" VerticalAlignment="Stretch"><Grid Grid.Row="1" Margin="6,20,6,12" MinHeight="720">
 <GroupBox
-                            Background="#FFFFFF"
+                            Background="{StaticResource SurfaceBrush}"
                             Padding="15"
                             BorderThickness="1"
                             BorderBrush="{StaticResource BorderSubtleBrush}"
@@ -6629,7 +6687,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                 </Grid>
                             </GroupBox>
                             <GroupBox
-                            Background="#FFFFFF"
+                            Background="{StaticResource SurfaceBrush}"
                             Margin="390,-6,0,0"
                             Padding="15"
                             BorderThickness="1"
@@ -6681,7 +6739,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                 </Grid>
                             </GroupBox>
                             <GroupBox
-                            Background="#FFFFFF"
+                            Background="{StaticResource SurfaceBrush}"
                             Margin="0,101,0,0"
                             Padding="15"
                             BorderThickness="1"
@@ -6744,7 +6802,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                 </Grid>
                             </GroupBox>
                             <GroupBox
-                            Background="#FFFFFF"
+                            Background="{StaticResource SurfaceBrush}"
                             Margin="390,101,0,0"
                             Padding="15"
                             BorderThickness="1"
@@ -6796,7 +6854,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                 </Grid>
                             </GroupBox>
                             <GroupBox
-                            Background="#FFFFFF"
+                            Background="{StaticResource SurfaceBrush}"
                             Margin="0,214,0,0"
                             Padding="15"
                             BorderThickness="1"
@@ -6859,7 +6917,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                 </Grid>
                             </GroupBox>
                             <GroupBox
-                            Background="#FFFFFF"
+                            Background="{StaticResource SurfaceBrush}"
                             Margin="390,214,0,0"
                             Padding="15"
                             BorderThickness="1"
@@ -6941,7 +6999,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                 </Grid>
                             </GroupBox>
                             <GroupBox
-                            Background="#FFFFFF"
+                            Background="{StaticResource SurfaceBrush}"
                             Margin="1,327,0,0"
                             Padding="15"
                             BorderThickness="1"
@@ -7000,7 +7058,7 @@ Background="{StaticResource SurfaceTintBrush}"
                             <Button Content="推送卡刷包" HorizontalAlignment="Left" Margin="10,378,0,0" VerticalAlignment="Top" Width="85" Click="PushZipToSdcardButton_Click" BorderBrush="{StaticResource BorderSubtleBrush}" Background="{StaticResource BorderSubtleBrush}" Foreground="White"/>
                             <Button Content="写入分区" HorizontalAlignment="Left" Margin="192,378,0,0" VerticalAlignment="Top" Width="85" Click="WriteSelectedPartitionButton_Click" Background="{StaticResource BorderSubtleBrush}" BorderBrush="{StaticResource BorderSubtleBrush}" Foreground="White"/>
                             <GroupBox
-                            Background="#FFFFFF"
+                            Background="{StaticResource SurfaceBrush}"
                             Margin="0,432,0,0"
                             Padding="15"
                             BorderThickness="1"
@@ -7146,7 +7204,7 @@ Background="{StaticResource SurfaceTintBrush}"
 
                                     <RichTextBox Name="LogTextBox" IsReadOnly="True" VerticalScrollBarVisibility="Auto"
                                              HorizontalScrollBarVisibility="Auto" IsDocumentEnabled="False" Margin="0"
-                                             Background="White" BorderThickness="0" FontSize="12" Foreground="{StaticResource TextStrongBrush}"/>
+                                             Background="{StaticResource SurfaceBrush}" BorderThickness="0" FontSize="12" Foreground="{StaticResource TextStrongBrush}"/>
                                 
                             </GroupBox>
 <GroupBox Style="{StaticResource PayloadGroupBoxStyle}" FontSize="12" BorderBrush="{StaticResource BorderSubtleBrush}" Grid.Row="1" Grid.Column="0" Margin="0,0,10,10">
@@ -7323,7 +7381,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                     <Setter Property="VerticalAlignment" Value="Center"/>
                                     <Setter Property="FontSize" Value="12"/>
                                     <Setter Property="FontWeight" Value="SemiBold"/>
-                                    <Setter Property="Foreground" Value="#48484A"/>
+                                    <Setter Property="Foreground" Value="{StaticResource TextSecondaryBrush}"/>
                                 </Style>
                                 <Style x:Key="RomComboBoxStyle"
                                        TargetType="{x:Type ComboBox}"
@@ -7907,7 +7965,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                                           ColumnHeaderStyle="{StaticResource EdlDgHeaderStyle}"
                                                           RowStyle="{StaticResource EdlDgRowStyle}"
                                                           CellStyle="{StaticResource EdlDgCellStyle}"
-                                                          Background="#FFFFFFFF"
+                                                          Background="{StaticResource SurfaceBrush}"
                                                           AlternatingRowBackground="{StaticResource SurfaceTintBrush}"
                                                           BorderBrush="{StaticResource BorderSubtleBrush}"
                                                           BorderThickness="1"
@@ -8035,7 +8093,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                        BasedOn="{StaticResource {x:Type DataGridColumnHeader}}">
                                     <Setter Property="HorizontalContentAlignment" Value="Center"/>
                                     <Setter Property="VerticalContentAlignment" Value="Center"/>
-                                    <Setter Property="FontFamily" Value="pack://siteoforigin:,,,/fonts/OPPO_Sans_4.0.ttf#OPPO Sans 4.0"/>
+                                    <Setter Property="FontFamily" Value="pack://siteoforigin:,,,/fonts/NotoSansSC-Sub.otf#Noto Sans SC"/>
                                     <Setter Property="FontSize" Value="11.5"/>
                                     <Setter Property="FontWeight" Value="SemiBold"/>
                                     <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
@@ -8108,7 +8166,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                     <Setter Property="BorderBrush" Value="{StaticResource BorderSubtleBrush}"/>
                                     <Setter Property="BorderThickness" Value="1"/>
                                     <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
-                                    <Setter Property="FontFamily" Value="pack://siteoforigin:,,,/fonts/OPPO_Sans_4.0.ttf#OPPO Sans 4.0"/>
+                                    <Setter Property="FontFamily" Value="pack://siteoforigin:,,,/fonts/NotoSansSC-Sub.otf#Noto Sans SC"/>
                                     <Setter Property="FontSize" Value="12"/>
                                     <Setter Property="FontWeight" Value="SemiBold"/>
                                     <Setter Property="Padding" Value="10"/>
@@ -8377,7 +8435,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                                       GridLinesVisibility="Horizontal"
                                                       ColumnHeaderStyle="{StaticResource ColorOSColumnHeaderStyle}"
                                                       AlternatingRowBackground="{StaticResource SurfaceTintBrush}"
-                                                      Background="#FFFFFFFF"
+                                                      Background="{StaticResource SurfaceBrush}"
                                                       BorderThickness="1"
                                                       BorderBrush="{StaticResource BorderSubtleBrush}"
                                                       RowHeight="32"
@@ -8492,7 +8550,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                                          Padding="7,7"
                                                          HorizontalContentAlignment="Stretch"
                                                          VerticalContentAlignment="Stretch"
-                                                         FontFamily="Cascadia Mono,pack://siteoforigin:,,,/fonts/OPPO_Sans_4.0.ttf#OPPO Sans 4.0,Consolas"
+                                                         FontFamily="Cascadia Mono,Noto Sans SC,Consolas"
                                                          FontSize="12"
                                                          FontWeight="Normal"
                                                          Foreground="{StaticResource TextPrimaryBrush}"
@@ -8607,8 +8665,8 @@ Background="{StaticResource SurfaceTintBrush}"
                             <Border Grid.Column="2" BorderBrush="{StaticResource BorderSubtleBrush}" BorderThickness="1" Background="WhiteSmoke">
                                 <StackPanel>
                                     <Button x:Name="btnNavPhotos" Content=" 📷&#x0a;图片" Width="78" Height="80" Click="BtnNavPhotos_Click" FontSize="14" Background="{StaticResource BrandPrimaryBrush}" Foreground="White" BorderThickness="0"/>
-                                    <Button x:Name="btnNavVideos" Content=" 🎬&#x0a;视频" Width="78" Height="80" Click="BtnNavVideos_Click" FontSize="14" Margin="0,1,0,0" Background="White" Foreground="Black" BorderThickness="0"/>
-                                    <Button x:Name="btnNavContacts" Content="  📞&#x0a;通讯录" Width="78" Height="80" Click="BtnNavContacts_Click" FontSize="14" Margin="0,1,0,0" Background="White" Foreground="Black" BorderThickness="0"/>
+                                    <Button x:Name="btnNavVideos" Content=" 🎬&#x0a;视频" Width="78" Height="80" Click="BtnNavVideos_Click" FontSize="14" Margin="0,1,0,0" Background="{StaticResource SurfaceBrush}" Foreground="Black" BorderThickness="0"/>
+                                    <Button x:Name="btnNavContacts" Content="  📞&#x0a;通讯录" Width="78" Height="80" Click="BtnNavContacts_Click" FontSize="14" Margin="0,1,0,0" Background="{StaticResource SurfaceBrush}" Foreground="Black" BorderThickness="0"/>
                                 </StackPanel>
                             </Border>
 </Grid>
@@ -9065,7 +9123,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                                            IsOpen="{TemplateBinding IsDropDownOpen}"
                                                            PopupAnimation="Slide">
                                                         <Grid MinWidth="{TemplateBinding ActualWidth}" MaxHeight="{TemplateBinding MaxDropDownHeight}">
-                                                            <Border Background="White"
+                                                            <Border Background="{StaticResource SurfaceBrush}"
                                                                     BorderBrush="{StaticResource BorderSubtleBrush}"
                                                                     BorderThickness="1"
                                                                     CornerRadius="10"
@@ -10592,7 +10650,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                                                       Width="210"
                                                                       Height="30"
                                                                       FontSize="14"
-                                                                      Background="White"
+                                                                      Background="{StaticResource SurfaceBrush}"
                                                                       Foreground="{StaticResource TextPrimaryBrush}"
                                                                       BorderBrush="{StaticResource BorderBrush}"
                                                                       BorderThickness="1"/>
@@ -10704,7 +10762,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                                             HorizontalAlignment="Center"
                                                             Height="20"
                                                             FontSize="14"
-                                                            FontFamily="pack://siteoforigin:,,,/fonts/OPPO_Sans_4.0.ttf#OPPO Sans 4.0"/>
+                                                            FontFamily="pack://siteoforigin:,,,/fonts/NotoSansSC-Sub.otf#Noto Sans SC"/>
                                                             <svg:SvgViewbox
                                                             Source="images/files.svg"
                                                             Width="90"
@@ -10718,7 +10776,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                                             HorizontalAlignment="Center"
                                                             Height="20"
                                                             FontSize="14"
-                                                            FontFamily="pack://siteoforigin:,,,/fonts/OPPO_Sans_4.0.ttf#OPPO Sans 4.0"/>
+                                                            FontFamily="pack://siteoforigin:,,,/fonts/NotoSansSC-Sub.otf#Noto Sans SC"/>
                                                         </StackPanel>
                                                     </Border>
                                                     <Border
@@ -10741,7 +10799,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                                             HorizontalAlignment="Center"
                                                             Height="20"
                                                             FontSize="14"
-                                                            FontFamily="pack://siteoforigin:,,,/fonts/OPPO_Sans_4.0.ttf#OPPO Sans 4.0"/>
+                                                            FontFamily="pack://siteoforigin:,,,/fonts/NotoSansSC-Sub.otf#Noto Sans SC"/>
                                                             <svg:SvgViewbox
                                                             Source="images/files.svg"
                                                             Width="90"
@@ -10755,7 +10813,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                                             HorizontalAlignment="Center"
                                                             Height="20"
                                                             FontSize="14"
-                                                            FontFamily="pack://siteoforigin:,,,/fonts/OPPO_Sans_4.0.ttf#OPPO Sans 4.0"/>
+                                                            FontFamily="pack://siteoforigin:,,,/fonts/NotoSansSC-Sub.otf#Noto Sans SC"/>
                                                         </StackPanel>
                                                     </Border>
                                                     <Border
@@ -10778,7 +10836,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                                             HorizontalAlignment="Center"
                                                             Height="20"
                                                             FontSize="14"
-                                                            FontFamily="pack://siteoforigin:,,,/fonts/OPPO_Sans_4.0.ttf#OPPO Sans 4.0"/>
+                                                            FontFamily="pack://siteoforigin:,,,/fonts/NotoSansSC-Sub.otf#Noto Sans SC"/>
                                                             <svg:SvgViewbox
                                                             Source="images/neko.svg"
                                                             Width="90"
@@ -10792,7 +10850,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                                             HorizontalAlignment="Center"
                                                             Height="20"
                                                             FontSize="14"
-                                                            FontFamily="pack://siteoforigin:,,,/fonts/OPPO_Sans_4.0.ttf#OPPO Sans 4.0"
+                                                            FontFamily="pack://siteoforigin:,,,/fonts/NotoSansSC-Sub.otf#Noto Sans SC"
                                                             MouseLeftButtonDown="NekoDownloaderIcon_MouseLeftButtonDown"/>
                                                         </StackPanel>
                                                     </Border>
@@ -10816,7 +10874,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                                             HorizontalAlignment="Center"
                                                             Height="20"
                                                             FontSize="14"
-                                                            FontFamily="pack://siteoforigin:,,,/fonts/OPPO_Sans_4.0.ttf#OPPO Sans 4.0"/>
+                                                            FontFamily="pack://siteoforigin:,,,/fonts/NotoSansSC-Sub.otf#Noto Sans SC"/>
                                                             <svg:SvgViewbox
                                                             Source="images/ndm.svg"
                                                             Width="90"
@@ -10830,7 +10888,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                                             HorizontalAlignment="Center"
                                                             Height="20"
                                                             FontSize="14"
-                                                            FontFamily="pack://siteoforigin:,,,/fonts/OPPO_Sans_4.0.ttf#OPPO Sans 4.0"
+                                                            FontFamily="pack://siteoforigin:,,,/fonts/NotoSansSC-Sub.otf#Noto Sans SC"
                                                             MouseLeftButtonDown="NdmDownloaderIcon_MouseLeftButtonDown"/>
                                                         </StackPanel>
                                                     </Border>
@@ -10854,7 +10912,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                                             HorizontalAlignment="Center"
                                                             Height="20"
                                                             FontSize="14"
-                                                            FontFamily="pack://siteoforigin:,,,/fonts/OPPO_Sans_4.0.ttf#OPPO Sans 4.0"/>
+                                                            FontFamily="pack://siteoforigin:,,,/fonts/NotoSansSC-Sub.otf#Noto Sans SC"/>
                                                         </StackPanel>
                                                     </Border>
                                                     <Border
@@ -10877,7 +10935,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                                             HorizontalAlignment="Center"
                                                             Height="20"
                                                             FontSize="14"
-                                                            FontFamily="pack://siteoforigin:,,,/fonts/OPPO_Sans_4.0.ttf#OPPO Sans 4.0"/>
+                                                            FontFamily="pack://siteoforigin:,,,/fonts/NotoSansSC-Sub.otf#Noto Sans SC"/>
                                                         </StackPanel>
                                                     </Border>
                                                 </StackPanel>
@@ -10892,7 +10950,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                                 CornerRadius="12"
                                                 BorderThickness="1"
                                                 BorderBrush="#20D1D1D6"
-                                                Background="White"
+                                                Background="{StaticResource SurfaceBrush}"
                                                 Effect="{StaticResource DropShadowEffect}">
                                                     <Grid>
                                                         <ListBox
@@ -10958,7 +11016,7 @@ Background="{StaticResource SurfaceTintBrush}"
                                             </StackPanel>
                                         </Button.Content>
                                     </Button>
-                                    <Label RenderTransformOrigin="0.292,0.554" HorizontalAlignment="Left" VerticalAlignment="Top" Width="725" Height="35" FontSize="14" FontFamily="pack://siteoforigin:,,,/fonts/OPPO_Sans_4.0.ttf#OPPO Sans 4.0">
+                                    <Label RenderTransformOrigin="0.292,0.554" HorizontalAlignment="Left" VerticalAlignment="Top" Width="725" Height="35" FontSize="14" FontFamily="pack://siteoforigin:,,,/fonts/NotoSansSC-Sub.otf#Noto Sans SC">
                                         <Label.Content>
                                             <TextBlock>
                                             <Run Text="您可以双击打开文件夹目录或双击运行程序，支持访问官网"/>
@@ -10992,7 +11050,7 @@ Background="{StaticResource SurfaceTintBrush}"
                 <!-- 前景内容层，为了防止前景也被模糊，单独放一个覆盖层显示文字和加载圈 -->
                 <Grid x:Name="LoadingContent" Panel.ZIndex="1000" Visibility="Collapsed" Grid.RowSpan="2" Grid.ColumnSpan="2" Background="Transparent">
                     <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                        <TextBlock Text="正在初始化程序环境..." FontSize="18" FontWeight="Bold" Foreground="#333" HorizontalAlignment="Center" Margin="0,0,0,20"/>
+                        <TextBlock Text="正在初始化程序环境..." FontSize="18" FontWeight="Bold" Foreground="{StaticResource TextPrimaryBrush}" HorizontalAlignment="Center" Margin="0,0,0,20"/>
                         <hc:LoadingCircle IsRunning="True" DotSpeed="3" DotDiameter="8" Foreground="{StaticResource TextPrimaryBrush}" Margin="0,0,0,0"/>
                     </StackPanel>
                 </Grid>

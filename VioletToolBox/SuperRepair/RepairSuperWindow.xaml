@@ -7,7 +7,7 @@
         ResizeMode="NoResize"
         WindowStartupLocation="CenterOwner"
         Background="#FFF7F8FC"
-        FontFamily="pack://siteoforigin:,,,/fonts/OPPO_Sans_4.0.ttf#OPPO Sans 4.0"
+        FontFamily="pack://siteoforigin:,,,/fonts/NotoSansSC-Sub.otf#Noto Sans SC"
         ShowInTaskbar="False"
         UseLayoutRounding="True"
         SnapsToDevicePixels="True"

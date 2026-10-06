@@ -7,7 +7,7 @@
         WindowStartupLocation="CenterOwner"
         ResizeMode="NoResize"
         Background="White"
-        FontFamily="pack://siteoforigin:,,,/fonts/OPPO_Sans_4.0.ttf#OPPO Sans 4.0"
+        FontFamily="pack://siteoforigin:,,,/fonts/NotoSansSC-Sub.otf#Noto Sans SC"
         ShowInTaskbar="False">
     <Window.Resources>
         <Style x:Key="DialogButtonStyle" TargetType="Button">

@@ -3,7 +3,7 @@
 
     <!-- ============ 卡片 ============ -->
     <Style x:Key="PageCard" TargetType="Border">
-        <Setter Property="Background" Value="#FFFFFFFF"/>
+        <Setter Property="Background" Value="{StaticResource SurfaceBrush}"/>
         <Setter Property="BorderBrush" Value="{StaticResource BorderSubtleBrush}"/>
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="CornerRadius" Value="10"/>
@@ -153,7 +153,7 @@
                                     <Storyboard>
                                         <ColorAnimation Storyboard.TargetName="b"
                                                         Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
-                                                        To="#FF004C9E" Duration="0:0:0.08"/>
+                                                        To="{StaticResource Violet700}" Duration="0:0:0.08"/>
                                         <DoubleAnimation Storyboard.TargetName="b"
                                                          Storyboard.TargetProperty="(Border.RenderTransform).(ScaleTransform.ScaleX)"
                                                          To="0.97" Duration="0:0:0.08"/>
@@ -186,7 +186,7 @@
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="False">
                             <Setter TargetName="b" Property="Background" Value="{StaticResource BrandTintStrongBrush}"/>
-                            <Setter Property="Foreground" Value="#FFFFFFFF"/>
+                            <Setter Property="Foreground" Value="{StaticResource TextOnBrandBrush}"/>
                             <Setter TargetName="b" Property="Opacity" Value="0.75"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
@@ -200,7 +200,7 @@
         <Setter Property="Height" Value="38"/>
         <Setter Property="Margin" Value="0"/>
         <Setter Property="Padding" Value="14,0"/>
-        <Setter Property="Background" Value="#FFFFFFFF"/>
+        <Setter Property="Background" Value="{StaticResource SurfaceBrush}"/>
         <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
         <Setter Property="BorderBrush" Value="{StaticResource TextPrimaryBrush}"/>
         <Setter Property="BorderThickness" Value="1"/>
@@ -456,7 +456,7 @@
         <Setter Property="MinHeight" Value="36"/>
         <Setter Property="Height" Value="36"/>
         <Setter Property="Padding" Value="10,0"/>
-        <Setter Property="Background" Value="#FFFFFFFF"/>
+        <Setter Property="Background" Value="{StaticResource SurfaceBrush}"/>
         <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
         <Setter Property="BorderBrush" Value="{StaticResource BorderBrush}"/>
         <Setter Property="BorderThickness" Value="1"/>
@@ -484,7 +484,7 @@
     <!-- ============ 下拉框 ============ -->
     <Style x:Key="PageComboBox" TargetType="ComboBox">
         <Setter Property="Height" Value="36"/>
-        <Setter Property="Background" Value="#FFFFFFFF"/>
+        <Setter Property="Background" Value="{StaticResource SurfaceBrush}"/>
         <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
         <Setter Property="BorderBrush" Value="{StaticResource BorderBrush}"/>
         <Setter Property="BorderThickness" Value="1"/>
